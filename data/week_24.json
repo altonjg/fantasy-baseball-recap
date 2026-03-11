@@ -1,0 +1,976 @@
+{
+  "league_name": "MillerLite\u00ae BeerLeagueBaseball",
+  "week": 24,
+  "matchups": [
+    {
+      "week": 24,
+      "teams": [
+        {
+          "name": "Albuquerque Bombers",
+          "team_key": "458.l.25686.t.1",
+          "manager": "Zach",
+          "points": 6.0,
+          "category_stats": {
+            "H/AB": "4/26",
+            "R": "1",
+            "HR": "0",
+            "RBI": "0",
+            "SB": "1",
+            "OBP": ".214",
+            "IP": "81.2",
+            "K": "96",
+            "ERA": "4.41",
+            "WHIP": "1.41",
+            "QS": "4",
+            "NSVH": "0"
+          }
+        },
+        {
+          "name": "Canberra Wombats",
+          "team_key": "458.l.25686.t.7",
+          "manager": "Noah",
+          "points": 4.0,
+          "category_stats": {
+            "H/AB": "4/28",
+            "R": "2",
+            "HR": "1",
+            "RBI": "3",
+            "SB": "0",
+            "OBP": ".226",
+            "IP": "-",
+            "K": "-",
+            "ERA": "-",
+            "WHIP": "-",
+            "QS": "-",
+            "NSVH": "-"
+          }
+        }
+      ],
+      "winner_key": "458.l.25686.t.1",
+      "is_tied": false,
+      "is_playoffs": true,
+      "is_consolation": false,
+      "is_championship": false,
+      "stat_winners": [
+        {
+          "stat_id": "7",
+          "is_tied": false
+        },
+        {
+          "stat_id": "12",
+          "is_tied": false
+        },
+        {
+          "stat_id": "13",
+          "is_tied": false
+        },
+        {
+          "stat_id": "16",
+          "is_tied": false
+        },
+        {
+          "stat_id": "4",
+          "is_tied": false
+        },
+        {
+          "stat_id": "42",
+          "is_tied": false
+        },
+        {
+          "stat_id": "26",
+          "is_tied": false
+        },
+        {
+          "stat_id": "27",
+          "is_tied": false
+        },
+        {
+          "stat_id": "83",
+          "is_tied": false
+        },
+        {
+          "stat_id": "90",
+          "is_tied": false
+        }
+      ],
+      "is_third_place": true
+    },
+    {
+      "week": 24,
+      "teams": [
+        {
+          "name": "BaseballPro77",
+          "team_key": "458.l.25686.t.4",
+          "manager": "Zach",
+          "points": 7.0,
+          "category_stats": {
+            "H/AB": "53/209",
+            "R": "29",
+            "HR": "9",
+            "RBI": "30",
+            "SB": "3",
+            "OBP": ".347",
+            "IP": "70.2",
+            "K": "57",
+            "ERA": "3.18",
+            "WHIP": "0.92",
+            "QS": "6",
+            "NSVH": "7"
+          }
+        },
+        {
+          "name": "Buttville Skidmarks",
+          "team_key": "458.l.25686.t.6",
+          "manager": "Gavin",
+          "points": 3.0,
+          "category_stats": {
+            "H/AB": "51/207",
+            "R": "26",
+            "HR": "3",
+            "RBI": "26",
+            "SB": "5",
+            "OBP": ".298",
+            "IP": "35.2",
+            "K": "30",
+            "ERA": "2.52",
+            "WHIP": "1.04",
+            "QS": "1",
+            "NSVH": "10"
+          }
+        }
+      ],
+      "winner_key": "458.l.25686.t.4",
+      "is_tied": false,
+      "is_playoffs": true,
+      "is_consolation": true,
+      "is_championship": false,
+      "stat_winners": [
+        {
+          "stat_id": "7",
+          "is_tied": false
+        },
+        {
+          "stat_id": "12",
+          "is_tied": false
+        },
+        {
+          "stat_id": "13",
+          "is_tied": false
+        },
+        {
+          "stat_id": "16",
+          "is_tied": false
+        },
+        {
+          "stat_id": "4",
+          "is_tied": false
+        },
+        {
+          "stat_id": "42",
+          "is_tied": false
+        },
+        {
+          "stat_id": "26",
+          "is_tied": false
+        },
+        {
+          "stat_id": "27",
+          "is_tied": false
+        },
+        {
+          "stat_id": "83",
+          "is_tied": false
+        },
+        {
+          "stat_id": "90",
+          "is_tied": false
+        }
+      ]
+    },
+    {
+      "week": 24,
+      "teams": [
+        {
+          "name": "Benchwarmers",
+          "team_key": "458.l.25686.t.5",
+          "manager": "Scott",
+          "points": 6.0,
+          "category_stats": {
+            "H/AB": "58/215",
+            "R": "21",
+            "HR": "7",
+            "RBI": "28",
+            "SB": "3",
+            "OBP": ".340",
+            "IP": "59.2",
+            "K": "67",
+            "ERA": "3.47",
+            "WHIP": "1.24",
+            "QS": "3",
+            "NSVH": "3"
+          }
+        },
+        {
+          "name": "Wisconsin Rapids Reapers",
+          "team_key": "458.l.25686.t.8",
+          "manager": "Bailey",
+          "points": 4.0,
+          "category_stats": {
+            "H/AB": "57/223",
+            "R": "30",
+            "HR": "9",
+            "RBI": "31",
+            "SB": "9",
+            "OBP": ".319",
+            "IP": "23.2",
+            "K": "26",
+            "ERA": "5.32",
+            "WHIP": "1.39",
+            "QS": "0",
+            "NSVH": "3"
+          }
+        }
+      ],
+      "winner_key": "458.l.25686.t.5",
+      "is_tied": false,
+      "is_playoffs": true,
+      "is_consolation": true,
+      "is_championship": false,
+      "stat_winners": [
+        {
+          "stat_id": "7",
+          "is_tied": false
+        },
+        {
+          "stat_id": "12",
+          "is_tied": false
+        },
+        {
+          "stat_id": "13",
+          "is_tied": false
+        },
+        {
+          "stat_id": "16",
+          "is_tied": false
+        },
+        {
+          "stat_id": "4",
+          "is_tied": false
+        },
+        {
+          "stat_id": "42",
+          "is_tied": false
+        },
+        {
+          "stat_id": "26",
+          "is_tied": false
+        },
+        {
+          "stat_id": "27",
+          "is_tied": false
+        },
+        {
+          "stat_id": "83",
+          "is_tied": false
+        },
+        {
+          "stat_id": "90",
+          "is_tied": false
+        }
+      ]
+    },
+    {
+      "week": 24,
+      "teams": [
+        {
+          "name": "Sugar Land Skeeters",
+          "team_key": "458.l.25686.t.13",
+          "manager": "Alton Gilbert",
+          "points": 6.0,
+          "category_stats": {
+            "H/AB": "47/212",
+            "R": "30",
+            "HR": "6",
+            "RBI": "24",
+            "SB": "7",
+            "OBP": ".324",
+            "IP": "64.2",
+            "K": "67",
+            "ERA": "1.81",
+            "WHIP": "0.97",
+            "QS": "4",
+            "NSVH": "3"
+          }
+        },
+        {
+          "name": "Wonder Wharf Wonderdogs",
+          "team_key": "458.l.25686.t.14",
+          "manager": "Justin",
+          "points": 4.0,
+          "category_stats": {
+            "H/AB": "58/223",
+            "R": "34",
+            "HR": "11",
+            "RBI": "32",
+            "SB": "1",
+            "OBP": ".315",
+            "IP": "52.1",
+            "K": "52",
+            "ERA": "3.78",
+            "WHIP": "1.34",
+            "QS": "2",
+            "NSVH": "5"
+          }
+        }
+      ],
+      "winner_key": "458.l.25686.t.13",
+      "is_tied": false,
+      "is_playoffs": true,
+      "is_consolation": false,
+      "is_championship": true,
+      "stat_winners": [
+        {
+          "stat_id": "7",
+          "is_tied": false
+        },
+        {
+          "stat_id": "12",
+          "is_tied": false
+        },
+        {
+          "stat_id": "13",
+          "is_tied": false
+        },
+        {
+          "stat_id": "16",
+          "is_tied": false
+        },
+        {
+          "stat_id": "4",
+          "is_tied": false
+        },
+        {
+          "stat_id": "42",
+          "is_tied": false
+        },
+        {
+          "stat_id": "26",
+          "is_tied": false
+        },
+        {
+          "stat_id": "27",
+          "is_tied": false
+        },
+        {
+          "stat_id": "83",
+          "is_tied": false
+        },
+        {
+          "stat_id": "90",
+          "is_tied": false
+        }
+      ]
+    }
+  ],
+  "standings": [
+    {
+      "rank": 1,
+      "name": "Sugar Land Skeeters",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 2,
+      "name": "Wonder Wharf Wonderdogs",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 3,
+      "name": "Albuquerque Bombers",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 4,
+      "name": "Canberra Wombats",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 5,
+      "name": "Hiroshima Radiation",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 6,
+      "name": "Abbotsford-Colby Twins",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 7,
+      "name": "BaseballPro77",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 8,
+      "name": "Buttville Skidmarks",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 9,
+      "name": "Benchwarmers",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 10,
+      "name": "Wisconsin Rapids Reapers",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 11,
+      "name": "Riverside Roughnecks",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 12,
+      "name": "North Correa",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 13,
+      "name": "General Hospital",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 14,
+      "name": "Athletic Park Dragons",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    }
+  ],
+  "transactions": [
+    {
+      "type": "add",
+      "timestamp": 1758309968,
+      "players": [
+        {
+          "name": "Eduard Bazardo",
+          "action": "add",
+          "team": "Sugar Land Skeeters",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1757972056,
+      "players": [
+        {
+          "name": "Jordan Leasure",
+          "action": "add",
+          "team": "Sugar Land Skeeters",
+          "position": "RP"
+        },
+        {
+          "name": "Andrew Saalfrank",
+          "action": "drop",
+          "team": "Sugar Land Skeeters",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1757971689,
+      "players": [
+        {
+          "name": "Robert Garcia",
+          "action": "add",
+          "team": "Sugar Land Skeeters",
+          "position": "RP"
+        },
+        {
+          "name": "Cole Sands",
+          "action": "drop",
+          "team": "Sugar Land Skeeters",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1757971627,
+      "players": [
+        {
+          "name": "Joey Cantillo",
+          "action": "add",
+          "team": "Sugar Land Skeeters",
+          "position": "SP,RP"
+        },
+        {
+          "name": "Bryce Elder",
+          "action": "drop",
+          "team": "Sugar Land Skeeters",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1757971289,
+      "players": [
+        {
+          "name": "Kody Clemens",
+          "action": "add",
+          "team": "Sugar Land Skeeters",
+          "position": "1B,2B,3B,OF"
+        },
+        {
+          "name": "Jeff McNeil",
+          "action": "drop",
+          "team": "Sugar Land Skeeters",
+          "position": "2B,OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1757956183,
+      "players": [
+        {
+          "name": "Otto Kemp",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "1B,2B,3B,OF"
+        },
+        {
+          "name": "Yo\u00e1n Moncada",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "3B"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1757859855,
+      "players": [
+        {
+          "name": "Joey Lucchesi",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "SP,RP"
+        },
+        {
+          "name": "Brandon Sproat",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1757778249,
+      "players": [
+        {
+          "name": "Michael Helman",
+          "action": "add",
+          "team": "Canberra Wombats",
+          "position": "OF"
+        },
+        {
+          "name": "Romy Gonzalez",
+          "action": "drop",
+          "team": "Canberra Wombats",
+          "position": "1B,2B,3B,SS"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1757778144,
+      "players": [
+        {
+          "name": "Colin Rea",
+          "action": "add",
+          "team": "Canberra Wombats",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1757741454,
+      "players": [
+        {
+          "name": "Brandon Sproat",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        },
+        {
+          "name": "Michael Harris II",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1757628899,
+      "players": [
+        {
+          "name": "Yo\u00e1n Moncada",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "3B"
+        },
+        {
+          "name": "J.P. Crawford",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "SS"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1757611525,
+      "players": [
+        {
+          "name": "Eric Lauer",
+          "action": "drop",
+          "team": "Abbotsford-Colby Twins",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1757547181,
+      "players": [
+        {
+          "name": "Austin Hays",
+          "action": "add",
+          "team": "Sugar Land Skeeters",
+          "position": "OF"
+        },
+        {
+          "name": "Jasson Dom\u00ednguez",
+          "action": "drop",
+          "team": "Sugar Land Skeeters",
+          "position": "OF"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1757511602,
+      "players": [
+        {
+          "name": "Nick Mears",
+          "action": "drop",
+          "team": "Canberra Wombats",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1757504899,
+      "players": [
+        {
+          "name": "Harrison Bader",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1757376747,
+      "players": [
+        {
+          "name": "J.P. Crawford",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "SS"
+        },
+        {
+          "name": "Luis Gil",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1757344796,
+      "players": [
+        {
+          "name": "JJ Bleday",
+          "action": "add",
+          "team": "Canberra Wombats",
+          "position": "OF"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1757344784,
+      "players": [
+        {
+          "name": "Romy Gonzalez",
+          "action": "add",
+          "team": "Canberra Wombats",
+          "position": "1B,2B,3B,SS"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1757344737,
+      "players": [
+        {
+          "name": "Kirby Yates",
+          "action": "add",
+          "team": "Canberra Wombats",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1757343911,
+      "players": [
+        {
+          "name": "Bryce Elder",
+          "action": "add",
+          "team": "Sugar Land Skeeters",
+          "position": "SP"
+        },
+        {
+          "name": "Steven Matz",
+          "action": "drop",
+          "team": "Sugar Land Skeeters",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1757343485,
+      "players": [
+        {
+          "name": "Cole Sands",
+          "action": "add",
+          "team": "Sugar Land Skeeters",
+          "position": "SP,RP"
+        },
+        {
+          "name": "Daniel Palencia",
+          "action": "drop",
+          "team": "Sugar Land Skeeters",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1757260127,
+      "players": [
+        {
+          "name": "Daylen Lile",
+          "action": "add",
+          "team": "Canberra Wombats",
+          "position": "OF"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1757247559,
+      "players": [
+        {
+          "name": "Tyler Freeman",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "2B,SS,OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1757230860,
+      "players": [
+        {
+          "name": "Matt McLain",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "2B,SS"
+        },
+        {
+          "name": "Alec Bohm",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "1B,3B"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1757230838,
+      "players": [
+        {
+          "name": "Jonah Tong",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1757214360,
+      "players": [
+        {
+          "name": "Reid Detmers",
+          "action": "add",
+          "team": "Hiroshima Radiation",
+          "position": "SP,RP"
+        },
+        {
+          "name": "Paul DeJong",
+          "action": "drop",
+          "team": "Hiroshima Radiation",
+          "position": "2B,3B,SS"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1757175800,
+      "players": [
+        {
+          "name": "Ben Brown",
+          "action": "add",
+          "team": "Abbotsford-Colby Twins",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1757175633,
+      "players": [
+        {
+          "name": "Nestor Cortes",
+          "action": "drop",
+          "team": "Abbotsford-Colby Twins",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1757168024,
+      "players": [
+        {
+          "name": "Shane Baz",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1757131112,
+      "players": [
+        {
+          "name": "Cole Henry",
+          "action": "add",
+          "team": "Hiroshima Radiation",
+          "position": "SP,RP"
+        }
+      ]
+    }
+  ],
+  "top_players": [],
+  "stat_categories": {
+    "60": "H/AB",
+    "7": "R",
+    "12": "HR",
+    "13": "RBI",
+    "16": "SB",
+    "4": "OBP",
+    "50": "IP",
+    "42": "K",
+    "26": "ERA",
+    "27": "WHIP",
+    "83": "QS",
+    "90": "NSVH"
+  },
+  "lower_is_better_stats": [
+    "ERA",
+    "WHIP"
+  ],
+  "recap_text": "# THE CORONATION: SUGAR LAND SKEETERS CROWNED MILLERLITE\u00ae CHAMPIONS\n\n**SKEETERS PITCH THEIR WAY TO THE TITLE**\n\nIn a league where championships are won on the margins, Alton Gilbert's Sugar Land Skeeters just proved that elite pitching still matters most when the lights are brightest. The Skeeters captured the MillerLite\u00ae BeerLeagueBaseball championship with a taut 6-4 category victory over Justin's Wonder Wharf Wonderdogs, riding a historically dominant pitching performance to franchise glory.\n\nThe championship-clinching stat line? Try a 1.81 ERA across 64.2 innings\u2014nearly two full runs better than the Wonderdogs' 3.78 mark. The Skeeters didn't just edge their opponents; they dominated the mound categories like vintage Maddux: 67 strikeouts to 52, four quality starts to two, and a microscopic 0.97 WHIP that made Wonder Wharf's 1.34 look downright pedestrian. When you're pitching like that in a title game, you can survive getting out-homered 11-6 and losing the power categories.\n\nThe stolen base differential (7-1) proved decisive\u2014the Skeeters' aggressive baserunning grabbed a crucial category point that sealed their championship. They also squeaked out OBP (.324 vs .315) to claim six total categories and hold off a Wonder Wharf squad that brought serious thunder with 34 runs and 32 RBI. But in baseball's greatest moments, it's pitching and defense that wins rings. The Skeeters executed, and they're taking home the hardware.\n\nWorth noting: Gilbert's championship-week roster moves were surgical\u2014adding Eduard Bazardo, Jordan Leasure, and Robert Garcia while cutting Andrew Saalfrank and Cole Sands. The new arms delivered when it mattered most.\n\n**THE BRONZE MEDAL BOUT**\n\nIn the battle for third place, Zach's Albuquerque Bombers edged Noah's Canberra Wombats 6-4 in a pitching clinic that somehow saw both offenses completely vanish. The Bombers posted 81.2 innings with 96 strikeouts and four quality starts\u2014essentially monopolizing every counting stat on the pitching side. They won ERA (4.41 to whatever the Wombats couldn't muster\u2014looks like they didn't qualify), K's, IP, QS, WHIP, and even swiped a stolen base to claim six categories total.\n\nBut here's the bizarre twist: Albuquerque scored exactly ONE run and ZERO RBI for the entire week. ONE. RUN. And they still won. The Wombats managed just two runs and three ribbies themselves while taking HR (1-0), OBP (.226 to .214), and a couple other crumbs. When both teams' bats go into witness protection during a playoff week, it's the pitching staff that breaks the tie. Third place belongs to Albuquerque, who pitched like champions even if their offense hit like the 1968 season.\n\n**CONSOLATION GAMES: PRIDE ON THE LINE**\n\nSure, these teams missed the promised land, but that doesn't mean the matchups were meaningless.\n\nBaseballPro77 (Zach's other squad, apparently running the league) absolutely demolished the Buttville Skidmarks 7-3 in a performance that screamed \"we should've been in the playoffs.\" BP77 posted a complete game: 53 hits, nine homers, a .347 OBP, 29 runs, 30 RBI, plus a stellar pitching line (3.18 ERA, 70.2 IP, 57 K's, six quality starts, 0.92 WHIP). They won seven of ten categories while Gavin's Skidmarks managed only ERA (2.52), NSVH (10-7), and steals (5-3). Sometimes the consolation bracket reveals who peaked at the wrong time.\n\nScott's Benchwarmers took down Bailey's Wisconsin Rapids Reapers 6-4 in a matchup that came down to pitching fundamentals versus power offense. The Benchwarmers dominated the mound (3.47 ERA vs. 5.32, 67 K's vs. 26, 0.92 WHIP vs. 1.39) and squeaked out H/AB and OBP to claim six categories. The Reapers fought back with pure thunder\u2014nine homers, 30 runs, 31 RBI, and a whopping nine stolen bases\u2014but when your ERA is north of 5.00 in playoff week, you're swimming upstream. Wisconsin Rapids showed heart, but the Benchwarmers' pitching staff showed dominance.\n\n**WEEK AHEAD**\n\nThe champagne bottles are empty, the trophy's been engraved, and Sugar Land Skeeters can finally exhale. Congratulations to Alton Gilbert on a masterfully managed championship run\u2014when the pressure peaked, his pitchers delivered a sub-2.00 ERA. That's how you win titles. To the rest of the league: there's always next year. Time to hit the hot stove and plot your revenge.\n\n*Your champion: Sugar Land Skeeters. Your 1.81 championship-week ERA. Drop the confetti.*",
+  "generated_at": "2026-03-11T14:29:30.423773"
+}
