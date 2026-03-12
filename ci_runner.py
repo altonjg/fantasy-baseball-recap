@@ -33,6 +33,13 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+# Force UTF-8 for stdout/stderr — GitHub Actions runners default to ASCII
+# which chokes on any non-ASCII character in team names, player names, or prompts.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 # ── Bootstrap path so we can import local modules ─────────────────────────────
 sys.path.insert(0, str(Path(__file__).parent))
 
