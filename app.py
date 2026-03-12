@@ -1850,7 +1850,15 @@ with tab_news:
                     st.caption(f"🔄 {names}{'…' if len(tx.get('players',[])) > 4 else ''}")
             else:
                 st.info(f"**{len(unprocessed)} new trade(s)** detected without articles.", icon="🔄")
-                if st.button("🤖 Generate BeerLeague Insider Articles", type="primary"):
+                league_pw  = st.text_input(
+                    "🔑 League passphrase", type="password", key="tradewire_pw",
+                    placeholder="Enter passphrase to unlock article generation",
+                )
+                correct_pw = st.secrets.get("LEAGUE_PASSWORD", "") if league_pw else ""
+                pw_ok      = bool(league_pw and league_pw == correct_pw)
+                if league_pw and not pw_ok:
+                    st.error("Incorrect passphrase.", icon="🚫")
+                if pw_ok and st.button("🤖 Generate BeerLeague Insider Articles", type="primary"):
                     new_articles = []
                     prog = st.progress(0, text="Generating articles…")
                     for i, tx in enumerate(unprocessed):
