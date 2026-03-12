@@ -26,101 +26,111 @@ st.set_page_config(
 # ── Custom CSS ────────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
+/* ── Hero banner ── */
 .hero-banner {
-    background: linear-gradient(135deg, #1f3a5f 0%, #1a9850 100%);
-    padding: 24px 32px;
-    border-radius: 12px;
-    color: white;
-    margin-bottom: 16px;
+    background: linear-gradient(135deg, #0d2d6e 0%, #0a1628 100%);
+    border-left: 5px solid #f0c040;
+    padding: 24px 32px; border-radius: 12px; color: #e8edf5; margin-bottom: 16px;
 }
-.hero-title { font-size: 2em; font-weight: 800; margin: 0; }
-.hero-sub   { font-size: 1em; opacity: 0.85; margin: 4px 0 0 0; }
+.hero-title { font-size: 2em; font-weight: 800; margin: 0; letter-spacing: -0.01em; }
+.hero-sub   { font-size: 1em; opacity: 0.75; margin: 4px 0 0 0; }
+/* ── Section headers — uppercase gold editorial ── */
 .section-header {
-    font-size: 1.05em; font-weight: 700; color: #1f3a5f;
-    border-bottom: 2px solid #1a9850;
-    padding-bottom: 4px; margin-bottom: 10px;
+    font-size: 0.72em; font-weight: 800; color: #f0c040;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    border-bottom: 1px solid #1a2d4a;
+    padding-bottom: 5px; margin-bottom: 10px;
 }
+/* ── Award rows ── */
 .award-row {
     display: flex; align-items: center;
-    padding: 5px 0; border-bottom: 1px solid #f0f0f0; font-size: 0.9em;
+    padding: 5px 0; border-bottom: 1px solid #1a2d4a; font-size: 0.9em;
 }
 .award-icon  { width: 26px; }
-.award-label { color: #666; width: 170px; font-size: 0.85em; }
-.award-winner { font-weight: 600; flex: 1; }
-.award-value { color: #888; font-size: 0.82em; margin-left: 6px; }
+.award-label { color: #8a9bb5; width: 170px; font-size: 0.85em; }
+.award-winner { font-weight: 600; flex: 1; color: #e8edf5; }
+.award-value { color: #8a9bb5; font-size: 0.82em; margin-left: 6px; }
+/* ── Badges ── */
 .badge {
     display: inline-block; padding: 3px 10px; border-radius: 12px;
     font-size: 0.82em; font-weight: 600; margin: 3px 3px 3px 0;
 }
-.badge-gold  { background: #fff3cd; color: #856404; }
-.badge-green { background: #d4edda; color: #155724; }
-.badge-red   { background: #f8d7da; color: #721c24; }
-.badge-blue  { background: #d1ecf1; color: #0c5460; }
+.badge-gold  { background: rgba(240,192,64,0.15); color: #f0c040; border: 1px solid rgba(240,192,64,0.3); }
+.badge-green { background: rgba(34,197,94,0.12); color: #22c55e; border: 1px solid rgba(34,197,94,0.25); }
+.badge-red   { background: rgba(239,68,68,0.12); color: #ef4444; border: 1px solid rgba(239,68,68,0.25); }
+.badge-blue  { background: rgba(96,165,250,0.12); color: #60a5fa; border: 1px solid rgba(96,165,250,0.25); }
+/* ── Score rows ── */
 .score-row {
     display: flex; justify-content: space-between; align-items: center;
     padding: 5px 10px; border-radius: 6px; margin: 3px 0;
-    background: #f8f9fa; font-size: 0.9em;
+    background: #111e35; font-size: 0.9em; border: 1px solid #1a2d4a;
 }
-.score-winner { font-weight: 700; color: #1a9850; }
+.score-winner { font-weight: 700; color: #22c55e; }
+.score-row:hover { background: #162840; transition: background 0.15s; }
+/* ── Trophy / season awards section ── */
 .trophy-section {
-    background: linear-gradient(135deg, #fff9e6, #fffbf0);
-    border: 1px solid #f0c040; border-radius: 10px; padding: 16px; margin: 8px 0;
+    background: linear-gradient(135deg, #0e1e38, #111e35);
+    border: 1px solid rgba(240,192,64,0.35); border-radius: 10px;
+    padding: 16px; margin: 8px 0;
 }
+/* ── Panel boxes ── */
 .panel-box {
-    background: white; border: 1px solid #e8e8e8;
+    background: #111e35; border: 1px solid #1a2d4a;
     border-radius: 10px; padding: 14px; height: 100%;
     transition: box-shadow 0.2s;
 }
-.panel-box:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.09); }
-.score-row:hover { background: #eef2f7; transition: background 0.15s; }
+.panel-box:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.4); }
+/* ── Stat chip ── */
 .stat-chip {
-    display: inline-block; background: #f0f4f8; border-radius: 6px;
-    padding: 3px 9px; font-size: 0.8em; color: #445; margin: 2px 2px 2px 0;
-    font-weight: 500;
+    display: inline-block; background: #0d1f38; border-radius: 6px;
+    padding: 3px 9px; font-size: 0.8em; color: #8a9bb5; margin: 2px 2px 2px 0;
+    font-weight: 500; border: 1px solid #1a2d4a;
 }
+/* ── Pre-season banner ── */
 .preseason-banner {
-    background: linear-gradient(135deg, #1f3a5f 0%, #0d2137 100%);
-    color: white; border-radius: 14px; padding: 32px 36px; text-align: center;
-    margin-bottom: 20px;
+    background: linear-gradient(135deg, #0d2d6e 0%, #0a1628 100%);
+    color: #e8edf5; border-radius: 14px; padding: 32px 36px; text-align: center;
+    margin-bottom: 20px; border: 1px solid #1a2d4a;
 }
 .preseason-title { font-size: 1.8em; font-weight: 800; margin-bottom: 6px; }
-.preseason-sub   { font-size: 1em; opacity: 0.75; }
+.preseason-sub   { font-size: 1em; opacity: 0.65; }
+/* ── Draft order rows ── */
 .draft-pick-row {
     display: flex; align-items: center; padding: 6px 10px;
-    border-radius: 7px; margin: 3px 0; background: #f8f9fa;
-    font-size: 0.92em;
+    border-radius: 7px; margin: 3px 0; background: #111e35;
+    font-size: 0.92em; border: 1px solid #1a2d4a;
 }
-.draft-pick-num  { font-weight: 800; color: #1f3a5f; width: 36px; }
-.draft-pick-name { flex: 1; font-weight: 600; }
-.draft-pick-note { font-size: 0.8em; color: #888; }
+.draft-pick-num  { font-weight: 800; color: #f0c040; width: 36px; }
+.draft-pick-name { flex: 1; font-weight: 600; color: #e8edf5; }
+.draft-pick-note { font-size: 0.8em; color: #8a9bb5; }
+/* ── Footer ── */
 .footer-bar {
-    text-align: center; color: #aaa; font-size: 0.78em;
-    padding: 18px 0 6px 0; border-top: 1px solid #f0f0f0; margin-top: 24px;
+    text-align: center; color: #8a9bb5; font-size: 0.78em;
+    padding: 18px 0 6px 0; border-top: 1px solid #1a2d4a; margin-top: 24px;
 }
+/* ── Season preview masthead ── */
 .preview-masthead {
-    background: linear-gradient(135deg, #0d2137 0%, #1f3a5f 60%, #2d6a3f 100%);
-    color: white; border-radius: 14px; padding: 22px 28px; margin-bottom: 0px;
+    background: linear-gradient(135deg, #0a1628 0%, #0d2d6e 100%);
+    color: #e8edf5; border-radius: 14px; padding: 22px 28px; margin-bottom: 0px;
     border-left: 5px solid #f0c040;
 }
-.preview-label  { font-size: 0.72em; font-weight: 700; letter-spacing: 2px;
+.preview-label  { font-size: 0.72em; font-weight: 800; letter-spacing: 3px;
                   color: #f0c040; text-transform: uppercase; margin-bottom: 4px; }
 .preview-title  { font-size: 1.45em; font-weight: 800; line-height: 1.25; margin-bottom: 6px; }
-.preview-deck   { font-size: 0.9em; opacity: 0.82; margin-bottom: 10px; }
-.preview-byline { font-size: 0.78em; opacity: 0.65; }
-/* Hide default Streamlit "Made with Streamlit" footer */
+.preview-deck   { font-size: 0.9em; opacity: 0.78; margin-bottom: 10px; }
+.preview-byline { font-size: 0.78em; opacity: 0.55; }
+/* Hide default Streamlit footer */
 footer { visibility: hidden; }
 /* ── League leaders bar ── */
-.leaders-bar {
-    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;
-}
+.leaders-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
 .leader-cell {
-    flex: 1; min-width: 130px; background: white; border-radius: 8px;
-    padding: 8px 11px; border: 1px solid #e8e8e8;
+    flex: 1; min-width: 130px; background: #111e35; border-radius: 8px;
+    padding: 8px 11px; border: 1px solid #1a2d4a;
 }
-.leader-label { font-size: 0.68em; text-transform: uppercase; letter-spacing: 0.07em; color: #888; }
-.leader-team  { font-size: 0.85em; font-weight: 700; color: #1f3a5f; margin: 3px 0 1px; display:flex; align-items:center; gap:5px; }
-.leader-stat  { font-size: 0.75em; color: #666; }
-/* ── Team logo badge (colored circle with initials) ── */
+.leader-label { font-size: 0.65em; text-transform: uppercase; letter-spacing: 0.1em; color: #8a9bb5; }
+.leader-team  { font-size: 0.85em; font-weight: 700; color: #e8edf5; margin: 3px 0 1px; display:flex; align-items:center; gap:5px; }
+.leader-stat  { font-size: 0.75em; color: #8a9bb5; }
+/* ── Team badge ── */
 .team-badge {
     display: inline-flex; align-items: center; justify-content: center;
     border-radius: 50%; font-size: 0.6em; font-weight: 800; color: white;
@@ -128,54 +138,54 @@ footer { visibility: hidden; }
 }
 /* ── Standings rows ── */
 .div-label {
-    font-size: 0.67em; text-transform: uppercase; letter-spacing: 0.1em;
-    color: #999; margin: 8px 0 4px; padding-bottom: 3px; border-bottom: 1px solid #f0f0f0;
+    font-size: 0.65em; text-transform: uppercase; letter-spacing: 0.1em;
+    color: #8a9bb5; margin: 8px 0 4px; padding-bottom: 3px; border-bottom: 1px solid #1a2d4a;
 }
 .stand-row {
     display: flex; align-items: center; padding: 4px 0; gap: 5px;
-    border-bottom: 1px solid #f9f9f9; font-size: 0.85em;
+    border-bottom: 1px solid #1a2d4a; font-size: 0.85em;
 }
 .stand-medal { width: 22px; flex-shrink: 0; }
-.stand-name  { flex: 1; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.stand-record { color: #888; font-size: 0.82em; white-space: nowrap; }
+.stand-name  { flex: 1; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #e8edf5; }
+.stand-record { color: #8a9bb5; font-size: 0.82em; white-space: nowrap; }
 .div-leader-tag {
-    font-size: 0.6em; color: #1a9850; font-weight: 700;
-    background: #d4edda; border-radius: 3px; padding: 1px 4px; margin-left: 3px;
+    font-size: 0.6em; color: #f0c040; font-weight: 700;
+    background: rgba(240,192,64,0.15); border-radius: 3px; padding: 1px 4px; margin-left: 3px;
 }
 /* ── Power rankings rows ── */
 .pr-row {
     display: flex; align-items: center; padding: 3px 0; gap: 4px;
-    border-bottom: 1px solid #f8f8f8; font-size: 0.84em;
+    border-bottom: 1px solid #1a2d4a; font-size: 0.84em;
 }
-.pr-rank  { width: 20px; font-weight: 700; color: #1f3a5f; flex-shrink: 0; }
-.pr-name  { flex: 1; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pr-rank  { width: 20px; font-weight: 700; color: #f0c040; flex-shrink: 0; }
+.pr-name  { flex: 1; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #e8edf5; }
 .pr-arrow { width: 26px; text-align: center; font-size: 0.72em; }
 .pr-form  { font-size: 0.72em; white-space: nowrap; }
-/* ── News / Latest ── */
-.news-item    { padding: 6px 0; border-bottom: 1px solid #f0f0f0; }
+/* ── News ── */
+.news-item    { padding: 6px 0; border-bottom: 1px solid #1a2d4a; }
 .news-item:last-child { border-bottom: none; }
-.news-week    { font-size: 0.68em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #1f3a5f; }
-.news-headline { font-size: 0.83em; color: #333; margin-top: 2px; line-height: 1.35; }
+.news-week    { font-size: 0.65em; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #f0c040; }
+.news-headline { font-size: 0.83em; color: #c8d4e8; margin-top: 2px; line-height: 1.35; }
 /* ── Playoff picture ── */
 .playoff-tier { display: flex; align-items: flex-start; gap: 8px; margin: 5px 0; flex-wrap: wrap; }
-.playoff-tier-label { font-size: 0.68em; font-weight: 800; text-transform: uppercase; width: 52px; padding-top: 5px; flex-shrink: 0; }
+.playoff-tier-label { font-size: 0.65em; font-weight: 800; text-transform: uppercase; width: 52px; padding-top: 5px; flex-shrink: 0; }
 .playoff-chip {
     display: inline-flex; align-items: center; gap: 4px;
     padding: 3px 9px; border-radius: 16px; font-size: 0.78em; font-weight: 600; margin: 2px;
 }
-.chip-in     { background: #d4edda; color: #155724; }
-.chip-bubble { background: #fff3cd; color: #856404; }
-.chip-out    { background: #f8d7da; color: #721c24; }
-/* ── Preview compact card ── */
+.chip-in     { background: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid rgba(34,197,94,0.3); }
+.chip-bubble { background: rgba(240,192,64,0.15); color: #f0c040; border: 1px solid rgba(240,192,64,0.3); }
+.chip-out    { background: rgba(239,68,68,0.12); color: #ef4444; border: 1px solid rgba(239,68,68,0.25); }
+/* ── Season preview compact card ── */
 .preview-card {
-    background: linear-gradient(90deg, #0d2137 0%, #1f3a5f 100%);
-    color: white; border-radius: 10px; padding: 10px 16px;
+    background: linear-gradient(90deg, #0a1628 0%, #0d2d6e 100%);
+    color: #e8edf5; border-radius: 10px; padding: 10px 16px;
     margin-bottom: 14px; border-left: 4px solid #f0c040;
     display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
 }
-.preview-card-label { font-size: 0.7em; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #f0c040; white-space: nowrap; }
+.preview-card-label { font-size: 0.7em; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #f0c040; white-space: nowrap; }
 .preview-card-hed   { font-size: 0.88em; font-weight: 700; flex: 1; }
-.preview-card-by    { font-size: 0.72em; opacity: 0.6; white-space: nowrap; }
+.preview-card-by    { font-size: 0.72em; opacity: 0.55; white-space: nowrap; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -535,7 +545,7 @@ with tab_home:
                 badge = _badge_html(s["name"], _logo_lookup.get(s["name"], ""), 20)
                 _sh  += f'<div class="stand-row"><span class="stand-medal">{medal}</span>{badge}<span class="stand-name">{s["name"]}</span><span class="stand-record">{rec}</span></div>'
         else:
-            _sh += '<p style="color:#888;font-size:0.85em">No standings data yet.</p>'
+            _sh += '<p style="color:#8a9bb5;font-size:0.85em">No standings data yet.</p>'
         _sh += '</div>'
         st.markdown(_sh, unsafe_allow_html=True)
 
@@ -546,11 +556,11 @@ with tab_home:
         if _pr_list:
             for r in _pr_list:
                 diff  = r["rank_diff"]
-                arr   = (f'<span style="color:#1a9850">▲{diff}</span>'  if diff > 0 else
-                         f'<span style="color:#d73027">▼{abs(diff)}</span>' if diff < 0 else
-                         '<span style="color:#ccc">—</span>')
+                arr   = (f'<span style="color:#22c55e">▲{diff}</span>'  if diff > 0 else
+                         f'<span style="color:#ef4444">▼{abs(diff)}</span>' if diff < 0 else
+                         '<span style="color:#8a9bb5">—</span>')
                 form  = r["recent_form"]
-                fc    = "#1a9850" if form.startswith(("3-", "2-")) else ("#d73027" if form.endswith(("-3", "-2")) else "#888")
+                fc    = "#22c55e" if form.startswith(("3-", "2-")) else ("#ef4444" if form.endswith(("-3", "-2")) else "#8a9bb5")
                 badge = _badge_html(r["name"], _logo_lookup.get(r["name"], ""), 18)
                 _prh += (
                     f'<div class="pr-row">'
@@ -561,7 +571,7 @@ with tab_home:
                     f'</div>'
                 )
         else:
-            _prh += '<p style="color:#888;font-size:0.82em">Rankings available once games are played.</p>'
+            _prh += '<p style="color:#8a9bb5;font-size:0.82em">Rankings available once games are played.</p>'
         _prh += '</div>'
         st.markdown(_prh, unsafe_allow_html=True)
 
@@ -590,7 +600,7 @@ with tab_home:
                 f'</div>'
             )
         if not _all_articles:
-            _nh += '<p style="color:#888;font-size:0.82em">No recaps generated yet.</p>'
+            _nh += '<p style="color:#8a9bb5;font-size:0.82em">No recaps generated yet.</p>'
         _nh += '</div>'
         st.markdown(_nh, unsafe_allow_html=True)
 
@@ -643,7 +653,7 @@ with tab_home:
             st.markdown(f"""
             <div class="score-row">
                 <span class="{t1_bold}">{t1['name']}</span>
-                <span style="color:#888;font-size:0.85em">{icon} {t1['points']:.0f} – {t2['points']:.0f}</span>
+                <span style="color:#8a9bb5;font-size:0.85em">{icon} {t1['points']:.0f} – {t2['points']:.0f}</span>
                 <span class="{t2_bold}">{t2['name']}</span>
             </div>
             """, unsafe_allow_html=True)
@@ -761,6 +771,7 @@ with tab_week:
             ))
             fig_pts.update_layout(title=f"Week {selected_week} — Category Wins by Team",
                                   xaxis_title="Category Wins", yaxis_title="",
+                                  template="plotly_dark", paper_bgcolor="#0a1628", plot_bgcolor="#111e35",
                                   height=max(300, len(all_teams) * 40), margin=dict(l=10, r=60, t=40, b=30))
             st.plotly_chart(fig_pts, use_container_width=True)
 
@@ -776,9 +787,10 @@ with tab_week:
                     heatmap_rows.append({"Matchup": label, "Category": cat, "Score": 1 if winner == "←" else (-1 if winner == "→" else 0)})
             if heatmap_rows:
                 df_heat = pd.DataFrame(heatmap_rows).pivot(index="Matchup", columns="Category", values="Score")
-                fig_heat = px.imshow(df_heat, color_continuous_scale=["#d73027", "#f7f7f7", "#1a9850"],
+                fig_heat = px.imshow(df_heat, color_continuous_scale=["#ef4444", "#1a2d4a", "#22c55e"],
                                      color_continuous_midpoint=0, title="Category Heatmap (green = left team wins)", aspect="auto")
-                fig_heat.update_layout(height=max(200, len(df_heat) * 60))
+                fig_heat.update_layout(height=max(200, len(df_heat) * 60),
+                                       template="plotly_dark", paper_bgcolor="#0a1628", plot_bgcolor="#111e35")
                 st.plotly_chart(fig_heat, use_container_width=True)
 
             st.divider()
@@ -800,7 +812,7 @@ with tab_week:
                         st.caption(f"Manager: {t1['manager']}")
                         st.metric("Category Wins", int(t1["points"]))
                     with cv:
-                        st.markdown("<p style='text-align:center;font-size:1.5em;padding-top:25px'>VS</p>", unsafe_allow_html=True)
+                        st.markdown("<p style='text-align:center;font-size:1.5em;padding-top:25px;color:#8a9bb5'>VS</p>", unsafe_allow_html=True)
                     with cb:
                         medal = "🏅 " if (winner and winner["team_key"] == t2["team_key"]) else ""
                         st.markdown(f"### {medal}{t2['name']}")
@@ -810,8 +822,8 @@ with tab_week:
                     df_cats = build_category_df(t1, t2, lower_is_better)
                     if not df_cats.empty:
                         def highlight_winner(row):
-                            if row["Winner"] == "←": return ["", "background-color: #1a9850; color: white", "", ""]
-                            if row["Winner"] == "→": return ["", "", "", "background-color: #1a9850; color: white"]
+                            if row["Winner"] == "←": return ["", "background-color: #1a4a2e; color: #22c55e", "", ""]
+                            if row["Winner"] == "→": return ["", "", "", "background-color: #1a4a2e; color: #22c55e"]
                             return [""] * 4
                         st.dataframe(df_cats.style.apply(highlight_winner, axis=1), use_container_width=True, hide_index=True)
                         wins_t1 = (df_cats["Winner"] == "←").sum()
@@ -852,8 +864,9 @@ with tab_week:
                 df_tx  = pd.DataFrame([{"Team": t, "Adds": c.get("add", 0), "Drops": c.get("drop", 0)}
                                         for t, c in sorted(team_counts.items(), key=lambda x: sum(x[1].values()), reverse=True)])
                 fig_tx = px.bar(df_tx, x="Team", y=["Adds", "Drops"], barmode="group",
-                                title="Transaction Activity", color_discrete_map={"Adds": "#1a9850", "Drops": "#d73027"})
-                fig_tx.update_layout(height=350, xaxis_tickangle=-30)
+                                title="Transaction Activity", color_discrete_map={"Adds": "#22c55e", "Drops": "#ef4444"})
+                fig_tx.update_layout(height=350, xaxis_tickangle=-30,
+                                     template="plotly_dark", paper_bgcolor="#0a1628", plot_bgcolor="#111e35")
                 st.plotly_chart(fig_tx, use_container_width=True)
 
             st.subheader("All Transactions")
@@ -891,20 +904,23 @@ with tab_season:
             with col_l:
                 df_sorted = df_stand.sort_values("wins", ascending=True)
                 fig_wins  = px.bar(df_sorted, x="wins", y="name", orientation="h", color="wins",
-                                   color_continuous_scale="Greens", title="Season Wins",
+                                   color_continuous_scale=[[0, "#0d2d6e"], [1, "#f0c040"]], title="Season Wins",
                                    labels={"wins": "Wins", "name": ""}, text="wins")
                 fig_wins.update_traces(textposition="outside")
                 fig_wins.update_layout(showlegend=False, coloraxis_showscale=False,
+                                       template="plotly_dark", paper_bgcolor="#0a1628", plot_bgcolor="#111e35",
                                        height=max(300, len(df_stand) * 35), margin=dict(l=10, r=40, t=40, b=20))
                 st.plotly_chart(fig_wins, use_container_width=True)
 
             with col_r:
                 fig_scatter = px.scatter(df_stand, x="points_against", y="points_for", text="name",
-                                         color="wins", color_continuous_scale="RdYlGn", size=[15] * len(df_stand),
+                                         color="wins", color_continuous_scale=[[0, "#ef4444"], [0.5, "#f0c040"], [1, "#22c55e"]],
+                                         size=[15] * len(df_stand),
                                          title="Points For vs Points Against",
                                          labels={"points_for": "PF", "points_against": "PA", "wins": "Wins"})
                 fig_scatter.update_traces(textposition="top center", textfont_size=10)
-                fig_scatter.update_layout(height=420)
+                fig_scatter.update_layout(height=420, template="plotly_dark",
+                                          paper_bgcolor="#0a1628", plot_bgcolor="#111e35")
                 st.plotly_chart(fig_scatter, use_container_width=True)
 
             st.subheader("Full Standings Table")
@@ -913,7 +929,7 @@ with tab_season:
             total_games          = df_display["W"] + df_display["L"]
             df_display["Win%"]   = (df_display["W"] / total_games.replace(0, 1)).round(3)
             df_display["GB"]     = (df_display.iloc[0]["W"] - df_display["W"]) / 2
-            st.dataframe(df_display.style.bar(subset=["Win%"], color=["#d73027", "#1a9850"], vmin=0, vmax=1),
+            st.dataframe(df_display.style.bar(subset=["Win%"], color=["#ef4444", "#22c55e"], vmin=0, vmax=1),
                          use_container_width=True, hide_index=True)
 
             st.divider()
@@ -933,17 +949,18 @@ with tab_season:
                     })
                 df_pr = pd.DataFrame(pr_rows)
                 st.dataframe(
-                    df_pr.style.bar(subset=["PR Score"], color=["#d1ecf1", "#0c5460"], vmin=0, vmax=1),
+                    df_pr.style.bar(subset=["PR Score"], color=["#0d2d6e", "#f0c040"], vmin=0, vmax=1),
                     use_container_width=True, hide_index=True,
                 )
                 fig_pr = px.scatter(
                     df_pr, x="W", y="PR Score", text="Team",
-                    color="PR Score", color_continuous_scale="RdYlGn",
+                    color="PR Score", color_continuous_scale=[[0, "#ef4444"], [0.5, "#f0c040"], [1, "#22c55e"]],
                     size=[14] * len(df_pr),
                     title="Power Score vs Wins (teams above the line are outperforming their record)",
                 )
                 fig_pr.update_traces(textposition="top center", textfont_size=9)
-                fig_pr.update_layout(height=420, coloraxis_showscale=False)
+                fig_pr.update_layout(height=420, coloraxis_showscale=False,
+                                     template="plotly_dark", paper_bgcolor="#0a1628", plot_bgcolor="#111e35")
                 st.plotly_chart(fig_pr, use_container_width=True)
             else:
                 st.info("Power rankings available once games are played.")
@@ -988,20 +1005,21 @@ with tab_season:
             if df_history.empty:
                 st.info("No data matches current filters.")
             else:
+                _dark_layout = dict(template="plotly_dark", paper_bgcolor="#0a1628", plot_bgcolor="#111e35")
                 fig_rank = px.line(df_history, x="Week", y="Rank", color="Team",
                                    title="Standings Rank Over Time (lower = better)", markers=True)
                 fig_rank.update_yaxes(autorange="reversed")
-                fig_rank.update_layout(height=450)
+                fig_rank.update_layout(height=450, **_dark_layout)
                 st.plotly_chart(fig_rank, use_container_width=True)
 
                 fig_wins_t = px.line(df_history, x="Week", y="Wins", color="Team",
                                      title="Cumulative Wins Over Time", markers=True)
-                fig_wins_t.update_layout(height=400)
+                fig_wins_t.update_layout(height=400, **_dark_layout)
                 st.plotly_chart(fig_wins_t, use_container_width=True)
 
                 fig_pf = px.line(df_history, x="Week", y="PF", color="Team",
                                  title="Cumulative Points For Over Time", markers=True)
-                fig_pf.update_layout(height=400)
+                fig_pf.update_layout(height=400, **_dark_layout)
                 st.plotly_chart(fig_pf, use_container_width=True)
 
                 weekly_pts = [{"Week": wk, "Team": t["name"], "Categories Won": t["points"]}
@@ -1012,7 +1030,7 @@ with tab_season:
                 if weekly_pts:
                     fig_weekly = px.line(pd.DataFrame(weekly_pts), x="Week", y="Categories Won",
                                          color="Team", markers=True, title="Categories Won Per Team Per Week")
-                    fig_weekly.update_layout(height=450)
+                    fig_weekly.update_layout(height=450, **_dark_layout)
                     st.plotly_chart(fig_weekly, use_container_width=True)
 
     # ── Streaks ───────────────────────────────────────────────────────────────
@@ -1036,16 +1054,18 @@ with tab_season:
                 with col_ws:
                     df_ws  = df_streaks.sort_values("Best Win Streak", ascending=True)
                     fig_ws = px.bar(df_ws, x="Best Win Streak", y="Team", orientation="h",
-                                    color="Best Win Streak", color_continuous_scale="Greens",
+                                    color="Best Win Streak", color_continuous_scale=[[0, "#0d2d6e"], [1, "#22c55e"]],
                                     title="Season-Best Win Streak per Team")
-                    fig_ws.update_layout(coloraxis_showscale=False, height=max(300, len(df_ws)*35))
+                    fig_ws.update_layout(coloraxis_showscale=False, height=max(300, len(df_ws)*35),
+                                         template="plotly_dark", paper_bgcolor="#0a1628", plot_bgcolor="#111e35")
                     st.plotly_chart(fig_ws, use_container_width=True)
                 with col_ls:
                     df_ls  = df_streaks.sort_values("Worst Lose Streak", ascending=True)
                     fig_ls = px.bar(df_ls, x="Worst Lose Streak", y="Team", orientation="h",
-                                    color="Worst Lose Streak", color_continuous_scale="Reds",
+                                    color="Worst Lose Streak", color_continuous_scale=[[0, "#0d2d6e"], [1, "#ef4444"]],
                                     title="Season-Worst Lose Streak per Team")
-                    fig_ls.update_layout(coloraxis_showscale=False, height=max(300, len(df_ls)*35))
+                    fig_ls.update_layout(coloraxis_showscale=False, height=max(300, len(df_ls)*35),
+                                         template="plotly_dark", paper_bgcolor="#0a1628", plot_bgcolor="#111e35")
                     st.plotly_chart(fig_ls, use_container_width=True)
 
 

@@ -43,29 +43,31 @@ st.set_page_config(
 st.markdown("""
 <style>
 .section-header {
-    font-size: 1.05em; font-weight: 700; color: #1f3a5f;
-    border-bottom: 2px solid #1a9850;
-    padding-bottom: 4px; margin-bottom: 10px;
+    font-size: 0.72em; font-weight: 800; color: #f0c040;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    border-bottom: 1px solid #1a2d4a;
+    padding-bottom: 5px; margin-bottom: 10px;
 }
 .award-row {
     display: flex; align-items: center;
-    padding: 5px 0; border-bottom: 1px solid #f0f0f0; font-size: 0.9em;
+    padding: 5px 0; border-bottom: 1px solid #1a2d4a; font-size: 0.9em;
 }
 .award-icon  { width: 26px; }
-.award-label { color: #666; width: 170px; font-size: 0.85em; }
-.award-winner { font-weight: 600; flex: 1; }
-.award-value  { color: #888; font-size: 0.82em; margin-left: 6px; }
+.award-label { color: #8a9bb5; width: 170px; font-size: 0.85em; }
+.award-winner { font-weight: 600; flex: 1; color: #e8edf5; }
+.award-value  { color: #8a9bb5; font-size: 0.82em; margin-left: 6px; }
 .badge {
     display: inline-block; padding: 3px 10px; border-radius: 12px;
     font-size: 0.82em; font-weight: 600; margin: 3px 3px 3px 0;
 }
-.badge-gold  { background: #fff3cd; color: #856404; }
-.badge-green { background: #d4edda; color: #155724; }
-.badge-red   { background: #f8d7da; color: #721c24; }
-.badge-blue  { background: #d1ecf1; color: #0c5460; }
+.badge-gold  { background: rgba(240,192,64,0.15); color: #f0c040; border: 1px solid rgba(240,192,64,0.3); }
+.badge-green { background: rgba(34,197,94,0.12); color: #22c55e; border: 1px solid rgba(34,197,94,0.25); }
+.badge-red   { background: rgba(239,68,68,0.12); color: #ef4444; border: 1px solid rgba(239,68,68,0.25); }
+.badge-blue  { background: rgba(96,165,250,0.12); color: #60a5fa; border: 1px solid rgba(96,165,250,0.25); }
 .trophy-section {
-    background: linear-gradient(135deg, #fff9e6, #fffbf0);
-    border: 1px solid #f0c040; border-radius: 10px; padding: 16px; margin: 8px 0;
+    background: linear-gradient(135deg, #0e1e38, #111e35);
+    border: 1px solid rgba(240,192,64,0.35); border-radius: 10px;
+    padding: 16px; margin: 8px 0;
 }
 .team-badge {
     display: inline-flex; align-items: center; justify-content: center;
@@ -246,7 +248,8 @@ with inner_trophy:
             )
             fig_rings.update_traces(textposition="outside")
             fig_rings.update_layout(coloraxis_showscale=False,
-                                    height=max(300, len(df_rings) * 35))
+                                    height=max(300, len(df_rings) * 35),
+                                    template="plotly_dark", paper_bgcolor="#0a1628", plot_bgcolor="#111e35")
             st.plotly_chart(fig_rings, use_container_width=True)
 
         st.divider()
@@ -364,9 +367,10 @@ with inner_trophy:
             fig_rv = px.bar(
                 df_rv_plot, x="Matchup", y=["A Wins", "B Wins"],
                 barmode="stack", title="Top 10 Rivalries — All-Time Record",
-                color_discrete_map={"A Wins": "#1a9850", "B Wins": "#d73027"},
+                color_discrete_map={"A Wins": "#22c55e", "B Wins": "#ef4444"},
             )
-            fig_rv.update_layout(height=380, xaxis_tickangle=-20)
+            fig_rv.update_layout(height=380, xaxis_tickangle=-20,
+                                 template="plotly_dark", paper_bgcolor="#0a1628", plot_bgcolor="#111e35")
             st.plotly_chart(fig_rv, use_container_width=True)
 
 

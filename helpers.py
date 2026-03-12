@@ -532,20 +532,20 @@ def render_player_card(player: dict, season: int) -> str:
     stats    = mlb_player_stats(pid, season, is_pitcher) if pid else {}
     stat_ln  = mlb_stat_line(stats, is_pitcher)
 
-    pts_color = "#1a9850" if pts >= 8 else ("#e07b00" if pts >= 5 else "#888")
+    pts_color = "#22c55e" if pts >= 8 else ("#f0c040" if pts >= 5 else "#8a9bb5")
 
     return f"""
-<div style="background:white;border:1px solid #e0e0e0;border-radius:14px;
+<div style="background:#111e35;border:1px solid #1a2d4a;border-radius:14px;
             padding:14px 10px;text-align:center;height:100%;
-            box-shadow:0 2px 6px rgba(0,0,0,0.07);">
+            box-shadow:0 2px 10px rgba(0,0,0,0.35);">
   <img src="{hs_url}"
        style="width:76px;height:76px;border-radius:50%;object-fit:cover;
-              border:3px solid #f0c040;background:#f5f5f5;"
+              border:3px solid #f0c040;background:#0d1f38;"
        onerror="this.src='{_GENERIC_HS}'">
-  <div style="font-weight:700;font-size:0.92em;margin:8px 0 2px;line-height:1.2">{name}</div>
-  <div style="font-size:0.76em;color:#888;margin-bottom:6px">{mlb_team}&nbsp;·&nbsp;{pos}</div>
+  <div style="font-weight:700;font-size:0.92em;margin:8px 0 2px;line-height:1.2;color:#e8edf5">{name}</div>
+  <div style="font-size:0.76em;color:#8a9bb5;margin-bottom:6px">{mlb_team}&nbsp;·&nbsp;{pos}</div>
   <div style="font-size:1.1em;font-weight:800;color:{pts_color}">{pts:.0f}&nbsp;cat wins</div>
-  <div style="font-size:0.72em;color:#555;margin-top:5px;line-height:1.5">{stat_ln}</div>
+  <div style="font-size:0.72em;color:#8a9bb5;margin-top:5px;line-height:1.5">{stat_ln}</div>
 </div>"""
 
 
@@ -1083,7 +1083,7 @@ def render_award_card(awards: dict, season: int) -> None:
     """Render a season awards card as a single HTML block (avoids white-bar bug)."""
     html = (
         f'<div class="trophy-section">'
-        f'<div style="font-size:1.2em;font-weight:800;color:#1f3a5f;margin-bottom:10px;">'
+        f'<div style="font-size:1.2em;font-weight:800;color:#f0c040;margin-bottom:10px;">'
         f'🏆 {season} Season Awards</div>'
     )
     for icon, label, key in AWARD_DEFS:
@@ -1110,5 +1110,5 @@ def render_weekly_award_badges(awards: list[dict]) -> None:
     html = ""
     for a in awards:
         html += f'<span class="badge {a["color"]}">{a["badge"]} {a["winner"]}</span> '
-        html += f'<span style="font-size:0.8em;color:#888;">{a["detail"]}</span><br>'
+        html += f'<span style="font-size:0.8em;color:#8a9bb5;">{a["detail"]}</span><br>'
     st.markdown(html, unsafe_allow_html=True)
