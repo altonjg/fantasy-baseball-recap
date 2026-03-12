@@ -12,6 +12,7 @@ from pathlib import Path
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import requests
 import streamlit as st
 
 # ── Page config ───────────────────────────────────────────────────────────────
@@ -374,6 +375,103 @@ def compute_rivalry_stats(all_seasons: dict) -> list[dict]:
                     else:
                         r["b_wins"] += 1
     return sorted(rivalries.values(), key=lambda x: x["games"], reverse=True)
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# MLB STATS API  (free, no key required)
+# ══════════════════════════════════════════════════════════════════════════════
+
+_MLB_API    = "https://statsapi.mlb.com/api/v1"
+_MLB_PHOTO  = "https://img.mlbstatic.com/mlb-photos/image/upload"
+_GENERIC_HS = f"{_MLB_PHOTO}/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/0/headshot/67/current"
+
+
+@st.cache_data(ttl=86_400, show_spinner=False)
+def mlb_search_player(name: str) -> int | None:
+    """Return the MLB player ID for a name, or None if not found."""
+    try:
+        r = requests.get(f"{_MLB_API}/people/search",
+                         params={"names": name, "sportId": 1}, timeout=5)
+        r.raise_for_status()
+        people = r.json().get("people", [])
+        if people:
+            return int(people[0]["id"])
+    except Exception:
+        pass
+    return None
+
+
+def mlb_headshot_url(player_id: int | None) -> str:
+    if not player_id:
+        return _GENERIC_HS
+    return f"{_MLB_PHOTO}/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/{player_id}/headshot/67/current"
+
+
+@st.cache_data(ttl=3_600, show_spinner=False)
+def mlb_player_stats(player_id: int, season: int, is_pitcher: bool = False) -> dict:
+    """Fetch season-to-date stats from MLB Stats API."""
+    group = "pitching" if is_pitcher else "hitting"
+    try:
+        r = requests.get(f"{_MLB_API}/people/{player_id}/stats",
+                         params={"stats": "season", "group": group,
+                                 "season": season, "sportId": 1}, timeout=5)
+        r.raise_for_status()
+        splits = r.json().get("stats", [{}])[0].get("splits", [])
+        if splits:
+            return splits[0].get("stat", {})
+    except Exception:
+        pass
+    return {}
+
+
+def _fmt_avg(raw) -> str:
+    """Format batting average: '0.285' → '.285'"""
+    s = str(raw)
+    return s.lstrip("0") if "." in s else s
+
+
+def mlb_stat_line(stats: dict, is_pitcher: bool) -> str:
+    if not stats:
+        return ""
+    if is_pitcher:
+        return (f"{stats.get('wins','—')}W  "
+                f"{stats.get('era','—')} ERA  "
+                f"{stats.get('strikeOuts','—')}K  "
+                f"{stats.get('inningsPitched','—')}IP")
+    return (f"{_fmt_avg(stats.get('avg','—'))} AVG  "
+            f"{stats.get('homeRuns','—')}HR  "
+            f"{stats.get('rbi','—')}RBI  "
+            f"{stats.get('stolenBases','—')}SB")
+
+
+def render_player_card(player: dict, season: int) -> str:
+    """Return an HTML card string for a single top-performer."""
+    name       = player.get("name", "Unknown")
+    mlb_team   = player.get("mlb_team", "")
+    pos        = player.get("position", "")
+    pts        = float(player.get("points", 0))
+    is_pitcher = any(p in pos for p in ("SP", "RP", "P"))
+
+    pid      = mlb_search_player(name)
+    hs_url   = mlb_headshot_url(pid)
+    stats    = mlb_player_stats(pid, season, is_pitcher) if pid else {}
+    stat_ln  = mlb_stat_line(stats, is_pitcher)
+
+    pts_color = "#1a9850" if pts >= 8 else ("#e07b00" if pts >= 5 else "#888")
+
+    return f"""
+<div style="background:white;border:1px solid #e0e0e0;border-radius:14px;
+            padding:14px 10px;text-align:center;height:100%;
+            box-shadow:0 2px 6px rgba(0,0,0,0.07);">
+  <img src="{hs_url}"
+       style="width:76px;height:76px;border-radius:50%;object-fit:cover;
+              border:3px solid #f0c040;background:#f5f5f5;"
+       onerror="this.src='{_GENERIC_HS}'">
+  <div style="font-weight:700;font-size:0.92em;margin:8px 0 2px;line-height:1.2">{name}</div>
+  <div style="font-size:0.76em;color:#888;margin-bottom:6px">{mlb_team}&nbsp;·&nbsp;{pos}</div>
+  <div style="font-size:1.1em;font-weight:800;color:{pts_color}">{pts:.0f}&nbsp;cat wins</div>
+  <div style="font-size:0.72em;color:#555;margin-top:5px;line-height:1.5">{stat_ln}</div>
+</div>"""
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -901,6 +999,17 @@ with tab_home:
     st.markdown('<div class="section-header">🏅 Weekly Awards</div>', unsafe_allow_html=True)
     render_weekly_award_badges(weekly_awards)
 
+    # ── Top Performers ────────────────────────────────────────────────────────
+    top_players = data.get("top_players", [])
+    if top_players:
+        st.divider()
+        st.markdown('<div class="section-header">⭐ Top Performers This Week</div>', unsafe_allow_html=True)
+        show_players = top_players[:5]
+        tp_cols = st.columns(len(show_players))
+        for col, player in zip(tp_cols, show_players):
+            with col:
+                st.markdown(render_player_card(player, selected_season), unsafe_allow_html=True)
+
     # ── Season Awards (completed seasons only) ────────────────────────────────
     if season_complete and season_awards:
         st.divider()
@@ -945,6 +1054,23 @@ with tab_week:
                 render_weekly_award_badges(weekly_awards)
         else:
             st.info("No recap generated for this week yet. Run `python3 main.py --dry-run` to generate one.")
+
+        # ── Weekly Stars (player cards) ────────────────────────────────────────
+        tp = data.get("top_players", [])
+        if tp:
+            st.divider()
+            st.markdown("#### ⭐ Weekly Stars")
+            st.caption("Top fantasy performers — season stats via MLB Stats API")
+            star_cols = st.columns(min(len(tp[:5]), 5))
+            for col, player in zip(star_cols, tp[:5]):
+                with col:
+                    st.markdown(render_player_card(player, selected_season), unsafe_allow_html=True)
+            if len(tp) > 5:
+                with st.expander(f"Show all {len(tp)} top players"):
+                    more_cols = st.columns(5)
+                    for i, player in enumerate(tp[5:]):
+                        with more_cols[i % 5]:
+                            st.markdown(render_player_card(player, selected_season), unsafe_allow_html=True)
 
     # ── Matchups ──────────────────────────────────────────────────────────────
     with inner_matchups:
