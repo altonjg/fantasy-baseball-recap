@@ -17,10 +17,20 @@ on:
           - full
           - trades
           - recap
+          - preview
       week:
         description: "Override week number (leave blank for latest)"
         required: false
         default: ""
+      season:
+        description: "Season year for preview (leave blank for current year)"
+        required: false
+        default: ""
+      force:
+        description: "Force regenerate even if article already exists"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -123,5 +133,52 @@ jobs:
           git config user.email "beerleague-bot@users.noreply.github.com"
           git add data/
           git diff --cached --quiet || git commit -m "chore: auto-update week recap [skip ci]"
+          git pull --rebase -X ours https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
+  # ── Season Preview (manual dispatch only) ───────────────────────────────────
+  season-preview:
+    name: Generate season preview article
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'workflow_dispatch' &&
+      github.event.inputs.mode == 'preview'
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate season preview
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PYTHONUTF8:        "1"
+        run: |
+          SEASON_ARG=""
+          if [ -n "${{ github.event.inputs.season }}" ]; then
+            SEASON_ARG="--season ${{ github.event.inputs.season }}"
+          fi
+          FORCE_ARG=""
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            FORCE_ARG="--force"
+          fi
+          python ci_runner.py --mode preview $SEASON_ARG $FORCE_ARG
+
+      - name: Commit preview article
+        run: |
+          git config user.name  "BeerLeague Bot"
+          git config user.email "beerleague-bot@users.noreply.github.com"
+          git add data/
+          git diff --cached --quiet || git commit -m "chore: generate season preview article [skip ci]"
           git pull --rebase -X ours https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git

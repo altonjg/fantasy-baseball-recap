@@ -101,6 +101,16 @@ st.markdown("""
     text-align: center; color: #aaa; font-size: 0.78em;
     padding: 18px 0 6px 0; border-top: 1px solid #f0f0f0; margin-top: 24px;
 }
+.preview-masthead {
+    background: linear-gradient(135deg, #0d2137 0%, #1f3a5f 60%, #2d6a3f 100%);
+    color: white; border-radius: 14px; padding: 22px 28px; margin-bottom: 0px;
+    border-left: 5px solid #f0c040;
+}
+.preview-label  { font-size: 0.72em; font-weight: 700; letter-spacing: 2px;
+                  color: #f0c040; text-transform: uppercase; margin-bottom: 4px; }
+.preview-title  { font-size: 1.45em; font-weight: 800; line-height: 1.25; margin-bottom: 6px; }
+.preview-deck   { font-size: 0.9em; opacity: 0.82; margin-bottom: 10px; }
+.preview-byline { font-size: 0.78em; opacity: 0.65; }
 /* Hide default Streamlit "Made with Streamlit" footer */
 footer { visibility: hidden; }
 </style>
@@ -1315,6 +1325,42 @@ tab_home, tab_week, tab_season, tab_alltime, tab_news = st.tabs([
 # ══════════════════════════════════════════════════════════════════════════════
 
 with tab_home:
+
+    # ── Season Preview Article ────────────────────────────────────────────────
+    _preview_path = DATA_ROOT / str(selected_season) / "articles" / "season_preview.json"
+    if _preview_path.exists():
+        try:
+            with open(_preview_path) as _pf:
+                _preview_article = json.load(_pf)
+        except Exception:
+            _preview_article = None
+
+        if _preview_article:
+            _prev_headline  = _preview_article.get("headline",    f"{selected_season} Season Preview")
+            _prev_subdeck   = _preview_article.get("subheadline", "")
+            _prev_body      = _preview_article.get("body",        "")
+            _prev_writer    = _preview_article.get("writer_name",   "Peter Gammons")
+            _prev_outlet    = _preview_article.get("writer_outlet", "MLB Network")
+            _prev_date      = _preview_article.get("generated_at",  "")[:10]
+
+            # Collapse once the season has at least 1 week of real data
+            _preview_expanded = len(weeks_data) == 0
+
+            with st.expander(f"📋 {selected_season} Season Preview — {_prev_headline}", expanded=_preview_expanded):
+                # Masthead
+                st.markdown(f"""
+                <div class="preview-masthead">
+                  <div class="preview-label">Season Preview · {selected_season}</div>
+                  <div class="preview-title">{_prev_headline}</div>
+                  {'<div class="preview-deck">' + _prev_subdeck + '</div>' if _prev_subdeck else ''}
+                  <div class="preview-byline">By {_prev_writer} &nbsp;·&nbsp; {_prev_outlet}
+                  {'&nbsp;·&nbsp; ' + _prev_date if _prev_date else ''}</div>
+                </div>
+                """, unsafe_allow_html=True)
+                st.write("")
+                st.markdown(_prev_body)
+
+            st.write("")
 
     # ── Three-panel summary row ───────────────────────────────────────────────
     col_stand, col_pr, col_news = st.columns(3)

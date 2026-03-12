@@ -309,6 +309,221 @@ Respond ONLY with valid JSON — no markdown fences:
         return None
 
 
+# ── Season preview generation ─────────────────────────────────────────────────
+
+def _build_historical_context(season: int) -> dict:
+    """
+    Aggregate all-time records (wins, losses, championships) from every
+    available season's final week JSON.  Returns a dict keyed by manager name.
+    """
+    records: dict[str, dict] = {}
+
+    for season_dir in sorted(DATA_ROOT.iterdir()):
+        if not season_dir.is_dir():
+            continue
+        try:
+            yr = int(season_dir.name)
+        except ValueError:
+            continue
+        if yr >= season:          # skip current (not yet played) season
+            continue
+
+        # Find the last week file for this season
+        week_files = sorted(season_dir.glob("week_*.json"))
+        if not week_files:
+            continue
+        last_week_file = week_files[-1]
+
+        try:
+            with open(last_week_file, encoding="utf-8") as f:
+                wd = json.load(f)
+        except Exception:
+            continue
+
+        standings = wd.get("standings", [])
+        matchups  = wd.get("matchups", [])
+
+        # Detect champion from the championship matchup
+        champion_name = None
+        for m in matchups:
+            if m.get("is_championship") and not m.get("is_tied"):
+                teams = m.get("teams", [])
+                if len(teams) == 2:
+                    winner = next(
+                        (t for t in teams if t.get("team_key") == m.get("winner_key")), None
+                    )
+                    if winner:
+                        champion_name = winner.get("manager") or winner.get("name")
+
+        for s in standings:
+            mgr = s.get("manager") or s.get("name", "Unknown")
+            if mgr not in records:
+                records[mgr] = {"wins": 0, "losses": 0, "ties": 0,
+                                "championships": 0, "seasons": 0,
+                                "best_rank": 99, "seasons_data": []}
+            records[mgr]["wins"]   += s.get("wins", 0)
+            records[mgr]["losses"] += s.get("losses", 0)
+            records[mgr]["ties"]   += s.get("ties", 0)
+            records[mgr]["seasons"] += 1
+            rank = s.get("rank", 99)
+            if rank < records[mgr]["best_rank"]:
+                records[mgr]["best_rank"] = rank
+            records[mgr]["seasons_data"].append({
+                "year": yr,
+                "rank": rank,
+                "wins": s.get("wins", 0),
+                "losses": s.get("losses", 0),
+            })
+            if champion_name and (mgr == champion_name or s.get("name") == champion_name):
+                records[mgr]["championships"] += 1
+
+    return records
+
+
+def generate_season_preview(season: int) -> dict | None:
+    """
+    Generate a full-season preview article written by Peter Gammons.
+    Draws on draft order, last season's standings, and all-time records.
+    Returns article dict or None on failure.
+    """
+    draft_file = DATA_ROOT / str(season) / "draft_order.json"
+    if not draft_file.exists():
+        print(f"[ci_runner] No draft_order.json found for {season}.", file=sys.stderr)
+        return None
+
+    with open(draft_file, encoding="utf-8") as f:
+        draft_data = json.load(f)
+
+    draft_order = draft_data.get("draft_order", [])
+    draft_date  = draft_data.get("draft_date", f"{season}-03-22")
+    draft_notes = draft_data.get("notes", "Snake draft, live online")
+
+    # Last season's final standings
+    prev_season  = season - 1
+    prev_dir     = DATA_ROOT / str(prev_season)
+    prev_standings: list[dict] = []
+    prev_champion = "Unknown"
+
+    if prev_dir.exists():
+        prev_files = sorted(prev_dir.glob("week_*.json"))
+        if prev_files:
+            try:
+                with open(prev_files[-1], encoding="utf-8") as f:
+                    prev_wd = json.load(f)
+                prev_standings = prev_wd.get("standings", [])
+                for m in prev_wd.get("matchups", []):
+                    if m.get("is_championship") and not m.get("is_tied"):
+                        teams = m.get("teams", [])
+                        winner = next(
+                            (t for t in teams if t.get("team_key") == m.get("winner_key")), None
+                        )
+                        if winner:
+                            prev_champion = winner.get("manager") or winner.get("name", "Unknown")
+            except Exception:
+                pass
+
+    # All-time records
+    alltime = _build_historical_context(season)
+
+    # --- Build prompt context ---
+    writer     = WRITER_STYLES["gammons"]
+
+    # Draft order context
+    draft_lines = "\n".join(
+        f"  Pick {p['pick']:2d}: {p['manager']}"
+        for p in draft_order
+    )
+
+    # Previous season standings
+    prev_lines = "\n".join(
+        f"  {s['rank']:2d}. {s.get('manager') or s.get('name')}: "
+        f"{s['wins']}-{s['losses']} ({s.get('points_for', 0):.0f} PF)"
+        for s in prev_standings
+    ) if prev_standings else "  (not available)"
+
+    # All-time records context
+    alltime_lines = []
+    for mgr, rec in sorted(alltime.items(), key=lambda x: -x[1]["wins"]):
+        champ_str = f", {rec['championships']}x champ" if rec["championships"] else ""
+        alltime_lines.append(
+            f"  {mgr}: {rec['wins']}-{rec['losses']} all-time "
+            f"({rec['seasons']} seasons{champ_str}, best finish: #{rec['best_rank']})"
+        )
+    alltime_ctx = "\n".join(alltime_lines) if alltime_lines else "  (no history available)"
+
+    prompt = f"""You are {writer['name']} of {writer['outlet']}.
+
+{writer['voice']}
+
+You are writing the definitive {season} season preview for a 14-team fantasy baseball league called "MillerLite® BeerLeagueBaseball." This is a close-knit group of friends who have played together for years. You have real historical data — use it. Name names, reference records, cite history. A touch of irreverent trash talk is not just permitted, it's expected.
+
+LEAGUE STRUCTURE:
+- 14 teams, head-to-head category scoring (12 categories: H/AB, R, HR, RBI, SB, OBP, IP, K, ERA, WHIP, QS, NSVH)
+- ERA and WHIP: lower is better
+- Snake draft format: {draft_notes}
+- Draft date: {draft_date}
+
+{season} DRAFT ORDER (pick position = competitive advantage):
+{draft_lines}
+
+{prev_season} FINAL STANDINGS (defending champion: {prev_champion}):
+{prev_lines}
+
+ALL-TIME RECORDS (across all available seasons):
+{alltime_ctx}
+
+Write a full season preview (900–1100 words) structured as follows:
+1. **Opening** — dramatic, poetic scene-setter for the {season} season. Reference the defending champion. Set the stakes.
+2. **Draft Order Breakdown** — who has the edge at the top vs. the bottom? What does draft position mean in this league's history?
+3. **The Field** — go through all 14 managers. For each: 2–3 sentences covering their historical pedigree, what to expect in {season}, and a projected finish. Be specific. Use their all-time records. Roast the ones who deserve it. Hype the contenders.
+4. **Bold Predictions** — exactly 5 specific, confident predictions for the {season} season
+5. **The Pick** — one champion prediction with conviction
+
+Use **bold** for manager names and team references. Markdown OK.
+
+Respond ONLY with valid JSON — no markdown fences:
+{{
+  "headline": "...(punchy season preview headline)...",
+  "subheadline": "...(one-sentence deck that makes you want to read it)...",
+  "body": "...(full article)..."
+}}"""
+
+    try:
+        raw     = _call_claude(prompt, max_tokens=2500)
+        article = _safe_json_parse(raw)
+        article["generated_at"]  = datetime.now().isoformat()
+        article["season"]        = season
+        article["writer_key"]    = "gammons"
+        article["writer_name"]   = writer["name"]
+        article["writer_outlet"] = writer["outlet"]
+        article["type"]          = "season_preview"
+        return article
+    except Exception as e:
+        print(f"[ci_runner] Season preview generation failed: {e}", file=sys.stderr)
+        return None
+
+
+def run_preview(season: int, force: bool = False) -> bool:
+    """Generate season preview article. Returns True on success."""
+    articles_dir = DATA_ROOT / str(season) / "articles"
+    out_path     = articles_dir / "season_preview.json"
+
+    if out_path.exists() and not force:
+        print(f"[ci_runner] Season preview for {season} already exists — skipping. Use --force to regenerate.")
+        return True
+
+    print(f"[ci_runner] Generating {season} season preview…")
+    article = generate_season_preview(season)
+    if not article:
+        return False
+
+    articles_dir.mkdir(parents=True, exist_ok=True)
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(article, f, indent=2, ensure_ascii=False)
+    print(f"[ci_runner]   ✓ Saved season_preview.json (by {article['writer_name']})")
+    return True
+
+
 # ── Trade detection helpers ───────────────────────────────────────────────────
 
 def _load_existing_article_timestamps(trades_dir: Path) -> set[int]:
@@ -406,10 +621,23 @@ def run_save_data(week_data: dict, season: int, week: int) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="BeerLeagueBaseball CI runner")
-    parser.add_argument("--mode",   choices=["trades", "recap", "full"], default="full")
+    parser.add_argument("--mode",   choices=["trades", "recap", "full", "preview"], default="full")
     parser.add_argument("--week",   type=int, default=None, help="Override week number")
+    parser.add_argument("--season", type=int, default=None, help="Override season year (used with --mode preview)")
+    parser.add_argument("--force",  action="store_true", help="Regenerate even if article already exists")
     parser.add_argument("--dry-run", action="store_true", help="Don't write any files")
     args = parser.parse_args()
+
+    # ── Season preview mode (no Yahoo fetch needed) ──────────────────────────
+    if args.mode == "preview":
+        season = args.season or datetime.now().year
+        print(f"[ci_runner] Generating {season} season preview…")
+        ok = run_preview(season, force=args.force)
+        if not ok:
+            print("[ci_runner] Season preview generation failed.", file=sys.stderr)
+            sys.exit(1)
+        print("[ci_runner] Done ✓")
+        return
 
     league_key = os.environ.get("YAHOO_LEAGUE_KEY", "")
     if not league_key:
@@ -429,8 +657,7 @@ def main() -> None:
 
     if args.dry_run:
         print("[ci_runner] --dry-run: no files will be written.")
-        import json as _json
-        print(_json.dumps(week_data, indent=2, default=str)[:2000])
+        print(json.dumps(week_data, indent=2, default=str)[:2000])
         return
 
     # Always save data snapshot
