@@ -311,12 +311,14 @@ Respond ONLY with valid JSON — no markdown fences:
 
 # ── Season preview generation ─────────────────────────────────────────────────
 
-def _build_historical_context(season: int) -> dict:
+def _build_historical_context(season: int, lookback: int = 2) -> dict:
     """
-    Aggregate all-time records (wins, losses, championships) from every
-    available season's final week JSON.  Returns a dict keyed by manager name.
+    Aggregate team records (wins, losses, championships) from the most recent
+    `lookback` completed seasons before `season`.
+    Returns a dict keyed by team name.
     """
     records: dict[str, dict] = {}
+    min_season = season - lookback  # only include seasons within the lookback window
 
     for season_dir in sorted(DATA_ROOT.iterdir()):
         if not season_dir.is_dir():
@@ -325,7 +327,7 @@ def _build_historical_context(season: int) -> dict:
             yr = int(season_dir.name)
         except ValueError:
             continue
-        if yr >= season:          # skip current (not yet played) season
+        if yr >= season or yr < min_season:   # skip current and seasons outside window
             continue
 
         # Find the last week file for this season
@@ -343,7 +345,7 @@ def _build_historical_context(season: int) -> dict:
         standings = wd.get("standings", [])
         matchups  = wd.get("matchups", [])
 
-        # Detect champion from the championship matchup
+        # Detect champion from the championship matchup — use team name only
         champion_name = None
         for m in matchups:
             if m.get("is_championship") and not m.get("is_tied"):
@@ -353,29 +355,30 @@ def _build_historical_context(season: int) -> dict:
                         (t for t in teams if t.get("team_key") == m.get("winner_key")), None
                     )
                     if winner:
-                        champion_name = winner.get("manager") or winner.get("name")
+                        champion_name = winner.get("name")  # team name, not manager name
 
         for s in standings:
-            mgr = s.get("manager") or s.get("name", "Unknown")
-            if mgr not in records:
-                records[mgr] = {"wins": 0, "losses": 0, "ties": 0,
-                                "championships": 0, "seasons": 0,
-                                "best_rank": 99, "seasons_data": []}
-            records[mgr]["wins"]   += s.get("wins", 0)
-            records[mgr]["losses"] += s.get("losses", 0)
-            records[mgr]["ties"]   += s.get("ties", 0)
-            records[mgr]["seasons"] += 1
+            # Always key by team name — never expose real manager names
+            team = s.get("name", "Unknown")
+            if team not in records:
+                records[team] = {"wins": 0, "losses": 0, "ties": 0,
+                                 "championships": 0, "seasons": 0,
+                                 "best_rank": 99, "seasons_data": []}
+            records[team]["wins"]   += s.get("wins", 0)
+            records[team]["losses"] += s.get("losses", 0)
+            records[team]["ties"]   += s.get("ties", 0)
+            records[team]["seasons"] += 1
             rank = s.get("rank", 99)
-            if rank < records[mgr]["best_rank"]:
-                records[mgr]["best_rank"] = rank
-            records[mgr]["seasons_data"].append({
+            if rank < records[team]["best_rank"]:
+                records[team]["best_rank"] = rank
+            records[team]["seasons_data"].append({
                 "year": yr,
                 "rank": rank,
                 "wins": s.get("wins", 0),
                 "losses": s.get("losses", 0),
             })
-            if champion_name and (mgr == champion_name or s.get("name") == champion_name):
-                records[mgr]["championships"] += 1
+            if champion_name and s.get("name") == champion_name:
+                records[team]["championships"] += 1
 
     return records
 
@@ -418,25 +421,34 @@ def generate_season_preview(season: int) -> dict | None:
                             (t for t in teams if t.get("team_key") == m.get("winner_key")), None
                         )
                         if winner:
-                            prev_champion = winner.get("manager") or winner.get("name", "Unknown")
+                            prev_champion = winner.get("name", "Unknown")  # team name only
             except Exception:
                 pass
 
-    # All-time records
-    alltime = _build_historical_context(season)
+    # Build manager-name → team-name mapping from prev season standings
+    # so we can resolve draft_order.json entries (which store manager names)
+    mgr_to_team: dict[str, str] = {}
+    for s in prev_standings:
+        mgr_name  = s.get("manager", "")
+        team_name = s.get("name", "")
+        if mgr_name and team_name:
+            mgr_to_team[mgr_name] = team_name
+
+    # Recent records (last 2 seasons only — keeps context tight and relevant)
+    alltime = _build_historical_context(season, lookback=2)
 
     # --- Build prompt context ---
     writer     = WRITER_STYLES["gammons"]
 
-    # Draft order context
+    # Draft order context — map manager names to team names where possible
     draft_lines = "\n".join(
-        f"  Pick {p['pick']:2d}: {p['manager']}"
+        f"  Pick {p['pick']:2d}: {mgr_to_team.get(p['manager'], p['manager'])}"
         for p in draft_order
     )
 
-    # Previous season standings
+    # Previous season standings — team names only
     prev_lines = "\n".join(
-        f"  {s['rank']:2d}. {s.get('manager') or s.get('name')}: "
+        f"  {s['rank']:2d}. {s.get('name')}: "
         f"{s['wins']}-{s['losses']} ({s.get('points_for', 0):.0f} PF)"
         for s in prev_standings
     ) if prev_standings else "  (not available)"
@@ -455,7 +467,9 @@ def generate_season_preview(season: int) -> dict | None:
 
 {writer['voice']}
 
-You are writing the definitive {season} season preview for a 14-team fantasy baseball league called "MillerLite® BeerLeagueBaseball." This is a close-knit group of friends who have played together for years. You have real historical data — use it. Name names, reference records, cite history. A touch of irreverent trash talk is not just permitted, it's expected.
+You are writing the definitive {season} season preview for a 14-team fantasy baseball league called "MillerLite® BeerLeagueBaseball." This is a close-knit group of friends who have played together for years. You have real historical data — use it. Reference team names, records, and history. A touch of irreverent trash talk is not just permitted, it's expected.
+
+IMPORTANT: Refer to all participants exclusively by their TEAM NAME — never use real names.
 
 LEAGUE STRUCTURE:
 - 14 teams, head-to-head category scoring (12 categories: H/AB, R, HR, RBI, SB, OBP, IP, K, ERA, WHIP, QS, NSVH)
@@ -469,17 +483,17 @@ LEAGUE STRUCTURE:
 {prev_season} FINAL STANDINGS (defending champion: {prev_champion}):
 {prev_lines}
 
-ALL-TIME RECORDS (across all available seasons):
+RECENT RECORDS (last 2 seasons, {season - 2}–{season - 1}):
 {alltime_ctx}
 
 Write a full season preview (900–1100 words) structured as follows:
-1. **Opening** — dramatic, poetic scene-setter for the {season} season. Reference the defending champion. Set the stakes.
+1. **Opening** — dramatic, poetic scene-setter for the {season} season. Reference the defending champion team. Set the stakes.
 2. **Draft Order Breakdown** — who has the edge at the top vs. the bottom? What does draft position mean in this league's history?
-3. **The Field** — go through all 14 managers. For each: 2–3 sentences covering their historical pedigree, what to expect in {season}, and a projected finish. Be specific. Use their all-time records. Roast the ones who deserve it. Hype the contenders.
+3. **The Field** — go through all 14 teams. For each: 2–3 sentences covering their historical pedigree, what to expect in {season}, and a projected finish. Be specific. Use their all-time records. Roast the ones who deserve it. Hype the contenders.
 4. **Bold Predictions** — exactly 5 specific, confident predictions for the {season} season
 5. **The Pick** — one champion prediction with conviction
 
-Use **bold** for manager names and team references. Markdown OK.
+Use **bold** for team names. Markdown OK.
 
 Respond ONLY with valid JSON — no markdown fences:
 {{
