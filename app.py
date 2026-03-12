@@ -7,6 +7,9 @@ Run locally:  streamlit run app.py
 from __future__ import annotations
 
 import json
+import os
+import re
+from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
@@ -472,6 +475,117 @@ def render_player_card(player: dict, season: int) -> str:
   <div style="font-size:1.1em;font-weight:800;color:{pts_color}">{pts:.0f}&nbsp;cat wins</div>
   <div style="font-size:0.72em;color:#555;margin-top:5px;line-height:1.5">{stat_ln}</div>
 </div>"""
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# TRADE WIRE  — Claude API article generation
+# ══════════════════════════════════════════════════════════════════════════════
+
+def _get_anthropic_key() -> str | None:
+    try:
+        return st.secrets["ANTHROPIC_API_KEY"]
+    except Exception:
+        return os.getenv("ANTHROPIC_API_KEY")
+
+
+def generate_trade_article(trade_tx: dict, standings: list[dict]) -> dict | None:
+    """
+    Generate a Jeff Passan-style trade article via Claude API.
+    Returns article dict or None on failure.
+    """
+    api_key = _get_anthropic_key()
+    if not api_key:
+        return None
+
+    try:
+        import anthropic
+    except ImportError:
+        st.error("anthropic package not installed.")
+        return None
+
+    players = trade_tx.get("players", [])
+    if not players:
+        return None
+
+    # Identify the two sides of the trade
+    team_names_in_trade = list({p.get("team", "") for p in players if p.get("team") and p.get("team") != "Free Agent"})
+    team_a = team_names_in_trade[0] if len(team_names_in_trade) > 0 else "Team A"
+    team_b = team_names_in_trade[1] if len(team_names_in_trade) > 1 else "Team B"
+
+    # Describe each side
+    def side_players(team: str) -> list[str]:
+        return [f"{p['name']} ({p.get('position','?')})" for p in players if p.get("team") == team]
+
+    team_a_gets = side_players(team_a)
+    team_b_gets = side_players(team_b)
+
+    all_player_names = ", ".join(f"{p['name']} ({p.get('position','?')})" for p in players)
+
+    standings_ctx = "\n".join(
+        f"  {s['name']}: {s['wins']}-{s['losses']} ({s.get('points_for', 0):.0f} PF)"
+        for s in standings[:8]
+    ) if standings else "  (pre-season — no games played yet)"
+
+    prompt = f"""You are writing a breaking news trade article for a 14-team fantasy baseball league called "MillerLite® BeerLeagueBaseball." Write in the exact style of ESPN baseball journalist Jeff Passan — urgent, authoritative, punchy, with sharp analysis and colorful baseball prose.
+
+TRADE DETAILS:
+{team_a} receives: {', '.join(team_a_gets) if team_a_gets else 'undisclosed'}
+{team_b} receives: {', '.join(team_b_gets) if team_b_gets else 'undisclosed'}
+All players involved: {all_player_names}
+
+CURRENT STANDINGS (top 8):
+{standings_ctx}
+
+Write a trade wire article (220–300 words) that includes:
+1. A punchy breaking-news headline — name the players, reference BeerLeague (e.g. "Sources: [Player] Headed to [Team] in Seismic BeerLeague Swap")
+2. Opening sentence with Passan-style urgency (direct and immediate, like a tweet)
+3. Analysis of what each team is getting and the strategic logic behind the deal
+4. A clear verdict on who wins the trade with specific reasoning
+5. Trade grades for each side on an A+ through F scale
+
+Respond ONLY with valid JSON in this exact shape — no markdown fences:
+{{
+  "headline": "...",
+  "body": "...(full article, use **bold** for player names, markdown OK)...",
+  "grade_team_a": "B+",
+  "grade_team_b": "A-",
+  "team_a": "{team_a}",
+  "team_b": "{team_b}"
+}}"""
+
+    try:
+        client = anthropic.Anthropic(api_key=api_key)
+        msg = client.messages.create(
+            model="claude-opus-4-5",
+            max_tokens=1024,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        raw = msg.content[0].text.strip()
+
+        # Strip markdown fences if model included them anyway
+        raw = re.sub(r"^```(?:json)?\s*", "", raw)
+        raw = re.sub(r"\s*```$", "", raw)
+
+        article = json.loads(raw)
+        article["generated_at"]           = datetime.now().isoformat()
+        article["transaction_timestamp"]  = trade_tx.get("timestamp", 0)
+        return article
+    except Exception as e:
+        st.error(f"Article generation failed: {e}")
+        return None
+
+
+def save_trade_article(article: dict, trades_dir: Path) -> Path | None:
+    """Write article JSON to disk. Returns the path or None on failure."""
+    try:
+        trades_dir.mkdir(parents=True, exist_ok=True)
+        ts   = article.get("transaction_timestamp", 0) or int(datetime.now().timestamp())
+        path = trades_dir / f"trade_{ts}.json"
+        with open(path, "w") as f:
+            json.dump(article, f, indent=2)
+        return path
+    except Exception:
+        return None
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -1679,44 +1793,131 @@ with tab_news:
 
     # ── Trade Wire ────────────────────────────────────────────────────────────
     with inner_tradewire:
-        trades_dir = DATA_ROOT / str(selected_season) / "trades"
+        trades_dir  = DATA_ROOT / str(selected_season) / "trades"
         trade_files = sorted(trades_dir.glob("*.json"), reverse=True) if trades_dir.exists() else []
-        trade_articles = []
+
+        # Load saved articles from disk
+        saved_articles: list[dict] = []
+        saved_timestamps: set[int] = set()
         for f in trade_files:
             try:
                 with open(f) as fp:
-                    trade_articles.append(json.load(fp))
+                    a = json.load(fp)
+                    saved_articles.append(a)
+                    saved_timestamps.add(int(a.get("transaction_timestamp", 0)))
             except Exception:
                 pass
 
-        if not trade_articles:
-            st.markdown("""
-            <div style="text-align:center; padding: 40px; color: #888;">
-                <div style="font-size: 3em;">📰</div>
-                <div style="font-size: 1.2em; font-weight: 600; margin: 10px 0;">Trade Wire Coming in Phase 6</div>
-                <div style="font-size: 0.9em;">When a trade is processed in Yahoo, BeerLeague Insider will automatically publish<br>
-                a breaking news article written in the style of ESPN's Jeff Passan.</div>
-            </div>
-            """, unsafe_allow_html=True)
+        # Merge with any articles generated this session (not yet saved to disk)
+        session_articles: list[dict] = st.session_state.get("generated_trade_articles", [])
+        session_ts       = {int(a.get("transaction_timestamp", 0)) for a in session_articles}
 
-            # Show trades from transactions as a preview
-            all_trades = [tx for wk_data in weeks_data.values()
-                          for tx in wk_data.get("transactions", []) if tx.get("type") == "trade"]
-            if all_trades:
+        # All trades across the season
+        all_trades = [
+            tx for wk_data in weeks_data.values()
+            for tx in wk_data.get("transactions", [])
+            if tx.get("type") == "trade"
+        ]
+        all_trades.sort(key=lambda t: t.get("timestamp", 0), reverse=True)
+        unprocessed = [t for t in all_trades
+                       if int(t.get("timestamp", 0)) not in saved_timestamps | session_ts]
+
+        has_key = bool(_get_anthropic_key())
+
+        # ── Header ────────────────────────────────────────────────────────────
+        st.markdown("""
+        <div style="background:linear-gradient(135deg,#1f3a5f,#0a1628);color:white;
+                    border-radius:10px;padding:16px 20px;margin-bottom:16px;">
+          <div style="font-size:1.3em;font-weight:800;letter-spacing:0.5px">
+            📰 BeerLeague Insider
+          </div>
+          <div style="font-size:0.85em;opacity:0.8;margin-top:2px">
+            Breaking news · Trade analysis in the style of Jeff Passan
+          </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # ── Generate unprocessed trades ────────────────────────────────────────
+        if unprocessed:
+            if not has_key:
+                st.warning(
+                    f"**{len(unprocessed)} unprocessed trade(s) found.** "
+                    "Add `ANTHROPIC_API_KEY` to your Streamlit secrets to auto-generate articles.",
+                    icon="🔑",
+                )
+                for tx in unprocessed:
+                    names = ", ".join(p.get("name", "") for p in tx.get("players", [])[:4])
+                    st.caption(f"🔄 {names}{'…' if len(tx.get('players',[])) > 4 else ''}")
+            else:
+                st.info(f"**{len(unprocessed)} new trade(s)** detected without articles.", icon="🔄")
+                if st.button("🤖 Generate BeerLeague Insider Articles", type="primary"):
+                    new_articles = []
+                    prog = st.progress(0, text="Generating articles…")
+                    for i, tx in enumerate(unprocessed):
+                        prog.progress((i + 1) / len(unprocessed),
+                                      text=f"Writing article {i+1}/{len(unprocessed)}…")
+                        article = generate_trade_article(tx, standings)
+                        if article:
+                            new_articles.append(article)
+                            saved_path = save_trade_article(article, trades_dir)
+                            if saved_path:
+                                st.toast(f"Saved: {saved_path.name}", icon="💾")
+                    prog.empty()
+                    if new_articles:
+                        existing = st.session_state.get("generated_trade_articles", [])
+                        st.session_state["generated_trade_articles"] = existing + new_articles
+                        st.success(f"Generated {len(new_articles)} article(s)! "
+                                   "Commit the `data/{}/trades/` folder to persist them.".format(selected_season))
+                        st.rerun()
+
+        # ── Display articles ───────────────────────────────────────────────────
+        display_articles = saved_articles + session_articles
+        display_articles.sort(key=lambda a: a.get("transaction_timestamp", 0), reverse=True)
+
+        if not display_articles and not unprocessed:
+            st.markdown("""
+            <div style="text-align:center;padding:50px 20px;color:#aaa;">
+              <div style="font-size:3em">📰</div>
+              <div style="font-size:1.1em;font-weight:600;margin:12px 0">No trades yet this season</div>
+              <div style="font-size:0.9em">When a trade is processed in Yahoo, the BeerLeague Insider<br>
+              will automatically generate a breaking news article.</div>
+            </div>""", unsafe_allow_html=True)
+
+        for article in display_articles:
+            team_a = article.get("team_a", "Team A")
+            team_b = article.get("team_b", "Team B")
+            grade_a = article.get("grade_team_a", "—")
+            grade_b = article.get("grade_team_b", "—")
+            headline = article.get("headline", "Trade")
+            gen_date = article.get("generated_at", "")[:10]
+
+            with st.expander(f"📰 {headline}", expanded=True):
+                # Article body
+                st.markdown(article.get("body", ""))
                 st.divider()
-                st.subheader(f"📋 {len(all_trades)} Trade(s) This Season — Articles Coming Soon")
-                for tx in all_trades[:5]:
-                    players = tx.get("players", [])
-                    if players:
-                        names = ", ".join(p.get("name", "") for p in players[:3])
-                        st.caption(f"🔄 Trade involving: {names}{'...' if len(players) > 3 else ''}")
-        else:
-            for article in trade_articles:
-                with st.expander(article.get("headline", "Trade"), expanded=True):
-                    st.markdown(article.get("body", ""))
-                    c1, c2 = st.columns(2)
-                    c1.metric("Grade", article.get("grade_team_a", "—"))
-                    c2.metric("Grade", article.get("grade_team_b", "—"))
+
+                # Trade grades
+                gc1, gc2, gc3 = st.columns([2, 2, 1])
+                grade_color = lambda g: (
+                    "#1a9850" if g and g[0] in "AB" else
+                    ("#e07b00" if g and g[0] == "C" else "#d73027")
+                )
+                gc1.markdown(
+                    f"<div style='text-align:center;background:#f8f9fa;border-radius:8px;padding:12px'>"
+                    f"<div style='font-size:0.8em;color:#888'>GRADE · {team_a}</div>"
+                    f"<div style='font-size:2em;font-weight:800;color:{grade_color(grade_a)}'>{grade_a}</div>"
+                    f"</div>",
+                    unsafe_allow_html=True,
+                )
+                gc2.markdown(
+                    f"<div style='text-align:center;background:#f8f9fa;border-radius:8px;padding:12px'>"
+                    f"<div style='font-size:0.8em;color:#888'>GRADE · {team_b}</div>"
+                    f"<div style='font-size:2em;font-weight:800;color:{grade_color(grade_b)}'>{grade_b}</div>"
+                    f"</div>",
+                    unsafe_allow_html=True,
+                )
+                if gen_date:
+                    gc3.caption(f"Generated\n{gen_date}")
 
     # ── Recap Archive ─────────────────────────────────────────────────────────
     with inner_archive:
