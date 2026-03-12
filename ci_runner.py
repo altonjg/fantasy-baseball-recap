@@ -428,6 +428,7 @@ def generate_season_preview(season: int) -> dict | None:
                             mgr_to_team[mgr] = team
 
                 # Detect defending champion — use team name only
+                # First try: explicit championship matchup
                 for m in prev_wd.get("matchups", []):
                     if m.get("is_championship") and not m.get("is_tied"):
                         teams = m.get("teams", [])
@@ -436,6 +437,12 @@ def generate_season_preview(season: int) -> dict | None:
                         )
                         if winner:
                             prev_champion = winner.get("name", "Unknown")
+                # Fallback: rank=1 in final standings (handles leagues where
+                # is_championship flag isn't set in the stored week JSON)
+                if prev_champion == "Unknown" and prev_standings:
+                    top = next((s for s in prev_standings if s.get("rank") == 1), None)
+                    if top:
+                        prev_champion = top.get("name", "Unknown")
             except Exception:
                 pass
 
@@ -443,7 +450,7 @@ def generate_season_preview(season: int) -> dict | None:
     alltime = _build_historical_context(season, lookback=2)
 
     # --- Build prompt context ---
-    writer     = WRITER_STYLES["gammons"]
+    writer     = WRITER_STYLES["rosenthal"]
 
     def _resolve_team(pick: dict) -> str:
         """
@@ -472,20 +479,25 @@ def generate_season_preview(season: int) -> dict | None:
         for p in draft_order
     )
 
-    # Previous season standings — team names only
+    # Previous season standings — team names + final rank only
+    # (wins/losses are not reliably stored; rank IS authoritative)
+    prev_sorted = sorted(prev_standings, key=lambda s: s.get("rank", 99))
     prev_lines = "\n".join(
-        f"  {s['rank']:2d}. {s.get('name')}: "
-        f"{s['wins']}-{s['losses']} ({s.get('points_for', 0):.0f} PF)"
-        for s in prev_standings
+        f"  #{s['rank']:2d}. {s.get('name')}"
+        for s in prev_sorted
     ) if prev_standings else "  (not available)"
 
-    # All-time records context
+    # All-time records context — use per-season finish positions
+    # (wins/losses fields may be 0 due to storage format; rank is reliable)
     alltime_lines = []
-    for mgr, rec in sorted(alltime.items(), key=lambda x: -x[1]["wins"]):
-        champ_str = f", {rec['championships']}x champ" if rec["championships"] else ""
+    for team, rec in sorted(alltime.items(), key=lambda x: x[1]["best_rank"]):
+        champ_str = f", {rec['championships']}x champion" if rec["championships"] else ""
+        seasons_detail = ", ".join(
+            f"{sd['year']}: #{sd['rank']}"
+            for sd in sorted(rec["seasons_data"], key=lambda x: x["year"])
+        )
         alltime_lines.append(
-            f"  {mgr}: {rec['wins']}-{rec['losses']} all-time "
-            f"({rec['seasons']} seasons{champ_str}, best finish: #{rec['best_rank']})"
+            f"  {team}: {seasons_detail}{champ_str}"
         )
     alltime_ctx = "\n".join(alltime_lines) if alltime_lines else "  (no history available)"
 
@@ -509,7 +521,7 @@ LEAGUE STRUCTURE:
 {prev_season} FINAL STANDINGS (defending champion: {prev_champion}):
 {prev_lines}
 
-RECENT RECORDS (last 2 seasons, {season - 2}–{season - 1}):
+RECENT FINISH POSITIONS (last 2 seasons, {season - 2}–{season - 1}):
 {alltime_ctx}
 
 Write a full season preview (900–1100 words) structured as follows:
@@ -533,7 +545,7 @@ Respond ONLY with valid JSON — no markdown fences:
         article = _safe_json_parse(raw)
         article["generated_at"]  = datetime.now().isoformat()
         article["season"]        = season
-        article["writer_key"]    = "gammons"
+        article["writer_key"]    = "rosenthal"
         article["writer_name"]   = writer["name"]
         article["writer_outlet"] = writer["outlet"]
         article["type"]          = "season_preview"
