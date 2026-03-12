@@ -132,11 +132,20 @@ def get_scoreboard(
                 m = managers[0].get("manager", {}) if isinstance(managers[0], dict) else {}
                 manager_name = m.get("nickname") or m.get("manager_id", "Unknown")
 
+            # Extract logo URL (Yahoo returns team_logos as a list of dicts)
+            logo_url = ""
+            for _logo_entry in flat.get("team_logos", []):
+                _tl = _logo_entry.get("team_logo", {}) if isinstance(_logo_entry, dict) else {}
+                logo_url = _tl.get("url", "")
+                if logo_url:
+                    break
+
             teams.append(
                 {
                     "name": flat.get("name", f"Team {j}"),
                     "team_key": flat.get("team_key", ""),
                     "manager": manager_name,
+                    "logo_url": logo_url,
                     "points": float(
                         pts_block.get("team_points", {}).get("total", 0)
                         or pts_block.get("team_projected_points", {}).get("total", 0)

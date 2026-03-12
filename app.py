@@ -113,8 +113,108 @@ st.markdown("""
 .preview-byline { font-size: 0.78em; opacity: 0.65; }
 /* Hide default Streamlit "Made with Streamlit" footer */
 footer { visibility: hidden; }
+/* ── League leaders bar ── */
+.leaders-bar {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;
+}
+.leader-cell {
+    flex: 1; min-width: 130px; background: white; border-radius: 8px;
+    padding: 8px 11px; border: 1px solid #e8e8e8;
+}
+.leader-label { font-size: 0.68em; text-transform: uppercase; letter-spacing: 0.07em; color: #888; }
+.leader-team  { font-size: 0.85em; font-weight: 700; color: #1f3a5f; margin: 3px 0 1px; display:flex; align-items:center; gap:5px; }
+.leader-stat  { font-size: 0.75em; color: #666; }
+/* ── Team logo badge (colored circle with initials) ── */
+.team-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 50%; font-size: 0.6em; font-weight: 800; color: white;
+    flex-shrink: 0; vertical-align: middle; line-height: 1;
+}
+/* ── Standings rows ── */
+.div-label {
+    font-size: 0.67em; text-transform: uppercase; letter-spacing: 0.1em;
+    color: #999; margin: 8px 0 4px; padding-bottom: 3px; border-bottom: 1px solid #f0f0f0;
+}
+.stand-row {
+    display: flex; align-items: center; padding: 4px 0; gap: 5px;
+    border-bottom: 1px solid #f9f9f9; font-size: 0.85em;
+}
+.stand-medal { width: 22px; flex-shrink: 0; }
+.stand-name  { flex: 1; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.stand-record { color: #888; font-size: 0.82em; white-space: nowrap; }
+.div-leader-tag {
+    font-size: 0.6em; color: #1a9850; font-weight: 700;
+    background: #d4edda; border-radius: 3px; padding: 1px 4px; margin-left: 3px;
+}
+/* ── Power rankings rows ── */
+.pr-row {
+    display: flex; align-items: center; padding: 3px 0; gap: 4px;
+    border-bottom: 1px solid #f8f8f8; font-size: 0.84em;
+}
+.pr-rank  { width: 20px; font-weight: 700; color: #1f3a5f; flex-shrink: 0; }
+.pr-name  { flex: 1; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pr-arrow { width: 26px; text-align: center; font-size: 0.72em; }
+.pr-form  { font-size: 0.72em; white-space: nowrap; }
+/* ── News / Latest ── */
+.news-item    { padding: 6px 0; border-bottom: 1px solid #f0f0f0; }
+.news-item:last-child { border-bottom: none; }
+.news-week    { font-size: 0.68em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #1f3a5f; }
+.news-headline { font-size: 0.83em; color: #333; margin-top: 2px; line-height: 1.35; }
+/* ── Playoff picture ── */
+.playoff-tier { display: flex; align-items: flex-start; gap: 8px; margin: 5px 0; flex-wrap: wrap; }
+.playoff-tier-label { font-size: 0.68em; font-weight: 800; text-transform: uppercase; width: 52px; padding-top: 5px; flex-shrink: 0; }
+.playoff-chip {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 9px; border-radius: 16px; font-size: 0.78em; font-weight: 600; margin: 2px;
+}
+.chip-in     { background: #d4edda; color: #155724; }
+.chip-bubble { background: #fff3cd; color: #856404; }
+.chip-out    { background: #f8d7da; color: #721c24; }
+/* ── Preview compact card ── */
+.preview-card {
+    background: linear-gradient(90deg, #0d2137 0%, #1f3a5f 100%);
+    color: white; border-radius: 10px; padding: 10px 16px;
+    margin-bottom: 14px; border-left: 4px solid #f0c040;
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.preview-card-label { font-size: 0.7em; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #f0c040; white-space: nowrap; }
+.preview-card-hed   { font-size: 0.88em; font-weight: 700; flex: 1; }
+.preview-card-by    { font-size: 0.72em; opacity: 0.6; white-space: nowrap; }
 </style>
 """, unsafe_allow_html=True)
+
+# ── Display helpers ───────────────────────────────────────────────────────────
+import zlib as _zlib
+
+def _team_color(name: str) -> str:
+    """Stable, consistent HSL color for a team name."""
+    hue = _zlib.crc32(name.encode("utf-8")) % 360
+    return f"hsl({hue},52%,40%)"
+
+def _team_initials(name: str) -> str:
+    """Return 1–2 uppercase initials from a team name."""
+    words = [w for w in name.split() if w and w[0].isalpha()]
+    if len(words) >= 2:
+        return (words[0][0] + words[1][0]).upper()
+    return name[:2].upper() if name else "??"
+
+def _badge_html(name: str, logo_url: str = "", size: int = 22) -> str:
+    """Return an <img> (if logo_url) or a colored-circle initials badge."""
+    if logo_url:
+        return (
+            f'<img src="{logo_url}" '
+            f'style="width:{size}px;height:{size}px;border-radius:50%;'
+            f'object-fit:cover;vertical-align:middle;" '
+            f'onerror="this.style.display=\'none\'">'
+        )
+    color    = _team_color(name)
+    initials = _team_initials(name)
+    return (
+        f'<span class="team-badge" '
+        f'style="width:{size}px;height:{size}px;background:{color};">'
+        f'{initials}</span>'
+    )
+
 
 # ── Constants ─────────────────────────────────────────────────────────────────
 DATA_ROOT = Path(__file__).parent / "data"
@@ -1392,106 +1492,194 @@ tab_home, tab_week, tab_season, tab_alltime, tab_news = st.tabs([
 
 with tab_home:
 
-    # ── Season Preview Article ────────────────────────────────────────────────
+    # ── Season Preview compact card ───────────────────────────────────────────
     _preview_path = DATA_ROOT / str(selected_season) / "articles" / "season_preview.json"
     if _preview_path.exists():
         try:
             with open(_preview_path) as _pf:
-                _preview_article = json.load(_pf)
+                _prev_art = json.load(_pf)
+            _prev_hed    = _prev_art.get("headline", f"{selected_season} Season Preview")
+            _prev_writer = _prev_art.get("writer_name", "Staff")
+            _prev_date   = _prev_art.get("generated_at", "")[:10]
+            st.markdown(f"""
+            <div class="preview-card">
+              <span class="preview-card-label">📋 {selected_season} Season Preview</span>
+              <span class="preview-card-hed">{_prev_hed}</span>
+              <span class="preview-card-by">by {_prev_writer} · {_prev_date}
+                &nbsp;·&nbsp; <em>Select "📋 Season Preview" in the week picker to read</em></span>
+            </div>""", unsafe_allow_html=True)
         except Exception:
-            _preview_article = None
+            pass
 
-        if _preview_article:
-            _prev_headline  = _preview_article.get("headline",    f"{selected_season} Season Preview")
-            _prev_subdeck   = _preview_article.get("subheadline", "")
-            _prev_body      = _preview_article.get("body",        "")
-            _prev_writer    = _preview_article.get("writer_name",   "Peter Gammons")
-            _prev_outlet    = _preview_article.get("writer_outlet", "MLB Network")
-            _prev_date      = _preview_article.get("generated_at",  "")[:10]
+    # ── League leaders bar ────────────────────────────────────────────────────
+    if standings:
+        _home_divs   = load_divisions(selected_season)
+        _pr_list_ldr = compute_power_rankings(_weeks_frozen, tuple(standings))
+        _most_pf     = max(standings, key=lambda s: s["points_for"])
+        _best_def    = min(standings, key=lambda s: s["points_against"])
+        _hot_team    = _pr_list_ldr[0] if _pr_list_ldr else standings[0]
 
-            # Collapse once the season has at least 1 week of real data
-            _preview_expanded = len(weeks_data) == 0
+        _leader_cells = [
+            ("🏆", "Best Record",     standings[0]["name"], f"{standings[0]['wins']}-{standings[0]['losses']}"),
+            ("⚡", "Most Points For", _most_pf["name"],     f"{_most_pf['points_for']:.0f} pts"),
+            ("🛡️", "Fewest Against",  _best_def["name"],    f"{_best_def['points_against']:.0f} pts"),
+            ("🔥", "Power #1",        _hot_team["name"],    f"PR rank {_hot_team['pr_rank']}" if _pr_list_ldr else "—"),
+        ]
+        for _dn, _dt in _home_divs.items():
+            _div_st = sorted([s for s in standings if s["name"] in _dt], key=lambda s: s["rank"])
+            if _div_st:
+                _short = _dn.replace("League", "Lge")
+                _leader_cells.append(("🏟️", f"{_short} Leader", _div_st[0]["name"], f"{_div_st[0]['wins']}-{_div_st[0]['losses']}"))
 
-            with st.expander(f"📋 {selected_season} Season Preview — {_prev_headline}", expanded=_preview_expanded):
-                # Masthead
-                st.markdown(f"""
-                <div class="preview-masthead">
-                  <div class="preview-label">Season Preview · {selected_season}</div>
-                  <div class="preview-title">{_prev_headline}</div>
-                  {'<div class="preview-deck">' + _prev_subdeck + '</div>' if _prev_subdeck else ''}
-                  <div class="preview-byline">By {_prev_writer} &nbsp;·&nbsp; {_prev_outlet}
-                  {'&nbsp;·&nbsp; ' + _prev_date if _prev_date else ''}</div>
-                </div>
-                """, unsafe_allow_html=True)
-                st.write("")
-                st.markdown(_prev_body)
+        _cells_html = ""
+        for _icon, _lbl, _team, _val in _leader_cells:
+            _b = _badge_html(_team, size=18)
+            _cells_html += (
+                f'<div class="leader-cell">'
+                f'<div class="leader-label">{_icon} {_lbl}</div>'
+                f'<div class="leader-team">{_b}{_team}</div>'
+                f'<div class="leader-stat">{_val}</div>'
+                f'</div>'
+            )
+        st.markdown(f'<div class="leaders-bar">{_cells_html}</div>', unsafe_allow_html=True)
 
-            st.write("")
+    # ── Build logo lookup from current week matchup data ──────────────────────
+    _logo_lookup: dict[str, str] = {}
+    for _m in matchups:
+        for _t in _m.get("teams", []):
+            if _t.get("logo_url"):
+                _logo_lookup[_t["name"]] = _t["logo_url"]
 
-    # ── Three-panel summary row ───────────────────────────────────────────────
-    col_stand, col_pr, col_news = st.columns(3)
+    # ── Main three-panel row ──────────────────────────────────────────────────
+    _home_divs = load_divisions(selected_season)
+    col_stand, col_pr, col_news = st.columns([5, 3, 4])
 
+    # ─ Standings (built as single HTML string to avoid Streamlit div bug) ─────
     with col_stand:
-        st.markdown('<div class="panel-box">', unsafe_allow_html=True)
-        st.markdown('<div class="section-header">🏆 Standings</div>', unsafe_allow_html=True)
-        _home_divs = load_divisions(selected_season)
-        if _home_divs:
+        _sh = '<div class="panel-box"><div class="section-header">🏆 Standings</div>'
+        if _home_divs and standings:
+            # Find division leaders for badge
+            _div_leader_names: set[str] = set()
+            for _dn, _dt in _home_divs.items():
+                _dss = sorted([s for s in standings if s["name"] in _dt], key=lambda s: s["rank"])
+                if _dss:
+                    _div_leader_names.add(_dss[0]["name"])
+
+            _sh += '<div style="display:flex;gap:14px;">'
             for _div_name, _div_teams in _home_divs.items():
-                st.markdown(
-                    f"<div style='color:#aaa;font-size:0.72em;text-transform:uppercase;"
-                    f"letter-spacing:0.08em;margin:8px 0 3px'>{_div_name}</div>",
-                    unsafe_allow_html=True,
-                )
-                _div_st = sorted(
-                    [s for s in standings if s["name"] in _div_teams],
-                    key=lambda s: s["rank"],
-                )
+                _div_st = sorted([s for s in standings if s["name"] in _div_teams], key=lambda s: s["rank"])
+                _sh += f'<div style="flex:1;min-width:0;"><div class="div-label">{_div_name}</div>'
                 for s in _div_st:
-                    record = f"{s['wins']}-{s['losses']}"
-                    medal  = "🥇" if s["rank"] == 1 else ("🥈" if s["rank"] == 2 else ("🥉" if s["rank"] == 3 else f"{s['rank']}."))
-                    st.markdown(f"**{medal}** {s['name']} <span style='color:#888;font-size:0.85em'>{record}</span>", unsafe_allow_html=True)
-        else:
+                    rec    = f"{s['wins']}-{s['losses']}"
+                    medal  = "🥇" if s["rank"] == 1 else "🥈" if s["rank"] == 2 else "🥉" if s["rank"] == 3 else f"{s['rank']}."
+                    badge  = _badge_html(s["name"], _logo_lookup.get(s["name"], ""), 20)
+                    dtag   = '<span class="div-leader-tag">DIV</span>' if s["name"] in _div_leader_names else ""
+                    _sh += (
+                        f'<div class="stand-row">'
+                        f'<span class="stand-medal">{medal}</span>{badge}'
+                        f'<span class="stand-name" style="font-size:0.82em">{s["name"]}{dtag}</span>'
+                        f'<span class="stand-record">{rec}</span>'
+                        f'</div>'
+                    )
+                _sh += '</div>'
+            _sh += '</div>'
+        elif standings:
             for s in standings:
-                record = f"{s['wins']}-{s['losses']}"
-                medal  = "🥇" if s["rank"] == 1 else ("🥈" if s["rank"] == 2 else ("🥉" if s["rank"] == 3 else f"{s['rank']}."))
-                st.markdown(f"**{medal}** {s['name']} <span style='color:#888;font-size:0.85em'>{record}</span>", unsafe_allow_html=True)
-        st.markdown('</div>', unsafe_allow_html=True)
+                rec   = f"{s['wins']}-{s['losses']}"
+                medal = "🥇" if s["rank"] == 1 else "🥈" if s["rank"] == 2 else "🥉" if s["rank"] == 3 else f"{s['rank']}."
+                badge = _badge_html(s["name"], _logo_lookup.get(s["name"], ""), 20)
+                _sh  += f'<div class="stand-row"><span class="stand-medal">{medal}</span>{badge}<span class="stand-name">{s["name"]}</span><span class="stand-record">{rec}</span></div>'
+        else:
+            _sh += '<p style="color:#888;font-size:0.85em">No standings data yet.</p>'
+        _sh += '</div>'
+        st.markdown(_sh, unsafe_allow_html=True)
 
+    # ─ Power Rankings ─────────────────────────────────────────────────────────
     with col_pr:
-        st.markdown('<div class="panel-box">', unsafe_allow_html=True)
-        st.markdown('<div class="section-header">⚡ Power Rankings</div>', unsafe_allow_html=True)
-        pr_list = compute_power_rankings(_weeks_frozen, tuple(standings))
-        if pr_list:
-            for r in pr_list:
+        _pr_list = compute_power_rankings(_weeks_frozen, tuple(standings))
+        _prh = '<div class="panel-box"><div class="section-header">⚡ Power Rankings</div>'
+        if _pr_list:
+            for r in _pr_list:
                 diff = r["rank_diff"]
-                arrow = (f"<span style='color:#1a9850;font-size:0.8em'>▲{diff}</span>" if diff > 0 else
-                         f"<span style='color:#d73027;font-size:0.8em'>▼{abs(diff)}</span>" if diff < 0 else
-                         "<span style='color:#aaa;font-size:0.8em'>—</span>")
-                form_color = "#1a9850" if r["recent_form"].startswith(("3-", "2-")) else ("#d73027" if r["recent_form"].endswith(("-3", "-2")) else "#888")
-                st.markdown(
-                    f"**{r['pr_rank']}.** {r['name']} {arrow} "
-                    f"<span style='color:{form_color};font-size:0.8em'>({r['recent_form']} L3)</span>",
-                    unsafe_allow_html=True,
+                arr  = (f'<span style="color:#1a9850">▲{diff}</span>'  if diff > 0 else
+                        f'<span style="color:#d73027">▼{abs(diff)}</span>' if diff < 0 else
+                        '<span style="color:#ccc">—</span>')
+                form = r["recent_form"]
+                fc   = "#1a9850" if form.startswith(("3-","2-")) else ("#d73027" if form.endswith(("-3","-2")) else "#888")
+                badge = _badge_html(r["name"], _logo_lookup.get(r["name"], ""), 18)
+                _prh += (
+                    f'<div class="pr-row">'
+                    f'<span class="pr-rank">{r["pr_rank"]}.</span>{badge}'
+                    f'<span class="pr-name">{r["name"]}</span>'
+                    f'<span class="pr-arrow">{arr}</span>'
+                    f'<span class="pr-form" style="color:{fc}">({form})</span>'
+                    f'</div>'
                 )
         else:
-            st.caption("Rankings available once games are played.")
-        st.markdown('</div>', unsafe_allow_html=True)
+            _prh += '<p style="color:#888;font-size:0.82em">Rankings available once games are played.</p>'
+        _prh += '</div>'
+        st.markdown(_prh, unsafe_allow_html=True)
 
+    # ─ Latest News ────────────────────────────────────────────────────────────
     with col_news:
-        st.markdown('<div class="panel-box">', unsafe_allow_html=True)
-        st.markdown('<div class="section-header">📰 Latest</div>', unsafe_allow_html=True)
-        # Show last 3 weeks with recaps
-        news_count = 0
-        for wk in available_weeks:
-            recap = weeks_data[wk].get("recap_text", "")
-            if recap and news_count < 3:
-                label = week_label(wk, weeks_data[wk])
-                first_line = recap.split("\n")[0][:60] + "..."
-                st.markdown(f"**{label}** · _{first_line}_")
-                news_count += 1
-        if news_count == 0:
-            st.caption("No recaps generated yet.")
-        st.markdown('</div>', unsafe_allow_html=True)
+        _nh = '<div class="panel-box"><div class="section-header">📰 Latest</div>'
+        _all_articles: list[tuple[str, str, str]] = []  # (type, label, headline)
+        for _wk in available_weeks:
+            _wd = weeks_data[_wk]
+            _recap = _wd.get("recap_text", "")
+            if _recap:
+                _lbl = week_label(_wk, _wd)
+                _hed = _recap.split("\n")[0].strip().lstrip("#").strip()
+                _all_articles.append(("recap", _lbl, _hed))
+            for _tx in _wd.get("transactions", []):
+                _art = _tx.get("article", {})
+                if _art.get("headline"):
+                    _all_articles.append(("trade", f"Week {_wk} · Trade", _art["headline"]))
+
+        for _atype, _albl, _ahed in _all_articles[:5]:
+            _icon = "📰" if _atype == "recap" else "🔄"
+            _nh += (
+                f'<div class="news-item">'
+                f'<div class="news-week">{_icon} {_albl}</div>'
+                f'<div class="news-headline">{_ahed[:90]}{"…" if len(_ahed) > 90 else ""}</div>'
+                f'</div>'
+            )
+        if not _all_articles:
+            _nh += '<p style="color:#888;font-size:0.82em">No recaps generated yet.</p>'
+        _nh += '</div>'
+        st.markdown(_nh, unsafe_allow_html=True)
+
+    # ── Playoff Picture (regular season only) ─────────────────────────────────
+    if standings and not season_complete and not is_playoff_week:
+        _PLAYOFF_SPOTS = 6
+        _pp_in     = [s for s in standings if s["rank"] <= _PLAYOFF_SPOTS]
+        _pp_bubble = [s for s in standings if s["rank"] in (_PLAYOFF_SPOTS + 1, _PLAYOFF_SPOTS + 2)]
+        _pp_out    = [s for s in standings if s["rank"] > _PLAYOFF_SPOTS + 2]
+
+        def _pp_chip(s: dict, cls: str) -> str:
+            b = _badge_html(s["name"], _logo_lookup.get(s["name"], ""), 16)
+            return f'<span class="playoff-chip {cls}">{b}{s["name"]}</span>'
+
+        _pph = (
+            '<div class="panel-box" style="margin-top:14px">'
+            '<div class="section-header">🏟️ Playoff Picture</div>'
+            '<div class="playoff-tier">'
+            '<span class="playoff-tier-label" style="color:#155724">IN</span>'
+            '<div>' + ''.join(_pp_chip(s, "chip-in") for s in _pp_in) + '</div></div>'
+        )
+        if _pp_bubble:
+            _pph += (
+                '<div class="playoff-tier">'
+                '<span class="playoff-tier-label" style="color:#856404">BUBBLE</span>'
+                '<div>' + ''.join(_pp_chip(s, "chip-bubble") for s in _pp_bubble) + '</div></div>'
+            )
+        _pph += (
+            '<div class="playoff-tier">'
+            '<span class="playoff-tier-label" style="color:#721c24">OUT</span>'
+            '<div>' + ''.join(_pp_chip(s, "chip-out") for s in _pp_out) + '</div></div>'
+            '</div>'
+        )
+        st.markdown(_pph, unsafe_allow_html=True)
 
     st.divider()
 
