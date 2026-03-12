@@ -22,18 +22,31 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-DATA_DIR = Path(__file__).parent / "data"
+DATA_ROOT = Path(__file__).parent / "data"
 
 LOWER_IS_BETTER_DEFAULT = {"ERA", "WHIP"}
 
 
+# ── Season detection ──────────────────────────────────────────────────────────
+def get_available_seasons() -> list[int]:
+    """Return sorted list of seasons that have data in data/{year}/ subfolders."""
+    if not DATA_ROOT.exists():
+        return []
+    seasons = []
+    for d in DATA_ROOT.iterdir():
+        if d.is_dir() and d.name.isdigit() and list(d.glob("week_*.json")):
+            seasons.append(int(d.name))
+    return sorted(seasons, reverse=True)
+
+
 # ── Data loading ──────────────────────────────────────────────────────────────
 @st.cache_data(ttl=60)
-def load_all_weeks() -> dict[int, dict]:
+def load_all_weeks(season: int) -> dict[int, dict]:
     weeks: dict[int, dict] = {}
-    if not DATA_DIR.exists():
+    data_dir = DATA_ROOT / str(season)
+    if not data_dir.exists():
         return weeks
-    for f in sorted(DATA_DIR.glob("week_*.json")):
+    for f in sorted(data_dir.glob("week_*.json")):
         try:
             with open(f) as fp:
                 d = json.load(fp)
@@ -135,25 +148,37 @@ def week_label(w: int, data: dict) -> str:
 
 
 # ── Load data ─────────────────────────────────────────────────────────────────
-weeks_data = load_all_weeks()
+available_seasons = get_available_seasons()
 
-if not weeks_data:
+if not available_seasons:
     st.title("⚾ BeerLeagueBaseball Recap")
     st.info(
         "No weekly data found yet.\n\n"
-        "Run `python3 main.py --dry-run` to generate the first recap — "
-        "it will save automatically to the `data/` folder."
+        "Run `python3 backfill.py --year 2025` to pull data from Yahoo."
     )
     st.stop()
-
-available_weeks = sorted(weeks_data.keys(), reverse=True)
-league_name = weeks_data[available_weeks[0]].get("league_name", "Fantasy Baseball League")
 
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.title("⚾ Beer League Baseball")
-    st.caption(league_name)
     st.divider()
+
+    selected_season = st.selectbox(
+        "Season",
+        options=available_seasons,
+        format_func=lambda y: f"{y} Season",
+    )
+    st.divider()
+
+    weeks_data = load_all_weeks(selected_season)
+
+    if not weeks_data:
+        st.warning(f"No data found for {selected_season}.")
+        st.stop()
+
+    available_weeks = sorted(weeks_data.keys(), reverse=True)
+    league_name = weeks_data[available_weeks[0]].get("league_name", "Fantasy Baseball League")
+    st.caption(league_name)
 
     selected_week = st.selectbox(
         "Select Week",
@@ -192,11 +217,11 @@ is_playoff_week = bool(playoff_games)
 
 # ── Page header ───────────────────────────────────────────────────────────────
 if is_championship:
-    st.markdown(f"# 🏆 Week {selected_week} — Championship")
+    st.markdown(f"# 🏆 {selected_season} — Week {selected_week} Championship")
 elif is_playoff_week:
-    st.markdown(f"# 🥊 Week {selected_week} — Playoffs")
+    st.markdown(f"# 🥊 {selected_season} — Week {selected_week} Playoffs")
 else:
-    st.markdown(f"# ⚾ Week {selected_week} Recap")
+    st.markdown(f"# ⚾ {selected_season} — Week {selected_week} Recap")
 
 if data.get("generated_at"):
     st.caption(f"Generated {data['generated_at'][:10]}")

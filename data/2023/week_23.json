@@ -1,0 +1,1165 @@
+{
+  "league_name": "MillerLite\u00ae BeerLeagueBaseball",
+  "week": 23,
+  "matchups": [
+    {
+      "week": 23,
+      "teams": [
+        {
+          "name": "Albuquerque Bombers",
+          "team_key": "422.l.35047.t.1",
+          "manager": "Zach",
+          "points": 8.0,
+          "category_stats": {
+            "H/AB": "53/208",
+            "R": "34",
+            "HR": "8",
+            "RBI": "22",
+            "SB": "3",
+            "OBP": ".338",
+            "IP": "61.1",
+            "K": "60",
+            "ERA": "2.79",
+            "WHIP": "0.86",
+            "QS": "4",
+            "NSVH": "5"
+          }
+        },
+        {
+          "name": "Central Wisconsin Curd Fryers",
+          "team_key": "422.l.35047.t.9",
+          "manager": "Bailey",
+          "points": 2.0,
+          "category_stats": {
+            "H/AB": "41/182",
+            "R": "19",
+            "HR": "5",
+            "RBI": "24",
+            "SB": "5",
+            "OBP": ".288",
+            "IP": "31.0",
+            "K": "26",
+            "ERA": "6.39",
+            "WHIP": "1.81",
+            "QS": "0",
+            "NSVH": "3"
+          }
+        }
+      ],
+      "winner_key": "422.l.35047.t.1",
+      "is_tied": false,
+      "is_playoffs": true,
+      "is_consolation": false,
+      "is_championship": false,
+      "stat_winners": [
+        {
+          "stat_id": "7",
+          "is_tied": false
+        },
+        {
+          "stat_id": "12",
+          "is_tied": false
+        },
+        {
+          "stat_id": "13",
+          "is_tied": false
+        },
+        {
+          "stat_id": "16",
+          "is_tied": false
+        },
+        {
+          "stat_id": "4",
+          "is_tied": false
+        },
+        {
+          "stat_id": "42",
+          "is_tied": false
+        },
+        {
+          "stat_id": "26",
+          "is_tied": false
+        },
+        {
+          "stat_id": "27",
+          "is_tied": false
+        },
+        {
+          "stat_id": "83",
+          "is_tied": false
+        },
+        {
+          "stat_id": "90",
+          "is_tied": false
+        }
+      ]
+    },
+    {
+      "week": 23,
+      "teams": [
+        {
+          "name": "Abbotsford-Colby Twins",
+          "team_key": "422.l.35047.t.2",
+          "manager": "Dylan",
+          "points": 5.0,
+          "category_stats": {
+            "H/AB": "75/231",
+            "R": "36",
+            "HR": "7",
+            "RBI": "31",
+            "SB": "10",
+            "OBP": ".381",
+            "IP": "37.0",
+            "K": "41",
+            "ERA": "4.38",
+            "WHIP": "1.38",
+            "QS": "1",
+            "NSVH": "7"
+          }
+        },
+        {
+          "name": "Riverside Roughnecks",
+          "team_key": "422.l.35047.t.14",
+          "manager": "Zach",
+          "points": 5.0,
+          "category_stats": {
+            "H/AB": "40/201",
+            "R": "22",
+            "HR": "10",
+            "RBI": "27",
+            "SB": "8",
+            "OBP": ".282",
+            "IP": "58.2",
+            "K": "53",
+            "ERA": "2.76",
+            "WHIP": "1.04",
+            "QS": "2",
+            "NSVH": "5"
+          }
+        }
+      ],
+      "winner_key": "422.l.35047.t.2",
+      "is_tied": false,
+      "is_playoffs": true,
+      "is_consolation": true,
+      "is_championship": false,
+      "stat_winners": [
+        {
+          "stat_id": "7",
+          "is_tied": false
+        },
+        {
+          "stat_id": "12",
+          "is_tied": false
+        },
+        {
+          "stat_id": "13",
+          "is_tied": false
+        },
+        {
+          "stat_id": "16",
+          "is_tied": false
+        },
+        {
+          "stat_id": "4",
+          "is_tied": false
+        },
+        {
+          "stat_id": "42",
+          "is_tied": false
+        },
+        {
+          "stat_id": "26",
+          "is_tied": false
+        },
+        {
+          "stat_id": "27",
+          "is_tied": false
+        },
+        {
+          "stat_id": "83",
+          "is_tied": false
+        },
+        {
+          "stat_id": "90",
+          "is_tied": false
+        }
+      ]
+    },
+    {
+      "week": 23,
+      "teams": [
+        {
+          "name": "BaseballPro77",
+          "team_key": "422.l.35047.t.3",
+          "manager": "Zach",
+          "points": 5.0,
+          "category_stats": {
+            "H/AB": "56/223",
+            "R": "31",
+            "HR": "8",
+            "RBI": "39",
+            "SB": "2",
+            "OBP": ".325",
+            "IP": "87.1",
+            "K": "90",
+            "ERA": "3.40",
+            "WHIP": "1.15",
+            "QS": "5",
+            "NSVH": "7"
+          }
+        },
+        {
+          "name": "Canberra Wombats",
+          "team_key": "422.l.35047.t.5",
+          "manager": "Noah",
+          "points": 4.0,
+          "category_stats": {
+            "H/AB": "52/227",
+            "R": "40",
+            "HR": "12",
+            "RBI": "34",
+            "SB": "7",
+            "OBP": ".307",
+            "IP": "75.2",
+            "K": "89",
+            "ERA": "4.64",
+            "WHIP": "1.28",
+            "QS": "5",
+            "NSVH": "11"
+          }
+        }
+      ],
+      "winner_key": "422.l.35047.t.3",
+      "is_tied": false,
+      "is_playoffs": true,
+      "is_consolation": false,
+      "is_championship": false,
+      "stat_winners": [
+        {
+          "stat_id": "7",
+          "is_tied": false
+        },
+        {
+          "stat_id": "12",
+          "is_tied": false
+        },
+        {
+          "stat_id": "13",
+          "is_tied": false
+        },
+        {
+          "stat_id": "16",
+          "is_tied": false
+        },
+        {
+          "stat_id": "4",
+          "is_tied": false
+        },
+        {
+          "stat_id": "42",
+          "is_tied": false
+        },
+        {
+          "stat_id": "26",
+          "is_tied": false
+        },
+        {
+          "stat_id": "27",
+          "is_tied": false
+        },
+        {
+          "stat_id": "83",
+          "is_tied": true
+        },
+        {
+          "stat_id": "90",
+          "is_tied": false
+        }
+      ]
+    },
+    {
+      "week": 23,
+      "teams": [
+        {
+          "name": "Hung Jung",
+          "team_key": "422.l.35047.t.6",
+          "manager": "Doctor",
+          "points": 0.0,
+          "category_stats": {
+            "H/AB": "51/209",
+            "R": "32",
+            "HR": "7",
+            "RBI": "38",
+            "SB": "2",
+            "OBP": ".331",
+            "IP": "33.2",
+            "K": "32",
+            "ERA": "5.35",
+            "WHIP": "1.46",
+            "QS": "1",
+            "NSVH": "2"
+          }
+        },
+        {
+          "name": "Buttville Skidmarks",
+          "team_key": "422.l.35047.t.10",
+          "manager": "Gavin",
+          "points": 10.0,
+          "category_stats": {
+            "H/AB": "71/208",
+            "R": "47",
+            "HR": "15",
+            "RBI": "49",
+            "SB": "6",
+            "OBP": ".419",
+            "IP": "39.2",
+            "K": "54",
+            "ERA": "2.72",
+            "WHIP": "1.21",
+            "QS": "1",
+            "NSVH": "3"
+          }
+        }
+      ],
+      "winner_key": "422.l.35047.t.10",
+      "is_tied": false,
+      "is_playoffs": true,
+      "is_consolation": true,
+      "is_championship": false,
+      "stat_winners": [
+        {
+          "stat_id": "7",
+          "is_tied": false
+        },
+        {
+          "stat_id": "12",
+          "is_tied": false
+        },
+        {
+          "stat_id": "13",
+          "is_tied": false
+        },
+        {
+          "stat_id": "16",
+          "is_tied": false
+        },
+        {
+          "stat_id": "4",
+          "is_tied": false
+        },
+        {
+          "stat_id": "42",
+          "is_tied": false
+        },
+        {
+          "stat_id": "26",
+          "is_tied": false
+        },
+        {
+          "stat_id": "27",
+          "is_tied": false
+        },
+        {
+          "stat_id": "83",
+          "is_tied": false
+        },
+        {
+          "stat_id": "90",
+          "is_tied": false
+        }
+      ]
+    },
+    {
+      "week": 23,
+      "teams": [
+        {
+          "name": "Portage County Heartbreakers",
+          "team_key": "422.l.35047.t.7",
+          "manager": "Ethan",
+          "points": 4.0,
+          "category_stats": {
+            "H/AB": "39/165",
+            "R": "24",
+            "HR": "9",
+            "RBI": "20",
+            "SB": "4",
+            "OBP": ".340",
+            "IP": "33.2",
+            "K": "37",
+            "ERA": "2.41",
+            "WHIP": "1.10",
+            "QS": "1",
+            "NSVH": "1"
+          }
+        },
+        {
+          "name": "Pablo Sanchez\u2019s Drug Dealer",
+          "team_key": "422.l.35047.t.12",
+          "manager": "James Mazur",
+          "points": 6.0,
+          "category_stats": {
+            "H/AB": "37/154",
+            "R": "20",
+            "HR": "7",
+            "RBI": "31",
+            "SB": "2",
+            "OBP": ".306",
+            "IP": "37.2",
+            "K": "29",
+            "ERA": "5.26",
+            "WHIP": "1.54",
+            "QS": "2",
+            "NSVH": "1"
+          }
+        }
+      ],
+      "winner_key": "422.l.35047.t.12",
+      "is_tied": false,
+      "is_playoffs": true,
+      "is_consolation": true,
+      "is_championship": false,
+      "stat_winners": [
+        {
+          "stat_id": "7",
+          "is_tied": false
+        },
+        {
+          "stat_id": "12",
+          "is_tied": false
+        },
+        {
+          "stat_id": "13",
+          "is_tied": false
+        },
+        {
+          "stat_id": "16",
+          "is_tied": false
+        },
+        {
+          "stat_id": "4",
+          "is_tied": false
+        },
+        {
+          "stat_id": "42",
+          "is_tied": false
+        },
+        {
+          "stat_id": "26",
+          "is_tied": false
+        },
+        {
+          "stat_id": "27",
+          "is_tied": false
+        },
+        {
+          "stat_id": "83",
+          "is_tied": false
+        },
+        {
+          "stat_id": "90",
+          "is_tied": false
+        }
+      ]
+    },
+    {
+      "week": 23,
+      "teams": [
+        {
+          "name": "Hiroshima Radiation",
+          "team_key": "422.l.35047.t.8",
+          "manager": "Shane",
+          "points": 8.0,
+          "category_stats": {
+            "H/AB": "64/240",
+            "R": "39",
+            "HR": "11",
+            "RBI": "38",
+            "SB": "6",
+            "OBP": ".346",
+            "IP": "63.0",
+            "K": "56",
+            "ERA": "3.71",
+            "WHIP": "1.14",
+            "QS": "2",
+            "NSVH": "2"
+          }
+        },
+        {
+          "name": "Wonder Wharf Wonderdogs",
+          "team_key": "422.l.35047.t.13",
+          "manager": "Justin",
+          "points": 1.0,
+          "category_stats": {
+            "H/AB": "56/236",
+            "R": "32",
+            "HR": "9",
+            "RBI": "34",
+            "SB": "2",
+            "OBP": ".298",
+            "IP": "46.0",
+            "K": "47",
+            "ERA": "4.30",
+            "WHIP": "1.20",
+            "QS": "2",
+            "NSVH": "4"
+          }
+        }
+      ],
+      "winner_key": "422.l.35047.t.8",
+      "is_tied": false,
+      "is_playoffs": true,
+      "is_consolation": false,
+      "is_championship": false,
+      "stat_winners": [
+        {
+          "stat_id": "7",
+          "is_tied": false
+        },
+        {
+          "stat_id": "12",
+          "is_tied": false
+        },
+        {
+          "stat_id": "13",
+          "is_tied": false
+        },
+        {
+          "stat_id": "16",
+          "is_tied": false
+        },
+        {
+          "stat_id": "4",
+          "is_tied": false
+        },
+        {
+          "stat_id": "42",
+          "is_tied": false
+        },
+        {
+          "stat_id": "26",
+          "is_tied": false
+        },
+        {
+          "stat_id": "27",
+          "is_tied": false
+        },
+        {
+          "stat_id": "83",
+          "is_tied": true
+        },
+        {
+          "stat_id": "90",
+          "is_tied": false
+        }
+      ]
+    }
+  ],
+  "standings": [
+    {
+      "rank": 1,
+      "name": "BaseballPro77",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 2,
+      "name": "Hiroshima Radiation",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 3,
+      "name": "Canberra Wombats",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 4,
+      "name": "Wonder Wharf Wonderdogs",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 5,
+      "name": "Albuquerque Bombers",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 6,
+      "name": "Central Wisconsin Curd Fryers",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 7,
+      "name": "Pablo Sanchez\u2019s Drug Dealer",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 8,
+      "name": "Abbotsford-Colby Twins",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 9,
+      "name": "Riverside Roughnecks",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 10,
+      "name": "Portage County Heartbreakers",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 11,
+      "name": "Buttville Skidmarks",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 12,
+      "name": "Hung Jung",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 13,
+      "name": "Sugar Land Skeeters",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    },
+    {
+      "rank": 14,
+      "name": "Benchwarmers",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0
+    }
+  ],
+  "transactions": [
+    {
+      "type": "add/drop",
+      "timestamp": 1695573860,
+      "players": [
+        {
+          "name": "Nicky Lopez",
+          "action": "add",
+          "team": "BaseballPro77",
+          "position": "2B,3B,SS"
+        },
+        {
+          "name": "Willi Castro",
+          "action": "drop",
+          "team": "BaseballPro77",
+          "position": "2B,3B,SS,OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1695572935,
+      "players": [
+        {
+          "name": "TJ Friedl",
+          "action": "add",
+          "team": "BaseballPro77",
+          "position": "OF"
+        },
+        {
+          "name": "DJ LeMahieu",
+          "action": "drop",
+          "team": "BaseballPro77",
+          "position": "1B,2B,3B"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1695542773,
+      "players": [
+        {
+          "name": "Willi Castro",
+          "action": "add",
+          "team": "BaseballPro77",
+          "position": "2B,3B,SS,OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1695491587,
+      "players": [
+        {
+          "name": "Evan Carter",
+          "action": "add",
+          "team": "Hiroshima Radiation",
+          "position": "OF"
+        },
+        {
+          "name": "Colin Holderman",
+          "action": "drop",
+          "team": "Hiroshima Radiation",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1695491573,
+      "players": [
+        {
+          "name": "Kyle Harrison",
+          "action": "drop",
+          "team": "Hiroshima Radiation",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1695197367,
+      "players": [
+        {
+          "name": "Justin Topa",
+          "action": "add",
+          "team": "BaseballPro77",
+          "position": "RP"
+        },
+        {
+          "name": "Abner Uribe",
+          "action": "drop",
+          "team": "BaseballPro77",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1695053230,
+      "players": [
+        {
+          "name": "Mike Clevinger",
+          "action": "add",
+          "team": "Hiroshima Radiation",
+          "position": "SP"
+        },
+        {
+          "name": "Wilmer Flores",
+          "action": "drop",
+          "team": "Hiroshima Radiation",
+          "position": "1B,2B,3B"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1695037942,
+      "players": [
+        {
+          "name": "Abner Uribe",
+          "action": "add",
+          "team": "BaseballPro77",
+          "position": "RP"
+        },
+        {
+          "name": "Ryne Nelson",
+          "action": "drop",
+          "team": "BaseballPro77",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1694988251,
+      "players": [
+        {
+          "name": "Ryne Nelson",
+          "action": "add",
+          "team": "BaseballPro77",
+          "position": "SP"
+        },
+        {
+          "name": "Justin Topa",
+          "action": "drop",
+          "team": "BaseballPro77",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1694867503,
+      "players": [
+        {
+          "name": "Giovanny Gallegos",
+          "action": "add",
+          "team": "Canberra Wombats",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1694867438,
+      "players": [
+        {
+          "name": "Justin Lawrence",
+          "action": "drop",
+          "team": "Canberra Wombats",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1694867385,
+      "players": [
+        {
+          "name": "Kris Bryant",
+          "action": "add",
+          "team": "Canberra Wombats",
+          "position": "1B,OF"
+        },
+        {
+          "name": "Shohei Ohtani (Batter)",
+          "action": "drop",
+          "team": "Canberra Wombats",
+          "position": "Util"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1694783368,
+      "players": [
+        {
+          "name": "Kirby Yates",
+          "action": "add",
+          "team": "Canberra Wombats",
+          "position": "RP"
+        },
+        {
+          "name": "Charlie Blackmon",
+          "action": "drop",
+          "team": "Canberra Wombats",
+          "position": "OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1694783304,
+      "players": [
+        {
+          "name": "Logan O'Hoppe",
+          "action": "add",
+          "team": "Canberra Wombats",
+          "position": "C"
+        },
+        {
+          "name": "Alex Vesia",
+          "action": "drop",
+          "team": "Canberra Wombats",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1694456531,
+      "players": [
+        {
+          "name": "Jorge Polanco",
+          "action": "add",
+          "team": "BaseballPro77",
+          "position": "2B,3B"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1694431287,
+      "players": [
+        {
+          "name": "Alex Vesia",
+          "action": "add",
+          "team": "Canberra Wombats",
+          "position": "RP"
+        },
+        {
+          "name": "Ryan Yarbrough",
+          "action": "drop",
+          "team": "Canberra Wombats",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1694362767,
+      "players": [
+        {
+          "name": "Mike Tauchman",
+          "action": "drop",
+          "team": "Hiroshima Radiation",
+          "position": "OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1694351999,
+      "players": [
+        {
+          "name": "Allan Winans",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        },
+        {
+          "name": "Jos\u00e9 Ure\u00f1a",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1694309178,
+      "players": [
+        {
+          "name": "Kenny Rosenberg",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        },
+        {
+          "name": "Chris Taylor",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "2B,3B,SS,OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1694276467,
+      "players": [
+        {
+          "name": "Jos\u00e9 Ure\u00f1a",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        },
+        {
+          "name": "Javier Assad",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1694181565,
+      "players": [
+        {
+          "name": "Kyle Harrison",
+          "action": "add",
+          "team": "Hiroshima Radiation",
+          "position": "SP"
+        },
+        {
+          "name": "Taj Bradley",
+          "action": "drop",
+          "team": "Hiroshima Radiation",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1694106597,
+      "players": [
+        {
+          "name": "Matt Manning",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1694093123,
+      "players": [
+        {
+          "name": "Ryan Pepiot",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1694037139,
+      "players": [
+        {
+          "name": "Colin Poche",
+          "action": "add",
+          "team": "BaseballPro77",
+          "position": "RP"
+        },
+        {
+          "name": "Ryan Brasier",
+          "action": "drop",
+          "team": "BaseballPro77",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1694037068,
+      "players": [
+        {
+          "name": "Dylan Lee",
+          "action": "drop",
+          "team": "BaseballPro77",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1694033319,
+      "players": [
+        {
+          "name": "Chase Silseth",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1694001110,
+      "players": [
+        {
+          "name": "Robert Stephenson",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1694000924,
+      "players": [
+        {
+          "name": "Josh Sborz",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1693988080,
+      "players": [
+        {
+          "name": "Paul Blackburn",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1693861873,
+      "players": [
+        {
+          "name": "Julio Ur\u00edas",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP"
+        }
+      ]
+    }
+  ],
+  "top_players": [],
+  "stat_categories": {
+    "60": "H/AB",
+    "7": "R",
+    "12": "HR",
+    "13": "RBI",
+    "16": "SB",
+    "4": "OBP",
+    "50": "IP",
+    "42": "K",
+    "26": "ERA",
+    "27": "WHIP",
+    "83": "QS",
+    "90": "NSVH"
+  },
+  "lower_is_better_stats": [
+    "WHIP",
+    "ERA"
+  ],
+  "recap_text": "",
+  "generated_at": "2026-03-11T19:04:47.063073"
+}
