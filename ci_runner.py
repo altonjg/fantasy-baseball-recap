@@ -445,9 +445,30 @@ def generate_season_preview(season: int) -> dict | None:
     # --- Build prompt context ---
     writer     = WRITER_STYLES["gammons"]
 
-    # Draft order context — map manager names to team names where possible
+    def _resolve_team(pick: dict) -> str:
+        """
+        Return team name for a draft-order entry, in priority order:
+          1. Explicit 'team' field in draft_order.json (most reliable)
+          2. Exact manager-name match in mgr_to_team lookup
+          3. Prefix match (handles "Alton" vs "Alton Gilbert")
+          4. Raw manager name as last resort
+        """
+        explicit = pick.get("team", "").strip()
+        if explicit:
+            return explicit
+        mgr = pick.get("manager", "")
+        if mgr in mgr_to_team:
+            return mgr_to_team[mgr]
+        # Prefix match: "Alton" → "Alton Gilbert"
+        mgr_lower = mgr.lower()
+        for full, team in mgr_to_team.items():
+            if full.lower().startswith(mgr_lower) or mgr_lower.startswith(full.lower()):
+                return team
+        return mgr  # final fallback
+
+    # Draft order context
     draft_lines = "\n".join(
-        f"  Pick {p['pick']:2d}: {mgr_to_team.get(p['manager'], p['manager'])}"
+        f"  Pick {p['pick']:2d}: {_resolve_team(p)}"
         for p in draft_order
     )
 
