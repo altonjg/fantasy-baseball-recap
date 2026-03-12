@@ -1,0 +1,118 @@
+name: BeerLeagueBaseball Auto-Update
+
+on:
+  schedule:
+    # Trade detection — every 4 hours during baseball season (Mar–Nov)
+    - cron: "0 */4 * 3-11 *"
+    # Weekly recap — every Monday at 11:00 AM UTC (after Sunday night games finish)
+    - cron: "0 11 * * 1"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Runner mode"
+        required: false
+        default: "full"
+        type: choice
+        options:
+          - full
+          - trades
+          - recap
+      week:
+        description: "Override week number (leave blank for latest)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write   # needed to commit data files back to the repo
+
+jobs:
+  # ── Trade detection (every 4 hours) ────────────────────────────────────────
+  detect-trades:
+    name: Detect & write trade articles
+    runs-on: ubuntu-latest
+    # Only run on the 4-hour schedule OR manual dispatch with mode=trades/full
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'schedule' && github.event.schedule == '0 */4 * 3-11 *')
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run trade detection
+        env:
+          YAHOO_CLIENT_ID:     ${{ secrets.YAHOO_CLIENT_ID }}
+          YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
+          YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
+          YAHOO_LEAGUE_KEY:    ${{ secrets.YAHOO_LEAGUE_KEY }}
+          ANTHROPIC_API_KEY:   ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          MODE="${{ github.event.inputs.mode || 'trades' }}"
+          WEEK_ARG=""
+          if [ -n "${{ github.event.inputs.week }}" ]; then
+            WEEK_ARG="--week ${{ github.event.inputs.week }}"
+          fi
+          python ci_runner.py --mode "$MODE" $WEEK_ARG
+
+      - name: Commit new data files
+        run: |
+          git config user.name  "BeerLeague Bot"
+          git config user.email "beerleague-bot@users.noreply.github.com"
+          git add data/
+          # Only commit if there are staged changes
+          git diff --cached --quiet || git commit -m "chore: auto-update trade articles [skip ci]"
+          git push
+
+  # ── Weekly recap (every Monday) ─────────────────────────────────────────────
+  weekly-recap:
+    name: Generate weekly recap column
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'schedule' && github.event.schedule == '0 11 * * 1')
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch data & generate recap
+        env:
+          YAHOO_CLIENT_ID:     ${{ secrets.YAHOO_CLIENT_ID }}
+          YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
+          YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
+          YAHOO_LEAGUE_KEY:    ${{ secrets.YAHOO_LEAGUE_KEY }}
+          ANTHROPIC_API_KEY:   ${{ secrets.ANTHROPIC_API_KEY }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          MODE="${{ github.event.inputs.mode || 'recap' }}"
+          WEEK_ARG=""
+          if [ -n "${{ github.event.inputs.week }}" ]; then
+            WEEK_ARG="--week ${{ github.event.inputs.week }}"
+          fi
+          python ci_runner.py --mode "$MODE" $WEEK_ARG
+
+      - name: Commit new data files
+        run: |
+          git config user.name  "BeerLeague Bot"
+          git config user.email "beerleague-bot@users.noreply.github.com"
+          git add data/
+          git diff --cached --quiet || git commit -m "chore: auto-update week recap [skip ci]"
+          git push

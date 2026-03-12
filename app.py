@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import os
+import random
 import re
 from datetime import datetime
 from pathlib import Path
@@ -124,6 +125,64 @@ AWARD_DEFS = [
     ("⚡", "Hottest Finish",     "hottest_finish"),
     ("🧊", "Coldest Finish",     "coldest_finish"),
 ]
+
+# ── Writer personas ────────────────────────────────────────────────────────────
+WRITER_STYLES: dict[str, dict] = {
+    "passan": {
+        "name": "Jeff Passan", "outlet": "ESPN",
+        "voice": (
+            "Write in Jeff Passan's style: urgent, authoritative breaking-news tone. "
+            "Open with a declarative statement of fact. Use em-dashes liberally. "
+            "Reference 'sources familiar with the situation.' Sharp, punchy sentences. "
+            "Every sentence feels like it belongs in a push notification."
+        ),
+    },
+    "heyman": {
+        "name": "Jon Heyman", "outlet": "MLB Network",
+        "voice": (
+            "Write in Jon Heyman's style: blunt, telegraphic, tweet-like bursts of fact. "
+            "Gets straight to the point immediately. Short declarative sentences. No fluff. "
+            "Grades are blunt and opinionated. Lead with 'Sources:' or the key fact."
+        ),
+    },
+    "rosenthal": {
+        "name": "Ken Rosenthal", "outlet": "The Athletic",
+        "voice": (
+            "Write in Ken Rosenthal's style: measured, formal, old-school baseball journalism. "
+            "Thorough historical context. Balanced, fair analysis of both sides. "
+            "Dignified tone. Every sentence carries weight and credibility."
+        ),
+    },
+    "olney": {
+        "name": "Buster Olney", "outlet": "ESPN",
+        "voice": (
+            "Write in Buster Olney's style: analytical, even-handed, rich in historical context. "
+            "Focus on team-building implications and long-term impact. "
+            "Uses statistics naturally within prose. Thoughtful, measured conclusions."
+        ),
+    },
+    "gammons": {
+        "name": "Peter Gammons", "outlet": "MLB Network",
+        "voice": (
+            "Write in Peter Gammons's style: poetic, flowing prose with legendary gravitas. "
+            "Draw historical comparisons. Lyrical and dramatic — make it feel like it matters forever. "
+            "Long, beautiful sentences. This is the voice of baseball history itself."
+        ),
+    },
+    "simmons": {
+        "name": "Bill Simmons", "outlet": "The Ringer",
+        "voice": (
+            "Write in Bill Simmons's style: fan-first perspective with pop culture references "
+            "and parenthetical asides (lots of them). Self-aware humor. Reference movies, TV, music. "
+            "Trash talk is encouraged. Feels like a smart, opinionated friend texting about fantasy."
+        ),
+    },
+}
+
+# Writer pools by article type
+_TRADE_WRITERS  = ["passan", "heyman"]
+_RECAP_WRITERS  = ["rosenthal", "olney", "simmons"]
+_PLAYOFF_WRITER = "gammons"
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -519,7 +578,7 @@ def _get_anthropic_key() -> str | None:
 
 def generate_trade_article(trade_tx: dict, standings: list[dict]) -> dict | None:
     """
-    Generate a Jeff Passan-style trade article via Claude API.
+    Generate a trade article via Claude API using a randomly selected writer persona.
     Returns article dict or None on failure.
     """
     api_key = _get_anthropic_key()
@@ -536,18 +595,22 @@ def generate_trade_article(trade_tx: dict, standings: list[dict]) -> dict | None
     if not players:
         return None
 
+    # Pick a random writer from the trade pool
+    writer_key  = random.choice(_TRADE_WRITERS)
+    writer      = WRITER_STYLES[writer_key]
+    writer_name = writer["name"]
+    writer_out  = writer["outlet"]
+
     # Identify the two sides of the trade
     team_names_in_trade = list({p.get("team", "") for p in players if p.get("team") and p.get("team") != "Free Agent"})
     team_a = team_names_in_trade[0] if len(team_names_in_trade) > 0 else "Team A"
     team_b = team_names_in_trade[1] if len(team_names_in_trade) > 1 else "Team B"
 
-    # Describe each side
     def side_players(team: str) -> list[str]:
         return [f"{p['name']} ({p.get('position','?')})" for p in players if p.get("team") == team]
 
     team_a_gets = side_players(team_a)
     team_b_gets = side_players(team_b)
-
     all_player_names = ", ".join(f"{p['name']} ({p.get('position','?')})" for p in players)
 
     standings_ctx = "\n".join(
@@ -555,7 +618,9 @@ def generate_trade_article(trade_tx: dict, standings: list[dict]) -> dict | None
         for s in standings[:8]
     ) if standings else "  (pre-season — no games played yet)"
 
-    prompt = f"""You are writing a breaking news trade article for a 14-team fantasy baseball league called "MillerLite® BeerLeagueBaseball." Write in the exact style of ESPN baseball journalist Jeff Passan — urgent, authoritative, punchy, with sharp analysis and colorful baseball prose.
+    prompt = f"""You are {writer_name} of {writer_out}, writing a breaking news trade article for a 14-team fantasy baseball league called "MillerLite® BeerLeagueBaseball."
+
+{writer["voice"]}
 
 TRADE DETAILS:
 {team_a} receives: {', '.join(team_a_gets) if team_a_gets else 'undisclosed'}
@@ -566,8 +631,8 @@ CURRENT STANDINGS (top 8):
 {standings_ctx}
 
 Write a trade wire article (220–300 words) that includes:
-1. A punchy breaking-news headline — name the players, reference BeerLeague (e.g. "Sources: [Player] Headed to [Team] in Seismic BeerLeague Swap")
-2. Opening sentence with Passan-style urgency (direct and immediate, like a tweet)
+1. A punchy breaking-news headline — name the players, reference BeerLeague
+2. Opening that matches {writer_name}'s authentic voice and style
 3. Analysis of what each team is getting and the strategic logic behind the deal
 4. A clear verdict on who wins the trade with specific reasoning
 5. Trade grades for each side on an A+ through F scale
@@ -590,17 +655,153 @@ Respond ONLY with valid JSON in this exact shape — no markdown fences:
             messages=[{"role": "user", "content": prompt}],
         )
         raw = msg.content[0].text.strip()
-
-        # Strip markdown fences if model included them anyway
         raw = re.sub(r"^```(?:json)?\s*", "", raw)
         raw = re.sub(r"\s*```$", "", raw)
 
         article = json.loads(raw)
         article["generated_at"]           = datetime.now().isoformat()
         article["transaction_timestamp"]  = trade_tx.get("timestamp", 0)
+        article["writer_key"]             = writer_key
+        article["writer_name"]            = writer_name
+        article["writer_outlet"]          = writer_out
         return article
     except Exception as e:
         st.error(f"Article generation failed: {e}")
+        return None
+
+
+def generate_weekly_recap_article(week_data: dict, standings: list[dict],
+                                   is_playoff: bool = False,
+                                   is_championship: bool = False) -> dict | None:
+    """
+    Generate a narrative weekly recap article via Claude API.
+    Uses a rotating cast of writers — Gammons for championship/playoff weeks,
+    random from _RECAP_WRITERS for regular season.
+    Returns article dict or None on failure.
+    """
+    api_key = _get_anthropic_key()
+    if not api_key:
+        return None
+
+    try:
+        import anthropic
+    except ImportError:
+        st.error("anthropic package not installed.")
+        return None
+
+    # Choose the writer persona
+    if is_championship:
+        writer_key = _PLAYOFF_WRITER  # Always Gammons for the title game
+    elif is_playoff:
+        # Gammons or a random recap writer for other playoff weeks
+        writer_key = random.choice([_PLAYOFF_WRITER] + _RECAP_WRITERS)
+    else:
+        writer_key = random.choice(_RECAP_WRITERS)
+
+    writer      = WRITER_STYLES[writer_key]
+    writer_name = writer["name"]
+    writer_out  = writer["outlet"]
+
+    # Build matchup summary
+    matchups = week_data.get("matchups", [])
+    week_num = week_data.get("week", "?")
+    league   = week_data.get("league_name", "MillerLite® BeerLeagueBaseball")
+
+    matchup_lines = []
+    for m in matchups:
+        teams = m.get("teams", [])
+        if len(teams) < 2:
+            continue
+        t1, t2   = teams[0], teams[1]
+        label    = "[CHAMPIONSHIP] " if m.get("is_championship") else \
+                   "[PLAYOFF] "      if m.get("is_playoffs") and not m.get("is_consolation") else \
+                   "[CONSOLATION] "  if m.get("is_consolation") else ""
+        if m.get("is_tied"):
+            matchup_lines.append(f"  {label}TIE: {t1['name']} {t1['points']:.1f} vs {t2['name']} {t2['points']:.1f}")
+        else:
+            winner = t1 if t1.get("team_key") == m.get("winner_key") else t2
+            loser  = t2 if winner is t1 else t1
+            matchup_lines.append(
+                f"  {label}{winner['name']} def. {loser['name']} "
+                f"({winner['points']:.1f}–{loser['points']:.1f})"
+            )
+
+    standings_ctx = "\n".join(
+        f"  {s['rank']}. {s['name']}: {s['wins']}-{s['losses']} ({s.get('points_for', 0):.0f} PF)"
+        for s in standings[:10]
+    ) if standings else "  (standings unavailable)"
+
+    top_players = week_data.get("top_players", [])
+    top_player_ctx = "\n".join(
+        f"  {p['name']} ({p.get('position','?')}, {p.get('mlb_team','?')}): {p.get('points',0):.1f} pts"
+        for p in top_players[:5]
+    ) if top_players else ""
+
+    week_type = "CHAMPIONSHIP" if is_championship else "PLAYOFF" if is_playoff else "regular season"
+
+    prompt = f"""You are {writer_name} of {writer_out}, writing a weekly column for the fantasy baseball league "{league}."
+
+{writer["voice"]}
+
+WEEK {week_num} ({week_type.upper()}) RESULTS:
+{chr(10).join(matchup_lines)}
+
+CURRENT STANDINGS (top 10):
+{standings_ctx}
+
+{"TOP FANTASY PERFORMERS THIS WEEK:" + chr(10) + top_player_ctx if top_player_ctx else ""}
+
+Write a weekly recap column (350–500 words) in {writer_name}'s authentic voice that:
+1. Opens with the most compelling storyline of the week
+2. Covers 2–3 matchups in depth with genuine analysis
+3. Mentions standout individual performances where relevant
+4. Includes a brief standings note about the playoff/title race
+5. Ends with a tease of what's next
+
+Use **bold** for team names. Markdown is OK. Write as if this is published on {writer_out}.
+
+Respond ONLY with valid JSON — no markdown fences:
+{{
+  "headline": "...",
+  "subheadline": "...(one-sentence deck/teaser)...",
+  "body": "...(full column)..."
+}}"""
+
+    try:
+        client = anthropic.Anthropic(api_key=api_key)
+        msg = client.messages.create(
+            model="claude-opus-4-5",
+            max_tokens=1500,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        raw = msg.content[0].text.strip()
+        raw = re.sub(r"^```(?:json)?\s*", "", raw)
+        raw = re.sub(r"\s*```$", "", raw)
+
+        article = json.loads(raw)
+        article["generated_at"]  = datetime.now().isoformat()
+        article["week"]          = week_num
+        article["writer_key"]    = writer_key
+        article["writer_name"]   = writer_name
+        article["writer_outlet"] = writer_out
+        article["is_playoff"]    = is_playoff
+        article["is_championship"] = is_championship
+        return article
+    except Exception as e:
+        st.error(f"Recap article generation failed: {e}")
+        return None
+
+
+def save_recap_article(article: dict, articles_dir: Path) -> Path | None:
+    """Write recap article JSON to disk. Returns the path or None on failure."""
+    try:
+        articles_dir.mkdir(parents=True, exist_ok=True)
+        week = article.get("week", "00")
+        path = articles_dir / f"week_{int(week):02d}_recap.json"
+        with open(path, "w") as f:
+            json.dump(article, f, indent=2)
+        return path
+    except Exception:
         return None
 
 
@@ -1853,7 +2054,9 @@ with tab_alltime:
 # ══════════════════════════════════════════════════════════════════════════════
 
 with tab_news:
-    inner_tradewire, inner_archive = st.tabs(["📰 Trade Wire", "📚 Recap Archive"])
+    inner_tradewire, inner_recaps, inner_archive = st.tabs(
+        ["📰 Trade Wire", "📝 Weekly Recaps", "📚 Recap Archive"]
+    )
 
     # ── Trade Wire ────────────────────────────────────────────────────────────
     with inner_tradewire:
@@ -1896,7 +2099,7 @@ with tab_news:
             📰 BeerLeague Insider
           </div>
           <div style="font-size:0.85em;opacity:0.8;margin-top:2px">
-            Breaking news · Trade analysis in the style of Jeff Passan
+            Breaking news · Trade analysis by Passan, Heyman &amp; more
           </div>
         </div>
         """, unsafe_allow_html=True)
@@ -1964,6 +2167,28 @@ with tab_news:
             gen_date = article.get("generated_at", "")[:10]
 
             with st.expander(f"📰 {headline}", expanded=True):
+                # Writer byline
+                art_writer  = article.get("writer_name", "Staff Reporter")
+                art_outlet  = article.get("writer_outlet", "BeerLeague Insider")
+                art_wkey    = article.get("writer_key", "")
+                outlet_colors = {
+                    "ESPN":        ("#d00", "#fff"),
+                    "MLB Network": ("#002D72", "#fff"),
+                    "The Athletic": ("#111", "#fff"),
+                    "The Ringer":   ("#6600cc", "#fff"),
+                }
+                oc_bg, oc_fg = outlet_colors.get(art_outlet, ("#555", "#fff"))
+                st.markdown(
+                    f"<div style='margin-bottom:10px'>"
+                    f"<span style='font-weight:700;font-size:0.95em'>{art_writer}</span>"
+                    f"&nbsp;&nbsp;"
+                    f"<span style='background:{oc_bg};color:{oc_fg};padding:2px 9px;"
+                    f"border-radius:4px;font-size:0.75em;font-weight:700;"
+                    f"letter-spacing:0.5px'>{art_outlet.upper()}</span>"
+                    f"</div>",
+                    unsafe_allow_html=True,
+                )
+
                 # Article body
                 st.markdown(article.get("body", ""))
                 st.divider()
@@ -1990,6 +2215,147 @@ with tab_news:
                 )
                 if gen_date:
                     gc3.caption(f"Generated\n{gen_date}")
+
+    # ── Weekly Recaps ─────────────────────────────────────────────────────────
+    with inner_recaps:
+        articles_dir   = DATA_ROOT / str(selected_season) / "articles"
+        recap_files    = sorted(articles_dir.glob("week_*_recap.json"), reverse=True) \
+                         if articles_dir.exists() else []
+        stored_recaps  = st.session_state.get("recap_articles", [])
+
+        # Load from disk + session state, deduplicated by week
+        disk_recaps: list[dict] = []
+        for fp in recap_files:
+            try:
+                with open(fp) as f:
+                    disk_recaps.append(json.load(f))
+            except Exception:
+                pass
+        seen_weeks = {a["week"] for a in disk_recaps}
+        all_recap_articles = disk_recaps + [
+            a for a in stored_recaps if a.get("week") not in seen_weeks
+        ]
+        all_recap_articles.sort(key=lambda a: a.get("week", 0), reverse=True)
+
+        # Masthead
+        st.markdown("""
+        <div style="background:linear-gradient(135deg,#1a3a5c 0%,#2d6a3f 100%);
+             color:white;border-radius:12px;padding:18px 22px;margin-bottom:16px;">
+          <div style="font-size:1.3em;font-weight:800;letter-spacing:0.5px">
+            📝 BeerLeague Weekly
+          </div>
+          <div style="font-size:0.85em;opacity:0.8;margin-top:2px">
+            Weekly columns by Rosenthal, Olney, Simmons &amp; Gammons
+          </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # Generate section (only shows if weeks exist and no article yet)
+        weeks_without_recap = [
+            (wk, wd) for wk, wd in sorted(weeks_data.items(), reverse=True)
+            if wd.get("matchups") and wk not in {a.get("week") for a in all_recap_articles}
+        ]
+        has_key = bool(_get_anthropic_key())
+
+        if weeks_without_recap and has_key:
+            st.info(
+                f"**{len(weeks_without_recap)} week(s)** have results but no column yet.",
+                icon="📝",
+            )
+            recap_pw = st.text_input(
+                "🔑 League passphrase", type="password", key="recaps_pw",
+                placeholder="Enter passphrase to unlock article generation",
+            )
+            correct_recap_pw = st.secrets.get("LEAGUE_PASSWORD", "") if recap_pw else ""
+            recap_pw_ok      = bool(recap_pw and recap_pw == correct_recap_pw)
+            if recap_pw and not recap_pw_ok:
+                st.error("Incorrect passphrase.", icon="🚫")
+
+            if recap_pw_ok:
+                wk_options = [f"Week {wk}" for wk, _ in weeks_without_recap]
+                selected_gen_wk_label = st.selectbox(
+                    "Generate column for:", wk_options, key="recap_gen_select"
+                )
+                selected_gen_wk = int(selected_gen_wk_label.split()[1])
+
+                if st.button("✍️ Generate Weekly Column", type="primary", key="gen_recap_btn"):
+                    wd_to_gen  = weeks_data[selected_gen_wk]
+                    is_champ   = any(m.get("is_championship") for m in wd_to_gen.get("matchups", []))
+                    is_playoff = any(m.get("is_playoffs") and not m.get("is_consolation")
+                                     for m in wd_to_gen.get("matchups", []))
+                    with st.spinner("Writing this week's column…"):
+                        new_ra = generate_weekly_recap_article(
+                            wd_to_gen,
+                            standings_data if isinstance(standings_data, list) else [],
+                            is_playoff=is_playoff,
+                            is_championship=is_champ,
+                        )
+                    if new_ra:
+                        save_recap_article(new_ra, articles_dir)
+                        existing = st.session_state.get("recap_articles", [])
+                        st.session_state["recap_articles"] = existing + [new_ra]
+                        all_recap_articles = [new_ra] + [
+                            a for a in all_recap_articles if a.get("week") != new_ra.get("week")
+                        ]
+                        all_recap_articles.sort(key=lambda a: a.get("week", 0), reverse=True)
+                        st.success(
+                            f"Column written by **{new_ra['writer_name']}** ({new_ra['writer_outlet']})!",
+                            icon="✍️",
+                        )
+                        st.rerun()
+
+        elif weeks_without_recap and not has_key:
+            st.warning(
+                "Add `ANTHROPIC_API_KEY` to your Streamlit secrets to generate weekly columns.",
+                icon="🔑",
+            )
+
+        # Display recap articles
+        if not all_recap_articles:
+            st.markdown("""
+            <div style="text-align:center;padding:40px 20px;color:#aaa">
+              <div style="font-size:3em">📝</div>
+              <div style="font-size:1.1em;font-weight:600;margin:12px 0">No columns yet this season</div>
+              <div style="font-size:0.9em">Weekly columns will appear here once generated.<br>
+              They can also be auto-created by the GitHub Actions runner.</div>
+            </div>""", unsafe_allow_html=True)
+        else:
+            outlet_colors = {
+                "ESPN":         ("#d00", "#fff"),
+                "MLB Network":  ("#002D72", "#fff"),
+                "The Athletic": ("#111", "#fff"),
+                "The Ringer":   ("#6600cc", "#fff"),
+            }
+            st.caption(f"{len(all_recap_articles)} column(s) for {selected_season}")
+            for ra in all_recap_articles:
+                wk_num     = ra.get("week", "?")
+                headline   = ra.get("headline", f"Week {wk_num} Recap")
+                subdeck    = ra.get("subheadline", "")
+                ra_writer  = ra.get("writer_name", "Staff")
+                ra_outlet  = ra.get("writer_outlet", "BeerLeague Weekly")
+                ra_date    = ra.get("generated_at", "")[:10]
+                is_champ   = ra.get("is_championship", False)
+                is_playoff = ra.get("is_playoff", False)
+                week_badge = "🏆 Championship" if is_champ else ("🥊 Playoff" if is_playoff else f"Week {wk_num}")
+                oc_bg, oc_fg = outlet_colors.get(ra_outlet, ("#555", "#fff"))
+
+                with st.expander(f"📝 {week_badge}: {headline}", expanded=(ra is all_recap_articles[0])):
+                    # Byline
+                    st.markdown(
+                        f"<div style='margin-bottom:10px'>"
+                        f"<span style='font-weight:700;font-size:0.95em'>{ra_writer}</span>"
+                        f"&nbsp;&nbsp;"
+                        f"<span style='background:{oc_bg};color:{oc_fg};padding:2px 9px;"
+                        f"border-radius:4px;font-size:0.75em;font-weight:700;"
+                        f"letter-spacing:0.5px'>{ra_outlet.upper()}</span>"
+                        f"{'&nbsp;&nbsp;<span style=\"color:#888;font-size:0.82em\">' + ra_date + '</span>' if ra_date else ''}"
+                        f"</div>",
+                        unsafe_allow_html=True,
+                    )
+                    if subdeck:
+                        st.markdown(f"*{subdeck}*")
+                    st.divider()
+                    st.markdown(ra.get("body", ""))
 
     # ── Recap Archive ─────────────────────────────────────────────────────────
     with inner_archive:
