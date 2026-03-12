@@ -505,13 +505,13 @@ def generate_season_preview(season: int) -> dict | None:
 
 {writer['voice']}
 
-You are writing the definitive {season} season preview for a 14-team fantasy baseball league called "MillerLite® BeerLeagueBaseball." This is a close-knit group of friends who have played together for years. You have real historical data — use it. Reference team names, records, and history. A touch of irreverent trash talk is not just permitted, it's expected.
+You are writing the definitive {season} season preview for a 14-team fantasy baseball league called "MillerLite® BeerLeagueBaseball." This is a close-knit group of friends who have played together for years. You have real historical data — use it. Reference team names, records, and history. Irreverent trash talk is not just permitted, it's expected — but it must be grounded in the actual data.
 
 IMPORTANT: Refer to all participants exclusively by their TEAM NAME — never use real names.
 
 LEAGUE STRUCTURE:
 - 14 teams, head-to-head category scoring (12 categories: H/AB, R, HR, RBI, SB, OBP, IP, K, ERA, WHIP, QS, NSVH)
-- ERA and WHIP: lower is better
+- ERA and WHIP: lower is better; all other categories higher is better
 - Snake draft format: {draft_notes}
 - Draft date: {draft_date}
 
@@ -524,24 +524,46 @@ LEAGUE STRUCTURE:
 RECENT FINISH POSITIONS (last 2 seasons, {season - 2}–{season - 1}):
 {alltime_ctx}
 
-Write a full season preview (900–1100 words) structured as follows:
-1. **Opening** — dramatic, poetic scene-setter for the {season} season. Reference the defending champion team. Set the stakes.
-2. **Draft Order Breakdown** — who has the edge at the top vs. the bottom? What does draft position mean in this league's history?
-3. **The Field** — go through all 14 teams. For each: 2–3 sentences covering their historical pedigree, what to expect in {season}, and a projected finish. Be specific. Use their all-time records. Roast the ones who deserve it. Hype the contenders.
-4. **Bold Predictions** — exactly 5 specific, confident predictions for the {season} season
-5. **The Pick** — one champion prediction with conviction
+Write a LONG, richly detailed season preview (1800–2200 words). Use Roman numeral section headers (I, II, III, IV, V). Go deep — this is the kind of feature-length piece that readers bookmark and return to throughout the season.
 
-Use **bold** for team names. Markdown OK.
+I. **Opening: The Gathering Storm** (3–4 paragraphs)
+   - Open with a vivid, atmospheric scene-setter. Paint a picture of spring baseball arriving.
+   - Build to the current state of the league: who rules, who is hungry, what is at stake.
+   - Reference {prev_champion} defending their title. Describe the target on their back.
+   - End with anticipation for draft day, {draft_date}.
+
+II. **The Draft Order: Fortune's Wheel** (2–3 paragraphs)
+   - Analyze the draft order in tiers: the top picks (1–4) who get elite talent, the sweet spot (5–8) with snake-back positioning, and the back end (9–14) who must work for every advantage.
+   - Call out which specific teams are advantaged or disadvantaged by their pick slot.
+   - Discuss how draft position has historically shaped outcomes in this league.
+
+III. **The Field: Fourteen Teams, Fourteen Stories** (the heart of the piece — ALL 14 teams)
+   For EACH of the 14 teams, write 4–5 sentences that cover:
+     • Their draft pick number and what it means
+     • Their historical record and trajectory across recent seasons (use the data)
+     • Their strengths, weaknesses, and what to expect in {season}
+     • A moment of specific wit or analysis unique to that team
+     • A projected finish (e.g., "Projected finish: 3rd")
+   List them IN DRAFT ORDER (pick 1 through 14). Be vivid and specific — no generic sentences.
+   Teams with championship history should be noted. Teams with consecutive bad finishes should be roasted. Rising teams should be hyped.
+
+IV. **Five Bold Predictions** (exactly 5)
+   Each prediction should be specific, colorful, and arguable. Reference actual teams and real trends from the data. Numbered list. Make them memorable.
+
+V. **The Pick: A Champion Crowned** (1–2 paragraphs)
+   Name your champion with conviction. Build a case using draft position, recent trajectory, historical patterns. End with a memorable final line.
+
+Use **bold** for team names throughout. Markdown OK. Section headers as Roman numerals in bold.
 
 Respond ONLY with valid JSON — no markdown fences:
 {{
-  "headline": "...(punchy season preview headline)...",
-  "subheadline": "...(one-sentence deck that makes you want to read it)...",
-  "body": "...(full article)..."
+  "headline": "...(punchy, evocative season preview headline — not a question, a declaration)...",
+  "subheadline": "...(one sharp sentence that makes you want to read every word)...",
+  "body": "...(full article, 1800–2200 words)..."
 }}"""
 
     try:
-        raw     = _call_claude(prompt, max_tokens=2500)
+        raw     = _call_claude(prompt, max_tokens=5000)
         article = _safe_json_parse(raw)
         article["generated_at"]  = datetime.now().isoformat()
         article["season"]        = season
