@@ -407,6 +407,10 @@ def generate_season_preview(season: int) -> dict | None:
     prev_standings: list[dict] = []
     prev_champion = "Unknown"
 
+    # Build manager-name → team-name mapping from prev season matchup teams
+    # NOTE: standings rows don't have a 'manager' field; matchup team objects do.
+    mgr_to_team: dict[str, str] = {}
+
     if prev_dir.exists():
         prev_files = sorted(prev_dir.glob("week_*.json"))
         if prev_files:
@@ -414,6 +418,16 @@ def generate_season_preview(season: int) -> dict | None:
                 with open(prev_files[-1], encoding="utf-8") as f:
                     prev_wd = json.load(f)
                 prev_standings = prev_wd.get("standings", [])
+
+                # Build mgr→team from matchup teams (have both 'manager' and 'name')
+                for m in prev_wd.get("matchups", []):
+                    for t in m.get("teams", []):
+                        mgr  = t.get("manager", "")
+                        team = t.get("name", "")
+                        if mgr and team:
+                            mgr_to_team[mgr] = team
+
+                # Detect defending champion — use team name only
                 for m in prev_wd.get("matchups", []):
                     if m.get("is_championship") and not m.get("is_tied"):
                         teams = m.get("teams", [])
@@ -421,18 +435,9 @@ def generate_season_preview(season: int) -> dict | None:
                             (t for t in teams if t.get("team_key") == m.get("winner_key")), None
                         )
                         if winner:
-                            prev_champion = winner.get("name", "Unknown")  # team name only
+                            prev_champion = winner.get("name", "Unknown")
             except Exception:
                 pass
-
-    # Build manager-name → team-name mapping from prev season standings
-    # so we can resolve draft_order.json entries (which store manager names)
-    mgr_to_team: dict[str, str] = {}
-    for s in prev_standings:
-        mgr_name  = s.get("manager", "")
-        team_name = s.get("name", "")
-        if mgr_name and team_name:
-            mgr_to_team[mgr_name] = team_name
 
     # Recent records (last 2 seasons only — keeps context tight and relevant)
     alltime = _build_historical_context(season, lookback=2)

@@ -41,7 +41,7 @@ jobs:
     name: Detect & write trade articles
     runs-on: ubuntu-latest
     if: |
-      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.mode != 'preview') ||
       (github.event_name == 'schedule' && github.event.schedule == '0 */4 * 3-11 *')
 
     steps:
@@ -91,7 +91,7 @@ jobs:
     needs: detect-trades
     if: |
       always() && (
-        github.event_name == 'workflow_dispatch' ||
+        (github.event_name == 'workflow_dispatch' && github.event.inputs.mode != 'preview') ||
         (github.event_name == 'schedule' && github.event.schedule == '0 11 * * 1')
       )
 
