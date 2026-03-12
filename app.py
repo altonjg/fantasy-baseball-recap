@@ -7,16 +7,12 @@ Run locally:  streamlit run app.py
 from __future__ import annotations
 
 import json
-import os
-import random
-import re
 from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-import requests
 import streamlit as st
 
 # ── Page config ───────────────────────────────────────────────────────────────
@@ -183,1088 +179,43 @@ footer { visibility: hidden; }
 </style>
 """, unsafe_allow_html=True)
 
-# ── Display helpers ───────────────────────────────────────────────────────────
-import zlib as _zlib
 
-def _team_color(name: str) -> str:
-    """Stable, consistent HSL color for a team name."""
-    hue = _zlib.crc32(name.encode("utf-8")) % 360
-    return f"hsl({hue},52%,40%)"
-
-def _team_initials(name: str) -> str:
-    """Return 1–2 uppercase initials from a team name."""
-    words = [w for w in name.split() if w and w[0].isalpha()]
-    if len(words) >= 2:
-        return (words[0][0] + words[1][0]).upper()
-    return name[:2].upper() if name else "??"
-
-def _badge_html(name: str, logo_url: str = "", size: int = 22) -> str:
-    """Return an <img> (if logo_url) or a colored-circle initials badge."""
-    if logo_url:
-        return (
-            f'<img src="{logo_url}" '
-            f'style="width:{size}px;height:{size}px;border-radius:50%;'
-            f'object-fit:cover;vertical-align:middle;" '
-            f'onerror="this.style.display=\'none\'">'
-        )
-    color    = _team_color(name)
-    initials = _team_initials(name)
-    return (
-        f'<span class="team-badge" '
-        f'style="width:{size}px;height:{size}px;background:{color};">'
-        f'{initials}</span>'
-    )
-
-
-# ── Constants ─────────────────────────────────────────────────────────────────
-DATA_ROOT = Path(__file__).parent / "data"
-LOWER_IS_BETTER_DEFAULT = {"ERA", "WHIP"}
-
-AWARD_DEFS = [
-    ("🥇", "Champion",           "champion"),
-    ("🥈", "Runner-Up",          "runner_up"),
-    ("💀", "Wooden Spoon",       "wooden_spoon"),
-    ("🔥", "Most Points For",    "most_pf"),
-    ("🛡️", "Best Defense",       "best_defense"),
-    ("📈", "Longest Win Streak", "longest_win_streak"),
-    ("📉", "Longest Lose Streak","longest_lose_streak"),
-    ("🍀", "Luckiest Team",      "luckiest"),
-    ("😤", "Most Unlucky",       "most_unlucky"),
-    ("👑", "Best Regular Season","best_reg_season"),
-    ("🎢", "Biggest Collapse",   "biggest_collapse"),
-    ("⚡", "Hottest Finish",     "hottest_finish"),
-    ("🧊", "Coldest Finish",     "coldest_finish"),
-]
-
-# ── Writer personas ────────────────────────────────────────────────────────────
-WRITER_STYLES: dict[str, dict] = {
-    "passan": {
-        "name": "Jeff Passan", "outlet": "ESPN",
-        "voice": (
-            "Write in Jeff Passan's style: urgent, authoritative breaking-news tone. "
-            "Open with a declarative statement of fact. Use em-dashes liberally. "
-            "Reference 'sources familiar with the situation.' Sharp, punchy sentences. "
-            "Every sentence feels like it belongs in a push notification."
-        ),
-    },
-    "heyman": {
-        "name": "Jon Heyman", "outlet": "MLB Network",
-        "voice": (
-            "Write in Jon Heyman's style: blunt, telegraphic, tweet-like bursts of fact. "
-            "Gets straight to the point immediately. Short declarative sentences. No fluff. "
-            "Grades are blunt and opinionated. Lead with 'Sources:' or the key fact."
-        ),
-    },
-    "rosenthal": {
-        "name": "Ken Rosenthal", "outlet": "The Athletic",
-        "voice": (
-            "Write in Ken Rosenthal's style: measured, formal, old-school baseball journalism. "
-            "Thorough historical context. Balanced, fair analysis of both sides. "
-            "Dignified tone. Every sentence carries weight and credibility."
-        ),
-    },
-    "olney": {
-        "name": "Buster Olney", "outlet": "ESPN",
-        "voice": (
-            "Write in Buster Olney's style: analytical, even-handed, rich in historical context. "
-            "Focus on team-building implications and long-term impact. "
-            "Uses statistics naturally within prose. Thoughtful, measured conclusions."
-        ),
-    },
-    "gammons": {
-        "name": "Peter Gammons", "outlet": "MLB Network",
-        "voice": (
-            "Write in Peter Gammons's style: poetic, flowing prose with legendary gravitas. "
-            "Draw historical comparisons. Lyrical and dramatic — make it feel like it matters forever. "
-            "Long, beautiful sentences. This is the voice of baseball history itself."
-        ),
-    },
-    "simmons": {
-        "name": "Bill Simmons", "outlet": "The Ringer",
-        "voice": (
-            "Write in Bill Simmons's style: fan-first perspective with pop culture references "
-            "and parenthetical asides (lots of them). Self-aware humor. Reference movies, TV, music. "
-            "Trash talk is encouraged. Feels like a smart, opinionated friend texting about fantasy."
-        ),
-    },
-}
-
-# Writer pools by article type
-_TRADE_WRITERS  = ["passan", "heyman"]
-_RECAP_WRITERS  = ["rosenthal", "olney", "simmons"]
-_PLAYOFF_WRITER = "gammons"
-
-
-# ══════════════════════════════════════════════════════════════════════════════
-# DATA LOADING
-# ══════════════════════════════════════════════════════════════════════════════
-
-def get_available_seasons() -> list[int]:
-    if not DATA_ROOT.exists():
-        return []
-    seasons = []
-    for d in DATA_ROOT.iterdir():
-        if d.is_dir() and d.name.isdigit():
-            has_weeks   = bool(list(d.glob("week_*.json")))
-            has_draft   = (d / "draft_order.json").exists()
-            has_preview = (d / "articles" / "season_preview.json").exists()
-            if has_weeks or has_draft or has_preview:
-                seasons.append(int(d.name))
-    return sorted(seasons, reverse=True)
-
-
-@st.cache_data(ttl=60)
-def load_all_weeks(season: int) -> dict[int, dict]:
-    weeks: dict[int, dict] = {}
-    data_dir = DATA_ROOT / str(season)
-    if not data_dir.exists():
-        return weeks
-    for f in sorted(data_dir.glob("week_*.json")):
-        try:
-            with open(f) as fp:
-                d = json.load(fp)
-            weeks[d["week"]] = d
-        except Exception:
-            pass
-    return weeks
-
-
-@st.cache_data(ttl=300)
-def load_all_seasons_data() -> dict[int, dict[int, dict]]:
-    return {s: load_all_weeks(s) for s in get_available_seasons()}
-
-
-@st.cache_data(ttl=3_600, show_spinner=False)
-def load_divisions(season: int) -> dict[str, list[str]]:
-    """Return {division_name: [team_names]} for the given season from data/divisions.json."""
-    div_file = DATA_ROOT / "divisions.json"
-    if not div_file.exists():
-        return {}
-    try:
-        with open(div_file) as f:
-            all_divs = json.load(f)
-        return all_divs.get(str(season), {})
-    except Exception:
-        return {}
-
-
-# ══════════════════════════════════════════════════════════════════════════════
-# STANDINGS RECONSTRUCTION
-# ══════════════════════════════════════════════════════════════════════════════
-
-@st.cache_data(ttl=60)
-def compute_standings(weeks_data_frozen: tuple, up_to_week: int) -> list[dict]:
-    records: dict[str, dict] = {}
-    for wk in sorted(k for k in dict(weeks_data_frozen) if k <= up_to_week):
-        wd = dict(weeks_data_frozen)[wk]
-        for m in wd.get("matchups", []):
-            if len(m["teams"]) < 2:
-                continue
-            t1, t2 = m["teams"][0], m["teams"][1]
-            for t in (t1, t2):
-                if t["team_key"] not in records:
-                    records[t["team_key"]] = {
-                        "team_key": t["team_key"],
-                        "name": t["name"],
-                        "wins": 0, "losses": 0, "ties": 0,
-                        "points_for": 0.0, "points_against": 0.0,
-                    }
-            r1, r2 = records[t1["team_key"]], records[t2["team_key"]]
-            r1["points_for"]     += t1["points"]
-            r1["points_against"] += t2["points"]
-            r2["points_for"]     += t2["points"]
-            r2["points_against"] += t1["points"]
-            if m.get("is_tied"):
-                r1["ties"] += 1; r2["ties"] += 1
-            elif m.get("winner_key") == t1["team_key"]:
-                r1["wins"] += 1; r2["losses"] += 1
-            elif m.get("winner_key") == t2["team_key"]:
-                r2["wins"] += 1; r1["losses"] += 1
-    result = list(records.values())
-    result.sort(key=lambda x: (-x["wins"], -x["points_for"]))
-    for i, s in enumerate(result):
-        s["rank"] = i + 1
-    return result
-
-
-# ══════════════════════════════════════════════════════════════════════════════
-# STREAK COMPUTATION
-# ══════════════════════════════════════════════════════════════════════════════
-
-@st.cache_data(ttl=60)
-def compute_streaks(weeks_data_frozen: tuple) -> dict[str, dict]:
-    weeks_data = dict(weeks_data_frozen)
-    team_results: dict[str, list[str]] = {}
-    team_names:   dict[str, str]       = {}
-
-    for wk in sorted(weeks_data.keys()):
-        for m in weeks_data[wk].get("matchups", []):
-            if len(m["teams"]) < 2:
-                continue
-            t1, t2 = m["teams"][0], m["teams"][1]
-            for t in (t1, t2):
-                team_results.setdefault(t["team_key"], [])
-                team_names[t["team_key"]] = t["name"]
-            if m.get("is_tied"):
-                team_results[t1["team_key"]].append("T")
-                team_results[t2["team_key"]].append("T")
-            elif m.get("winner_key") == t1["team_key"]:
-                team_results[t1["team_key"]].append("W")
-                team_results[t2["team_key"]].append("L")
-            elif m.get("winner_key") == t2["team_key"]:
-                team_results[t2["team_key"]].append("W")
-                team_results[t1["team_key"]].append("L")
-
-    result = {}
-    for tkey, res in team_results.items():
-        if not res:
-            continue
-        cur_type = res[-1]
-        cur_len  = sum(1 for _ in (r for r in reversed(res) if r == cur_type)
-                       for _ in [None] if True) # count from end
-        # recalculate cleanly
-        cur_len = 0
-        for r in reversed(res):
-            if r == cur_type:
-                cur_len += 1
-            else:
-                break
-        max_win = max_lose = cur_w = cur_l = 0
-        for r in res:
-            if r == "W":
-                cur_w += 1; cur_l = 0; max_win  = max(max_win,  cur_w)
-            elif r == "L":
-                cur_l += 1; cur_w = 0; max_lose = max(max_lose, cur_l)
-            else:
-                cur_w = cur_l = 0
-        result[tkey] = {
-            "name": team_names[tkey], "results": res,
-            "current_streak": cur_len, "current_type": cur_type,
-            "max_win_streak": max_win, "max_lose_streak": max_lose,
-        }
-    return result
-
-
-# ══════════════════════════════════════════════════════════════════════════════
-# LUCK RATINGS
-# ══════════════════════════════════════════════════════════════════════════════
-
-def compute_luck_ratings(weeks_data: dict[int, dict]) -> dict[str, float]:
-    """Expected wins = fraction of teams beaten by score each week. Luck = actual - expected."""
-    team_expected: dict[str, float] = {}
-    for wk in sorted(weeks_data.keys()):
-        all_teams = [t for m in weeks_data[wk].get("matchups", []) for t in m["teams"]]
-        if len(all_teams) < 2:
-            continue
-        all_scores = [t["points"] for t in all_teams]
-        n = len(all_scores)
-        for t in all_teams:
-            beaten = sum(1 for s in all_scores if s < t["points"])
-            team_expected[t["name"]] = team_expected.get(t["name"], 0.0) + beaten / (n - 1)
-    return team_expected
-
-
-# ══════════════════════════════════════════════════════════════════════════════
-# POWER RANKINGS
-# ══════════════════════════════════════════════════════════════════════════════
-
-@st.cache_data(ttl=60)
-def compute_power_rankings(weeks_data_frozen: tuple, standings_frozen: tuple) -> list[dict]:
-    """
-    Weighted power ranking score:
-      40% recent form (last 3 weeks W%)
-      30% season win%
-      20% points-for percentile
-      10% strength of schedule (avg opponent win%)
-    Returns list sorted by pr_rank ascending, each entry includes rank_diff vs standings rank.
-    """
-    weeks_data = dict(weeks_data_frozen)
-    standings  = list(standings_frozen)
-    if not weeks_data or not standings:
-        return []
-
-    all_weeks = sorted(weeks_data.keys())
-
-    # ── Recent form (last 3 weeks) ────────────────────────────────────────────
-    recent_weeks = all_weeks[-3:] if len(all_weeks) >= 3 else all_weeks
-    recent_rec: dict[str, dict] = {}
-    for wk in recent_weeks:
-        for m in weeks_data[wk].get("matchups", []):
-            if len(m["teams"]) < 2:
-                continue
-            t1, t2 = m["teams"][0], m["teams"][1]
-            for t in (t1, t2):
-                recent_rec.setdefault(t["team_key"], {"name": t["name"], "wins": 0, "games": 0})
-                recent_rec[t["team_key"]]["games"] += 1
-            if m.get("winner_key") == t1["team_key"]:
-                recent_rec[t1["team_key"]]["wins"] += 1
-            elif m.get("winner_key") == t2["team_key"]:
-                recent_rec[t2["team_key"]]["wins"] += 1
-
-    # ── Win % map ─────────────────────────────────────────────────────────────
-    win_pct_map: dict[str, float] = {}
-    for s in standings:
-        total = s["wins"] + s["losses"]
-        win_pct_map[s["team_key"]] = s["wins"] / total if total else 0.0
-
-    # ── Strength of Schedule ──────────────────────────────────────────────────
-    team_opp: dict[str, list[str]] = {}
-    for wk in all_weeks:
-        for m in weeks_data[wk].get("matchups", []):
-            if len(m["teams"]) < 2:
-                continue
-            t1k, t2k = m["teams"][0]["team_key"], m["teams"][1]["team_key"]
-            team_opp.setdefault(t1k, []).append(t2k)
-            team_opp.setdefault(t2k, []).append(t1k)
-
-    sos_map: dict[str, float] = {
-        tkey: (sum(win_pct_map.get(k, 0) for k in opps) / len(opps) if opps else 0.0)
-        for tkey, opps in team_opp.items()
-    }
-    max_sos = max(sos_map.values(), default=1) or 1
-
-    # ── PF percentile ─────────────────────────────────────────────────────────
-    pf_vals  = [s["points_for"] for s in standings]
-    min_pf   = min(pf_vals, default=0)
-    pf_range = (max(pf_vals, default=1) - min_pf) or 1
-
-    # ── Build ranked list ─────────────────────────────────────────────────────
-    ranked = []
-    for s in standings:
-        tkey  = s["team_key"]
-        total = s["wins"] + s["losses"]
-        rec   = recent_rec.get(tkey, {})
-
-        rf_score  = (rec["wins"] / rec["games"]) if rec.get("games") else win_pct_map.get(tkey, 0)
-        wp_score  = win_pct_map.get(tkey, 0)
-        pf_score  = (s["points_for"] - min_pf) / pf_range
-        sos_score = sos_map.get(tkey, 0) / max_sos
-
-        pr = rf_score * 0.40 + wp_score * 0.30 + pf_score * 0.20 + sos_score * 0.10
-
-        rw = rec.get("wins", 0)
-        rg = rec.get("games", 0)
-        ranked.append({
-            **s,
-            "pr_score":    round(pr, 4),
-            "recent_form": f"{rw}-{rg - rw}" if rg else "—",
-            "sos":         round(sos_map.get(tkey, 0), 3),
-        })
-
-    ranked.sort(key=lambda x: x["pr_score"], reverse=True)
-    for i, r in enumerate(ranked):
-        r["pr_rank"]   = i + 1
-        r["rank_diff"] = r["rank"] - r["pr_rank"]   # +N = rising, -N = falling
-
-    return ranked
-
-
-# ══════════════════════════════════════════════════════════════════════════════
-# RIVALRY STATS
-# ══════════════════════════════════════════════════════════════════════════════
-
-def compute_rivalry_stats(all_seasons: dict) -> list[dict]:
-    """
-    Aggregate all-time head-to-head records for every matchup pair.
-    Returns list sorted by games played desc.
-    """
-    rivalries: dict[tuple, dict] = {}
-    for weeks_data in all_seasons.values():
-        for wd in weeks_data.values():
-            for m in wd.get("matchups", []):
-                if len(m["teams"]) < 2:
-                    continue
-                t1, t2 = m["teams"][0], m["teams"][1]
-                pair = tuple(sorted([t1["name"], t2["name"]]))
-                if pair not in rivalries:
-                    rivalries[pair] = {"team_a": pair[0], "team_b": pair[1],
-                                       "games": 0, "a_wins": 0, "b_wins": 0, "ties": 0}
-                r = rivalries[pair]
-                r["games"] += 1
-                if m.get("is_tied"):
-                    r["ties"] += 1
-                elif m.get("winner_key") == t1["team_key"]:
-                    if t1["name"] == pair[0]:
-                        r["a_wins"] += 1
-                    else:
-                        r["b_wins"] += 1
-                elif m.get("winner_key") == t2["team_key"]:
-                    if t2["name"] == pair[0]:
-                        r["a_wins"] += 1
-                    else:
-                        r["b_wins"] += 1
-    return sorted(rivalries.values(), key=lambda x: x["games"], reverse=True)
-
-
-# ══════════════════════════════════════════════════════════════════════════════
-# MLB STATS API  (free, no key required)
-# ══════════════════════════════════════════════════════════════════════════════
-
-_MLB_API    = "https://statsapi.mlb.com/api/v1"
-_MLB_PHOTO  = "https://img.mlbstatic.com/mlb-photos/image/upload"
-_GENERIC_HS = f"{_MLB_PHOTO}/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/0/headshot/67/current"
-
-
-@st.cache_data(ttl=86_400, show_spinner=False)
-def mlb_search_player(name: str) -> int | None:
-    """Return the MLB player ID for a name, or None if not found."""
-    try:
-        r = requests.get(f"{_MLB_API}/people/search",
-                         params={"names": name, "sportId": 1}, timeout=5)
-        r.raise_for_status()
-        people = r.json().get("people", [])
-        if people:
-            return int(people[0]["id"])
-    except Exception:
-        pass
-    return None
-
-
-def mlb_headshot_url(player_id: int | None) -> str:
-    if not player_id:
-        return _GENERIC_HS
-    return f"{_MLB_PHOTO}/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/{player_id}/headshot/67/current"
-
-
-@st.cache_data(ttl=3_600, show_spinner=False)
-def mlb_player_stats(player_id: int, season: int, is_pitcher: bool = False) -> dict:
-    """Fetch season-to-date stats from MLB Stats API."""
-    group = "pitching" if is_pitcher else "hitting"
-    try:
-        r = requests.get(f"{_MLB_API}/people/{player_id}/stats",
-                         params={"stats": "season", "group": group,
-                                 "season": season, "sportId": 1}, timeout=5)
-        r.raise_for_status()
-        splits = r.json().get("stats", [{}])[0].get("splits", [])
-        if splits:
-            return splits[0].get("stat", {})
-    except Exception:
-        pass
-    return {}
-
-
-def _fmt_avg(raw) -> str:
-    """Format batting average: '0.285' → '.285'"""
-    s = str(raw)
-    return s.lstrip("0") if "." in s else s
-
-
-def mlb_stat_line(stats: dict, is_pitcher: bool) -> str:
-    if not stats:
-        return ""
-    if is_pitcher:
-        return (f"{stats.get('wins','—')}W  "
-                f"{stats.get('era','—')} ERA  "
-                f"{stats.get('strikeOuts','—')}K  "
-                f"{stats.get('inningsPitched','—')}IP")
-    return (f"{_fmt_avg(stats.get('avg','—'))} AVG  "
-            f"{stats.get('homeRuns','—')}HR  "
-            f"{stats.get('rbi','—')}RBI  "
-            f"{stats.get('stolenBases','—')}SB")
-
-
-def render_player_card(player: dict, season: int) -> str:
-    """Return an HTML card string for a single top-performer."""
-    name       = player.get("name", "Unknown")
-    mlb_team   = player.get("mlb_team", "")
-    pos        = player.get("position", "")
-    pts        = float(player.get("points", 0))
-    is_pitcher = any(p in pos for p in ("SP", "RP", "P"))
-
-    pid      = mlb_search_player(name)
-    hs_url   = mlb_headshot_url(pid)
-    stats    = mlb_player_stats(pid, season, is_pitcher) if pid else {}
-    stat_ln  = mlb_stat_line(stats, is_pitcher)
-
-    pts_color = "#1a9850" if pts >= 8 else ("#e07b00" if pts >= 5 else "#888")
-
-    return f"""
-<div style="background:white;border:1px solid #e0e0e0;border-radius:14px;
-            padding:14px 10px;text-align:center;height:100%;
-            box-shadow:0 2px 6px rgba(0,0,0,0.07);">
-  <img src="{hs_url}"
-       style="width:76px;height:76px;border-radius:50%;object-fit:cover;
-              border:3px solid #f0c040;background:#f5f5f5;"
-       onerror="this.src='{_GENERIC_HS}'">
-  <div style="font-weight:700;font-size:0.92em;margin:8px 0 2px;line-height:1.2">{name}</div>
-  <div style="font-size:0.76em;color:#888;margin-bottom:6px">{mlb_team}&nbsp;·&nbsp;{pos}</div>
-  <div style="font-size:1.1em;font-weight:800;color:{pts_color}">{pts:.0f}&nbsp;cat wins</div>
-  <div style="font-size:0.72em;color:#555;margin-top:5px;line-height:1.5">{stat_ln}</div>
-</div>"""
-
-
-# ══════════════════════════════════════════════════════════════════════════════
-# TRADE WIRE  — Claude API article generation
-# ══════════════════════════════════════════════════════════════════════════════
-
-def _get_anthropic_key() -> str | None:
-    try:
-        return st.secrets["ANTHROPIC_API_KEY"]
-    except Exception:
-        return os.getenv("ANTHROPIC_API_KEY")
-
-
-def generate_trade_article(trade_tx: dict, standings: list[dict]) -> dict | None:
-    """
-    Generate a trade article via Claude API using a randomly selected writer persona.
-    Returns article dict or None on failure.
-    """
-    api_key = _get_anthropic_key()
-    if not api_key:
-        return None
-
-    try:
-        import anthropic
-    except ImportError:
-        st.error("anthropic package not installed.")
-        return None
-
-    players = trade_tx.get("players", [])
-    if not players:
-        return None
-
-    # Pick a random writer from the trade pool
-    writer_key  = random.choice(_TRADE_WRITERS)
-    writer      = WRITER_STYLES[writer_key]
-    writer_name = writer["name"]
-    writer_out  = writer["outlet"]
-
-    # Identify the two sides of the trade
-    team_names_in_trade = list({p.get("team", "") for p in players if p.get("team") and p.get("team") != "Free Agent"})
-    team_a = team_names_in_trade[0] if len(team_names_in_trade) > 0 else "Team A"
-    team_b = team_names_in_trade[1] if len(team_names_in_trade) > 1 else "Team B"
-
-    def side_players(team: str) -> list[str]:
-        return [f"{p['name']} ({p.get('position','?')})" for p in players if p.get("team") == team]
-
-    team_a_gets = side_players(team_a)
-    team_b_gets = side_players(team_b)
-    all_player_names = ", ".join(f"{p['name']} ({p.get('position','?')})" for p in players)
-
-    standings_ctx = "\n".join(
-        f"  {s['name']}: {s['wins']}-{s['losses']} ({s.get('points_for', 0):.0f} PF)"
-        for s in standings[:8]
-    ) if standings else "  (pre-season — no games played yet)"
-
-    prompt = f"""You are {writer_name} of {writer_out}, writing a breaking news trade article for a 14-team fantasy baseball league called "MillerLite® BeerLeagueBaseball."
-
-{writer["voice"]}
-
-TRADE DETAILS:
-{team_a} receives: {', '.join(team_a_gets) if team_a_gets else 'undisclosed'}
-{team_b} receives: {', '.join(team_b_gets) if team_b_gets else 'undisclosed'}
-All players involved: {all_player_names}
-
-CURRENT STANDINGS (top 8):
-{standings_ctx}
-
-Write a trade wire article (220–300 words) that includes:
-1. A punchy breaking-news headline — name the players, reference BeerLeague
-2. Opening that matches {writer_name}'s authentic voice and style
-3. Analysis of what each team is getting and the strategic logic behind the deal
-4. A clear verdict on who wins the trade with specific reasoning
-5. Trade grades for each side on an A+ through F scale
-
-Respond ONLY with valid JSON in this exact shape — no markdown fences:
-{{
-  "headline": "...",
-  "body": "...(full article, use **bold** for player names, markdown OK)...",
-  "grade_team_a": "B+",
-  "grade_team_b": "A-",
-  "team_a": "{team_a}",
-  "team_b": "{team_b}"
-}}"""
-
-    try:
-        client = anthropic.Anthropic(api_key=api_key)
-        msg = client.messages.create(
-            model="claude-opus-4-5",
-            max_tokens=1024,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        raw = msg.content[0].text.strip()
-        raw = re.sub(r"^```(?:json)?\s*", "", raw)
-        raw = re.sub(r"\s*```$", "", raw)
-
-        article = json.loads(raw)
-        article["generated_at"]           = datetime.now().isoformat()
-        article["transaction_timestamp"]  = trade_tx.get("timestamp", 0)
-        article["writer_key"]             = writer_key
-        article["writer_name"]            = writer_name
-        article["writer_outlet"]          = writer_out
-        return article
-    except Exception as e:
-        st.error(f"Article generation failed: {e}")
-        return None
-
-
-def generate_weekly_recap_article(week_data: dict, standings: list[dict],
-                                   is_playoff: bool = False,
-                                   is_championship: bool = False) -> dict | None:
-    """
-    Generate a narrative weekly recap article via Claude API.
-    Uses a rotating cast of writers — Gammons for championship/playoff weeks,
-    random from _RECAP_WRITERS for regular season.
-    Returns article dict or None on failure.
-    """
-    api_key = _get_anthropic_key()
-    if not api_key:
-        return None
-
-    try:
-        import anthropic
-    except ImportError:
-        st.error("anthropic package not installed.")
-        return None
-
-    # Choose the writer persona
-    if is_championship:
-        writer_key = _PLAYOFF_WRITER  # Always Gammons for the title game
-    elif is_playoff:
-        # Gammons or a random recap writer for other playoff weeks
-        writer_key = random.choice([_PLAYOFF_WRITER] + _RECAP_WRITERS)
-    else:
-        writer_key = random.choice(_RECAP_WRITERS)
-
-    writer      = WRITER_STYLES[writer_key]
-    writer_name = writer["name"]
-    writer_out  = writer["outlet"]
-
-    # Build matchup summary
-    matchups = week_data.get("matchups", [])
-    week_num = week_data.get("week", "?")
-    league   = week_data.get("league_name", "MillerLite® BeerLeagueBaseball")
-
-    matchup_lines = []
-    for m in matchups:
-        teams = m.get("teams", [])
-        if len(teams) < 2:
-            continue
-        t1, t2   = teams[0], teams[1]
-        label    = "[CHAMPIONSHIP] " if m.get("is_championship") else \
-                   "[PLAYOFF] "      if m.get("is_playoffs") and not m.get("is_consolation") else \
-                   "[CONSOLATION] "  if m.get("is_consolation") else ""
-        if m.get("is_tied"):
-            matchup_lines.append(f"  {label}TIE: {t1['name']} {t1['points']:.1f} vs {t2['name']} {t2['points']:.1f}")
-        else:
-            winner = t1 if t1.get("team_key") == m.get("winner_key") else t2
-            loser  = t2 if winner is t1 else t1
-            matchup_lines.append(
-                f"  {label}{winner['name']} def. {loser['name']} "
-                f"({winner['points']:.1f}–{loser['points']:.1f})"
-            )
-
-    standings_ctx = "\n".join(
-        f"  {s['rank']}. {s['name']}: {s['wins']}-{s['losses']} ({s.get('points_for', 0):.0f} PF)"
-        for s in standings[:10]
-    ) if standings else "  (standings unavailable)"
-
-    top_players = week_data.get("top_players", [])
-    top_player_ctx = "\n".join(
-        f"  {p['name']} ({p.get('position','?')}, {p.get('mlb_team','?')}): {p.get('points',0):.1f} pts"
-        for p in top_players[:5]
-    ) if top_players else ""
-
-    week_type = "CHAMPIONSHIP" if is_championship else "PLAYOFF" if is_playoff else "regular season"
-
-    prompt = f"""You are {writer_name} of {writer_out}, writing a weekly column for the fantasy baseball league "{league}."
-
-{writer["voice"]}
-
-WEEK {week_num} ({week_type.upper()}) RESULTS:
-{chr(10).join(matchup_lines)}
-
-CURRENT STANDINGS (top 10):
-{standings_ctx}
-
-{"TOP FANTASY PERFORMERS THIS WEEK:" + chr(10) + top_player_ctx if top_player_ctx else ""}
-
-Write a weekly recap column (350–500 words) in {writer_name}'s authentic voice that:
-1. Opens with the most compelling storyline of the week
-2. Covers 2–3 matchups in depth with genuine analysis
-3. Mentions standout individual performances where relevant
-4. Includes a brief standings note about the playoff/title race
-5. Ends with a tease of what's next
-
-Use **bold** for team names. Markdown is OK. Write as if this is published on {writer_out}.
-
-Respond ONLY with valid JSON — no markdown fences:
-{{
-  "headline": "...",
-  "subheadline": "...(one-sentence deck/teaser)...",
-  "body": "...(full column)..."
-}}"""
-
-    try:
-        client = anthropic.Anthropic(api_key=api_key)
-        msg = client.messages.create(
-            model="claude-opus-4-5",
-            max_tokens=1500,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        raw = msg.content[0].text.strip()
-        raw = re.sub(r"^```(?:json)?\s*", "", raw)
-        raw = re.sub(r"\s*```$", "", raw)
-
-        article = json.loads(raw)
-        article["generated_at"]  = datetime.now().isoformat()
-        article["week"]          = week_num
-        article["writer_key"]    = writer_key
-        article["writer_name"]   = writer_name
-        article["writer_outlet"] = writer_out
-        article["is_playoff"]    = is_playoff
-        article["is_championship"] = is_championship
-        return article
-    except Exception as e:
-        st.error(f"Recap article generation failed: {e}")
-        return None
-
-
-def save_recap_article(article: dict, articles_dir: Path) -> Path | None:
-    """Write recap article JSON to disk. Returns the path or None on failure."""
-    try:
-        articles_dir.mkdir(parents=True, exist_ok=True)
-        week = article.get("week", "00")
-        path = articles_dir / f"week_{int(week):02d}_recap.json"
-        with open(path, "w") as f:
-            json.dump(article, f, indent=2)
-        return path
-    except Exception:
-        return None
-
-
-def save_trade_article(article: dict, trades_dir: Path) -> Path | None:
-    """Write article JSON to disk. Returns the path or None on failure."""
-    try:
-        trades_dir.mkdir(parents=True, exist_ok=True)
-        ts   = article.get("transaction_timestamp", 0) or int(datetime.now().timestamp())
-        path = trades_dir / f"trade_{ts}.json"
-        with open(path, "w") as f:
-            json.dump(article, f, indent=2)
-        return path
-    except Exception:
-        return None
-
-
-# ══════════════════════════════════════════════════════════════════════════════
-# SEASON AWARDS
-# ══════════════════════════════════════════════════════════════════════════════
-
-def is_season_complete(weeks_data: dict[int, dict]) -> bool:
-    if not weeks_data:
-        return False
-    last_wk = max(weeks_data.keys())
-    return any(m.get("is_championship") for m in weeks_data[last_wk].get("matchups", []))
-
-
-def compute_season_awards(weeks_data: dict[int, dict]) -> dict:
-    if not weeks_data:
-        return {}
-    all_weeks     = sorted(weeks_data.keys())
-    last_week     = max(all_weeks)
-    weeks_frozen  = tuple(sorted(weeks_data.items()))
-    final_st      = compute_standings(weeks_frozen, last_week)
-    if not final_st:
-        return {}
-
-    awards: dict[str, dict] = {}
-
-    # Champion / Runner-Up / Wooden Spoon
-    awards["champion"]     = {"name": final_st[0]["name"]}
-    if len(final_st) > 1:
-        awards["runner_up"] = {"name": final_st[1]["name"]}
-    awards["wooden_spoon"] = {
-        "name": final_st[-1]["name"],
-        "value": f"{final_st[-1]['wins']}-{final_st[-1]['losses']}",
-    }
-
-    # Most PF / Best Defense
-    most_pf  = max(final_st, key=lambda x: x["points_for"])
-    best_def = min(final_st, key=lambda x: x["points_against"])
-    awards["most_pf"]      = {"name": most_pf["name"],  "value": f"{most_pf['points_for']:.1f} PF"}
-    awards["best_defense"] = {"name": best_def["name"], "value": f"{best_def['points_against']:.1f} PA"}
-
-    # Streaks
-    streaks = compute_streaks(weeks_frozen)
-    if streaks:
-        mw = max(streaks.values(), key=lambda x: x["max_win_streak"])
-        ml = max(streaks.values(), key=lambda x: x["max_lose_streak"])
-        awards["longest_win_streak"]  = {"name": mw["name"], "value": f"{mw['max_win_streak']} in a row"}
-        awards["longest_lose_streak"] = {"name": ml["name"], "value": f"{ml['max_lose_streak']} in a row"}
-
-    # Luck ratings
-    expected = compute_luck_ratings(weeks_data)
-    actual_wins = {s["name"]: s["wins"] for s in final_st}
-    luck_delta  = {name: round(actual_wins.get(name, 0) - exp, 2) for name, exp in expected.items()}
-    if luck_delta:
-        luckiest   = max(luck_delta, key=luck_delta.get)
-        unluckiest = min(luck_delta, key=luck_delta.get)
-        awards["luckiest"]     = {"name": luckiest,   "value": f"+{luck_delta[luckiest]:.1f} luck"}
-        awards["most_unlucky"] = {"name": unluckiest, "value": f"{luck_delta[unluckiest]:.1f} luck"}
-
-    # Best Regular Season (record before playoffs)
-    rs_end = last_week
-    for wk in all_weeks:
-        if any(m.get("is_playoffs") for m in weeks_data[wk].get("matchups", [])):
-            rs_end = wk - 1
-            break
-    rs_st = compute_standings(weeks_frozen, rs_end)
-    if rs_st:
-        awards["best_reg_season"] = {
-            "name": rs_st[0]["name"],
-            "value": f"{rs_st[0]['wins']}-{rs_st[0]['losses']} reg season",
-        }
-
-    # Hottest / Coldest Finish (last 4 weeks)
-    hot_records: dict[str, dict] = {}
-    for wk in range(max(1, last_week - 3), last_week + 1):
-        if wk not in weeks_data:
-            continue
-        for m in weeks_data[wk].get("matchups", []):
-            if len(m["teams"]) < 2:
-                continue
-            t1, t2 = m["teams"][0], m["teams"][1]
-            for t in (t1, t2):
-                hot_records.setdefault(t["name"], {"wins": 0, "losses": 0})
-            if m.get("winner_key") == t1["team_key"]:
-                hot_records[t1["name"]]["wins"]   += 1
-                hot_records[t2["name"]]["losses"] += 1
-            elif m.get("winner_key") == t2["team_key"]:
-                hot_records[t2["name"]]["wins"]   += 1
-                hot_records[t1["name"]]["losses"] += 1
-    if hot_records:
-        hottest = max(hot_records, key=lambda n: hot_records[n]["wins"])
-        coldest = min(hot_records, key=lambda n: hot_records[n]["wins"])
-        awards["hottest_finish"] = {"name": hottest, "value": f"{hot_records[hottest]['wins']}-{hot_records[hottest]['losses']} last 4 wks"}
-        awards["coldest_finish"] = {"name": coldest, "value": f"{hot_records[coldest]['wins']}-{hot_records[coldest]['losses']} last 4 wks"}
-
-    # Biggest Collapse (top-half midseason rank → most rank drop)
-    mid_wk   = all_weeks[len(all_weeks) // 2]
-    mid_st   = compute_standings(weeks_frozen, mid_wk)
-    if mid_st:
-        mid_rank   = {s["name"]: s["rank"] for s in mid_st}
-        final_rank = {s["name"]: s["rank"] for s in final_st}
-        top_half   = len(mid_st) // 2
-        collapses  = [
-            (name, final_rank.get(name, 99) - mid_rank[name], mid_rank[name])
-            for name in mid_rank if name in final_rank and mid_rank[name] <= top_half
-        ]
-        if collapses:
-            worst = max(collapses, key=lambda x: x[1])
-            if worst[1] > 0:
-                awards["biggest_collapse"] = {
-                    "name": worst[0],
-                    "value": f"Rank {worst[2]} → {final_rank.get(worst[0], '?')}",
-                }
-
-    return awards
-
-
-# ══════════════════════════════════════════════════════════════════════════════
-# WEEKLY AWARDS
-# ══════════════════════════════════════════════════════════════════════════════
-
-def compute_weekly_awards(week_data: dict, weeks_data: dict[int, dict]) -> list[dict]:
-    awards   = []
-    matchups = week_data.get("matchups", [])
-    cur_week = week_data.get("week", 0)
-    if not matchups:
-        return awards
-
-    all_teams  = [t for m in matchups for t in m["teams"]]
-    all_scores = [t["points"] for t in all_teams]
-    week_avg   = sum(all_scores) / len(all_scores) if all_scores else 0
-
-    # 🔥 Hot Hand — most category wins
-    if all_teams:
-        hot = max(all_teams, key=lambda t: t["points"])
-        awards.append({"badge": "🔥 Hot Hand", "color": "badge-gold",
-                       "winner": hot["name"], "detail": f"{hot['points']:.0f} cats won"})
-
-    # 🍀 Lucky Win — winner scored below week average
-    for m in matchups:
-        if len(m["teams"]) < 2 or not m.get("winner_key") or m.get("is_tied"):
-            continue
-        winner = next((t for t in m["teams"] if t["team_key"] == m["winner_key"]), None)
-        if winner and winner["points"] < week_avg:
-            awards.append({"badge": "🍀 Lucky Win", "color": "badge-green",
-                           "winner": winner["name"],
-                           "detail": f"{winner['points']:.0f} cats (avg {week_avg:.0f})"})
-            break
-
-    # 💀 Trap Game — lost despite higher season-avg PF
-    prior_avgs: dict[str, float] = {}
-    prior_counts: dict[str, int] = {}
-    for wk, wd in weeks_data.items():
-        if wk >= cur_week:
-            continue
-        for m2 in wd.get("matchups", []):
-            for t in m2.get("teams", []):
-                prior_avgs[t["name"]]   = prior_avgs.get(t["name"], 0) + t["points"]
-                prior_counts[t["name"]] = prior_counts.get(t["name"], 0) + 1
-    season_avgs = {n: prior_avgs[n] / prior_counts[n] for n in prior_avgs if prior_counts[n] > 0}
-
-    trap_candidate, trap_gap = None, 0
-    for m in matchups:
-        if len(m["teams"]) < 2 or not m.get("winner_key") or m.get("is_tied"):
-            continue
-        loser  = next((t for t in m["teams"] if t["team_key"] != m["winner_key"]), None)
-        winner = next((t for t in m["teams"] if t["team_key"] == m["winner_key"]), None)
-        if loser and winner:
-            la = season_avgs.get(loser["name"],  0)
-            wa = season_avgs.get(winner["name"], 0)
-            if la > wa and (la - wa) > trap_gap:
-                trap_gap, trap_candidate = la - wa, loser["name"]
-    if trap_candidate:
-        awards.append({"badge": "💀 Trap Game", "color": "badge-red",
-                       "winner": trap_candidate, "detail": "Lost despite being favored"})
-
-    # 📉 Choker — top-half standing team loses to bottom-half team
-    weeks_frozen = tuple(sorted(weeks_data.items()))
-    standings    = compute_standings(weeks_frozen, cur_week - 1) if cur_week > 1 else []
-    if standings:
-        rank_map  = {s["name"]: s["rank"] for s in standings}
-        mid_rank  = len(standings) // 2
-        for m in matchups:
-            if len(m["teams"]) < 2 or not m.get("winner_key") or m.get("is_tied"):
-                continue
-            loser  = next((t for t in m["teams"] if t["team_key"] != m["winner_key"]), None)
-            winner = next((t for t in m["teams"] if t["team_key"] == m["winner_key"]), None)
-            if loser and winner:
-                lr = rank_map.get(loser["name"],  99)
-                wr = rank_map.get(winner["name"], 99)
-                if lr <= mid_rank and wr > mid_rank:
-                    awards.append({"badge": "📉 Choker", "color": "badge-blue",
-                                   "winner": loser["name"], "detail": "Top-half team upset by bottom-half"})
-                    break
-    return awards
-
-
-# ══════════════════════════════════════════════════════════════════════════════
-# ALL-TIME STATS
-# ══════════════════════════════════════════════════════════════════════════════
-
-@st.cache_data(ttl=300)
-def compute_alltime_stats(all_seasons_frozen: tuple) -> dict:
-    all_seasons = dict(all_seasons_frozen)
-    team_stats:   dict[str, dict] = {}
-    season_awards_map: dict[int, dict] = {}
-
-    for season, weeks_data_frozen in sorted(all_seasons.items()):
-        if not weeks_data_frozen:
-            continue
-        # weeks_data_frozen is a tuple of (week_int, week_dict) pairs — convert back to dict
-        weeks_data = dict(weeks_data_frozen)
-        wf         = weeks_data_frozen  # already sorted tuple, usable by compute_standings
-        last_wk    = max(weeks_data.keys())
-        final_st   = compute_standings(wf, last_wk)
-
-        # Season awards
-        sa = compute_season_awards(weeks_data)
-        season_awards_map[season] = sa
-
-        # Accumulate per-team all-time stats
-        for s in final_st:
-            name = s["name"]
-            if name not in team_stats:
-                team_stats[name] = {
-                    "name": name, "seasons": 0,
-                    "wins": 0, "losses": 0, "ties": 0,
-                    "points_for": 0.0, "points_against": 0.0,
-                    "championships": 0, "finals": 0, "wooden_spoons": 0,
-                    "best_finish": 99, "season_finishes": {},
-                }
-            ts = team_stats[name]
-            ts["seasons"]       += 1
-            ts["wins"]          += s["wins"]
-            ts["losses"]        += s["losses"]
-            ts["ties"]          += s.get("ties", 0)
-            ts["points_for"]    += s["points_for"]
-            ts["points_against"]+= s["points_against"]
-            ts["best_finish"]    = min(ts["best_finish"], s["rank"])
-            ts["season_finishes"][season] = s["rank"]
-            if s["rank"] == 1:  ts["championships"] += 1
-            if s["rank"] <= 2:  ts["finals"]        += 1
-            if s["rank"] == len(final_st): ts["wooden_spoons"] += 1
-
-    # Compute win %
-    for ts in team_stats.values():
-        total = ts["wins"] + ts["losses"]
-        ts["win_pct"] = round(ts["wins"] / total, 3) if total else 0.0
-
-    return {"teams": team_stats, "season_awards": season_awards_map}
-
-
-# ══════════════════════════════════════════════════════════════════════════════
-# HELPER FUNCTIONS
-# ══════════════════════════════════════════════════════════════════════════════
-
-def get_winner(matchup: dict) -> dict | None:
-    if matchup.get("is_tied") or not matchup.get("winner_key"):
-        return None
-    return next((t for t in matchup["teams"] if t["team_key"] == matchup["winner_key"]), None)
-
-
-def category_winner(v1, v2, cat: str, lower_is_better: set[str]) -> str:
-    try:
-        f1, f2 = float(v1), float(v2)
-        if f1 == f2: return "tie"
-        if cat in lower_is_better: return "←" if f1 < f2 else "→"
-        return "←" if f1 > f2 else "→"
-    except (TypeError, ValueError):
-        return ""
-
-
-def build_category_df(t1: dict, t2: dict, lower_is_better: set[str]) -> pd.DataFrame:
-    cats1, cats2 = t1.get("category_stats", {}), t2.get("category_stats", {})
-    rows = []
-    for cat in sorted(set(cats1) | set(cats2)):
-        v1, v2 = cats1.get(cat, "–"), cats2.get(cat, "–")
-        rows.append({"Category": cat, t1["name"]: v1, "Winner": category_winner(v1, v2, cat, lower_is_better), t2["name"]: v2})
-    return pd.DataFrame(rows)
-
-
-def week_label(w: int, data: dict) -> str:
-    is_champ    = any(m.get("is_championship") for m in data.get("matchups", []))
-    is_playoff  = any(m.get("is_playoffs") and not m.get("is_consolation") for m in data.get("matchups", []))
-    suffix = " 🏆" if is_champ else (" 🥊" if is_playoff else "")
-    return f"Week {w}{suffix}"
-
-
-def render_award_card(awards: dict, season: int) -> None:
-    """Render a season awards card."""
-    champion = awards.get("champion", {}).get("name", "—")
-    st.markdown(f"""
-    <div class="trophy-section">
-        <div style="font-size:1.2em; font-weight:800; color:#1f3a5f; margin-bottom:10px;">
-            🏆 {season} Season Awards
-        </div>
-    """, unsafe_allow_html=True)
-    for icon, label, key in AWARD_DEFS:
-        a = awards.get(key)
-        if not a:
-            continue
-        value_str = a.get("value", "")
-        st.markdown(f"""
-        <div class="award-row">
-            <span class="award-icon">{icon}</span>
-            <span class="award-label">{label}</span>
-            <span class="award-winner">{a['name']}</span>
-            <span class="award-value">{value_str}</span>
-        </div>
-        """, unsafe_allow_html=True)
-    st.markdown("</div>", unsafe_allow_html=True)
-
-
-def render_weekly_award_badges(awards: list[dict]) -> None:
-    if not awards:
-        st.caption("No awards data for this week.")
-        return
-    html = ""
-    for a in awards:
-        html += f'<span class="badge {a["color"]}">{a["badge"]} {a["winner"]}</span> '
-        html += f'<span style="font-size:0.8em;color:#888;">{a["detail"]}</span><br>'
-    st.markdown(html, unsafe_allow_html=True)
+# ── Import shared helpers ─────────────────────────────────────────────────────
+from helpers import (
+    DATA_ROOT,
+    AWARD_DEFS,
+    LOWER_IS_BETTER_DEFAULT,
+    WRITER_STYLES,
+    get_available_seasons,
+    load_all_weeks,
+    load_all_seasons_data,
+    load_divisions,
+    load_team_logos,
+    compute_standings,
+    compute_streaks,
+    compute_luck_ratings,
+    compute_power_rankings,
+    compute_rivalry_stats,
+    compute_season_awards,
+    compute_weekly_awards,
+    compute_alltime_stats,
+    is_season_complete,
+    get_winner,
+    category_winner,
+    build_category_df,
+    week_label,
+    render_award_card,
+    render_weekly_award_badges,
+    render_player_card,
+    _team_color,
+    _team_initials,
+    _badge_html,
+    generate_trade_article,
+    generate_weekly_recap_article,
+    save_recap_article,
+    save_trade_article,
+    _get_anthropic_key,
+)
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -1335,12 +286,10 @@ with st.sidebar:
                 n = len(draft_order)
                 cols = st.columns(2)
                 for pick_info in draft_order:
-                    pick = pick_info["pick"]
+                    pick    = pick_info["pick"]
                     manager = pick_info["manager"]
-                    # Snake round labels
-                    round_num = ((pick - 1) // n) + 1
                     with cols[(pick - 1) % 2]:
-                        medal = "🥇" if pick == 1 else ("🥈" if pick == 2 else ("🥉" if pick == 3 else "")  )
+                        medal = "🥇" if pick == 1 else ("🥈" if pick == 2 else ("🥉" if pick == 3 else ""))
                         st.markdown(
                             f'<div class="draft-pick-row">'
                             f'<span class="draft-pick-num">#{pick}</span>'
@@ -1368,13 +317,13 @@ with st.sidebar:
         st.divider()
 
         # Sidebar standings
-        _wf_sidebar  = tuple(sorted(weeks_data.items()))
+        _wf_sidebar   = tuple(sorted(weeks_data.items()))
         all_standings = compute_standings(_wf_sidebar, available_weeks[0])
 
         if all_standings:
             st.subheader("Standings")
-            team_search = st.text_input("🔍 Search team", placeholder="Team name...", label_visibility="collapsed")
-            filtered_st = [s for s in all_standings if not team_search or team_search.lower() in s["name"].lower()]
+            team_search  = st.text_input("🔍 Search team", placeholder="Team name...", label_visibility="collapsed")
+            filtered_st  = [s for s in all_standings if not team_search or team_search.lower() in s["name"].lower()]
             with st.expander("View All Teams", expanded=False):
                 for s in filtered_st:
                     record = f"{s['wins']}-{s['losses']}" + (f"-{s['ties']}" if s.get("ties") else "")
@@ -1444,10 +393,8 @@ is_playoff_week  = bool(playoff_games)
 season_complete  = is_season_complete(weeks_data)
 
 # Pre-compute awards
-season_awards  = compute_season_awards(weeks_data) if season_complete else {}
-weekly_awards  = compute_weekly_awards(data, weeks_data)
-all_seasons    = load_all_seasons_data()
-_alltime_frozen = tuple(sorted({s: tuple(sorted(wd.items())) for s, wd in all_seasons.items()}.items()))
+season_awards = compute_season_awards(weeks_data) if season_complete else {}
+weekly_awards = compute_weekly_awards(data, weeks_data)
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -1477,11 +424,10 @@ st.markdown(f"""
 # TABS
 # ══════════════════════════════════════════════════════════════════════════════
 
-tab_home, tab_week, tab_season, tab_alltime, tab_news = st.tabs([
+tab_home, tab_week, tab_season, tab_news = st.tabs([
     "🏠 Home",
     "⚔️ This Week",
     "🏆 Season",
-    "📖 All-Time",
     "📰 News",
 ])
 
@@ -1511,6 +457,13 @@ with tab_home:
         except Exception:
             pass
 
+    # ── Build logo lookup: file-based first, then overlay current week data ───
+    _logo_lookup: dict[str, str] = dict(load_team_logos())
+    for _m in matchups:
+        for _t in _m.get("teams", []):
+            if _t.get("logo_url"):
+                _logo_lookup[_t["name"]] = _t["logo_url"]
+
     # ── League leaders bar ────────────────────────────────────────────────────
     if standings:
         _home_divs   = load_divisions(selected_season)
@@ -1533,7 +486,7 @@ with tab_home:
 
         _cells_html = ""
         for _icon, _lbl, _team, _val in _leader_cells:
-            _b = _badge_html(_team, size=18)
+            _b = _badge_html(_team, _logo_lookup.get(_team, ""), 18)
             _cells_html += (
                 f'<div class="leader-cell">'
                 f'<div class="leader-label">{_icon} {_lbl}</div>'
@@ -1543,13 +496,6 @@ with tab_home:
             )
         st.markdown(f'<div class="leaders-bar">{_cells_html}</div>', unsafe_allow_html=True)
 
-    # ── Build logo lookup from current week matchup data ──────────────────────
-    _logo_lookup: dict[str, str] = {}
-    for _m in matchups:
-        for _t in _m.get("teams", []):
-            if _t.get("logo_url"):
-                _logo_lookup[_t["name"]] = _t["logo_url"]
-
     # ── Main three-panel row ──────────────────────────────────────────────────
     _home_divs = load_divisions(selected_season)
     col_stand, col_pr, col_news = st.columns([5, 3, 4])
@@ -1558,7 +504,6 @@ with tab_home:
     with col_stand:
         _sh = '<div class="panel-box"><div class="section-header">🏆 Standings</div>'
         if _home_divs and standings:
-            # Find division leaders for badge
             _div_leader_names: set[str] = set()
             for _dn, _dt in _home_divs.items():
                 _dss = sorted([s for s in standings if s["name"] in _dt], key=lambda s: s["rank"])
@@ -1570,10 +515,10 @@ with tab_home:
                 _div_st = sorted([s for s in standings if s["name"] in _div_teams], key=lambda s: s["rank"])
                 _sh += f'<div style="flex:1;min-width:0;"><div class="div-label">{_div_name}</div>'
                 for s in _div_st:
-                    rec    = f"{s['wins']}-{s['losses']}"
-                    medal  = "🥇" if s["rank"] == 1 else "🥈" if s["rank"] == 2 else "🥉" if s["rank"] == 3 else f"{s['rank']}."
-                    badge  = _badge_html(s["name"], _logo_lookup.get(s["name"], ""), 20)
-                    dtag   = '<span class="div-leader-tag">DIV</span>' if s["name"] in _div_leader_names else ""
+                    rec   = f"{s['wins']}-{s['losses']}"
+                    medal = "🥇" if s["rank"] == 1 else "🥈" if s["rank"] == 2 else "🥉" if s["rank"] == 3 else f"{s['rank']}."
+                    badge = _badge_html(s["name"], _logo_lookup.get(s["name"], ""), 20)
+                    dtag  = '<span class="div-leader-tag">DIV</span>' if s["name"] in _div_leader_names else ""
                     _sh += (
                         f'<div class="stand-row">'
                         f'<span class="stand-medal">{medal}</span>{badge}'
@@ -1600,12 +545,12 @@ with tab_home:
         _prh = '<div class="panel-box"><div class="section-header">⚡ Power Rankings</div>'
         if _pr_list:
             for r in _pr_list:
-                diff = r["rank_diff"]
-                arr  = (f'<span style="color:#1a9850">▲{diff}</span>'  if diff > 0 else
-                        f'<span style="color:#d73027">▼{abs(diff)}</span>' if diff < 0 else
-                        '<span style="color:#ccc">—</span>')
-                form = r["recent_form"]
-                fc   = "#1a9850" if form.startswith(("3-","2-")) else ("#d73027" if form.endswith(("-3","-2")) else "#888")
+                diff  = r["rank_diff"]
+                arr   = (f'<span style="color:#1a9850">▲{diff}</span>'  if diff > 0 else
+                         f'<span style="color:#d73027">▼{abs(diff)}</span>' if diff < 0 else
+                         '<span style="color:#ccc">—</span>')
+                form  = r["recent_form"]
+                fc    = "#1a9850" if form.startswith(("3-", "2-")) else ("#d73027" if form.endswith(("-3", "-2")) else "#888")
                 badge = _badge_html(r["name"], _logo_lookup.get(r["name"], ""), 18)
                 _prh += (
                     f'<div class="pr-row">'
@@ -1623,10 +568,10 @@ with tab_home:
     # ─ Latest News ────────────────────────────────────────────────────────────
     with col_news:
         _nh = '<div class="panel-box"><div class="section-header">📰 Latest</div>'
-        _all_articles: list[tuple[str, str, str]] = []  # (type, label, headline)
+        _all_articles: list[tuple[str, str, str]] = []
         for _wk in available_weeks:
-            _wd = weeks_data[_wk]
-            _recap = _wd.get("recap_text", "")
+            _wd     = weeks_data[_wk]
+            _recap  = _wd.get("recap_text", "")
             if _recap:
                 _lbl = week_label(_wk, _wd)
                 _hed = _recap.split("\n")[0].strip().lstrip("#").strip()
@@ -1691,9 +636,9 @@ with tab_home:
             continue
         t1, t2     = m["teams"][0], m["teams"][1]
         winner_key = m.get("winner_key")
-        t1_bold = "score-winner" if winner_key == t1["team_key"] else ""
-        t2_bold = "score-winner" if winner_key == t2["team_key"] else ""
-        icon = "🏆" if m.get("is_championship") else ("🥉" if m.get("is_third_place") else ("🥊" if m.get("is_playoffs") else "⚾"))
+        t1_bold    = "score-winner" if winner_key == t1["team_key"] else ""
+        t2_bold    = "score-winner" if winner_key == t2["team_key"] else ""
+        icon       = "🏆" if m.get("is_championship") else ("🥉" if m.get("is_third_place") else ("🥊" if m.get("is_playoffs") else "⚾"))
         with score_cols[i % 2]:
             st.markdown(f"""
             <div class="score-row">
@@ -1728,11 +673,11 @@ with tab_home:
         st.divider()
         st.markdown('<div class="section-header">📊 Season Leaders (Live)</div>', unsafe_allow_html=True)
         lc1, lc2, lc3 = st.columns(3)
-        lc1.metric("🏆 1st Place",   standings[0]["name"], f"{standings[0]['wins']}W-{standings[0]['losses']}L")
-        most_pf_live = max(standings, key=lambda s: s["points_for"])
-        lc2.metric("🔥 Most PF",    most_pf_live["name"],  f"{most_pf_live['points_for']:.1f}")
+        lc1.metric("🏆 1st Place",     standings[0]["name"], f"{standings[0]['wins']}W-{standings[0]['losses']}L")
+        most_pf_live  = max(standings, key=lambda s: s["points_for"])
+        lc2.metric("🔥 Most PF",       most_pf_live["name"],  f"{most_pf_live['points_for']:.1f}")
         best_def_live = min(standings, key=lambda s: s["points_against"])
-        lc3.metric("🛡️ Best Defense", best_def_live["name"], f"{best_def_live['points_against']:.1f} PA")
+        lc3.metric("🛡️ Best Defense",  best_def_live["name"], f"{best_def_live['points_against']:.1f} PA")
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -1787,7 +732,6 @@ with tab_week:
         if not matchups:
             st.info("No matchup data available.")
         else:
-            # Matchup type filter
             matchup_types = ["All"]
             if any(m.get("is_championship") for m in matchups):              matchup_types.append("Championship")
             if any(m.get("is_third_place")  for m in matchups):              matchup_types.append("3rd Place")
@@ -1798,17 +742,16 @@ with tab_week:
             selected_type = st.radio("Filter matchups", matchup_types, horizontal=True) if len(matchup_types) > 2 else "All"
 
             def matchup_type_filter(m: dict) -> bool:
-                if selected_type == "All":            return True
-                if selected_type == "Championship":  return bool(m.get("is_championship"))
-                if selected_type == "3rd Place":     return bool(m.get("is_third_place"))
-                if selected_type == "Playoffs":      return m.get("is_playoffs") and not m.get("is_consolation") and not m.get("is_championship") and not m.get("is_third_place")
-                if selected_type == "Consolation":   return bool(m.get("is_consolation"))
-                if selected_type == "Regular Season":return not m.get("is_playoffs") and not m.get("is_consolation")
+                if selected_type == "All":             return True
+                if selected_type == "Championship":    return bool(m.get("is_championship"))
+                if selected_type == "3rd Place":       return bool(m.get("is_third_place"))
+                if selected_type == "Playoffs":        return m.get("is_playoffs") and not m.get("is_consolation") and not m.get("is_championship") and not m.get("is_third_place")
+                if selected_type == "Consolation":     return bool(m.get("is_consolation"))
+                if selected_type == "Regular Season":  return not m.get("is_playoffs") and not m.get("is_consolation")
                 return True
 
             filtered_matchups = [m for m in matchups if matchup_type_filter(m)]
 
-            # Bar chart
             all_teams = [t for m in filtered_matchups for t in m["teams"]]
             df_pts    = pd.DataFrame(all_teams).sort_values("points", ascending=True)
             colors    = ["#f0c040" if r == max(df_pts["points"]) else "#4a90d9" for r in df_pts["points"]]
@@ -1821,7 +764,6 @@ with tab_week:
                                   height=max(300, len(all_teams) * 40), margin=dict(l=10, r=60, t=40, b=30))
             st.plotly_chart(fig_pts, use_container_width=True)
 
-            # Heatmap
             st.subheader("Category Win Heatmap")
             heatmap_rows = []
             for m in filtered_matchups:
@@ -1844,9 +786,9 @@ with tab_week:
 
             for m in filtered_matchups:
                 if len(m["teams"]) < 2: continue
-                t1, t2   = m["teams"][0], m["teams"][1]
-                winner   = get_winner(m)
-                icon     = "🏆" if m.get("is_championship") else ("🥉" if m.get("is_third_place") else ("😅" if m.get("is_consolation") else ("🥊" if m.get("is_playoffs") else "⚾")))
+                t1, t2    = m["teams"][0], m["teams"][1]
+                winner    = get_winner(m)
+                icon      = "🏆" if m.get("is_championship") else ("🥉" if m.get("is_third_place") else ("😅" if m.get("is_consolation") else ("🥊" if m.get("is_playoffs") else "⚾")))
                 score_str = f"{t1['points']:.0f} – {t2['points']:.0f}"
                 expanded  = m.get("is_playoffs", False)
 
@@ -1907,8 +849,8 @@ with tab_week:
                     team_counts[team][p.get("action", "unknown").lower()] = team_counts[team].get(p.get("action", "unknown").lower(), 0) + 1
 
             if team_counts:
-                df_tx = pd.DataFrame([{"Team": t, "Adds": c.get("add", 0), "Drops": c.get("drop", 0)}
-                                       for t, c in sorted(team_counts.items(), key=lambda x: sum(x[1].values()), reverse=True)])
+                df_tx  = pd.DataFrame([{"Team": t, "Adds": c.get("add", 0), "Drops": c.get("drop", 0)}
+                                        for t, c in sorted(team_counts.items(), key=lambda x: sum(x[1].values()), reverse=True)])
                 fig_tx = px.bar(df_tx, x="Team", y=["Adds", "Drops"], barmode="group",
                                 title="Transaction Activity", color_discrete_map={"Adds": "#1a9850", "Drops": "#d73027"})
                 fig_tx.update_layout(height=350, xaxis_tickangle=-30)
@@ -1940,16 +882,17 @@ with tab_season:
             leader     = df_stand.iloc[0]
             most_pf    = df_stand.loc[df_stand["points_for"].idxmax()]
             least_pa   = df_stand.loc[df_stand["points_against"].idxmin()]
-            c1.metric("🥇 First Place",    leader["name"],   f"{leader['wins']}W – {leader['losses']}L")
-            c2.metric("🔥 Most Points For", most_pf["name"],  f"{most_pf['points_for']:.1f} PF")
-            c3.metric("🛡️ Best Defense",   least_pa["name"], f"{least_pa['points_against']:.1f} PA")
+            c1.metric("🥇 First Place",     leader["name"],   f"{leader['wins']}W – {leader['losses']}L")
+            c2.metric("🔥 Most Points For",  most_pf["name"],  f"{most_pf['points_for']:.1f} PF")
+            c3.metric("🛡️ Best Defense",    least_pa["name"], f"{least_pa['points_against']:.1f} PA")
             st.divider()
 
             col_l, col_r = st.columns(2)
             with col_l:
                 df_sorted = df_stand.sort_values("wins", ascending=True)
-                fig_wins = px.bar(df_sorted, x="wins", y="name", orientation="h", color="wins",
-                                  color_continuous_scale="Greens", title="Season Wins", labels={"wins": "Wins", "name": ""}, text="wins")
+                fig_wins  = px.bar(df_sorted, x="wins", y="name", orientation="h", color="wins",
+                                   color_continuous_scale="Greens", title="Season Wins",
+                                   labels={"wins": "Wins", "name": ""}, text="wins")
                 fig_wins.update_traces(textposition="outside")
                 fig_wins.update_layout(showlegend=False, coloraxis_showscale=False,
                                        height=max(300, len(df_stand) * 35), margin=dict(l=10, r=40, t=40, b=20))
@@ -1965,11 +908,11 @@ with tab_season:
                 st.plotly_chart(fig_scatter, use_container_width=True)
 
             st.subheader("Full Standings Table")
-            df_display = df_stand[["rank", "name", "wins", "losses", "ties", "points_for", "points_against"]].copy()
-            df_display.columns = ["Rank", "Team", "W", "L", "T", "PF", "PA"]
-            total_games         = df_display["W"] + df_display["L"]
-            df_display["Win%"]  = (df_display["W"] / total_games.replace(0, 1)).round(3)
-            df_display["GB"]    = (df_display.iloc[0]["W"] - df_display["W"]) / 2
+            df_display           = df_stand[["rank", "name", "wins", "losses", "ties", "points_for", "points_against"]].copy()
+            df_display.columns   = ["Rank", "Team", "W", "L", "T", "PF", "PA"]
+            total_games          = df_display["W"] + df_display["L"]
+            df_display["Win%"]   = (df_display["W"] / total_games.replace(0, 1)).round(3)
+            df_display["GB"]     = (df_display.iloc[0]["W"] - df_display["W"]) / 2
             st.dataframe(df_display.style.bar(subset=["Win%"], color=["#d73027", "#1a9850"], vmin=0, vmax=1),
                          use_container_width=True, hide_index=True)
 
@@ -1983,24 +926,16 @@ with tab_season:
                     diff = r["rank_diff"]
                     move = f"▲{diff}" if diff > 0 else (f"▼{abs(diff)}" if diff < 0 else "—")
                     pr_rows.append({
-                        "PR": r["pr_rank"],
-                        "Team": r["name"],
-                        "Move": move,
-                        "L3": r["recent_form"],
-                        "W": r["wins"],
-                        "L": r["losses"],
+                        "PR": r["pr_rank"], "Team": r["name"], "Move": move,
+                        "L3": r["recent_form"], "W": r["wins"], "L": r["losses"],
                         "Win%": round(r["wins"] / max(r["wins"] + r["losses"], 1), 3),
-                        "PF": round(r["points_for"], 1),
-                        "SOS": r["sos"],
-                        "PR Score": r["pr_score"],
+                        "PF": round(r["points_for"], 1), "SOS": r["sos"], "PR Score": r["pr_score"],
                     })
                 df_pr = pd.DataFrame(pr_rows)
                 st.dataframe(
                     df_pr.style.bar(subset=["PR Score"], color=["#d1ecf1", "#0c5460"], vmin=0, vmax=1),
                     use_container_width=True, hide_index=True,
                 )
-
-                # PR vs Standings rank scatter
                 fig_pr = px.scatter(
                     df_pr, x="W", y="PR Score", text="Team",
                     color="PR Score", color_continuous_scale="RdYlGn",
@@ -2013,7 +948,6 @@ with tab_season:
             else:
                 st.info("Power rankings available once games are played.")
 
-            # Season awards mid-season leaders
             if not season_complete:
                 st.divider()
                 st.subheader("📊 Award Leaders (Live)")
@@ -2077,7 +1011,7 @@ with tab_season:
                               for t in m.get("teams", []) if t["name"] in selected_teams]
                 if weekly_pts:
                     fig_weekly = px.line(pd.DataFrame(weekly_pts), x="Week", y="Categories Won",
-                                        color="Team", markers=True, title="Categories Won Per Team Per Week")
+                                         color="Team", markers=True, title="Categories Won Per Team Per Week")
                     fig_weekly.update_layout(height=450)
                     st.plotly_chart(fig_weekly, use_container_width=True)
 
@@ -2100,14 +1034,14 @@ with tab_season:
 
                 col_ws, col_ls = st.columns(2)
                 with col_ws:
-                    df_ws = df_streaks.sort_values("Best Win Streak", ascending=True)
+                    df_ws  = df_streaks.sort_values("Best Win Streak", ascending=True)
                     fig_ws = px.bar(df_ws, x="Best Win Streak", y="Team", orientation="h",
                                     color="Best Win Streak", color_continuous_scale="Greens",
                                     title="Season-Best Win Streak per Team")
                     fig_ws.update_layout(coloraxis_showscale=False, height=max(300, len(df_ws)*35))
                     st.plotly_chart(fig_ws, use_container_width=True)
                 with col_ls:
-                    df_ls = df_streaks.sort_values("Worst Lose Streak", ascending=True)
+                    df_ls  = df_streaks.sort_values("Worst Lose Streak", ascending=True)
                     fig_ls = px.bar(df_ls, x="Worst Lose Streak", y="Team", orientation="h",
                                     color="Worst Lose Streak", color_continuous_scale="Reds",
                                     title="Season-Worst Lose Streak per Team")
@@ -2116,256 +1050,7 @@ with tab_season:
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# TAB 4 — ALL-TIME
-# ══════════════════════════════════════════════════════════════════════════════
-
-with tab_alltime:
-    alltime = compute_alltime_stats(_alltime_frozen)
-    team_stats_all    = alltime.get("teams", {})
-    season_awards_all = alltime.get("season_awards", {})
-
-    inner_history, inner_h2h, inner_trophy, inner_awards_arch = st.tabs([
-        "📅 History", "⚔️ Head-to-Head", "🏆 Trophy Case", "🎖️ Awards Archive"
-    ])
-
-    # ── History Table ─────────────────────────────────────────────────────────
-    with inner_history:
-        if not team_stats_all:
-            st.info("Not enough data for all-time stats yet.")
-        else:
-            all_seasons_list = sorted(all_seasons.keys())
-            history_rows = []
-            for name, ts in team_stats_all.items():
-                row = {"Team": name, "Seasons": ts["seasons"],
-                       "All-Time W": ts["wins"], "All-Time L": ts["losses"],
-                       "Win%": ts["win_pct"], "🏆": ts["championships"],
-                       "Finals": ts["finals"], "💀": ts["wooden_spoons"],
-                       "Total PF": round(ts["points_for"], 1)}
-                for yr in all_seasons_list:
-                    finish = ts["season_finishes"].get(yr)
-                    row[str(yr)] = f"#{finish}" if finish else "—"
-                history_rows.append(row)
-
-            df_hist = pd.DataFrame(history_rows).sort_values("Win%", ascending=False)
-            st.dataframe(df_hist, use_container_width=True, hide_index=True)
-
-    # ── Head-to-Head ──────────────────────────────────────────────────────────
-    with inner_h2h:
-        all_team_names_ever = sorted(team_stats_all.keys())
-        if len(all_team_names_ever) < 2:
-            st.info("Need at least 2 teams for head-to-head.")
-        else:
-            hc1, hc2 = st.columns(2)
-            with hc1:
-                h2h_team_a = st.selectbox("Team A", options=all_team_names_ever, key="h2h_a")
-            with hc2:
-                opts_b = [t for t in all_team_names_ever if t != h2h_team_a]
-                h2h_team_b = st.selectbox("Team B", options=opts_b, key="h2h_b")
-
-            if h2h_team_a and h2h_team_b:
-                h2h_records: dict[str, int] = {h2h_team_a: 0, h2h_team_b: 0, "ties": 0}
-                h2h_matchups = []
-                for season_yr, wd in sorted(all_seasons.items()):
-                    for wk in sorted(wd.keys()):
-                        for m in wd[wk].get("matchups", []):
-                            if len(m["teams"]) < 2:
-                                continue
-                            names = {t["name"] for t in m["teams"]}
-                            if h2h_team_a in names and h2h_team_b in names:
-                                t_a = next(t for t in m["teams"] if t["name"] == h2h_team_a)
-                                t_b = next(t for t in m["teams"] if t["name"] == h2h_team_b)
-                                if m.get("is_tied"):
-                                    h2h_records["ties"] += 1
-                                    result_str = "Tie"
-                                elif m.get("winner_key") == t_a["team_key"]:
-                                    h2h_records[h2h_team_a] += 1
-                                    result_str = f"✅ {h2h_team_a}"
-                                else:
-                                    h2h_records[h2h_team_b] += 1
-                                    result_str = f"✅ {h2h_team_b}"
-                                h2h_matchups.append({"Season": season_yr, "Week": wk,
-                                                     f"{h2h_team_a} Pts": t_a["points"],
-                                                     f"{h2h_team_b} Pts": t_b["points"],
-                                                     "Winner": result_str})
-
-                wa, wb = h2h_records[h2h_team_a], h2h_records[h2h_team_b]
-                series_leader = h2h_team_a if wa > wb else (h2h_team_b if wb > wa else "Tied")
-                ha, hb = st.columns(2)
-                ha.metric(h2h_team_a, f"{wa}W", f"{'Series Leader 👑' if series_leader == h2h_team_a else ''}")
-                hb.metric(h2h_team_b, f"{wb}W", f"{'Series Leader 👑' if series_leader == h2h_team_b else ''}")
-                if h2h_records["ties"]:
-                    st.caption(f"Ties: {h2h_records['ties']}")
-
-                if h2h_matchups:
-                    st.divider()
-                    st.subheader("All Matchups")
-                    st.dataframe(pd.DataFrame(h2h_matchups), use_container_width=True, hide_index=True)
-
-    # ── Trophy Case ───────────────────────────────────────────────────────────
-    with inner_trophy:
-        if not team_stats_all:
-            st.info("Not enough data yet.")
-        else:
-            # ── Championship Banner ──────────────────────────────────────────
-            st.subheader("🏆 Championship Rings")
-            champs = sorted(
-                [(ts["name"], ts["championships"], ts["season_finishes"])
-                 for ts in team_stats_all.values() if ts["championships"] > 0],
-                key=lambda x: x[1], reverse=True,
-            )
-            if champs:
-                max_rings = champs[0][1]
-                for name, count, finishes in champs:
-                    champ_years = [str(yr) for yr, r in sorted(finishes.items()) if r == 1]
-                    bar_fill    = int((count / max_rings) * 20)
-                    st.markdown(
-                        f"{'🏆' * count}&nbsp; **{name}** "
-                        f"<span style='color:#888;font-size:0.85em'>({', '.join(champ_years)})</span>",
-                        unsafe_allow_html=True,
-                    )
-            else:
-                st.info("No championship data yet.")
-
-            # ── Championship count chart ─────────────────────────────────────
-            df_rings = pd.DataFrame([
-                {"Team": ts["name"], "Championships": ts["championships"],
-                 "Finals": ts["finals"], "Wooden Spoons": ts["wooden_spoons"]}
-                for ts in team_stats_all.values()
-            ]).sort_values("Championships", ascending=False)
-            if not df_rings.empty:
-                fig_rings = px.bar(
-                    df_rings.sort_values("Championships", ascending=True),
-                    x="Championships", y="Team", orientation="h",
-                    color="Championships", color_continuous_scale=[[0, "#f0c040"], [1, "#c8960c"]],
-                    text="Championships", title="All-Time Championships",
-                )
-                fig_rings.update_traces(textposition="outside")
-                fig_rings.update_layout(coloraxis_showscale=False, height=max(300, len(df_rings) * 35))
-                st.plotly_chart(fig_rings, use_container_width=True)
-
-            st.divider()
-
-            # ── All-Time Win Leaders ─────────────────────────────────────────
-            st.subheader("📊 All-Time Win Leaders")
-            df_wins = pd.DataFrame([
-                {"Team": ts["name"], "Seasons": ts["seasons"],
-                 "Wins": ts["wins"], "Losses": ts["losses"],
-                 "Win%": ts["win_pct"], "Avg Finish": round(
-                     sum(ts["season_finishes"].values()) / len(ts["season_finishes"]), 1
-                 ) if ts["season_finishes"] else "—",
-                 "🏆": ts["championships"], "💀": ts["wooden_spoons"]}
-                for ts in team_stats_all.values()
-            ]).sort_values("Win%", ascending=False)
-            st.dataframe(df_wins.style.bar(subset=["Win%"], color=["#f8d7da", "#d4edda"], vmin=0, vmax=1),
-                         use_container_width=True, hide_index=True)
-
-            st.divider()
-
-            # ── Single Season Records ────────────────────────────────────────
-            st.subheader("📈 Single Season Records")
-
-            # Collect all-time bests from every season
-            all_season_highs: list[dict] = []
-            weekly_highs: list[dict]     = []
-
-            for season_yr, wd in sorted(all_seasons.items()):
-                if not wd:
-                    continue
-                wf      = tuple(sorted(wd.items()))
-                last_wk = max(wd.keys())
-                st_list = compute_standings(wf, last_wk)
-                if not st_list:
-                    continue
-
-                best  = st_list[0]
-                worst = st_list[-1]
-                most_pf_team = max(st_list, key=lambda s: s["points_for"])
-                least_pf_team = min(st_list, key=lambda s: s["points_for"])
-
-                all_season_highs.append({
-                    "Season":           season_yr,
-                    "🥇 Best Record":   f"{best['name']} ({best['wins']}-{best['losses']})",
-                    "💀 Worst Record":  f"{worst['name']} ({worst['wins']}-{worst['losses']})",
-                    "🔥 Most PF":       f"{most_pf_team['name']} ({most_pf_team['points_for']:.0f})",
-                    "🧊 Fewest PF":     f"{least_pf_team['name']} ({least_pf_team['points_for']:.0f})",
-                })
-
-                # Per-week high/low scores
-                for wk, wkd in wd.items():
-                    for m in wkd.get("matchups", []):
-                        for t in m.get("teams", []):
-                            if t.get("points", 0) > 0:
-                                weekly_highs.append({
-                                    "season": season_yr, "week": wk,
-                                    "team": t["name"], "score": t["points"],
-                                })
-
-            if all_season_highs:
-                st.dataframe(pd.DataFrame(all_season_highs), use_container_width=True, hide_index=True)
-
-            if weekly_highs:
-                st.divider()
-                wh_df = pd.DataFrame(weekly_highs)
-                tc1, tc2 = st.columns(2)
-                with tc1:
-                    st.markdown("**🔥 Highest Single-Week Scores (All-Time)**")
-                    top_scores = wh_df.sort_values("score", ascending=False).head(10)
-                    top_scores = top_scores.rename(columns={"season": "Season", "week": "Week",
-                                                            "team": "Team", "score": "Cat Wins"})
-                    st.dataframe(top_scores, use_container_width=True, hide_index=True)
-                with tc2:
-                    st.markdown("**🧊 Lowest Single-Week Scores (All-Time)**")
-                    bot_scores = wh_df.sort_values("score").head(10)
-                    bot_scores = bot_scores.rename(columns={"season": "Season", "week": "Week",
-                                                            "team": "Team", "score": "Cat Wins"})
-                    st.dataframe(bot_scores, use_container_width=True, hide_index=True)
-
-            st.divider()
-
-            # ── Rivalry Board ─────────────────────────────────────────────────
-            st.subheader("⚔️ Rivalry Board")
-            st.caption("Most-played matchups across all seasons")
-            rivalries = compute_rivalry_stats(all_seasons)
-            if rivalries:
-                rivalry_rows = []
-                for rv in rivalries[:15]:
-                    a_wins, b_wins = rv["a_wins"], rv["b_wins"]
-                    leader = rv["team_a"] if a_wins > b_wins else (rv["team_b"] if b_wins > a_wins else "Even")
-                    rivalry_rows.append({
-                        "Team A":    rv["team_a"],
-                        "Record":    f"{a_wins}–{b_wins}{'–' + str(rv['ties']) if rv['ties'] else ''}",
-                        "Team B":    rv["team_b"],
-                        "Games":     rv["games"],
-                        "Series Leader": f"{'👑 ' if leader != 'Even' else ''}{leader}",
-                    })
-                st.dataframe(pd.DataFrame(rivalry_rows), use_container_width=True, hide_index=True)
-
-                df_rv_plot = pd.DataFrame([{
-                    "Matchup": f"{rv['team_a']} vs\n{rv['team_b']}",
-                    "A Wins":  rv["a_wins"],
-                    "B Wins":  rv["b_wins"],
-                } for rv in rivalries[:10]])
-                fig_rv2 = px.bar(
-                    df_rv_plot, x="Matchup", y=["A Wins", "B Wins"],
-                    barmode="stack", title="Top 10 Rivalries — All-Time Record",
-                    color_discrete_map={"A Wins": "#1a9850", "B Wins": "#d73027"},
-                )
-                fig_rv2.update_layout(height=380, xaxis_tickangle=-20)
-                st.plotly_chart(fig_rv2, use_container_width=True)
-
-    # ── Awards Archive ────────────────────────────────────────────────────────
-    with inner_awards_arch:
-        completed = [(yr, sa) for yr, sa in sorted(season_awards_all.items(), reverse=True) if sa]
-        if not completed:
-            st.info("No completed seasons with award data yet.")
-        else:
-            for yr, sa in completed:
-                render_award_card(sa, yr)
-                st.write("")
-
-
-# ══════════════════════════════════════════════════════════════════════════════
-# TAB 5 — NEWS
+# TAB 4 — NEWS
 # ══════════════════════════════════════════════════════════════════════════════
 
 with tab_news:
@@ -2378,9 +1063,8 @@ with tab_news:
         trades_dir  = DATA_ROOT / str(selected_season) / "trades"
         trade_files = sorted(trades_dir.glob("*.json"), reverse=True) if trades_dir.exists() else []
 
-        # Load saved articles from disk
-        saved_articles: list[dict] = []
-        saved_timestamps: set[int] = set()
+        saved_articles:    list[dict] = []
+        saved_timestamps:  set[int]   = set()
         for f in trade_files:
             try:
                 with open(f) as fp:
@@ -2390,11 +1074,9 @@ with tab_news:
             except Exception:
                 pass
 
-        # Merge with any articles generated this session (not yet saved to disk)
         session_articles: list[dict] = st.session_state.get("generated_trade_articles", [])
         session_ts       = {int(a.get("transaction_timestamp", 0)) for a in session_articles}
 
-        # All trades across the season
         all_trades = [
             tx for wk_data in weeks_data.values()
             for tx in wk_data.get("transactions", [])
@@ -2406,7 +1088,6 @@ with tab_news:
 
         has_key = bool(_get_anthropic_key())
 
-        # ── Header ────────────────────────────────────────────────────────────
         st.markdown("""
         <div style="background:linear-gradient(135deg,#1f3a5f,#0a1628);color:white;
                     border-radius:10px;padding:16px 20px;margin-bottom:16px;">
@@ -2419,7 +1100,6 @@ with tab_news:
         </div>
         """, unsafe_allow_html=True)
 
-        # ── Generate unprocessed trades ────────────────────────────────────────
         if unprocessed:
             if not has_key:
                 st.warning(
@@ -2460,7 +1140,6 @@ with tab_news:
                                    "Commit the `data/{}/trades/` folder to persist them.".format(selected_season))
                         st.rerun()
 
-        # ── Display articles ───────────────────────────────────────────────────
         display_articles = saved_articles + session_articles
         display_articles.sort(key=lambda a: a.get("transaction_timestamp", 0), reverse=True)
 
@@ -2474,21 +1153,19 @@ with tab_news:
             </div>""", unsafe_allow_html=True)
 
         for article in display_articles:
-            team_a = article.get("team_a", "Team A")
-            team_b = article.get("team_b", "Team B")
-            grade_a = article.get("grade_team_a", "—")
-            grade_b = article.get("grade_team_b", "—")
+            team_a   = article.get("team_a", "Team A")
+            team_b   = article.get("team_b", "Team B")
+            grade_a  = article.get("grade_team_a", "—")
+            grade_b  = article.get("grade_team_b", "—")
             headline = article.get("headline", "Trade")
             gen_date = article.get("generated_at", "")[:10]
 
             with st.expander(f"📰 {headline}", expanded=True):
-                # Writer byline
-                art_writer  = article.get("writer_name", "Staff Reporter")
-                art_outlet  = article.get("writer_outlet", "BeerLeague Insider")
-                art_wkey    = article.get("writer_key", "")
+                art_writer = article.get("writer_name", "Staff Reporter")
+                art_outlet = article.get("writer_outlet", "BeerLeague Insider")
                 outlet_colors = {
-                    "ESPN":        ("#d00", "#fff"),
-                    "MLB Network": ("#002D72", "#fff"),
+                    "ESPN":         ("#d00", "#fff"),
+                    "MLB Network":  ("#002D72", "#fff"),
                     "The Athletic": ("#111", "#fff"),
                     "The Ringer":   ("#6600cc", "#fff"),
                 }
@@ -2503,12 +1180,9 @@ with tab_news:
                     f"</div>",
                     unsafe_allow_html=True,
                 )
-
-                # Article body
                 st.markdown(article.get("body", ""))
                 st.divider()
 
-                # Trade grades
                 gc1, gc2, gc3 = st.columns([2, 2, 1])
                 grade_color = lambda g: (
                     "#1a9850" if g and g[0] in "AB" else
@@ -2518,27 +1192,24 @@ with tab_news:
                     f"<div style='text-align:center;background:#f8f9fa;border-radius:8px;padding:12px'>"
                     f"<div style='font-size:0.8em;color:#888'>GRADE · {team_a}</div>"
                     f"<div style='font-size:2em;font-weight:800;color:{grade_color(grade_a)}'>{grade_a}</div>"
-                    f"</div>",
-                    unsafe_allow_html=True,
+                    f"</div>", unsafe_allow_html=True,
                 )
                 gc2.markdown(
                     f"<div style='text-align:center;background:#f8f9fa;border-radius:8px;padding:12px'>"
                     f"<div style='font-size:0.8em;color:#888'>GRADE · {team_b}</div>"
                     f"<div style='font-size:2em;font-weight:800;color:{grade_color(grade_b)}'>{grade_b}</div>"
-                    f"</div>",
-                    unsafe_allow_html=True,
+                    f"</div>", unsafe_allow_html=True,
                 )
                 if gen_date:
                     gc3.caption(f"Generated\n{gen_date}")
 
     # ── Weekly Recaps ─────────────────────────────────────────────────────────
     with inner_recaps:
-        articles_dir   = DATA_ROOT / str(selected_season) / "articles"
-        recap_files    = sorted(articles_dir.glob("week_*_recap.json"), reverse=True) \
-                         if articles_dir.exists() else []
-        stored_recaps  = st.session_state.get("recap_articles", [])
+        articles_dir  = DATA_ROOT / str(selected_season) / "articles"
+        recap_files   = sorted(articles_dir.glob("week_*_recap.json"), reverse=True) \
+                        if articles_dir.exists() else []
+        stored_recaps = st.session_state.get("recap_articles", [])
 
-        # Load from disk + session state, deduplicated by week
         disk_recaps: list[dict] = []
         for fp in recap_files:
             try:
@@ -2552,7 +1223,6 @@ with tab_news:
         ]
         all_recap_articles.sort(key=lambda a: a.get("week", 0), reverse=True)
 
-        # Masthead
         st.markdown("""
         <div style="background:linear-gradient(135deg,#1a3a5c 0%,#2d6a3f 100%);
              color:white;border-radius:12px;padding:18px 22px;margin-bottom:16px;">
@@ -2565,18 +1235,13 @@ with tab_news:
         </div>
         """, unsafe_allow_html=True)
 
-        # Generate section (only shows if weeks exist and no article yet)
         weeks_without_recap = [
             (wk, wd) for wk, wd in sorted(weeks_data.items(), reverse=True)
             if wd.get("matchups") and wk not in {a.get("week") for a in all_recap_articles}
         ]
-        has_key = bool(_get_anthropic_key())
 
         if weeks_without_recap and has_key:
-            st.info(
-                f"**{len(weeks_without_recap)} week(s)** have results but no column yet.",
-                icon="📝",
-            )
+            st.info(f"**{len(weeks_without_recap)} week(s)** have results but no column yet.", icon="📝")
             recap_pw = st.text_input(
                 "🔑 League passphrase", type="password", key="recaps_pw",
                 placeholder="Enter passphrase to unlock article generation",
@@ -2587,11 +1252,9 @@ with tab_news:
                 st.error("Incorrect passphrase.", icon="🚫")
 
             if recap_pw_ok:
-                wk_options = [f"Week {wk}" for wk, _ in weeks_without_recap]
-                selected_gen_wk_label = st.selectbox(
-                    "Generate column for:", wk_options, key="recap_gen_select"
-                )
-                selected_gen_wk = int(selected_gen_wk_label.split()[1])
+                wk_options           = [f"Week {wk}" for wk, _ in weeks_without_recap]
+                selected_gen_wk_label = st.selectbox("Generate column for:", wk_options, key="recap_gen_select")
+                selected_gen_wk       = int(selected_gen_wk_label.split()[1])
 
                 if st.button("✍️ Generate Weekly Column", type="primary", key="gen_recap_btn"):
                     wd_to_gen  = weeks_data[selected_gen_wk]
@@ -2601,7 +1264,7 @@ with tab_news:
                     with st.spinner("Writing this week's column…"):
                         new_ra = generate_weekly_recap_article(
                             wd_to_gen,
-                            standings_data if isinstance(standings_data, list) else [],
+                            standings,          # ← fixed: was standings_data (undefined)
                             is_playoff=is_playoff,
                             is_championship=is_champ,
                         )
@@ -2625,7 +1288,6 @@ with tab_news:
                 icon="🔑",
             )
 
-        # Display recap articles
         if not all_recap_articles:
             st.markdown("""
             <div style="text-align:center;padding:40px 20px;color:#aaa">
@@ -2655,7 +1317,6 @@ with tab_news:
                 oc_bg, oc_fg = outlet_colors.get(ra_outlet, ("#555", "#fff"))
 
                 with st.expander(f"📝 {week_badge}: {headline}", expanded=(ra is all_recap_articles[0])):
-                    # Byline
                     st.markdown(
                         f"<div style='margin-bottom:10px'>"
                         f"<span style='font-weight:700;font-size:0.95em'>{ra_writer}</span>"
@@ -2686,7 +1347,6 @@ with tab_news:
                     st.markdown(wd["recap_text"])
                     if wd.get("generated_at"):
                         st.caption(f"Generated {wd['generated_at'][:10]}")
-                    # Weekly awards for archived weeks
                     week_badges = compute_weekly_awards(wd, weeks_data)
                     if week_badges:
                         st.divider()
