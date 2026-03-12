@@ -245,6 +245,138 @@ def compute_luck_ratings(weeks_data: dict[int, dict]) -> dict[str, float]:
 
 
 # ══════════════════════════════════════════════════════════════════════════════
+# POWER RANKINGS
+# ══════════════════════════════════════════════════════════════════════════════
+
+@st.cache_data(ttl=60)
+def compute_power_rankings(weeks_data_frozen: tuple, standings_frozen: tuple) -> list[dict]:
+    """
+    Weighted power ranking score:
+      40% recent form (last 3 weeks W%)
+      30% season win%
+      20% points-for percentile
+      10% strength of schedule (avg opponent win%)
+    Returns list sorted by pr_rank ascending, each entry includes rank_diff vs standings rank.
+    """
+    weeks_data = dict(weeks_data_frozen)
+    standings  = list(standings_frozen)
+    if not weeks_data or not standings:
+        return []
+
+    all_weeks = sorted(weeks_data.keys())
+
+    # ── Recent form (last 3 weeks) ────────────────────────────────────────────
+    recent_weeks = all_weeks[-3:] if len(all_weeks) >= 3 else all_weeks
+    recent_rec: dict[str, dict] = {}
+    for wk in recent_weeks:
+        for m in weeks_data[wk].get("matchups", []):
+            if len(m["teams"]) < 2:
+                continue
+            t1, t2 = m["teams"][0], m["teams"][1]
+            for t in (t1, t2):
+                recent_rec.setdefault(t["team_key"], {"name": t["name"], "wins": 0, "games": 0})
+                recent_rec[t["team_key"]]["games"] += 1
+            if m.get("winner_key") == t1["team_key"]:
+                recent_rec[t1["team_key"]]["wins"] += 1
+            elif m.get("winner_key") == t2["team_key"]:
+                recent_rec[t2["team_key"]]["wins"] += 1
+
+    # ── Win % map ─────────────────────────────────────────────────────────────
+    win_pct_map: dict[str, float] = {}
+    for s in standings:
+        total = s["wins"] + s["losses"]
+        win_pct_map[s["team_key"]] = s["wins"] / total if total else 0.0
+
+    # ── Strength of Schedule ──────────────────────────────────────────────────
+    team_opp: dict[str, list[str]] = {}
+    for wk in all_weeks:
+        for m in weeks_data[wk].get("matchups", []):
+            if len(m["teams"]) < 2:
+                continue
+            t1k, t2k = m["teams"][0]["team_key"], m["teams"][1]["team_key"]
+            team_opp.setdefault(t1k, []).append(t2k)
+            team_opp.setdefault(t2k, []).append(t1k)
+
+    sos_map: dict[str, float] = {
+        tkey: (sum(win_pct_map.get(k, 0) for k in opps) / len(opps) if opps else 0.0)
+        for tkey, opps in team_opp.items()
+    }
+    max_sos = max(sos_map.values(), default=1) or 1
+
+    # ── PF percentile ─────────────────────────────────────────────────────────
+    pf_vals  = [s["points_for"] for s in standings]
+    min_pf   = min(pf_vals, default=0)
+    pf_range = (max(pf_vals, default=1) - min_pf) or 1
+
+    # ── Build ranked list ─────────────────────────────────────────────────────
+    ranked = []
+    for s in standings:
+        tkey  = s["team_key"]
+        total = s["wins"] + s["losses"]
+        rec   = recent_rec.get(tkey, {})
+
+        rf_score  = (rec["wins"] / rec["games"]) if rec.get("games") else win_pct_map.get(tkey, 0)
+        wp_score  = win_pct_map.get(tkey, 0)
+        pf_score  = (s["points_for"] - min_pf) / pf_range
+        sos_score = sos_map.get(tkey, 0) / max_sos
+
+        pr = rf_score * 0.40 + wp_score * 0.30 + pf_score * 0.20 + sos_score * 0.10
+
+        rw = rec.get("wins", 0)
+        rg = rec.get("games", 0)
+        ranked.append({
+            **s,
+            "pr_score":    round(pr, 4),
+            "recent_form": f"{rw}-{rg - rw}" if rg else "—",
+            "sos":         round(sos_map.get(tkey, 0), 3),
+        })
+
+    ranked.sort(key=lambda x: x["pr_score"], reverse=True)
+    for i, r in enumerate(ranked):
+        r["pr_rank"]   = i + 1
+        r["rank_diff"] = r["rank"] - r["pr_rank"]   # +N = rising, -N = falling
+
+    return ranked
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# RIVALRY STATS
+# ══════════════════════════════════════════════════════════════════════════════
+
+def compute_rivalry_stats(all_seasons: dict) -> list[dict]:
+    """
+    Aggregate all-time head-to-head records for every matchup pair.
+    Returns list sorted by games played desc.
+    """
+    rivalries: dict[tuple, dict] = {}
+    for weeks_data in all_seasons.values():
+        for wd in weeks_data.values():
+            for m in wd.get("matchups", []):
+                if len(m["teams"]) < 2:
+                    continue
+                t1, t2 = m["teams"][0], m["teams"][1]
+                pair = tuple(sorted([t1["name"], t2["name"]]))
+                if pair not in rivalries:
+                    rivalries[pair] = {"team_a": pair[0], "team_b": pair[1],
+                                       "games": 0, "a_wins": 0, "b_wins": 0, "ties": 0}
+                r = rivalries[pair]
+                r["games"] += 1
+                if m.get("is_tied"):
+                    r["ties"] += 1
+                elif m.get("winner_key") == t1["team_key"]:
+                    if t1["name"] == pair[0]:
+                        r["a_wins"] += 1
+                    else:
+                        r["b_wins"] += 1
+                elif m.get("winner_key") == t2["team_key"]:
+                    if t2["name"] == pair[0]:
+                        r["a_wins"] += 1
+                    else:
+                        r["b_wins"] += 1
+    return sorted(rivalries.values(), key=lambda x: x["games"], reverse=True)
+
+
+# ══════════════════════════════════════════════════════════════════════════════
 # SEASON AWARDS
 # ══════════════════════════════════════════════════════════════════════════════
 
@@ -708,18 +840,21 @@ with tab_home:
     with col_pr:
         st.markdown('<div class="panel-box">', unsafe_allow_html=True)
         st.markdown('<div class="section-header">⚡ Power Rankings</div>', unsafe_allow_html=True)
-        # Simple power ranking: wins * 3 + PF weighting (full algo in Phase 4)
-        if standings:
-            max_pf = max(s["points_for"] for s in standings) or 1
-            pr_scores = sorted(standings, key=lambda s: s["wins"] * 3 + (s["points_for"] / max_pf) * 5, reverse=True)
-            for i, s in enumerate(pr_scores[:7], 1):
-                # Compare to standings rank for movement
-                rank_diff = s["rank"] - i
-                arrow = f"<span style='color:#1a9850'>↑{rank_diff}</span>" if rank_diff > 0 else (
-                        f"<span style='color:#d73027'>↓{abs(rank_diff)}</span>" if rank_diff < 0 else
-                        "<span style='color:#888'>—</span>")
-                st.markdown(f"**{i}.** {s['name']} {arrow}", unsafe_allow_html=True)
-        st.caption("_Full algorithm coming in Phase 4_")
+        pr_list = compute_power_rankings(_weeks_frozen, tuple(standings))
+        if pr_list:
+            for r in pr_list[:7]:
+                diff = r["rank_diff"]
+                arrow = (f"<span style='color:#1a9850;font-size:0.8em'>▲{diff}</span>" if diff > 0 else
+                         f"<span style='color:#d73027;font-size:0.8em'>▼{abs(diff)}</span>" if diff < 0 else
+                         "<span style='color:#aaa;font-size:0.8em'>—</span>")
+                form_color = "#1a9850" if r["recent_form"].startswith(("3-", "2-")) else ("#d73027" if r["recent_form"].endswith(("-3", "-2")) else "#888")
+                st.markdown(
+                    f"**{r['pr_rank']}.** {r['name']} {arrow} "
+                    f"<span style='color:{form_color};font-size:0.8em'>({r['recent_form']} L3)</span>",
+                    unsafe_allow_html=True,
+                )
+        else:
+            st.caption("Rankings available once games are played.")
         st.markdown('</div>', unsafe_allow_html=True)
 
     with col_news:
@@ -1002,6 +1137,46 @@ with tab_season:
             st.dataframe(df_display.style.bar(subset=["Win%"], color=["#d73027", "#1a9850"], vmin=0, vmax=1),
                          use_container_width=True, hide_index=True)
 
+            st.divider()
+            st.subheader("⚡ Power Rankings")
+            st.caption("Weighted: 40% recent form (L3) · 30% season win% · 20% points-for · 10% strength of schedule")
+            pr_full = compute_power_rankings(_weeks_frozen, tuple(standings))
+            if pr_full:
+                pr_rows = []
+                for r in pr_full:
+                    diff = r["rank_diff"]
+                    move = f"▲{diff}" if diff > 0 else (f"▼{abs(diff)}" if diff < 0 else "—")
+                    pr_rows.append({
+                        "PR": r["pr_rank"],
+                        "Team": r["name"],
+                        "Move": move,
+                        "L3": r["recent_form"],
+                        "W": r["wins"],
+                        "L": r["losses"],
+                        "Win%": round(r["wins"] / max(r["wins"] + r["losses"], 1), 3),
+                        "PF": round(r["points_for"], 1),
+                        "SOS": r["sos"],
+                        "PR Score": r["pr_score"],
+                    })
+                df_pr = pd.DataFrame(pr_rows)
+                st.dataframe(
+                    df_pr.style.bar(subset=["PR Score"], color=["#d1ecf1", "#0c5460"], vmin=0, vmax=1),
+                    use_container_width=True, hide_index=True,
+                )
+
+                # PR vs Standings rank scatter
+                fig_pr = px.scatter(
+                    df_pr, x="W", y="PR Score", text="Team",
+                    color="PR Score", color_continuous_scale="RdYlGn",
+                    size=[14] * len(df_pr),
+                    title="Power Score vs Wins (teams above the line are outperforming their record)",
+                )
+                fig_pr.update_traces(textposition="top center", textfont_size=9)
+                fig_pr.update_layout(height=420, coloraxis_showscale=False)
+                st.plotly_chart(fig_pr, use_container_width=True)
+            else:
+                st.info("Power rankings available once games are played.")
+
             # Season awards mid-season leaders
             if not season_complete:
                 st.divider()
@@ -1197,46 +1372,166 @@ with tab_alltime:
         if not team_stats_all:
             st.info("Not enough data yet.")
         else:
-            st.subheader("🏆 Championships")
-            champs = sorted([(ts["name"], ts["championships"], ts["season_finishes"])
-                             for ts in team_stats_all.values() if ts["championships"] > 0],
-                            key=lambda x: x[1], reverse=True)
-            for name, count, finishes in champs:
-                champ_years = [str(yr) for yr, r in sorted(finishes.items()) if r == 1]
-                st.markdown(f"{'🥇' * count} **{name}** — {', '.join(champ_years)}")
+            # ── Championship Banner ──────────────────────────────────────────
+            st.subheader("🏆 Championship Rings")
+            champs = sorted(
+                [(ts["name"], ts["championships"], ts["season_finishes"])
+                 for ts in team_stats_all.values() if ts["championships"] > 0],
+                key=lambda x: x[1], reverse=True,
+            )
+            if champs:
+                max_rings = champs[0][1]
+                for name, count, finishes in champs:
+                    champ_years = [str(yr) for yr, r in sorted(finishes.items()) if r == 1]
+                    bar_fill    = int((count / max_rings) * 20)
+                    st.markdown(
+                        f"{'🏆' * count}&nbsp; **{name}** "
+                        f"<span style='color:#888;font-size:0.85em'>({', '.join(champ_years)})</span>",
+                        unsafe_allow_html=True,
+                    )
+            else:
+                st.info("No championship data yet.")
+
+            # ── Championship count chart ─────────────────────────────────────
+            df_rings = pd.DataFrame([
+                {"Team": ts["name"], "Championships": ts["championships"],
+                 "Finals": ts["finals"], "Wooden Spoons": ts["wooden_spoons"]}
+                for ts in team_stats_all.values()
+            ]).sort_values("Championships", ascending=False)
+            if not df_rings.empty:
+                fig_rings = px.bar(
+                    df_rings.sort_values("Championships", ascending=True),
+                    x="Championships", y="Team", orientation="h",
+                    color="Championships", color_continuous_scale=[[0, "#f0c040"], [1, "#c8960c"]],
+                    text="Championships", title="All-Time Championships",
+                )
+                fig_rings.update_traces(textposition="outside")
+                fig_rings.update_layout(coloraxis_showscale=False, height=max(300, len(df_rings) * 35))
+                st.plotly_chart(fig_rings, use_container_width=True)
 
             st.divider()
+
+            # ── All-Time Win Leaders ─────────────────────────────────────────
             st.subheader("📊 All-Time Win Leaders")
             df_wins = pd.DataFrame([
-                {"Team": ts["name"], "Wins": ts["wins"], "Losses": ts["losses"],
-                 "Win%": ts["win_pct"], "🏆": ts["championships"]}
+                {"Team": ts["name"], "Seasons": ts["seasons"],
+                 "Wins": ts["wins"], "Losses": ts["losses"],
+                 "Win%": ts["win_pct"], "Avg Finish": round(
+                     sum(ts["season_finishes"].values()) / len(ts["season_finishes"]), 1
+                 ) if ts["season_finishes"] else "—",
+                 "🏆": ts["championships"], "💀": ts["wooden_spoons"]}
                 for ts in team_stats_all.values()
             ]).sort_values("Win%", ascending=False)
-            st.dataframe(df_wins, use_container_width=True, hide_index=True)
+            st.dataframe(df_wins.style.bar(subset=["Win%"], color=["#f8d7da", "#d4edda"], vmin=0, vmax=1),
+                         use_container_width=True, hide_index=True)
 
             st.divider()
+
+            # ── Single Season Records ────────────────────────────────────────
             st.subheader("📈 Single Season Records")
-            records_data = []
-            for season_yr, wd in all_seasons.items():
+
+            # Collect all-time bests from every season
+            all_season_highs: list[dict] = []
+            weekly_highs: list[dict]     = []
+
+            for season_yr, wd in sorted(all_seasons.items()):
                 if not wd:
                     continue
-                last = max(wd.keys())
-                wf   = tuple(sorted(wd.items()))
-                st_list = compute_standings(wf, last)
-                if st_list:
-                    best = st_list[0]
-                    worst = st_list[-1]
-                    records_data.append({
-                        "Season": season_yr,
-                        "Best Record Team": best["name"],
-                        "Best W-L": f"{best['wins']}-{best['losses']}",
-                        "Worst Record Team": worst["name"],
-                        "Worst W-L": f"{worst['wins']}-{worst['losses']}",
-                        "Most PF Team": max(st_list, key=lambda s: s["points_for"])["name"],
-                        "Most PF": round(max(st_list, key=lambda s: s["points_for"])["points_for"], 1),
+                wf      = tuple(sorted(wd.items()))
+                last_wk = max(wd.keys())
+                st_list = compute_standings(wf, last_wk)
+                if not st_list:
+                    continue
+
+                best  = st_list[0]
+                worst = st_list[-1]
+                most_pf_team = max(st_list, key=lambda s: s["points_for"])
+                least_pf_team = min(st_list, key=lambda s: s["points_for"])
+
+                all_season_highs.append({
+                    "Season":           season_yr,
+                    "🥇 Best Record":   f"{best['name']} ({best['wins']}-{best['losses']})",
+                    "💀 Worst Record":  f"{worst['name']} ({worst['wins']}-{worst['losses']})",
+                    "🔥 Most PF":       f"{most_pf_team['name']} ({most_pf_team['points_for']:.0f})",
+                    "🧊 Fewest PF":     f"{least_pf_team['name']} ({least_pf_team['points_for']:.0f})",
+                })
+
+                # Per-week high/low scores
+                for wk, wkd in wd.items():
+                    for m in wkd.get("matchups", []):
+                        for t in m.get("teams", []):
+                            if t.get("points", 0) > 0:
+                                weekly_highs.append({
+                                    "season": season_yr, "week": wk,
+                                    "team": t["name"], "score": t["points"],
+                                })
+
+            if all_season_highs:
+                st.dataframe(pd.DataFrame(all_season_highs), use_container_width=True, hide_index=True)
+
+            if weekly_highs:
+                st.divider()
+                wh_df = pd.DataFrame(weekly_highs)
+                tc1, tc2 = st.columns(2)
+                with tc1:
+                    st.markdown("**🔥 Highest Single-Week Scores (All-Time)**")
+                    top_scores = wh_df.sort_values("score", ascending=False).head(10)
+                    top_scores = top_scores.rename(columns={"season": "Season", "week": "Week",
+                                                            "team": "Team", "score": "Cat Wins"})
+                    st.dataframe(top_scores, use_container_width=True, hide_index=True)
+                with tc2:
+                    st.markdown("**🧊 Lowest Single-Week Scores (All-Time)**")
+                    bot_scores = wh_df.sort_values("score").head(10)
+                    bot_scores = bot_scores.rename(columns={"season": "Season", "week": "Week",
+                                                            "team": "Team", "score": "Cat Wins"})
+                    st.dataframe(bot_scores, use_container_width=True, hide_index=True)
+
+            st.divider()
+
+            # ── Rivalry Board ─────────────────────────────────────────────────
+            st.subheader("⚔️ Rivalry Board")
+            st.caption("Most-played matchups across all seasons")
+            rivalries = compute_rivalry_stats(all_seasons)
+            if rivalries:
+                rivalry_rows = []
+                for rv in rivalries[:15]:
+                    a_wins, b_wins = rv["a_wins"], rv["b_wins"]
+                    leader = rv["team_a"] if a_wins > b_wins else (rv["team_b"] if b_wins > a_wins else "Even")
+                    rivalry_rows.append({
+                        "Team A":    rv["team_a"],
+                        "Record":    f"{a_wins}–{b_wins}{'–' + str(rv['ties']) if rv['ties'] else ''}",
+                        "Team B":    rv["team_b"],
+                        "Games":     rv["games"],
+                        "Series Leader": f"{'👑 ' if leader != 'Even' else ''}{leader}",
                     })
-            if records_data:
-                st.dataframe(pd.DataFrame(records_data), use_container_width=True, hide_index=True)
+                st.dataframe(pd.DataFrame(rivalry_rows), use_container_width=True, hide_index=True)
+
+                # Top rivalry bar chart
+                top_rv = rivalries[:10]
+                fig_rv = px.bar(
+                    pd.DataFrame([{
+                        "Matchup": f"{rv['team_a']} vs {rv['team_b']}",
+                        rv["team_a"]: rv["a_wins"],
+                        rv["team_b"]: rv["b_wins"],
+                    } for rv in top_rv]),
+                    x="Matchup",
+                    y=[rv["team_a"] for rv in top_rv[:1]] + [rv["team_b"] for rv in top_rv[:1]],
+                    title="Top Rivalries — Head-to-Head Wins",
+                    barmode="group",
+                )
+                # Simpler: just show games played
+                df_rv_plot = pd.DataFrame([{
+                    "Matchup": f"{rv['team_a']} vs\n{rv['team_b']}",
+                    "A Wins":  rv["a_wins"],
+                    "B Wins":  rv["b_wins"],
+                } for rv in rivalries[:10]])
+                fig_rv2 = px.bar(
+                    df_rv_plot, x="Matchup", y=["A Wins", "B Wins"],
+                    barmode="stack", title="Top 10 Rivalries — All-Time Record",
+                    color_discrete_map={"A Wins": "#1a9850", "B Wins": "#d73027"},
+                )
+                fig_rv2.update_layout(height=380, xaxis_tickangle=-20)
+                st.plotly_chart(fig_rv2, use_container_width=True)
 
     # ── Awards Archive ────────────────────────────────────────────────────────
     with inner_awards_arch:
