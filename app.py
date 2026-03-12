@@ -72,7 +72,36 @@ st.markdown("""
 .panel-box {
     background: white; border: 1px solid #e8e8e8;
     border-radius: 10px; padding: 14px; height: 100%;
+    transition: box-shadow 0.2s;
 }
+.panel-box:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.09); }
+.score-row:hover { background: #eef2f7; transition: background 0.15s; }
+.stat-chip {
+    display: inline-block; background: #f0f4f8; border-radius: 6px;
+    padding: 3px 9px; font-size: 0.8em; color: #445; margin: 2px 2px 2px 0;
+    font-weight: 500;
+}
+.preseason-banner {
+    background: linear-gradient(135deg, #1f3a5f 0%, #0d2137 100%);
+    color: white; border-radius: 14px; padding: 32px 36px; text-align: center;
+    margin-bottom: 20px;
+}
+.preseason-title { font-size: 1.8em; font-weight: 800; margin-bottom: 6px; }
+.preseason-sub   { font-size: 1em; opacity: 0.75; }
+.draft-pick-row {
+    display: flex; align-items: center; padding: 6px 10px;
+    border-radius: 7px; margin: 3px 0; background: #f8f9fa;
+    font-size: 0.92em;
+}
+.draft-pick-num  { font-weight: 800; color: #1f3a5f; width: 36px; }
+.draft-pick-name { flex: 1; font-weight: 600; }
+.draft-pick-note { font-size: 0.8em; color: #888; }
+.footer-bar {
+    text-align: center; color: #aaa; font-size: 0.78em;
+    padding: 18px 0 6px 0; border-top: 1px solid #f0f0f0; margin-top: 24px;
+}
+/* Hide default Streamlit "Made with Streamlit" footer */
+footer { visibility: hidden; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -939,7 +968,58 @@ with st.sidebar:
     weeks_data = load_all_weeks(selected_season)
 
     if not weeks_data:
-        st.warning(f"No data found for {selected_season}.")
+        # ── Pre-season dashboard ───────────────────────────────────────────────
+        draft_file = DATA_ROOT / str(selected_season) / "draft_order.json"
+        if draft_file.exists():
+            try:
+                with open(draft_file) as f:
+                    draft_data = json.load(f)
+            except Exception:
+                draft_data = {}
+
+            draft_date_str = draft_data.get("draft_date", "")
+            try:
+                draft_dt   = datetime.strptime(draft_date_str, "%Y-%m-%d")
+                days_until  = (draft_dt.date() - datetime.today().date()).days
+                if days_until > 0:
+                    countdown = f"Draft in {days_until} day{'s' if days_until != 1 else ''} · {draft_date_str}"
+                elif days_until == 0:
+                    countdown = "🚨 Draft Day!"
+                else:
+                    countdown = f"Drafted {abs(days_until)} day{'s' if abs(days_until) != 1 else ''} ago · Season starting soon"
+            except Exception:
+                countdown = draft_date_str or "Draft date TBD"
+
+            st.markdown(f"""
+            <div class="preseason-banner">
+                <div class="preseason-title">⚾ {selected_season} Season</div>
+                <div class="preseason-sub">Pre-Season · {countdown}</div>
+            </div>
+            """, unsafe_allow_html=True)
+
+            draft_order = draft_data.get("draft_order", [])
+            if draft_order:
+                st.markdown("### 📋 Draft Order")
+                st.caption(f"{draft_data.get('draft_format', 'Snake draft').replace('_',' ').title()} — {draft_data.get('notes','')}")
+                n = len(draft_order)
+                cols = st.columns(2)
+                for pick_info in draft_order:
+                    pick = pick_info["pick"]
+                    manager = pick_info["manager"]
+                    # Snake round labels
+                    round_num = ((pick - 1) // n) + 1
+                    with cols[(pick - 1) % 2]:
+                        medal = "🥇" if pick == 1 else ("🥈" if pick == 2 else ("🥉" if pick == 3 else "")  )
+                        st.markdown(
+                            f'<div class="draft-pick-row">'
+                            f'<span class="draft-pick-num">#{pick}</span>'
+                            f'<span class="draft-pick-name">{manager}</span>'
+                            f'<span class="draft-pick-note">{medal}</span>'
+                            f'</div>',
+                            unsafe_allow_html=True,
+                        )
+        else:
+            st.warning(f"No data found for {selected_season}.")
         st.stop()
 
     available_weeks = sorted(weeks_data.keys(), reverse=True)
@@ -1524,9 +1604,7 @@ with tab_season:
 # ══════════════════════════════════════════════════════════════════════════════
 
 with tab_alltime:
-    alltime = compute_alltime_stats(tuple(sorted(
-        {s: tuple(sorted(wd.items())) for s, wd in all_seasons.items()}.items()
-    )))
+    alltime = compute_alltime_stats(_alltime_frozen)
     team_stats_all    = alltime.get("teams", {})
     season_awards_all = alltime.get("season_awards", {})
 
@@ -1746,20 +1824,6 @@ with tab_alltime:
                     })
                 st.dataframe(pd.DataFrame(rivalry_rows), use_container_width=True, hide_index=True)
 
-                # Top rivalry bar chart
-                top_rv = rivalries[:10]
-                fig_rv = px.bar(
-                    pd.DataFrame([{
-                        "Matchup": f"{rv['team_a']} vs {rv['team_b']}",
-                        rv["team_a"]: rv["a_wins"],
-                        rv["team_b"]: rv["b_wins"],
-                    } for rv in top_rv]),
-                    x="Matchup",
-                    y=[rv["team_a"] for rv in top_rv[:1]] + [rv["team_b"] for rv in top_rv[:1]],
-                    title="Top Rivalries — Head-to-Head Wins",
-                    barmode="group",
-                )
-                # Simpler: just show games played
                 df_rv_plot = pd.DataFrame([{
                     "Matchup": f"{rv['team_a']} vs\n{rv['team_b']}",
                     "A Wins":  rv["a_wins"],
@@ -1946,3 +2010,19 @@ with tab_news:
                     if week_badges:
                         st.divider()
                         render_weekly_award_badges(week_badges)
+
+
+# ── Footer ────────────────────────────────────────────────────────────────────
+_last_updated = max(
+    (weeks_data[w].get("generated_at", "") for w in weeks_data),
+    default="",
+)
+_last_upd_str = _last_updated[:10] if _last_updated else "—"
+st.markdown(
+    f'<div class="footer-bar">'
+    f'⚾ MillerLite® BeerLeagueBaseball &nbsp;·&nbsp; {selected_season} Season &nbsp;·&nbsp; '
+    f'Data updated {_last_upd_str} &nbsp;·&nbsp; '
+    f'Built with Streamlit &amp; Claude'
+    f'</div>',
+    unsafe_allow_html=True,
+)
