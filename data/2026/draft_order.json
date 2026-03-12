@@ -1,0 +1,24 @@
+{
+  "season": 2026,
+  "league_key": "469.l.10470",
+  "draft_date": "2026-03-22",
+  "draft_type": "snake",
+  "draft_format": "live_online_yahoo",
+  "draft_order": [
+    {"pick": 1,  "manager": "Brady"},
+    {"pick": 2,  "manager": "James"},
+    {"pick": 3,  "manager": "Bailey"},
+    {"pick": 4,  "manager": "Dylan"},
+    {"pick": 5,  "manager": "Zach J"},
+    {"pick": 6,  "manager": "Zach H"},
+    {"pick": 7,  "manager": "Andrew"},
+    {"pick": 8,  "manager": "Justin"},
+    {"pick": 9,  "manager": "Gavin"},
+    {"pick": 10, "manager": "Bob"},
+    {"pick": 11, "manager": "Alton"},
+    {"pick": 12, "manager": "Zach W"},
+    {"pick": 13, "manager": "Noah"},
+    {"pick": 14, "manager": "Scott"}
+  ],
+  "notes": "Live online snake draft via Yahoo. March 22, 2026."
+}
