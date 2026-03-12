@@ -23,14 +23,13 @@ on:
         default: ""
 
 permissions:
-  contents: write   # needed to commit data files back to the repo
+  contents: write
 
 jobs:
   # ── Trade detection (every 4 hours) ────────────────────────────────────────
   detect-trades:
     name: Detect & write trade articles
     runs-on: ubuntu-latest
-    # Only run on the 4-hour schedule OR manual dispatch with mode=trades/full
     if: |
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'schedule' && github.event.schedule == '0 */4 * 3-11 *')
@@ -38,6 +37,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -68,9 +69,8 @@ jobs:
           git config user.name  "BeerLeague Bot"
           git config user.email "beerleague-bot@users.noreply.github.com"
           git add data/
-          # Only commit if there are staged changes
           git diff --cached --quiet || git commit -m "chore: auto-update trade articles [skip ci]"
-          git push
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
 
   # ── Weekly recap (every Monday) ─────────────────────────────────────────────
   weekly-recap:
@@ -83,6 +83,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -115,4 +117,4 @@ jobs:
           git config user.email "beerleague-bot@users.noreply.github.com"
           git add data/
           git diff --cached --quiet || git commit -m "chore: auto-update week recap [skip ci]"
-          git push
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
