@@ -130,6 +130,22 @@ def _call_claude(prompt: str, max_tokens: int = 1024) -> str:
     return raw
 
 
+def _safe_json_parse(raw: str) -> dict:
+    """
+    Attempt to parse JSON from Claude's response.
+    Falls back to extracting the first {...} block if direct parse fails —
+    handles cases where Claude adds extra text before or after the JSON.
+    """
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        # Try extracting just the first complete JSON object
+        match = re.search(r"\{.*\}", raw, re.DOTALL)
+        if match:
+            return json.loads(match.group())
+        raise
+
+
 # ── Trade article generation ──────────────────────────────────────────────────
 
 def generate_trade_article(trade_tx: dict, standings: list[dict]) -> dict | None:
@@ -185,7 +201,7 @@ Respond ONLY with valid JSON — no markdown fences:
 
     try:
         raw     = _call_claude(prompt, max_tokens=1024)
-        article = json.loads(raw)
+        article = _safe_json_parse(raw)
         article["generated_at"]          = datetime.now().isoformat()
         article["transaction_timestamp"] = trade_tx.get("timestamp", 0)
         article["writer_key"]            = writer_key
@@ -279,7 +295,7 @@ Respond ONLY with valid JSON — no markdown fences:
 
     try:
         raw     = _call_claude(prompt, max_tokens=1500)
-        article = json.loads(raw)
+        article = _safe_json_parse(raw)
         article["generated_at"]    = datetime.now().isoformat()
         article["week"]            = week_num
         article["writer_key"]      = writer_key
