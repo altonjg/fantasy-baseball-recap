@@ -448,12 +448,14 @@ def compute_alltime_stats(all_seasons_frozen: tuple) -> dict:
     team_stats:   dict[str, dict] = {}
     season_awards_map: dict[int, dict] = {}
 
-    for season, weeks_data in sorted(all_seasons.items()):
-        if not weeks_data:
+    for season, weeks_data_frozen in sorted(all_seasons.items()):
+        if not weeks_data_frozen:
             continue
-        last_wk  = max(weeks_data.keys())
-        wf       = tuple(sorted(weeks_data.items()))
-        final_st = compute_standings(wf, last_wk)
+        # weeks_data_frozen is a tuple of (week_int, week_dict) pairs — convert back to dict
+        weeks_data = dict(weeks_data_frozen)
+        wf         = weeks_data_frozen  # already sorted tuple, usable by compute_standings
+        last_wk    = max(weeks_data.keys())
+        final_st   = compute_standings(wf, last_wk)
 
         # Season awards
         sa = compute_season_awards(weeks_data)
