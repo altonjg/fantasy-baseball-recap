@@ -9,6 +9,7 @@
           "name": "Albuquerque Bombers",
           "team_key": "458.l.25686.t.1",
           "manager": "Zach",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/f8c6fb771026d77f358e549f60074d0af11e9ed22d2d40d7685d5fb5b530b13e.png",
           "points": 4.0,
           "category_stats": {
             "H/AB": "62/237",
@@ -29,6 +30,7 @@
           "name": "Wonder Wharf Wonderdogs",
           "team_key": "458.l.25686.t.14",
           "manager": "Justin",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/a5c1d74ab1ab63f656a9fb0386e97b6ef14d925335c308c66ba2963a1847758d.jpg",
           "points": 5.0,
           "category_stats": {
             "H/AB": "55/202",
@@ -101,6 +103,7 @@
           "name": "Abbotsford-Colby Twins",
           "team_key": "458.l.25686.t.2",
           "manager": "Dylan",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/1e3ff5f937d5cf5c66d8a78b44dd66603689a7bdcd0101d8d7921ec34b20dafa.png",
           "points": 1.0,
           "category_stats": {
             "H/AB": "62/208",
@@ -121,6 +124,7 @@
           "name": "Hiroshima Radiation",
           "team_key": "458.l.25686.t.10",
           "manager": "Shane",
+          "logo_url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_4_h.png",
           "points": 9.0,
           "category_stats": {
             "H/AB": "51/209",
@@ -193,6 +197,7 @@
           "name": "BaseballPro77",
           "team_key": "458.l.25686.t.4",
           "manager": "Zach",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/33282009271_0a5042202c.jpg",
           "points": 6.0,
           "category_stats": {
             "H/AB": "54/212",
@@ -213,6 +218,7 @@
           "name": "Benchwarmers",
           "team_key": "458.l.25686.t.5",
           "manager": "Scott",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3b72ff7dd841ca12197296bc032a16603fa79168dddd5df7af41d458c34df9bd.jpg",
           "points": 4.0,
           "category_stats": {
             "H/AB": "51/179",
@@ -285,6 +291,7 @@
           "name": "Buttville Skidmarks",
           "team_key": "458.l.25686.t.6",
           "manager": "Gavin",
+          "logo_url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_8.png",
           "points": 7.0,
           "category_stats": {
             "H/AB": "46/180",
@@ -305,6 +312,7 @@
           "name": "Wisconsin Rapids Reapers",
           "team_key": "458.l.25686.t.8",
           "manager": "Bailey",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/77cadcf6794004dac592d2fff0c7ccbbfb69064929661a14e233f137cd1425d3.jpg",
           "points": 2.0,
           "category_stats": {
             "H/AB": "43/189",
@@ -377,6 +385,7 @@
           "name": "Canberra Wombats",
           "team_key": "458.l.25686.t.7",
           "manager": "Noah",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/cfbc80ba38c8c7bd4e5c314d87348d041b0c755f999ff4489897d978f7961618.png",
           "points": 3.0,
           "category_stats": {
             "H/AB": "43/187",
@@ -397,6 +406,7 @@
           "name": "Sugar Land Skeeters",
           "team_key": "458.l.25686.t.13",
           "manager": "Alton Gilbert",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/a4690f59483b3a7819515779958c2ed82e754f8270b200ad5ce6b2e017711884.jpg",
           "points": 7.0,
           "category_stats": {
             "H/AB": "65/237",
@@ -469,6 +479,7 @@
           "name": "North Correa",
           "team_key": "458.l.25686.t.11",
           "manager": "Brady",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/d1a0552506243a6fe80463c70f554850aefb67d29aef3ae6a56abc67078c9d37.jpg",
           "points": 1.0,
           "category_stats": {
             "H/AB": "46/183",
@@ -489,6 +500,7 @@
           "name": "Riverside Roughnecks",
           "team_key": "458.l.25686.t.12",
           "manager": "Zach",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/4efb06d6fb742e3c0b95e024b2d4ce139c1ca3bf9ea361da488d02aaed36bc47.jpg",
           "points": 9.0,
           "category_stats": {
             "H/AB": "53/213",
@@ -1151,8 +1163,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-03-12T05:13:04.657533"
+  "saved_at": "2026-03-12T05:28:49.907139"
 }
