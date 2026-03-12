@@ -202,10 +202,14 @@ _PLAYOFF_WRITER = "gammons"
 def get_available_seasons() -> list[int]:
     if not DATA_ROOT.exists():
         return []
-    seasons = [
-        int(d.name) for d in DATA_ROOT.iterdir()
-        if d.is_dir() and d.name.isdigit() and list(d.glob("week_*.json"))
-    ]
+    seasons = []
+    for d in DATA_ROOT.iterdir():
+        if d.is_dir() and d.name.isdigit():
+            has_weeks   = bool(list(d.glob("week_*.json")))
+            has_draft   = (d / "draft_order.json").exists()
+            has_preview = (d / "articles" / "season_preview.json").exists()
+            if has_weeks or has_draft or has_preview:
+                seasons.append(int(d.name))
     return sorted(seasons, reverse=True)
 
 
@@ -228,6 +232,20 @@ def load_all_weeks(season: int) -> dict[int, dict]:
 @st.cache_data(ttl=300)
 def load_all_seasons_data() -> dict[int, dict[int, dict]]:
     return {s: load_all_weeks(s) for s in get_available_seasons()}
+
+
+@st.cache_data(ttl=3_600, show_spinner=False)
+def load_divisions(season: int) -> dict[str, list[str]]:
+    """Return {division_name: [team_names]} for the given season from data/divisions.json."""
+    div_file = DATA_ROOT / "divisions.json"
+    if not div_file.exists():
+        return {}
+    try:
+        with open(div_file) as f:
+            all_divs = json.load(f)
+        return all_divs.get(str(season), {})
+    except Exception:
+        return {}
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -1165,6 +1183,8 @@ if not available_seasons:
 # SIDEBAR
 # ══════════════════════════════════════════════════════════════════════════════
 
+selected_week: int | str | None = None   # set inside sidebar else-branch
+
 with st.sidebar:
     st.title("⚾ Beer League Baseball")
     st.divider()
@@ -1231,34 +1251,80 @@ with st.sidebar:
                         )
         else:
             st.warning(f"No data found for {selected_season}.")
-        st.stop()
+        # (no st.stop here — main content handled after sidebar)
 
-    available_weeks = sorted(weeks_data.keys(), reverse=True)
-    league_name     = weeks_data[available_weeks[0]].get("league_name", "Fantasy Baseball League")
-    st.caption(league_name)
+    else:  # has week data — show week picker + sidebar standings
+        available_weeks = sorted(weeks_data.keys(), reverse=True)
+        league_name     = weeks_data[available_weeks[0]].get("league_name", "Fantasy Baseball League")
+        st.caption(league_name)
 
-    selected_week = st.selectbox(
-        "Select Week",
-        options=available_weeks,
-        format_func=lambda w: week_label(w, weeks_data[w]),
-    )
-    st.divider()
+        _preview_path_chk = DATA_ROOT / str(selected_season) / "articles" / "season_preview.json"
+        _week_opts = (["preview"] if _preview_path_chk.exists() else []) + available_weeks
+        selected_week = st.selectbox(
+            "Select Week",
+            options=_week_opts,
+            format_func=lambda w: "📋 Season Preview" if w == "preview" else week_label(w, weeks_data[w]),
+        )
+        st.divider()
 
-    # Sidebar standings
-    _wf_sidebar  = tuple(sorted(weeks_data.items()))
-    all_standings = compute_standings(_wf_sidebar, available_weeks[0])
+        # Sidebar standings
+        _wf_sidebar  = tuple(sorted(weeks_data.items()))
+        all_standings = compute_standings(_wf_sidebar, available_weeks[0])
 
-    if all_standings:
-        st.subheader("Standings")
-        team_search = st.text_input("🔍 Search team", placeholder="Team name...", label_visibility="collapsed")
-        filtered_st = [s for s in all_standings if not team_search or team_search.lower() in s["name"].lower()]
-        with st.expander("View All Teams", expanded=False):
-            for s in filtered_st:
-                record = f"{s['wins']}-{s['losses']}" + (f"-{s['ties']}" if s.get("ties") else "")
-                st.caption(f"{s['rank']}. **{s['name']}** — {record}")
+        if all_standings:
+            st.subheader("Standings")
+            team_search = st.text_input("🔍 Search team", placeholder="Team name...", label_visibility="collapsed")
+            filtered_st = [s for s in all_standings if not team_search or team_search.lower() in s["name"].lower()]
+            with st.expander("View All Teams", expanded=False):
+                for s in filtered_st:
+                    record = f"{s['wins']}-{s['losses']}" + (f"-{s['ties']}" if s.get("ties") else "")
+                    st.caption(f"{s['rank']}. **{s['name']}** — {record}")
 
-    st.divider()
-    st.caption(f"📊 {len(available_weeks)} weeks · {len(available_seasons)} seasons")
+        st.divider()
+        st.caption(f"📊 {len(available_weeks)} weeks · {len(available_seasons)} seasons")
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# PREVIEW ARTICLE RENDERER  (shared by pre-season gate and preview-week gate)
+# ══════════════════════════════════════════════════════════════════════════════
+
+def _render_preview_article(season: int) -> None:
+    path = DATA_ROOT / str(season) / "articles" / "season_preview.json"
+    if not path.exists():
+        st.info(f"The {season} season preview hasn't been generated yet.")
+        return
+    try:
+        with open(path) as _f:
+            _pa = json.load(_f)
+        _pw  = _pa.get("writer_name", "Staff")
+        _po  = _pa.get("writer_outlet", "")
+        _pd  = _pa.get("generated_at", "")[:10]
+        _phl = _pa.get("headline", f"{season} Season Preview")
+        _psd = _pa.get("subheadline", "")
+        st.markdown(f"""
+        <div class="preview-masthead">
+          <div class="preview-label">Season Preview · {season}</div>
+          <div class="preview-title">{_phl}</div>
+          {'<div class="preview-deck">' + _psd + '</div>' if _psd else ''}
+          <div class="preview-byline">By {_pw} &nbsp;·&nbsp; {_po}
+          {'&nbsp;·&nbsp; ' + _pd if _pd else ''}</div>
+        </div>
+        """, unsafe_allow_html=True)
+        st.write("")
+        st.markdown(_pa.get("body", ""))
+    except Exception as _e:
+        st.error(f"Could not load preview article: {_e}")
+
+
+# ── Pre-season gate (no week data yet) ───────────────────────────────────────
+if not weeks_data:
+    _render_preview_article(selected_season)
+    st.stop()
+
+# ── Preview week gate (in-season) ────────────────────────────────────────────
+if selected_week == "preview":
+    _render_preview_article(selected_season)
+    st.stop()
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -1368,12 +1434,27 @@ with tab_home:
     with col_stand:
         st.markdown('<div class="panel-box">', unsafe_allow_html=True)
         st.markdown('<div class="section-header">🏆 Standings</div>', unsafe_allow_html=True)
-        for s in standings[:7]:
-            record = f"{s['wins']}-{s['losses']}"
-            medal  = "🥇" if s["rank"] == 1 else ("🥈" if s["rank"] == 2 else ("🥉" if s["rank"] == 3 else f"{s['rank']}.")  )
-            st.markdown(f"**{medal}** {s['name']} <span style='color:#888;font-size:0.85em'>{record}</span>", unsafe_allow_html=True)
-        if len(standings) > 7:
-            st.caption(f"_+{len(standings)-7} more teams_")
+        _home_divs = load_divisions(selected_season)
+        if _home_divs:
+            for _div_name, _div_teams in _home_divs.items():
+                st.markdown(
+                    f"<div style='color:#aaa;font-size:0.72em;text-transform:uppercase;"
+                    f"letter-spacing:0.08em;margin:8px 0 3px'>{_div_name}</div>",
+                    unsafe_allow_html=True,
+                )
+                _div_st = sorted(
+                    [s for s in standings if s["name"] in _div_teams],
+                    key=lambda s: s["rank"],
+                )
+                for s in _div_st:
+                    record = f"{s['wins']}-{s['losses']}"
+                    medal  = "🥇" if s["rank"] == 1 else ("🥈" if s["rank"] == 2 else ("🥉" if s["rank"] == 3 else f"{s['rank']}."))
+                    st.markdown(f"**{medal}** {s['name']} <span style='color:#888;font-size:0.85em'>{record}</span>", unsafe_allow_html=True)
+        else:
+            for s in standings:
+                record = f"{s['wins']}-{s['losses']}"
+                medal  = "🥇" if s["rank"] == 1 else ("🥈" if s["rank"] == 2 else ("🥉" if s["rank"] == 3 else f"{s['rank']}."))
+                st.markdown(f"**{medal}** {s['name']} <span style='color:#888;font-size:0.85em'>{record}</span>", unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
 
     with col_pr:
@@ -1381,7 +1462,7 @@ with tab_home:
         st.markdown('<div class="section-header">⚡ Power Rankings</div>', unsafe_allow_html=True)
         pr_list = compute_power_rankings(_weeks_frozen, tuple(standings))
         if pr_list:
-            for r in pr_list[:7]:
+            for r in pr_list:
                 diff = r["rank_diff"]
                 arrow = (f"<span style='color:#1a9850;font-size:0.8em'>▲{diff}</span>" if diff > 0 else
                          f"<span style='color:#d73027;font-size:0.8em'>▼{abs(diff)}</span>" if diff < 0 else
