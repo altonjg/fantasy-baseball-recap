@@ -79,9 +79,21 @@ def load_league_data() -> tuple[dict, int, int]:
             except Exception:
                 pass
 
-    # Determine current season and latest week
+    # Determine current season — prefer the latest season with actual game data
+    # (any team with wins > 0 in the latest week), so pre-season folders don't
+    # override the most recently completed season.
     available_seasons = sorted(k for k in league_data if isinstance(k, int))
-    current_season = available_seasons[-1] if available_seasons else 2026
+
+    current_season = available_seasons[-1] if available_seasons else 2025
+    for season in reversed(available_seasons):
+        weeks = sorted(k for k in league_data.get(season, {}) if isinstance(k, int))
+        if not weeks:
+            continue
+        last_week_data = league_data[season][weeks[-1]]
+        standings = last_week_data.get("standings", [])
+        if any(s.get("wins", 0) > 0 for s in standings):
+            current_season = season
+            break
 
     season_weeks = sorted(
         k for k in league_data.get(current_season, {}) if isinstance(k, int)
