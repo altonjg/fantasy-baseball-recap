@@ -2442,6 +2442,11 @@
   // ═══════════════════════════════════════════════════════════════
 
   window._currentSeason = window.CURRENT_SEASON || null;
+  // Sync the season dropdown to CURRENT_SEASON so it reflects the right year on load
+  (function() {
+    const sel = document.getElementById('topbar-season');
+    if (sel && window.CURRENT_SEASON) sel.value = String(window.CURRENT_SEASON);
+  })();
   window._currentWeek   = window.CURRENT_WEEK   || null;
 
   // ── Helpers ──────────────────────────────────────────────────
@@ -3502,6 +3507,10 @@
         standings = computed;
       }
     }
+
+    // Sync season dropdown to reflect the season actually being displayed
+    const _seasonSel = document.getElementById('topbar-season');
+    if (_seasonSel) _seasonSel.value = String(season);
 
     // Score ticker
     _renderScoreTicker(weekData);
