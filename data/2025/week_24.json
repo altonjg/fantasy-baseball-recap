@@ -9,6 +9,7 @@
           "name": "Albuquerque Bombers",
           "team_key": "458.l.25686.t.1",
           "manager": "Zach",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/f8c6fb771026d77f358e549f60074d0af11e9ed22d2d40d7685d5fb5b530b13e.png",
           "points": 6.0,
           "category_stats": {
             "H/AB": "4/26",
@@ -29,6 +30,7 @@
           "name": "Canberra Wombats",
           "team_key": "458.l.25686.t.7",
           "manager": "Noah",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/cfbc80ba38c8c7bd4e5c314d87348d041b0c755f999ff4489897d978f7961618.png",
           "points": 4.0,
           "category_stats": {
             "H/AB": "4/28",
@@ -102,6 +104,7 @@
           "name": "BaseballPro77",
           "team_key": "458.l.25686.t.4",
           "manager": "Zach",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/33282009271_0a5042202c.jpg",
           "points": 7.0,
           "category_stats": {
             "H/AB": "53/209",
@@ -122,6 +125,7 @@
           "name": "Buttville Skidmarks",
           "team_key": "458.l.25686.t.6",
           "manager": "Gavin",
+          "logo_url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_8.png",
           "points": 3.0,
           "category_stats": {
             "H/AB": "51/207",
@@ -194,6 +198,7 @@
           "name": "Benchwarmers",
           "team_key": "458.l.25686.t.5",
           "manager": "Scott",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3b72ff7dd841ca12197296bc032a16603fa79168dddd5df7af41d458c34df9bd.jpg",
           "points": 6.0,
           "category_stats": {
             "H/AB": "58/215",
@@ -214,6 +219,7 @@
           "name": "Wisconsin Rapids Reapers",
           "team_key": "458.l.25686.t.8",
           "manager": "Bailey",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/77cadcf6794004dac592d2fff0c7ccbbfb69064929661a14e233f137cd1425d3.jpg",
           "points": 4.0,
           "category_stats": {
             "H/AB": "57/223",
@@ -286,6 +292,7 @@
           "name": "Sugar Land Skeeters",
           "team_key": "458.l.25686.t.13",
           "manager": "Alton Gilbert",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/a4690f59483b3a7819515779958c2ed82e754f8270b200ad5ce6b2e017711884.jpg",
           "points": 6.0,
           "category_stats": {
             "H/AB": "47/212",
@@ -306,6 +313,7 @@
           "name": "Wonder Wharf Wonderdogs",
           "team_key": "458.l.25686.t.14",
           "manager": "Justin",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/a5c1d74ab1ab63f656a9fb0386e97b6ef14d925335c308c66ba2963a1847758d.jpg",
           "points": 4.0,
           "category_stats": {
             "H/AB": "58/223",
@@ -376,130 +384,176 @@
     {
       "rank": 1,
       "name": "Sugar Land Skeeters",
+      "team_key": "458.l.25686.t.13",
+      "division_id": "1",
       "wins": 0,
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "division_name": "American League"
     },
     {
       "rank": 2,
       "name": "Wonder Wharf Wonderdogs",
+      "team_key": "458.l.25686.t.14",
+      "division_id": "1",
       "wins": 0,
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "division_name": "American League"
     },
     {
       "rank": 3,
       "name": "Albuquerque Bombers",
+      "team_key": "458.l.25686.t.1",
+      "division_id": "1",
       "wins": 0,
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "division_name": "American League"
     },
     {
       "rank": 4,
       "name": "Canberra Wombats",
+      "team_key": "458.l.25686.t.7",
+      "division_id": "2",
       "wins": 0,
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "division_name": "National League"
     },
     {
       "rank": 5,
       "name": "Hiroshima Radiation",
+      "team_key": "458.l.25686.t.10",
+      "division_id": "2",
       "wins": 0,
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "division_name": "National League"
     },
     {
       "rank": 6,
       "name": "Abbotsford-Colby Twins",
+      "team_key": "458.l.25686.t.2",
+      "division_id": "2",
       "wins": 0,
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "division_name": "National League"
     },
     {
       "rank": 7,
       "name": "BaseballPro77",
+      "team_key": "458.l.25686.t.4",
+      "division_id": "2",
       "wins": 0,
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "division_name": "National League"
     },
     {
       "rank": 8,
       "name": "Buttville Skidmarks",
+      "team_key": "458.l.25686.t.6",
+      "division_id": "1",
       "wins": 0,
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "division_name": "American League"
     },
     {
       "rank": 9,
       "name": "Benchwarmers",
+      "team_key": "458.l.25686.t.5",
+      "division_id": "2",
       "wins": 0,
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "division_name": "National League"
     },
     {
       "rank": 10,
       "name": "Wisconsin Rapids Reapers",
+      "team_key": "458.l.25686.t.8",
+      "division_id": "1",
       "wins": 0,
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "division_name": "American League"
     },
     {
       "rank": 11,
       "name": "Riverside Roughnecks",
+      "team_key": "458.l.25686.t.12",
+      "division_id": "1",
       "wins": 0,
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "division_name": "American League"
     },
     {
       "rank": 12,
       "name": "North Correa",
+      "team_key": "458.l.25686.t.11",
+      "division_id": "2",
       "wins": 0,
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "division_name": "National League"
     },
     {
       "rank": 13,
       "name": "General Hospital",
+      "team_key": "458.l.25686.t.9",
+      "division_id": "1",
       "wins": 0,
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "division_name": "American League"
     },
     {
       "rank": 14,
       "name": "Athletic Park Dragons",
+      "team_key": "458.l.25686.t.3",
+      "division_id": "2",
       "wins": 0,
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "division_name": "National League"
     }
   ],
+  "divisions": {
+    "1": "American League",
+    "2": "National League"
+  },
   "transactions": [
     {
       "type": "add",
@@ -968,9 +1022,9 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "recap_text": "# THE CORONATION: SUGAR LAND SKEETERS CROWNED MILLERLITE\u00ae CHAMPIONS\n\n**SKEETERS PITCH THEIR WAY TO THE TITLE**\n\nIn a league where championships are won on the margins, Alton Gilbert's Sugar Land Skeeters just proved that elite pitching still matters most when the lights are brightest. The Skeeters captured the MillerLite\u00ae BeerLeagueBaseball championship with a taut 6-4 category victory over Justin's Wonder Wharf Wonderdogs, riding a historically dominant pitching performance to franchise glory.\n\nThe championship-clinching stat line? Try a 1.81 ERA across 64.2 innings\u2014nearly two full runs better than the Wonderdogs' 3.78 mark. The Skeeters didn't just edge their opponents; they dominated the mound categories like vintage Maddux: 67 strikeouts to 52, four quality starts to two, and a microscopic 0.97 WHIP that made Wonder Wharf's 1.34 look downright pedestrian. When you're pitching like that in a title game, you can survive getting out-homered 11-6 and losing the power categories.\n\nThe stolen base differential (7-1) proved decisive\u2014the Skeeters' aggressive baserunning grabbed a crucial category point that sealed their championship. They also squeaked out OBP (.324 vs .315) to claim six total categories and hold off a Wonder Wharf squad that brought serious thunder with 34 runs and 32 RBI. But in baseball's greatest moments, it's pitching and defense that wins rings. The Skeeters executed, and they're taking home the hardware.\n\nWorth noting: Gilbert's championship-week roster moves were surgical\u2014adding Eduard Bazardo, Jordan Leasure, and Robert Garcia while cutting Andrew Saalfrank and Cole Sands. The new arms delivered when it mattered most.\n\n**THE BRONZE MEDAL BOUT**\n\nIn the battle for third place, Zach's Albuquerque Bombers edged Noah's Canberra Wombats 6-4 in a pitching clinic that somehow saw both offenses completely vanish. The Bombers posted 81.2 innings with 96 strikeouts and four quality starts\u2014essentially monopolizing every counting stat on the pitching side. They won ERA (4.41 to whatever the Wombats couldn't muster\u2014looks like they didn't qualify), K's, IP, QS, WHIP, and even swiped a stolen base to claim six categories total.\n\nBut here's the bizarre twist: Albuquerque scored exactly ONE run and ZERO RBI for the entire week. ONE. RUN. And they still won. The Wombats managed just two runs and three ribbies themselves while taking HR (1-0), OBP (.226 to .214), and a couple other crumbs. When both teams' bats go into witness protection during a playoff week, it's the pitching staff that breaks the tie. Third place belongs to Albuquerque, who pitched like champions even if their offense hit like the 1968 season.\n\n**CONSOLATION GAMES: PRIDE ON THE LINE**\n\nSure, these teams missed the promised land, but that doesn't mean the matchups were meaningless.\n\nBaseballPro77 (Zach's other squad, apparently running the league) absolutely demolished the Buttville Skidmarks 7-3 in a performance that screamed \"we should've been in the playoffs.\" BP77 posted a complete game: 53 hits, nine homers, a .347 OBP, 29 runs, 30 RBI, plus a stellar pitching line (3.18 ERA, 70.2 IP, 57 K's, six quality starts, 0.92 WHIP). They won seven of ten categories while Gavin's Skidmarks managed only ERA (2.52), NSVH (10-7), and steals (5-3). Sometimes the consolation bracket reveals who peaked at the wrong time.\n\nScott's Benchwarmers took down Bailey's Wisconsin Rapids Reapers 6-4 in a matchup that came down to pitching fundamentals versus power offense. The Benchwarmers dominated the mound (3.47 ERA vs. 5.32, 67 K's vs. 26, 0.92 WHIP vs. 1.39) and squeaked out H/AB and OBP to claim six categories. The Reapers fought back with pure thunder\u2014nine homers, 30 runs, 31 RBI, and a whopping nine stolen bases\u2014but when your ERA is north of 5.00 in playoff week, you're swimming upstream. Wisconsin Rapids showed heart, but the Benchwarmers' pitching staff showed dominance.\n\n**WEEK AHEAD**\n\nThe champagne bottles are empty, the trophy's been engraved, and Sugar Land Skeeters can finally exhale. Congratulations to Alton Gilbert on a masterfully managed championship run\u2014when the pressure peaked, his pitchers delivered a sub-2.00 ERA. That's how you win titles. To the rest of the league: there's always next year. Time to hit the hot stove and plot your revenge.\n\n*Your champion: Sugar Land Skeeters. Your 1.81 championship-week ERA. Drop the confetti.*",
-  "generated_at": "2026-03-11T14:29:30.423773"
+  "recap_text": "",
+  "generated_at": "2026-03-15T00:07:11.986883"
 }

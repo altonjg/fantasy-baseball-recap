@@ -563,7 +563,10 @@
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "team_key": "458.l.25686.t.13",
+      "division_id": "1",
+      "division_name": "American League"
     },
     {
       "rank": 2,
@@ -572,7 +575,10 @@
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "team_key": "458.l.25686.t.14",
+      "division_id": "1",
+      "division_name": "American League"
     },
     {
       "rank": 3,
@@ -581,7 +587,10 @@
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "team_key": "458.l.25686.t.1",
+      "division_id": "1",
+      "division_name": "American League"
     },
     {
       "rank": 4,
@@ -590,7 +599,10 @@
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "team_key": "458.l.25686.t.7",
+      "division_id": "2",
+      "division_name": "National League"
     },
     {
       "rank": 5,
@@ -599,7 +611,10 @@
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "team_key": "458.l.25686.t.10",
+      "division_id": "2",
+      "division_name": "National League"
     },
     {
       "rank": 6,
@@ -608,7 +623,10 @@
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "team_key": "458.l.25686.t.2",
+      "division_id": "2",
+      "division_name": "National League"
     },
     {
       "rank": 7,
@@ -617,7 +635,10 @@
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "team_key": "458.l.25686.t.4",
+      "division_id": "2",
+      "division_name": "National League"
     },
     {
       "rank": 8,
@@ -626,7 +647,10 @@
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "team_key": "458.l.25686.t.6",
+      "division_id": "1",
+      "division_name": "American League"
     },
     {
       "rank": 9,
@@ -635,7 +659,10 @@
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "team_key": "458.l.25686.t.5",
+      "division_id": "2",
+      "division_name": "National League"
     },
     {
       "rank": 10,
@@ -644,7 +671,10 @@
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "team_key": "458.l.25686.t.8",
+      "division_id": "1",
+      "division_name": "American League"
     },
     {
       "rank": 11,
@@ -653,7 +683,10 @@
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "team_key": "458.l.25686.t.12",
+      "division_id": "1",
+      "division_name": "American League"
     },
     {
       "rank": 12,
@@ -662,7 +695,10 @@
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "team_key": "458.l.25686.t.11",
+      "division_id": "2",
+      "division_name": "National League"
     },
     {
       "rank": 13,
@@ -671,7 +707,10 @@
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "team_key": "458.l.25686.t.9",
+      "division_id": "1",
+      "division_name": "American League"
     },
     {
       "rank": 14,
@@ -680,7 +719,10 @@
       "losses": 0,
       "ties": 0,
       "points_for": 0.0,
-      "points_against": 0.0
+      "points_against": 0.0,
+      "team_key": "458.l.25686.t.3",
+      "division_id": "2",
+      "division_name": "National League"
     }
   ],
   "transactions": [

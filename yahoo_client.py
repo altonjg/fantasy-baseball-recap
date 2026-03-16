@@ -58,6 +58,17 @@ def get_current_week(session: requests.Session, league_key: str) -> int:
     return int(meta["current_week"])
 
 
+_settings_cache: dict[str, dict] = {}
+
+
+def _get_league_settings(session: requests.Session, league_key: str) -> list:
+    """Fetch and cache raw league settings (list of blocks from Yahoo API)."""
+    if league_key not in _settings_cache:
+        data = _api_get(session, f"league/{league_key}/settings")
+        _settings_cache[league_key] = data["league"][1]["settings"]
+    return _settings_cache[league_key]
+
+
 def get_league_stat_categories(session: requests.Session, league_key: str) -> dict[str, str]:
     """
     Return a mapping of stat_id → display name for this league's scoring categories.
@@ -67,8 +78,7 @@ def get_league_stat_categories(session: requests.Session, league_key: str) -> di
     if league_key in _stat_categories_cache:
         return _stat_categories_cache[league_key]
 
-    data = _api_get(session, f"league/{league_key}/settings")
-    settings = data["league"][1]["settings"]
+    settings = _get_league_settings(session, league_key)
     stat_list = settings[0].get("stat_categories", {}).get("stats", [])
 
     cats = {}
@@ -79,6 +89,24 @@ def get_league_stat_categories(session: requests.Session, league_key: str) -> di
 
     _stat_categories_cache[league_key] = cats
     return cats
+
+
+def get_division_names(session: requests.Session, league_key: str) -> dict[str, str]:
+    """
+    Return a mapping of division_id → division_name for this league.
+    Returns {} if the league has no divisions configured.
+    """
+    settings = _get_league_settings(session, league_key)
+    divs: dict[str, str] = {}
+    for block in settings:
+        if "divisions" in block:
+            for d in block["divisions"]:
+                div = d.get("division", {})
+                did = str(div.get("division_id", ""))
+                dname = div.get("name", "")
+                if did and dname:
+                    divs[did] = dname
+    return divs
 
 
 # ---------------------------------------------------------------------------
@@ -274,6 +302,8 @@ def get_standings(session: requests.Session, league_key: str) -> list[dict]:
             {
                 "rank": int(team_standings.get("rank", i + 1)),
                 "name": flat.get("name", f"Team {i}"),
+                "team_key": flat.get("team_key", ""),
+                "division_id": str(flat.get("division_id", "")),
                 "wins": int(outcome.get("wins", 0)),
                 "losses": int(outcome.get("losses", 0)),
                 "ties": int(outcome.get("ties", 0)),
@@ -381,7 +411,7 @@ def get_top_players_this_week(
     """
     data = _api_get(
         session,
-        f"league/{league_key}/players;sort=PTS;sort_type=week;sort_season=1;week={week};start=0;count={top_n}/stats;type=week;week={week}",
+        f"league/{league_key}/players;sort=PTS;sort_type=lastweek;start=0;count={top_n}/stats;type=week;week={week}",
     )
 
     players_block = data["league"][1].get("players", {})
@@ -411,6 +441,108 @@ def get_top_players_this_week(
 
     players.sort(key=lambda x: x["points"], reverse=True)
     return players
+
+
+# ---------------------------------------------------------------------------
+# Draft results
+# ---------------------------------------------------------------------------
+
+
+def get_draft_results(session: requests.Session, league_key: str) -> list[dict]:
+    """
+    Return the full draft order for the league.
+
+    Each item:
+      {
+        "pick":       int,   # overall pick number (1-based)
+        "round":      int,
+        "team_key":   str,
+        "player_key": str,
+        "player_name": str,
+        "position":   str,   # display position (e.g. "SP", "OF", "1B")
+        "mlb_team":   str,
+      }
+    """
+    data = _api_get(session, f"league/{league_key}/draftresults")
+    raw_picks = data["league"][1].get("draft_results", {}).get("0", {}).get("draft_results", {})
+
+    # Yahoo returns draft_results as a dict with numeric string keys + "count"
+    if isinstance(raw_picks, list) or not raw_picks:
+        return []
+
+    count = int(raw_picks.get("count", 0))
+    picks = []
+    for i in range(count):
+        pick_data = raw_picks[str(i)].get("draft_result", {})
+        picks.append({
+            "pick":       int(pick_data.get("pick", i + 1)),
+            "round":      int(pick_data.get("round", 0)),
+            "team_key":   str(pick_data.get("team_key", "")),
+            "player_key": str(pick_data.get("player_key", "")),
+            # Name/position enriched separately via get_players_info
+            "player_name": "",
+            "position":    "",
+            "mlb_team":    "",
+        })
+
+    return picks
+
+
+def get_players_info(
+    session: requests.Session,
+    player_keys: list[str],
+) -> dict[str, dict]:
+    """
+    Batch-fetch name, position, and MLB team for a list of player keys.
+    Returns: { player_key: {"name": str, "position": str, "mlb_team": str} }
+    Yahoo allows up to 25 player keys per request.
+    """
+    result: dict[str, dict] = {}
+    batch_size = 25
+    for start in range(0, len(player_keys), batch_size):
+        batch = player_keys[start: start + batch_size]
+        keys_param = ",".join(batch)
+        try:
+            data = _api_get(session, f"players;player_keys={keys_param}")
+            players_block = data.get("players", {})
+            count = int(players_block.get("count", 0))
+            for i in range(count):
+                p = players_block[str(i)]["player"]
+                p_flat: dict = {}
+                for item in p[0]:
+                    if isinstance(item, dict):
+                        p_flat.update(item)
+                pkey = str(p_flat.get("player_key", ""))
+                result[pkey] = {
+                    "name":     p_flat.get("full") or p_flat.get("name", {}).get("full", "Unknown"),
+                    "position": p_flat.get("display_position", ""),
+                    "mlb_team": p_flat.get("editorial_team_full_name", ""),
+                }
+        except Exception as e:
+            print(f"  Warning: Could not fetch player info for batch {batch}: {e}")
+
+    return result
+
+
+def get_draft_results_enriched(session: requests.Session, league_key: str) -> list[dict]:
+    """
+    Full draft board with player names, positions, and MLB teams resolved.
+    Convenience wrapper around get_draft_results + get_players_info.
+    """
+    picks = get_draft_results(session, league_key)
+    if not picks:
+        return []
+
+    player_keys = [p["player_key"] for p in picks if p["player_key"]]
+    players_info = get_players_info(session, player_keys)
+
+    for pick in picks:
+        info = players_info.get(pick["player_key"], {})
+        pick["player_name"] = info.get("name", "Unknown")
+        pick["position"]    = info.get("position", "")
+        pick["mlb_team"]    = info.get("mlb_team", "")
+
+    return picks
 
 
 # ---------------------------------------------------------------------------
@@ -475,8 +607,13 @@ def fetch_weekly_data(oauth: YahooOAuth, league_key: str, week: Optional[int] = 
                 if m.get("is_playoffs") and not m.get("is_consolation"):
                     m["is_championship"] = True
 
+    print("  Fetching division info...")
+    divisions = get_division_names(session, league_key)
+
     print("  Fetching standings...")
     standings = get_standings(session, league_key)
+    for t in standings:
+        t["division_name"] = divisions.get(t.get("division_id", ""), "")
 
     print("  Fetching transactions...")
     transactions = get_transactions(session, league_key, count=30)
@@ -498,6 +635,7 @@ def fetch_weekly_data(oauth: YahooOAuth, league_key: str, week: Optional[int] = 
         "week": recap_week,
         "matchups": matchups,
         "standings": standings,
+        "divisions": divisions,
         "transactions": transactions,
         "top_players": top_players,
         "stat_categories": stat_categories,

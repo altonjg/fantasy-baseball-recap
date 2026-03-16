@@ -26,7 +26,7 @@ _local_env = Path(__file__).parent / ".env"
 load_dotenv(_safe_env if _safe_env.exists() else _local_env)
 
 from auth import setup_oauth
-from yahoo_client import fetch_weekly_data, get_league_meta
+from yahoo_client import fetch_weekly_data, get_league_meta, get_draft_results_enriched
 
 DATA_ROOT = Path(__file__).parent / "data"
 
@@ -42,11 +42,42 @@ LEAGUE_KEYS = {
 }
 
 
+def backfill_draft(oauth, league_key: str, season: int) -> None:
+    """Fetch and save the full draft board for a single season."""
+    data_dir = DATA_ROOT / str(season)
+    out_path  = data_dir / "draft_results.json"
+
+    if out_path.exists():
+        print(f"  {season} — draft_results.json already exists, skipping")
+        return
+
+    print(f"  {season} — fetching draft results for {league_key}...", end=" ", flush=True)
+    try:
+        session = oauth.get_session()
+        picks = get_draft_results_enriched(session, league_key)
+        if not picks:
+            print("no data returned (pre-season or unsupported)")
+            return
+        data_dir.mkdir(parents=True, exist_ok=True)
+        with open(out_path, "w") as f:
+            json.dump(
+                {"season": season, "league_key": league_key,
+                 "fetched_at": datetime.now().isoformat(), "picks": picks},
+                f, indent=2,
+            )
+        print(f"saved ({len(picks)} picks)")
+    except Exception as e:
+        print(f"FAILED — {e}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Backfill historical weekly data.")
     parser.add_argument("--league", default=None, help="Explicit league key, e.g. 431.l.29063")
     parser.add_argument("--year",   default=None, type=int, help="Season year, e.g. 2024")
     parser.add_argument("--weeks",  default=None, help="Week range, e.g. '1-24' or '10-15'")
+    parser.add_argument("--draft",  action="store_true",
+                        help="Fetch draft results instead of weekly data. "
+                             "Use --year to target one season, or omit to backfill all known seasons.")
     args = parser.parse_args()
 
     # Resolve league key
@@ -62,6 +93,23 @@ def main() -> None:
 
     print(f"Setting up Yahoo OAuth...")
     oauth = setup_oauth()
+
+    # ── Draft backfill mode ────────────────────────────────────────────────────
+    if args.draft:
+        if args.year:
+            targets = {args.year: LEAGUE_KEYS.get(args.year) or args.league}
+            if not targets[args.year]:
+                print(f"No league key found for {args.year}. Use --league to specify one.")
+                return
+        else:
+            targets = LEAGUE_KEYS
+
+        print(f"Backfilling draft results for {len(targets)} season(s)...")
+        for yr, lk in sorted(targets.items()):
+            backfill_draft(oauth, lk, yr)
+        print("\nDone.")
+        return
+
     session = oauth.get_session()
 
     print(f"Fetching league metadata for {league_key}...")

@@ -19,6 +19,18 @@ from yahoo_client import _api_get
 
 DATA_ROOT = Path(__file__).parent / "data"
 
+# Hardcoded league keys — same as backfill.py — used as final fallback
+# when neither draft_order.json nor the week JSONs contain a league_key field.
+LEAGUE_KEYS = {
+    2017: "370.l.36051",
+    2021: "404.l.39098",
+    2022: "412.l.49651",
+    2023: "422.l.35047",
+    2024: "431.l.29063",
+    2025: "458.l.25686",
+    2026: "469.l.10470",
+}
+
 
 def get_league_key_for_season(season: int) -> str | None:
     """Try to find the Yahoo league_key for a given season year."""
@@ -45,7 +57,8 @@ def get_league_key_for_season(season: int) -> str | None:
             except Exception:
                 pass
 
-    return None
+    # 3. Hardcoded fallback
+    return LEAGUE_KEYS.get(season)
 
 
 def fetch_logos_for_league(session, league_key: str) -> dict[str, str]:

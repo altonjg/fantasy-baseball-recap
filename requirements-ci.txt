@@ -1,0 +1,10 @@
+# CI pipeline — used by GitHub Actions and local backfill/ci_runner scripts
+# Not needed by the Streamlit Cloud app (app.py uses only requirements.txt)
+anthropic>=0.40.0
+requests>=2.31.0
+python-dotenv>=1.0.0
+keyring>=25.0.0
+streamlit>=1.35.0
+plotly>=5.22.0
+pandas>=2.2.0
+matplotlib>=3.8.0

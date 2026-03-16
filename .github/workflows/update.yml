@@ -18,6 +18,7 @@ on:
           - trades
           - recap
           - preview
+          - draft
       week:
         description: "Override week number (leave blank for latest)"
         required: false
@@ -41,7 +42,7 @@ jobs:
     name: Detect & write trade articles
     runs-on: ubuntu-latest
     if: |
-      (github.event_name == 'workflow_dispatch' && github.event.inputs.mode != 'preview') ||
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.mode != 'preview' && github.event.inputs.mode != 'draft') ||
       (github.event_name == 'schedule' && github.event.schedule == '0 */4 * 3-11 *')
 
     steps:
@@ -57,7 +58,7 @@ jobs:
           cache: pip
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r requirements-ci.txt
 
       - name: Run trade detection
         env:
@@ -91,7 +92,7 @@ jobs:
     needs: detect-trades
     if: |
       always() && (
-        (github.event_name == 'workflow_dispatch' && github.event.inputs.mode != 'preview') ||
+        (github.event_name == 'workflow_dispatch' && github.event.inputs.mode != 'preview' && github.event.inputs.mode != 'draft') ||
         (github.event_name == 'schedule' && github.event.schedule == '0 11 * * 1')
       )
 
@@ -108,7 +109,7 @@ jobs:
           cache: pip
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r requirements-ci.txt
 
       - name: Fetch data & generate recap
         env:
@@ -136,6 +137,56 @@ jobs:
           git pull --rebase -X ours https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
 
+  # ── Draft results (manual dispatch only) ────────────────────────────────────
+  fetch-draft:
+    name: Fetch & save draft results
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'workflow_dispatch' &&
+      github.event.inputs.mode == 'draft'
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements-ci.txt
+
+      - name: Fetch draft results
+        env:
+          YAHOO_CLIENT_ID:     ${{ secrets.YAHOO_CLIENT_ID }}
+          YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
+          YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
+          YAHOO_LEAGUE_KEY:    ${{ secrets.YAHOO_LEAGUE_KEY }}
+          PYTHONUTF8:          "1"
+        run: |
+          SEASON_ARG=""
+          if [ -n "${{ github.event.inputs.season }}" ]; then
+            SEASON_ARG="--season ${{ github.event.inputs.season }}"
+          fi
+          FORCE_ARG=""
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            FORCE_ARG="--force"
+          fi
+          python ci_runner.py --mode draft $SEASON_ARG $FORCE_ARG
+
+      - name: Commit draft data
+        run: |
+          git config user.name  "BeerLeague Bot"
+          git config user.email "beerleague-bot@users.noreply.github.com"
+          git add data/
+          git diff --cached --quiet || git commit -m "chore: save draft results [skip ci]"
+          git pull --rebase -X ours https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
   # ── Season Preview (manual dispatch only) ───────────────────────────────────
   season-preview:
     name: Generate season preview article
@@ -157,7 +208,7 @@ jobs:
           cache: pip
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r requirements-ci.txt
 
       - name: Generate season preview
         env:

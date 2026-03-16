@@ -19,7 +19,8 @@ Environment variables required (set as GitHub Actions secrets):
     ANTHROPIC_API_KEY
 
 Optional:
-    DISCORD_WEBHOOK_URL   if you want Discord posting from CI too
+    DISCORD_WEBHOOK_URL   Discord incoming webhook URL — posts recap, trade, and preview articles
+    STREAMLIT_APP_URL     Public URL of the dashboard — linked from Discord embeds
 """
 
 from __future__ import annotations
@@ -44,7 +45,12 @@ if hasattr(sys.stderr, "reconfigure"):
 sys.path.insert(0, str(Path(__file__).parent))
 
 from ci_auth import setup_ci_oauth
-from yahoo_client import fetch_weekly_data
+from yahoo_client import fetch_weekly_data, get_draft_results_enriched, get_league_meta
+try:
+    from mlb_stats import enrich_top_players, week_date_range
+    _MLB_STATS_AVAILABLE = True
+except ImportError:
+    _MLB_STATS_AVAILABLE = False
 
 # Writer pools — mirrors app.py so both stay in sync
 WRITER_STYLES: dict[str, dict] = {
@@ -258,10 +264,13 @@ def generate_recap_article(week_data: dict, standings: list[dict]) -> dict | Non
     ) if standings else "  (unavailable)"
 
     top_players = week_data.get("top_players", [])
-    top_ctx = "\n".join(
-        f"  {p['name']} ({p.get('position','?')}, {p.get('mlb_team','?')}): {p.get('points',0):.1f} pts"
-        for p in top_players[:5]
-    )
+    top_ctx_lines = []
+    for p in top_players[:5]:
+        line = f"  {p['name']} ({p.get('position','?')}, {p.get('mlb_team','?')}): {p.get('points',0):.1f} fantasy pts"
+        if p.get("mlb_week_log"):
+            line += f"  |  Real MLB this week: {p['mlb_week_log']}"
+        top_ctx_lines.append(line)
+    top_ctx = "\n".join(top_ctx_lines)
 
     week_type = "CHAMPIONSHIP" if is_champ else "PLAYOFF" if is_playoff else "REGULAR SEASON"
 
@@ -631,18 +640,18 @@ def _find_unprocessed_trades(week_data: dict, covered_ts: set[int]) -> list[dict
 
 # ── Main runner ───────────────────────────────────────────────────────────────
 
-def run_trades(week_data: dict, season: int) -> int:
-    """Detect and write articles for new trades. Returns count of new articles."""
+def run_trades(week_data: dict, season: int) -> list[dict]:
+    """Detect and write articles for new trades. Returns list of newly-written articles."""
     trades_dir  = DATA_ROOT / str(season) / "trades"
     covered_ts  = _load_existing_article_timestamps(trades_dir)
     unprocessed = _find_unprocessed_trades(week_data, covered_ts)
 
     if not unprocessed:
         print("[ci_runner] No new trades detected.")
-        return 0
+        return []
 
-    standings = week_data.get("standings", [])
-    written   = 0
+    standings    = week_data.get("standings", [])
+    new_articles = []
     for tx in unprocessed:
         print(f"[ci_runner] Generating trade article for timestamp {tx.get('timestamp')}…")
         article = generate_trade_article(tx, standings)
@@ -653,11 +662,11 @@ def run_trades(week_data: dict, season: int) -> int:
             with open(path, "w") as f:
                 json.dump(article, f, indent=2)
             print(f"[ci_runner]   ✓ Saved {path.name} (by {article['writer_name']})")
-            written += 1
+            new_articles.append(article)
         else:
             print("[ci_runner]   ✗ Article generation failed", file=sys.stderr)
 
-    return written
+    return new_articles
 
 
 def run_recap(week_data: dict, season: int) -> bool:
@@ -671,6 +680,23 @@ def run_recap(week_data: dict, season: int) -> bool:
         return True
 
     standings = week_data.get("standings", [])
+
+    # Enrich top_players with real MLB game log data for the week
+    if _MLB_STATS_AVAILABLE and week_data.get("top_players"):
+        generated_at = week_data.get("generated_at", "")
+        week_start, week_end = week_date_range(generated_at) if generated_at else (None, None)
+        season_year = int(season)
+        print(f"[ci_runner] Enriching top players with MLB Stats API ({week_start} → {week_end})…")
+        try:
+            week_data["top_players"] = enrich_top_players(
+                week_data["top_players"], year=season_year,
+                week_start=week_start, week_end=week_end, max_players=8,
+            )
+            enriched = sum(1 for p in week_data["top_players"] if p.get("mlb_id"))
+            print(f"[ci_runner]   ✓ Enriched {enriched} players with real stats")
+        except Exception as e:
+            print(f"[ci_runner] MLB Stats enrichment failed (non-fatal): {e}", file=sys.stderr)
+
     print(f"[ci_runner] Generating recap article for week {week_num}…")
     article = generate_recap_article(week_data, standings)
     if not article:
@@ -693,14 +719,174 @@ def run_save_data(week_data: dict, season: int, week: int) -> None:
     print(f"[ci_runner] Data saved to {out_path.name}")
 
 
+LEAGUE_KEYS = {
+    2017: "370.l.36051",
+    2021: "404.l.39098",
+    2022: "412.l.49651",
+    2023: "422.l.35047",
+    2024: "431.l.29063",
+    2025: "458.l.25686",
+    2026: "469.l.10470",
+}
+
+
+def run_draft(oauth, league_key: str, season: int, force: bool = False) -> bool:
+    """Fetch and save the full enriched draft board. Returns True on success."""
+    out_path = DATA_ROOT / str(season) / "draft_results.json"
+    if out_path.exists() and not force:
+        print(f"[ci_runner] draft_results.json for {season} already exists — skipping. Use --force to regenerate.")
+        return True
+
+    print(f"[ci_runner] Fetching draft results for {season} ({league_key})…")
+    try:
+        session = oauth.get_session()
+        picks = get_draft_results_enriched(session, league_key)
+        if not picks:
+            print("[ci_runner] No draft data returned (pre-season or unsupported).", file=sys.stderr)
+            return False
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(out_path, "w") as f:
+            json.dump(
+                {"season": season, "league_key": league_key,
+                 "fetched_at": datetime.now().isoformat(), "picks": picks},
+                f, indent=2,
+            )
+        print(f"[ci_runner]   ✓ Saved draft_results.json ({len(picks)} picks)")
+        return True
+    except Exception as e:
+        print(f"[ci_runner] Draft fetch failed: {e}", file=sys.stderr)
+        return False
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# DISCORD WEBHOOK
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _discord_post(payload: dict) -> bool:
+    """POST a Discord webhook payload. Returns True on success."""
+    import urllib.request
+    url = os.environ.get("DISCORD_WEBHOOK_URL", "").strip()
+    if not url:
+        return False
+    try:
+        body = json.dumps(payload).encode("utf-8")
+        req  = urllib.request.Request(url, data=body, headers={"Content-Type": "application/json"}, method="POST")
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            return resp.status in (200, 204)
+    except Exception as e:
+        print(f"[discord] Post failed: {e}", file=sys.stderr)
+        return False
+
+
+def discord_post_recap(article: dict, week_num: int, season: int) -> bool:
+    """Post a weekly recap article to Discord as a rich embed."""
+    GOLD = 0xF0C040
+    week_meta = {22: "Wild Card", 23: "Semifinals", 24: "World Series"}
+    round_label = week_meta.get(week_num, f"Week {week_num}")
+    app_url = os.environ.get("STREAMLIT_APP_URL", "").rstrip("/")
+    description = article.get("subheadline") or ""
+    if len(description) > 300:
+        description = description[:297] + "…"
+
+    embed = {
+        "title":       article.get("headline", f"{season} {round_label} Recap"),
+        "description": description,
+        "color":       GOLD,
+        "fields": [
+            {"name": "Season", "value": str(season),    "inline": True},
+            {"name": "Week",   "value": round_label,    "inline": True},
+            {"name": "Author", "value": f"{article.get('writer_name','')} · {article.get('writer_outlet','')}", "inline": False},
+        ],
+        "footer": {"text": "MillerLite® BeerLeagueBaseball"},
+        "timestamp": datetime.utcnow().isoformat() + "Z",
+    }
+    if app_url:
+        embed["url"] = app_url
+
+    content = f"**:newspaper: {season} {round_label} Recap is live!**"
+    ok = _discord_post({"content": content, "embeds": [embed]})
+    if ok:
+        print(f"[discord] Posted recap for {season} {round_label}")
+    return ok
+
+
+def discord_post_trade(article: dict, season: int) -> bool:
+    """Post a trade article to Discord."""
+    AMBER = 0xF59E0B
+    app_url = os.environ.get("STREAMLIT_APP_URL", "").rstrip("/")
+    description = article.get("subheadline") or ""
+    if len(description) > 300:
+        description = description[:297] + "…"
+
+    embed = {
+        "title":       article.get("headline", "Trade Alert"),
+        "description": description,
+        "color":       AMBER,
+        "fields": [
+            {"name": "Author", "value": f"{article.get('writer_name','')} · {article.get('writer_outlet','')}", "inline": False},
+        ],
+        "footer": {"text": f"MillerLite® BeerLeagueBaseball · {season}"},
+        "timestamp": datetime.utcnow().isoformat() + "Z",
+    }
+    if app_url:
+        embed["url"] = app_url
+
+    ok = _discord_post({"content": ":arrows_counterclockwise: **Trade Alert**", "embeds": [embed]})
+    if ok:
+        print(f"[discord] Posted trade article: {article.get('headline','')[:60]}")
+    return ok
+
+
+def discord_post_preview(article: dict, season: int) -> bool:
+    """Post a season preview article to Discord."""
+    BLUE = 0x3B82F6
+    app_url = os.environ.get("STREAMLIT_APP_URL", "").rstrip("/")
+    description = article.get("subheadline") or ""
+    if len(description) > 300:
+        description = description[:297] + "…"
+
+    embed = {
+        "title":       article.get("headline", f"{season} Season Preview"),
+        "description": description,
+        "color":       BLUE,
+        "fields": [
+            {"name": "Author", "value": f"{article.get('writer_name','')} · {article.get('writer_outlet','')}", "inline": False},
+        ],
+        "footer": {"text": f"MillerLite® BeerLeagueBaseball · {season} Season"},
+        "timestamp": datetime.utcnow().isoformat() + "Z",
+    }
+    if app_url:
+        embed["url"] = app_url
+
+    ok = _discord_post({"content": f":baseball: **{season} Season Preview is here!**", "embeds": [embed]})
+    if ok:
+        print(f"[discord] Posted season preview for {season}")
+    return ok
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="BeerLeagueBaseball CI runner")
-    parser.add_argument("--mode",   choices=["trades", "recap", "full", "preview"], default="full")
+    parser.add_argument("--mode",   choices=["trades", "recap", "full", "preview", "draft"], default="full")
     parser.add_argument("--week",   type=int, default=None, help="Override week number")
     parser.add_argument("--season", type=int, default=None, help="Override season year (used with --mode preview)")
     parser.add_argument("--force",  action="store_true", help="Regenerate even if article already exists")
     parser.add_argument("--dry-run", action="store_true", help="Don't write any files")
     args = parser.parse_args()
+
+    # ── Draft mode ────────────────────────────────────────────────────────────
+    if args.mode == "draft":
+        season     = args.season or datetime.now().year
+        league_key = os.environ.get("YAHOO_LEAGUE_KEY") or LEAGUE_KEYS.get(season, "")
+        if not league_key:
+            print(f"[ci_runner] No league key for {season}. Set YAHOO_LEAGUE_KEY.", file=sys.stderr)
+            sys.exit(1)
+        print(f"[ci_runner] Setting up Yahoo OAuth…")
+        oauth = setup_ci_oauth()
+        ok = run_draft(oauth, league_key, season, force=args.force)
+        if not ok:
+            sys.exit(1)
+        print("[ci_runner] Done ✓")
+        return
 
     # ── Season preview mode (no Yahoo fetch needed) ──────────────────────────
     if args.mode == "preview":
@@ -710,6 +896,12 @@ def main() -> None:
         if not ok:
             print("[ci_runner] Season preview generation failed.", file=sys.stderr)
             sys.exit(1)
+        # Post to Discord if webhook is configured
+        articles_dir = DATA_ROOT / str(season) / "articles"
+        preview_path = articles_dir / "season_preview.json"
+        if preview_path.exists():
+            with open(preview_path) as f:
+                discord_post_preview(json.load(f), season)
         print("[ci_runner] Done ✓")
         return
 
@@ -739,8 +931,11 @@ def main() -> None:
 
     # Trade articles
     if args.mode in ("trades", "full"):
-        n = run_trades(week_data, season)
-        print(f"[ci_runner] Trade articles written: {n}")
+        new_trade_articles = run_trades(week_data, season)
+        print(f"[ci_runner] Trade articles written: {len(new_trade_articles)}")
+        # Post each new trade article to Discord
+        for article in new_trade_articles:
+            discord_post_trade(article, season)
 
     # Weekly recap
     if args.mode in ("recap", "full"):
@@ -748,6 +943,12 @@ def main() -> None:
         if not ok:
             print("[ci_runner] Recap article generation failed.", file=sys.stderr)
             sys.exit(1)
+        # Post recap to Discord
+        articles_dir = DATA_ROOT / str(season) / "articles"
+        recap_path   = articles_dir / f"week_{int(week_num):02d}_recap.json"
+        if recap_path.exists():
+            with open(recap_path) as f:
+                discord_post_recap(json.load(f), week_num, season)
 
     print("[ci_runner] Done ✓")
 
