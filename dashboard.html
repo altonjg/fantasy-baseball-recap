@@ -2450,6 +2450,32 @@
   window._currentWeek   = window.CURRENT_WEEK   || null;
 
   // ── Helpers ──────────────────────────────────────────────────
+
+  /**
+   * Compute league config dynamically from LEAGUE_DATA for a given season.
+   * Avoids hardcoding PLAYOFF_SPOTS=6 and TOTAL_REG_WEEKS=21 in 4+ places.
+   */
+  function _getLeagueConfig(season) {
+    const d = window.LEAGUE_DATA?.[season] || {};
+    const weeks = Object.keys(d).filter(k => /^\d+$/.test(k)).map(Number).sort((a,b)=>a-b);
+    let firstPlayoffWk = null;
+    const playoffTeamKeys = new Set();
+    for (const wk of weeks) {
+      const matchups = d[wk]?.matchups || [];
+      const hasPlayoff = matchups.some(m => m.is_playoffs && !m.is_consolation);
+      if (hasPlayoff) {
+        if (firstPlayoffWk === null) firstPlayoffWk = wk;
+        matchups.filter(m => m.is_playoffs).forEach(m =>
+          m.teams?.forEach(t => { if (t.team_key) playoffTeamKeys.add(t.team_key); })
+        );
+      }
+    }
+    const totalWks     = weeks.length;
+    const regularWks   = firstPlayoffWk ? firstPlayoffWk - 1 : totalWks;
+    const playoffSpots = playoffTeamKeys.size || 6;
+    return { totalWks, regularWks, playoffSpots };
+  }
+
   function _teamColor(name) {
     // Stable HSL color from team name
     let h = 0;
@@ -2762,7 +2788,7 @@
       return;
     }
 
-    const PLAYOFF_SPOTS = 6;
+    const { playoffSpots: PLAYOFF_SPOTS } = _getLeagueConfig(window._currentSeason);
     const BUBBLE_RANGE  = 3; // show 3 above/below the cutline
     const sorted = [...standings].sort((a, b) => b.wins - a.wins || a.losses - b.losses);
     const total  = sorted.length;
@@ -4068,7 +4094,7 @@
     if (!chartWrap || !window.LEAGUE_DATA?.[season]) return;
 
     const ld = window.LEAGUE_DATA[season];
-    const PLAYOFF_SPOTS = 6;
+    const { playoffSpots: PLAYOFF_SPOTS } = _getLeagueConfig(season);
 
     // Collect regular-season weeks in order
     const regWeeks = Object.keys(ld).filter(k => /^\d+$/.test(k)).map(Number)
@@ -4554,7 +4580,7 @@
     });
     if (!regWeeks.length) return;
 
-    const SPOTS = 6;
+    const { playoffSpots: SPOTS } = _getLeagueConfig(season);
     // Logistic playoff probability from 1-based rank
     const rankToPP = rank => 1 / (1 + Math.exp((rank - SPOTS - 0.5) * 0.65));
 
@@ -4783,8 +4809,7 @@
       return;
     }
 
-    const PLAYOFF_SPOTS   = 6;
-    const TOTAL_REG_WEEKS = 21;
+    const { playoffSpots: PLAYOFF_SPOTS, regularWks: TOTAL_REG_WEEKS } = _getLeagueConfig(season);
     const MONTE_CARLO_N   = 1000;
 
     // Gather regular-season weeks
