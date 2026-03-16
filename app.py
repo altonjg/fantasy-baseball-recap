@@ -79,19 +79,27 @@ def load_league_data() -> tuple[dict, int, int]:
             except Exception:
                 pass
 
-    # Determine current season — prefer the latest season with actual game data
-    # (any team with wins > 0 in the latest week), so pre-season folders don't
-    # override the most recently completed season.
+    # Determine current season — find the latest season that has at least one
+    # regular season week (not is_playoffs) with actual points scored.
+    # This handles: (a) Yahoo returning all-zero standings, (b) pre-season
+    # folders with only playoff/junk data, (c) seasons not yet started.
     available_seasons = sorted(k for k in league_data if isinstance(k, int))
 
     current_season = available_seasons[-1] if available_seasons else 2025
     for season in reversed(available_seasons):
         weeks = sorted(k for k in league_data.get(season, {}) if isinstance(k, int))
-        if not weeks:
-            continue
-        last_week_data = league_data[season][weeks[-1]]
-        standings = last_week_data.get("standings", [])
-        if any(s.get("wins", 0) > 0 for s in standings):
+        found = False
+        for wk in reversed(weeks):
+            matchups = league_data[season][wk].get("matchups", [])
+            regular = [m for m in matchups
+                       if not m.get("is_playoffs") and not m.get("is_consolation")]
+            if regular and any(
+                t.get("points", 0) > 0
+                for m in regular for t in m.get("teams", [])
+            ):
+                found = True
+                break
+        if found:
             current_season = season
             break
 
