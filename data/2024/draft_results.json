@@ -1,0 +1,3283 @@
+{
+  "season": 2024,
+  "league_key": "431.l.29063",
+  "fetched_at": "2026-03-17T21:50:08.139950",
+  "picks": [
+    {
+      "pick": 1,
+      "round": 1,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.10646",
+      "player_name": "Ronald Acu\u00f1a Jr.",
+      "position": "OF",
+      "mlb_team": "Atlanta Braves"
+    },
+    {
+      "pick": 2,
+      "round": 1,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.11384",
+      "player_name": "Julio Rodr\u00edguez",
+      "position": "OF",
+      "mlb_team": "Seattle Mariners"
+    },
+    {
+      "pick": 3,
+      "round": 1,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.10910",
+      "player_name": "Corbin Burnes",
+      "position": "SP",
+      "mlb_team": "Arizona Diamondbacks"
+    },
+    {
+      "pick": 4,
+      "round": 1,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.9552",
+      "player_name": "Mookie Betts",
+      "position": "2B,SS,OF",
+      "mlb_team": "Los Angeles Dodgers"
+    },
+    {
+      "pick": 5,
+      "round": 1,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.12281",
+      "player_name": "Spencer Strider",
+      "position": "SP",
+      "mlb_team": "Atlanta Braves"
+    },
+    {
+      "pick": 6,
+      "round": 1,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.11771",
+      "player_name": "Bobby Witt Jr.",
+      "position": "SS",
+      "mlb_team": "Kansas City Royals"
+    },
+    {
+      "pick": 7,
+      "round": 1,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.11722",
+      "player_name": "Corbin Carroll",
+      "position": "OF",
+      "mlb_team": "Arizona Diamondbacks"
+    },
+    {
+      "pick": 8,
+      "round": 1,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.8658",
+      "player_name": "Freddie Freeman",
+      "position": "1B",
+      "mlb_team": "Los Angeles Dodgers"
+    },
+    {
+      "pick": 9,
+      "round": 1,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.10626",
+      "player_name": "Juan Soto",
+      "position": "OF",
+      "mlb_team": "New York Mets"
+    },
+    {
+      "pick": 10,
+      "round": 1,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.10480",
+      "player_name": "Kyle Tucker",
+      "position": "OF",
+      "mlb_team": "Los Angeles Dodgers"
+    },
+    {
+      "pick": 11,
+      "round": 1,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.9877",
+      "player_name": "Aaron Judge",
+      "position": "OF",
+      "mlb_team": "New York Yankees"
+    },
+    {
+      "pick": 12,
+      "round": 1,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.10639",
+      "player_name": "Fernando Tatis Jr.",
+      "position": "OF",
+      "mlb_team": "San Diego Padres"
+    },
+    {
+      "pick": 13,
+      "round": 1,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.9605",
+      "player_name": "Matt Olson",
+      "position": "1B",
+      "mlb_team": "Atlanta Braves"
+    },
+    {
+      "pick": 14,
+      "round": 1,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.1000001",
+      "player_name": "Shohei Ohtani (Batter)",
+      "position": "Util",
+      "mlb_team": "Los Angeles Dodgers"
+    },
+    {
+      "pick": 15,
+      "round": 2,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.10883",
+      "player_name": "Yordan Alvarez",
+      "position": "OF",
+      "mlb_team": "Houston Astros"
+    },
+    {
+      "pick": 16,
+      "round": 2,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.10056",
+      "player_name": "Trea Turner",
+      "position": "SS",
+      "mlb_team": "Philadelphia Phillies"
+    },
+    {
+      "pick": 17,
+      "round": 2,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.11057",
+      "player_name": "Pablo L\u00f3pez",
+      "position": "SP",
+      "mlb_team": "Minnesota Twins"
+    },
+    {
+      "pick": 18,
+      "round": 2,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.9507",
+      "player_name": "Jos\u00e9 Ram\u00edrez",
+      "position": "3B",
+      "mlb_team": "Cleveland Guardians"
+    },
+    {
+      "pick": 19,
+      "round": 2,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.10237",
+      "player_name": "Ozzie Albies",
+      "position": "2B",
+      "mlb_team": "Atlanta Braves"
+    },
+    {
+      "pick": 20,
+      "round": 2,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.8875",
+      "player_name": "Bryce Harper",
+      "position": "1B",
+      "mlb_team": "Philadelphia Phillies"
+    },
+    {
+      "pick": 21,
+      "round": 2,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.10420",
+      "player_name": "Austin Riley",
+      "position": "3B",
+      "mlb_team": "Atlanta Braves"
+    },
+    {
+      "pick": 22,
+      "round": 2,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.11127",
+      "player_name": "Adolis Garc\u00eda",
+      "position": "OF",
+      "mlb_team": "Philadelphia Phillies"
+    },
+    {
+      "pick": 23,
+      "round": 2,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.10918",
+      "player_name": "Pete Alonso",
+      "position": "1B",
+      "mlb_team": "Baltimore Orioles"
+    },
+    {
+      "pick": 24,
+      "round": 2,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.10621",
+      "player_name": "Vladimir Guerrero Jr.",
+      "position": "1B,3B",
+      "mlb_team": "Toronto Blue Jays"
+    },
+    {
+      "pick": 25,
+      "round": 2,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.11235",
+      "player_name": "Logan Webb",
+      "position": "SP",
+      "mlb_team": "San Francisco Giants"
+    },
+    {
+      "pick": 26,
+      "round": 2,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.9517",
+      "player_name": "Marcus Semien",
+      "position": "2B",
+      "mlb_team": "New York Mets"
+    },
+    {
+      "pick": 27,
+      "round": 2,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.10235",
+      "player_name": "Rafael Devers",
+      "position": "3B",
+      "mlb_team": "San Francisco Giants"
+    },
+    {
+      "pick": 28,
+      "round": 2,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.9584",
+      "player_name": "Corey Seager",
+      "position": "SS",
+      "mlb_team": "Texas Rangers"
+    },
+    {
+      "pick": 29,
+      "round": 3,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.11732",
+      "player_name": "Adley Rutschman",
+      "position": "C",
+      "mlb_team": "Baltimore Orioles"
+    },
+    {
+      "pick": 30,
+      "round": 3,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.11731",
+      "player_name": "Gunnar Henderson",
+      "position": "3B,SS",
+      "mlb_team": "Baltimore Orioles"
+    },
+    {
+      "pick": 31,
+      "round": 3,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.9124",
+      "player_name": "Zack Wheeler",
+      "position": "SP",
+      "mlb_team": "Philadelphia Phillies"
+    },
+    {
+      "pick": 32,
+      "round": 3,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.9116",
+      "player_name": "Francisco Lindor",
+      "position": "SS",
+      "mlb_team": "New York Mets"
+    },
+    {
+      "pick": 33,
+      "round": 3,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.12393",
+      "player_name": "Elly De La Cruz",
+      "position": "3B,SS",
+      "mlb_team": "Cincinnati Reds"
+    },
+    {
+      "pick": 34,
+      "round": 3,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.8996",
+      "player_name": "Jose Altuve",
+      "position": "2B",
+      "mlb_team": "Houston Astros"
+    },
+    {
+      "pick": 35,
+      "round": 3,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.9111",
+      "player_name": "Manny Machado",
+      "position": "3B",
+      "mlb_team": "San Diego Padres"
+    },
+    {
+      "pick": 36,
+      "round": 3,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.10765",
+      "player_name": "Luis Robert Jr.",
+      "position": "OF",
+      "mlb_team": "New York Mets"
+    },
+    {
+      "pick": 37,
+      "round": 3,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.10514",
+      "player_name": "Luis Castillo",
+      "position": "SP",
+      "mlb_team": "Seattle Mariners"
+    },
+    {
+      "pick": 38,
+      "round": 3,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.11104",
+      "player_name": "Randy Arozarena",
+      "position": "OF",
+      "mlb_team": "Seattle Mariners"
+    },
+    {
+      "pick": 39,
+      "round": 3,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.10766",
+      "player_name": "Bo Bichette",
+      "position": "SS",
+      "mlb_team": "New York Mets"
+    },
+    {
+      "pick": 40,
+      "round": 3,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.11826",
+      "player_name": "George Kirby",
+      "position": "SP",
+      "mlb_team": "Seattle Mariners"
+    },
+    {
+      "pick": 41,
+      "round": 3,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.11116",
+      "player_name": "Zac Gallen",
+      "position": "SP",
+      "mlb_team": "Arizona Diamondbacks"
+    },
+    {
+      "pick": 42,
+      "round": 3,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.11763",
+      "player_name": "Tarik Skubal",
+      "position": "SP",
+      "mlb_team": "Detroit Tigers"
+    },
+    {
+      "pick": 43,
+      "round": 4,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.12056",
+      "player_name": "Michael Harris II",
+      "position": "OF",
+      "mlb_team": "Atlanta Braves"
+    },
+    {
+      "pick": 44,
+      "round": 4,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.63423",
+      "player_name": "Yoshinobu Yamamoto",
+      "position": "SP",
+      "mlb_team": "Los Angeles Dodgers"
+    },
+    {
+      "pick": 45,
+      "round": 4,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.10916",
+      "player_name": "Royce Lewis",
+      "position": "3B",
+      "mlb_team": "Minnesota Twins"
+    },
+    {
+      "pick": 46,
+      "round": 4,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.11138",
+      "player_name": "Framber Valdez",
+      "position": "SP",
+      "mlb_team": "Detroit Tigers"
+    },
+    {
+      "pick": 47,
+      "round": 4,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.9882",
+      "player_name": "Aaron Nola",
+      "position": "SP",
+      "mlb_team": "Philadelphia Phillies"
+    },
+    {
+      "pick": 48,
+      "round": 4,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.9334",
+      "player_name": "Kevin Gausman",
+      "position": "SP",
+      "mlb_team": "Toronto Blue Jays"
+    },
+    {
+      "pick": 49,
+      "round": 4,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.9620",
+      "player_name": "Max Fried",
+      "position": "SP",
+      "mlb_team": "New York Yankees"
+    },
+    {
+      "pick": 50,
+      "round": 4,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.12688",
+      "player_name": "Spencer Steer",
+      "position": "1B,2B,3B,OF",
+      "mlb_team": "Cincinnati Reds"
+    },
+    {
+      "pick": 51,
+      "round": 4,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.10839",
+      "player_name": "Jazz Chisholm Jr.",
+      "position": "3B,OF",
+      "mlb_team": "New York Yankees"
+    },
+    {
+      "pick": 52,
+      "round": 4,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.11822",
+      "player_name": "CJ Abrams",
+      "position": "SS",
+      "mlb_team": "Washington Nationals"
+    },
+    {
+      "pick": 53,
+      "round": 4,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.9616",
+      "player_name": "Tyler Glasnow",
+      "position": "SP",
+      "mlb_team": "Los Angeles Dodgers"
+    },
+    {
+      "pick": 54,
+      "round": 4,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.10504",
+      "player_name": "Cody Bellinger",
+      "position": "1B,OF",
+      "mlb_team": "New York Yankees"
+    },
+    {
+      "pick": 55,
+      "round": 4,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.11014",
+      "player_name": "Freddy Peralta",
+      "position": "SP",
+      "mlb_team": "New York Mets"
+    },
+    {
+      "pick": 56,
+      "round": 4,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.8861",
+      "player_name": "Mike Trout",
+      "position": "OF",
+      "mlb_team": "Los Angeles Angels"
+    },
+    {
+      "pick": 57,
+      "round": 5,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.10148",
+      "player_name": "Blake Snell",
+      "position": "SP",
+      "mlb_team": "Los Angeles Dodgers"
+    },
+    {
+      "pick": 58,
+      "round": 5,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.11381",
+      "player_name": "Logan Gilbert",
+      "position": "SP",
+      "mlb_team": "Seattle Mariners"
+    },
+    {
+      "pick": 59,
+      "round": 5,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.9320",
+      "player_name": "Christian Yelich",
+      "position": "OF",
+      "mlb_team": "Milwaukee Brewers"
+    },
+    {
+      "pick": 60,
+      "round": 5,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.10214",
+      "player_name": "Edwin D\u00edaz",
+      "position": "RP",
+      "mlb_team": "Los Angeles Dodgers"
+    },
+    {
+      "pick": 61,
+      "round": 5,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.10131",
+      "player_name": "Josh Hader",
+      "position": "RP",
+      "mlb_team": "Houston Astros"
+    },
+    {
+      "pick": 62,
+      "round": 5,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.12116",
+      "player_name": "Ha-Seong Kim",
+      "position": "2B,3B,SS",
+      "mlb_team": "Atlanta Braves"
+    },
+    {
+      "pick": 63,
+      "round": 5,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.11268",
+      "player_name": "William Contreras",
+      "position": "C",
+      "mlb_team": "Milwaukee Brewers"
+    },
+    {
+      "pick": 64,
+      "round": 5,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.10141",
+      "player_name": "Zach Eflin",
+      "position": "SP",
+      "mlb_team": "Baltimore Orioles"
+    },
+    {
+      "pick": 65,
+      "round": 5,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.9861",
+      "player_name": "Kyle Schwarber",
+      "position": "OF",
+      "mlb_team": "Philadelphia Phillies"
+    },
+    {
+      "pick": 66,
+      "round": 5,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.11370",
+      "player_name": "Oneil Cruz",
+      "position": "SS,OF",
+      "mlb_team": "Pittsburgh Pirates"
+    },
+    {
+      "pick": 67,
+      "round": 5,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.8967",
+      "player_name": "Paul Goldschmidt",
+      "position": "1B",
+      "mlb_team": "New York Yankees"
+    },
+    {
+      "pick": 68,
+      "round": 5,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.10627",
+      "player_name": "Jes\u00fas Luzardo",
+      "position": "SP",
+      "mlb_team": "Philadelphia Phillies"
+    },
+    {
+      "pick": 69,
+      "round": 5,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.10183",
+      "player_name": "Alex Bregman",
+      "position": "3B",
+      "mlb_team": "Chicago Cubs"
+    },
+    {
+      "pick": 70,
+      "round": 5,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.11279",
+      "player_name": "Triston Casas",
+      "position": "1B",
+      "mlb_team": "Boston Red Sox"
+    },
+    {
+      "pick": 71,
+      "round": 6,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.10610",
+      "player_name": "Cole Ragans",
+      "position": "SP,RP",
+      "mlb_team": "Kansas City Royals"
+    },
+    {
+      "pick": 72,
+      "round": 6,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.11847",
+      "player_name": "Joe Ryan",
+      "position": "SP",
+      "mlb_team": "Minnesota Twins"
+    },
+    {
+      "pick": 73,
+      "round": 6,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.11284",
+      "player_name": "Nico Hoerner",
+      "position": "2B,SS",
+      "mlb_team": "Chicago Cubs"
+    },
+    {
+      "pick": 74,
+      "round": 6,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.10185",
+      "player_name": "Joe Musgrove",
+      "position": "SP",
+      "mlb_team": "San Diego Padres"
+    },
+    {
+      "pick": 75,
+      "round": 6,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.12037",
+      "player_name": "Bobby Miller",
+      "position": "SP",
+      "mlb_team": "Los Angeles Dodgers"
+    },
+    {
+      "pick": 76,
+      "round": 6,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.11277",
+      "player_name": "Grayson Rodriguez",
+      "position": "SP",
+      "mlb_team": "Los Angeles Angels"
+    },
+    {
+      "pick": 77,
+      "round": 6,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.10642",
+      "player_name": "Will Smith",
+      "position": "C",
+      "mlb_team": "Los Angeles Dodgers"
+    },
+    {
+      "pick": 78,
+      "round": 6,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.10438",
+      "player_name": "Dylan Cease",
+      "position": "SP",
+      "mlb_team": "Toronto Blue Jays"
+    },
+    {
+      "pick": 79,
+      "round": 6,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.9718",
+      "player_name": "J.T. Realmuto",
+      "position": "C",
+      "mlb_team": "Philadelphia Phillies"
+    },
+    {
+      "pick": 80,
+      "round": 6,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.9902",
+      "player_name": "Raisel Iglesias",
+      "position": "RP",
+      "mlb_team": "Atlanta Braves"
+    },
+    {
+      "pick": 81,
+      "round": 6,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.9846",
+      "player_name": "Christian Walker",
+      "position": "1B",
+      "mlb_team": "Houston Astros"
+    },
+    {
+      "pick": 82,
+      "round": 6,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.11202",
+      "player_name": "Justin Steele",
+      "position": "SP",
+      "mlb_team": "Chicago Cubs"
+    },
+    {
+      "pick": 83,
+      "round": 6,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.12301",
+      "player_name": "Alexis D\u00edaz",
+      "position": "RP",
+      "mlb_team": "Texas Rangers"
+    },
+    {
+      "pick": 84,
+      "round": 6,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.10867",
+      "player_name": "Shane Bieber",
+      "position": "SP",
+      "mlb_team": "Toronto Blue Jays"
+    },
+    {
+      "pick": 85,
+      "round": 7,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.9105",
+      "player_name": "Nolan Arenado",
+      "position": "3B",
+      "mlb_team": "Arizona Diamondbacks"
+    },
+    {
+      "pick": 86,
+      "round": 7,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.60137",
+      "player_name": "Tanner Bibee",
+      "position": "SP",
+      "mlb_team": "Cleveland Guardians"
+    },
+    {
+      "pick": 87,
+      "round": 7,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.9319",
+      "player_name": "Xander Bogaerts",
+      "position": "2B,SS",
+      "mlb_team": "San Diego Padres"
+    },
+    {
+      "pick": 88,
+      "round": 7,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.11625",
+      "player_name": "Emmanuel Clase",
+      "position": "RP",
+      "mlb_team": "Cleveland Guardians"
+    },
+    {
+      "pick": 89,
+      "round": 7,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.10036",
+      "player_name": "Ketel Marte",
+      "position": "2B",
+      "mlb_team": "Arizona Diamondbacks"
+    },
+    {
+      "pick": 90,
+      "round": 7,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.10463",
+      "player_name": "Nolan Jones",
+      "position": "1B,OF",
+      "mlb_team": "Cleveland Guardians"
+    },
+    {
+      "pick": 91,
+      "round": 7,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.10577",
+      "player_name": "Bryan Reynolds",
+      "position": "OF",
+      "mlb_team": "Pittsburgh Pirates"
+    },
+    {
+      "pick": 92,
+      "round": 7,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.12563",
+      "player_name": "Evan Carter",
+      "position": "OF",
+      "mlb_team": "Texas Rangers"
+    },
+    {
+      "pick": 93,
+      "round": 7,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.10236",
+      "player_name": "Gleyber Torres",
+      "position": "2B",
+      "mlb_team": "Detroit Tigers"
+    },
+    {
+      "pick": 94,
+      "round": 7,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.9108",
+      "player_name": "Nick Castellanos",
+      "position": "OF",
+      "mlb_team": "San Diego Padres"
+    },
+    {
+      "pick": 95,
+      "round": 7,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.9799",
+      "player_name": "Chris Bassitt",
+      "position": "SP",
+      "mlb_team": "Baltimore Orioles"
+    },
+    {
+      "pick": 96,
+      "round": 7,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.60131",
+      "player_name": "Christian Encarnacion-Strand",
+      "position": "1B",
+      "mlb_team": "Cincinnati Reds"
+    },
+    {
+      "pick": 97,
+      "round": 7,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.10366",
+      "player_name": "Teoscar Hern\u00e1ndez",
+      "position": "OF",
+      "mlb_team": "Los Angeles Dodgers"
+    },
+    {
+      "pick": 98,
+      "round": 7,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.10657",
+      "player_name": "Paul Sewald",
+      "position": "RP",
+      "mlb_team": "Arizona Diamondbacks"
+    },
+    {
+      "pick": 99,
+      "round": 8,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.62973",
+      "player_name": "Wyatt Langford",
+      "position": "OF",
+      "mlb_team": "Texas Rangers"
+    },
+    {
+      "pick": 100,
+      "round": 8,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.11536",
+      "player_name": "Camilo Doval",
+      "position": "RP",
+      "mlb_team": "New York Yankees"
+    },
+    {
+      "pick": 101,
+      "round": 8,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.9339",
+      "player_name": "George Springer",
+      "position": "OF",
+      "mlb_team": "Toronto Blue Jays"
+    },
+    {
+      "pick": 102,
+      "round": 8,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.12096",
+      "player_name": "Bailey Ober",
+      "position": "SP",
+      "mlb_team": "Minnesota Twins"
+    },
+    {
+      "pick": 103,
+      "round": 8,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.11850",
+      "player_name": "Josh Jung",
+      "position": "3B",
+      "mlb_team": "Texas Rangers"
+    },
+    {
+      "pick": 104,
+      "round": 8,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.10234",
+      "player_name": "Dansby Swanson",
+      "position": "SS",
+      "mlb_team": "Chicago Cubs"
+    },
+    {
+      "pick": 105,
+      "round": 8,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.10465",
+      "player_name": "Yandy D\u00edaz",
+      "position": "1B,3B",
+      "mlb_team": "Tampa Bay Rays"
+    },
+    {
+      "pick": 106,
+      "round": 8,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.11251",
+      "player_name": "Merrill Kelly",
+      "position": "SP",
+      "mlb_team": "Arizona Diamondbacks"
+    },
+    {
+      "pick": 107,
+      "round": 8,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.11238",
+      "player_name": "Lane Thomas",
+      "position": "OF",
+      "mlb_team": "Kansas City Royals"
+    },
+    {
+      "pick": 108,
+      "round": 8,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.12588",
+      "player_name": "Seiya Suzuki",
+      "position": "OF",
+      "mlb_team": "Chicago Cubs"
+    },
+    {
+      "pick": 109,
+      "round": 8,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.9385",
+      "player_name": "Marcell Ozuna",
+      "position": "OF",
+      "mlb_team": "Pittsburgh Pirates"
+    },
+    {
+      "pick": 110,
+      "round": 8,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.12480",
+      "player_name": "Jackson Chourio",
+      "position": "OF",
+      "mlb_team": "Milwaukee Brewers"
+    },
+    {
+      "pick": 111,
+      "round": 8,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.11378",
+      "player_name": "Esteury Ruiz",
+      "position": "OF",
+      "mlb_team": "Miami Marlins"
+    },
+    {
+      "pick": 112,
+      "round": 8,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.10152",
+      "player_name": "Reynaldo L\u00f3pez",
+      "position": "SP,RP",
+      "mlb_team": "Atlanta Braves"
+    },
+    {
+      "pick": 113,
+      "round": 9,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.9095",
+      "player_name": "Yu Darvish",
+      "position": "SP",
+      "mlb_team": "San Diego Padres"
+    },
+    {
+      "pick": 114,
+      "round": 9,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.12435",
+      "player_name": "Yainer Diaz",
+      "position": "C,1B",
+      "mlb_team": "Houston Astros"
+    },
+    {
+      "pick": 115,
+      "round": 9,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.11645",
+      "player_name": "David Bednar",
+      "position": "RP",
+      "mlb_team": "New York Yankees"
+    },
+    {
+      "pick": 116,
+      "round": 9,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.11914",
+      "player_name": "Spencer Torkelson",
+      "position": "1B",
+      "mlb_team": "Detroit Tigers"
+    },
+    {
+      "pick": 117,
+      "round": 9,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.11526",
+      "player_name": "Andr\u00e9s Mu\u00f1oz",
+      "position": "RP",
+      "mlb_team": "Seattle Mariners"
+    },
+    {
+      "pick": 118,
+      "round": 9,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.11052",
+      "player_name": "Evan Phillips",
+      "position": "RP",
+      "mlb_team": "Los Angeles Dodgers"
+    },
+    {
+      "pick": 119,
+      "round": 9,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.10572",
+      "player_name": "Josh Naylor",
+      "position": "1B",
+      "mlb_team": "Seattle Mariners"
+    },
+    {
+      "pick": 120,
+      "round": 9,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.11817",
+      "player_name": "Bryson Stott",
+      "position": "2B,SS",
+      "mlb_team": "Philadelphia Phillies"
+    },
+    {
+      "pick": 121,
+      "round": 9,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.10440",
+      "player_name": "Ian Happ",
+      "position": "OF",
+      "mlb_team": "Chicago Cubs"
+    },
+    {
+      "pick": 122,
+      "round": 9,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.12449",
+      "player_name": "Vinnie Pasquantino",
+      "position": "1B",
+      "mlb_team": "Kansas City Royals"
+    },
+    {
+      "pick": 123,
+      "round": 9,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.9459",
+      "player_name": "Sonny Gray",
+      "position": "SP",
+      "mlb_team": "Boston Red Sox"
+    },
+    {
+      "pick": 124,
+      "round": 9,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.12729",
+      "player_name": "Edouard Julien",
+      "position": "2B",
+      "mlb_team": "Colorado Rockies"
+    },
+    {
+      "pick": 125,
+      "round": 9,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.11221",
+      "player_name": "Luis Arraez",
+      "position": "1B,2B",
+      "mlb_team": "San Francisco Giants"
+    },
+    {
+      "pick": 126,
+      "round": 9,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.11661",
+      "player_name": "Michael King",
+      "position": "SP,RP",
+      "mlb_team": "San Diego Padres"
+    },
+    {
+      "pick": 127,
+      "round": 10,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.11253",
+      "player_name": "Jordan Romano",
+      "position": "RP",
+      "mlb_team": "Los Angeles Angels"
+    },
+    {
+      "pick": 128,
+      "round": 10,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.10849",
+      "player_name": "Cedric Mullins",
+      "position": "OF",
+      "mlb_team": "Tampa Bay Rays"
+    },
+    {
+      "pick": 129,
+      "round": 10,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.10929",
+      "player_name": "Sean Murphy",
+      "position": "C",
+      "mlb_team": "Atlanta Braves"
+    },
+    {
+      "pick": 130,
+      "round": 10,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.9872",
+      "player_name": "Jos\u00e9 Berr\u00edos",
+      "position": "SP",
+      "mlb_team": "Toronto Blue Jays"
+    },
+    {
+      "pick": 131,
+      "round": 10,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.11315",
+      "player_name": "Cristian Javier",
+      "position": "SP",
+      "mlb_team": "Houston Astros"
+    },
+    {
+      "pick": 132,
+      "round": 10,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.11597",
+      "player_name": "Pete Fairbanks",
+      "position": "RP",
+      "mlb_team": "Miami Marlins"
+    },
+    {
+      "pick": 133,
+      "round": 10,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.8780",
+      "player_name": "Chris Sale",
+      "position": "SP",
+      "mlb_team": "Atlanta Braves"
+    },
+    {
+      "pick": 134,
+      "round": 10,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.9007",
+      "player_name": "Nathan Eovaldi",
+      "position": "SP",
+      "mlb_team": "Texas Rangers"
+    },
+    {
+      "pick": 135,
+      "round": 10,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.10946",
+      "player_name": "Ryan Helsley",
+      "position": "RP",
+      "mlb_team": "Baltimore Orioles"
+    },
+    {
+      "pick": 136,
+      "round": 10,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.10862",
+      "player_name": "Hunter Greene",
+      "position": "SP",
+      "mlb_team": "Cincinnati Reds"
+    },
+    {
+      "pick": 137,
+      "round": 10,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.9121",
+      "player_name": "Gerrit Cole",
+      "position": "SP",
+      "mlb_team": "New York Yankees"
+    },
+    {
+      "pick": 138,
+      "round": 10,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.9606",
+      "player_name": "Max Muncy",
+      "position": "3B",
+      "mlb_team": "Los Angeles Dodgers"
+    },
+    {
+      "pick": 139,
+      "round": 10,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.63640",
+      "player_name": "Shota Imanaga",
+      "position": "SP",
+      "mlb_team": "Chicago Cubs"
+    },
+    {
+      "pick": 140,
+      "round": 10,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.8588",
+      "player_name": "Justin Turner",
+      "position": "1B,2B,3B",
+      "mlb_team": "Chicago Cubs"
+    },
+    {
+      "pick": 141,
+      "round": 11,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.9651",
+      "player_name": "Nick Martinez",
+      "position": "SP,RP",
+      "mlb_team": "Tampa Bay Rays"
+    },
+    {
+      "pick": 142,
+      "round": 11,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.10509",
+      "player_name": "Walker Buehler",
+      "position": "SP",
+      "mlb_team": "San Diego Padres"
+    },
+    {
+      "pick": 143,
+      "round": 11,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.9015",
+      "player_name": "Salvador Perez",
+      "position": "C,1B",
+      "mlb_team": "Kansas City Royals"
+    },
+    {
+      "pick": 144,
+      "round": 11,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.10666",
+      "player_name": "Anthony Santander",
+      "position": "1B,OF",
+      "mlb_team": "Toronto Blue Jays"
+    },
+    {
+      "pick": 145,
+      "round": 11,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.11531",
+      "player_name": "Cal Raleigh",
+      "position": "C",
+      "mlb_team": "Seattle Mariners"
+    },
+    {
+      "pick": 146,
+      "round": 11,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.10858",
+      "player_name": "Adbert Alzolay",
+      "position": "RP",
+      "mlb_team": "New York Mets"
+    },
+    {
+      "pick": 147,
+      "round": 11,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.10881",
+      "player_name": "Isaac Paredes",
+      "position": "1B,2B,3B",
+      "mlb_team": "Houston Astros"
+    },
+    {
+      "pick": 148,
+      "round": 11,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.11809",
+      "player_name": "Anthony Volpe",
+      "position": "SS",
+      "mlb_team": "New York Yankees"
+    },
+    {
+      "pick": 149,
+      "round": 11,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.11391",
+      "player_name": "Nolan Gorman",
+      "position": "2B,3B",
+      "mlb_team": "St. Louis Cardinals"
+    },
+    {
+      "pick": 150,
+      "round": 11,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.10569",
+      "player_name": "Clay Holmes",
+      "position": "RP",
+      "mlb_team": "New York Mets"
+    },
+    {
+      "pick": 151,
+      "round": 11,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.7590",
+      "player_name": "Justin Verlander",
+      "position": "SP",
+      "mlb_team": "Detroit Tigers"
+    },
+    {
+      "pick": 152,
+      "round": 11,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.60584",
+      "player_name": "Bryan Woo",
+      "position": "SP",
+      "mlb_team": "Seattle Mariners"
+    },
+    {
+      "pick": 153,
+      "round": 11,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.12763",
+      "player_name": "Masataka Yoshida",
+      "position": "OF",
+      "mlb_team": "Boston Red Sox"
+    },
+    {
+      "pick": 154,
+      "round": 11,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.12503",
+      "player_name": "Zack Gelof",
+      "position": "2B",
+      "mlb_team": " Athletics"
+    },
+    {
+      "pick": 155,
+      "round": 12,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.10877",
+      "player_name": "Jake Burger",
+      "position": "1B,3B",
+      "mlb_team": "Texas Rangers"
+    },
+    {
+      "pick": 156,
+      "round": 12,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.10660",
+      "player_name": "Jordan Montgomery",
+      "position": "SP",
+      "mlb_team": "Texas Rangers"
+    },
+    {
+      "pick": 157,
+      "round": 12,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.10565",
+      "player_name": "Mitch Keller",
+      "position": "SP",
+      "mlb_team": "Pittsburgh Pirates"
+    },
+    {
+      "pick": 158,
+      "round": 12,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.11760",
+      "player_name": "Riley Greene",
+      "position": "OF",
+      "mlb_team": "Detroit Tigers"
+    },
+    {
+      "pick": 159,
+      "round": 12,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.12141",
+      "player_name": "Hunter Brown",
+      "position": "SP",
+      "mlb_team": "Houston Astros"
+    },
+    {
+      "pick": 160,
+      "round": 12,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.11349",
+      "player_name": "Francisco Alvarez",
+      "position": "C",
+      "mlb_team": "New York Mets"
+    },
+    {
+      "pick": 161,
+      "round": 12,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.9876",
+      "player_name": "Brandon Nimmo",
+      "position": "OF",
+      "mlb_team": "Texas Rangers"
+    },
+    {
+      "pick": 162,
+      "round": 12,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.12322",
+      "player_name": "Ezequiel Tovar",
+      "position": "SS",
+      "mlb_team": "Colorado Rockies"
+    },
+    {
+      "pick": 163,
+      "round": 12,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.12540",
+      "player_name": "Bryce Miller",
+      "position": "SP",
+      "mlb_team": "Seattle Mariners"
+    },
+    {
+      "pick": 164,
+      "round": 12,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.11912",
+      "player_name": "Chas McCormick",
+      "position": "OF",
+      "mlb_team": "Chicago Cubs"
+    },
+    {
+      "pick": 165,
+      "round": 12,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.11365",
+      "player_name": "Alec Bohm",
+      "position": "1B,3B",
+      "mlb_team": "Philadelphia Phillies"
+    },
+    {
+      "pick": 166,
+      "round": 12,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.8622",
+      "player_name": "Craig Kimbrel",
+      "position": "RP",
+      "mlb_team": "New York Mets"
+    },
+    {
+      "pick": 167,
+      "round": 12,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.10919",
+      "player_name": "Andr\u00e9s Gim\u00e9nez",
+      "position": "2B",
+      "mlb_team": "Toronto Blue Jays"
+    },
+    {
+      "pick": 168,
+      "round": 12,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.10692",
+      "player_name": "Jos\u00e9 Alvarado",
+      "position": "RP",
+      "mlb_team": "Philadelphia Phillies"
+    },
+    {
+      "pick": 169,
+      "round": 13,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.10298",
+      "player_name": "Whit Merrifield",
+      "position": "2B,3B,OF",
+      "mlb_team": "Atlanta Braves"
+    },
+    {
+      "pick": 170,
+      "round": 13,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.8758",
+      "player_name": "Kenley Jansen",
+      "position": "RP",
+      "mlb_team": "Detroit Tigers"
+    },
+    {
+      "pick": 171,
+      "round": 13,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.10432",
+      "player_name": "Tanner Scott",
+      "position": "RP",
+      "mlb_team": "Los Angeles Dodgers"
+    },
+    {
+      "pick": 172,
+      "round": 13,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.11662",
+      "player_name": "Jonah Heim",
+      "position": "C",
+      "mlb_team": "Atlanta Braves"
+    },
+    {
+      "pick": 173,
+      "round": 13,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.8270",
+      "player_name": "Charlie Morton",
+      "position": "SP",
+      "mlb_team": "Atlanta Braves"
+    },
+    {
+      "pick": 174,
+      "round": 13,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.9637",
+      "player_name": "Marcus Stroman",
+      "position": "SP",
+      "mlb_team": "New York Yankees"
+    },
+    {
+      "pick": 175,
+      "round": 13,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.10556",
+      "player_name": "Rhys Hoskins",
+      "position": "1B",
+      "mlb_team": "Cleveland Guardians"
+    },
+    {
+      "pick": 176,
+      "round": 13,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.12401",
+      "player_name": "Gavin Williams",
+      "position": "SP",
+      "mlb_team": "Cleveland Guardians"
+    },
+    {
+      "pick": 177,
+      "round": 13,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.9228",
+      "player_name": "Jorge Soler",
+      "position": "OF",
+      "mlb_team": "Los Angeles Angels"
+    },
+    {
+      "pick": 178,
+      "round": 13,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.9823",
+      "player_name": "Carlos Rod\u00f3n",
+      "position": "SP",
+      "mlb_team": "New York Yankees"
+    },
+    {
+      "pick": 179,
+      "round": 13,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.10923",
+      "player_name": "Thairo Estrada",
+      "position": "2B,SS",
+      "mlb_team": "Baltimore Orioles"
+    },
+    {
+      "pick": 180,
+      "round": 13,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.11495",
+      "player_name": "Jhoan Duran",
+      "position": "RP",
+      "mlb_team": "Philadelphia Phillies"
+    },
+    {
+      "pick": 181,
+      "round": 13,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.10166",
+      "player_name": "Willson Contreras",
+      "position": "C",
+      "mlb_team": "Boston Red Sox"
+    },
+    {
+      "pick": 182,
+      "round": 13,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.10601",
+      "player_name": "Josh Lowe",
+      "position": "OF",
+      "mlb_team": "Los Angeles Angels"
+    },
+    {
+      "pick": 183,
+      "round": 14,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.11296",
+      "player_name": "Bo Naylor",
+      "position": "C",
+      "mlb_team": "Cleveland Guardians"
+    },
+    {
+      "pick": 184,
+      "round": 14,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.11743",
+      "player_name": "Christopher Morel",
+      "position": "2B,3B,OF",
+      "mlb_team": "Miami Marlins"
+    },
+    {
+      "pick": 185,
+      "round": 14,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.9893",
+      "player_name": "Willy Adames",
+      "position": "SS",
+      "mlb_team": "San Francisco Giants"
+    },
+    {
+      "pick": 186,
+      "round": 14,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.12339",
+      "player_name": "James Outman",
+      "position": "OF",
+      "mlb_team": "Minnesota Twins"
+    },
+    {
+      "pick": 187,
+      "round": 14,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.10794",
+      "player_name": "A.J. Minter",
+      "position": "RP",
+      "mlb_team": "New York Mets"
+    },
+    {
+      "pick": 188,
+      "round": 14,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.9358",
+      "player_name": "Ryan Pressly",
+      "position": "RP",
+      "mlb_team": "Chicago Cubs"
+    },
+    {
+      "pick": 189,
+      "round": 14,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.60090",
+      "player_name": "Jackson Holliday",
+      "position": "2B,SS",
+      "mlb_team": "Baltimore Orioles"
+    },
+    {
+      "pick": 190,
+      "round": 14,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.10462",
+      "player_name": "Triston McKenzie",
+      "position": "SP",
+      "mlb_team": "San Diego Padres"
+    },
+    {
+      "pick": 191,
+      "round": 14,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.10548",
+      "player_name": "A.J. Puk",
+      "position": "SP,RP",
+      "mlb_team": "Arizona Diamondbacks"
+    },
+    {
+      "pick": 192,
+      "round": 14,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.11292",
+      "player_name": "Jonathan India",
+      "position": "2B",
+      "mlb_team": "Kansas City Royals"
+    },
+    {
+      "pick": 193,
+      "round": 14,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.12036",
+      "player_name": "Ryan Pepiot",
+      "position": "SP,RP",
+      "mlb_team": "Tampa Bay Rays"
+    },
+    {
+      "pick": 194,
+      "round": 14,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.12203",
+      "player_name": "Griffin Jax",
+      "position": "RP",
+      "mlb_team": "Tampa Bay Rays"
+    },
+    {
+      "pick": 195,
+      "round": 14,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.12024",
+      "player_name": "Jordan Walker",
+      "position": "OF",
+      "mlb_team": "St. Louis Cardinals"
+    },
+    {
+      "pick": 196,
+      "round": 14,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.9002",
+      "player_name": "J.D. Martinez",
+      "position": "OF",
+      "mlb_team": "New York Mets"
+    },
+    {
+      "pick": 197,
+      "round": 15,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.12175",
+      "player_name": "Kyle Harrison",
+      "position": "SP",
+      "mlb_team": "Milwaukee Brewers"
+    },
+    {
+      "pick": 198,
+      "round": 15,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.10328",
+      "player_name": "Jeimer Candelario",
+      "position": "1B,3B",
+      "mlb_team": "Los Angeles Angels"
+    },
+    {
+      "pick": 199,
+      "round": 15,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.10683",
+      "player_name": "Nick Pivetta",
+      "position": "SP,RP",
+      "mlb_team": "San Diego Padres"
+    },
+    {
+      "pick": 200,
+      "round": 15,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.12342",
+      "player_name": "Jack Suwinski",
+      "position": "OF",
+      "mlb_team": "Los Angeles Dodgers"
+    },
+    {
+      "pick": 201,
+      "round": 15,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.10843",
+      "player_name": "Daulton Varsho",
+      "position": "OF",
+      "mlb_team": "Toronto Blue Jays"
+    },
+    {
+      "pick": 202,
+      "round": 15,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.63515",
+      "player_name": "Yuki Matsui",
+      "position": "RP",
+      "mlb_team": "San Diego Padres"
+    },
+    {
+      "pick": 203,
+      "round": 15,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.12522",
+      "player_name": "Jackson Merrill",
+      "position": "SS,OF",
+      "mlb_team": "San Diego Padres"
+    },
+    {
+      "pick": 204,
+      "round": 15,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.11735",
+      "player_name": "Jarren Duran",
+      "position": "OF",
+      "mlb_team": "Boston Red Sox"
+    },
+    {
+      "pick": 205,
+      "round": 15,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.10869",
+      "player_name": "Aaron Civale",
+      "position": "SP",
+      "mlb_team": " Athletics"
+    },
+    {
+      "pick": 206,
+      "round": 15,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.12011",
+      "player_name": "Logan O'Hoppe",
+      "position": "C",
+      "mlb_team": "Los Angeles Angels"
+    },
+    {
+      "pick": 207,
+      "round": 15,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.10175",
+      "player_name": "Ryan McMahon",
+      "position": "2B,3B",
+      "mlb_team": "New York Yankees"
+    },
+    {
+      "pick": 208,
+      "round": 15,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.12336",
+      "player_name": "Maikel Garcia",
+      "position": "2B,3B,SS",
+      "mlb_team": "Kansas City Royals"
+    },
+    {
+      "pick": 209,
+      "round": 15,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.60056",
+      "player_name": "Brandon Pfaadt",
+      "position": "SP",
+      "mlb_team": "Arizona Diamondbacks"
+    },
+    {
+      "pick": 210,
+      "round": 15,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.9571",
+      "player_name": "Trevor Story",
+      "position": "SS",
+      "mlb_team": "Boston Red Sox"
+    },
+    {
+      "pick": 211,
+      "round": 16,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.11431",
+      "player_name": "Kutter Crawford",
+      "position": "SP,RP",
+      "mlb_team": "Boston Red Sox"
+    },
+    {
+      "pick": 212,
+      "round": 16,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.10566",
+      "player_name": "Ke'Bryan Hayes",
+      "position": "3B",
+      "mlb_team": "Cincinnati Reds"
+    },
+    {
+      "pick": 213,
+      "round": 16,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.63494",
+      "player_name": "Jung Hoo Lee",
+      "position": "OF",
+      "mlb_team": "San Francisco Giants"
+    },
+    {
+      "pick": 214,
+      "round": 16,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.9590",
+      "player_name": "Byron Buxton",
+      "position": "OF",
+      "mlb_team": "Minnesota Twins"
+    },
+    {
+      "pick": 215,
+      "round": 16,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.8634",
+      "player_name": "Giancarlo Stanton",
+      "position": "OF",
+      "mlb_team": "New York Yankees"
+    },
+    {
+      "pick": 216,
+      "round": 16,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.12776",
+      "player_name": "Kodai Senga",
+      "position": "SP",
+      "mlb_team": "New York Mets"
+    },
+    {
+      "pick": 217,
+      "round": 16,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.12354",
+      "player_name": "Robert Suarez",
+      "position": "RP",
+      "mlb_team": "Atlanta Braves"
+    },
+    {
+      "pick": 218,
+      "round": 16,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.12476",
+      "player_name": "Sal Frelick",
+      "position": "OF",
+      "mlb_team": "Milwaukee Brewers"
+    },
+    {
+      "pick": 219,
+      "round": 16,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.12725",
+      "player_name": "J.P. France",
+      "position": "SP",
+      "mlb_team": "Houston Astros"
+    },
+    {
+      "pick": 220,
+      "round": 16,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.10940",
+      "player_name": "MacKenzie Gore",
+      "position": "SP",
+      "mlb_team": "Texas Rangers"
+    },
+    {
+      "pick": 221,
+      "round": 16,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.12314",
+      "player_name": "Steven Kwan",
+      "position": "OF",
+      "mlb_team": "Cleveland Guardians"
+    },
+    {
+      "pick": 222,
+      "round": 16,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.8193",
+      "player_name": "Max Scherzer",
+      "position": "SP",
+      "mlb_team": "Toronto Blue Jays"
+    },
+    {
+      "pick": 223,
+      "round": 16,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.10970",
+      "player_name": "Nestor Cortes",
+      "position": "SP",
+      "mlb_team": "San Diego Padres"
+    },
+    {
+      "pick": 224,
+      "round": 16,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.12695",
+      "player_name": "Louis Varland",
+      "position": "SP,RP",
+      "mlb_team": "Toronto Blue Jays"
+    },
+    {
+      "pick": 225,
+      "round": 17,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.8652",
+      "player_name": "Mart\u00edn P\u00e9rez",
+      "position": "SP,RP",
+      "mlb_team": "Atlanta Braves"
+    },
+    {
+      "pick": 226,
+      "round": 17,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.10917",
+      "player_name": "Brent Rooker",
+      "position": "OF",
+      "mlb_team": " Athletics"
+    },
+    {
+      "pick": 227,
+      "round": 17,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.8619",
+      "player_name": "Carlos Santana",
+      "position": "1B",
+      "mlb_team": "Arizona Diamondbacks"
+    },
+    {
+      "pick": 228,
+      "round": 17,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.10899",
+      "player_name": "Keibert Ruiz",
+      "position": "C",
+      "mlb_team": "Washington Nationals"
+    },
+    {
+      "pick": 229,
+      "round": 17,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.9193",
+      "player_name": "Will Smith",
+      "position": "RP",
+      "mlb_team": "Kansas City Royals"
+    },
+    {
+      "pick": 230,
+      "round": 17,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.9547",
+      "player_name": "Hunter Harvey",
+      "position": "RP",
+      "mlb_team": "Chicago Cubs"
+    },
+    {
+      "pick": 231,
+      "round": 17,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.9546",
+      "player_name": "Eduardo Rodriguez",
+      "position": "SP",
+      "mlb_team": "Arizona Diamondbacks"
+    },
+    {
+      "pick": 232,
+      "round": 17,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.10513",
+      "player_name": "Braxton Garrett",
+      "position": "SP",
+      "mlb_team": "Miami Marlins"
+    },
+    {
+      "pick": 233,
+      "round": 17,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.10336",
+      "player_name": "Jos\u00e9 Leclerc",
+      "position": "RP",
+      "mlb_team": " Athletics"
+    },
+    {
+      "pick": 234,
+      "round": 17,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.10848",
+      "player_name": "DL Hall",
+      "position": "SP,RP",
+      "mlb_team": "Milwaukee Brewers"
+    },
+    {
+      "pick": 235,
+      "round": 17,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.10891",
+      "player_name": "MJ Melendez",
+      "position": "C,OF",
+      "mlb_team": "New York Mets"
+    },
+    {
+      "pick": 236,
+      "round": 17,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.10860",
+      "player_name": "Alex Lange",
+      "position": "RP",
+      "mlb_team": "Kansas City Royals"
+    },
+    {
+      "pick": 237,
+      "round": 17,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.10616",
+      "player_name": "Lourdes Gurriel Jr.",
+      "position": "OF",
+      "mlb_team": "Arizona Diamondbacks"
+    },
+    {
+      "pick": 238,
+      "round": 17,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.11750",
+      "player_name": "Nick Lodolo",
+      "position": "SP",
+      "mlb_team": "Cincinnati Reds"
+    },
+    {
+      "pick": 239,
+      "round": 18,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.12468",
+      "player_name": "Eury P\u00e9rez",
+      "position": "SP",
+      "mlb_team": "Miami Marlins"
+    },
+    {
+      "pick": 240,
+      "round": 18,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.9853",
+      "player_name": "Brandon Drury",
+      "position": "1B,2B,3B",
+      "mlb_team": "Kansas City Royals"
+    },
+    {
+      "pick": 241,
+      "round": 18,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.10095",
+      "player_name": "Max Kepler",
+      "position": "OF",
+      "mlb_team": "Philadelphia Phillies"
+    },
+    {
+      "pick": 242,
+      "round": 18,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.10505",
+      "player_name": "Alex Verdugo",
+      "position": "OF",
+      "mlb_team": "San Diego Padres"
+    },
+    {
+      "pick": 243,
+      "round": 18,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.11193",
+      "player_name": "Joel Payamps",
+      "position": "RP",
+      "mlb_team": "Atlanta Braves"
+    },
+    {
+      "pick": 244,
+      "round": 18,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.11926",
+      "player_name": "Reid Detmers",
+      "position": "SP",
+      "mlb_team": "Los Angeles Angels"
+    },
+    {
+      "pick": 245,
+      "round": 18,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.12505",
+      "player_name": "Mason Miller",
+      "position": "SP,RP",
+      "mlb_team": "San Diego Padres"
+    },
+    {
+      "pick": 246,
+      "round": 18,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.9879",
+      "player_name": "Luis Severino",
+      "position": "SP",
+      "mlb_team": " Athletics"
+    },
+    {
+      "pick": 247,
+      "round": 18,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.9750",
+      "player_name": "Jorge Polanco",
+      "position": "2B,3B",
+      "mlb_team": "New York Mets"
+    },
+    {
+      "pick": 248,
+      "round": 18,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.9567",
+      "player_name": "Jon Gray",
+      "position": "SP",
+      "mlb_team": "Texas Rangers"
+    },
+    {
+      "pick": 249,
+      "round": 18,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.12114",
+      "player_name": "Tyler Wells",
+      "position": "SP",
+      "mlb_team": "Baltimore Orioles"
+    },
+    {
+      "pick": 250,
+      "round": 18,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.10451",
+      "player_name": "Dane Dunning",
+      "position": "SP,RP",
+      "mlb_team": "Seattle Mariners"
+    },
+    {
+      "pick": 251,
+      "round": 18,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.11709",
+      "player_name": "Kyle Finnegan",
+      "position": "RP",
+      "mlb_team": "Detroit Tigers"
+    },
+    {
+      "pick": 252,
+      "round": 18,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.9414",
+      "player_name": "Joc Pederson",
+      "position": "OF",
+      "mlb_team": "Texas Rangers"
+    },
+    {
+      "pick": 253,
+      "round": 19,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.9754",
+      "player_name": "Enrique Hern\u00e1ndez",
+      "position": "1B,2B,3B,SS,OF",
+      "mlb_team": "Los Angeles Dodgers"
+    },
+    {
+      "pick": 254,
+      "round": 19,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.11692",
+      "player_name": "Jake Cronenworth",
+      "position": "1B,2B",
+      "mlb_team": "San Diego Padres"
+    },
+    {
+      "pick": 255,
+      "round": 19,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.60139",
+      "player_name": "Logan Allen",
+      "position": "SP",
+      "mlb_team": "Cleveland Guardians"
+    },
+    {
+      "pick": 256,
+      "round": 19,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.11210",
+      "player_name": "Luis Rengifo",
+      "position": "2B,3B,SS,OF",
+      "mlb_team": "Milwaukee Brewers"
+    },
+    {
+      "pick": 257,
+      "round": 19,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.11527",
+      "player_name": "Luis Campusano",
+      "position": "C",
+      "mlb_team": "San Diego Padres"
+    },
+    {
+      "pick": 258,
+      "round": 19,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.10215",
+      "player_name": "Tyler O'Neill",
+      "position": "OF",
+      "mlb_team": "Baltimore Orioles"
+    },
+    {
+      "pick": 259,
+      "round": 19,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.10027",
+      "player_name": "Frankie Montas",
+      "position": "SP,RP",
+      "mlb_team": "New York Mets"
+    },
+    {
+      "pick": 260,
+      "round": 19,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.11706",
+      "player_name": "Cristopher S\u00e1nchez",
+      "position": "SP",
+      "mlb_team": "Philadelphia Phillies"
+    },
+    {
+      "pick": 261,
+      "round": 19,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.10274",
+      "player_name": "Carlos Est\u00e9vez",
+      "position": "RP",
+      "mlb_team": "Kansas City Royals"
+    },
+    {
+      "pick": 262,
+      "round": 19,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.9889",
+      "player_name": "Hunter Renfroe",
+      "position": "1B,OF",
+      "mlb_team": "Kansas City Royals"
+    },
+    {
+      "pick": 263,
+      "round": 19,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.9540",
+      "player_name": "Jos\u00e9 Abreu",
+      "position": "1B",
+      "mlb_team": "Houston Astros"
+    },
+    {
+      "pick": 264,
+      "round": 19,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.8616",
+      "player_name": "Aroldis Chapman",
+      "position": "RP",
+      "mlb_team": "Boston Red Sox"
+    },
+    {
+      "pick": 265,
+      "round": 19,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.9573",
+      "player_name": "Carlos Correa",
+      "position": "SS",
+      "mlb_team": "Houston Astros"
+    },
+    {
+      "pick": 266,
+      "round": 19,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.12330",
+      "player_name": "Brayan Bello",
+      "position": "SP",
+      "mlb_team": "Boston Red Sox"
+    },
+    {
+      "pick": 267,
+      "round": 20,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.60231",
+      "player_name": "Gavin Stone",
+      "position": "SP",
+      "mlb_team": "Los Angeles Dodgers"
+    },
+    {
+      "pick": 268,
+      "round": 20,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.9779",
+      "player_name": "H\u00e9ctor Neris",
+      "position": "RP",
+      "mlb_team": "Kansas City Royals"
+    },
+    {
+      "pick": 269,
+      "round": 20,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.12614",
+      "player_name": "Yennier Cano",
+      "position": "RP",
+      "mlb_team": "Baltimore Orioles"
+    },
+    {
+      "pick": 270,
+      "round": 20,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.8287",
+      "player_name": "David Robertson",
+      "position": "RP",
+      "mlb_team": "Philadelphia Phillies"
+    },
+    {
+      "pick": 271,
+      "round": 20,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.8650",
+      "player_name": "Lance Lynn",
+      "position": "SP",
+      "mlb_team": "St. Louis Cardinals"
+    },
+    {
+      "pick": 272,
+      "round": 20,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.10496",
+      "player_name": "Taylor Ward",
+      "position": "OF",
+      "mlb_team": "Baltimore Orioles"
+    },
+    {
+      "pick": 273,
+      "round": 20,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.9815",
+      "player_name": "Yimi Garc\u00eda",
+      "position": "RP",
+      "mlb_team": "Toronto Blue Jays"
+    },
+    {
+      "pick": 274,
+      "round": 20,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.12615",
+      "player_name": "Chase Silseth",
+      "position": "SP,RP",
+      "mlb_team": "Los Angeles Angels"
+    },
+    {
+      "pick": 275,
+      "round": 20,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.10789",
+      "player_name": "Mitch Garver",
+      "position": "C",
+      "mlb_team": "Seattle Mariners"
+    },
+    {
+      "pick": 276,
+      "round": 20,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.9724",
+      "player_name": "Eugenio Su\u00e1rez",
+      "position": "3B",
+      "mlb_team": "Cincinnati Reds"
+    },
+    {
+      "pick": 277,
+      "round": 20,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.10326",
+      "player_name": "Seth Lugo",
+      "position": "SP",
+      "mlb_team": "Kansas City Royals"
+    },
+    {
+      "pick": 278,
+      "round": 20,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.9771",
+      "player_name": "Chris Taylor",
+      "position": "2B,3B,SS,OF",
+      "mlb_team": "Los Angeles Angels"
+    },
+    {
+      "pick": 279,
+      "round": 20,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.12667",
+      "player_name": "Kerry Carpenter",
+      "position": "OF",
+      "mlb_team": "Detroit Tigers"
+    },
+    {
+      "pick": 280,
+      "round": 20,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.9883",
+      "player_name": "Josh Bell",
+      "position": "1B",
+      "mlb_team": "Minnesota Twins"
+    },
+    {
+      "pick": 281,
+      "round": 21,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.9106",
+      "player_name": "Anthony Rendon",
+      "position": "3B",
+      "mlb_team": "Los Angeles Angels"
+    },
+    {
+      "pick": 282,
+      "round": 21,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.60214",
+      "player_name": "Zach Neto",
+      "position": "SS",
+      "mlb_team": "Los Angeles Angels"
+    },
+    {
+      "pick": 283,
+      "round": 21,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.8180",
+      "player_name": "Clayton Kershaw",
+      "position": "SP",
+      "mlb_team": "Los Angeles Dodgers"
+    },
+    {
+      "pick": 284,
+      "round": 21,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.11548",
+      "player_name": "Colin Poche",
+      "position": "RP",
+      "mlb_team": "New York Mets"
+    },
+    {
+      "pick": 285,
+      "round": 21,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.11117",
+      "player_name": "Ranger Su\u00e1rez",
+      "position": "SP",
+      "mlb_team": "Boston Red Sox"
+    },
+    {
+      "pick": 286,
+      "round": 21,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.9262",
+      "player_name": "Brooks Raley",
+      "position": "RP",
+      "mlb_team": "New York Mets"
+    },
+    {
+      "pick": 287,
+      "round": 21,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.9582",
+      "player_name": "Sean Manaea",
+      "position": "SP,RP",
+      "mlb_team": "New York Mets"
+    },
+    {
+      "pick": 288,
+      "round": 21,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.11208",
+      "player_name": "Bryan Abreu",
+      "position": "RP",
+      "mlb_team": "Houston Astros"
+    },
+    {
+      "pick": 289,
+      "round": 21,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.10105",
+      "player_name": "Kenta Maeda",
+      "position": "SP,RP",
+      "mlb_team": "Detroit Tigers"
+    },
+    {
+      "pick": 290,
+      "round": 21,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.9118",
+      "player_name": "Starling Marte",
+      "position": "OF",
+      "mlb_team": "Kansas City Royals"
+    },
+    {
+      "pick": 291,
+      "round": 21,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.10868",
+      "player_name": "Willi Castro",
+      "position": "2B,3B,SS,OF",
+      "mlb_team": "Colorado Rockies"
+    },
+    {
+      "pick": 292,
+      "round": 21,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.8868",
+      "player_name": "Anthony Rizzo",
+      "position": "1B",
+      "mlb_team": "New York Yankees"
+    },
+    {
+      "pick": 293,
+      "round": 21,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.11568",
+      "player_name": "Jake Fraley",
+      "position": "OF",
+      "mlb_team": "Tampa Bay Rays"
+    },
+    {
+      "pick": 294,
+      "round": 21,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.9563",
+      "player_name": "Robert Stephenson",
+      "position": "RP",
+      "mlb_team": "Los Angeles Angels"
+    },
+    {
+      "pick": 295,
+      "round": 22,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.11263",
+      "player_name": "Yusei Kikuchi",
+      "position": "SP",
+      "mlb_team": "Los Angeles Angels"
+    },
+    {
+      "pick": 296,
+      "round": 22,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.12390",
+      "player_name": "Matt McLain",
+      "position": "2B,SS",
+      "mlb_team": "Cincinnati Reds"
+    },
+    {
+      "pick": 297,
+      "round": 22,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.9844",
+      "player_name": "Danny Coulombe",
+      "position": "RP",
+      "mlb_team": "Boston Red Sox"
+    },
+    {
+      "pick": 298,
+      "round": 22,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.12204",
+      "player_name": "Jason Foley",
+      "position": "RP",
+      "mlb_team": "San Francisco Giants"
+    },
+    {
+      "pick": 299,
+      "round": 22,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.12746",
+      "player_name": "Abner Uribe",
+      "position": "RP",
+      "mlb_team": "Milwaukee Brewers"
+    },
+    {
+      "pick": 300,
+      "round": 22,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.12395",
+      "player_name": "Andrew Abbott",
+      "position": "SP",
+      "mlb_team": "Cincinnati Reds"
+    },
+    {
+      "pick": 301,
+      "round": 22,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.12673",
+      "player_name": "Andrew Nardi",
+      "position": "RP",
+      "mlb_team": "Miami Marlins"
+    },
+    {
+      "pick": 302,
+      "round": 22,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.9329",
+      "player_name": "Michael Wacha",
+      "position": "SP",
+      "mlb_team": "Kansas City Royals"
+    },
+    {
+      "pick": 303,
+      "round": 22,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.10711",
+      "player_name": "John Brebbia",
+      "position": "SP,RP",
+      "mlb_team": "Colorado Rockies"
+    },
+    {
+      "pick": 304,
+      "round": 22,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.10787",
+      "player_name": "Tim Mayza",
+      "position": "RP",
+      "mlb_team": "Philadelphia Phillies"
+    },
+    {
+      "pick": 305,
+      "round": 22,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.9610",
+      "player_name": "J.P. Crawford",
+      "position": "SS",
+      "mlb_team": "Seattle Mariners"
+    },
+    {
+      "pick": 306,
+      "round": 22,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.11172",
+      "player_name": "Dylan Moore",
+      "position": "1B,2B,3B,SS,OF",
+      "mlb_team": "Philadelphia Phillies"
+    },
+    {
+      "pick": 307,
+      "round": 22,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.11596",
+      "player_name": "Tommy Edman",
+      "position": "2B,SS,OF",
+      "mlb_team": "Los Angeles Dodgers"
+    },
+    {
+      "pick": 308,
+      "round": 22,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.9599",
+      "player_name": "Steven Matz",
+      "position": "SP,RP",
+      "mlb_team": "Tampa Bay Rays"
+    },
+    {
+      "pick": 309,
+      "round": 23,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.9747",
+      "player_name": "Adam Duvall",
+      "position": "OF",
+      "mlb_team": "Atlanta Braves"
+    },
+    {
+      "pick": 310,
+      "round": 23,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.11626",
+      "player_name": "Kevin Ginkel",
+      "position": "RP",
+      "mlb_team": "Arizona Diamondbacks"
+    },
+    {
+      "pick": 311,
+      "round": 23,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.11310",
+      "player_name": "Parker Meadows",
+      "position": "OF",
+      "mlb_team": "Detroit Tigers"
+    },
+    {
+      "pick": 312,
+      "round": 23,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.11090",
+      "player_name": "Nathaniel Lowe",
+      "position": "1B",
+      "mlb_team": "Cincinnati Reds"
+    },
+    {
+      "pick": 313,
+      "round": 23,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.9558",
+      "player_name": "Kris Bryant",
+      "position": "1B,OF",
+      "mlb_team": "Colorado Rockies"
+    },
+    {
+      "pick": 314,
+      "round": 23,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.10865",
+      "player_name": "Jose Siri",
+      "position": "OF",
+      "mlb_team": "Los Angeles Angels"
+    },
+    {
+      "pick": 315,
+      "round": 23,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.9176",
+      "player_name": "Jose Quintana",
+      "position": "SP",
+      "mlb_team": "Colorado Rockies"
+    },
+    {
+      "pick": 316,
+      "round": 23,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.10903",
+      "player_name": "Edward Cabrera",
+      "position": "SP",
+      "mlb_team": "Chicago Cubs"
+    },
+    {
+      "pick": 317,
+      "round": 23,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.12351",
+      "player_name": "Brendan Donovan",
+      "position": "1B,2B,3B,OF",
+      "mlb_team": "Seattle Mariners"
+    },
+    {
+      "pick": 318,
+      "round": 23,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.12122",
+      "player_name": "Jordan Westburg",
+      "position": "2B,3B",
+      "mlb_team": "Baltimore Orioles"
+    },
+    {
+      "pick": 319,
+      "round": 23,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.11009",
+      "player_name": "Jason Adam",
+      "position": "RP",
+      "mlb_team": "San Diego Padres"
+    },
+    {
+      "pick": 320,
+      "round": 23,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.9758",
+      "player_name": "Kyle Hendricks",
+      "position": "SP,RP",
+      "mlb_team": "Los Angeles Angels"
+    },
+    {
+      "pick": 321,
+      "round": 23,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.8736",
+      "player_name": "Adam Ottavino",
+      "position": "RP",
+      "mlb_team": "New York Yankees"
+    },
+    {
+      "pick": 322,
+      "round": 23,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.12430",
+      "player_name": "Colt Keith",
+      "position": "2B,3B",
+      "mlb_team": "Detroit Tigers"
+    },
+    {
+      "pick": 323,
+      "round": 24,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.60907",
+      "player_name": "Jared Jones",
+      "position": "SP",
+      "mlb_team": "Pittsburgh Pirates"
+    },
+    {
+      "pick": 324,
+      "round": 24,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.12345",
+      "player_name": "Kyle Bradish",
+      "position": "SP",
+      "mlb_team": "Baltimore Orioles"
+    },
+    {
+      "pick": 325,
+      "round": 24,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.61627",
+      "player_name": "Ryan Walker",
+      "position": "SP,RP",
+      "mlb_team": "San Francisco Giants"
+    },
+    {
+      "pick": 326,
+      "round": 24,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.11644",
+      "player_name": "Tyler Rogers",
+      "position": "RP",
+      "mlb_team": "Toronto Blue Jays"
+    },
+    {
+      "pick": 327,
+      "round": 24,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.9586",
+      "player_name": "Andrew Heaney",
+      "position": "SP,RP",
+      "mlb_team": "Los Angeles Dodgers"
+    },
+    {
+      "pick": 328,
+      "round": 24,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.11768",
+      "player_name": "Jeremy Pe\u00f1a",
+      "position": "SS",
+      "mlb_team": "Houston Astros"
+    },
+    {
+      "pick": 329,
+      "round": 24,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.11417",
+      "player_name": "Geraldo Perdomo",
+      "position": "2B,3B,SS",
+      "mlb_team": "Arizona Diamondbacks"
+    },
+    {
+      "pick": 330,
+      "round": 24,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.11480",
+      "player_name": "Josiah Gray",
+      "position": "SP",
+      "mlb_team": "Washington Nationals"
+    },
+    {
+      "pick": 331,
+      "round": 24,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.10439",
+      "player_name": "Eloy Jim\u00e9nez",
+      "position": "OF",
+      "mlb_team": "Toronto Blue Jays"
+    },
+    {
+      "pick": 332,
+      "round": 24,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.12730",
+      "player_name": "Ceddanne Rafaela",
+      "position": "2B,SS,OF",
+      "mlb_team": "Boston Red Sox"
+    },
+    {
+      "pick": 333,
+      "round": 24,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.11168",
+      "player_name": "John Means",
+      "position": "SP",
+      "mlb_team": "Kansas City Royals"
+    },
+    {
+      "pick": 334,
+      "round": 24,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.12514",
+      "player_name": "Henry Davis",
+      "position": "C,OF",
+      "mlb_team": "Pittsburgh Pirates"
+    },
+    {
+      "pick": 335,
+      "round": 24,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.11728",
+      "player_name": "Shea Langeliers",
+      "position": "C",
+      "mlb_team": " Athletics"
+    },
+    {
+      "pick": 336,
+      "round": 24,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.9871",
+      "player_name": "Orlando Arcia",
+      "position": "SS",
+      "mlb_team": "Minnesota Twins"
+    },
+    {
+      "pick": 337,
+      "round": 25,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.9875",
+      "player_name": "Michael Conforto",
+      "position": "OF",
+      "mlb_team": "Chicago Cubs"
+    },
+    {
+      "pick": 338,
+      "round": 25,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.12384",
+      "player_name": "Jordan Wicks",
+      "position": "SP",
+      "mlb_team": "Chicago Cubs"
+    },
+    {
+      "pick": 339,
+      "round": 25,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.11628",
+      "player_name": "Devin Williams",
+      "position": "RP",
+      "mlb_team": "New York Mets"
+    },
+    {
+      "pick": 340,
+      "round": 25,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.10205",
+      "player_name": "Matt Chapman",
+      "position": "3B",
+      "mlb_team": "San Francisco Giants"
+    },
+    {
+      "pick": 341,
+      "round": 25,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.9949",
+      "player_name": "Michael Lorenzen (Pitcher)",
+      "position": "SP,RP",
+      "mlb_team": "Colorado Rockies"
+    },
+    {
+      "pick": 342,
+      "round": 25,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.10429",
+      "player_name": "Ryan Mountcastle",
+      "position": "1B",
+      "mlb_team": "Baltimore Orioles"
+    },
+    {
+      "pick": 343,
+      "round": 25,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.11118",
+      "player_name": "Jeff McNeil",
+      "position": "2B,OF",
+      "mlb_team": " Athletics"
+    },
+    {
+      "pick": 344,
+      "round": 25,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.11795",
+      "player_name": "Matt Wallner",
+      "position": "OF",
+      "mlb_team": "Minnesota Twins"
+    },
+    {
+      "pick": 345,
+      "round": 25,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.11855",
+      "player_name": "Gabriel Moreno",
+      "position": "C",
+      "mlb_team": "Arizona Diamondbacks"
+    },
+    {
+      "pick": 346,
+      "round": 25,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.10464",
+      "player_name": "Will Benson",
+      "position": "OF",
+      "mlb_team": "Cincinnati Reds"
+    },
+    {
+      "pick": 347,
+      "round": 25,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.10898",
+      "player_name": "Dustin May",
+      "position": "SP",
+      "mlb_team": "St. Louis Cardinals"
+    },
+    {
+      "pick": 348,
+      "round": 25,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.7977",
+      "player_name": "Andrew McCutchen",
+      "position": "OF",
+      "mlb_team": "Texas Rangers"
+    },
+    {
+      "pick": 349,
+      "round": 25,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.12329",
+      "player_name": "Josh Winckowski",
+      "position": "SP,RP",
+      "mlb_team": "Toronto Blue Jays"
+    },
+    {
+      "pick": 350,
+      "round": 25,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.12429",
+      "player_name": "Reese Olson",
+      "position": "SP",
+      "mlb_team": "Detroit Tigers"
+    },
+    {
+      "pick": 351,
+      "round": 26,
+      "team_key": "431.l.29063.t.5",
+      "player_key": "431.p.10575",
+      "player_name": "Chris Paddack",
+      "position": "SP,RP",
+      "mlb_team": "Miami Marlins"
+    },
+    {
+      "pick": 352,
+      "round": 26,
+      "team_key": "431.l.29063.t.6",
+      "player_key": "431.p.9782",
+      "player_name": "Andrew Chafin",
+      "position": "RP",
+      "mlb_team": "Minnesota Twins"
+    },
+    {
+      "pick": 353,
+      "round": 26,
+      "team_key": "431.l.29063.t.8",
+      "player_key": "431.p.11794",
+      "player_name": "Ryan Jeffers",
+      "position": "C",
+      "mlb_team": "Minnesota Twins"
+    },
+    {
+      "pick": 354,
+      "round": 26,
+      "team_key": "431.l.29063.t.3",
+      "player_key": "431.p.8873",
+      "player_name": "Matt Moore",
+      "position": "RP",
+      "mlb_team": "Boston Red Sox"
+    },
+    {
+      "pick": 355,
+      "round": 26,
+      "team_key": "431.l.29063.t.9",
+      "player_key": "431.p.10076",
+      "player_name": "Elias D\u00edaz",
+      "position": "C",
+      "mlb_team": "Kansas City Royals"
+    },
+    {
+      "pick": 356,
+      "round": 26,
+      "team_key": "431.l.29063.t.13",
+      "player_key": "431.p.10700",
+      "player_name": "Giovanny Gallegos",
+      "position": "RP",
+      "mlb_team": "Los Angeles Dodgers"
+    },
+    {
+      "pick": 357,
+      "round": 26,
+      "team_key": "431.l.29063.t.1",
+      "player_key": "431.p.9896",
+      "player_name": "Jeff Hoffman",
+      "position": "RP",
+      "mlb_team": "Toronto Blue Jays"
+    },
+    {
+      "pick": 358,
+      "round": 26,
+      "team_key": "431.l.29063.t.2",
+      "player_key": "431.p.11035",
+      "player_name": "Zack Littell",
+      "position": "SP,RP",
+      "mlb_team": "Washington Nationals"
+    },
+    {
+      "pick": 359,
+      "round": 26,
+      "team_key": "431.l.29063.t.10",
+      "player_key": "431.p.60419",
+      "player_name": "Junior Caminero",
+      "position": "3B",
+      "mlb_team": "Tampa Bay Rays"
+    },
+    {
+      "pick": 360,
+      "round": 26,
+      "team_key": "431.l.29063.t.12",
+      "player_key": "431.p.11428",
+      "player_name": "Dean Kremer",
+      "position": "SP",
+      "mlb_team": "Baltimore Orioles"
+    },
+    {
+      "pick": 361,
+      "round": 26,
+      "team_key": "431.l.29063.t.7",
+      "player_key": "431.p.11290",
+      "player_name": "TJ Friedl",
+      "position": "OF",
+      "mlb_team": "Cincinnati Reds"
+    },
+    {
+      "pick": 362,
+      "round": 26,
+      "team_key": "431.l.29063.t.4",
+      "player_key": "431.p.11169",
+      "player_name": "Jon Berti",
+      "position": "2B,3B,SS,OF",
+      "mlb_team": "Chicago Cubs"
+    },
+    {
+      "pick": 363,
+      "round": 26,
+      "team_key": "431.l.29063.t.14",
+      "player_key": "431.p.11236",
+      "player_name": "Erik Swanson",
+      "position": "RP",
+      "mlb_team": "Toronto Blue Jays"
+    },
+    {
+      "pick": 364,
+      "round": 26,
+      "team_key": "431.l.29063.t.11",
+      "player_key": "431.p.10736",
+      "player_name": "Hoby Milner",
+      "position": "RP",
+      "mlb_team": "Chicago Cubs"
+    }
+  ]
+}

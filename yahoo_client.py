@@ -464,7 +464,7 @@ def get_draft_results(session: requests.Session, league_key: str) -> list[dict]:
       }
     """
     data = _api_get(session, f"league/{league_key}/draftresults")
-    raw_picks = data["league"][1].get("draft_results", {}).get("0", {}).get("draft_results", {})
+    raw_picks = data["league"][1].get("draft_results", {})
 
     # Yahoo returns draft_results as a dict with numeric string keys + "count"
     if isinstance(raw_picks, list) or not raw_picks:
