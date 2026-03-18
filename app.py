@@ -79,6 +79,14 @@ def load_league_data() -> tuple[dict, int, int]:
             except Exception:
                 pass
 
+        # Draft results (actual picks, populated by backfill.py --draft after the draft)
+        draft_results_file = year_dir / "draft_results.json"
+        if draft_results_file.exists():
+            try:
+                league_data[season]["draft_results"] = json.loads(draft_results_file.read_text(encoding="utf-8"))
+            except Exception:
+                pass
+
     # Determine current season — find the latest season that has at least one
     # regular season week (not is_playoffs) with actual points scored.
     # This handles: (a) Yahoo returning all-zero standings, (b) pre-season
