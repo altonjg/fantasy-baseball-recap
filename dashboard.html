@@ -1488,7 +1488,7 @@
       </div>
 
       <!-- Steals & Busts -->
-      <div class="mob-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div id="live-draft-steals-busts" class="mob-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
         <div class="panel">
           <div class="section-label" style="margin-bottom:10px;"><i class="fa-solid fa-gem" style="color:#22c55e"></i> Top Steals</div>
           <div style="display:flex;flex-direction:column;gap:6px;">
@@ -2451,7 +2451,7 @@
 
   // ── Helpers ──────────────────────────────────────────────────
 
-  // Declared here (before _canonName/_badge) to avoid temporal dead zone errors
+  // Declared here (before _badge/_tAbbr/_tColor) to avoid temporal dead zone errors
   // when applyLiveData calls _renderScoreTicker on first load.
   const FRANCHISE_ALIASES = {
     'Music City Trash Can':             'Sugar Land Skeeters',
@@ -2467,6 +2467,29 @@
     "Will Smith's Right Hand":          'Athletic Park Dragons',
     "Pablo Sanchez\u2019s Drug Dealer": 'Athletic Park Dragons',
     "Zach's Team":                      'Riverside Roughnecks',
+  };
+
+  // Team name → abbreviation lookup (stable across seasons)
+  const TEAM_ABBR_MAP = {
+    'Albuquerque Bombers':      'AB',
+    'Sugar Land Skeeters':      'SL',
+    'Wonder Wharf Wonderdogs':  'WW',
+    'Hiroshima Radiation':      'HR',
+    'Canberra Wombats':         'CW',
+    'Riverside Roughnecks':     'RR',
+    'BaseballPro77':            'B7',
+    'Athletic Park Dragons':    'AP',
+    'Benchwarmers':             'BW',
+    'General Hospital':         'GH',
+    'Buttville Skidmarks':      'BS',
+    'Abbotsford-Colby Twins':   'AC',
+    'Wisconsin Rapids Reapers': 'WR',
+    'North Correa':             'NC',
+  };
+  const TEAM_CLR = {
+    AB:'#e85d04', SL:'#7c3aed', WW:'#2563eb', HR:'#0891b2', CW:'#059669',
+    RR:'#0d9488', B7:'#dc2626', AP:'#be123c', BW:'#d97706', GH:'#92400e',
+    BS:'#6b7280', AC:'#4338ca', WR:'#0f766e', NC:'#374151',
   };
 
   /**
@@ -3759,8 +3782,10 @@
   // ═══════════════════════════════════════════════════════════════
 
   function _clearDraftTab() {
-    const ids = ['live-draft-banner','live-draft-metrics','live-draft-grades-section','live-draft-board-section'];
-    ids.forEach(id => { const el = document.getElementById(id); if (el) el.innerHTML = ''; });
+    const ids = ['live-draft-metrics','live-draft-grades-section','live-draft-board-section','live-draft-steals-busts'];
+    ids.forEach(id => { const el = document.getElementById(id); if (el) { el.innerHTML = ''; el.style.display = 'none'; } });
+    const banner = document.getElementById('live-draft-banner');
+    if (banner) { banner.innerHTML = ''; banner.style.display = ''; }
   }
 
   // Build a team_key → team name lookup from any week data in a season
@@ -3902,6 +3927,7 @@
           </div>
         </div>`;
       }
+      if (boardEl) boardEl.style.display = '';
       _renderDraftBoard(drResults.picks, teamKeyMap, numTeams, season, boardEl, boardLabel);
       return;
     }
@@ -3994,6 +4020,7 @@
 
         const numT = draftOrder.length;
         const midSlot = Math.floor(numT / 2) + 1;
+        metricsEl.style.display = '';
         metricsEl.innerHTML =
           _pickCard(firstPick, `<i class="fa-solid fa-trophy" style="color:var(--gold)"></i> 1st Overall Pick`, 'green') +
           _pickCard(midPick,   `<i class="fa-solid fa-arrows-up-down"></i> Middle Pick · Slot ${midSlot}`, '') +
@@ -4011,6 +4038,7 @@
     const boardLabel = document.getElementById('live-draft-board-label');
 
     if (boardEl && !hasPicks && draftOrder.length > 0) {
+      boardEl.style.display = '';
       if (boardLabel) boardLabel.innerHTML = `<i class="fa-solid fa-list-ol"></i> ${season} Snake Draft Order`;
       const numTeams  = draftOrder.length;
       const numRounds = 25; // typical fantasy baseball season length
@@ -4090,6 +4118,7 @@
       } else {
         const labelEl = boardEl.querySelector('.section-label');
         if (labelEl) labelEl.insertAdjacentHTML('afterend', tableHTML);
+        else boardEl.insertAdjacentHTML('beforeend', tableHTML);
       }
       // Hide the expand-rounds button and extra tbody
       const toggleBtn = document.getElementById('draft-board-toggle');
@@ -5180,30 +5209,7 @@
   // ALL-TIME DATA BINDING — Phase 2
   // ═══════════════════════════════════════════════════════════════
 
-  // Team name → abbreviation lookup (stable across seasons)
-  const TEAM_ABBR_MAP = {
-    'Albuquerque Bombers':      'AB',
-    'Sugar Land Skeeters':      'SL',
-    'Wonder Wharf Wonderdogs':  'WW',
-    'Hiroshima Radiation':      'HR',
-    'Canberra Wombats':         'CW',
-    'Riverside Roughnecks':     'RR',
-    'BaseballPro77':            'B7',
-    'Athletic Park Dragons':    'AP',
-    'Benchwarmers':             'BW',
-    'General Hospital':         'GH',
-    'Buttville Skidmarks':      'BS',
-    'Abbotsford-Colby Twins':   'AC',
-    'Wisconsin Rapids Reapers': 'WR',
-    'North Correa':             'NC',
-  };
-  const TEAM_CLR = {
-    AB:'#e85d04', SL:'#7c3aed', WW:'#2563eb', HR:'#0891b2', CW:'#059669',
-    RR:'#0d9488', B7:'#dc2626', AP:'#be123c', BW:'#d97706', GH:'#92400e',
-    BS:'#6b7280', AC:'#4338ca', WR:'#0f766e', NC:'#374151',
-  };
-
-  // FRANCHISE_ALIASES declared earlier in Helpers section to avoid temporal dead zone.
+  // FRANCHISE_ALIASES, TEAM_ABBR_MAP, TEAM_CLR declared earlier in Helpers section to avoid temporal dead zone.
   function _canonName(name) { return FRANCHISE_ALIASES[name] || name; }
 
   function _tAbbr(name) { return TEAM_ABBR_MAP[name] || (name || '??').substring(0,2).toUpperCase(); }
