@@ -926,8 +926,22 @@ def main() -> None:
         print(json.dumps(week_data, indent=2, default=str)[:2000])
         return
 
-    # Always save data snapshot
-    run_save_data(week_data, season, week_num)
+    # Guard: skip saving if there are no regular-season matchups with real points.
+    # This prevents stale playoff data from being written every 4 hours during
+    # the off-season (e.g. 2026 league key returning 2025 week-23 playoff data).
+    matchups = week_data.get("matchups", [])
+    regular_with_points = [
+        m for m in matchups
+        if not m.get("is_playoffs") and not m.get("is_consolation")
+        and any(t.get("points", 0) > 0 for t in m.get("teams", []))
+    ]
+    if not regular_with_points:
+        print(
+            f"[ci_runner] Skipping data save for {season} Week {week_num}: "
+            "no regular-season matchups with points (off-season or pre-season)."
+        )
+    else:
+        run_save_data(week_data, season, week_num)
 
     # Trade articles
     if args.mode in ("trades", "full"):
