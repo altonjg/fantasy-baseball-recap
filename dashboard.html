@@ -2451,6 +2451,24 @@
 
   // ── Helpers ──────────────────────────────────────────────────
 
+  // Declared here (before _canonName/_badge) to avoid temporal dead zone errors
+  // when applyLiveData calls _renderScoreTicker on first load.
+  const FRANCHISE_ALIASES = {
+    'Music City Trash Can':             'Sugar Land Skeeters',
+    "Marcus' P.B. Fort":                'Wisconsin Rapids Reapers',
+    'Houston Trashcan Decoders':        'Wisconsin Rapids Reapers',
+    'Central Wisconsin Curd Fryers':    'Wisconsin Rapids Reapers',
+    "Mel\u2019s Purple Nurples":        'North Correa',
+    'This is Shira Lazar':              'General Hospital',
+    'Hung Jung':                        'General Hospital',
+    'AbbotsfordColbyTwins':             'Abbotsford-Colby Twins',
+    'happymomof4@Y!.com':               'Portage County Heartbreakers',
+    'HVR Hits Different':               'Buttville Skidmarks',
+    "Will Smith's Right Hand":          'Athletic Park Dragons',
+    "Pablo Sanchez\u2019s Drug Dealer": 'Athletic Park Dragons',
+    "Zach's Team":                      'Riverside Roughnecks',
+  };
+
   /**
    * Compute league config dynamically from LEAGUE_DATA for a given season.
    * Avoids hardcoding PLAYOFF_SPOTS=6 and TOTAL_REG_WEEKS=21 in 4+ places.
@@ -5185,33 +5203,7 @@
     BS:'#6b7280', AC:'#4338ca', WR:'#0f766e', NC:'#374151',
   };
 
-  // Historical team name → current canonical franchise name.
-  // Apply via _canonName() in any cross-season aggregation so renames
-  // don't create phantom franchises in all-time records.
-  const FRANCHISE_ALIASES = {
-    // Alton Gilbert → Sugar Land Skeeters
-    'Music City Trash Can':           'Sugar Land Skeeters',
-    // Bailey → Wisconsin Rapids Reapers
-    "Marcus' P.B. Fort":              'Wisconsin Rapids Reapers',
-    'Houston Trashcan Decoders':      'Wisconsin Rapids Reapers',
-    'Central Wisconsin Curd Fryers':  'Wisconsin Rapids Reapers',
-    // Brady → North Correa
-    "Mel\u2019s Purple Nurples":      'North Correa',
-    // Doctor → General Hospital
-    'This is Shira Lazar':            'General Hospital',
-    'Hung Jung':                      'General Hospital',
-    // Dylan (minor spacing typo)
-    'AbbotsfordColbyTwins':           'Abbotsford-Colby Twins',
-    // Ethan (left league — keep most recent name as canonical)
-    'happymomof4@Y!.com':             'Portage County Heartbreakers',
-    // Gavin → Buttville Skidmarks
-    'HVR Hits Different':             'Buttville Skidmarks',
-    // James Mazur → Athletic Park Dragons
-    "Will Smith's Right Hand":        'Athletic Park Dragons',
-    "Pablo Sanchez\u2019s Drug Dealer": 'Athletic Park Dragons',
-    // Zach's 3rd franchise → Riverside Roughnecks
-    "Zach's Team":                    'Riverside Roughnecks',
-  };
+  // FRANCHISE_ALIASES declared earlier in Helpers section to avoid temporal dead zone.
   function _canonName(name) { return FRANCHISE_ALIASES[name] || name; }
 
   function _tAbbr(name) { return TEAM_ABBR_MAP[name] || (name || '??').substring(0,2).toUpperCase(); }
