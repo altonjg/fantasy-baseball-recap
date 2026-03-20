@@ -140,6 +140,22 @@
   .chip-red   { background: rgba(239,68,68,0.1);   color: var(--red);   border: 1px solid rgba(239,68,68,0.22); }
   .chip-blue  { background: rgba(201,138,48,0.1);   color: var(--amber);  border: 1px solid rgba(201,138,48,0.25); }
 
+  .pill-btn { font-family:'Barlow',sans-serif; font-size:0.72em; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; padding:5px 13px; border-radius:20px; border:1px solid var(--border); background:transparent; color:var(--muted); cursor:pointer; transition:all 0.15s; }
+  .pill-btn:hover { color:var(--text); border-color:rgba(240,192,64,0.4); }
+  .pill-btn.active { background:oklch(82% 0.16 88 / 0.12); border-color:oklch(82% 0.16 88 / 0.5); color:var(--gold); }
+
+  .mlb-table { width:100%; border-collapse:collapse; font-size:12px; }
+  .mlb-table th { background:var(--card); color:var(--muted); font-weight:600; font-size:10px; text-transform:uppercase; letter-spacing:0.05em; padding:6px 10px; text-align:right; border-bottom:1px solid var(--border); cursor:pointer; white-space:nowrap; }
+  .mlb-table th:first-child, .mlb-table th:nth-child(2), .mlb-table th:nth-child(3) { text-align:left; }
+  .mlb-table th.sort-asc::after  { content:' ↑'; color:var(--gold); }
+  .mlb-table th.sort-desc::after { content:' ↓'; color:var(--gold); }
+  .mlb-table td { padding:5px 10px; text-align:right; border-bottom:1px solid rgba(255,255,255,0.04); color:var(--text); }
+  .mlb-table td:first-child, .mlb-table td:nth-child(2), .mlb-table td:nth-child(3) { text-align:left; }
+  .mlb-table tr:hover td { background:rgba(255,255,255,0.03); }
+  .mlb-table .drafted-badge { display:inline-block; padding:1px 5px; border-radius:6px; font-size:9px; font-weight:700; background:rgba(240,192,64,0.12); color:var(--gold); border:1px solid rgba(240,192,64,0.25); margin-left:4px; vertical-align:middle; }
+  .mlb-table .stat-hi { color:var(--green); font-weight:700; }
+  .mlb-table .stat-lo { color:var(--red); }
+
   /* ── HOME TAB ── */
   .leaders-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
   .leader-cell { flex: 1; min-width: 120px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; }
@@ -336,30 +352,56 @@
   .matrix-table tbody tr.mt-row-focused { opacity:1; }
   .mt-cell.mt-hidden { visibility:hidden; }
 
-  /* TOPBAR SELECTS */
-  .topbar-select {
+  /* CUSTOM SEASON DROPDOWN */
+  .season-dd { position: relative; }
+  .season-dd-btn {
     background: rgba(255,255,255,0.06);
     color: var(--text);
     border: 1px solid var(--border);
     border-radius: 5px;
-    padding: 4px 24px 4px 9px;
+    padding: 4px 10px;
     font-family: 'Barlow', sans-serif;
     font-size: 0.72em;
     font-weight: 500;
     letter-spacing: 0.02em;
     cursor: pointer;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%238a9bb5'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 7px center;
+    display: flex; align-items: center; gap: 7px;
     transition: border-color 0.15s, background 0.15s;
+    white-space: nowrap;
   }
-  .topbar-select:hover { border-color: rgba(240,192,64,0.4); background-color: rgba(255,255,255,0.09); }
-  .topbar-select:focus { outline: none; border-color: rgba(240,192,64,0.6); }
-  .topbar-select option { background: oklch(14% 0.04 250); color: var(--text); }
+  .season-dd-btn:hover { border-color: rgba(240,192,64,0.4); background: rgba(255,255,255,0.09); }
+  .season-dd.open .season-dd-btn { border-color: rgba(240,192,64,0.6); }
+  .season-dd-chevron { font-size: 0.72em; transition: transform 0.15s; color: var(--muted); }
+  .season-dd.open .season-dd-chevron { transform: rotate(180deg); }
+  .season-dd-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+    background: oklch(14% 0.04 250);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 0;
+    min-width: 130px;
+    z-index: 9999;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  }
+  .season-dd.open .season-dd-menu { display: block; }
+  .season-dd-item {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.78em;
+    font-weight: 500;
+    color: var(--muted);
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: color 0.12s, background 0.12s;
+    white-space: nowrap;
+  }
+  .season-dd-item:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+  .season-dd-item.active { color: var(--gold); }
 
   /* WEEK STRIP */
-  .week-strip { display:flex; gap:3px; overflow-x:auto; padding:5px 28px; background:#060f1e; border-bottom:1px solid var(--border); scrollbar-width:none; align-items:center; }
+  .week-strip { display:flex; gap:3px; overflow-x:auto; padding:5px 28px; background:#060f1e; border-bottom:1px solid var(--border); scrollbar-width:none; align-items:center; justify-content:center; flex-wrap:wrap; }
   .week-strip::-webkit-scrollbar { display:none; }
   .wk-pill { flex-shrink:0; font-family:'Barlow',sans-serif; font-size:0.68em; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; padding:3px 9px; border-radius:20px; background:transparent; border:1px solid transparent; color:var(--muted); cursor:pointer; transition:all 0.15s; }
   .wk-pill:hover { color:var(--text); border-color:var(--border); }
@@ -478,15 +520,21 @@
   <div class="topbar-league">MillerLite<span>®</span> BeerLeagueBaseball</div>
   <div class="topbar-div"></div>
   <div class="topbar-right">
-    <select class="topbar-select" id="topbar-season" onchange="updateTopbarContext()">
-      <option value="2026">2026 Season</option>
-      <option value="2025">2025 Season</option>
-      <option value="2024">2024 Season</option>
-      <option value="2023">2023 Season</option>
-      <option value="2022">2022 Season</option>
-      <option value="2021">2021 Season</option>
-      <option value="2017">2017 Season</option>
-    </select>
+    <div class="season-dd" id="topbar-season" data-value="2025">
+      <button class="season-dd-btn" onclick="toggleSeasonDd(event)" aria-haspopup="listbox" aria-expanded="false">
+        <span class="season-dd-label">2025 Season</span>
+        <i class="fa-solid fa-chevron-down season-dd-chevron"></i>
+      </button>
+      <div class="season-dd-menu" role="listbox">
+        <div class="season-dd-item" data-season="2026" onclick="selectSeason('2026')">2026 Season</div>
+        <div class="season-dd-item active" data-season="2025" onclick="selectSeason('2025')">2025 Season</div>
+        <div class="season-dd-item" data-season="2024" onclick="selectSeason('2024')">2024 Season</div>
+        <div class="season-dd-item" data-season="2023" onclick="selectSeason('2023')">2023 Season</div>
+        <div class="season-dd-item" data-season="2022" onclick="selectSeason('2022')">2022 Season</div>
+        <div class="season-dd-item" data-season="2021" onclick="selectSeason('2021')">2021 Season</div>
+        <div class="season-dd-item" data-season="2017" onclick="selectSeason('2017')">2017 Season</div>
+      </div>
+    </div>
   </div>
 </div>
 <div id="mob-sidebar-overlay" onclick="closeSidebar(event)"></div>
@@ -867,6 +915,7 @@
       <div class="inner-tab" onclick="switchInner('season','streaks')">Streaks</div>
       <div class="inner-tab" onclick="switchInner('season','savant')"><i class="fa-solid fa-chart-simple"></i> Savant</div>
       <div class="inner-tab" onclick="switchInner('season','draft')"><i class="fa-solid fa-clipboard-list"></i> Draft</div>
+      <div class="inner-tab" onclick="switchInner('season','mlbstats')"><i class="fa-solid fa-baseball"></i> MLB Stats</div>
       <div id="season-bracket-tab" class="inner-tab" onclick="switchInner('season','bracket')" style="display:none;"><i class="fa-solid fa-sitemap"></i> Bracket</div>
       <div id="season-probability-tab" class="inner-tab" onclick="switchInner('season','probability')"><i class="fa-solid fa-percent"></i> Probability</div>
     </div>
@@ -1527,6 +1576,26 @@
 
     </div><!-- /season-draft -->
 
+    <!-- MLB Stats panel -->
+    <div id="season-mlbstats" class="inner-panel">
+      <div id="mlbstats-controls" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px;">
+        <button id="mlbstats-btn-bat" class="pill-btn active" onclick="_mlbStatsToggle('bat')">
+          <i class="fa-solid fa-baseball-bat-ball"></i> Batting
+        </button>
+        <button id="mlbstats-btn-pit" class="pill-btn" onclick="_mlbStatsToggle('pit')">
+          <i class="fa-solid fa-baseball"></i> Pitching
+        </button>
+        <label style="margin-left:auto;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px;cursor:pointer;">
+          <input type="checkbox" id="mlbstats-drafted-only" onchange="_renderMLBStats()" style="accent-color:var(--gold);">
+          Drafted players only
+        </label>
+      </div>
+      <div id="mlbstats-table-wrap" style="overflow-x:auto;"></div>
+      <div id="mlbstats-empty" style="display:none;color:var(--muted);font-size:13px;padding:20px 0;text-align:center;">
+        No advanced stats available for this season — run <code>python3 backfill.py --stats --year YEAR</code>
+      </div>
+    </div><!-- /season-mlbstats -->
+
   </div>
 
   <!-- ════════ NEWS ════════ -->
@@ -2067,16 +2136,51 @@
     if (target) target.classList.add('active');
   }
 
+  // ── SEASON DROPDOWN ─────────────────────────────────────────
+  function toggleSeasonDd(e) {
+    e.stopPropagation();
+    const dd = document.getElementById('topbar-season');
+    const isOpen = dd.classList.toggle('open');
+    dd.querySelector('.season-dd-btn').setAttribute('aria-expanded', isOpen);
+  }
+
+  function selectSeason(val) {
+    _syncSeasonDd(val);
+    updateTopbarContext();
+  }
+
+  function _syncSeasonDd(val) {
+    const dd = document.getElementById('topbar-season');
+    if (!dd) return;
+    dd.dataset.value = val;
+    dd.querySelector('.season-dd-label').textContent = val + ' Season';
+    dd.querySelectorAll('.season-dd-item').forEach(el => {
+      el.classList.toggle('active', el.dataset.season === val);
+    });
+    dd.classList.remove('open');
+    dd.querySelector('.season-dd-btn').setAttribute('aria-expanded', 'false');
+  }
+
+  document.addEventListener('click', () => {
+    const dd = document.getElementById('topbar-season');
+    if (dd && dd.classList.contains('open')) {
+      dd.classList.remove('open');
+      dd.querySelector('.season-dd-btn').setAttribute('aria-expanded', 'false');
+    }
+  });
+
   function updateTopbarContext() {
     if (!window.LEAGUE_DATA) return;
-    const season = parseInt(document.getElementById('topbar-season').value);
+    const season = parseInt(document.getElementById('topbar-season').dataset.value);
     const d = window.LEAGUE_DATA[season];
     if (!d) return;
 
-    // Flash the select gold briefly to acknowledge the change
-    const seasonSel = document.getElementById('topbar-season');
-    seasonSel.style.borderColor = 'rgba(240,192,64,0.7)';
-    setTimeout(() => seasonSel.style.borderColor = '', 600);
+    // Flash the button gold briefly to acknowledge the change
+    const seasonBtn = document.querySelector('#topbar-season .season-dd-btn');
+    if (seasonBtn) {
+      seasonBtn.style.borderColor = 'rgba(240,192,64,0.7)';
+      setTimeout(() => seasonBtn.style.borderColor = '', 600);
+    }
 
     // Find available weeks for this season
     const weekNums = Object.keys(d).filter(k => /^\d+$/.test(k)).map(Number);
@@ -2444,8 +2548,7 @@
   window._currentSeason = window.CURRENT_SEASON || null;
   // Sync the season dropdown to CURRENT_SEASON so it reflects the right year on load
   (function() {
-    const sel = document.getElementById('topbar-season');
-    if (sel && window.CURRENT_SEASON) sel.value = String(window.CURRENT_SEASON);
+    if (window.CURRENT_SEASON) _syncSeasonDd(String(window.CURRENT_SEASON));
   })();
   window._currentWeek   = window.CURRENT_WEEK   || null;
 
@@ -2594,6 +2697,29 @@
     `<i class="fa-solid fa-shield-halved" style="color:#a78bfa"></i>`,
     `<i class="fa-solid fa-trophy" style="color:var(--gold)"></i>`,
   ];
+
+  // Build team_key → division_name from the most recent week with standings
+  function _buildDivisionMap(season) {
+    const ld = window.LEAGUE_DATA?.[season]; if (!ld) return {};
+    const weeks = Object.keys(ld).filter(k => /^\d+$/.test(k)).map(Number).sort((a,b)=>b-a);
+    for (const wk of weeks) {
+      const standings = ld[wk]?.standings;
+      if (standings?.length) {
+        const map = {};
+        for (const t of standings) if (t.team_key && t.division_name) map[t.team_key] = t.division_name;
+        if (Object.keys(map).length) return map;
+      }
+    }
+    return {};
+  }
+  const _divMapCache = {};
+  function _teamConference(teamKey, season) {
+    if (!_divMapCache[season]) _divMapCache[season] = _buildDivisionMap(season);
+    const div = _divMapCache[season][teamKey] || '';
+    if (/american/i.test(div)) return 'AL';
+    if (/national/i.test(div)) return 'NL';
+    return null;
+  }
   function _weekMeta(week, weekData, season) {
     if (!weekData) return { label: `Week ${week}`, round: '' };
     const matchups = weekData.matchups || [];
@@ -2605,6 +2731,14 @@
     const round = ri >= 0 ? (_ROUND_LABELS[ri] || `Playoff Round ${ri+1}`) : 'Playoffs';
     return { label: `Week ${week}`, round };
   }
+  function _csLabel(matchup, season) {
+    // Determine ALCS vs NLCS vs "Championship Series" based on team conferences
+    const teams = matchup.teams || [];
+    const c1 = teams[0] ? _teamConference(teams[0].team_key, season) : null;
+    const c2 = teams[1] ? _teamConference(teams[1].team_key, season) : null;
+    if (c1 && c1 === c2) return c1 === 'AL' ? 'ALCS' : 'NLCS';
+    return 'Championship Series';
+  }
   function _roundBadge(matchup, season) {
     if (matchup.is_championship) return `<i class="fa-solid fa-trophy" style="color:var(--gold)"></i> World Series`;
     if (matchup.is_third_place)  return `<i class="fa-solid fa-medal" style="color:#94a3b8"></i> 3rd Place`;
@@ -2612,8 +2746,9 @@
     if (matchup.is_playoffs) {
       const week = matchup.week;
       const ri = (season && week) ? _playoffRoundIdx(season, week) : -1;
-      const icon  = _ROUND_ICONS[ri]  ?? `<i class="fa-solid fa-shield-halved" style="color:#a78bfa"></i>`;
-      const label = _ROUND_LABELS[ri] ?? 'Playoffs';
+      const icon = _ROUND_ICONS[ri] ?? `<i class="fa-solid fa-shield-halved" style="color:#a78bfa"></i>`;
+      // Round 1 (Championship Series) — show ALCS or NLCS if division data is available
+      const label = ri === 1 ? _csLabel(matchup, season) : (_ROUND_LABELS[ri] ?? 'Playoffs');
       return `${icon} ${label}`;
     }
     return `<i class="fa-solid fa-baseball" style="color:var(--muted)"></i> Week ${matchup.week || ''}`;
@@ -3576,8 +3711,7 @@
     }
 
     // Sync season dropdown to reflect the season actually being displayed
-    const _seasonSel = document.getElementById('topbar-season');
-    if (_seasonSel) _seasonSel.value = String(season);
+    _syncSeasonDd(String(season));
 
     // Score ticker
     _renderScoreTicker(weekData);
@@ -3611,6 +3745,9 @@
 
     // Draft tab
     _renderDraftTab(season);
+
+    // MLB advanced stats tab
+    _renderMLBStats();
 
     // Season Trends tab — Momentum + Playoff Probability + Bracket
     _renderPennantChart(season);
@@ -3686,11 +3823,19 @@
         if (r) { seasonData[r[0]] = r[1]; hasWeeks = true; }
       }
       if (hasWeeks) ld[season] = seasonData;
-      // Also try to load draft_results.json (populated after draft via backfill.py --draft)
+      // Also try to load draft_results.json and adp_snapshot.json
       if (hasWeeks) {
         try {
           const dr = await fetch(`data/${season}/draft_results.json`);
           if (dr.ok) ld[season]['draft_results'] = await dr.json();
+        } catch (_) {}
+        try {
+          const adp = await fetch(`data/${season}/adp_snapshot.json`);
+          if (adp.ok) ld[season]['adp'] = await adp.json();
+        } catch (_) {}
+        try {
+          const stats = await fetch(`data/${season}/advanced_stats.json`);
+          if (stats.ok) ld[season]['advanced_stats'] = await stats.json();
         } catch (_) {}
       }
     }));
@@ -3707,6 +3852,20 @@
         ld[2026]['draft_results'] = await drr.json();
       }
     } catch (_) {}
+    try {
+      const adp26 = await fetch('data/2026/adp_snapshot.json');
+      if (adp26.ok) {
+        if (!ld[2026]) ld[2026] = { articles: {} };
+        ld[2026]['adp'] = await adp26.json();
+      }
+    } catch (_) {}
+    try {
+      const stats26 = await fetch('data/2026/advanced_stats.json');
+      if (stats26.ok) {
+        if (!ld[2026]) ld[2026] = { articles: {} };
+        ld[2026]['advanced_stats'] = await stats26.json();
+      }
+    } catch (_) {}
 
     // Fetch season_preview articles for ALL seasons
     for (const season of [...SEASONS, 2026]) {
@@ -3720,6 +3879,12 @@
         }
       } catch(_) {}
     }
+
+    // Global MLB player headshot cache
+    try {
+      const mlbR = await fetch('data/mlb_players.json');
+      if (mlbR.ok) ld['mlb_players'] = await mlbR.json();
+    } catch (_) {}
 
     if (!Object.keys(ld).length) return;
 
@@ -3804,6 +3969,27 @@
   }
 
   // Render a round-by-round draft board from draft_results.json picks array
+  // Returns a tiny stat badge string (wRC+ for hitters, FIP for pitchers) or ''
+  function _advStatBadge(playerName, position, season) {
+    const d = window.LEAGUE_DATA && window.LEAGUE_DATA[season];
+    if (!d || !d.advanced_stats) return '';
+    const isPitcher = position === 'SP' || position === 'RP';
+    const rows = isPitcher ? (d.advanced_stats.pitching || []) : (d.advanced_stats.batting || []);
+    const entry = rows.find(r => r.Name === playerName);
+    if (!entry) return '';
+    if (!isPitcher) {
+      const wrc = entry['wRC+'];
+      if (wrc == null) return '';
+      const color = wrc >= 130 ? '#22c55e' : wrc >= 100 ? '#a3e635' : wrc >= 80 ? '#f59e0b' : '#ef4444';
+      return `<span style="font-size:0.55em;font-weight:700;color:${color};background:${color}22;border-radius:3px;padding:0 3px;margin-left:2px;" title="wRC+">${wrc} wRC+</span>`;
+    } else {
+      const fip = entry['FIP'];
+      if (fip == null) return '';
+      const color = fip <= 2.5 ? '#22c55e' : fip <= 3.5 ? '#a3e635' : fip <= 4.5 ? '#f59e0b' : '#ef4444';
+      return `<span style="font-size:0.55em;font-weight:700;color:${color};background:${color}22;border-radius:3px;padding:0 3px;margin-left:2px;" title="FIP">${fip.toFixed(2)} FIP</span>`;
+    }
+  }
+
   function _renderDraftBoard(picks, teamKeyMap, numTeams, season, boardEl, boardLabel) {
     if (!boardEl || !picks.length) return;
     if (boardLabel) boardLabel.innerHTML = `<i class="fa-solid fa-list-ol"></i> ${season} Draft Board`;
@@ -3848,11 +4034,13 @@
         const teamColor = s.color;
         const rgb = _hexToRgb(teamColor);
         const bg = rgb ? `rgba(${rgb},0.07)` : 'transparent';
+        const statBadge = _advStatBadge(p.player_name, p.position, season);
         return `<td style="padding:3px 4px;background:${bg};border-left:2px solid ${teamColor}22;">
           <div style="font-size:0.7em;font-weight:600;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:88px;" title="${p.player_name}">${p.player_name}</div>
-          <div style="display:flex;align-items:center;gap:4px;margin-top:1px;">
+          <div style="display:flex;align-items:center;gap:4px;margin-top:1px;flex-wrap:wrap;">
             <span style="font-size:0.58em;font-weight:700;color:${pc};background:${pc}22;border-radius:3px;padding:0 4px;">${p.position}</span>
             <span style="font-size:0.58em;color:var(--muted);white-space:nowrap;">${p.mlb_team}</span>
+            ${statBadge}
           </div>
         </td>`;
       }).join('');
@@ -3890,6 +4078,322 @@
     if (draftExtra2) draftExtra2.style.display = 'none';
   }
 
+  // ── Draft ADP Analysis helpers ───────────────────────────────────────────
+
+  function _draftGrade(avgDelta) {
+    // avgDelta = avg(actual_pick - ADP) across team's picks
+    // positive = consistently got players later than expected (value)
+    // negative = consistently reached (paid up)
+    if (avgDelta >= 15) return { grade: 'A+', color: '#22c55e' };
+    if (avgDelta >= 8)  return { grade: 'A',  color: '#22c55e' };
+    if (avgDelta >= 3)  return { grade: 'B+', color: '#86efac' };
+    if (avgDelta >= -3) return { grade: 'B',  color: '#86efac' };
+    if (avgDelta >= -8) return { grade: 'B-', color: '#f0c040' };
+    if (avgDelta >= -15)return { grade: 'C',  color: '#fb923c' };
+    return { grade: 'D', color: '#ef4444' };
+  }
+
+  function _computeDraftAnalysis(picks, adpPlayers, teamKeyMap, numTeams) {
+    const enriched = picks.map(p => {
+      const adpInfo = adpPlayers[p.player_key];
+      const adp = adpInfo ? parseFloat(adpInfo.adp) : null;
+      const delta = (adp !== null && adp > 0) ? (p.pick - adp) : null;
+      return { ...p, adp, delta };
+    });
+
+    const byTeam = {};
+    for (const p of enriched) {
+      if (!byTeam[p.team_key]) byTeam[p.team_key] = [];
+      byTeam[p.team_key].push(p);
+    }
+
+    const teamStats = {};
+    for (const [tk, tpicks] of Object.entries(byTeam)) {
+      const withDelta = tpicks.filter(p => p.delta !== null);
+      const avgDelta = withDelta.length > 0
+        ? withDelta.reduce((s, p) => s + p.delta, 0) / withDelta.length
+        : 0;
+      const bestSteal = withDelta.length > 0
+        ? withDelta.reduce((best, p) => p.delta > best.delta ? p : best)
+        : null;
+      const worstBust = withDelta.length > 0
+        ? withDelta.reduce((worst, p) => p.delta < worst.delta ? p : worst)
+        : null;
+      teamStats[tk] = {
+        picks: tpicks, withDelta, avgDelta,
+        bestSteal, worstBust,
+        grade: _draftGrade(avgDelta),
+        info: teamKeyMap[tk] || { name: tk, manager: '' },
+      };
+    }
+
+    const allWithDelta = enriched.filter(p => p.delta !== null);
+    const topSteals = [...allWithDelta].sort((a, b) => b.delta - a.delta).slice(0, 5);
+    const topBusts  = [...allWithDelta].sort((a, b) => a.delta - b.delta).slice(0, 5);
+    const rankedTeams = Object.entries(teamStats).sort((a, b) => b[1].avgDelta - a[1].avgDelta);
+    return { enriched, teamStats, topSteals, topBusts, rankedTeams, numTeams };
+  }
+
+  function _renderDraftMetrics(analysis, numTeams) {
+    const el = document.getElementById('live-draft-metrics');
+    if (!el) return;
+
+    const [bestTk, bestStats] = analysis.rankedTeams[0] || [];
+    const bestPick  = analysis.topSteals[0];
+    const worstPick = analysis.topBusts[0];
+
+    const bestTeamName = bestStats?.info?.name || '—';
+    const gradeColor   = bestStats?.grade?.color || '#22c55e';
+    const bestAvgFmt   = bestStats ? (bestStats.avgDelta >= 0 ? '+' : '') + bestStats.avgDelta.toFixed(1) : '—';
+
+    const _rdLabel = adp => adp > 0 ? `ADP ${adp.toFixed(1)}` : '';
+
+    el.innerHTML = `
+      <div class="metric-box green">
+        <div class="metric-lbl"><i class="fa-solid fa-trophy" style="color:var(--gold)"></i> Best Draft</div>
+        <div style="display:flex;align-items:center;gap:8px;margin:6px 0;">
+          ${_badge(bestTeamName, '', 22)}
+          <div>
+            <div style="font-weight:700;font-size:0.95em;line-height:1.2">${bestTeamName}</div>
+            <div style="font-size:0.75em;color:var(--muted)">${bestStats?.info?.manager || ''}</div>
+          </div>
+        </div>
+        <div style="font-size:0.8em">Grade: <strong style="color:${gradeColor}">${bestStats?.grade?.grade || '—'}</strong> · ${bestAvgFmt} picks/player</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-lbl"><i class="fa-solid fa-gem" style="color:#22c55e"></i> Biggest Steal</div>
+        <div style="font-weight:700;font-size:0.95em;margin:6px 0">${bestPick?.player_name || '—'}</div>
+        <div style="font-size:0.78em;color:var(--muted)">Rd ${bestPick?.round || '?'} · ${bestPick?.adp ? _rdLabel(bestPick.adp) : ''} · <span style="color:#22c55e;font-weight:600">+${bestPick?.delta?.toFixed(0) || '0'} picks</span></div>
+      </div>
+      <div class="metric-box" style="border-color:rgba(239,68,68,0.3);background:rgba(239,68,68,0.05)">
+        <div class="metric-lbl" style="color:#ef4444"><i class="fa-solid fa-skull-crossbones"></i> Biggest Reach</div>
+        <div style="font-weight:700;font-size:0.95em;margin:6px 0">${worstPick?.player_name || '—'}</div>
+        <div style="font-size:0.78em;color:var(--muted)">Rd ${worstPick?.round || '?'} · ${worstPick?.adp ? _rdLabel(worstPick.adp) : ''} · <span style="color:#ef4444;font-weight:600">${worstPick?.delta?.toFixed(0) || '0'} picks</span></div>
+      </div>`;
+    el.style.display = '';
+    el.style.gridTemplateColumns = ''; // reset the single-col override from pre-draft view
+  }
+
+  function _renderDraftGrades(analysis, season) {
+    const el = document.getElementById('live-draft-grades-section');
+    if (!el) return;
+
+    const rows = analysis.rankedTeams.map(([tk, stats]) => {
+      const steal = stats.bestSteal;
+      const deltaSign = stats.avgDelta >= 0 ? '+' : '';
+      const stealChip = steal && steal.delta > 5
+        ? `<span class="chip chip-green" style="font-size:0.72em">Steal</span>`
+        : `<span style="color:var(--muted);font-size:0.8em">—</span>`;
+      return `<tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+        <td style="padding:7px 10px;">
+          <div style="display:flex;align-items:center;gap:7px;">
+            ${_badge(stats.info.name, '', 18)}
+            <div>
+              <div style="font-size:0.88em;font-weight:600">${stats.info.name}</div>
+              <div style="font-size:0.72em;color:var(--muted)">${stats.info.manager}</div>
+            </div>
+          </div>
+        </td>
+        <td style="text-align:center;padding:7px 8px;">
+          <span style="font-family:'Oswald',sans-serif;font-size:1.2em;font-weight:700;color:${stats.grade.color}">${stats.grade.grade}</span>
+        </td>
+        <td style="text-align:center;padding:7px 8px;font-size:0.85em;color:var(--text)">${steal?.player_name || '—'}</td>
+        <td style="text-align:center;padding:7px 8px;color:var(--muted);font-size:0.82em">${steal ? `Rd ${steal.round}` : ''}</td>
+        <td style="text-align:center;padding:7px 8px;">${stealChip}</td>
+        <td style="padding:7px 8px;color:var(--muted);font-size:0.82em">Avg ${deltaSign}${stats.avgDelta.toFixed(1)} picks/player · ${stats.withDelta.length} picks matched</td>
+      </tr>`;
+    }).join('');
+
+    el.innerHTML = `
+      <div class="section-label" style="margin-bottom:12px;"><i class="fa-solid fa-graduation-cap"></i> Draft Report Cards — ${season}</div>
+      <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:0.82em;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border);">
+            <th style="text-align:left;padding:6px 10px;color:var(--muted);font-weight:600;font-size:0.75em;text-transform:uppercase;letter-spacing:0.08em;">Team</th>
+            <th style="text-align:center;padding:6px 8px;color:var(--muted);font-weight:600;font-size:0.75em;text-transform:uppercase;letter-spacing:0.08em;">Grade</th>
+            <th style="text-align:center;padding:6px 8px;color:var(--muted);font-weight:600;font-size:0.75em;text-transform:uppercase;letter-spacing:0.08em;">Best Pick</th>
+            <th style="text-align:center;padding:6px 8px;color:var(--muted);font-weight:600;font-size:0.75em;text-transform:uppercase;letter-spacing:0.08em;">Rd</th>
+            <th style="text-align:center;padding:6px 8px;color:var(--muted);font-weight:600;font-size:0.75em;text-transform:uppercase;letter-spacing:0.08em;">Steal?</th>
+            <th style="text-align:left;padding:6px 8px;color:var(--muted);font-weight:600;font-size:0.75em;text-transform:uppercase;letter-spacing:0.08em;">Notes</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+      </div>`;
+    el.style.display = '';
+  }
+
+  function _renderDraftStealsAndBusts(analysis) {
+    const el = document.getElementById('live-draft-steals-busts');
+    if (!el) return;
+
+    const _rdEquiv = (delta, numTeams) => (delta / numTeams).toFixed(1) + ' rds';
+    const _mlbPlayers = window.LEAGUE_DATA?.mlb_players || {};
+    const _headshot = name => {
+      const entry = _mlbPlayers[name];
+      return entry?.headshot_url || null;
+    };
+
+    const _playerRow = (p, chipClass, chipText, bgColor, borderColor) => {
+      const teamInfo = analysis.teamStats[p.team_key]?.info || { name: p.team_key };
+      const hs = _headshot(p.player_name);
+      const img = hs
+        ? `<img src="${hs}" alt="" style="width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;background:rgba(255,255,255,0.05);" onerror="this.style.display='none'">`
+        : `<div style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.07);flex-shrink:0;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-user" style="font-size:0.75em;color:var(--muted)"></i></div>`;
+      return `<div style="display:flex;align-items:center;gap:8px;padding:6px 8px;background:${bgColor};border-radius:5px;border:1px solid ${borderColor};">
+        ${img}
+        <div style="flex:1;min-width:0;">
+          <div style="font-size:0.83em;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.player_name}</div>
+          <div style="font-size:0.72em;color:var(--muted)">Rd ${p.round} · ${teamInfo.name} · ADP ${p.adp?.toFixed(1) || '?'}</div>
+        </div>
+        <span class="chip ${chipClass}" style="font-size:0.7em;flex-shrink:0">${chipText}</span>
+      </div>`;
+    };
+
+    const stealRows = analysis.topSteals.map(p =>
+      _playerRow(p, 'chip-green', '+' + _rdEquiv(p.delta, analysis.numTeams), 'rgba(34,197,94,0.06)', 'rgba(34,197,94,0.15)')
+    ).join('');
+
+    const bustRows = analysis.topBusts.map(p =>
+      _playerRow(p, 'chip-red', _rdEquiv(p.delta, analysis.numTeams), 'rgba(239,68,68,0.06)', 'rgba(239,68,68,0.15)')
+    ).join('');
+
+    el.innerHTML = `
+      <div class="panel">
+        <div class="section-label" style="margin-bottom:10px;"><i class="fa-solid fa-gem" style="color:#22c55e"></i> Top Steals</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">${stealRows || '<div style="color:var(--muted);font-size:0.82em;padding:4px 0">No steal data available</div>'}</div>
+      </div>
+      <div class="panel">
+        <div class="section-label" style="margin-bottom:10px;"><i class="fa-solid fa-skull-crossbones" style="color:#ef4444"></i> Biggest Reaches</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">${bustRows || '<div style="color:var(--muted);font-size:0.82em;padding:4px 0">No reach data available</div>'}</div>
+      </div>`;
+    el.style.display = '';
+  }
+
+  // ── MLB Advanced Stats (Fangraphs via pybaseball) ────────────────────────
+
+  let _mlbStatsMode = 'bat';   // 'bat' | 'pit'
+  let _mlbStatsSortCol = null;
+  let _mlbStatsSortDir = 'desc';
+
+  function _mlbStatsToggle(mode) {
+    _mlbStatsMode = mode;
+    _mlbStatsSortCol = null;
+    document.getElementById('mlbstats-btn-bat').classList.toggle('active', mode === 'bat');
+    document.getElementById('mlbstats-btn-pit').classList.toggle('active', mode === 'pit');
+    _renderMLBStats();
+  }
+
+  function _renderMLBStats() {
+    const season = window.CURRENT_SEASON;
+    const d = window.LEAGUE_DATA && window.LEAGUE_DATA[season];
+    const wrap  = document.getElementById('mlbstats-table-wrap');
+    const empty = document.getElementById('mlbstats-empty');
+    if (!d || !d.advanced_stats) {
+      wrap.innerHTML = '';
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+
+    const draftedOnly = document.getElementById('mlbstats-drafted-only').checked;
+    // Build set of drafted player names for badge + filter
+    const draftedNames = new Set();
+    if (d.draft_results && d.draft_results.picks) {
+      d.draft_results.picks.forEach(p => p.player_name && draftedNames.add(p.player_name));
+    }
+
+    const isBat = _mlbStatsMode === 'bat';
+    let rows = isBat ? (d.advanced_stats.batting || []) : (d.advanced_stats.pitching || []);
+
+    if (draftedOnly) rows = rows.filter(r => draftedNames.has(r.Name));
+
+    // Default sort col
+    const defaultSort = isBat ? 'wRC+' : 'FIP';
+    const defaultDir  = isBat ? 'desc' : 'asc';
+    const sortCol = _mlbStatsSortCol || defaultSort;
+    const sortDir = _mlbStatsSortCol ? _mlbStatsSortDir : defaultDir;
+
+    const sorted = [...rows].sort((a, b) => {
+      const av = a[sortCol] ?? (sortDir === 'desc' ? -Infinity : Infinity);
+      const bv = b[sortCol] ?? (sortDir === 'desc' ? -Infinity : Infinity);
+      return sortDir === 'desc' ? bv - av : av - bv;
+    });
+
+    const batCols  = ['Name','Team','G','PA','HR','R','RBI','SB','AVG','OBP','SLG','BB%','K%','wRC+','WAR'];
+    const pitCols  = ['Name','Team','G','GS','IP','W','SV','ERA','FIP','xFIP','WHIP','K/9','BB/9','K%','BB%','WAR'];
+    const cols = isBat ? batCols : pitCols;
+    const validCols = cols.filter(c => rows.length === 0 || rows[0].hasOwnProperty(c));
+
+    // Compute col percentiles for highlighting (top 10% green, bottom 10% red)
+    const lowerIsBetter = new Set(['ERA','FIP','xFIP','WHIP','BB/9','BB%','K%']);
+    const colVals = {};
+    validCols.forEach(c => {
+      if (c === 'Name' || c === 'Team') return;
+      const vals = rows.map(r => r[c]).filter(v => v != null && !isNaN(v)).sort((a,b)=>a-b);
+      colVals[c] = { p10: vals[Math.floor(vals.length*0.1)], p90: vals[Math.floor(vals.length*0.9)] };
+    });
+
+    function _cellClass(col, val) {
+      if (!colVals[col] || val == null) return '';
+      const {p10, p90} = colVals[col];
+      const hi = lowerIsBetter.has(col) ? val <= p10 : val >= p90;
+      const lo = lowerIsBetter.has(col) ? val >= p90 : val <= p10;
+      return hi ? 'stat-hi' : lo ? 'stat-lo' : '';
+    }
+
+    function _fmtVal(col, val) {
+      if (val == null) return '—';
+      if (col === 'AVG' || col === 'OBP' || col === 'SLG') return val.toFixed(3);
+      if (col === 'IP' || col === 'ERA' || col === 'FIP' || col === 'xFIP' ||
+          col === 'WHIP' || col === 'K/9' || col === 'BB/9' || col === 'WAR') return val.toFixed(1);
+      if (col === 'BB%' || col === 'K%') return (val * 100).toFixed(1) + '%';
+      return val;
+    }
+
+    const thRows = validCols.map(c => {
+      const cls = c === sortCol ? (sortDir === 'desc' ? 'sort-desc' : 'sort-asc') : '';
+      return `<th class="${cls}" onclick="_mlbSortBy('${c}')">${c}</th>`;
+    }).join('');
+
+    const tdRows = sorted.map(r => {
+      const isDrafted = draftedNames.has(r.Name);
+      const badge = isDrafted ? `<span class="drafted-badge">drafted</span>` : '';
+      return '<tr>' + validCols.map(c => {
+        if (c === 'Name') return `<td>${r.Name}${badge}</td>`;
+        if (c === 'Team') return `<td>${r.Team || '—'}</td>`;
+        const val = r[c];
+        const cc = _cellClass(c, val);
+        return `<td class="${cc}">${_fmtVal(c, val)}</td>`;
+      }).join('') + '</tr>';
+    }).join('');
+
+    wrap.innerHTML = `
+      <p style="font-size:11px;color:var(--muted);margin-bottom:8px;">
+        ${sorted.length} ${isBat ? 'batters' : 'pitchers'} · Source: Fangraphs via pybaseball ·
+        Season: ${d.advanced_stats.season} ·
+        <span style="color:var(--green);">■</span> top 10%
+        <span style="color:var(--red);margin-left:4px;">■</span> bottom 10%
+      </p>
+      <table class="mlb-table">
+        <thead><tr>${thRows}</tr></thead>
+        <tbody>${tdRows}</tbody>
+      </table>`;
+  }
+
+  function _mlbSortBy(col) {
+    if (_mlbStatsSortCol === col) {
+      _mlbStatsSortDir = _mlbStatsSortDir === 'desc' ? 'asc' : 'desc';
+    } else {
+      _mlbStatsSortCol = col;
+      _mlbStatsSortDir = 'desc';
+    }
+    _renderMLBStats();
+  }
+
+  // ── Draft Tab ─────────────────────────────────────────────────────────────
+
   function _renderDraftTab(season) {
     if (!window.LEAGUE_DATA) return;
     const d = window.LEAGUE_DATA[season];
@@ -3904,7 +4408,6 @@
       const boardEl    = document.getElementById('live-draft-board-section');
       const boardLabel = document.getElementById('live-draft-board-label');
       const gradesEl   = document.getElementById('live-draft-grades-section');
-      if (gradesEl) gradesEl.style.display = 'none'; // grades TBD
       // Banner — season + league info
       const bannerEl = document.getElementById('live-draft-banner');
       if (bannerEl) {
@@ -3929,6 +4432,21 @@
       }
       if (boardEl) boardEl.style.display = '';
       _renderDraftBoard(drResults.picks, teamKeyMap, numTeams, season, boardEl, boardLabel);
+
+      // ADP Analysis — requires adp_snapshot.json (run: python3 backfill.py --adp)
+      const adpData = d['adp'];
+      if (adpData?.players && Object.keys(adpData.players).length > 0) {
+        const analysis = _computeDraftAnalysis(drResults.picks, adpData.players, teamKeyMap, numTeams);
+        _renderDraftMetrics(analysis, numTeams);
+        _renderDraftGrades(analysis, season);
+        _renderDraftStealsAndBusts(analysis);
+      } else {
+        const metricsEl = document.getElementById('live-draft-metrics');
+        if (metricsEl) {
+          metricsEl.style.display = '';
+          metricsEl.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:16px 0;color:var(--muted);font-size:0.82em"><i class="fa-solid fa-circle-info" style="margin-right:6px;opacity:0.6"></i>Draft grade analysis available — run <code style="background:rgba(255,255,255,0.06);padding:1px 6px;border-radius:3px">python3 backfill.py --adp --year ${season}</code> to load ADP data</div>`;
+        }
+      }
       return;
     }
 
@@ -5019,9 +5537,9 @@
 
     // Round names keyed by total rounds → per-round label (earliest first)
     const ROUND_NAMES = {
-      2: ['Championship Series', 'World Series'],
-      3: ['Wild Card Series',   'Championship Series', 'World Series'],
-      4: ['Wild Card Series',   'Division Series',     'Championship Series', 'World Series'],
+      2: ['ALCS / NLCS', 'World Series'],
+      3: ['Wild Card Series', 'ALCS / NLCS', 'World Series'],
+      4: ['Wild Card Series', 'ALDS / NLDS', 'ALCS / NLCS', 'World Series'],
     };
     const roundLabels = ROUND_NAMES[numRounds] ||
       Array.from({length: numRounds}, (_, i) => i === numRounds-1 ? 'World Series' : `Round ${i+1}`);
@@ -6278,6 +6796,19 @@
     document.getElementById('tp-drawer').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
+
+  // ── Streamlit dynamic iframe height ─────────────────────────
+  // Notifies the parent Streamlit frame of the actual content height so
+  // st.components.v1.html() auto-resizes instead of using the hardcoded fallback.
+  (function () {
+    function _notifyHeight() {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight) + 32;
+      window.parent.postMessage({ isStreamlitMessage: true, type: 'streamlit:setFrameHeight', height: h }, '*');
+    }
+    const ro = new ResizeObserver(_notifyHeight);
+    ro.observe(document.body);
+    window.addEventListener('load', _notifyHeight);
+  })();
 </script>
 
 <!-- ── ARTICLE READER MODAL ─────────────────────────────────── -->
