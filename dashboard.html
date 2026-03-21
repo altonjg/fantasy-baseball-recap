@@ -58,12 +58,12 @@
   .ss-dash { color:var(--border); flex:1; text-align:center; font-size:0.7em; }
   .sb-streak { font-family:'Oswald',sans-serif; font-size:0.8em; font-weight:700; min-width:26px; text-align:right; }
   /* Score Ticker */
-  .score-ticker { display:flex; gap:10px; overflow-x:auto; padding-bottom:4px; margin-bottom:20px; scrollbar-width:none; }
+  .score-ticker { display:flex; gap:10px; padding-bottom:4px; margin-bottom:20px; }
   .score-ticker::-webkit-scrollbar { display:none; }
-  .stk-card { display:flex; align-items:center; gap:10px; background:var(--card); border:1px solid var(--border); border-radius:10px; padding:10px 14px; flex-shrink:0; }
-  .stk-team { display:flex; flex-direction:column; align-items:center; gap:4px; width:54px; }
+  .stk-card { display:flex; align-items:center; justify-content:space-between; gap:10px; background:var(--card); border:1px solid var(--border); border-radius:10px; padding:10px 14px; flex:1; min-width:0; }
+  .stk-team { display:flex; flex-direction:column; align-items:center; gap:4px; flex:1; min-width:0; }
   .stk-logo { width:30px; height:30px; border-radius:50%; flex-shrink:0; }
-  .stk-name { font-size:0.56em; color:var(--muted); text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; width:54px; letter-spacing:0.02em; }
+  .stk-name { font-size:0.56em; color:var(--muted); text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; width:100%; letter-spacing:0.02em; }
   .stk-mid { display:flex; flex-direction:column; align-items:center; gap:2px; }
   .stk-score { font-family:'Oswald',sans-serif; font-size:1.05em; font-weight:700; line-height:1; }
   .stk-score.win { color:#22c55e; }
