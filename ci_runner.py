@@ -758,6 +758,383 @@ def run_draft(oauth, league_key: str, season: int, force: bool = False) -> bool:
         return False
 
 
+# ── Draft recap article generation ───────────────────────────────────────────
+
+def generate_draft_recap(season: int) -> dict | None:
+    """
+    Generate a post-draft review article for `season`.
+
+    Uses:
+    - draft_results.json   — actual picks (team_key, player, round, pick#)
+    - draft_order.json     — pick-slot → team name mapping
+    - adp_snapshot.json    — ADP per player (dict keyed by player_key)
+    - advanced_stats.json  — prior-season real stats for drafted players
+    - historical draft_results.json files — past early-round picks per team
+    - _build_historical_context()  — season finish records per team
+
+    Returns article dict or None on failure.
+    """
+    # 1. Load current season draft results
+    draft_results_file = DATA_ROOT / str(season) / "draft_results.json"
+    if not draft_results_file.exists():
+        print(f"[ci_runner] No draft_results.json for {season}.", file=sys.stderr)
+        return None
+    with open(draft_results_file, encoding="utf-8") as f:
+        draft_results = json.load(f)
+    picks = draft_results.get("picks", [])
+    if not picks:
+        print(f"[ci_runner] No picks in draft_results.json for {season}.", file=sys.stderr)
+        return None
+
+    # 2. Build team_key → team_name.
+    #    Priority: draft_order.json (round-1 correlation) → week data matchup teams → team_key
+    draft_order_file = DATA_ROOT / str(season) / "draft_order.json"
+    team_key_to_name: dict[str, str] = {}
+    draft_order_list: list[dict] = []
+    draft_date = f"{season}-03-22"
+
+    if draft_order_file.exists():
+        with open(draft_order_file, encoding="utf-8") as f:
+            draft_order_data = json.load(f)
+        draft_order_list = draft_order_data.get("draft_order", [])
+        draft_date       = draft_order_data.get("draft_date", draft_date)
+        round1 = sorted(
+            [p for p in picks if p.get("round") == 1],
+            key=lambda x: x.get("pick", 999),
+        )
+        for i, pk in enumerate(round1):
+            if i < len(draft_order_list):
+                team_key_to_name[pk["team_key"]] = draft_order_list[i].get("team", pk["team_key"])
+
+    # Fallback: scan this season's week data for team_key → team name from matchup teams
+    if not team_key_to_name:
+        season_dir = DATA_ROOT / str(season)
+        for wf in sorted(season_dir.glob("week_*.json")):
+            try:
+                with open(wf, encoding="utf-8") as f:
+                    wd = json.load(f)
+                for m in wd.get("matchups", []):
+                    for t in m.get("teams", []):
+                        tk = t.get("team_key", "")
+                        nm = t.get("name", "")
+                        if tk and nm:
+                            team_key_to_name[tk] = nm
+                if team_key_to_name:
+                    break  # one week file is enough to build the map
+            except Exception:
+                pass
+
+    # If still missing names, use team_key as the display name
+    for pk in picks:
+        if pk["team_key"] not in team_key_to_name:
+            team_key_to_name[pk["team_key"]] = pk["team_key"]
+
+    # If no draft_order.json, synthesize draft_order_list from round-1 picks in pick order
+    if not draft_order_list:
+        round1_sorted = sorted(
+            [p for p in picks if p.get("round") == 1],
+            key=lambda x: x.get("pick", 999),
+        )
+        draft_order_list = [
+            {"pick": pk.get("pick", i + 1), "team": team_key_to_name.get(pk["team_key"], pk["team_key"])}
+            for i, pk in enumerate(round1_sorted)
+        ]
+
+    # 3. Load ADP snapshot (dict keyed by player_key)
+    adp_players: dict = {}
+    adp_file = DATA_ROOT / str(season) / "adp_snapshot.json"
+    if adp_file.exists():
+        with open(adp_file, encoding="utf-8") as f:
+            adp_players = json.load(f).get("players", {})
+
+    # 4. Advanced stats for player context.
+    #    For completed past seasons: use same-season stats (retrospective — how they actually did).
+    #    For current/future season: use prior-season stats (pre-draft scouting).
+    prev_season = season - 1
+    same_season_adv_file = DATA_ROOT / str(season) / "advanced_stats.json"
+    prior_season_adv_file = DATA_ROOT / str(prev_season) / "advanced_stats.json"
+    is_retrospective = same_season_adv_file.exists()
+    adv_file  = same_season_adv_file if is_retrospective else prior_season_adv_file
+    stats_year = season if is_retrospective else prev_season
+    player_stats_by_name: dict[str, dict] = {}
+    if adv_file.exists():
+        with open(adv_file, encoding="utf-8") as f:
+            adv_data = json.load(f)
+        for p in adv_data.get("batting", []):
+            if p.get("name"):
+                player_stats_by_name[p["name"].lower()] = {"_type": "batter", **p}
+        for p in adv_data.get("pitching", []):
+            if p.get("name"):
+                player_stats_by_name[p["name"].lower()] = {"_type": "pitcher", **p}
+
+    # 5. Historical early-round picks (rounds 1-5) from the past 3 seasons
+    hist_picks_by_team: dict[str, list[dict]] = {}
+    for yr in range(max(season - 3, 2022), season):
+        h_draft_file = DATA_ROOT / str(yr) / "draft_results.json"
+        h_order_file = DATA_ROOT / str(yr) / "draft_order.json"
+        if not h_draft_file.exists():
+            continue
+        try:
+            with open(h_draft_file, encoding="utf-8") as f:
+                h_picks = json.load(f).get("picks", [])
+            h_key_to_name: dict[str, str] = {}
+            if h_order_file.exists():
+                with open(h_order_file, encoding="utf-8") as f:
+                    h_order = json.load(f).get("draft_order", [])
+                h_round1 = sorted(
+                    [p for p in h_picks if p.get("round") == 1],
+                    key=lambda x: x.get("pick", 999),
+                )
+                for i, pk in enumerate(h_round1):
+                    if i < len(h_order):
+                        h_key_to_name[pk["team_key"]] = h_order[i].get("team", pk["team_key"])
+            for pk in h_picks:
+                if pk.get("round", 99) > 5:
+                    continue
+                tname = h_key_to_name.get(pk["team_key"], pk["team_key"])
+                hist_picks_by_team.setdefault(tname, []).append({
+                    "year": yr,
+                    "round": pk.get("round"),
+                    "pick": pk.get("pick"),
+                    "player_name": pk.get("player_name"),
+                    "position": pk.get("position"),
+                })
+        except Exception:
+            pass
+
+    # 6. Historical season finish records (last 3 seasons)
+    hist_records = _build_historical_context(season, lookback=3)
+
+    # 7. Organize current picks by team
+    picks_by_team: dict[str, list[dict]] = {}
+    for pk in picks:
+        tname = team_key_to_name.get(pk["team_key"], pk["team_key"])
+        picks_by_team.setdefault(tname, []).append(pk)
+
+    # 8. Build per-team context blocks
+    team_sections: list[str] = []
+    for entry in draft_order_list:
+        team_name = entry.get("team", "")
+        if not team_name:
+            continue
+        team_picks = sorted(picks_by_team.get(team_name, []), key=lambda x: x.get("pick", 999))
+
+        pick_lines: list[str] = []
+        steals:  list[str] = []
+        reaches: list[str] = []
+        for pk in team_picks[:15]:
+            pkey     = pk.get("player_key", "")
+            pick_num = pk.get("pick", 0)
+            adp_entry = adp_players.get(pkey, {})
+            adp_val   = adp_entry.get("adp", 0)
+            delta = ""
+            if adp_val and pick_num:
+                diff = adp_val - pick_num
+                if diff >= 10:
+                    delta = f" [STEAL: ADP {adp_val:.0f}]"
+                    steals.append(pk.get("player_name", "?"))
+                elif diff <= -10:
+                    delta = f" [REACH: ADP {adp_val:.0f}]"
+                    reaches.append(pk.get("player_name", "?"))
+
+            stats_note = ""
+            pname_key = pk.get("player_name", "").lower()
+            if pname_key in player_stats_by_name:
+                ps = player_stats_by_name[pname_key]
+                parts: list[str] = []
+                if ps.get("_type") == "batter":
+                    if ps.get("war"):      parts.append(f"{ps['war']:.1f} WAR")
+                    if ps.get("wrc_plus"): parts.append(f"wRC+ {ps['wrc_plus']:.0f}")
+                    if ps.get("hr"):       parts.append(f"{ps['hr']:.0f} HR")
+                else:
+                    if ps.get("war"):  parts.append(f"{ps['war']:.1f} WAR")
+                    if ps.get("era"):  parts.append(f"{ps['era']:.2f} ERA")
+                    if ps.get("fip"):  parts.append(f"FIP {ps['fip']:.2f}")
+                if parts:
+                    stats_note = f" ({stats_year}: {', '.join(parts)})"
+
+            pick_lines.append(
+                f"    Rd {pk.get('round','?')}, Pick {pick_num}: "
+                f"{pk.get('player_name','?')} ({pk.get('position','?')}, "
+                f"{pk.get('mlb_team','?')}){stats_note}{delta}"
+            )
+
+        # Historical record summary
+        hist = hist_records.get(team_name, {})
+        hist_summary = ""
+        if hist:
+            seasons_detail = ", ".join(
+                f"{sd['year']}: #{sd['rank']}"
+                for sd in sorted(hist.get("seasons_data", []), key=lambda x: x["year"])
+            )
+            champ_note = f", {hist['championships']}x champion" if hist.get("championships") else ""
+            hist_summary = f"Recent finishes: {seasons_detail}{champ_note}"
+
+        # Historical early picks summary
+        h_early = hist_picks_by_team.get(team_name, [])
+        hist_picks_ctx = ""
+        if h_early:
+            by_year: dict[int, list[str]] = {}
+            for hp in h_early:
+                by_year.setdefault(hp["year"], []).append(
+                    f"Rd{hp['round']} {hp['player_name']} ({hp['position']})"
+                )
+            hist_picks_ctx = "Historical early picks: " + "; ".join(
+                f"{yr}: {', '.join(ps[:4])}"
+                for yr, ps in sorted(by_year.items())
+            )
+
+        lines = [f"TEAM: {team_name} (Draft Pick #{entry.get('pick','?')})"]
+        if hist_summary:       lines.append(hist_summary)
+        if hist_picks_ctx:     lines.append(hist_picks_ctx)
+        if steals:             lines.append(f"Notable steals: {', '.join(steals)}")
+        if reaches:            lines.append(f"Potential reaches: {', '.join(reaches)}")
+        lines.append(f"{season} Draft picks:")
+        lines.extend(pick_lines if pick_lines else ["    (no picks recorded)"])
+        team_sections.append("\n".join(lines))
+
+    all_teams_ctx = "\n\n".join(team_sections)
+
+    # 9. Build prompt and call Claude
+    writer_key = "simmons"
+    writer = WRITER_STYLES[writer_key]
+
+    # Retrospective (past season): we know how the season actually unfolded — lean into that.
+    # Preview (current/future season): we're writing pre-season analysis with uncertainty.
+    if is_retrospective:
+        stats_framing = (
+            f"You also have the {stats_year} actual season stats for the players drafted — "
+            f"so this is a RETROSPECTIVE review. You know how the season ended. "
+            f"Hold teams accountable for their picks. Who was vindicated? Who got burned?"
+        )
+        section_v = f"""**V. The Verdict: How the Draft Shaped the {season} Season**
+   - Now that the season is over, how did the draft grades hold up?
+   - Which teams won or lost the season because of their draft?
+   - Which individual picks were the difference-makers?
+   - 3–4 paragraphs. Be specific. Use the actual season stats provided."""
+        section_vi = f"""**VI. The {season} Draft: Final Grades & Legacy**
+   - Letter grade for the draft class as a whole
+   - The best and worst drafting decisions in retrospect
+   - A memorable closing line about what the {season} draft will be remembered for"""
+        adp_note = ("ADP data not available for this season — evaluate picks based on round value "
+                    "and actual performance." if not adp_players else
+                    "ADP context provided — STEAL = picked well below ADP, REACH = above ADP.")
+    else:
+        stats_framing = (
+            f"You have {stats_year} player stats for pre-draft scouting context — "
+            f"these are the numbers that informed draft decisions. Write as if you're "
+            f"analyzing the draft right after it happened, before the season begins."
+        )
+        section_v = f"""**V. Five Bold Predictions for {season}**
+   - Each must be specific, grounded in the actual draft data, and arguable
+   - Reference team names and player names
+   - Make them memorable"""
+        section_vi = f"""**VI. The Pick: Champion Crowned**
+   - Based on the draft, name your title contender with conviction
+   - Build the case using their picks, history, and draft position
+   - End with a memorable closing line (this is the Simmons sign-off, make it count)"""
+        adp_note = ("ADP context provided — STEAL = picked well below ADP, REACH = above ADP."
+                    if adp_players else
+                    "ADP data not available for this season — evaluate picks based on round value and historical context.")
+
+    prompt = f"""You are {writer['name']} of {writer['outlet']}, writing the definitive {season} draft review for "MillerLite® BeerLeagueBaseball."
+
+{writer['voice']}
+
+You have REAL DATA for all 14 teams: actual picks, each team's finish positions from past seasons, and real player stats. {stats_framing}
+
+{adp_note}
+
+Use this data. Be specific. Reference player names, round numbers, and historical records. Make it feel like you actually watched every pick in the war room.
+
+LEAGUE STRUCTURE:
+- 14 teams, head-to-head category scoring (12 categories: H/AB, R, HR, RBI, SB, OBP, IP, K, ERA, WHIP, QS, NSVH)
+- Snake draft — early picks matter, but the middle rounds decide championships
+- Draft date: {draft_date}
+
+TEAM-BY-TEAM DRAFT DATA:
+{all_teams_ctx}
+
+Write a LONG, richly detailed draft review (2000–2500 words). Use Roman numeral section headers in bold.
+
+**I. The War Room Opens** (2–3 paragraphs)
+   - Set the scene. Draft day for a league of obsessed fantasy managers.
+   - Tease the biggest steals, worst reaches, and surprise moves.
+   - Pop culture reference or analogy to kick things off (this IS Bill Simmons after all).
+
+**II. Draft Order & Early-Pick Breakdown** (1–2 paragraphs)
+   - Which teams had the top picks and how they used them.
+   - Any notable first-round value (or disasters).
+
+**III. The Draft Grades: All 14 Teams** (the heart — ALL 14 teams, in draft pick order)
+   For EACH team write 5–7 sentences:
+   • Draft slot and first-round pick (name the player explicitly)
+   • 2–3 key picks from rounds 2–10, including any steals or reaches if flagged
+   • {stats_year} actual stats for their key picks (use the real numbers — WAR, wRC+, HR, ERA, FIP)
+   • Historical finish trajectory (are they a dynasty, a pretender, a rebuild?)
+   • Historical drafting tendencies if the data shows patterns
+   • A letter grade (A through F) with a sharp one-line justification
+   Be brutally honest and funny in Simmons's voice. Parenthetical asides welcome. If a team reached on a 75-wRC+ bat, say so. If a history of blown picks exists, reference it.
+
+**IV. Draft Day Heroes & Villains**
+   - The 3 best value picks of the entire draft (cite round, pick #, player, and why)
+   - The 3 worst reaches or puzzling decisions (same format)
+   {"- Use real ADP numbers from the data" if adp_players else "- Use round value and actual performance to judge value"}
+
+{section_v}
+
+{section_vi}
+
+Use **bold** for team and player names throughout. Markdown OK.
+
+Respond ONLY with valid JSON — no markdown fences:
+{{
+  "headline": "...(punchy, specific draft review headline — not a question, a declaration)...",
+  "subheadline": "...(one sharp sentence that makes you want to read the whole thing)...",
+  "body": "...(full article, 2000–2500 words)..."
+}}"""
+
+    try:
+        raw     = _call_claude(prompt, max_tokens=6500)
+        article = _safe_json_parse(raw)
+        article["generated_at"]  = datetime.now().isoformat()
+        article["season"]        = season
+        article["writer_key"]    = writer_key
+        article["writer_name"]   = writer["name"]
+        article["writer_outlet"] = writer["outlet"]
+        article["type"]          = "draft_recap"
+        return article
+    except Exception as e:
+        print(f"[ci_runner] Draft recap generation failed: {e}", file=sys.stderr)
+        return None
+
+
+def run_draft_recap(season: int, force: bool = False) -> bool:
+    """Generate draft recap article. Returns True on success."""
+    articles_dir = DATA_ROOT / str(season) / "articles"
+    out_path     = articles_dir / "draft_recap.json"
+
+    if out_path.exists() and not force:
+        print(f"[ci_runner] Draft recap for {season} already exists — skipping. Use --force to regenerate.")
+        return True
+
+    draft_results_file = DATA_ROOT / str(season) / "draft_results.json"
+    if not draft_results_file.exists():
+        print(f"[ci_runner] No draft_results.json for {season}. Run --mode draft first.", file=sys.stderr)
+        return False
+
+    print(f"[ci_runner] Generating {season} draft recap…")
+    article = generate_draft_recap(season)
+    if not article:
+        return False
+
+    articles_dir.mkdir(parents=True, exist_ok=True)
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(article, f, indent=2, ensure_ascii=False)
+    print(f"[ci_runner]   ✓ Saved draft_recap.json (by {article['writer_name']})")
+    return True
+
+
 # ═══════════════════════════════════════════════════════════════════════════════
 # DISCORD WEBHOOK
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -866,7 +1243,7 @@ def discord_post_preview(article: dict, season: int) -> bool:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="BeerLeagueBaseball CI runner")
-    parser.add_argument("--mode",   choices=["trades", "recap", "full", "preview", "draft", "backfill"], default="full")
+    parser.add_argument("--mode",   choices=["trades", "recap", "full", "preview", "draft", "draft_recap", "backfill"], default="full")
     parser.add_argument("--week",   type=int, default=None, help="Override week number")
     parser.add_argument("--season", type=int, default=None, help="Override season year (used with --mode preview)")
     parser.add_argument("--force",  action="store_true", help="Regenerate even if article already exists")
@@ -885,6 +1262,34 @@ def main() -> None:
         ok = run_draft(oauth, league_key, season, force=args.force)
         if not ok:
             sys.exit(1)
+        print("[ci_runner] Done ✓")
+        return
+
+    # ── Draft recap mode (no Yahoo fetch needed) ─────────────────────────────
+    if args.mode == "draft_recap":
+        if args.season:
+            # Single season
+            ok = run_draft_recap(args.season, force=args.force)
+            if not ok:
+                print("[ci_runner] Draft recap generation failed.", file=sys.stderr)
+                sys.exit(1)
+        else:
+            # Backfill all seasons that have draft_results.json
+            seasons_with_draft = sorted(
+                int(d.name)
+                for d in DATA_ROOT.iterdir()
+                if d.is_dir() and d.name.isdigit()
+                and (d / "draft_results.json").exists()
+            )
+            if not seasons_with_draft:
+                print("[ci_runner] No draft_results.json found in any season directory.", file=sys.stderr)
+                sys.exit(1)
+            generated = 0
+            for s in seasons_with_draft:
+                ok = run_draft_recap(s, force=args.force)
+                if ok:
+                    generated += 1
+            print(f"[ci_runner] Draft recap backfill complete — {generated}/{len(seasons_with_draft)} article(s) generated ✓")
         print("[ci_runner] Done ✓")
         return
 
