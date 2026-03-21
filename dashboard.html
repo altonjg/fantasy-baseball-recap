@@ -2188,7 +2188,9 @@
     const hasPicks = weekNums.length > 0;
 
     if (!hasPicks) {
-      // Draft-only season (e.g. 2026 pre-draft) — show draft tab
+      // Draft-only season (e.g. 2026 pre-draft) — hide week strip, show draft tab
+      document.getElementById('week-strip').style.display = 'none';
+      window._currentSeason = season;
       _renderDraftTab(season);
       _renderNews(season);
       switchTab('season');
@@ -2196,7 +2198,8 @@
       return;
     }
 
-    // Season with week data — re-render to latest week of that season
+    // Season with week data — restore week strip and re-render to latest week
+    document.getElementById('week-strip').style.display = '';
     const latestWeek = Math.max(...weekNums);
     applyLiveData(season, latestWeek);
 
