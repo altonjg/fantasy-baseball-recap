@@ -30,6 +30,8 @@ st.markdown("""
   /* Remove any border/margin on the components.html iframe */
   iframe { border: none !important; display: block !important; }
   .stMarkdownContainer, [data-testid="stMarkdownContainer"] { padding: 0 !important; margin: 0 !important; }
+  /* Stretch the block container to fill the full viewport so the iframe gap disappears */
+  [data-testid="stMainBlockContainer"] { height: 100vh !important; min-height: 100vh !important; padding: 0 !important; }
 </style>
 """, unsafe_allow_html=True)
 
