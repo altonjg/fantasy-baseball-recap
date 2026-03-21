@@ -3716,8 +3716,42 @@
 
     const weekData = d[season][week];
     if (!weekData) {
-      // No week data — may be a draft-only season; render draft tab and bail
+      // Pre-season: no week data yet. Sync dropdown, render what we can, then bail.
+      _syncSeasonDd(String(season));
       _renderDraftTab(season);
+      _renderNews(season);
+      // Show a pre-season splash on the home tab
+      const recapEl = document.getElementById('live-recap-article');
+      const qsEl    = document.getElementById('live-recap-quickstats');
+      const preview = d[season]?.articles?.season_preview;
+      if (recapEl) {
+        if (preview) {
+          const bodyHtml = (preview.body || '').split(/\n\n+/).map(para => {
+            const trimmed = para.trim();
+            const isHeader = /^\*\*[^*]+\*\*$/.test(trimmed);
+            const html = trimmed.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+            return isHeader
+              ? `<h3 style="font-family:'Oswald',sans-serif;font-size:1.1em;font-weight:600;color:var(--gold);margin:20px 0 6px;">${html}</h3>`
+              : `<p style="margin-bottom:1em;">${html}</p>`;
+          }).join('');
+          recapEl.innerHTML = `
+            <div class="article-masthead">
+              <div class="article-kicker"><i class="fa-solid fa-flag" style="color:var(--gold)"></i> ${season} Season Preview</div>
+              <div class="article-hed">${preview.headline || ''}</div>
+              <div class="article-dek">${preview.subheadline || ''}</div>
+              <div class="article-byline"><i class="fa-solid fa-pen-nib"></i> By <strong>${preview.writer_name || 'Staff'}</strong> &nbsp;·&nbsp; ${preview.writer_outlet || ''} &nbsp;·&nbsp; ${(preview.generated_at || '').slice(0, 10)}</div>
+            </div>
+            <div class="article-body">${bodyHtml}</div>`;
+        } else {
+          recapEl.innerHTML = `
+            <div class="article-masthead">
+              <div class="article-kicker"><i class="fa-solid fa-calendar" style="color:var(--gold)"></i> ${season} Season</div>
+              <div class="article-hed">${season} Season — Coming Soon</div>
+              <div class="article-dek">The season hasn't started yet. Check the Draft tab for draft order and the NEWS tab for the season preview.</div>
+            </div>`;
+        }
+      }
+      if (qsEl) qsEl.innerHTML = '';
       return;
     }
 
