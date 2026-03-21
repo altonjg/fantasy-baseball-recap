@@ -3809,7 +3809,7 @@
       // Data already injected by Streamlit — skip fetching, just apply logos and boot.
       if (window.LEAGUE_DATA.team_logos) window.TEAM_LOGOS_MAP = window.LEAGUE_DATA.team_logos;
       const llData = window.LEAGUE_DATA.league_logo;
-      if (llData?.url) { window.LEAGUE_LOGO_URL = llData.url; _applyLeagueLogo(llData.url); }
+      if (llData) { const logoSrc = llData.data_uri || llData.url; if (logoSrc) { window.LEAGUE_LOGO_URL = logoSrc; _applyLeagueLogo(logoSrc); } }
       applyLiveData(window.CURRENT_SEASON, window.CURRENT_WEEK);
       return;
     }
@@ -3928,15 +3928,16 @@
 
     // League logo — injected by app.py from league_logo.json (falls back to fetch for local dev).
     const llData = window.LEAGUE_DATA?.league_logo;
-    if (llData?.url) {
-      window.LEAGUE_LOGO_URL = llData.url;
-      _applyLeagueLogo(llData.url);
+    if (llData) {
+      const logoSrc = llData.data_uri || llData.url;
+      if (logoSrc) { window.LEAGUE_LOGO_URL = logoSrc; _applyLeagueLogo(logoSrc); }
     } else {
       try {
         const llr = await fetch('data/league_logo.json');
         if (llr.ok) {
           const d = await llr.json();
-          if (d?.url) { window.LEAGUE_LOGO_URL = d.url; _applyLeagueLogo(d.url); }
+          const logoSrc = d?.data_uri || d?.url;
+          if (logoSrc) { window.LEAGUE_LOGO_URL = logoSrc; _applyLeagueLogo(logoSrc); }
         }
       } catch (_) {}
     }
@@ -4428,7 +4429,7 @@
   }
 
   function _renderMLBStats() {
-    const season = window.CURRENT_SEASON;
+    const season = window._currentSeason || window.CURRENT_SEASON;
     const d = window.LEAGUE_DATA && window.LEAGUE_DATA[season];
     const wrap  = document.getElementById('mlbstats-table-wrap');
     const empty = document.getElementById('mlbstats-empty');

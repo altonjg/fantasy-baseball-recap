@@ -15,8 +15,11 @@ Requires Yahoo OAuth credentials to be set up (see setup_keys.py).
 from __future__ import annotations
 
 import argparse
+import base64
 import json
 from pathlib import Path
+
+import requests
 
 from auth import setup_oauth
 from yahoo_client import _api_get
@@ -90,12 +93,27 @@ def main() -> None:
         print("❌ No league logo URL found in Yahoo response.")
         return
 
+    # Embed the image as a base64 data URI so it works in Streamlit's sandboxed iframe
+    data_uri = None
+    print(f"📥 Downloading and base64-encoding logo…")
+    try:
+        resp = requests.get(url, timeout=10)
+        resp.raise_for_status()
+        content_type = resp.headers.get("content-type", "image/jpeg").split(";")[0].strip()
+        data_uri = f"data:{content_type};base64,{base64.b64encode(resp.content).decode()}"
+        print(f"   {len(resp.content)} bytes → {len(data_uri)} char data URI")
+    except Exception as e:
+        print(f"  ⚠ Could not download logo for base64 embedding: {e}")
+
     out_path = DATA_ROOT / "league_logo.json"
     DATA_ROOT.mkdir(parents=True, exist_ok=True)
+    payload: dict = {"url": url, "league_key": league_key, "year": args.year}
+    if data_uri:
+        payload["data_uri"] = data_uri
     with open(out_path, "w") as f:
-        json.dump({"url": url, "league_key": league_key, "year": args.year}, f, indent=2)
+        json.dump(payload, f, indent=2)
 
-    print(f"✅ Saved league logo URL → {out_path}")
+    print(f"✅ Saved league logo → {out_path}")
     print(f"   {url}")
 
 
