@@ -32,11 +32,8 @@ st.markdown("""
   /* Hide Streamlit's injected statuspage.io status widget */
   iframe[src*="statuspage"] { display: none !important; }
   .stMarkdownContainer, [data-testid="stMarkdownContainer"] { padding: 0 !important; margin: 0 !important; }
-  /* Stretch the entire chain to 100vh so the dashboard iframe fills the viewport */
-  [data-testid="stMainBlockContainer"],
-  [data-testid="stVerticalBlock"],
-  [data-testid="stElementContainer"],
-  [data-testid="stIFrame"] { height: 100vh !important; min-height: 0 !important; padding: 0 !important; }
+  /* Stretch the block container and clip the app view — iframe height is set to 3000 in Python */
+  [data-testid="stMainBlockContainer"] { padding: 0 !important; }
   /* Kill bottom block container that adds blank space below iframe */
   [data-testid="stBottomBlockContainer"] { display: none !important; }
   /* Prevent app view container from overflowing viewport */
@@ -230,4 +227,4 @@ if trophy_path.exists():
 
 html_content = html_content.replace("</head>", data_script + "\n</head>", 1)
 
-components.html(html_content, height=820, scrolling=False)
+components.html(html_content, height=3000, scrolling=False)
