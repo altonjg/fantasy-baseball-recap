@@ -24,11 +24,12 @@
     --red:    oklch(62% 0.22 25);
     --amber:  oklch(76% 0.14 80);
   }
-  body { background: var(--bg); color: var(--text); font-family: 'Barlow', sans-serif; font-size: clamp(13px, 1.1vw, 15px); line-height: 1.5; }
+  html, body { height: 100%; overflow: hidden; }
+  body { background: var(--bg); color: var(--text); font-family: 'Barlow', sans-serif; font-size: clamp(13px, 1.1vw, 15px); line-height: 1.5; display: flex; flex-direction: column; }
 
   /* TOP BAR */
   .topbar {
-    position: sticky; top: 0; z-index: 100; background: oklch(10% 0.04 255);
+    flex-shrink: 0; z-index: 100; background: oklch(10% 0.04 255);
     border-bottom: 2px solid var(--gold); padding: 0 28px;
     display: flex; align-items: center; gap: 18px; height: 50px;
   }
@@ -44,9 +45,10 @@
   .topbar-nav.active { color: var(--gold); }
 
   /* LAYOUT */
-  .layout { display: flex; min-height: calc(100vh - 50px); }
-  .sidebar { width: 210px; flex-shrink: 0; background: oklch(11% 0.045 255); border-right: 1px solid var(--border); padding: 18px 14px; overflow-y: auto; position: sticky; top: 50px; height: calc(100vh - 50px); }
-  .main { flex: 1; padding: 22px 28px; overflow: hidden; }
+  .week-strip { flex-shrink: 0; }
+  .layout { display: flex; flex: 1; min-height: 0; overflow: hidden; }
+  .sidebar { width: 210px; flex-shrink: 0; background: oklch(11% 0.045 255); border-right: 1px solid var(--border); padding: 18px 14px; overflow-y: auto; height: 100%; }
+  .main { flex: 1; padding: 22px 28px; overflow-y: auto; height: 100%; }
 
   /* SIDEBAR */
   .sb-label { font-size: 0.58em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin-bottom: 6px; }
@@ -6809,16 +6811,18 @@
   }
 
   // ── Streamlit dynamic iframe height ─────────────────────────
-  // Notifies the parent Streamlit frame of the actual content height so
-  // st.components.v1.html() auto-resizes instead of using the hardcoded fallback.
+  // Tell Streamlit to size the iframe to exactly the visible viewport height
+  // so the dashboard fills the screen without external scrolling.
   (function () {
     function _notifyHeight() {
-      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight) + 32;
+      let h;
+      try { h = window.parent.innerHeight; } catch(e) {}
+      if (!h || h < 300) h = window.innerHeight;
       window.parent.postMessage({ isStreamlitMessage: true, type: 'streamlit:setFrameHeight', height: h }, '*');
     }
-    const ro = new ResizeObserver(_notifyHeight);
-    ro.observe(document.body);
     window.addEventListener('load', _notifyHeight);
+    window.addEventListener('resize', _notifyHeight);
+    _notifyHeight();
   })();
 </script>
 

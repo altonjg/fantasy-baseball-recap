@@ -193,4 +193,4 @@ html_file = Path(__file__).parent / "dashboard.html"
 html_content = html_file.read_text(encoding="utf-8")
 html_content = html_content.replace("</head>", data_script + "\n</head>", 1)
 
-components.html(html_content, height=3000, scrolling=False)
+components.html(html_content, height=820, scrolling=False)
