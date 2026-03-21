@@ -32,8 +32,11 @@ st.markdown("""
   /* Hide Streamlit's injected statuspage.io status widget */
   iframe[src*="statuspage"] { display: none !important; }
   .stMarkdownContainer, [data-testid="stMarkdownContainer"] { padding: 0 !important; margin: 0 !important; }
-  /* Stretch the block container to fill the full viewport so the iframe gap disappears */
-  [data-testid="stMainBlockContainer"] { height: 100vh !important; min-height: 100vh !important; padding: 0 !important; }
+  /* Stretch the entire chain to 100vh so the dashboard iframe fills the viewport */
+  [data-testid="stMainBlockContainer"],
+  [data-testid="stVerticalBlock"],
+  [data-testid="stElementContainer"],
+  [data-testid="stIFrame"] { height: 100vh !important; min-height: 0 !important; padding: 0 !important; }
   /* Kill bottom block container that adds blank space below iframe */
   [data-testid="stBottomBlockContainer"] { display: none !important; }
   /* Prevent app view container from overflowing viewport */
