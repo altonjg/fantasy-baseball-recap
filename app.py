@@ -27,6 +27,9 @@ st.markdown("""
   .stVerticalBlock { gap: 0 !important; row-gap: 0 !important; }
   /* Kill the Streamlit top decoration bar */
   [data-testid="stDecoration"] { display: none !important; }
+  /* Remove any border/margin on the components.html iframe */
+  iframe { border: none !important; display: block !important; }
+  .stMarkdownContainer, [data-testid="stMarkdownContainer"] { padding: 0 !important; margin: 0 !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -172,6 +175,19 @@ def load_league_data() -> tuple[dict, int, int]:
         if found:
             current_season = season
             break
+
+    # If the newest season folder is more recent and has pre-season content
+    # (a draft order or season preview article), use it as the current season.
+    # This makes the pre-season landing page show the upcoming season.
+    latest = available_seasons[-1] if available_seasons else current_season
+    if latest > current_season:
+        latest_data = league_data.get(latest, {})
+        has_preseason = (
+            "draft" in latest_data
+            or latest_data.get("articles", {}).get("season_preview")
+        )
+        if has_preseason:
+            current_season = latest
 
     season_weeks = sorted(
         k for k in league_data.get(current_season, {}) if isinstance(k, int)
