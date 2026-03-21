@@ -22,6 +22,10 @@ st.markdown("""
   section[data-testid="stSidebar"] { display: none !important; }
   .block-container { padding: 0 !important; max-width: 100% !important; }
   [data-testid="stAppViewContainer"] { padding: 0 !important; }
+  /* Remove the 16px flex gap that pushes the dashboard iframe down */
+  .stVerticalBlock { gap: 0 !important; row-gap: 0 !important; }
+  /* Kill the Streamlit top decoration bar */
+  [data-testid="stDecoration"] { display: none !important; }
 </style>
 """, unsafe_allow_html=True)
 
