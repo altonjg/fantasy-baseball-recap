@@ -866,7 +866,7 @@ def discord_post_preview(article: dict, season: int) -> bool:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="BeerLeagueBaseball CI runner")
-    parser.add_argument("--mode",   choices=["trades", "recap", "full", "preview", "draft"], default="full")
+    parser.add_argument("--mode",   choices=["trades", "recap", "full", "preview", "draft", "backfill"], default="full")
     parser.add_argument("--week",   type=int, default=None, help="Override week number")
     parser.add_argument("--season", type=int, default=None, help="Override season year (used with --mode preview)")
     parser.add_argument("--force",  action="store_true", help="Regenerate even if article already exists")
@@ -903,6 +903,44 @@ def main() -> None:
             with open(preview_path) as f:
                 discord_post_preview(json.load(f), season)
         print("[ci_runner] Done ✓")
+        return
+
+    # ── Backfill mode — generate recaps from existing week JSON files ─────────
+    if args.mode == "backfill":
+        season = args.season or datetime.now().year
+        season_dir = DATA_ROOT / str(season)
+        if not season_dir.exists():
+            print(f"[ci_runner] No data directory for {season}: {season_dir}", file=sys.stderr)
+            sys.exit(1)
+
+        week_files = sorted(season_dir.glob("week_*.json"))
+        if args.week:
+            week_files = [f for f in week_files if int(f.stem.split("_")[1]) == args.week]
+
+        if not week_files:
+            print(f"[ci_runner] No week files found for {season}" + (f" week {args.week}" if args.week else ""), file=sys.stderr)
+            sys.exit(1)
+
+        generated = 0
+        for wf in week_files:
+            try:
+                wk_num = int(wf.stem.split("_")[1])
+                out_path = DATA_ROOT / str(season) / "articles" / f"week_{wk_num:02d}_recap.json"
+                if out_path.exists() and not args.force:
+                    print(f"[ci_runner] Week {wk_num}: recap exists — skipping (use --force to regenerate)")
+                    continue
+                with open(wf, encoding="utf-8") as f:
+                    week_data = json.load(f)
+                week_data.setdefault("week", wk_num)
+                week_data.setdefault("season", season)
+                print(f"[ci_runner] Backfilling recap for {season} Week {wk_num}…")
+                ok = run_recap(week_data, season)
+                if ok:
+                    generated += 1
+            except Exception as e:
+                print(f"[ci_runner] Failed on {wf.name}: {e}", file=sys.stderr)
+
+        print(f"[ci_runner] Backfill complete — {generated} article(s) generated for {season} ✓")
         return
 
     league_key = os.environ.get("YAHOO_LEAGUE_KEY", "")
