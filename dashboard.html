@@ -4047,7 +4047,7 @@
     const popup = document.getElementById('pc-popup');
     if (!popup) return;
     const d = window.LEAGUE_DATA && window.LEAGUE_DATA[season];
-    const adpEntry = (d?.adp?.players || []).find(pl => pl.player_key === playerKey);
+    const adpEntry = d?.adp?.players?.[playerKey];
     const adp = adpEntry ? parseFloat(adpEntry.adp) : null;
     const isPitcher = position === 'SP' || position === 'RP';
     const statRows = d?.advanced_stats
