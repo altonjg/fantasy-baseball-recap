@@ -7037,7 +7037,14 @@
   (function () {
     function _notifyHeight() {
       let h;
-      try { h = window.parent.innerHeight; } catch(e) {}
+      try {
+        const iframe = window.frameElement;
+        if (iframe) {
+          const rect = iframe.getBoundingClientRect();
+          h = window.parent.innerHeight - Math.max(0, Math.round(rect.top));
+        }
+      } catch(e) {}
+      if (!h || h < 300) { try { h = window.parent.innerHeight; } catch(e) {} }
       if (!h || h < 300) h = window.innerHeight;
       window.parent.postMessage({ isStreamlitMessage: true, type: 'streamlit:setFrameHeight', height: h }, '*');
     }

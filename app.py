@@ -32,6 +32,10 @@ st.markdown("""
   .stMarkdownContainer, [data-testid="stMarkdownContainer"] { padding: 0 !important; margin: 0 !important; }
   /* Stretch the block container to fill the full viewport so the iframe gap disappears */
   [data-testid="stMainBlockContainer"] { height: 100vh !important; min-height: 100vh !important; padding: 0 !important; }
+  /* Kill bottom block container that adds blank space below iframe */
+  [data-testid="stBottomBlockContainer"] { display: none !important; }
+  /* Prevent app view container from overflowing viewport */
+  [data-testid="stAppViewContainer"] { height: 100vh !important; overflow: hidden !important; }
 </style>
 """, unsafe_allow_html=True)
 
