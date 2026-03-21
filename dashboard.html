@@ -3902,26 +3902,30 @@
     window.CURRENT_SEASON = latestSeason;
     window.CURRENT_WEEK   = latestWeek;
 
-    // Load team_logos.json (name→url map covering all historical team names).
-    // Falls back gracefully if the file doesn't exist yet (run fetch_logos.py to generate).
-    try {
-      const lr = await fetch('data/team_logos.json');
-      if (lr.ok) window.TEAM_LOGOS_MAP = await lr.json();
-    } catch (_) {}
+    // Team logos — injected by app.py from team_logos.json (falls back to fetch for local dev).
+    if (window.LEAGUE_DATA?.team_logos) {
+      window.TEAM_LOGOS_MAP = window.LEAGUE_DATA.team_logos;
+    } else {
+      try {
+        const lr = await fetch('data/team_logos.json');
+        if (lr.ok) window.TEAM_LOGOS_MAP = await lr.json();
+      } catch (_) {}
+    }
 
-    // Load league_logo.json (run fetch_league_logo.py to generate).
-    // Used for the topbar icon and browser favicon.
-    try {
-      const llr = await fetch('data/league_logo.json');
-      if (llr.ok) {
-        const llData = await llr.json();
-        const logoUrl = llData?.url;
-        if (logoUrl) {
-          window.LEAGUE_LOGO_URL = logoUrl;
-          _applyLeagueLogo(logoUrl);
+    // League logo — injected by app.py from league_logo.json (falls back to fetch for local dev).
+    const llData = window.LEAGUE_DATA?.league_logo;
+    if (llData?.url) {
+      window.LEAGUE_LOGO_URL = llData.url;
+      _applyLeagueLogo(llData.url);
+    } else {
+      try {
+        const llr = await fetch('data/league_logo.json');
+        if (llr.ok) {
+          const d = await llr.json();
+          if (d?.url) { window.LEAGUE_LOGO_URL = d.url; _applyLeagueLogo(d.url); }
         }
-      }
-    } catch (_) {}
+      } catch (_) {}
+    }
 
     applyLiveData(latestSeason, latestWeek);
   }

@@ -87,6 +87,63 @@ def load_league_data() -> tuple[dict, int, int]:
             except Exception:
                 pass
 
+        # ADP snapshot (populated by backfill.py --adp)
+        adp_file = year_dir / "adp_snapshot.json"
+        if adp_file.exists():
+            try:
+                league_data[season]["adp"] = json.loads(adp_file.read_text(encoding="utf-8"))
+            except Exception:
+                pass
+
+        # Advanced stats — Fangraphs WAR/wRC+/FIP (populated by backfill.py --stats)
+        stats_file = year_dir / "advanced_stats.json"
+        if stats_file.exists():
+            try:
+                league_data[season]["advanced_stats"] = json.loads(stats_file.read_text(encoding="utf-8"))
+            except Exception:
+                pass
+
+        # Division names (populated by backfill.py --divisions)
+        divisions_file = year_dir / "divisions.json"
+        if divisions_file.exists():
+            try:
+                div_data = json.loads(divisions_file.read_text(encoding="utf-8"))
+                team_divisions = div_data.get("team_divisions", {})
+                # Patch division_name into every week's standings for this season
+                for week_key, week_val in league_data[season].items():
+                    if not isinstance(week_key, int) or not isinstance(week_val, dict):
+                        continue
+                    for team in week_val.get("standings", []):
+                        if team.get("team_key") in team_divisions:
+                            team["division_name"] = team_divisions[team["team_key"]]
+                league_data[season]["divisions"] = div_data.get("divisions", {})
+            except Exception:
+                pass
+
+    # Global MLB player headshot cache (populated by backfill.py --headshots)
+    mlb_players_file = data_dir / "mlb_players.json"
+    if mlb_players_file.exists():
+        try:
+            league_data["mlb_players"] = json.loads(mlb_players_file.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+
+    # Team logos map (name → url, populated by fetch_logos.py)
+    team_logos_file = data_dir / "team_logos.json"
+    if team_logos_file.exists():
+        try:
+            league_data["team_logos"] = json.loads(team_logos_file.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+
+    # League logo (populated by fetch_league_logo.py)
+    league_logo_file = data_dir / "league_logo.json"
+    if league_logo_file.exists():
+        try:
+            league_data["league_logo"] = json.loads(league_logo_file.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+
     # Determine current season — find the latest season that has at least one
     # regular season week (not is_playoffs) with actual points scored.
     # This handles: (a) Yahoo returning all-zero standings, (b) pre-season
@@ -132,4 +189,4 @@ html_file = Path(__file__).parent / "dashboard.html"
 html_content = html_file.read_text(encoding="utf-8")
 html_content = html_content.replace("</head>", data_script + "\n</head>", 1)
 
-components.html(html_content, height=1400, scrolling=True)
+components.html(html_content, height=3000, scrolling=False)
