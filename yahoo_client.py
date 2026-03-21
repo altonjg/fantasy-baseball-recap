@@ -524,6 +524,83 @@ def get_players_info(
     return result
 
 
+def get_player_adp(
+    session: requests.Session,
+    league_key: str,
+    total: int = 400,
+) -> dict[str, dict]:
+    """
+    Fetch ADP data for the top-N players by consensus draft position in this league's game.
+
+    Returns: { player_key: {"name": str, "position": str, "adp": float, "adp_round": float, "percent_drafted": float} }
+
+    Uses Yahoo's draft_analysis subresource on the players endpoint sorted by ADP.
+    ADP reflects Yahoo's consensus across all leagues for this game type.
+    """
+    result: dict[str, dict] = {}
+    batch_size = 25
+    for start in range(0, total, batch_size):
+        try:
+            data = _api_get(
+                session,
+                f"league/{league_key}/players;sort=ADP;start={start};count={batch_size}/draft_analysis",
+            )
+            players_block = data["league"][1].get("players", {})
+            count = int(players_block.get("count", 0))
+            if count == 0:
+                break
+            for i in range(count):
+                p = players_block[str(i)]["player"]
+                p_flat: dict = {}
+                for item in p[0]:
+                    if isinstance(item, dict):
+                        p_flat.update(item)
+
+                pkey = str(p_flat.get("player_key", ""))
+                if not pkey:
+                    continue
+
+                # draft_analysis is in p[1] — Yahoo returns it as a list of single-key dicts
+                da: dict = {}
+                if len(p) > 1 and isinstance(p[1], dict):
+                    da_raw = p[1].get("draft_analysis", [])
+                    if isinstance(da_raw, list):
+                        for item in da_raw:
+                            if isinstance(item, dict):
+                                da.update(item)
+                    elif isinstance(da_raw, dict):
+                        da = da_raw
+
+                def _parse_float(val) -> float:
+                    try:
+                        return float(val) if val and val != "-" else 0.0
+                    except (ValueError, TypeError):
+                        return 0.0
+
+                # Use in-season ADP if available, fall back to preseason ADP
+                adp = _parse_float(da.get("average_pick"))
+                if adp <= 0:
+                    adp = _parse_float(da.get("preseason_average_pick"))
+                adp_round = _parse_float(da.get("average_round") or da.get("preseason_average_round"))
+                pct = _parse_float(da.get("percent_drafted") or da.get("preseason_percent_drafted"))
+
+                if adp <= 0:
+                    continue
+
+                result[pkey] = {
+                    "name": p_flat.get("full") or p_flat.get("name", {}).get("full", "Unknown"),
+                    "position": p_flat.get("display_position", ""),
+                    "adp": adp,
+                    "adp_round": adp_round,
+                    "percent_drafted": pct,
+                }
+        except Exception as e:
+            print(f"  Warning: ADP fetch failed at start={start}: {e}")
+            break
+
+    return result
+
+
 def get_draft_results_enriched(session: requests.Session, league_key: str) -> list[dict]:
     """
     Full draft board with player names, positions, and MLB teams resolved.

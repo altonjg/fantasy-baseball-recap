@@ -417,6 +417,9 @@
   .tp-overlay.open { opacity:1; pointer-events:all; }
   .tp-drawer { position:fixed; top:0; right:0; height:100%; width:min(400px,100vw); background:var(--bg2); border-left:1px solid var(--border); z-index:901; overflow-y:auto; transform:translateX(100%); transition:transform 0.3s cubic-bezier(0.22,1,0.36,1); display:flex; flex-direction:column; }
   .tp-drawer.open { transform:translateX(0); }
+  /* ── PLAYER STAT CARD POPUP ──────────────────────────────── */
+  .pc-popup { position:fixed; z-index:950; width:272px; background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:14px 16px; box-shadow:0 12px 40px rgba(0,0,0,0.75); opacity:0; pointer-events:none; transition:opacity 0.14s, transform 0.14s; transform:scale(0.95) translateY(6px); }
+  .pc-popup.open { opacity:1; pointer-events:all; transform:scale(1) translateY(0); }
   .tp-header { position:sticky; top:0; display:flex; justify-content:space-between; align-items:center; padding:12px 16px; background:var(--bg2); border-bottom:1px solid var(--border); z-index:1; }
   .tp-header-title { font-size:0.72em; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); }
   .tp-close-btn { background:var(--card); border:1px solid var(--border); color:var(--text); border-radius:6px; padding:5px 12px; cursor:pointer; font-size:0.8em; display:inline-flex; align-items:center; gap:5px; transition:background 0.15s; }
@@ -3992,18 +3995,141 @@
     const rows = isPitcher ? (d.advanced_stats.pitching || []) : (d.advanced_stats.batting || []);
     const entry = rows.find(r => r.Name === playerName);
     if (!entry) return '';
+    let out = '';
     if (!isPitcher) {
-      const wrc = entry['wRC+'];
-      if (wrc == null) return '';
-      const color = wrc >= 130 ? '#22c55e' : wrc >= 100 ? '#a3e635' : wrc >= 80 ? '#f59e0b' : '#ef4444';
-      return `<span style="font-size:0.55em;font-weight:700;color:${color};background:${color}22;border-radius:3px;padding:0 3px;margin-left:2px;" title="wRC+">${wrc} wRC+</span>`;
+      const wrc = entry['wRC+']; const war = entry['WAR'];
+      if (wrc != null) {
+        const c = wrc >= 130 ? '#22c55e' : wrc >= 100 ? '#a3e635' : wrc >= 80 ? '#f59e0b' : '#ef4444';
+        out += `<span style="font-size:0.55em;font-weight:700;color:${c};background:${c}22;border-radius:3px;padding:0 3px;" title="wRC+">${wrc}+</span>`;
+      }
+      if (war != null) {
+        const c = war >= 5 ? '#22c55e' : war >= 2 ? '#a3e635' : war >= 0 ? '#f59e0b' : '#ef4444';
+        out += `<span style="font-size:0.55em;font-weight:700;color:${c};background:${c}22;border-radius:3px;padding:0 3px;" title="WAR">${war.toFixed(1)}W</span>`;
+      }
     } else {
-      const fip = entry['FIP'];
-      if (fip == null) return '';
-      const color = fip <= 2.5 ? '#22c55e' : fip <= 3.5 ? '#a3e635' : fip <= 4.5 ? '#f59e0b' : '#ef4444';
-      return `<span style="font-size:0.55em;font-weight:700;color:${color};background:${color}22;border-radius:3px;padding:0 3px;margin-left:2px;" title="FIP">${fip.toFixed(2)} FIP</span>`;
+      const fip = entry['FIP']; const war = entry['WAR'];
+      if (fip != null) {
+        const c = fip <= 2.5 ? '#22c55e' : fip <= 3.5 ? '#a3e635' : fip <= 4.5 ? '#f59e0b' : '#ef4444';
+        out += `<span style="font-size:0.55em;font-weight:700;color:${c};background:${c}22;border-radius:3px;padding:0 3px;" title="FIP">${fip.toFixed(2)}</span>`;
+      }
+      if (war != null) {
+        const c = war >= 5 ? '#22c55e' : war >= 2 ? '#a3e635' : war >= 0 ? '#f59e0b' : '#ef4444';
+        out += `<span style="font-size:0.55em;font-weight:700;color:${c};background:${c}22;border-radius:3px;padding:0 3px;" title="WAR">${war.toFixed(1)}W</span>`;
+      }
     }
+    return out;
   }
+
+  // ── Player stat card popup ────────────────────────────────────────────────
+  function showPlayerCard(name, position, season, playerKey, pickNum, e) {
+    e.stopPropagation();
+    const popup = document.getElementById('pc-popup');
+    if (!popup) return;
+    const d = window.LEAGUE_DATA && window.LEAGUE_DATA[season];
+    const adpEntry = (d?.adp?.players || []).find(pl => pl.player_key === playerKey);
+    const adp = adpEntry ? parseFloat(adpEntry.adp) : null;
+    const isPitcher = position === 'SP' || position === 'RP';
+    const statRows = d?.advanced_stats
+      ? (isPitcher ? (d.advanced_stats.pitching || []) : (d.advanced_stats.batting || []))
+      : [];
+    const st = statRows.find(r => r.Name === name);
+    const POS_COLORS = { SP:'#3b82f6', RP:'#06b6d4', C:'#f59e0b', '1B':'#22c55e', '2B':'#a3e635', '3B':'#f97316', SS:'#ec4899', OF:'#8b5cf6', DH:'#6b7280', UTIL:'#8b5cf6' };
+    const pc = POS_COLORS[position] || '#6b7280';
+
+    let bigStats = '', miniStats = '';
+    if (st) {
+      if (!isPitcher) {
+        const wrc = st['wRC+'], war = st['WAR'];
+        const ops = (st.OBP != null && st.SLG != null) ? (st.OBP + st.SLG).toFixed(3) : null;
+        const wrcC = wrc == null ? 'var(--muted)' : wrc >= 130 ? '#22c55e' : wrc >= 100 ? '#a3e635' : wrc >= 80 ? '#f59e0b' : '#ef4444';
+        const warC = war == null ? 'var(--muted)' : war >= 5 ? '#22c55e' : war >= 2 ? '#a3e635' : war >= 0 ? '#f59e0b' : '#ef4444';
+        bigStats = `<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin:10px 0 7px;">
+          <div style="text-align:center;background:var(--card);border-radius:7px;padding:7px 3px;">
+            <div style="font-family:'Oswald',sans-serif;font-size:1.5em;font-weight:700;color:${wrcC};line-height:1;">${wrc ?? '—'}</div>
+            <div style="font-size:0.58em;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:2px;">wRC+</div>
+          </div>
+          <div style="text-align:center;background:var(--card);border-radius:7px;padding:7px 3px;">
+            <div style="font-family:'Oswald',sans-serif;font-size:1.5em;font-weight:700;color:${warC};line-height:1;">${war?.toFixed(1) ?? '—'}</div>
+            <div style="font-size:0.58em;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:2px;">WAR</div>
+          </div>
+          <div style="text-align:center;background:var(--card);border-radius:7px;padding:7px 3px;">
+            <div style="font-family:'Oswald',sans-serif;font-size:1.5em;font-weight:700;line-height:1;">${ops ?? '—'}</div>
+            <div style="font-size:0.58em;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:2px;">OPS</div>
+          </div>
+        </div>`;
+        miniStats = `<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:3px;">${
+          [['G',st.G],['HR',st.HR],['RBI',st.RBI],['SB',st.SB],['AVG',st.AVG?.toFixed(3)]].map(([l,v])=>
+          `<div style="text-align:center;background:var(--bg);border-radius:5px;padding:4px 2px;">
+            <div style="font-size:0.82em;font-weight:600;">${v ?? '—'}</div>
+            <div style="font-size:0.56em;color:var(--muted);text-transform:uppercase;">${l}</div>
+          </div>`).join('')}</div>`;
+      } else {
+        const fip = st['FIP'], war = st['WAR'], era = st['ERA'];
+        const fipC = fip == null ? 'var(--muted)' : fip <= 2.5 ? '#22c55e' : fip <= 3.5 ? '#a3e635' : fip <= 4.5 ? '#f59e0b' : '#ef4444';
+        const warC = war == null ? 'var(--muted)' : war >= 5 ? '#22c55e' : war >= 2 ? '#a3e635' : war >= 0 ? '#f59e0b' : '#ef4444';
+        const eraC = era == null ? 'var(--muted)' : era <= 2.5 ? '#22c55e' : era <= 3.5 ? '#a3e635' : era <= 4.5 ? '#f59e0b' : '#ef4444';
+        bigStats = `<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin:10px 0 7px;">
+          <div style="text-align:center;background:var(--card);border-radius:7px;padding:7px 3px;">
+            <div style="font-family:'Oswald',sans-serif;font-size:1.5em;font-weight:700;color:${fipC};line-height:1;">${fip?.toFixed(2) ?? '—'}</div>
+            <div style="font-size:0.58em;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:2px;">FIP</div>
+          </div>
+          <div style="text-align:center;background:var(--card);border-radius:7px;padding:7px 3px;">
+            <div style="font-family:'Oswald',sans-serif;font-size:1.5em;font-weight:700;color:${warC};line-height:1;">${war?.toFixed(1) ?? '—'}</div>
+            <div style="font-size:0.58em;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:2px;">WAR</div>
+          </div>
+          <div style="text-align:center;background:var(--card);border-radius:7px;padding:7px 3px;">
+            <div style="font-family:'Oswald',sans-serif;font-size:1.5em;font-weight:700;color:${eraC};line-height:1;">${era?.toFixed(2) ?? '—'}</div>
+            <div style="font-size:0.58em;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:2px;">ERA</div>
+          </div>
+        </div>`;
+        miniStats = `<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:3px;">${
+          [['IP',st.IP?.toFixed(0)],['W',st.W],['SV',st.SV],['K/9',st['K/9']?.toFixed(1)],['WHIP',st.WHIP?.toFixed(2)]].map(([l,v])=>
+          `<div style="text-align:center;background:var(--bg);border-radius:5px;padding:4px 2px;">
+            <div style="font-size:0.82em;font-weight:600;">${v ?? '—'}</div>
+            <div style="font-size:0.56em;color:var(--muted);text-transform:uppercase;">${l}</div>
+          </div>`).join('')}</div>`;
+      }
+    } else {
+      bigStats = `<div style="color:var(--muted);font-size:0.82em;text-align:center;padding:14px 0;"><i class="fa-solid fa-circle-info"></i> No Fangraphs data for ${season}</div>`;
+    }
+
+    const metaTxt = [pickNum ? `Pick #${pickNum}` : '', adp != null ? `ADP ${adp.toFixed(1)}` : ''].filter(Boolean).join(' · ');
+    popup.innerHTML = `
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:6px;">
+        <div style="min-width:0;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.15em;font-weight:700;text-transform:uppercase;letter-spacing:0.02em;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:210px;">${name}</div>
+          <div style="display:flex;align-items:center;gap:5px;margin-top:3px;flex-wrap:wrap;">
+            <span style="font-size:0.65em;font-weight:700;color:${pc};background:${pc}22;border-radius:3px;padding:1px 5px;">${position}</span>
+            ${st?.Team ? `<span style="font-size:0.65em;color:var(--muted);">${st.Team}</span>` : ''}
+            ${metaTxt ? `<span style="font-size:0.62em;color:var(--muted);">${metaTxt}</span>` : ''}
+          </div>
+        </div>
+        <button onclick="closePlayerCard()" style="flex-shrink:0;background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.1em;padding:2px;line-height:1;margin-top:-1px;"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div style="border-top:1px solid var(--border);margin:8px 0 0;"></div>
+      ${bigStats}${miniStats}
+      ${st ? `<div style="font-size:0.6em;color:var(--muted);margin-top:8px;text-align:right;">Fangraphs via pybaseball · ${season}</div>` : ''}`;
+
+    // Smart positioning: stay on screen
+    const vw = window.innerWidth, vh = window.innerHeight, pw = 272, ph = st ? 265 : 130;
+    let x = e.clientX + 14, y = e.clientY - 30;
+    if (x + pw > vw - 8) x = e.clientX - pw - 14;
+    if (y + ph > vh - 8) y = vh - ph - 8;
+    if (y < 8) y = 8;
+    if (x < 8) x = 8;
+    popup.style.left = x + 'px';
+    popup.style.top = y + 'px';
+    popup.classList.add('open');
+  }
+
+  function closePlayerCard() {
+    document.getElementById('pc-popup')?.classList.remove('open');
+  }
+
+  document.addEventListener('click', e => {
+    const popup = document.getElementById('pc-popup');
+    if (popup?.classList.contains('open') && !popup.contains(e.target)) closePlayerCard();
+  });
 
   function _renderDraftBoard(picks, teamKeyMap, numTeams, season, boardEl, boardLabel) {
     if (!boardEl || !picks.length) return;
@@ -4050,8 +4176,9 @@
         const rgb = _hexToRgb(teamColor);
         const bg = rgb ? `rgba(${rgb},0.07)` : 'transparent';
         const statBadge = _advStatBadge(p.player_name, p.position, season);
+        const _esc = s => (s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'");
         return `<td style="padding:3px 4px;background:${bg};border-left:2px solid ${teamColor}22;">
-          <div style="font-size:0.7em;font-weight:600;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:88px;" title="${p.player_name}">${p.player_name}</div>
+          <div style="font-size:0.7em;font-weight:600;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:88px;cursor:pointer;" title="${p.player_name}" onclick="showPlayerCard('${_esc(p.player_name)}','${p.position}',${season},'${_esc(p.player_key)}',${p.pick},event)">${p.player_name}</div>
           <div style="display:flex;align-items:center;gap:4px;margin-top:1px;flex-wrap:wrap;">
             <span style="font-size:0.58em;font-weight:700;color:${pc};background:${pc}22;border-radius:3px;padding:0 4px;">${p.position}</span>
             <span style="font-size:0.58em;color:var(--muted);white-space:nowrap;">${p.mlb_team}</span>
@@ -4375,8 +4502,13 @@
     const tdRows = sorted.map(r => {
       const isDrafted = draftedNames.has(r.Name);
       const badge = isDrafted ? `<span class="drafted-badge">drafted</span>` : '';
+      const _esc = s => (s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+      // Try to find a player_key from draft results for ADP lookup
+      const draftPick = (d.draft_results?.picks || []).find(p => p.player_name === r.Name);
+      const playerKey = draftPick?.player_key || '';
+      const pos = r.Pos || (isBat ? 'OF' : 'SP');
       return '<tr>' + validCols.map(c => {
-        if (c === 'Name') return `<td>${r.Name}${badge}</td>`;
+        if (c === 'Name') return `<td><span style="cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px;" onclick="showPlayerCard('${_esc(r.Name)}','${pos}',${season},'${_esc(playerKey)}',${draftPick?.pick||'null'},event)">${r.Name}</span>${badge}</td>`;
         if (c === 'Team') return `<td>${r.Team || '—'}</td>`;
         const val = r[c];
         const cc = _cellClass(c, val);
@@ -6481,7 +6613,7 @@
   }
 
   // Close on Escape key
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeTeamProfile(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeTeamProfile(); closePlayerCard(); } });
 
   function showTeamProfile(teamKey) {
     if (!window.LEAGUE_DATA) return;
@@ -6841,6 +6973,9 @@
     <div id="article-modal-body" style="font-size:0.95em;line-height:1.75;color:var(--text);"></div>
   </div>
 </div>
+
+<!-- ── PLAYER STAT CARD POPUP ───────────────────────────────── -->
+<div id="pc-popup" class="pc-popup"></div>
 
 <!-- ── TEAM PROFILE DRAWER ──────────────────────────────────── -->
 <div id="tp-overlay" class="tp-overlay" onclick="closeTeamProfile()"></div>

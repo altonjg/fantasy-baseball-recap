@@ -1,0 +1,1092 @@
+{
+  "season": 2025,
+  "league_key": "458.l.25686",
+  "fetched_at": "2026-03-17T22:25:44.743788",
+  "players": {
+    "458.p.7590": {
+      "name": "Justin Verlander",
+      "position": "SP",
+      "adp": 245.8,
+      "adp_round": 22.9,
+      "percent_drafted": 0.33
+    },
+    "458.p.8180": {
+      "name": "Clayton Kershaw",
+      "position": "SP",
+      "adp": 249.4,
+      "adp_round": 24.6,
+      "percent_drafted": 0.08
+    },
+    "458.p.8193": {
+      "name": "Max Scherzer",
+      "position": "SP",
+      "adp": 229.2,
+      "adp_round": 21.0,
+      "percent_drafted": 0.81
+    },
+    "458.p.8270": {
+      "name": "Charlie Morton",
+      "position": "SP,RP",
+      "adp": 253.8,
+      "adp_round": 23.3,
+      "percent_drafted": 0.07
+    },
+    "458.p.8616": {
+      "name": "Aroldis Chapman",
+      "position": "RP",
+      "adp": 207.2,
+      "adp_round": 19.0,
+      "percent_drafted": 0.91
+    },
+    "458.p.8619": {
+      "name": "Carlos Santana",
+      "position": "1B",
+      "adp": 241.8,
+      "adp_round": 22.8,
+      "percent_drafted": 0.03
+    },
+    "458.p.8634": {
+      "name": "Giancarlo Stanton",
+      "position": "OF",
+      "adp": 240.5,
+      "adp_round": 21.6,
+      "percent_drafted": 0.15
+    },
+    "458.p.8658": {
+      "name": "Freddie Freeman",
+      "position": "1B",
+      "adp": 22.2,
+      "adp_round": 2.5,
+      "percent_drafted": 1.0
+    },
+    "458.p.8758": {
+      "name": "Kenley Jansen",
+      "position": "RP",
+      "adp": 157.9,
+      "adp_round": 14.6,
+      "percent_drafted": 1.0
+    },
+    "458.p.8780": {
+      "name": "Chris Sale",
+      "position": "SP",
+      "adp": 38.8,
+      "adp_round": 4.0,
+      "percent_drafted": 1.0
+    },
+    "458.p.8861": {
+      "name": "Mike Trout",
+      "position": "OF",
+      "adp": 89.8,
+      "adp_round": 8.5,
+      "percent_drafted": 1.0
+    },
+    "458.p.8875": {
+      "name": "Bryce Harper",
+      "position": "1B",
+      "adp": 20.1,
+      "adp_round": 2.3,
+      "percent_drafted": 1.0
+    },
+    "458.p.8967": {
+      "name": "Paul Goldschmidt",
+      "position": "1B",
+      "adp": 162.0,
+      "adp_round": 15.0,
+      "percent_drafted": 1.0
+    },
+    "458.p.8996": {
+      "name": "Jose Altuve",
+      "position": "2B,OF",
+      "adp": 47.5,
+      "adp_round": 4.8,
+      "percent_drafted": 1.0
+    },
+    "458.p.9007": {
+      "name": "Nathan Eovaldi",
+      "position": "SP",
+      "adp": 195.2,
+      "adp_round": 18.0,
+      "percent_drafted": 1.0
+    },
+    "458.p.9015": {
+      "name": "Salvador Perez",
+      "position": "C,1B",
+      "adp": 94.6,
+      "adp_round": 8.9,
+      "percent_drafted": 1.0
+    },
+    "458.p.9057": {
+      "name": "Liam Hendriks",
+      "position": "RP",
+      "adp": 221.2,
+      "adp_round": 20.4,
+      "percent_drafted": 0.79
+    },
+    "458.p.9095": {
+      "name": "Yu Darvish",
+      "position": "SP",
+      "adp": 228.0,
+      "adp_round": 20.8,
+      "percent_drafted": 0.75
+    },
+    "458.p.9105": {
+      "name": "Nolan Arenado",
+      "position": "3B",
+      "adp": 196.9,
+      "adp_round": 18.1,
+      "percent_drafted": 0.99
+    },
+    "458.p.9108": {
+      "name": "Nick Castellanos",
+      "position": "OF",
+      "adp": 156.8,
+      "adp_round": 14.5,
+      "percent_drafted": 1.0
+    },
+    "458.p.9111": {
+      "name": "Manny Machado",
+      "position": "3B",
+      "adp": 32.0,
+      "adp_round": 3.4,
+      "percent_drafted": 1.0
+    },
+    "458.p.9112": {
+      "name": "Jurickson Profar",
+      "position": "OF",
+      "adp": 178.8,
+      "adp_round": 16.5,
+      "percent_drafted": 0.98
+    },
+    "458.p.9116": {
+      "name": "Francisco Lindor",
+      "position": "SS",
+      "adp": 12.7,
+      "adp_round": 1.6,
+      "percent_drafted": 1.0
+    },
+    "458.p.9121": {
+      "name": "Gerrit Cole",
+      "position": "SP",
+      "adp": 70.8,
+      "adp_round": 7.0,
+      "percent_drafted": 0.34
+    },
+    "458.p.9123": {
+      "name": "Jameson Taillon",
+      "position": "SP",
+      "adp": 252.6,
+      "adp_round": 23.4,
+      "percent_drafted": 0.1
+    },
+    "458.p.9124": {
+      "name": "Zack Wheeler",
+      "position": "SP",
+      "adp": 24.3,
+      "adp_round": 2.7,
+      "percent_drafted": 1.0
+    },
+    "458.p.9228": {
+      "name": "Jorge Soler",
+      "position": "OF",
+      "adp": 230.6,
+      "adp_round": 21.0,
+      "percent_drafted": 0.84
+    },
+    "458.p.9319": {
+      "name": "Xander Bogaerts",
+      "position": "2B,SS",
+      "adp": 144.8,
+      "adp_round": 13.4,
+      "percent_drafted": 1.0
+    },
+    "458.p.9320": {
+      "name": "Christian Yelich",
+      "position": "OF",
+      "adp": 120.0,
+      "adp_round": 11.2,
+      "percent_drafted": 1.0
+    },
+    "458.p.9329": {
+      "name": "Michael Wacha",
+      "position": "SP",
+      "adp": 240.4,
+      "adp_round": 21.6,
+      "percent_drafted": 0.58
+    },
+    "458.p.9334": {
+      "name": "Kevin Gausman",
+      "position": "SP",
+      "adp": 160.4,
+      "adp_round": 14.9,
+      "percent_drafted": 1.0
+    },
+    "458.p.9339": {
+      "name": "George Springer",
+      "position": "OF",
+      "adp": 239.0,
+      "adp_round": 21.6,
+      "percent_drafted": 0.7
+    },
+    "458.p.9358": {
+      "name": "Ryan Pressly",
+      "position": "RP",
+      "adp": 142.5,
+      "adp_round": 13.3,
+      "percent_drafted": 1.0
+    },
+    "458.p.9385": {
+      "name": "Marcell Ozuna",
+      "position": "OF",
+      "adp": 52.2,
+      "adp_round": 5.3,
+      "percent_drafted": 1.0
+    },
+    "458.p.9414": {
+      "name": "Joc Pederson",
+      "position": "OF",
+      "adp": 250.4,
+      "adp_round": 23.0,
+      "percent_drafted": 0.31
+    },
+    "458.p.9459": {
+      "name": "Sonny Gray",
+      "position": "SP",
+      "adp": 117.9,
+      "adp_round": 11.0,
+      "percent_drafted": 1.0
+    },
+    "458.p.9507": {
+      "name": "Jos\u00e9 Ram\u00edrez",
+      "position": "3B",
+      "adp": 5.8,
+      "adp_round": 1.2,
+      "percent_drafted": 1.0
+    },
+    "458.p.9517": {
+      "name": "Marcus Semien",
+      "position": "2B",
+      "adp": 74.6,
+      "adp_round": 7.2,
+      "percent_drafted": 1.0
+    },
+    "458.p.9546": {
+      "name": "Eduardo Rodriguez",
+      "position": "SP",
+      "adp": 261.8,
+      "adp_round": 25.1,
+      "percent_drafted": 0.03
+    },
+    "458.p.9552": {
+      "name": "Mookie Betts",
+      "position": "2B,SS,OF",
+      "adp": 9.3,
+      "adp_round": 1.3,
+      "percent_drafted": 1.0
+    },
+    "458.p.9567": {
+      "name": "Jon Gray",
+      "position": "SP,RP",
+      "adp": 249.0,
+      "adp_round": 0.0,
+      "percent_drafted": 0.0
+    },
+    "458.p.9571": {
+      "name": "Trevor Story",
+      "position": "SS",
+      "adp": 243.7,
+      "adp_round": 22.2,
+      "percent_drafted": 0.59
+    },
+    "458.p.9573": {
+      "name": "Carlos Correa",
+      "position": "3B,SS",
+      "adp": 232.3,
+      "adp_round": 21.2,
+      "percent_drafted": 0.81
+    },
+    "458.p.9582": {
+      "name": "Sean Manaea",
+      "position": "SP",
+      "adp": 223.4,
+      "adp_round": 20.4,
+      "percent_drafted": 0.89
+    },
+    "458.p.9584": {
+      "name": "Corey Seager",
+      "position": "SS",
+      "adp": 39.9,
+      "adp_round": 4.1,
+      "percent_drafted": 1.0
+    },
+    "458.p.9590": {
+      "name": "Byron Buxton",
+      "position": "OF",
+      "adp": 231.9,
+      "adp_round": 21.2,
+      "percent_drafted": 0.84
+    },
+    "458.p.9605": {
+      "name": "Matt Olson",
+      "position": "1B",
+      "adp": 25.9,
+      "adp_round": 2.9,
+      "percent_drafted": 1.0
+    },
+    "458.p.9606": {
+      "name": "Max Muncy",
+      "position": "3B",
+      "adp": 208.2,
+      "adp_round": 19.1,
+      "percent_drafted": 0.96
+    },
+    "458.p.9616": {
+      "name": "Tyler Glasnow",
+      "position": "SP",
+      "adp": 71.7,
+      "adp_round": 6.9,
+      "percent_drafted": 1.0
+    },
+    "458.p.9620": {
+      "name": "Max Fried",
+      "position": "SP",
+      "adp": 84.0,
+      "adp_round": 8.1,
+      "percent_drafted": 1.0
+    },
+    "458.p.9632": {
+      "name": "Luke Jackson",
+      "position": "RP",
+      "adp": 217.3,
+      "adp_round": 19.8,
+      "percent_drafted": 0.12
+    },
+    "458.p.9640": {
+      "name": "Lucas Giolito",
+      "position": "SP",
+      "adp": 258.7,
+      "adp_round": 24.8,
+      "percent_drafted": 0.03
+    },
+    "458.p.9651": {
+      "name": "Nick Martinez",
+      "position": "SP,RP",
+      "adp": 249.5,
+      "adp_round": 22.9,
+      "percent_drafted": 0.27
+    },
+    "458.p.9653": {
+      "name": "Tommy Kahnle",
+      "position": "RP",
+      "adp": 229.2,
+      "adp_round": 21.4,
+      "percent_drafted": 0.03
+    },
+    "458.p.9672": {
+      "name": "Blake Treinen",
+      "position": "RP",
+      "adp": 241.6,
+      "adp_round": 22.4,
+      "percent_drafted": 0.1
+    },
+    "458.p.9684": {
+      "name": "Chris Martin",
+      "position": "RP",
+      "adp": 193.0,
+      "adp_round": 17.9,
+      "percent_drafted": 0.91
+    },
+    "458.p.9691": {
+      "name": "Robbie Ray",
+      "position": "SP",
+      "adp": 144.1,
+      "adp_round": 13.4,
+      "percent_drafted": 1.0
+    },
+    "458.p.9701": {
+      "name": "Jacob deGrom",
+      "position": "SP",
+      "adp": 55.1,
+      "adp_round": 5.4,
+      "percent_drafted": 1.0
+    },
+    "458.p.9718": {
+      "name": "J.T. Realmuto",
+      "position": "C",
+      "adp": 160.6,
+      "adp_round": 14.7,
+      "percent_drafted": 1.0
+    },
+    "458.p.9724": {
+      "name": "Eugenio Su\u00e1rez",
+      "position": "3B",
+      "adp": 147.1,
+      "adp_round": 13.7,
+      "percent_drafted": 1.0
+    },
+    "458.p.9727": {
+      "name": "Kirby Yates",
+      "position": "RP",
+      "adp": 196.4,
+      "adp_round": 18.1,
+      "percent_drafted": 0.98
+    },
+    "458.p.9754": {
+      "name": "Enrique Hern\u00e1ndez",
+      "position": "1B,2B,3B,SS,OF",
+      "adp": 238.1,
+      "adp_round": 20.8,
+      "percent_drafted": 0.08
+    },
+    "458.p.9799": {
+      "name": "Chris Bassitt",
+      "position": "SP",
+      "adp": 246.2,
+      "adp_round": 21.9,
+      "percent_drafted": 0.35
+    },
+    "458.p.9815": {
+      "name": "Yimi Garc\u00eda",
+      "position": "RP",
+      "adp": 248.6,
+      "adp_round": 23.1,
+      "percent_drafted": 0.11
+    },
+    "458.p.9823": {
+      "name": "Carlos Rod\u00f3n",
+      "position": "SP",
+      "adp": 150.4,
+      "adp_round": 14.0,
+      "percent_drafted": 1.0
+    },
+    "458.p.9846": {
+      "name": "Christian Walker",
+      "position": "1B",
+      "adp": 82.0,
+      "adp_round": 7.9,
+      "percent_drafted": 1.0
+    },
+    "458.p.9861": {
+      "name": "Kyle Schwarber",
+      "position": "OF",
+      "adp": 38.6,
+      "adp_round": 4.0,
+      "percent_drafted": 1.0
+    },
+    "458.p.9872": {
+      "name": "Jos\u00e9 Berr\u00edos",
+      "position": "SP",
+      "adp": 209.2,
+      "adp_round": 19.2,
+      "percent_drafted": 0.97
+    },
+    "458.p.9875": {
+      "name": "Michael Conforto",
+      "position": "OF",
+      "adp": 250.5,
+      "adp_round": 22.7,
+      "percent_drafted": 0.3
+    },
+    "458.p.9876": {
+      "name": "Brandon Nimmo",
+      "position": "OF",
+      "adp": 166.0,
+      "adp_round": 15.3,
+      "percent_drafted": 1.0
+    },
+    "458.p.9877": {
+      "name": "Aaron Judge",
+      "position": "OF",
+      "adp": 3.6,
+      "adp_round": 1.1,
+      "percent_drafted": 1.0
+    },
+    "458.p.9879": {
+      "name": "Luis Severino",
+      "position": "SP",
+      "adp": 250.8,
+      "adp_round": 22.4,
+      "percent_drafted": 0.28
+    },
+    "458.p.9882": {
+      "name": "Aaron Nola",
+      "position": "SP",
+      "adp": 77.3,
+      "adp_round": 7.5,
+      "percent_drafted": 1.0
+    },
+    "458.p.9883": {
+      "name": "Josh Bell",
+      "position": "1B",
+      "adp": 255.0,
+      "adp_round": 22.8,
+      "percent_drafted": 0.06
+    },
+    "458.p.9893": {
+      "name": "Willy Adames",
+      "position": "SS",
+      "adp": 81.6,
+      "adp_round": 7.7,
+      "percent_drafted": 1.0
+    },
+    "458.p.9896": {
+      "name": "Jeff Hoffman",
+      "position": "RP",
+      "adp": 117.2,
+      "adp_round": 11.0,
+      "percent_drafted": 1.0
+    },
+    "458.p.9902": {
+      "name": "Raisel Iglesias",
+      "position": "RP",
+      "adp": 65.7,
+      "adp_round": 6.5,
+      "percent_drafted": 1.0
+    },
+    "458.p.10011": {
+      "name": "Matthew Boyd",
+      "position": "SP",
+      "adp": 254.4,
+      "adp_round": 22.5,
+      "percent_drafted": 0.14
+    },
+    "458.p.10036": {
+      "name": "Ketel Marte",
+      "position": "2B",
+      "adp": 30.7,
+      "adp_round": 3.3,
+      "percent_drafted": 1.0
+    },
+    "458.p.10056": {
+      "name": "Trea Turner",
+      "position": "SS",
+      "adp": 22.3,
+      "adp_round": 2.5,
+      "percent_drafted": 1.0
+    },
+    "458.p.10096": {
+      "name": "Jorge L\u00f3pez",
+      "position": "RP",
+      "adp": 246.0,
+      "adp_round": 22.7,
+      "percent_drafted": 0.06
+    },
+    "458.p.10131": {
+      "name": "Josh Hader",
+      "position": "RP",
+      "adp": 54.7,
+      "adp_round": 5.4,
+      "percent_drafted": 1.0
+    },
+    "458.p.10133": {
+      "name": "Taylor Rogers",
+      "position": "RP",
+      "adp": 256.0,
+      "adp_round": 25.1,
+      "percent_drafted": 0.04
+    },
+    "458.p.10141": {
+      "name": "Zach Eflin",
+      "position": "SP",
+      "adp": 185.1,
+      "adp_round": 17.1,
+      "percent_drafted": 1.0
+    },
+    "458.p.10148": {
+      "name": "Blake Snell",
+      "position": "SP",
+      "adp": 43.0,
+      "adp_round": 4.4,
+      "percent_drafted": 1.0
+    },
+    "458.p.10152": {
+      "name": "Reynaldo L\u00f3pez",
+      "position": "SP",
+      "adp": 155.5,
+      "adp_round": 14.5,
+      "percent_drafted": 0.98
+    },
+    "458.p.10166": {
+      "name": "Willson Contreras",
+      "position": "C,1B",
+      "adp": 116.8,
+      "adp_round": 10.8,
+      "percent_drafted": 1.0
+    },
+    "458.p.10175": {
+      "name": "Ryan McMahon",
+      "position": "3B",
+      "adp": 246.0,
+      "adp_round": 22.2,
+      "percent_drafted": 0.42
+    },
+    "458.p.10183": {
+      "name": "Alex Bregman",
+      "position": "3B",
+      "adp": 77.8,
+      "adp_round": 7.5,
+      "percent_drafted": 1.0
+    },
+    "458.p.10205": {
+      "name": "Matt Chapman",
+      "position": "3B",
+      "adp": 126.2,
+      "adp_round": 11.8,
+      "percent_drafted": 1.0
+    },
+    "458.p.10214": {
+      "name": "Edwin D\u00edaz",
+      "position": "RP",
+      "adp": 58.8,
+      "adp_round": 5.8,
+      "percent_drafted": 1.0
+    },
+    "458.p.10215": {
+      "name": "Tyler O'Neill",
+      "position": "OF",
+      "adp": 185.7,
+      "adp_round": 17.1,
+      "percent_drafted": 1.0
+    },
+    "458.p.10217": {
+      "name": "Luke Weaver",
+      "position": "RP",
+      "adp": 238.8,
+      "adp_round": 21.5,
+      "percent_drafted": 0.2
+    },
+    "458.p.10227": {
+      "name": "Victor Robles",
+      "position": "OF",
+      "adp": 214.9,
+      "adp_round": 19.6,
+      "percent_drafted": 0.94
+    },
+    "458.p.10229": {
+      "name": "Erick Fedde",
+      "position": "SP,RP",
+      "adp": 253.9,
+      "adp_round": 22.6,
+      "percent_drafted": 0.23
+    },
+    "458.p.10233": {
+      "name": "Amed Rosario",
+      "position": "2B,3B,SS,OF",
+      "adp": 242.1,
+      "adp_round": 20.9,
+      "percent_drafted": 0.03
+    },
+    "458.p.10234": {
+      "name": "Dansby Swanson",
+      "position": "SS",
+      "adp": 181.5,
+      "adp_round": 16.7,
+      "percent_drafted": 1.0
+    },
+    "458.p.10235": {
+      "name": "Rafael Devers",
+      "position": "1B,3B",
+      "adp": 30.4,
+      "adp_round": 3.3,
+      "percent_drafted": 1.0
+    },
+    "458.p.10236": {
+      "name": "Gleyber Torres",
+      "position": "2B",
+      "adp": 210.8,
+      "adp_round": 19.2,
+      "percent_drafted": 0.94
+    },
+    "458.p.10237": {
+      "name": "Ozzie Albies",
+      "position": "2B",
+      "adp": 47.4,
+      "adp_round": 4.8,
+      "percent_drafted": 1.0
+    },
+    "458.p.10274": {
+      "name": "Carlos Est\u00e9vez",
+      "position": "RP",
+      "adp": 169.8,
+      "adp_round": 15.8,
+      "percent_drafted": 0.99
+    },
+    "458.p.10293": {
+      "name": "Chad Green",
+      "position": "RP",
+      "adp": 255.7,
+      "adp_round": 25.0,
+      "percent_drafted": 0.03
+    },
+    "458.p.10296": {
+      "name": "Mike Clevinger",
+      "position": "SP,RP",
+      "adp": 243.3,
+      "adp_round": 22.7,
+      "percent_drafted": 0.23
+    },
+    "458.p.10326": {
+      "name": "Seth Lugo",
+      "position": "SP",
+      "adp": 164.9,
+      "adp_round": 15.3,
+      "percent_drafted": 1.0
+    },
+    "458.p.10328": {
+      "name": "Jeimer Candelario",
+      "position": "1B,3B",
+      "adp": 255.1,
+      "adp_round": 23.0,
+      "percent_drafted": 0.04
+    },
+    "458.p.10355": {
+      "name": "Matt Strahm",
+      "position": "RP",
+      "adp": 246.8,
+      "adp_round": 22.6,
+      "percent_drafted": 0.19
+    },
+    "458.p.10366": {
+      "name": "Teoscar Hern\u00e1ndez",
+      "position": "OF",
+      "adp": 53.4,
+      "adp_round": 5.4,
+      "percent_drafted": 1.0
+    },
+    "458.p.10412": {
+      "name": "Michael Kopech",
+      "position": "RP",
+      "adp": 250.5,
+      "adp_round": 23.0,
+      "percent_drafted": 0.04
+    },
+    "458.p.10420": {
+      "name": "Austin Riley",
+      "position": "3B",
+      "adp": 28.8,
+      "adp_round": 3.2,
+      "percent_drafted": 1.0
+    },
+    "458.p.10423": {
+      "name": "Michael Soroka",
+      "position": "SP,RP",
+      "adp": 260.3,
+      "adp_round": 24.5,
+      "percent_drafted": 0.03
+    },
+    "458.p.10429": {
+      "name": "Ryan Mountcastle",
+      "position": "1B",
+      "adp": 224.6,
+      "adp_round": 20.6,
+      "percent_drafted": 0.92
+    },
+    "458.p.10432": {
+      "name": "Tanner Scott",
+      "position": "RP",
+      "adp": 102.7,
+      "adp_round": 9.8,
+      "percent_drafted": 1.0
+    },
+    "458.p.10438": {
+      "name": "Dylan Cease",
+      "position": "SP",
+      "adp": 45.9,
+      "adp_round": 4.7,
+      "percent_drafted": 1.0
+    },
+    "458.p.10440": {
+      "name": "Ian Happ",
+      "position": "OF",
+      "adp": 133.9,
+      "adp_round": 12.5,
+      "percent_drafted": 1.0
+    },
+    "458.p.10456": {
+      "name": "Tyler Stephenson",
+      "position": "C",
+      "adp": 218.0,
+      "adp_round": 19.9,
+      "percent_drafted": 0.72
+    },
+    "458.p.10463": {
+      "name": "Nolan Jones",
+      "position": "OF",
+      "adp": 245.3,
+      "adp_round": 22.2,
+      "percent_drafted": 0.47
+    },
+    "458.p.10465": {
+      "name": "Yandy D\u00edaz",
+      "position": "1B",
+      "adp": 178.6,
+      "adp_round": 16.5,
+      "percent_drafted": 0.99
+    },
+    "458.p.10480": {
+      "name": "Kyle Tucker",
+      "position": "OF",
+      "adp": 9.1,
+      "adp_round": 1.2,
+      "percent_drafted": 1.0
+    },
+    "458.p.10496": {
+      "name": "Taylor Ward",
+      "position": "OF",
+      "adp": 203.4,
+      "adp_round": 18.7,
+      "percent_drafted": 0.98
+    },
+    "458.p.10499": {
+      "name": "Brandon Marsh",
+      "position": "OF",
+      "adp": 245.8,
+      "adp_round": 21.5,
+      "percent_drafted": 0.04
+    },
+    "458.p.10504": {
+      "name": "Cody Bellinger",
+      "position": "1B,OF",
+      "adp": 75.1,
+      "adp_round": 7.3,
+      "percent_drafted": 1.0
+    },
+    "458.p.10509": {
+      "name": "Walker Buehler",
+      "position": "SP",
+      "adp": 225.8,
+      "adp_round": 20.7,
+      "percent_drafted": 0.91
+    },
+    "458.p.10514": {
+      "name": "Luis Castillo",
+      "position": "SP",
+      "adp": 97.7,
+      "adp_round": 9.3,
+      "percent_drafted": 1.0
+    },
+    "458.p.10524": {
+      "name": "Mauricio Dub\u00f3n",
+      "position": "1B,2B,3B,SS,OF",
+      "adp": 243.2,
+      "adp_round": 20.7,
+      "percent_drafted": 0.02
+    },
+    "458.p.10548": {
+      "name": "A.J. Puk",
+      "position": "SP,RP",
+      "adp": 210.1,
+      "adp_round": 19.4,
+      "percent_drafted": 0.87
+    },
+    "458.p.10549": {
+      "name": "Grant Holmes",
+      "position": "SP,RP",
+      "adp": 240.8,
+      "adp_round": 22.0,
+      "percent_drafted": 0.64
+    },
+    "458.p.10556": {
+      "name": "Rhys Hoskins",
+      "position": "1B",
+      "adp": 234.2,
+      "adp_round": 21.3,
+      "percent_drafted": 0.82
+    },
+    "458.p.10565": {
+      "name": "Mitch Keller",
+      "position": "SP",
+      "adp": 246.4,
+      "adp_round": 22.4,
+      "percent_drafted": 0.45
+    },
+    "458.p.10566": {
+      "name": "Ke'Bryan Hayes",
+      "position": "3B",
+      "adp": 254.8,
+      "adp_round": 23.5,
+      "percent_drafted": 0.02
+    },
+    "458.p.10569": {
+      "name": "Clay Holmes",
+      "position": "SP,RP",
+      "adp": 198.6,
+      "adp_round": 18.3,
+      "percent_drafted": 0.9
+    },
+    "458.p.10572": {
+      "name": "Josh Naylor",
+      "position": "1B",
+      "adp": 68.5,
+      "adp_round": 6.7,
+      "percent_drafted": 1.0
+    },
+    "458.p.10577": {
+      "name": "Bryan Reynolds",
+      "position": "OF",
+      "adp": 95.5,
+      "adp_round": 9.1,
+      "percent_drafted": 1.0
+    },
+    "458.p.10592": {
+      "name": "Jack Flaherty",
+      "position": "SP",
+      "adp": 142.9,
+      "adp_round": 13.4,
+      "percent_drafted": 1.0
+    },
+    "458.p.10597": {
+      "name": "Sandy Alcantara",
+      "position": "SP",
+      "adp": 137.6,
+      "adp_round": 12.8,
+      "percent_drafted": 1.0
+    },
+    "458.p.10601": {
+      "name": "Josh Lowe",
+      "position": "OF",
+      "adp": 172.7,
+      "adp_round": 16.0,
+      "percent_drafted": 0.99
+    },
+    "458.p.10610": {
+      "name": "Cole Ragans",
+      "position": "SP",
+      "adp": 42.7,
+      "adp_round": 4.4,
+      "percent_drafted": 1.0
+    },
+    "458.p.10616": {
+      "name": "Lourdes Gurriel Jr.",
+      "position": "OF",
+      "adp": 224.9,
+      "adp_round": 20.4,
+      "percent_drafted": 0.91
+    },
+    "458.p.10621": {
+      "name": "Vladimir Guerrero Jr.",
+      "position": "1B,3B",
+      "adp": 11.9,
+      "adp_round": 1.6,
+      "percent_drafted": 1.0
+    },
+    "458.p.10626": {
+      "name": "Juan Soto",
+      "position": "OF",
+      "adp": 7.1,
+      "adp_round": 1.2,
+      "percent_drafted": 1.0
+    },
+    "458.p.10627": {
+      "name": "Jes\u00fas Luzardo",
+      "position": "SP",
+      "adp": 229.1,
+      "adp_round": 20.9,
+      "percent_drafted": 0.88
+    },
+    "458.p.10639": {
+      "name": "Fernando Tatis Jr.",
+      "position": "OF",
+      "adp": 13.5,
+      "adp_round": 1.8,
+      "percent_drafted": 1.0
+    },
+    "458.p.10642": {
+      "name": "Will Smith",
+      "position": "C",
+      "adp": 124.9,
+      "adp_round": 11.6,
+      "percent_drafted": 1.0
+    },
+    "458.p.10646": {
+      "name": "Ronald Acu\u00f1a Jr.",
+      "position": "OF",
+      "adp": 35.8,
+      "adp_round": 3.7,
+      "percent_drafted": 1.0
+    },
+    "458.p.10659": {
+      "name": "Lucas Erceg",
+      "position": "RP",
+      "adp": 198.9,
+      "adp_round": 18.3,
+      "percent_drafted": 0.97
+    },
+    "458.p.10666": {
+      "name": "Anthony Santander",
+      "position": "OF",
+      "adp": 71.8,
+      "adp_round": 7.0,
+      "percent_drafted": 1.0
+    },
+    "458.p.10683": {
+      "name": "Nick Pivetta",
+      "position": "SP",
+      "adp": 183.8,
+      "adp_round": 17.0,
+      "percent_drafted": 0.97
+    },
+    "458.p.10691": {
+      "name": "Emilio Pag\u00e1n",
+      "position": "RP",
+      "adp": 218.1,
+      "adp_round": 18.8,
+      "percent_drafted": 0.02
+    },
+    "458.p.10692": {
+      "name": "Jos\u00e9 Alvarado",
+      "position": "RP",
+      "adp": 224.3,
+      "adp_round": 20.7,
+      "percent_drafted": 0.09
+    },
+    "458.p.10730": {
+      "name": "Brandon Woodruff",
+      "position": "SP",
+      "adp": 220.1,
+      "adp_round": 20.2,
+      "percent_drafted": 0.91
+    },
+    "458.p.10765": {
+      "name": "Luis Robert Jr.",
+      "position": "OF",
+      "adp": 106.4,
+      "adp_round": 10.0,
+      "percent_drafted": 1.0
+    },
+    "458.p.10766": {
+      "name": "Bo Bichette",
+      "position": "SS",
+      "adp": 96.9,
+      "adp_round": 9.1,
+      "percent_drafted": 1.0
+    },
+    "458.p.10826": {
+      "name": "Austin Hays",
+      "position": "OF",
+      "adp": 241.5,
+      "adp_round": 22.3,
+      "percent_drafted": 0.02
+    },
+    "458.p.10839": {
+      "name": "Jazz Chisholm Jr.",
+      "position": "2B,3B,OF",
+      "adp": 25.8,
+      "adp_round": 2.9,
+      "percent_drafted": 1.0
+    },
+    "458.p.10843": {
+      "name": "Daulton Varsho",
+      "position": "OF",
+      "adp": 249.7,
+      "adp_round": 22.1,
+      "percent_drafted": 0.02
+    },
+    "458.p.10849": {
+      "name": "Cedric Mullins",
+      "position": "OF",
+      "adp": 220.6,
+      "adp_round": 20.2,
+      "percent_drafted": 0.94
+    }
+  }
+}
