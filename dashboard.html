@@ -5940,6 +5940,7 @@
     return Object.keys(window.LEAGUE_DATA)
       .filter(k => /^\d+$/.test(k))
       .map(Number)
+      .filter(s => Object.keys(window.LEAGUE_DATA[s]).some(k => /^\d+$/.test(k)))
       .sort((a, b) => b - a);
   }
 
