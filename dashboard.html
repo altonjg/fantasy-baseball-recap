@@ -3798,7 +3798,14 @@
   // When the file is served directly (dev/preview), fetch all JSON
   // files in parallel and populate window.LEAGUE_DATA, then boot.
   async function _bootstrapStaticData() {
-    if (window.LEAGUE_DATA) return; // already injected by Streamlit
+    if (window.LEAGUE_DATA) {
+      // Data already injected by Streamlit — skip fetching, just apply logos and boot.
+      if (window.LEAGUE_DATA.team_logos) window.TEAM_LOGOS_MAP = window.LEAGUE_DATA.team_logos;
+      const llData = window.LEAGUE_DATA.league_logo;
+      if (llData?.url) { window.LEAGUE_LOGO_URL = llData.url; _applyLeagueLogo(llData.url); }
+      applyLiveData(window.CURRENT_SEASON, window.CURRENT_WEEK);
+      return;
+    }
 
     const SEASONS      = [2021, 2022, 2023, 2024, 2025];
     const MAX_WEEKS    = 25;
