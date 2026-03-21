@@ -29,6 +29,8 @@ st.markdown("""
   [data-testid="stDecoration"] { display: none !important; }
   /* Remove any border/margin on the components.html iframe */
   iframe { border: none !important; display: block !important; }
+  /* Hide Streamlit's injected statuspage.io status widget */
+  iframe[src*="statuspage"] { display: none !important; }
   .stMarkdownContainer, [data-testid="stMarkdownContainer"] { padding: 0 !important; margin: 0 !important; }
   /* Stretch the block container to fill the full viewport so the iframe gap disappears */
   [data-testid="stMainBlockContainer"] { height: 100vh !important; min-height: 100vh !important; padding: 0 !important; }
