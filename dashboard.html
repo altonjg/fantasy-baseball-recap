@@ -294,13 +294,14 @@
   .ws-trophy-lg { height: 3em; vertical-align: middle; object-fit: contain; display: inline-block; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.7)); }
 
   /* Heat Map */
-  .heatmap-table { width:100%; border-collapse:collapse; font-size:0.78em; }
+  .heatmap-table { width:100%; border-collapse:collapse; font-size:0.78em; table-layout:fixed; }
   .heatmap-table thead th { padding:6px 8px; text-align:center; color:var(--muted); font-size:0.8em; font-weight:700; letter-spacing:0.05em; border-bottom:1px solid var(--border); }
-  .hm-team-col { text-align:left !important; min-width:170px; }
-  .hm-cat { width:42px; }
-  .hm-name { display:flex; align-items:center; padding:7px 6px; white-space:nowrap; }
+  .hm-team-col { text-align:left !important; width:22%; min-width:160px; }
+  .hm-cat { width:6.5%; min-width:40px; }
+  .hm-overall { text-align:center; width:8%; min-width:48px; }
+  .hm-name { display:flex; align-items:center; padding:7px 6px; overflow:hidden; }
+  .hm-name span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0; }
   .hm-cell { text-align:center; padding:5px 4px; font-size:0.85em; font-family:'Oswald',sans-serif; border-radius:3px; cursor:default; }
-  .hm-overall { text-align:center; }
   .hm-overall-cell { text-align:center; padding:5px 6px; font-weight:700; font-family:'Oswald',sans-serif; color:var(--gold); }
 
   ::-webkit-scrollbar { width: 5px; }
