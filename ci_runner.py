@@ -136,20 +136,51 @@ def _call_claude(prompt: str, max_tokens: int = 1024) -> str:
     return raw
 
 
+def _fix_json_strings(raw: str) -> str:
+    """Escape literal newlines/tabs inside JSON string values (Claude sometimes emits them)."""
+    result: list[str] = []
+    in_string = False
+    i = 0
+    while i < len(raw):
+        c = raw[i]
+        if c == "\\" and in_string:
+            result.append(c)
+            if i + 1 < len(raw):
+                i += 1
+                result.append(raw[i])
+        elif c == '"':
+            in_string = not in_string
+            result.append(c)
+        elif in_string and c == "\n":
+            result.append("\\n")
+        elif in_string and c == "\r":
+            result.append("\\r")
+        elif in_string and c == "\t":
+            result.append("\\t")
+        else:
+            result.append(c)
+        i += 1
+    return "".join(result)
+
+
 def _safe_json_parse(raw: str) -> dict:
     """
     Attempt to parse JSON from Claude's response.
-    Falls back to extracting the first {...} block if direct parse fails —
-    handles cases where Claude adds extra text before or after the JSON.
+    Falls back to repairing literal control chars in strings, then extracting
+    the first {...} block — handles Claude's occasional formatting quirks.
     """
     try:
         return json.loads(raw)
     except json.JSONDecodeError:
-        # Try extracting just the first complete JSON object
-        match = re.search(r"\{.*\}", raw, re.DOTALL)
-        if match:
-            return json.loads(match.group())
-        raise
+        # Fix literal newlines/tabs inside JSON strings and retry
+        fixed = _fix_json_strings(raw)
+        try:
+            return json.loads(fixed)
+        except json.JSONDecodeError:
+            match = re.search(r"\{.*\}", fixed, re.DOTALL)
+            if match:
+                return json.loads(match.group())
+            raise
 
 
 # ── Trade article generation ──────────────────────────────────────────────────
@@ -399,16 +430,46 @@ def generate_season_preview(season: int) -> dict | None:
     Returns article dict or None on failure.
     """
     draft_file = DATA_ROOT / str(season) / "draft_order.json"
-    if not draft_file.exists():
-        print(f"[ci_runner] No draft_order.json found for {season}.", file=sys.stderr)
+    draft_results_file = DATA_ROOT / str(season) / "draft_results.json"
+
+    draft_order: list[dict] = []
+    draft_date  = f"{season}-03-22"
+    draft_notes = "Snake draft, live online"
+
+    if draft_file.exists():
+        with open(draft_file, encoding="utf-8") as f:
+            draft_data = json.load(f)
+        draft_order = draft_data.get("draft_order", [])
+        draft_date  = draft_data.get("draft_date", draft_date)
+        draft_notes = draft_data.get("notes", draft_notes)
+    elif draft_results_file.exists():
+        # Fallback: synthesize draft order from round-1 picks in draft_results.json
+        with open(draft_results_file, encoding="utf-8") as f:
+            dr = json.load(f)
+        picks = dr.get("picks", [])
+        # Build team_key→name from week data
+        tk_to_name: dict[str, str] = {}
+        for wf in sorted((DATA_ROOT / str(season)).glob("week_*.json")):
+            try:
+                with open(wf, encoding="utf-8") as f:
+                    wd = json.load(f)
+                for m in wd.get("matchups", []):
+                    for t in m.get("teams", []):
+                        if t.get("team_key") and t.get("name"):
+                            tk_to_name[t["team_key"]] = t["name"]
+                if tk_to_name:
+                    break
+            except Exception:
+                pass
+        round1 = sorted([p for p in picks if p.get("round") == 1], key=lambda x: x.get("pick", 999))
+        draft_order = [
+            {"pick": p.get("pick", i + 1), "manager": tk_to_name.get(p["team_key"], p["team_key"]),
+             "team": tk_to_name.get(p["team_key"], p["team_key"])}
+            for i, p in enumerate(round1)
+        ]
+    else:
+        print(f"[ci_runner] No draft_order.json or draft_results.json found for {season}.", file=sys.stderr)
         return None
-
-    with open(draft_file, encoding="utf-8") as f:
-        draft_data = json.load(f)
-
-    draft_order = draft_data.get("draft_order", [])
-    draft_date  = draft_data.get("draft_date", f"{season}-03-22")
-    draft_notes = draft_data.get("notes", "Snake draft, live online")
 
     # Last season's final standings
     prev_season  = season - 1
