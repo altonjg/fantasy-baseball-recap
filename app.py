@@ -4,6 +4,7 @@ Loads all local JSON data and injects it into the interactive HTML dashboard.
 """
 
 from pathlib import Path
+import base64
 import json
 import streamlit as st
 import streamlit.components.v1 as components
@@ -191,6 +192,15 @@ window.CURRENT_WEEK   = {current_week};
 
 html_file = Path(__file__).parent / "dashboard.html"
 html_content = html_file.read_text(encoding="utf-8")
+
+# Inline trophy.png as base64 so it loads in Streamlit Cloud (no static file serving)
+trophy_path = Path(__file__).parent / "trophy.png"
+if trophy_path.exists():
+    trophy_b64 = base64.b64encode(trophy_path.read_bytes()).decode()
+    trophy_data_uri = f"data:image/png;base64,{trophy_b64}"
+    html_content = html_content.replace('src="trophy.png"', f'src="{trophy_data_uri}"')
+    html_content = html_content.replace('href="trophy.png"', f'href="{trophy_data_uri}"')
+
 html_content = html_content.replace("</head>", data_script + "\n</head>", 1)
 
 components.html(html_content, height=820, scrolling=False)
