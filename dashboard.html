@@ -929,7 +929,7 @@
       <div id="live-season-metrics" class="metrics-row"></div>
 
       <div class="panel" id="live-season-standings-table">
-        <div class="section-label" style="margin-bottom:12px;"><i class="fa-solid fa-list-ol"></i> Full Standings</div>
+        <div id="live-standings-label" class="section-label" style="margin-bottom:12px;"><i class="fa-solid fa-list-ol"></i> Full Standings</div>
         <div style="display:flex;gap:8px;padding:0 10px 8px;border-bottom:1px solid var(--border);font-size:0.62em;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);">
           <span style="width:22px">#</span><span style="width:22px"></span><span style="flex:1">Team</span><span style="width:42px;text-align:center">W-L</span><span style="width:48px;text-align:right">PF</span><span style="width:56px;text-align:center">Win%</span>
         </div>
@@ -3344,6 +3344,11 @@
     const rowsEl   = document.getElementById('live-season-rows');
     const metricsEl= document.getElementById('live-season-metrics');
     if (!rowsEl || !standings || !standings.length) return;
+    const labelEl = document.getElementById('live-standings-label');
+    if (labelEl) {
+      const s = _currentSeason || window.CURRENT_SEASON;
+      labelEl.innerHTML = `<i class="fa-solid fa-list-ol"></i> Full Standings <span style="font-size:0.72em;font-weight:400;color:var(--muted)">· ${s} Season Totals</span>`;
+    }
     // Metrics row
     if (metricsEl) {
       const first  = standings[0];

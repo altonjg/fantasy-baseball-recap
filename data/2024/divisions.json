@@ -1,0 +1,25 @@
+{
+  "season": 2024,
+  "league_key": "431.l.29063",
+  "fetched_at": "2026-03-17T22:43:39.081170",
+  "divisions": {
+    "1": "American League",
+    "2": "National League"
+  },
+  "team_divisions": {
+    "431.l.29063.t.2": "American League",
+    "431.l.29063.t.3": "National League",
+    "431.l.29063.t.13": "American League",
+    "431.l.29063.t.7": "American League",
+    "431.l.29063.t.14": "National League",
+    "431.l.29063.t.10": "National League",
+    "431.l.29063.t.4": "National League",
+    "431.l.29063.t.5": "National League",
+    "431.l.29063.t.12": "American League",
+    "431.l.29063.t.1": "American League",
+    "431.l.29063.t.8": "National League",
+    "431.l.29063.t.6": "American League",
+    "431.l.29063.t.9": "National League",
+    "431.l.29063.t.11": "American League"
+  }
+}

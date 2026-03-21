@@ -1,0 +1,21 @@
+{
+  "season": 2017,
+  "league_key": "370.l.36051",
+  "fetched_at": "2026-03-17T22:43:37.377275",
+  "divisions": {
+    "1": "High Life",
+    "2": "Genuine Draft"
+  },
+  "team_divisions": {
+    "370.l.36051.t.1": "High Life",
+    "370.l.36051.t.10": "Genuine Draft",
+    "370.l.36051.t.5": "High Life",
+    "370.l.36051.t.4": "Genuine Draft",
+    "370.l.36051.t.6": "Genuine Draft",
+    "370.l.36051.t.8": "Genuine Draft",
+    "370.l.36051.t.2": "High Life",
+    "370.l.36051.t.3": "Genuine Draft",
+    "370.l.36051.t.7": "High Life",
+    "370.l.36051.t.9": "High Life"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "season": 2021,
+  "league_key": "404.l.39098",
+  "fetched_at": "2026-03-17T22:43:37.738171",
+  "divisions": {
+    "1": "American League",
+    "2": "National League"
+  },
+  "team_divisions": {
+    "404.l.39098.t.9": "American League",
+    "404.l.39098.t.1": "American League",
+    "404.l.39098.t.11": "American League",
+    "404.l.39098.t.2": "National League",
+    "404.l.39098.t.3": "American League",
+    "404.l.39098.t.4": "National League",
+    "404.l.39098.t.6": "National League",
+    "404.l.39098.t.7": "American League",
+    "404.l.39098.t.10": "National League",
+    "404.l.39098.t.12": "National League",
+    "404.l.39098.t.8": "National League",
+    "404.l.39098.t.5": "American League"
+  }
+}
