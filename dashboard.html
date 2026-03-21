@@ -199,6 +199,12 @@
 
   /* ── ARTICLE ── */
   .article-wrap { display: grid; grid-template-columns: 1fr 250px; gap: 28px; align-items: start; }
+  .article-wrap.preview-fullwidth { grid-template-columns: 1fr; }
+  .article-wrap.preview-fullwidth .article-body { max-width: none; columns: 2; column-gap: 48px; column-rule: 1px solid var(--border); }
+  .article-wrap.preview-fullwidth .article-body h2 { column-span: all; }
+  .article-wrap.preview-fullwidth .article-masthead { border-top-width: 4px; padding: 28px 32px; }
+  .article-wrap.preview-fullwidth .article-hed { font-size: 2.2em; }
+  .article-wrap.preview-fullwidth .article-dek { font-size: 1em; }
   .article-masthead { background: var(--card); border-top: 3px solid var(--gold); border-radius: 8px; padding: 22px 26px; margin-bottom: 22px; }
   .article-kicker { font-family: 'Oswald', sans-serif; font-size: 0.62em; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 7px; display: flex; align-items: center; gap: 6px; }
   .article-hed { font-family: 'Oswald', sans-serif; font-size: 1.65em; font-weight: 700; color: var(--text); line-height: 1.12; margin-bottom: 9px; }
@@ -3014,6 +3020,11 @@
   function _renderRecapArticle(season, week, weekData, articleData) {
     const el = document.getElementById('live-recap-article');
     if (!el) return;
+    // Reset preview-only full-width layout when switching to a regular week view
+    const wrap = el.closest('.article-wrap');
+    if (wrap) wrap.classList.remove('preview-fullwidth');
+    const sidebar = document.getElementById('live-recap-sidebar');
+    if (sidebar) sidebar.style.display = '';
     const meta  = _weekMeta(week, weekData, season);
     const kicker = meta.round ? `${meta.label} Recap · ${meta.round}` : `${meta.label} Recap`;
     if (articleData) {
@@ -3752,6 +3763,11 @@
         }
       }
       if (qsEl) qsEl.innerHTML = '';
+      // Full-width magazine layout for season preview
+      const wrap = recapEl?.closest('.article-wrap');
+      if (wrap) wrap.classList.add('preview-fullwidth');
+      const sidebar = document.getElementById('live-recap-sidebar');
+      if (sidebar) sidebar.style.display = 'none';
       return;
     }
 
