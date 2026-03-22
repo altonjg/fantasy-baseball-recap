@@ -3902,6 +3902,11 @@
       _syncSeasonDd(String(season));
       _renderDraftTab(season);
       _renderNews(season);
+      // Clear stale transactions (static HTML placeholder baked into #live-txn-header/list)
+      const _txnHdr = document.getElementById('live-txn-header');
+      const _txnList = document.getElementById('live-txn-list');
+      if (_txnHdr) _txnHdr.innerHTML = `<i class="fa-solid fa-right-left"></i> Transactions`;
+      if (_txnList) _txnList.innerHTML = `<div style="color:var(--muted);font-size:0.85em;padding:24px 0;text-align:center"><i class="fa-solid fa-clock" style="margin-right:6px;opacity:0.6"></i>No transactions yet — season hasn't started.</div>`;
       // Clear stale sidebar data (standings + streaks baked into static HTML)
       const _sbStand = document.getElementById('live-sb-standings');
       const _sbStreak = document.getElementById('live-sb-streaks');
@@ -5798,7 +5803,13 @@
       return `<p style="margin-bottom:1.1em;">${html}</p>`;
     }).join('');
     document.getElementById('article-modal-body').innerHTML = bodyHtml;
-    document.getElementById('article-modal').style.display = 'block';
+    const modal = document.getElementById('article-modal');
+    // Use the actual browser viewport height (not the iframe height) so the
+    // modal fills only the visible area and overflow-y:auto scrolls correctly.
+    const vh = (window.parent?.innerHeight || window.innerHeight) + 'px';
+    modal.style.height = vh;
+    modal.scrollTop = 0;
+    modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
   }
 
@@ -7291,7 +7302,7 @@
 </script>
 
 <!-- ── ARTICLE READER MODAL ─────────────────────────────────── -->
-<div id="article-modal" style="display:none;position:fixed;inset:0;z-index:500;background:var(--bg);overflow-y:auto;padding:0;">
+<div id="article-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:500;background:var(--bg);overflow-y:auto;padding:0;">
   <div style="max-width:720px;margin:0 auto;padding:28px 24px 60px;">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
       <div id="article-modal-type" style="font-size:0.7em;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold)"></div>
