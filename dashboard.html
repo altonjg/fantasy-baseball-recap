@@ -1997,6 +1997,7 @@
     }
   }
   function switchTab(name) {
+    closeTeamProfile();
     if (name === 'alltime') { switchPage('alltime'); return; }
     // Ensure home view is visible
     document.getElementById('view-home').style.display = '';
@@ -2181,6 +2182,7 @@
   }
 
   function selectSeason(val) {
+    closeTeamProfile();
     _syncSeasonDd(val);
     updateTopbarContext();
   }
