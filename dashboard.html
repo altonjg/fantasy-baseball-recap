@@ -2024,6 +2024,7 @@
     const idx = ['home','season','news'].indexOf(name);
     document.querySelectorAll('.tab')[idx].classList.add('active');
     document.getElementById('tab-' + name).classList.add('active');
+    if (name === 'season') switchInner('season', 'standings');
     _notifyHeight();
   }
   // Week labels keyed by week number
@@ -3901,6 +3902,23 @@
       _syncSeasonDd(String(season));
       _renderDraftTab(season);
       _renderNews(season);
+      // Clear stale sidebar data (standings + streaks baked into static HTML)
+      const _sbStand = document.getElementById('live-sb-standings');
+      const _sbStreak = document.getElementById('live-sb-streaks');
+      if (_sbStand) _sbStand.innerHTML = `<div style="color:var(--muted);font-size:0.8em;padding:12px 0;text-align:center">Season hasn't started yet.</div>`;
+      if (_sbStreak) _sbStreak.innerHTML = `<div style="color:var(--muted);font-size:0.8em;padding:8px 0;text-align:center">No streaks yet.</div>`;
+      // Re-render Season tab sections so stale prior-season data is replaced with proper empty states
+      const _sRows = document.getElementById('live-season-rows');
+      const _sMet  = document.getElementById('live-season-metrics');
+      if (_sRows) _sRows.innerHTML = '';
+      if (_sMet)  _sMet.innerHTML  = '';
+      _renderPlayoffProbability(season);
+      _renderPlayoffBracket(season);
+      _renderSavant(season);
+      _renderPennantChart(season);
+      _renderMomentumSVG(season);
+      _renderTrendCharts(season);
+      _renderSeasonStreaks(season, [], 0);
       // Show a pre-season splash on the home tab
       const recapEl = document.getElementById('live-recap-article');
       const qsEl    = document.getElementById('live-recap-quickstats');
