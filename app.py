@@ -227,4 +227,4 @@ if trophy_path.exists():
 
 html_content = html_content.replace("</head>", data_script + "\n</head>", 1)
 
-components.html(html_content, height=3000, scrolling=False)
+components.html(html_content, height=1400, scrolling=False)

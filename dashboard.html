@@ -52,7 +52,7 @@
   .week-strip { flex-shrink: 0; }
   .layout { display: flex; flex: 1; min-height: 0; overflow: hidden; }
   .sidebar { width: 210px; flex-shrink: 0; background: oklch(11% 0.045 255); border-right: 1px solid var(--border); padding: 18px 14px; overflow-y: auto; height: 100%; }
-  .main { flex: 1; padding: 22px 28px; overflow-y: auto; height: 100%; }
+  .main { flex: 1; padding: 22px 28px; overflow-y: auto; overflow-x: clip; height: 100%; }
 
   /* SIDEBAR */
   .sb-label { font-size: 0.7em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin-bottom: 6px; }
@@ -64,9 +64,13 @@
   .ss-dash { color:var(--border); flex:1; text-align:center; font-size:0.7em; }
   .sb-streak { font-family:'Oswald',sans-serif; font-size:0.8em; font-weight:700; min-width:26px; text-align:right; }
   /* Score Ticker */
-  .score-ticker { display:flex; gap:10px; padding-bottom:4px; margin-bottom:20px; mask-image: linear-gradient(to right, black 85%, transparent 100%); -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%); }
-  .score-ticker::-webkit-scrollbar { display:none; }
-  .stk-card { display:flex; align-items:center; justify-content:space-between; gap:10px; background:var(--card); border:1px solid var(--border); border-radius: 8px; padding:10px 14px; flex:1; min-width:0; }
+  .score-ticker { display:flex; gap:10px; padding-bottom:6px; margin-bottom:20px; overflow-x:auto; scroll-snap-type: x mandatory; cursor:grab; user-select:none; scrollbar-width:thin; scrollbar-color:rgba(255,255,255,0.2) transparent; }
+  .score-ticker.dragging { cursor:grabbing; }
+  .score-ticker::-webkit-scrollbar { height:4px; }
+  .score-ticker::-webkit-scrollbar-track { background:transparent; }
+  .score-ticker::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.2); border-radius:2px; }
+  .score-ticker::-webkit-scrollbar-thumb:hover { background:rgba(255,255,255,0.4); }
+  .stk-card { display:flex; align-items:center; justify-content:space-between; gap:10px; background:var(--card); border:1px solid var(--border); border-radius: 8px; padding:10px 14px; flex: 0 0 auto; min-width:160px; max-width:220px; scroll-snap-align: start; }
   .stk-team { display:flex; flex-direction:column; align-items:center; gap:4px; flex:1; min-width:0; }
   .stk-logo { width:30px; height:30px; border-radius:50%; flex-shrink:0; }
   .stk-name { font-size:0.7em; color:var(--muted); text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; width:100%; letter-spacing:0.02em; }
@@ -239,8 +243,8 @@
   .full-stand-row:hover { background: rgba(255,255,255,0.02); }
   .fsr-rank { font-family: 'Oswald', sans-serif; font-weight: 700; color: var(--gold); width: 22px; flex-shrink: 0; font-size: 0.95em; }
   .fsr-name { flex: 1; font-weight: 500; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .fsr-rec  { color: var(--muted); width: 42px; text-align: center; font-size: 0.82em; }
-  .fsr-pf   { color: var(--text); width: 48px; text-align: right; font-size: 0.82em; }
+  .fsr-rec  { color: var(--text); width: 52px; text-align: center; font-size: 0.82em; font-weight: 600; }
+  .fsr-pf   { color: var(--muted); width: 80px; text-align: center; font-size: 0.76em; }
   .fsr-pct  { width: 56px; }
   .pct-bar  { height: 4px; border-radius: 2px; background: var(--border); overflow: hidden; margin-top: 2px; }
   .pct-fill { height: 100%; background: var(--gold); border-radius: 2px; }
@@ -421,6 +425,8 @@
   .wk-pill.active { background:oklch(82% 0.16 88 / 0.12); border-color:oklch(82% 0.16 88 / 0.4); color:var(--gold); }
   .wk-pill.playoff { color:oklch(72% 0.13 250); }
   .wk-pill.playoff.active { background:oklch(72% 0.13 250 / 0.12); border-color:oklch(72% 0.13 250 / 0.4); color:oklch(72% 0.13 250); }
+  .wk-pill.preseason { color:oklch(72% 0.17 145); flex:0 0 auto; padding:3px 10px; }
+  .wk-pill.preseason.active { background:oklch(72% 0.17 145 / 0.12); border-color:oklch(72% 0.17 145 / 0.4); color:oklch(72% 0.17 145); }
   .wk-strip-sep { width:1px; height:14px; background:var(--border); flex-shrink:0; margin:0 4px; }
 
   /* ── TEAM PROFILE DRAWER ──────────────────────────────────── */
@@ -557,6 +563,8 @@
 
 <!-- WEEK STRIP -->
 <div class="week-strip" id="week-strip">
+  <button class="wk-pill preseason" id="pill-pre" onclick="selectPreseason()">Pre</button>
+  <div class="wk-strip-sep"></div>
   <button class="wk-pill" onclick="selectWeek(1)">Wk 1</button>
   <button class="wk-pill" onclick="selectWeek(2)">Wk 2</button>
   <button class="wk-pill" onclick="selectWeek(3)">Wk 3</button>
@@ -942,7 +950,7 @@
       <div class="panel" id="live-season-standings-table">
         <div id="live-standings-label" class="section-label" style="margin-bottom:12px;"><i class="fa-solid fa-list-ol"></i> Full Standings</div>
         <div style="display:flex;gap:8px;padding:0 10px 8px;border-bottom:1px solid var(--border);font-size:0.62em;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);">
-          <span style="width:22px">#</span><span style="width:22px"></span><span style="flex:1">Team</span><span style="width:42px;text-align:center">W-L</span><span style="width:48px;text-align:right">PF</span><span style="width:56px;text-align:center">Win%</span>
+          <span style="width:22px">#</span><span style="width:22px"></span><span style="flex:1">Team</span><span style="width:52px;text-align:center">Match</span><span style="width:80px;text-align:center">Categories</span><span style="width:56px;text-align:center">Win%</span>
         </div>
         <div id="live-season-rows">
         <div class="full-stand-row"><span class="fsr-rank">1</span><span class="bc" style="background:#e85d04;width:20px;height:20px">AB</span><span class="fsr-name">Albuquerque Bombers</span><span class="fsr-rec">18-5</span><span class="fsr-pf">138.0</span><div class="fsr-pct"><div class="pct-val">.783</div><div class="pct-bar"><div class="pct-fill" style="width:78%"></div></div></div></div>
@@ -2002,6 +2010,7 @@
     const idx = ['home','season','news'].indexOf(name);
     document.querySelectorAll('.tab')[idx].classList.add('active');
     document.getElementById('tab-' + name).classList.add('active');
+    _notifyHeight();
   }
   // Week labels keyed by week number
   const WEEK_META = {
@@ -2041,6 +2050,17 @@
     // Update ticker heading comment if present (cosmetic only)
     const tickerWrap = document.getElementById('week-strip');
     if (tickerWrap) tickerWrap.dataset.activeWeek = n;
+  }
+
+  function selectPreseason() {
+    document.querySelectorAll('.week-strip button.wk-pill').forEach(p => p.classList.remove('active'));
+    const pre = document.getElementById('pill-pre');
+    if (pre) { pre.classList.add('active'); pre.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' }); }
+    const ticker = document.getElementById('live-score-ticker');
+    if (ticker) ticker.innerHTML = '<div style="color:var(--muted);font-size:0.8em;padding:12px 4px;white-space:nowrap">Season not yet started — no scores available.</div>';
+    const season = window._currentSeason || window.CURRENT_SEASON;
+    applyLiveData(season, 0); // week 0 triggers pre-season bail-out: renders draft + season preview
+    switchTab('home');
   }
 
   function switchInner(tab, name) {
@@ -2203,13 +2223,10 @@
     const hasPicks = weekNums.length > 0;
 
     if (!hasPicks) {
-      // Draft-only season (e.g. 2026 pre-draft) — hide week strip, show draft tab
-      document.getElementById('week-strip').style.display = 'none';
+      // Pre-season (e.g. 2026 no weeks yet) — show strip with Pre pill active
+      document.getElementById('week-strip').style.display = '';
       window._currentSeason = season;
-      _renderDraftTab(season);
-      _renderNews(season);
-      switchTab('season');
-      switchInner('season', 'draft');
+      selectPreseason();
       return;
     }
 
@@ -2835,6 +2852,32 @@
         <div class="stk-team">${_badge(t2.name, t2.logo_url||'', 22)}<div class="stk-name">${_tShort(_canonName(t2.name))}</div></div>
       </div>`;
     }).join('');
+    _initTickerDrag(el);
+  }
+
+  function _initTickerDrag(el) {
+    if (!el || el._dragInited) return;
+    el._dragInited = true;
+    let isDown = false, startX, startScrollLeft;
+    el.addEventListener('mousedown', e => {
+      if (e.button !== 0) return;
+      isDown = true;
+      startX = e.pageX;
+      startScrollLeft = el.scrollLeft;
+      el.classList.add('dragging');
+    });
+    window.addEventListener('mouseup', () => { isDown = false; el.classList.remove('dragging'); });
+    el.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      el.scrollLeft = startScrollLeft - (e.pageX - startX);
+    });
+    // Redirect vertical wheel to horizontal scroll
+    el.addEventListener('wheel', e => {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      e.preventDefault();
+      el.scrollLeft += e.deltaY;
+    }, { passive: false });
   }
 
   // ── Sidebar Standings ────────────────────────────────────────
@@ -3034,7 +3077,10 @@
     const meta  = _weekMeta(week, weekData, season);
     const kicker = meta.round ? `${meta.label} Recap · ${meta.round}` : `${meta.label} Recap`;
     if (articleData) {
-      const body = (articleData.body || '').replace(/\n/g, '</p><p>').replace(/## (.+)/g,'<h2>$1</h2>');
+      const body = (articleData.body || '')
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/## (.+)/g, '<h2>$1</h2>')
+        .replace(/\n/g, '</p><p>');
       el.innerHTML = `
         <div class="article-masthead">
           <div class="article-kicker"><i class="fa-solid fa-file-lines"></i> ${kicker}</div>
@@ -3383,13 +3429,19 @@
           </div>
         </div>`;
       metricsEl.innerHTML =
-        _mCard('',   `<i class="fa-solid fa-trophy" style="color:var(--gold)"></i>`, '1st Place',            first.name,   `${first.wins}W – ${first.losses}L · ${_pct(first.wins,first.losses)}`) +
-        _mCard('green', `<i class="fa-solid fa-fire"></i>`,          'Most Points For',      mostPF.name,  `${(mostPF.points_for||0).toFixed(1)} PF`) +
-        _mCard('blue',  `<i class="fa-solid fa-shield-halved"></i>`, 'Fewest Points Against',leastPA.name, `${(leastPA.points_against||0).toFixed(1)} PA`, 'blue');
+        _mCard('',   `<i class="fa-solid fa-trophy" style="color:var(--gold)"></i>`, '1st Place',            first.name,   `${first.wins||0}W – ${first.losses||0}L · ${_pct(first.wins||0,first.losses||0)}`) +
+        _mCard('green', `<i class="fa-solid fa-fire"></i>`,          'Most Cat Wins',        mostPF.name,  `${Math.round(mostPF.points_for||0)} cat wins`) +
+        _mCard('blue',  `<i class="fa-solid fa-shield-halved"></i>`, 'Fewest Cat Losses',    leastPA.name, `${Math.round(leastPA.points_against||0)} cat losses`, 'blue');
     }
     // Full table rows — grouped by division if available
     const _standRow = (t, i) => {
-      const pct    = _pct(t.wins, t.losses);
+      const muW    = t.wins   || 0;
+      const muL    = t.losses || 0;
+      const catW   = Math.round(t.points_for    || 0);
+      const catL   = Math.round(t.points_against || 0);
+      const catT   = t.cat_ties || 0;
+      const catStr = catT ? `${catW}-${catL}-${catT}` : `${catW}-${catL}`;
+      const pct    = _pct(muW, muL);
       const pctNum = parseFloat(pct);
       const barColor = _pctColor(pctNum);
       const barW   = Math.round(pctNum * 100);
@@ -3397,8 +3449,8 @@
         <span class="fsr-rank">${i+1}</span>
         ${_badge(t.name,'',20)}
         <span class="fsr-name">${t.name}</span>
-        <span class="fsr-rec">${t.wins}-${t.losses}</span>
-        <span class="fsr-pf">${(t.points_for||0).toFixed(1)}</span>
+        <span class="fsr-rec" title="Matchup record (weeks won)">${muW}-${muL}</span>
+        <span class="fsr-pf" title="Category record (W-L-T across all scoring categories)">${catStr}</span>
         <div class="fsr-pct"><div class="pct-val">${pct}</div><div class="pct-bar"><div class="pct-fill" style="width:${barW}%;background:${barColor}"></div></div></div>
       </div>`;
     };
@@ -3483,8 +3535,8 @@
         if (m.is_playoffs || m.is_consolation) continue; // regular season only
         const [t1, t2] = m.teams || [];
         if (!t1 || !t2) continue;
-        if (!tally[t1.name]) tally[t1.name] = { name:t1.name, team_key:t1.team_key, wins:0, losses:0, ties:0, points_for:0, points_against:0 };
-        if (!tally[t2.name]) tally[t2.name] = { name:t2.name, team_key:t2.team_key, wins:0, losses:0, ties:0, points_for:0, points_against:0 };
+        if (!tally[t1.name]) tally[t1.name] = { name:t1.name, team_key:t1.team_key, wins:0, losses:0, ties:0, points_for:0, points_against:0, cat_ties:0 };
+        if (!tally[t2.name]) tally[t2.name] = { name:t2.name, team_key:t2.team_key, wins:0, losses:0, ties:0, points_for:0, points_against:0, cat_ties:0 };
         if (m.is_tied) {
           tally[t1.name].ties++; tally[t2.name].ties++;
         } else if (t1.team_key === m.winner_key) {
@@ -3496,6 +3548,8 @@
         tally[t1.name].points_against += t2.points||0;
         tally[t2.name].points_for  += t2.points||0;
         tally[t2.name].points_against += t1.points||0;
+        const catTied = (m.stat_winners?.length || 0) - (t1.points||0) - (t2.points||0);
+        if (catTied > 0) { tally[t1.name].cat_ties += catTied; tally[t2.name].cat_ties += catTied; }
       }
     }
     return Object.values(tally).sort((a,b) =>
@@ -3733,7 +3787,11 @@
 
     const weekData = d[season][week];
     if (!weekData) {
-      // Pre-season: no week data yet. Sync dropdown, render what we can, then bail.
+      // Pre-season: no week data yet. Activate Pre pill, clear ticker, sync dropdown, render what we can, then bail.
+      document.querySelectorAll('.week-strip button.wk-pill').forEach(p => p.classList.remove('active'));
+      document.getElementById('pill-pre')?.classList.add('active');
+      const _tkr = document.getElementById('live-score-ticker');
+      if (_tkr) _tkr.innerHTML = '<div style="color:var(--muted);font-size:0.8em;padding:12px 4px;white-space:nowrap">Season not yet started — no scores available.</div>';
       _syncSeasonDd(String(season));
       _renderDraftTab(season);
       _renderNews(season);
@@ -3858,6 +3916,9 @@
 
     // Pre-populate All-Time sidebar so it's ready when user switches tabs
     if (typeof _renderAllTimeSidebar === 'function') _renderAllTimeSidebar();
+
+    // Resize iframe to fit rendered content
+    setTimeout(_notifyHeight, 50);
   }
 
   // Override selectWeek to use live data
@@ -3992,7 +4053,7 @@
     if (!dataSeasons.length) return;
     const latestSeason = Math.max(...dataSeasons);
     const weekNums     = Object.keys(ld[latestSeason]).filter(k => /^\d+$/.test(k)).map(Number);
-    const latestWeek   = Math.max(...weekNums);
+    const latestWeek   = weekNums.length ? Math.max(...weekNums) : 0;
 
     window.CURRENT_SEASON = latestSeason;
     window.CURRENT_WEEK   = latestWeek;
@@ -7055,26 +7116,28 @@
   }
 
   // ── Streamlit dynamic iframe height ─────────────────────────
-  // Tell Streamlit to size the iframe to exactly the visible viewport height
-  // so the dashboard fills the screen without external scrolling.
-  (function () {
-    function _notifyHeight() {
-      let h;
-      try {
-        const iframe = window.frameElement;
-        if (iframe) {
-          const rect = iframe.getBoundingClientRect();
-          h = window.parent.innerHeight - Math.max(0, Math.round(rect.top));
-        }
-      } catch(e) {}
-      if (!h || h < 300) { try { h = window.parent.innerHeight; } catch(e) {} }
-      if (!h || h < 300) h = window.innerHeight;
-      window.parent.postMessage({ isStreamlitMessage: true, type: 'streamlit:setFrameHeight', height: h }, '*');
-    }
-    window.addEventListener('load', _notifyHeight);
-    window.addEventListener('resize', _notifyHeight);
-    _notifyHeight();
-  })();
+  // Size the iframe to fit actual content, not the viewport.
+  function _notifyHeight() {
+    const topbar = document.querySelector('.topbar');
+    const strip = document.querySelector('.week-strip');
+    const tabsBar = document.querySelector('.main > .tabs');
+    const activePanel = document.querySelector('.tab-panel.active');
+    const topbarH = topbar ? topbar.offsetHeight : 50;
+    const stripH = strip ? strip.offsetHeight : 0;
+    const tabsH = tabsBar ? tabsBar.offsetHeight : 0;
+    const panelH = activePanel ? activePanel.scrollHeight : window.innerHeight;
+    const mainPad = 44; // .main padding top + bottom
+    const contentH = tabsH + mainPad + panelH;
+    // Size body to actual content — shrinks the full layout chain (body→layout→sidebar/main)
+    const totalH = Math.max(topbarH + stripH + contentH + 20, 400);
+    document.body.style.height = totalH + 'px';
+    // Directly resize the Streamlit iframe (same-origin)
+    try { if (window.frameElement) window.frameElement.style.height = totalH + 'px'; } catch(e) {}
+    // Streamlit Cloud postMessage fallback
+    window.parent.postMessage({ isStreamlitMessage: true, type: 'streamlit:setFrameHeight', height: totalH }, '*');
+  }
+  window.addEventListener('load', _notifyHeight);
+  window.addEventListener('resize', _notifyHeight);
 </script>
 
 <!-- ── ARTICLE READER MODAL ─────────────────────────────────── -->
