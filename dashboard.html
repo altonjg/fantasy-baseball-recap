@@ -3877,6 +3877,9 @@
     if (!d[season]) return;
 
     window._currentSeason = season;
+
+    // Rebuild week strip to match this season's actual data (handles initial load + week nav)
+    _rebuildWeekStrip(season);
     window._currentWeek   = week;
 
     const weekData = d[season][week];
