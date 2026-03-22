@@ -64,13 +64,16 @@
   .ss-dash { color:var(--border); flex:1; text-align:center; font-size:0.7em; }
   .sb-streak { font-family:'Oswald',sans-serif; font-size:0.8em; font-weight:700; min-width:26px; text-align:right; }
   /* Score Ticker */
-  .score-ticker { display:flex; gap:10px; padding-bottom:6px; margin-bottom:20px; overflow-x:auto; scroll-snap-type: x mandatory; cursor:grab; user-select:none; scrollbar-width:thin; scrollbar-color:rgba(255,255,255,0.2) transparent; }
+  .score-ticker-wrap { position:relative; margin-bottom:20px; }
+  .score-ticker-wrap::after { content:''; position:absolute; top:0; right:0; bottom:6px; width:48px; background:linear-gradient(to right,transparent,var(--bg)); pointer-events:none; opacity:1; transition:opacity 0.2s; }
+  .score-ticker-wrap.no-overflow::after { opacity:0; }
+  .score-ticker { display:flex; gap:10px; padding-bottom:6px; margin-bottom:0; overflow-x:auto; scroll-snap-type: x mandatory; cursor:grab; user-select:none; scrollbar-width:thin; scrollbar-color:rgba(255,255,255,0.2) transparent; }
   .score-ticker.dragging { cursor:grabbing; }
   .score-ticker::-webkit-scrollbar { height:4px; }
   .score-ticker::-webkit-scrollbar-track { background:transparent; }
   .score-ticker::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.2); border-radius:2px; }
   .score-ticker::-webkit-scrollbar-thumb:hover { background:rgba(255,255,255,0.4); }
-  .stk-card { display:flex; align-items:center; justify-content:space-between; gap:10px; background:var(--card); border:1px solid var(--border); border-radius: 8px; padding:10px 14px; flex: 0 0 auto; min-width:185px; max-width:250px; scroll-snap-align: start; }
+  .stk-card { display:flex; align-items:center; justify-content:space-between; gap:10px; background:var(--card); border:1px solid var(--border); border-radius: 8px; padding:10px 14px; flex: 1 0 185px; min-width:185px; max-width:320px; scroll-snap-align: start; }
   .stk-team { display:flex; flex-direction:column; align-items:center; gap:4px; flex:1; min-width:0; }
   .stk-logo { width:30px; height:30px; border-radius:50%; flex-shrink:0; }
   .stk-name { font-size:0.7em; color:var(--text-secondary); text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; width:100%; letter-spacing:0.02em; }
@@ -223,6 +226,13 @@
   .article-body h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); margin: 22px 0 10px; }
   .article-body p { margin-bottom: 14px; }
   .article-body strong { color: var(--text); font-weight: 600; }
+  /* Wide-screen: 2-column magazine layout for weekly recap body */
+  @media (min-width: 1400px) {
+    .article-wrap:not(.preview-fullwidth) .article-body {
+      columns: 2; column-gap: 40px; column-rule: 1px solid var(--border);
+    }
+    .article-wrap:not(.preview-fullwidth) .article-body h2 { column-span: all; }
+  }
   .asb-box { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 13px 14px; margin-bottom: 8px; }
   .asb-box.gold { border-color: rgba(240,192,64,0.35); }
   .asb-lbl { font-size: 0.7em; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 3px; display: flex; align-items: center; gap: 5px; }
@@ -427,6 +437,7 @@
   .wk-pill.playoff.active { background:oklch(72% 0.13 250 / 0.12); border-color:oklch(72% 0.13 250 / 0.4); color:oklch(72% 0.13 250); }
   .wk-pill.preseason { color:oklch(72% 0.17 145); flex:0 0 auto; padding:3px 10px; }
   .wk-pill.preseason.active { background:oklch(72% 0.17 145 / 0.12); border-color:oklch(72% 0.17 145 / 0.4); color:oklch(72% 0.17 145); }
+  .wk-pill.disabled { opacity:0.28; cursor:not-allowed; pointer-events:none; }
   .wk-strip-sep { width:1px; height:14px; background:var(--border); flex-shrink:0; margin:0 4px; }
 
   /* ── TEAM PROFILE DRAWER ──────────────────────────────────── */
@@ -687,6 +698,7 @@
   <div id="tab-home" class="tab-panel active">
 
     <!-- SCORE TICKER (populated by applyLiveData) -->
+    <div class="score-ticker-wrap" id="score-ticker-wrap">
     <div class="score-ticker" id="live-score-ticker">
 
       <!-- AB vs NC — Championship -->
@@ -809,6 +821,7 @@
       </div>
 
     </div><!-- /score-ticker -->
+    </div><!-- /score-ticker-wrap -->
 
     <!-- HOME INNER TABS -->
     <div class="inner-tabs" role="tablist">
@@ -1997,7 +2010,7 @@
     }
   }
   function switchTab(name) {
-    closeTeamProfile();
+    closeTeamProfile(true);
     if (name === 'alltime') { switchPage('alltime'); return; }
     // Ensure home view is visible
     document.getElementById('view-home').style.display = '';
@@ -2051,6 +2064,57 @@
     // Update ticker heading comment if present (cosmetic only)
     const tickerWrap = document.getElementById('week-strip');
     if (tickerWrap) tickerWrap.dataset.activeWeek = n;
+  }
+
+  // Rebuild week strip pills dynamically based on actual weeks in LEAGUE_DATA for the season.
+  // Fixes M1 (2021 Wk 25 championship) and c2 (no phantom clickable pills for pre-season).
+  function _rebuildWeekStrip(season) {
+    const strip = document.getElementById('week-strip');
+    if (!strip) return;
+    const d = window.LEAGUE_DATA?.[season];
+
+    if (!d) {
+      strip.innerHTML = `<button class="wk-pill preseason" id="pill-pre" onclick="selectPreseason()">Pre</button>`;
+      return;
+    }
+
+    const weekNums = Object.keys(d).filter(k => /^\d+$/.test(k)).map(Number).sort((a,b) => a-b);
+
+    if (!weekNums.length) {
+      // Pre-season: only show the Pre pill — no phantom week pills
+      strip.innerHTML = `<button class="wk-pill preseason" id="pill-pre" onclick="selectPreseason()">Pre</button>`;
+      return;
+    }
+
+    // Determine which weeks are playoff weeks
+    const playoffSet = new Set();
+    for (const wk of weekNums) {
+      const wd = d[wk];
+      if (!wd?.matchups) continue;
+      for (const m of wd.matchups) {
+        if (m.is_playoffs || m.is_championship) { playoffSet.add(wk); break; }
+      }
+    }
+
+    const regularWeeks = weekNums.filter(w => !playoffSet.has(w));
+    const poffWeeks    = weekNums.filter(w =>  playoffSet.has(w)).sort((a,b) => a-b);
+    const roundLabels  = poffWeeks.length === 3 ? ['WCS','CS','WS']
+                       : poffWeeks.length === 2 ? ['CS','WS']
+                       : poffWeeks.length === 1 ? ['WS'] : [];
+
+    let html = `<button class="wk-pill preseason" id="pill-pre" onclick="selectPreseason()">Pre</button>`;
+    html += `<div class="wk-strip-sep"></div>`;
+    for (const wk of regularWeeks) {
+      html += `<button class="wk-pill" onclick="selectWeek(${wk})">Wk ${wk}</button>`;
+    }
+    if (poffWeeks.length) {
+      html += `<div class="wk-strip-sep"></div>`;
+      poffWeeks.forEach((wk, i) => {
+        const lbl = roundLabels[i] ? `<span style="font-size:0.8em;opacity:0.7">${roundLabels[i]}</span>` : '';
+        html += `<button class="wk-pill playoff" onclick="selectWeek(${wk})">Wk ${wk} ${lbl}</button>`;
+      });
+    }
+    strip.innerHTML = html;
   }
 
   function selectPreseason() {
@@ -2182,8 +2246,10 @@
   }
 
   function selectSeason(val) {
-    closeTeamProfile();
+    closeTeamProfile(true);
     _syncSeasonDd(val);
+    switchInner('home', 'recap');
+    switchInner('season', 'standings');
     updateTopbarContext();
   }
 
@@ -2219,6 +2285,9 @@
       seasonBtn.style.borderColor = 'rgba(240,192,64,0.7)';
       setTimeout(() => seasonBtn.style.borderColor = '', 600);
     }
+
+    // Rebuild week strip to match this season's actual week layout
+    _rebuildWeekStrip(season);
 
     // Find available weeks for this season
     const weekNums = Object.keys(d).filter(k => /^\d+$/.test(k)).map(Number);
@@ -2830,6 +2899,14 @@
     return streaks;
   }
 
+  // ── Score Ticker overflow fade hint ──────────────────────────
+  function _updateTickerOverflow() {
+    const ticker = document.getElementById('live-score-ticker');
+    const wrap   = document.getElementById('score-ticker-wrap');
+    if (!ticker || !wrap) return;
+    wrap.classList.toggle('no-overflow', ticker.scrollWidth <= ticker.clientWidth + 4);
+  }
+
   // ── Score Ticker ─────────────────────────────────────────────
   function _renderScoreTicker(weekData) {
     const el = document.getElementById('live-score-ticker');
@@ -2943,7 +3020,22 @@
     if (!el) return;
     const players = (weekData && weekData.top_players) || [];
     if (!players.length) {
-      el.innerHTML = `<div style="font-size:0.72em;color:var(--muted)">No player data this week.</div>`;
+      // Fallback: show highest-scoring team from matchup data
+      const teams = (weekData?.matchups || []).flatMap(m => m.teams || []);
+      const top = [...teams].sort((a,b) => (b.points||0) - (a.points||0))[0];
+      if (top && top.points) {
+        el.innerHTML = `
+          <div style="display:flex;align-items:center;gap:10px;">
+            ${_badge(top.name, top.logo_url||'', 36)}
+            <div>
+              <div style="font-size:0.82em;font-weight:700;color:var(--text)">${_tShort(_canonName(top.name))}</div>
+              <div style="font-size:0.68em;color:var(--muted);margin-top:1px">${top.manager||''} · High score</div>
+              <div style="font-size:1em;font-weight:700;color:var(--gold);margin-top:4px">${(top.points||0).toFixed(1)} <span style="font-size:0.7em;font-weight:400;color:var(--muted)">pts</span></div>
+            </div>
+          </div>`;
+      } else {
+        el.innerHTML = `<div style="font-size:0.72em;color:var(--muted)">No scoring data available.</div>`;
+      }
       return;
     }
     const p = players[0];
@@ -3411,7 +3503,7 @@
     if (!rowsEl || !standings || !standings.length) return;
     const labelEl = document.getElementById('live-standings-label');
     if (labelEl) {
-      const s = _currentSeason || window.CURRENT_SEASON;
+      const s = window._currentSeason || window.CURRENT_SEASON;
       labelEl.innerHTML = `<i class="fa-solid fa-list-ol"></i> Full Standings <span style="font-size:0.72em;font-weight:400;color:var(--muted)">· ${s} Season Totals</span>`;
     }
     // Metrics row
@@ -3794,6 +3886,15 @@
       document.getElementById('pill-pre')?.classList.add('active');
       const _tkr = document.getElementById('live-score-ticker');
       if (_tkr) _tkr.innerHTML = '<div style="color:var(--muted);font-size:0.8em;padding:12px 4px;white-space:nowrap">Season not yet started — no scores available.</div>';
+      _updateTickerOverflow();
+      // Clear stale matchups from previous season
+      const _mhdr = document.getElementById('live-matchups-header');
+      const _mlst = document.getElementById('live-matchups-list');
+      if (_mhdr) _mhdr.innerHTML = `<i class="fa-solid fa-arrow-right-arrow-left"></i> Matchups`;
+      if (_mlst) _mlst.innerHTML = `<div style="color:var(--muted);font-size:0.85em;padding:24px 0;text-align:center"><i class="fa-solid fa-clock" style="margin-right:6px;opacity:0.6"></i>No matchup data yet — season hasn't started.</div>`;
+      // Update standings label to reflect current season
+      const _slbl = document.getElementById('live-standings-label');
+      if (_slbl) _slbl.innerHTML = `<i class="fa-solid fa-list-ol"></i> Full Standings <span style="font-size:0.72em;font-weight:400;color:var(--muted)">· ${season} Season</span>`;
       _syncSeasonDd(String(season));
       _renderDraftTab(season);
       _renderNews(season);
@@ -3863,6 +3964,7 @@
 
     // Score ticker
     _renderScoreTicker(weekData);
+    _updateTickerOverflow();
 
     // Sidebar
     _renderSbStandings(standings);
@@ -5560,7 +5662,12 @@
     // Always blank the trades section — it has no dynamic population yet,
     // so we clear the static mockup cards to avoid stale data showing
     const tradesSection = document.getElementById('news-trades-section');
-    if (tradesSection) tradesSection.innerHTML = '';
+    if (tradesSection) tradesSection.innerHTML = `
+      <div class="news-section-header" style="margin-top:8px;"><i class="fa-solid fa-right-left" style="margin-right:6px"></i>Trade Coverage</div>
+      <div style="padding:20px 0 12px;text-align:center;color:var(--muted);font-size:0.82em;">
+        <i class="fa-solid fa-right-left" style="font-size:1.4em;opacity:0.3;display:block;margin-bottom:8px;"></i>
+        No trade articles yet for this season.
+      </div>`;
 
     const articles = window.LEAGUE_DATA?.[season]?.articles || {};
     const preview  = articles['season_preview'];
@@ -6779,9 +6886,18 @@
   // H2H records, season-by-season results, and trajectory sparkline.
   // ═══════════════════════════════════════════════════════════════
 
-  function closeTeamProfile() {
+  function closeTeamProfile(immediate) {
     document.getElementById('tp-overlay')?.classList.remove('open');
-    document.getElementById('tp-drawer')?.classList.remove('open');
+    const drawer = document.getElementById('tp-drawer');
+    if (drawer) {
+      if (immediate) {
+        drawer.style.transition = 'none';
+        drawer.classList.remove('open');
+        requestAnimationFrame(() => requestAnimationFrame(() => { drawer.style.transition = ''; }));
+      } else {
+        drawer.classList.remove('open');
+      }
+    }
     document.body.style.overflow = '';
   }
 
@@ -7150,7 +7266,7 @@
     window.parent.postMessage({ isStreamlitMessage: true, type: 'streamlit:setFrameHeight', height: totalH }, '*');
   }
   window.addEventListener('load', _notifyHeight);
-  window.addEventListener('resize', _notifyHeight);
+  window.addEventListener('resize', () => { _notifyHeight(); _updateTickerOverflow(); });
 </script>
 
 <!-- ── ARTICLE READER MODAL ─────────────────────────────────── -->

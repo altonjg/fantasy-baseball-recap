@@ -317,24 +317,24 @@ CURRENT STANDINGS (top 10):
 
 {"TOP PERFORMERS:" + chr(10) + top_ctx if top_ctx else ""}
 
-Write a weekly recap column (350–500 words) in {writer['name']}'s authentic voice:
-1. Open with the most compelling storyline
-2. Cover 2–3 matchups in depth
-3. Mention standout individual performances
-4. Brief standings note on the playoff/title race
-5. Tease what's next
+Write a weekly recap column (600–900 words) in {writer['name']}'s authentic voice. Use 3–4 bold section headers (## Header) to break the piece into readable chunks — e.g. a lede section, a matchup deep-dive, a standings section, and a closing. Structure:
+1. Open with the most compelling storyline of the week (2–3 paragraphs)
+2. Deep-dive on 3–4 matchups with specific stat context
+3. Standout individual performances worth calling out
+4. ## Standings & Race — what the week means for the playoff picture
+5. ## Looking Ahead — 1–2 paragraphs teasing next week's key matchups
 
-Use **bold** for team names. Markdown OK. Write as if published on {writer['outlet']}.
+Use **bold** for team names throughout. Markdown OK. Write as if published on {writer['outlet']}.
 
 Respond ONLY with valid JSON — no markdown fences:
 {{
   "headline": "...",
   "subheadline": "...(one-sentence deck)...",
-  "body": "...(full column)..."
+  "body": "...(full column, 600–900 words)..."
 }}"""
 
     try:
-        raw     = _call_claude(prompt, max_tokens=1500)
+        raw     = _call_claude(prompt, max_tokens=2500)
         article = _safe_json_parse(raw)
         article["generated_at"]    = datetime.now().isoformat()
         article["week"]            = week_num
