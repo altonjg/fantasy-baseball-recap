@@ -3902,6 +3902,13 @@
       _syncSeasonDd(String(season));
       _renderDraftTab(season);
       _renderNews(season);
+      // Clear stale sidebar widgets (top performer, latest move, playoff picture)
+      const _sbTp  = document.getElementById('live-top-performer');
+      const _sbLm  = document.getElementById('live-latest-move');
+      const _sbPp  = document.getElementById('live-playoff-picture');
+      if (_sbTp)  _sbTp.innerHTML  = `<div style="font-size:0.72em;color:var(--muted)">No player data available.</div>`;
+      if (_sbLm)  _sbLm.innerHTML  = '';
+      if (_sbPp)  _sbPp.innerHTML  = `<div style="font-size:0.8em;color:var(--muted);padding:8px 0;text-align:center">Season hasn't started yet.</div>`;
       // Clear stale transactions (static HTML placeholder baked into #live-txn-header/list)
       const _txnHdr = document.getElementById('live-txn-header');
       const _txnList = document.getElementById('live-txn-list');
