@@ -70,7 +70,7 @@
   .score-ticker::-webkit-scrollbar-track { background:transparent; }
   .score-ticker::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.2); border-radius:2px; }
   .score-ticker::-webkit-scrollbar-thumb:hover { background:rgba(255,255,255,0.4); }
-  .stk-card { display:flex; align-items:center; justify-content:space-between; gap:10px; background:var(--card); border:1px solid var(--border); border-radius: 8px; padding:10px 14px; flex: 0 0 auto; min-width:160px; max-width:220px; scroll-snap-align: start; }
+  .stk-card { display:flex; align-items:center; justify-content:space-between; gap:10px; background:var(--card); border:1px solid var(--border); border-radius: 8px; padding:10px 14px; flex: 0 0 auto; min-width:185px; max-width:250px; scroll-snap-align: start; }
   .stk-team { display:flex; flex-direction:column; align-items:center; gap:4px; flex:1; min-width:0; }
   .stk-logo { width:30px; height:30px; border-radius:50%; flex-shrink:0; }
   .stk-name { font-size:0.7em; color:var(--text-secondary); text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; width:100%; letter-spacing:0.02em; }
@@ -97,7 +97,7 @@
   .sb-row:hover { background: oklch(26% 0.03 75 / 0.5); }
   .sb-rank { width: 13px; color: var(--muted); font-size: 0.82em; flex-shrink: 0; }
   .sb-name { flex: 1; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .sb-rec  { color: var(--muted); font-size: 0.78em; white-space: nowrap; }
+  .sb-rec  { color: var(--text-secondary); font-size: 0.78em; white-space: nowrap; }
 
   /* TABS */
   .tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
@@ -1616,7 +1616,7 @@
       </div>
       <div id="mlbstats-table-wrap" style="overflow-x:auto;"></div>
       <div id="mlbstats-empty" style="display:none;color:var(--muted);font-size:13px;padding:20px 0;text-align:center;">
-        No advanced stats available for this season — run <code>python3 backfill.py --stats --year YEAR</code>
+        No advanced stats available for this season.
       </div>
     </div><!-- /season-mlbstats -->
 
@@ -4737,7 +4737,7 @@
         const metricsEl = document.getElementById('live-draft-metrics');
         if (metricsEl) {
           metricsEl.style.display = '';
-          metricsEl.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:16px 0;color:var(--muted);font-size:0.82em"><i class="fa-solid fa-circle-info" style="margin-right:6px;opacity:0.6"></i>Draft grade analysis available — run <code style="background:rgba(255,255,255,0.06);padding:1px 6px;border-radius:3px">python3 backfill.py --adp --year ${season}</code> to load ADP data</div>`;
+          metricsEl.style.display = 'none';
         }
       }
       return;
@@ -7133,8 +7133,19 @@
     // Size body to actual content — shrinks the full layout chain (body→layout→sidebar/main)
     const totalH = Math.max(topbarH + stripH + contentH + 20, 400);
     document.body.style.height = totalH + 'px';
-    // Directly resize the Streamlit iframe (same-origin)
-    try { if (window.frameElement) window.frameElement.style.height = totalH + 'px'; } catch(e) {}
+    // Directly resize the Streamlit iframe and its wrapper container (same-origin)
+    try {
+      if (window.frameElement) {
+        window.frameElement.style.height = totalH + 'px';
+        // Also shrink the stElementContainer so no blank gap appears below the iframe
+        const stContainer = window.frameElement.closest('[data-testid="stElementContainer"]');
+        if (stContainer) {
+          stContainer.style.setProperty('height', totalH + 'px', 'important');
+          stContainer.style.setProperty('flex', '0 0 ' + totalH + 'px', 'important');
+          stContainer.style.setProperty('min-height', '0', 'important');
+        }
+      }
+    } catch(e) {}
     // Streamlit Cloud postMessage fallback
     window.parent.postMessage({ isStreamlitMessage: true, type: 'streamlit:setFrameHeight', height: totalH }, '*');
   }
