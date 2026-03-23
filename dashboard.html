@@ -3161,6 +3161,42 @@
   }
 
   // ── Recap Article ────────────────────────────────────────────
+  function _mdToHtml(md, headingColor) {
+    const color = headingColor || 'var(--gold)';
+    return (md || '').split(/\n\n+/).map(para => {
+      const t = para.trim();
+      if (!t) return '';
+      // Horizontal rule
+      if (/^---+$/.test(t)) return '<hr style="border:none;border-top:1px solid var(--border);margin:18px 0;">';
+      // ATX headings
+      if (/^#{1,6}\s/.test(t)) {
+        const level = t.match(/^(#+)/)[1].length;
+        const text = t.replace(/^#+\s*/, '').replace(/\*\*(.+?)\*\*/g, '$1').replace(/\*(.+?)\*/g, '$1').trim();
+        const sizes = ['1.4em','1.15em','1em','0.95em','0.9em','0.85em'];
+        const sz = sizes[Math.min(level-1, 5)];
+        // h1 inside the article body is the title Claude added — skip it (it's already in the masthead)
+        if (level === 1) return '';
+        return `<h${level} style="font-family:'Oswald',sans-serif;font-size:${sz};font-weight:700;color:${color};text-transform:uppercase;letter-spacing:0.05em;margin:22px 0 8px;">${text}</h${level}>`;
+      }
+      // Bold-only line (old-style section header)
+      if (/^\*\*[^*]+\*\*$/.test(t)) {
+        const text = t.replace(/\*\*(.+?)\*\*/g, '$1');
+        return `<h2 style="font-family:'Oswald',sans-serif;font-size:1.15em;font-weight:700;color:${color};text-transform:uppercase;letter-spacing:0.05em;margin:22px 0 8px;">${text}</h2>`;
+      }
+      // Blockquote
+      if (/^>\s/.test(t)) {
+        const inner = t.replace(/^>\s*/gm, '').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\*(.+?)\*/g, '<em>$1</em>');
+        return `<blockquote style="border-left:3px solid ${color};margin:14px 0;padding:6px 14px;color:var(--muted);font-style:italic;">${inner}</blockquote>`;
+      }
+      // Regular paragraph
+      const html = t
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        .replace(/\n/g, '<br>');
+      return `<p style="margin-bottom:1.1em;">${html}</p>`;
+    }).join('');
+  }
+
   function _renderRecapArticle(season, week, weekData, articleData) {
     const el = document.getElementById('live-recap-article');
     if (!el) return;
@@ -3172,10 +3208,6 @@
     const meta  = _weekMeta(week, weekData, season);
     const kicker = meta.round ? `${meta.label} Recap · ${meta.round}` : `${meta.label} Recap`;
     if (articleData) {
-      const body = (articleData.body || '')
-        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-        .replace(/## (.+)/g, '<h2>$1</h2>')
-        .replace(/\n/g, '</p><p>');
       el.innerHTML = `
         <div class="article-masthead">
           <div class="article-kicker"><i class="fa-solid fa-file-lines"></i> ${kicker}</div>
@@ -3183,7 +3215,7 @@
           <div class="article-dek">${articleData.subheadline || ''}</div>
           <div class="article-byline"><i class="fa-solid fa-pen-nib"></i> By <strong>${articleData.writer_name||'Staff'}</strong> &nbsp;·&nbsp; ${articleData.writer_outlet||''} &nbsp;·&nbsp; ${(articleData.generated_at||'').slice(0,10)}</div>
         </div>
-        <div class="article-body"><p>${body}</p></div>`;
+        <div class="article-body">${_mdToHtml(articleData.body || '')}</div>`;
     } else {
       const isCurrentSeason = season === (_currentSeason || window.CURRENT_SEASON);
       const currentWeekNum  = window._currentWeek || window.CURRENT_WEEK || 0;
@@ -3943,14 +3975,7 @@
           const kickerIcon  = isDraft ? `<i class="fa-solid fa-clipboard-list" style="color:#60a5fa"></i>` : `<i class="fa-solid fa-flag" style="color:var(--gold)"></i>`;
           const kickerLabel = isDraft ? `${season} Draft Review` : `${season} Season Preview`;
           const kickerColor = isDraft ? '#60a5fa' : 'var(--gold)';
-          const bodyHtml = (featuredArt.body || '').split(/\n\n+/).map(para => {
-            const trimmed = para.trim();
-            const isHeader = /^\*\*[^*]+\*\*$/.test(trimmed);
-            const html = trimmed.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
-            return isHeader
-              ? `<h3 style="font-family:'Oswald',sans-serif;font-size:1.1em;font-weight:600;color:${kickerColor};margin:20px 0 6px;">${html}</h3>`
-              : `<p style="margin-bottom:1em;">${html}</p>`;
-          }).join('');
+          const bodyHtml = _mdToHtml(featuredArt.body || '', kickerColor);
           recapEl.innerHTML = `
             <div class="article-masthead">
               <div class="article-kicker">${kickerIcon} ${kickerLabel}</div>
@@ -5811,18 +5836,7 @@
     const dateStr = art.generated_at ? art.generated_at.substring(0, 10) : '';
     document.getElementById('article-modal-byline').innerHTML =
       `<i class="fa-solid fa-pen-nib"></i> ${art.writer_name || ''} &nbsp;·&nbsp; ${art.writer_outlet || ''} &nbsp;·&nbsp; ${dateStr}`;
-    const bodyHtml = (art.body || '').split(/\n\n+/).map(para => {
-      // Detect section headers: line is entirely bold (wrapped in **)
-      const trimmed = para.trim();
-      const isHeader = /^\*\*[^*]+\*\*$/.test(trimmed);
-      const html = trimmed
-        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\n/g, '<br>');
-      if (isHeader) {
-        return `<h3 style="font-family:'Oswald',sans-serif;font-size:1.2em;font-weight:600;color:var(--gold);margin:24px 0 8px;">${html}</h3>`;
-      }
-      return `<p style="margin-bottom:1.1em;">${html}</p>`;
-    }).join('');
+    const bodyHtml = _mdToHtml(art.body || '');
     document.getElementById('article-modal-body').innerHTML = bodyHtml;
     const modal = document.getElementById('article-modal');
     // Use the actual browser viewport height (not the iframe height) so the
