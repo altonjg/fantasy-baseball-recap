@@ -1183,8 +1183,7 @@ Write a LONG, richly detailed draft review (2000–2500 words). Use Roman numera
 Use **bold** for team and player names throughout. Markdown OK.
 
 Wrap your response in XML tags exactly like this — no JSON, no preamble:
-<headline>your punchy headline here</headline>
-<subheadline>your one-sentence subheadline here</subheadline>
+<subheadline>your one sharp sentence that makes readers want to read the whole thing</subheadline>
 <body>
 full article, 2000–2500 words — markdown ok
 </body>"""
@@ -1202,19 +1201,39 @@ full article, 2000–2500 words — markdown ok
         f"These are facts from the live draft and must not be contradicted in the article."
     )
 
+    # Build headline programmatically from verified data — model cannot hallucinate this
+    p1_player = round1_picks[0].get('player_name', '?').split('(')[0].strip()
+    p1_team   = team_key_to_name.get(round1_picks[0]['team_key'], '?')
+    # Find biggest steal (largest positive ADP delta in round 1-5)
+    best_steal_note = ""
+    best_delta = 0
+    for pk in picks:
+        if pk.get('round', 99) > 5:
+            continue
+        adp_val = adp_players.get(pk.get('player_key', ''), {}).get('adp', 0)
+        pick_num = pk.get('pick', 0)
+        if adp_val and pick_num:
+            delta = adp_val - pick_num
+            if delta > best_delta:
+                best_delta = delta
+                steal_team = team_key_to_name.get(pk['team_key'], '')
+                steal_player = pk.get('player_name', '').split('(')[0].strip()
+                best_steal_note = f"{steal_team} Stealing {steal_player} at Pick {pick_num}"
+    headline = f"{p1_player} Goes First Overall to {p1_team}"
+    if best_steal_note:
+        headline += f", and {best_steal_note} Was the Draft's Best Move"
+
     for attempt in range(3):
         try:
             raw = _call_claude(prompt, max_tokens=8000, precommit_facts=precommit)
-            hl_match   = re.search(r'<headline>(.*?)</headline>', raw, re.DOTALL)
             sub_match  = re.search(r'<subheadline>(.*?)</subheadline>', raw, re.DOTALL)
             # Accept body even if closing tag is missing (token cutoff)
             body_match = re.search(r'<body>(.*?)(?:</body>|$)', raw, re.DOTALL)
-            if not (hl_match and sub_match and body_match):
+            if not (sub_match and body_match):
                 raise ValueError(f"Missing XML tags in response (attempt {attempt+1}): {raw[:200]}")
-            # Prepend verified round-1 facts to body so headline/intro can't be wrong
             body_text = body_match.group(1).strip()
             article = {
-                "headline":      hl_match.group(1).strip(),
+                "headline":      headline,
                 "subheadline":   sub_match.group(1).strip(),
                 "body":          body_text,
                 "generated_at":  datetime.now().isoformat(),
