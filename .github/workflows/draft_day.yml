@@ -35,8 +35,12 @@ jobs:
         id: check
         run: |
           SEASON="${{ github.event.inputs.season || '2026' }}"
+          FORCE="${{ github.event.inputs.force }}"
           RESULTS="data/${SEASON}/draft_results.json"
-          if [ -f "$RESULTS" ] && python3 -c "
+          if [ "$FORCE" = "true" ]; then
+            echo "already_done=false" >> $GITHUB_OUTPUT
+            echo "Force flag set — regenerating recap for $SEASON."
+          elif [ -f "$RESULTS" ] && python3 -c "
           import json, sys
           d = json.load(open('$RESULTS'))
           picks = d.get('picks', d) if isinstance(d, dict) else d
