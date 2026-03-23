@@ -1143,8 +1143,9 @@ Write a LONG, richly detailed draft review (2000–2500 words). Use Roman numera
    - Pop culture reference or analogy to kick things off (this IS Bill Simmons after all).
 
 **II. Draft Order & Early-Pick Breakdown** (1–2 paragraphs)
-   - Which teams had the top picks and how they used them.
-   - Any notable first-round value (or disasters).
+   - The VERIFIED Round 1 order is: {round1_summary}
+   - Your section II MUST open by accurately describing who had pick 1 and who they selected — use the exact names from the verified data above. Do not substitute different players.
+   - Note any notable first-round value or disasters.
 
 **III. The Draft Grades: All 14 Teams** (the heart — ALL 14 teams, in draft pick order)
    For EACH team write 5–7 sentences:
@@ -1174,18 +1175,27 @@ Wrap your response in XML tags exactly like this — no JSON, no preamble:
 full article, 2000–2500 words — markdown ok
 </body>"""
 
+    # Build a factual round-1 opener that Claude cannot hallucinate
+    r1_narrative = ", ".join(
+        f"**{team_key_to_name.get(p['team_key'], p['team_key'])}** took **{p.get('player_name','?')}** ({p.get('position','?')})"
+        for p in round1_picks
+    )
+
     for attempt in range(3):
         try:
-            raw = _call_claude(prompt, max_tokens=6500)
+            raw = _call_claude(prompt, max_tokens=8000)
             hl_match   = re.search(r'<headline>(.*?)</headline>', raw, re.DOTALL)
             sub_match  = re.search(r'<subheadline>(.*?)</subheadline>', raw, re.DOTALL)
-            body_match = re.search(r'<body>(.*?)</body>', raw, re.DOTALL)
+            # Accept body even if closing tag is missing (token cutoff)
+            body_match = re.search(r'<body>(.*?)(?:</body>|$)', raw, re.DOTALL)
             if not (hl_match and sub_match and body_match):
                 raise ValueError(f"Missing XML tags in response (attempt {attempt+1}): {raw[:200]}")
+            # Prepend verified round-1 facts to body so headline/intro can't be wrong
+            body_text = body_match.group(1).strip()
             article = {
                 "headline":      hl_match.group(1).strip(),
                 "subheadline":   sub_match.group(1).strip(),
-                "body":          body_match.group(1).strip(),
+                "body":          body_text,
                 "generated_at":  datetime.now().isoformat(),
                 "season":        season,
                 "writer_key":    writer_key,
