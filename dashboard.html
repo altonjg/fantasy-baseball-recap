@@ -5705,34 +5705,13 @@
     const articles = window.LEAGUE_DATA?.[season]?.articles || {};
     const preview  = articles['season_preview'];
 
-    // Build season preview card if available
-    let previewHtml = '';
-    if (preview) {
-      const dateStr = preview.generated_at ? preview.generated_at.substring(0, 10) : '';
-      // Short body excerpt (first 180 chars)
-      const bodyExcerpt = (preview.body || '').replace(/\*\*/g, '').split('\n')[0].substring(0, 180);
-      previewHtml = `<div class="news-section-header" style="margin-top:0;color:var(--gold);border-color:rgba(240,192,64,0.25);">
-        <i class="fa-solid fa-flag" style="margin-right:6px;color:var(--gold)"></i>${season} Season Preview
-      </div>
-      <div class="news-card" role="article" tabindex="0" style="border-color:rgba(240,192,64,0.25);background:linear-gradient(135deg,rgba(240,192,64,0.05),rgba(0,0,0,0));" onclick="openArticleModal('season_preview', ${season})">
-        <div>
-          <div class="news-card-type" style="color:var(--gold);"><i class="fa-solid fa-flag"></i> Season Preview · ${season}</div>
-          <div class="news-card-hed">${preview.headline || ''}</div>
-          <div class="news-card-dek">${preview.subheadline || (bodyExcerpt ? bodyExcerpt + '…' : '')}</div>
-          <div class="news-card-meta"><i class="fa-solid fa-pen-nib"></i> ${preview.writer_name || ''} &nbsp;·&nbsp; ${preview.writer_outlet || ''} &nbsp;·&nbsp; ${dateStr}</div>
-        </div>
-        <div class="news-card-badge">${season}<br><span style="color:var(--gold)">Preview</span></div>
-      </div>`;
-    }
-
-    // Build draft recap card if available
+    // Build draft recap card first (most recent/timely — shown at top)
     const draftRecap = articles['draft_recap'];
     let draftRecapHtml = '';
     if (draftRecap) {
       const dateStr = draftRecap.generated_at ? draftRecap.generated_at.substring(0, 10) : '';
       const bodyExcerpt = (draftRecap.body || '').replace(/\*\*/g, '').split('\n')[0].substring(0, 180);
-      const hasAbove = previewHtml;
-      draftRecapHtml = `<div class="news-section-header" style="margin-top:${hasAbove ? '14px' : '0'};color:#60a5fa;border-color:rgba(96,165,250,0.25);">
+      draftRecapHtml = `<div class="news-section-header" style="margin-top:0;color:#60a5fa;border-color:rgba(96,165,250,0.25);">
         <i class="fa-solid fa-clipboard-list" style="margin-right:6px;color:#60a5fa"></i>${season} Draft Review
       </div>
       <div class="news-card" role="article" tabindex="0" style="border-color:rgba(96,165,250,0.25);background:linear-gradient(135deg,rgba(96,165,250,0.05),rgba(0,0,0,0));" onclick="openArticleModal('draft_recap', ${season})">
@@ -5750,7 +5729,7 @@
     let recapsHtml = '';
     const recapKeys = Object.keys(articles).filter(k => k.startsWith('week_') && k.endsWith('_recap')).sort().reverse();
     if (recapKeys.length) {
-      const hasAboveRecaps = previewHtml || draftRecapHtml;
+      const hasAboveRecaps = draftRecapHtml;
       recapsHtml = `<div class="news-section-header" style="margin-top:${hasAboveRecaps ? '14px' : '0'};"><i class="fa-solid fa-file-lines" style="margin-right:6px"></i>Weekly Recaps</div>`;
       recapsHtml += recapKeys.map(key => {
         const art = articles[key];
@@ -5771,7 +5750,27 @@
       }).join('');
     }
 
-    if (!previewHtml && !draftRecapHtml && !recapsHtml) {
+    // Build season preview last so margin-top can react to what's above it
+    let previewHtml = '';
+    if (preview) {
+      const dateStr = preview.generated_at ? preview.generated_at.substring(0, 10) : '';
+      const bodyExcerpt = (preview.body || '').replace(/\*\*/g, '').split('\n')[0].substring(0, 180);
+      const hasAbovePreview = draftRecapHtml || recapsHtml;
+      previewHtml = `<div class="news-section-header" style="margin-top:${hasAbovePreview ? '14px' : '0'};color:var(--gold);border-color:rgba(240,192,64,0.25);">
+        <i class="fa-solid fa-flag" style="margin-right:6px;color:var(--gold)"></i>${season} Season Preview
+      </div>
+      <div class="news-card" role="article" tabindex="0" style="border-color:rgba(240,192,64,0.25);background:linear-gradient(135deg,rgba(240,192,64,0.05),rgba(0,0,0,0));" onclick="openArticleModal('season_preview', ${season})">
+        <div>
+          <div class="news-card-type" style="color:var(--gold);"><i class="fa-solid fa-flag"></i> Season Preview · ${season}</div>
+          <div class="news-card-hed">${preview.headline || ''}</div>
+          <div class="news-card-dek">${preview.subheadline || (bodyExcerpt ? bodyExcerpt + '…' : '')}</div>
+          <div class="news-card-meta"><i class="fa-solid fa-pen-nib"></i> ${preview.writer_name || ''} &nbsp;·&nbsp; ${preview.writer_outlet || ''} &nbsp;·&nbsp; ${dateStr}</div>
+        </div>
+        <div class="news-card-badge">${season}<br><span style="color:var(--gold)">Preview</span></div>
+      </div>`;
+    }
+
+    if (!draftRecapHtml && !recapsHtml && !previewHtml) {
       // No dynamic articles — show a clean empty state instead of stale mockup HTML
       recapsSection.innerHTML = `<div style="text-align:center;padding:40px 0;color:var(--muted);">
         <i class="fa-solid fa-newspaper" style="font-size:2em;opacity:0.25;display:block;margin-bottom:10px"></i>
@@ -5781,7 +5780,7 @@
       return;
     }
 
-    recapsSection.innerHTML = previewHtml + draftRecapHtml + recapsHtml;
+    recapsSection.innerHTML = draftRecapHtml + recapsHtml + previewHtml;
   }
 
   function openArticleModal(articleKey, season) {
