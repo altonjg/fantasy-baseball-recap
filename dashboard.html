@@ -3931,26 +3931,32 @@
       _renderMomentumSVG(season);
       _renderTrendCharts(season);
       _renderSeasonStreaks(season, [], 0);
-      // Show a pre-season splash on the home tab
-      const recapEl = document.getElementById('live-recap-article');
-      const qsEl    = document.getElementById('live-recap-quickstats');
-      const preview = d[season]?.articles?.season_preview;
+      // Show a pre-season splash on the home tab — prefer draft recap if available
+      const recapEl    = document.getElementById('live-recap-article');
+      const qsEl       = document.getElementById('live-recap-quickstats');
+      const draftArt   = d[season]?.articles?.draft_recap;
+      const previewArt = d[season]?.articles?.season_preview;
+      const featuredArt = draftArt || previewArt;
       if (recapEl) {
-        if (preview) {
-          const bodyHtml = (preview.body || '').split(/\n\n+/).map(para => {
+        if (featuredArt) {
+          const isDraft = !!draftArt;
+          const kickerIcon  = isDraft ? `<i class="fa-solid fa-clipboard-list" style="color:#60a5fa"></i>` : `<i class="fa-solid fa-flag" style="color:var(--gold)"></i>`;
+          const kickerLabel = isDraft ? `${season} Draft Review` : `${season} Season Preview`;
+          const kickerColor = isDraft ? '#60a5fa' : 'var(--gold)';
+          const bodyHtml = (featuredArt.body || '').split(/\n\n+/).map(para => {
             const trimmed = para.trim();
             const isHeader = /^\*\*[^*]+\*\*$/.test(trimmed);
             const html = trimmed.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
             return isHeader
-              ? `<h3 style="font-family:'Oswald',sans-serif;font-size:1.1em;font-weight:600;color:var(--gold);margin:20px 0 6px;">${html}</h3>`
+              ? `<h3 style="font-family:'Oswald',sans-serif;font-size:1.1em;font-weight:600;color:${kickerColor};margin:20px 0 6px;">${html}</h3>`
               : `<p style="margin-bottom:1em;">${html}</p>`;
           }).join('');
           recapEl.innerHTML = `
             <div class="article-masthead">
-              <div class="article-kicker"><i class="fa-solid fa-flag" style="color:var(--gold)"></i> ${season} Season Preview</div>
-              <div class="article-hed">${preview.headline || ''}</div>
-              <div class="article-dek">${preview.subheadline || ''}</div>
-              <div class="article-byline"><i class="fa-solid fa-pen-nib"></i> By <strong>${preview.writer_name || 'Staff'}</strong> &nbsp;·&nbsp; ${preview.writer_outlet || ''} &nbsp;·&nbsp; ${(preview.generated_at || '').slice(0, 10)}</div>
+              <div class="article-kicker">${kickerIcon} ${kickerLabel}</div>
+              <div class="article-hed">${featuredArt.headline || ''}</div>
+              <div class="article-dek">${featuredArt.subheadline || ''}</div>
+              <div class="article-byline"><i class="fa-solid fa-pen-nib"></i> By <strong>${featuredArt.writer_name || 'Staff'}</strong> &nbsp;·&nbsp; ${featuredArt.writer_outlet || ''} &nbsp;·&nbsp; ${(featuredArt.generated_at || '').slice(0, 10)}</div>
             </div>
             <div class="article-body">${bodyHtml}</div>`;
         } else {
@@ -4160,7 +4166,7 @@
       }
     } catch (_) {}
 
-    // Fetch season_preview articles for ALL seasons
+    // Fetch season_preview and draft_recap articles for ALL seasons
     for (const season of [...SEASONS, 2026]) {
       try {
         const r = await fetch(`data/${season}/articles/season_preview.json`);
@@ -4169,6 +4175,15 @@
           if (!ld[season]) ld[season] = { articles: {} };
           if (!ld[season].articles) ld[season].articles = {};
           ld[season].articles['season_preview'] = art;
+        }
+      } catch(_) {}
+      try {
+        const r = await fetch(`data/${season}/articles/draft_recap.json`);
+        if (r.ok) {
+          const art = await r.json();
+          if (!ld[season]) ld[season] = { articles: {} };
+          if (!ld[season].articles) ld[season].articles = {};
+          ld[season].articles['draft_recap'] = art;
         }
       } catch(_) {}
     }
