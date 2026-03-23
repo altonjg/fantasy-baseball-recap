@@ -1056,6 +1056,13 @@ def generate_draft_recap(season: int) -> dict | None:
 
     all_teams_ctx = "\n\n".join(team_sections)
 
+    # Build explicit round-1 summary to anchor the prompt — prevents hallucination of pick order
+    round1_picks = sorted([p for p in picks if p.get("round") == 1], key=lambda x: x.get("pick", 999))
+    round1_summary = "\n".join(
+        f"  Pick {p['pick']:>2}: {team_key_to_name.get(p['team_key'], p['team_key'])} → {p.get('player_name','?')} ({p.get('position','?')}, {p.get('mlb_team','?')})"
+        for p in round1_picks
+    )
+
     # 9. Build prompt and call Claude
     writer_key = "simmons"
     writer = WRITER_STYLES[writer_key]
@@ -1106,7 +1113,10 @@ You have REAL DATA for all 14 teams: actual picks, each team's finish positions 
 
 {adp_note}
 
-CRITICAL INSTRUCTION: The TEAM-BY-TEAM DRAFT DATA below contains the ACTUAL picks made during the live draft — not projections, not ADP rankings, not what you think should have happened. Every "Rd X, Pick Y: PlayerName" line is a REAL pick that was made. Do NOT substitute players from your own knowledge of ADP or rankings. If the data says Pick 1 was Shohei Ohtani, then Shohei Ohtani was Pick 1 — full stop. Your job is to ANALYZE the actual picks, not rewrite them.
+⚠️ ROUND 1 PICKS — THESE ARE FACTS FROM THE LIVE DRAFT. DO NOT ALTER OR CONTRADICT THEM:
+{round1_summary}
+
+CRITICAL INSTRUCTION: Every pick listed above and in the TEAM-BY-TEAM section below is a REAL pick made in the live draft. Do NOT substitute players based on ADP, rankings, or your training data. If Pick 1 above says Shohei Ohtani, then Ohtani was Pick 1 — full stop. Analyze what actually happened.
 
 Use this data. Be specific. Reference player names, round numbers, and historical records. Make it feel like you actually watched every pick in the war room.
 
