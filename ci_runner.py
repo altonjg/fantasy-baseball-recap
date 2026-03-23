@@ -1106,6 +1106,8 @@ You have REAL DATA for all 14 teams: actual picks, each team's finish positions 
 
 {adp_note}
 
+CRITICAL INSTRUCTION: The TEAM-BY-TEAM DRAFT DATA below contains the ACTUAL picks made during the live draft — not projections, not ADP rankings, not what you think should have happened. Every "Rd X, Pick Y: PlayerName" line is a REAL pick that was made. Do NOT substitute players from your own knowledge of ADP or rankings. If the data says Pick 1 was Shohei Ohtani, then Shohei Ohtani was Pick 1 — full stop. Your job is to ANALYZE the actual picks, not rewrite them.
+
 Use this data. Be specific. Reference player names, round numbers, and historical records. Make it feel like you actually watched every pick in the war room.
 
 LEAGUE STRUCTURE:
