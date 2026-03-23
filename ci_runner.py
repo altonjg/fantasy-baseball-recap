@@ -1157,19 +1157,21 @@ Respond ONLY with valid JSON — no markdown fences:
   "body": "...(full article, 2000–2500 words)..."
 }}"""
 
-    try:
-        raw     = _call_claude(prompt, max_tokens=6500)
-        article = _safe_json_parse(raw)
-        article["generated_at"]  = datetime.now().isoformat()
-        article["season"]        = season
-        article["writer_key"]    = writer_key
-        article["writer_name"]   = writer["name"]
-        article["writer_outlet"] = writer["outlet"]
-        article["type"]          = "draft_recap"
-        return article
-    except Exception as e:
-        print(f"[ci_runner] Draft recap generation failed: {e}", file=sys.stderr)
-        return None
+    for attempt in range(3):
+        try:
+            raw     = _call_claude(prompt, max_tokens=6500)
+            article = _safe_json_parse(raw)
+            article["generated_at"]  = datetime.now().isoformat()
+            article["season"]        = season
+            article["writer_key"]    = writer_key
+            article["writer_name"]   = writer["name"]
+            article["writer_outlet"] = writer["outlet"]
+            article["type"]          = "draft_recap"
+            return article
+        except Exception as e:
+            print(f"[ci_runner] Draft recap generation failed (attempt {attempt+1}/3): {e}", file=sys.stderr)
+            if attempt == 2:
+                return None
 
 
 def run_draft_recap(season: int, force: bool = False) -> bool:
