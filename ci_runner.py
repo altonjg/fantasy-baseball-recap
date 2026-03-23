@@ -123,12 +123,26 @@ def _anthropic_client():
     return anthropic.Anthropic(api_key=api_key)
 
 
-def _call_claude(prompt: str, max_tokens: int = 1024, model: str = "claude-sonnet-4-6") -> str:
+def _call_claude(prompt: str, max_tokens: int = 1024, model: str = "claude-sonnet-4-6",
+                 precommit_facts: str | None = None) -> str:
+    """Call Claude. If precommit_facts is provided, use a multi-turn conversation
+    where Claude first confirms the facts before writing — prevents hallucination."""
     client = _anthropic_client()
+    if precommit_facts:
+        messages = [
+            {"role": "user", "content": (
+                f"Before we begin, confirm the following VERIFIED FACTS by repeating them back "
+                f"exactly as stated:\n\n{precommit_facts}"
+            )},
+            {"role": "assistant", "content": f"Confirmed. {precommit_facts}"},
+            {"role": "user", "content": prompt},
+        ]
+    else:
+        messages = [{"role": "user", "content": prompt}]
     msg = client.messages.create(
         model=model,
         max_tokens=max_tokens,
-        messages=[{"role": "user", "content": prompt}],
+        messages=messages,
     )
     raw = msg.content[0].text.strip()
     raw = re.sub(r"^```(?:json)?\s*", "", raw)
@@ -1181,9 +1195,16 @@ full article, 2000–2500 words — markdown ok
         for p in round1_picks
     )
 
+    precommit = (
+        f"Round 1 picks in order: {round1_summary}\n"
+        f"The first overall pick was {round1_picks[0].get('player_name','?')} "
+        f"by {team_key_to_name.get(round1_picks[0]['team_key'],'?')}. "
+        f"These are facts from the live draft and must not be contradicted in the article."
+    )
+
     for attempt in range(3):
         try:
-            raw = _call_claude(prompt, max_tokens=8000)
+            raw = _call_claude(prompt, max_tokens=8000, precommit_facts=precommit)
             hl_match   = re.search(r'<headline>(.*?)</headline>', raw, re.DOTALL)
             sub_match  = re.search(r'<subheadline>(.*?)</subheadline>', raw, re.DOTALL)
             # Accept body even if closing tag is missing (token cutoff)
