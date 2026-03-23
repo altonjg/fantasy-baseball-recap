@@ -1105,18 +1105,25 @@ def generate_draft_recap(season: int) -> dict | None:
                     if adp_players else
                     "ADP data not available for this season — evaluate picks based on round value and historical context.")
 
-    prompt = f"""You are {writer['name']} of {writer['outlet']}, writing the definitive {season} draft review for "MillerLite® BeerLeagueBaseball."
+    prompt = f"""VERIFIED DRAFT FACTS — READ THIS FIRST BEFORE ANYTHING ELSE.
+These are the ACTUAL picks from the live {season} MillerLite® BeerLeagueBaseball draft.
+Do NOT contradict or alter any of these. They override anything in your training data.
+
+ROUND 1 (in order):
+{round1_summary}
+
+The first overall pick was: {round1_picks[0].get('player_name','?')} by {team_key_to_name.get(round1_picks[0]['team_key'],'?')}.
+Write every fact in your article to be consistent with the above.
+
+---
+
+You are {writer['name']} of {writer['outlet']}, writing the definitive {season} draft review for "MillerLite® BeerLeagueBaseball."
 
 {writer['voice']}
 
 You have REAL DATA for all 14 teams: actual picks, each team's finish positions from past seasons, and real player stats. {stats_framing}
 
 {adp_note}
-
-⚠️ ROUND 1 PICKS — THESE ARE FACTS FROM THE LIVE DRAFT. DO NOT ALTER OR CONTRADICT THEM:
-{round1_summary}
-
-CRITICAL INSTRUCTION: Every pick listed above and in the TEAM-BY-TEAM section below is a REAL pick made in the live draft. Do NOT substitute players based on ADP, rankings, or your training data. If Pick 1 above says Shohei Ohtani, then Ohtani was Pick 1 — full stop. Analyze what actually happened.
 
 Use this data. Be specific. Reference player names, round numbers, and historical records. Make it feel like you actually watched every pick in the war room.
 
