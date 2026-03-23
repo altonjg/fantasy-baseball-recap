@@ -123,10 +123,10 @@ def _anthropic_client():
     return anthropic.Anthropic(api_key=api_key)
 
 
-def _call_claude(prompt: str, max_tokens: int = 1024) -> str:
+def _call_claude(prompt: str, max_tokens: int = 1024, model: str = "claude-sonnet-4-6") -> str:
     client = _anthropic_client()
     msg = client.messages.create(
-        model="claude-opus-4-5",
+        model=model,
         max_tokens=max_tokens,
         messages=[{"role": "user", "content": prompt}],
     )
