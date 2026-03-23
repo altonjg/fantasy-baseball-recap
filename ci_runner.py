@@ -1165,7 +1165,7 @@ Write a LONG, richly detailed draft review (2000–2500 words). Use Roman numera
    For EACH team write 5–7 sentences:
    • Draft slot and first-round pick (name the player explicitly)
    • 2–3 key picks from rounds 2–10, including any steals or reaches if flagged
-   • {stats_year} actual stats for their key picks (use the real numbers — WAR, wRC+, HR, ERA, FIP)
+   • Qualitative description of each key pick's value — DO NOT invent or cite specific statistics (HR totals, ERA, WAR, etc.) unless the exact number appears in the verified draft data above. Instead use phrases like "coming off a monster year", "perennial 30-HR threat", "elite strikeout rate" without fabricating specific figures.
    • Historical finish trajectory (are they a dynasty, a pretender, a rebuild?)
    • Historical drafting tendencies if the data shows patterns
    • A letter grade (A through F) with a sharp one-line justification
