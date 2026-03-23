@@ -1150,23 +1150,34 @@ Write a LONG, richly detailed draft review (2000–2500 words). Use Roman numera
 
 Use **bold** for team and player names throughout. Markdown OK.
 
-Respond ONLY with valid JSON — no markdown fences:
-{{
-  "headline": "...(punchy, specific draft review headline — not a question, a declaration)...",
-  "subheadline": "...(one sharp sentence that makes you want to read the whole thing)...",
-  "body": "...(full article, 2000–2500 words)..."
-}}"""
+Respond using EXACTLY this format with these delimiter lines — do not use JSON:
+<<<HEADLINE>>>
+(your punchy headline here — one line, no quotes)
+<<<SUBHEADLINE>>>
+(your one-sentence subheadline here — one line, no quotes)
+<<<BODY>>>
+(full article, 2000–2500 words — markdown ok, no restrictions)
+<<<END>>>"""
 
     for attempt in range(3):
         try:
-            raw     = _call_claude(prompt, max_tokens=6500)
-            article = _safe_json_parse(raw)
-            article["generated_at"]  = datetime.now().isoformat()
-            article["season"]        = season
-            article["writer_key"]    = writer_key
-            article["writer_name"]   = writer["name"]
-            article["writer_outlet"] = writer["outlet"]
-            article["type"]          = "draft_recap"
+            raw = _call_claude(prompt, max_tokens=6500)
+            hl_match  = re.search(r'<<<HEADLINE>>>\s*(.*?)\s*<<<SUBHEADLINE>>>', raw, re.DOTALL)
+            sub_match = re.search(r'<<<SUBHEADLINE>>>\s*(.*?)\s*<<<BODY>>>', raw, re.DOTALL)
+            body_match = re.search(r'<<<BODY>>>\s*(.*?)\s*<<<END>>>', raw, re.DOTALL)
+            if not (hl_match and sub_match and body_match):
+                raise ValueError(f"Missing delimiters in response (attempt {attempt+1})")
+            article = {
+                "headline":    hl_match.group(1).strip(),
+                "subheadline": sub_match.group(1).strip(),
+                "body":        body_match.group(1).strip(),
+                "generated_at":  datetime.now().isoformat(),
+                "season":        season,
+                "writer_key":    writer_key,
+                "writer_name":   writer["name"],
+                "writer_outlet": writer["outlet"],
+                "type":          "draft_recap",
+            }
             return article
         except Exception as e:
             print(f"[ci_runner] Draft recap generation failed (attempt {attempt+1}/3): {e}", file=sys.stderr)
