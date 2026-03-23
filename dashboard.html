@@ -211,7 +211,7 @@
   /* ── ARTICLE ── */
   .article-wrap { display: grid; grid-template-columns: 1fr 250px; gap: 28px; align-items: start; }
   .article-wrap.preview-fullwidth { grid-template-columns: 1fr; }
-  .article-wrap.preview-fullwidth .article-body { max-width: none; columns: 2; column-gap: 48px; column-rule: 1px solid var(--border); }
+  .article-wrap.preview-fullwidth .article-body { max-width: none; columns: 2; column-gap: 48px; column-rule: 1px solid var(--border); overflow: visible; }
   .article-wrap.preview-fullwidth .article-body h2 { column-span: all; }
   .article-wrap.preview-fullwidth .article-masthead { border-top-width: 4px; padding: 28px 32px; }
   .article-wrap.preview-fullwidth .article-hed { font-size: 2.2em; }
@@ -229,7 +229,7 @@
   /* Wide-screen: 2-column magazine layout for weekly recap body */
   @media (min-width: 1400px) {
     .article-wrap:not(.preview-fullwidth) .article-body {
-      columns: 2; column-gap: 40px; column-rule: 1px solid var(--border);
+      columns: 2; column-gap: 40px; column-rule: 1px solid var(--border); overflow: visible;
     }
     .article-wrap:not(.preview-fullwidth) .article-body h2 { column-span: all; }
   }
