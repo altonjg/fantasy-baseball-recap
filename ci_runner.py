@@ -1204,24 +1204,25 @@ full article, 2000–2500 words — markdown ok
     # Build headline programmatically from verified data — model cannot hallucinate this
     p1_player = round1_picks[0].get('player_name', '?').split('(')[0].strip()
     p1_team   = team_key_to_name.get(round1_picks[0]['team_key'], '?')
-    # Find biggest steal (largest positive ADP delta in round 1-5)
+    # Find biggest steal across all rounds: steal = pick_num > adp_val (player fell past consensus)
     best_steal_note = ""
     best_delta = 0
     for pk in picks:
-        if pk.get('round', 99) > 5:
+        if pk.get('round', 99) > 20:  # ignore garbage-time picks where ADP is unreliable
             continue
         adp_val = adp_players.get(pk.get('player_key', ''), {}).get('adp', 0)
         pick_num = pk.get('pick', 0)
         if adp_val and pick_num:
-            delta = adp_val - pick_num
+            delta = pick_num - adp_val  # positive = fell past ADP = steal
             if delta > best_delta:
                 best_delta = delta
                 steal_team = team_key_to_name.get(pk['team_key'], '')
                 steal_player = pk.get('player_name', '').split('(')[0].strip()
-                best_steal_note = f"{steal_team} Stealing {steal_player} at Pick {pick_num}"
+                steal_pick   = pick_num
+                best_steal_note = f"{steal_team} snagging {steal_player} at Pick {steal_pick} (ADP {adp_val:.0f})"
     headline = f"{p1_player} Goes First Overall to {p1_team}"
     if best_steal_note:
-        headline += f", and {best_steal_note} Was the Draft's Best Move"
+        headline += f", and {best_steal_note} Was the Steal of the Draft"
 
     for attempt in range(3):
         try:
