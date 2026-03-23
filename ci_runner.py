@@ -1004,12 +1004,12 @@ def generate_draft_recap(season: int) -> dict | None:
             adp_val   = adp_entry.get("adp", 0)
             delta = ""
             if adp_val and pick_num:
-                diff = adp_val - pick_num
+                diff = pick_num - adp_val  # positive = fell past ADP (steal), negative = taken before ADP (reach)
                 if diff >= 10:
-                    delta = f" [STEAL: ADP {adp_val:.0f}]"
+                    delta = f" [STEAL: ADP {adp_val:.0f}, fell {diff:.0f} picks]"
                     steals.append(pk.get("player_name", "?"))
                 elif diff <= -10:
-                    delta = f" [REACH: ADP {adp_val:.0f}]"
+                    delta = f" [REACH: ADP {adp_val:.0f}, taken {-diff:.0f} picks early]"
                     reaches.append(pk.get("player_name", "?"))
 
             stats_note = ""
