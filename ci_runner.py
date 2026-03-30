@@ -372,17 +372,14 @@ CURRENT STANDINGS (top 10):
 
 {"TOP PERFORMERS:" + chr(10) + top_ctx if top_ctx else ""}
 
-{"WAIVER WIRE PICKUPS (COMPLETE AND EXHAUSTIVE LIST — do not reference any pickup not on this list):" + chr(10) + waiver_ctx if waiver_ctx else ""}
-
 Write a weekly recap column (600–900 words) in {writer['name']}'s authentic voice. Use 3–4 bold section headers (## Header) to break the piece into readable chunks — e.g. a lede section, a matchup deep-dive, a standings section, and a closing. Structure:
 1. Open with the most compelling storyline of the week (2–3 paragraphs)
 2. Deep-dive on 3–4 matchups — name specific players and their real MLB stats when analyzing why a team won or lost
 3. A section highlighting standout individual performances: call out 2–3 real players by name with their actual stats from the week
 4. ## Standings & Race — what the week means for the playoff picture
-5. ## Looking Ahead — 1–2 paragraphs teasing next week's key matchups; if the WAIVER WIRE section above is present and non-empty, you MAY briefly mention 1–2 pickups from it by name
+5. ## Looking Ahead — 1–2 paragraphs teasing next week's key matchups (do NOT mention waiver pickups or roster moves — those will be appended separately)
 
 IMPORTANT: Each matchup includes "[Team Name] contributors:" lines — these explicitly name which players belong to which team. Use these to correctly attribute players to their teams. Name real MLB players and cite their actual stats (HR, K, ERA, etc.) when explaining each team's performance. Do not swap players between teams and do not write in vague generalities when you have specific player data available.
-CRITICAL — WAIVER PICKUPS: The list above is complete and exhaustive. You are PROHIBITED from naming any waiver pickup, free agent add, or roster move not explicitly listed there. Do not invent names, do not guess, do not reference "other moves." If a team is not on the list, they made no pickups this week — do not claim otherwise. Violating this rule produces factual errors in a published article.
 Use **bold** for team names throughout. Markdown OK. Write as if published on {writer['outlet']}.
 
 Respond ONLY with valid JSON — no markdown fences:
@@ -402,6 +399,14 @@ Respond ONLY with valid JSON — no markdown fences:
         article["writer_outlet"]   = writer["outlet"]
         article["is_playoff"]      = is_playoff
         article["is_championship"] = is_champ
+
+        # Append a programmatic waiver wire section so Claude never has to write it
+        if adds_by_team:
+            waiver_md_lines = ["## Waiver Wire"]
+            for team, players in adds_by_team.items():
+                waiver_md_lines.append(f"**{team}** added: {', '.join(players[:4])}")
+            article["body"] = article.get("body", "") + "\n\n" + "\n\n".join(waiver_md_lines)
+
         return article
     except Exception as e:
         print(f"[ci_runner] Recap article generation failed: {e}", file=sys.stderr)
