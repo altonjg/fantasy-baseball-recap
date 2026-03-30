@@ -3440,11 +3440,15 @@
         t2cats = t2win ? Math.round((t2.points||5)) : Math.round((t1.points||5));
         [t1cats, t2cats] = [t1win ? 9 : 5, t2win ? 9 : 5];
       }
+      // Always show winner on the left regardless of Yahoo's team ordering
+      const [lft, rgt, lCats, rCats, lWin, rWin] = t2win
+        ? [t2, t1, t2cats, t1cats, true, false]
+        : [t1, t2, t1cats, t2cats, t1win, t2win];
       const cardCls = isChamp ? 'score-card championship' : 'score-card';
       return `<div class="${cardCls}" style="margin-bottom:10px;">
-        <div class="score-team"><span class="tp-clickable" onclick="showTeamProfile('${t1.team_key}')" style="display:contents;">${_badge(t1.name,t1.logo_url||'',32)}</span><div><div class="score-tname ${t1win?'win':''} tp-clickable" onclick="showTeamProfile('${t1.team_key}')">${t1.name}</div><div class="score-mgr">${t1.manager||''}</div></div></div>
-        <div class="score-center"><div class="score-type">${_roundBadge(m, season)}</div><div class="score-nums">${t1cats} – ${t2cats}</div><div class="score-cats">category wins</div></div>
-        <div class="score-team right"><span class="tp-clickable" onclick="showTeamProfile('${t2.team_key}')" style="display:contents;">${_badge(t2.name,t2.logo_url||'',32)}</span><div><div class="score-tname ${t2win?'win':''} tp-clickable" onclick="showTeamProfile('${t2.team_key}')">${t2.name}</div><div class="score-mgr">${t2.manager||''}</div></div></div>
+        <div class="score-team"><span class="tp-clickable" onclick="showTeamProfile('${lft.team_key}')" style="display:contents;">${_badge(lft.name,lft.logo_url||'',32)}</span><div><div class="score-tname ${lWin?'win':''} tp-clickable" onclick="showTeamProfile('${lft.team_key}')">${lft.name}</div><div class="score-mgr">${lft.manager||''}</div></div></div>
+        <div class="score-center"><div class="score-type">${_roundBadge(m, season)}</div><div class="score-nums">${lCats} – ${rCats}</div><div class="score-cats">category wins</div></div>
+        <div class="score-team right"><span class="tp-clickable" onclick="showTeamProfile('${rgt.team_key}')" style="display:contents;">${_badge(rgt.name,rgt.logo_url||'',32)}</span><div><div class="score-tname ${rWin?'win':''} tp-clickable" onclick="showTeamProfile('${rgt.team_key}')">${rgt.name}</div><div class="score-mgr">${rgt.manager||''}</div></div></div>
       </div>`;
     }).join('');
 
