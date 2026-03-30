@@ -1356,6 +1356,42 @@
   "transactions": [
     {
       "type": "add/drop",
+      "timestamp": 1774889236,
+      "players": [
+        {
+          "name": "Owen Caissie",
+          "action": "add",
+          "team": "North Correa",
+          "position": "OF"
+        },
+        {
+          "name": "Cedric Mullins",
+          "action": "drop",
+          "team": "North Correa",
+          "position": "OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1774889165,
+      "players": [
+        {
+          "name": "Emerson Hancock",
+          "action": "add",
+          "team": "North Correa",
+          "position": "SP,RP"
+        },
+        {
+          "name": "Shane Smith",
+          "action": "drop",
+          "team": "North Correa",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
       "timestamp": 1774883503,
       "players": [
         {
@@ -1719,30 +1755,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1774449652,
-      "players": [
-        {
-          "name": "Steven Okert",
-          "action": "add",
-          "team": "Albuquerque Bombers",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1774449628,
-      "players": [
-        {
-          "name": "Payton Tolle",
-          "action": "add",
-          "team": "Benchwarmers",
-          "position": "SP,RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1764,5 +1776,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-03-30T16:38:58.964215"
+  "saved_at": "2026-03-30T16:49:45.446657"
 }
