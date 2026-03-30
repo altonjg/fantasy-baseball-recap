@@ -58,7 +58,7 @@
               "name": "Byron Buxton",
               "mlb_team": "MIN",
               "position": "OF",
-              "stats": "R:2, OBP:.385",
+              "stats": "R:2, OBP:.357",
               "score": 6.0
             }
           ]
@@ -1773,8 +1773,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-03-30T16:49:45.446657"
+  "saved_at": "2026-03-30T20:37:56.119379"
 }
