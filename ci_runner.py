@@ -348,11 +348,12 @@ CURRENT STANDINGS (top 10):
 
 Write a weekly recap column (600–900 words) in {writer['name']}'s authentic voice. Use 3–4 bold section headers (## Header) to break the piece into readable chunks — e.g. a lede section, a matchup deep-dive, a standings section, and a closing. Structure:
 1. Open with the most compelling storyline of the week (2–3 paragraphs)
-2. Deep-dive on 3–4 matchups with specific stat context
-3. Standout individual performances worth calling out
+2. Deep-dive on 3–4 matchups — name specific players and their real MLB stats when analyzing why a team won or lost
+3. A section highlighting standout individual performances: call out 2–3 real players by name with their actual stats from the week
 4. ## Standings & Race — what the week means for the playoff picture
 5. ## Looking Ahead — 1–2 paragraphs teasing next week's key matchups
 
+IMPORTANT: Use the "Key contributors" player data provided for each team. Name real MLB players and cite their actual stats (HR, K, ERA, etc.) when explaining each team's performance. Do not write in vague generalities when you have specific player data available.
 Use **bold** for team names throughout. Markdown OK. Write as if published on {writer['outlet']}.
 
 Respond ONLY with valid JSON — no markdown fences:
