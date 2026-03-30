@@ -443,17 +443,23 @@ def get_top_players_this_week(
     return players
 
 
+_COUNTING_STAT_NAMES = {"R", "HR", "RBI", "SB", "K", "QS", "NSVH"}
+
+
 def get_team_top_players(
     session: requests.Session,
     team_key: str,
     week: int,
+    stat_categories: dict[str, str],
     top_n: int = 5,
 ) -> list[dict]:
     """
-    Fetch the top-scoring players on a specific fantasy team for a given week.
-    Returns up to top_n players sorted by fantasy points descending.
+    Fetch top contributors on a specific fantasy team for a given week.
+    Returns up to top_n players sorted by counting-stat contribution.
 
-    Each item: {"name": str, "mlb_team": str, "position": str, "points": float}
+    Each item:
+      {"name": str, "mlb_team": str, "position": str, "stats": str, "score": float}
+    where "stats" is a compact readable string, e.g. "K:7, ERA:0.00, QS:1".
     """
     try:
         data = _api_get(session, f"team/{team_key}/players/stats;type=week;week={week}")
@@ -462,6 +468,9 @@ def get_team_top_players(
 
     team_block = data.get("team", [])
     players_block = team_block[1].get("players", {}) if len(team_block) > 1 else {}
+
+    # Build reverse map: stat_id -> display_name
+    id_to_name = {sid: name for sid, name in stat_categories.items()}
 
     players = []
     for i in range(int(players_block.get("count", 0))):
@@ -473,26 +482,50 @@ def get_team_top_players(
                 if isinstance(item, dict):
                     p_flat.update(item)
 
-            points_block: dict = {}
-            for part in p[1:]:
-                if isinstance(part, dict) and "player_points" in part:
-                    points_block = part["player_points"]
-                    break
+            stats_raw = p[1].get("player_stats", {}).get("stats", []) if len(p) > 1 else []
+            named: dict[str, str] = {}
+            for s in stats_raw:
+                stat = s.get("stat", {})
+                sid = str(stat.get("stat_id", ""))
+                val = stat.get("value", "")
+                name = id_to_name.get(sid)
+                if name and val not in ("", None):
+                    named[name] = str(val)
 
-            points = float(points_block.get("total", 0))
-            if points <= 0:
+            # Counting-stat score (proxy for contribution)
+            score = 0.0
+            for cat, v in named.items():
+                if cat in _COUNTING_STAT_NAMES:
+                    try:
+                        score += float(v)
+                    except ValueError:
+                        pass
+                elif cat == "H/AB":
+                    try:
+                        score += float(v.split("/")[0])
+                    except (ValueError, IndexError):
+                        pass
+
+            if score <= 0:
                 continue
 
+            # Compact stats string — skip zeros and H/AB denominator
+            parts = []
+            for cat in ["R", "HR", "RBI", "SB", "OBP", "K", "ERA", "WHIP", "QS", "NSVH", "IP"]:
+                if cat in named and named[cat] not in ("0", "0.0", "0.00", ".000"):
+                    parts.append(f"{cat}:{named[cat]}")
+
             players.append({
-                "name": p_flat.get("full") or p_flat.get("name", {}).get("full", "Unknown"),
+                "name": p_flat.get("name", {}).get("full", "Unknown"),
                 "mlb_team": p_flat.get("editorial_team_abbr", ""),
                 "position": p_flat.get("display_position", ""),
-                "points": points,
+                "stats": ", ".join(parts),
+                "score": score,
             })
         except Exception:
             continue
 
-    players.sort(key=lambda x: x["points"], reverse=True)
+    players.sort(key=lambda x: x["score"], reverse=True)
     return players[:top_n]
 
 
@@ -758,7 +791,7 @@ def fetch_weekly_data(oauth: YahooOAuth, league_key: str, week: Optional[int] = 
     print("  Fetching per-team player stats...")
     for m in matchups:
         for t in m["teams"]:
-            t["top_players"] = get_team_top_players(session, t["team_key"], recap_week, top_n=5)
+            t["top_players"] = get_team_top_players(session, t["team_key"], recap_week, stat_categories, top_n=5)
 
     # Determine stat categories for lower-is-better context
     lower_is_better_names = {

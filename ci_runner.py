@@ -286,8 +286,11 @@ def generate_recap_article(week_data: dict, standings: list[dict]) -> dict | Non
         players = team.get("top_players", [])
         if not players:
             return ""
-        parts = [f"{p['name']} ({p.get('position','?')}, {p.get('mlb_team','?')}): {p['points']:.1f}pts" for p in players[:3]]
-        return "    Top players: " + " | ".join(parts)
+        parts = [
+            f"{p['name']} ({p.get('position','?')}, {p.get('mlb_team','?')}): {p.get('stats','')}"
+            for p in players[:3] if p.get("stats")
+        ]
+        return ("    Key contributors: " + " | ".join(parts)) if parts else ""
 
     matchup_lines = []
     for m in week_data.get("matchups", []):
@@ -1519,8 +1522,28 @@ def main() -> None:
     print(f"[ci_runner] Got data for {season} Week {week_num}")
 
     if args.dry_run:
-        print("[ci_runner] --dry-run: no files will be written.")
-        print(json.dumps(week_data, indent=2, default=str)[:2000])
+        print("[ci_runner] --dry-run: showing recap prompt context (no files written, no Claude call).")
+        standings = week_data.get("standings", [])
+        # Reuse the same prompt-building logic so output mirrors what Claude sees
+        _dry_prompt = generate_recap_article.__wrapped__(week_data, standings) if hasattr(generate_recap_article, "__wrapped__") else None
+        if _dry_prompt is None:
+            # Fallback: print matchups + per-team players
+            print(f"\n=== Week {week_num} Matchups ===")
+            for m in week_data.get("matchups", []):
+                teams = m.get("teams", [])
+                if len(teams) < 2:
+                    continue
+                t1, t2 = teams[0], teams[1]
+                print(f"  {t1['name']} ({t1['points']}) vs {t2['name']} ({t2['points']})")
+                for t in [t1, t2]:
+                    players = t.get("top_players", [])
+                    if players:
+                        print(f"    {t['name']} contributors:")
+                        for p in players:
+                            print(f"      {p['name']} ({p.get('position','?')}, {p.get('mlb_team','?')}): {p.get('stats','')}")
+            print(f"\n=== Standings ===")
+            for s in standings[:10]:
+                print(f"  {s.get('rank')}. {s['name']}: {s.get('wins',0)}-{s.get('losses',0)}")
         return
 
     # Guard: skip saving if there are no regular-season matchups with real points.
