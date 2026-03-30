@@ -282,6 +282,13 @@ def generate_recap_article(week_data: dict, standings: list[dict]) -> dict | Non
     week_num = week_data.get("week", "?")
     league   = week_data.get("league_name", "MillerLite® BeerLeagueBaseball")
 
+    def _fmt_team_players(team: dict) -> str:
+        players = team.get("top_players", [])
+        if not players:
+            return ""
+        parts = [f"{p['name']} ({p.get('position','?')}, {p.get('mlb_team','?')}): {p['points']:.1f}pts" for p in players[:3]]
+        return "    Top players: " + " | ".join(parts)
+
     matchup_lines = []
     for m in week_data.get("matchups", []):
         teams = m.get("teams", [])
@@ -294,14 +301,19 @@ def generate_recap_article(week_data: dict, standings: list[dict]) -> dict | Non
             "[CONSOLATION] "  if m.get("is_consolation") else ""
         )
         if m.get("is_tied"):
-            matchup_lines.append(f"  {label}TIE: {t1['name']} {t1['points']:.1f} vs {t2['name']} {t2['points']:.1f}")
+            line = f"  {label}TIE: {t1['name']} {t1['points']:.1f} vs {t2['name']} {t2['points']:.1f}"
         else:
             winner = t1 if t1.get("team_key") == m.get("winner_key") else t2
             loser  = t2 if winner is t1 else t1
-            matchup_lines.append(
+            line = (
                 f"  {label}{winner['name']} def. {loser['name']} "
                 f"({winner['points']:.1f}–{loser['points']:.1f})"
             )
+        matchup_lines.append(line)
+        for t in [t1, t2]:
+            player_line = _fmt_team_players(t)
+            if player_line:
+                matchup_lines.append(player_line)
 
     standings_ctx = "\n".join(
         f"  {s['rank']}. {s['name']}: {s['wins']}-{s['losses']} ({s.get('points_for',0):.0f} PF)"

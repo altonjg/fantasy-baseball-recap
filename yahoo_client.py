@@ -443,6 +443,59 @@ def get_top_players_this_week(
     return players
 
 
+def get_team_top_players(
+    session: requests.Session,
+    team_key: str,
+    week: int,
+    top_n: int = 5,
+) -> list[dict]:
+    """
+    Fetch the top-scoring players on a specific fantasy team for a given week.
+    Returns up to top_n players sorted by fantasy points descending.
+
+    Each item: {"name": str, "mlb_team": str, "position": str, "points": float}
+    """
+    try:
+        data = _api_get(session, f"team/{team_key}/players/stats;type=week;week={week}")
+    except Exception:
+        return []
+
+    team_block = data.get("team", [])
+    players_block = team_block[1].get("players", {}) if len(team_block) > 1 else {}
+
+    players = []
+    for i in range(int(players_block.get("count", 0))):
+        try:
+            p = players_block[str(i)]["player"]
+            p_info = p[0]
+            p_flat: dict = {}
+            for item in p_info:
+                if isinstance(item, dict):
+                    p_flat.update(item)
+
+            points_block: dict = {}
+            for part in p[1:]:
+                if isinstance(part, dict) and "player_points" in part:
+                    points_block = part["player_points"]
+                    break
+
+            points = float(points_block.get("total", 0))
+            if points <= 0:
+                continue
+
+            players.append({
+                "name": p_flat.get("full") or p_flat.get("name", {}).get("full", "Unknown"),
+                "mlb_team": p_flat.get("editorial_team_abbr", ""),
+                "position": p_flat.get("display_position", ""),
+                "points": points,
+            })
+        except Exception:
+            continue
+
+    players.sort(key=lambda x: x["points"], reverse=True)
+    return players[:top_n]
+
+
 # ---------------------------------------------------------------------------
 # Draft results
 # ---------------------------------------------------------------------------
@@ -701,6 +754,11 @@ def fetch_weekly_data(oauth: YahooOAuth, league_key: str, week: Optional[int] = 
     except Exception as e:
         print(f"  Warning: Could not fetch top players ({e}). Skipping.")
         top_players = []
+
+    print("  Fetching per-team player stats...")
+    for m in matchups:
+        for t in m["teams"]:
+            t["top_players"] = get_team_top_players(session, t["team_key"], recap_week, top_n=5)
 
     # Determine stat categories for lower-is-better context
     lower_is_better_names = {
