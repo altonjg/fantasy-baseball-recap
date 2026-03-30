@@ -334,6 +334,7 @@ def generate_recap_article(week_data: dict, standings: list[dict]) -> dict | Non
 
     # Build waiver / FA pickup context
     adds_by_team: dict[str, list[str]] = {}
+    seen_adds: set[tuple[str, str]] = set()
     for tx in week_data.get("transactions", []):
         if tx.get("type") not in ("add", "add/drop"):
             continue
@@ -345,10 +346,14 @@ def generate_recap_article(week_data: dict, standings: list[dict]) -> dict | Non
             pos = p.get("position", "")
             if not team:
                 continue
+            key = (team, name)
+            if key in seen_adds:
+                continue
+            seen_adds.add(key)
             entry = f"{name} ({pos})" if pos else name
             adds_by_team.setdefault(team, []).append(entry)
     waiver_lines = [
-        f"  {team}: added {', '.join(players[:4])}"
+        f"  {team}: {', '.join(players[:4])}"
         for team, players in adds_by_team.items()
     ]
     waiver_ctx = "\n".join(waiver_lines)
@@ -367,7 +372,7 @@ CURRENT STANDINGS (top 10):
 
 {"TOP PERFORMERS:" + chr(10) + top_ctx if top_ctx else ""}
 
-{"WAIVER WIRE / FA PICKUPS THIS WEEK:" + chr(10) + waiver_ctx if waiver_ctx else ""}
+{"WAIVER WIRE PICKUPS (COMPLETE AND EXHAUSTIVE LIST — do not reference any pickup not on this list):" + chr(10) + waiver_ctx if waiver_ctx else ""}
 
 Write a weekly recap column (600–900 words) in {writer['name']}'s authentic voice. Use 3–4 bold section headers (## Header) to break the piece into readable chunks — e.g. a lede section, a matchup deep-dive, a standings section, and a closing. Structure:
 1. Open with the most compelling storyline of the week (2–3 paragraphs)
@@ -377,7 +382,7 @@ Write a weekly recap column (600–900 words) in {writer['name']}'s authentic vo
 5. ## Looking Ahead — 1–2 paragraphs teasing next week's key matchups; if the WAIVER WIRE section above is present and non-empty, you MAY briefly mention 1–2 pickups from it by name
 
 IMPORTANT: Each matchup includes "[Team Name] contributors:" lines — these explicitly name which players belong to which team. Use these to correctly attribute players to their teams. Name real MLB players and cite their actual stats (HR, K, ERA, etc.) when explaining each team's performance. Do not swap players between teams and do not write in vague generalities when you have specific player data available.
-CRITICAL: For waiver pickups, you MUST only reference players that appear in the WAIVER WIRE / FA PICKUPS THIS WEEK section above. Do NOT invent, guess, or reference any pickup not explicitly listed there. If the section is absent or empty, omit all waiver discussion entirely.
+CRITICAL — WAIVER PICKUPS: The list above is complete and exhaustive. You are PROHIBITED from naming any waiver pickup, free agent add, or roster move not explicitly listed there. Do not invent names, do not guess, do not reference "other moves." If a team is not on the list, they made no pickups this week — do not claim otherwise. Violating this rule produces factual errors in a published article.
 Use **bold** for team names throughout. Markdown OK. Write as if published on {writer['outlet']}.
 
 Respond ONLY with valid JSON — no markdown fences:
