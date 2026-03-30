@@ -760,14 +760,14 @@ def run_trades(week_data: dict, season: int) -> list[dict]:
     return new_articles
 
 
-def run_recap(week_data: dict, season: int) -> bool:
+def run_recap(week_data: dict, season: int, force: bool = False) -> bool:
     """Generate weekly recap article. Returns True on success."""
     week_num     = week_data.get("week", 0)
     articles_dir = DATA_ROOT / str(season) / "articles"
     out_path     = articles_dir / f"week_{int(week_num):02d}_recap.json"
 
-    if out_path.exists():
-        print(f"[ci_runner] Recap article for week {week_num} already exists — skipping.")
+    if out_path.exists() and not force:
+        print(f"[ci_runner] Recap article for week {week_num} already exists — skipping. Use --force to regenerate.")
         return True
 
     standings = week_data.get("standings", [])
@@ -1574,7 +1574,7 @@ def main() -> None:
 
     # Weekly recap
     if args.mode in ("recap", "full"):
-        ok = run_recap(week_data, season)
+        ok = run_recap(week_data, season, force=args.force)
         if not ok:
             print("[ci_runner] Recap article generation failed.", file=sys.stderr)
             sys.exit(1)
