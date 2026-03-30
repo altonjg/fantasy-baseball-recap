@@ -332,6 +332,27 @@ def generate_recap_article(week_data: dict, standings: list[dict]) -> dict | Non
         top_ctx_lines.append(line)
     top_ctx = "\n".join(top_ctx_lines)
 
+    # Build waiver / FA pickup context
+    adds_by_team: dict[str, list[str]] = {}
+    for tx in week_data.get("transactions", []):
+        if tx.get("type") not in ("add", "add/drop"):
+            continue
+        for p in tx.get("players", []):
+            if p.get("action") != "add":
+                continue
+            team = p.get("team", "")
+            name = p.get("name", "Unknown")
+            pos = p.get("position", "")
+            if not team:
+                continue
+            entry = f"{name} ({pos})" if pos else name
+            adds_by_team.setdefault(team, []).append(entry)
+    waiver_lines = [
+        f"  {team}: added {', '.join(players[:4])}"
+        for team, players in adds_by_team.items()
+    ]
+    waiver_ctx = "\n".join(waiver_lines)
+
     week_type = "CHAMPIONSHIP" if is_champ else "PLAYOFF" if is_playoff else "REGULAR SEASON"
 
     prompt = f"""You are {writer['name']} of {writer['outlet']}, writing a weekly column for "{league}."
@@ -346,12 +367,14 @@ CURRENT STANDINGS (top 10):
 
 {"TOP PERFORMERS:" + chr(10) + top_ctx if top_ctx else ""}
 
+{"WAIVER WIRE / FA PICKUPS THIS WEEK:" + chr(10) + waiver_ctx if waiver_ctx else ""}
+
 Write a weekly recap column (600–900 words) in {writer['name']}'s authentic voice. Use 3–4 bold section headers (## Header) to break the piece into readable chunks — e.g. a lede section, a matchup deep-dive, a standings section, and a closing. Structure:
 1. Open with the most compelling storyline of the week (2–3 paragraphs)
 2. Deep-dive on 3–4 matchups — name specific players and their real MLB stats when analyzing why a team won or lost
 3. A section highlighting standout individual performances: call out 2–3 real players by name with their actual stats from the week
 4. ## Standings & Race — what the week means for the playoff picture
-5. ## Looking Ahead — 1–2 paragraphs teasing next week's key matchups
+5. ## Looking Ahead — 1–2 paragraphs teasing next week's key matchups; if any notable waiver pickups were made, briefly mention 1–2 that could affect next week's matchups
 
 IMPORTANT: Each matchup includes "[Team Name] contributors:" lines — these explicitly name which players belong to which team. Use these to correctly attribute players to their teams. Name real MLB players and cite their actual stats (HR, K, ERA, etc.) when explaining each team's performance. Do not swap players between teams and do not write in vague generalities when you have specific player data available.
 Use **bold** for team names throughout. Markdown OK. Write as if published on {writer['outlet']}.
@@ -364,7 +387,7 @@ Respond ONLY with valid JSON — no markdown fences:
 }}"""
 
     try:
-        raw     = _call_claude(prompt, max_tokens=2500)
+        raw     = _call_claude(prompt, max_tokens=3000)
         article = _safe_json_parse(raw)
         article["generated_at"]    = datetime.now().isoformat()
         article["week"]            = week_num
