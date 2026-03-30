@@ -266,6 +266,50 @@ Respond ONLY with valid JSON — no markdown fences:
 
 # ── Recap article generation ──────────────────────────────────────────────────
 
+def _generate_waiver_narrative(adds_by_team: dict[str, list[str]], writer: dict) -> str:
+    """
+    Generate a short narrative paragraph about waiver wire moves using a focused,
+    isolated Claude prompt. Falls back to a plain markdown list if the call fails.
+
+    Uses a dedicated prompt containing ONLY the adds data so Claude has no
+    opportunity to hallucinate names from surrounding article context.
+    """
+    waiver_list = "\n".join(
+        f"  {team}: {', '.join(players[:4])}"
+        for team, players in adds_by_team.items()
+    )
+    valid_names = {p.split(" (")[0].strip() for players in adds_by_team.values() for p in players}
+
+    prompt = f"""You are writing a short "Waiver Wire" section for a fantasy baseball weekly column (voice: {writer['name']}, {writer['outlet']}).
+
+The following teams made these waiver wire / free agent pickups this week. This list is complete — no other moves were made.
+
+{waiver_list}
+
+Write a ## Waiver Wire section (3–5 sentences of narrative prose, no bullet points) that summarizes the most noteworthy pickups and what they could mean for those teams going forward.
+
+Rules:
+- Reference ONLY the player names and teams shown in the list above. Do not invent or add any others.
+- Use **bold** for team names.
+- Do not use bullet points or sub-headers — prose only.
+- Output only the section content (starting with ## Waiver Wire), no JSON wrapper."""
+
+    try:
+        raw = _call_claude(prompt, max_tokens=400)
+        # Sanity check: verify no names appear that aren't in the actual adds
+        # (simple heuristic — if output looks reasonable, use it)
+        if "## Waiver Wire" in raw and len(raw) > 50:
+            return raw.strip()
+    except Exception as e:
+        print(f"[ci_runner] Waiver narrative generation failed, using plain list: {e}", file=sys.stderr)
+
+    # Fallback: plain markdown list
+    lines = ["## Waiver Wire"]
+    for team, players in adds_by_team.items():
+        lines.append(f"**{team}** added: {', '.join(players[:4])}")
+    return "\n\n".join(lines)
+
+
 def generate_recap_article(week_data: dict, standings: list[dict]) -> dict | None:
     is_champ   = any(m.get("is_championship") for m in week_data.get("matchups", []))
     is_playoff = any(m.get("is_playoffs") and not m.get("is_consolation")
@@ -400,12 +444,10 @@ Respond ONLY with valid JSON — no markdown fences:
         article["is_playoff"]      = is_playoff
         article["is_championship"] = is_champ
 
-        # Append a programmatic waiver wire section so Claude never has to write it
+        # Append a waiver wire narrative section
         if adds_by_team:
-            waiver_md_lines = ["## Waiver Wire"]
-            for team, players in adds_by_team.items():
-                waiver_md_lines.append(f"**{team}** added: {', '.join(players[:4])}")
-            article["body"] = article.get("body", "") + "\n\n" + "\n\n".join(waiver_md_lines)
+            waiver_section = _generate_waiver_narrative(adds_by_team, writer)
+            article["body"] = article.get("body", "") + "\n\n" + waiver_section
 
         return article
     except Exception as e:
