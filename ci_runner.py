@@ -266,27 +266,34 @@ Respond ONLY with valid JSON — no markdown fences:
 
 # ── Recap article generation ──────────────────────────────────────────────────
 
-def _generate_waiver_narrative(adds_by_team: dict[str, list[str]], writer: dict) -> str:
+def _generate_waiver_narrative(
+    adds_by_team: dict[str, list[str]],
+    drops_by_team: dict[str, list[str]],
+    writer: dict,
+) -> str:
     """
-    Generate a short narrative paragraph about waiver wire moves using a focused,
+    Generate a short narrative section about waiver wire moves using a focused,
     isolated Claude prompt. Falls back to a plain markdown list if the call fails.
-
-    Uses a dedicated prompt containing ONLY the adds data so Claude has no
-    opportunity to hallucinate names from surrounding article context.
     """
-    waiver_list = "\n".join(
-        f"  {team}: {', '.join(players[:4])}"
-        for team, players in adds_by_team.items()
-    )
-    valid_names = {p.split(" (")[0].strip() for players in adds_by_team.values() for p in players}
+    # Build the moves list — pair adds with drops per team where possible
+    all_teams = sorted(set(list(adds_by_team.keys()) + list(drops_by_team.keys())))
+    moves_lines = []
+    for team in all_teams:
+        parts = []
+        if team in adds_by_team:
+            parts.append(f"added {', '.join(adds_by_team[team][:4])}")
+        if team in drops_by_team:
+            parts.append(f"dropped {', '.join(drops_by_team[team][:4])}")
+        moves_lines.append(f"  {team}: {'; '.join(parts)}")
+    moves_list = "\n".join(moves_lines)
 
     prompt = f"""You are writing a short "Waiver Wire" section for a fantasy baseball weekly column (voice: {writer['name']}, {writer['outlet']}).
 
-The following teams made these waiver wire / free agent pickups this week. This list is complete — no other moves were made.
+The following teams made these roster moves this week. This list is complete — no other moves were made.
 
-{waiver_list}
+{moves_list}
 
-Write a ## Waiver Wire section (3–5 sentences of narrative prose, no bullet points) that summarizes the most noteworthy pickups and what they could mean for those teams going forward.
+Write a ## Waiver Wire section (3–5 sentences of narrative prose, no bullet points) that summarizes the most noteworthy adds and drops and what they signal about each team's strategy.
 
 Rules:
 - Reference ONLY the player names and teams shown in the list above. Do not invent or add any others.
@@ -295,9 +302,7 @@ Rules:
 - Output only the section content (starting with ## Waiver Wire), no JSON wrapper."""
 
     try:
-        raw = _call_claude(prompt, max_tokens=400)
-        # Sanity check: verify no names appear that aren't in the actual adds
-        # (simple heuristic — if output looks reasonable, use it)
+        raw = _call_claude(prompt, max_tokens=450)
         if "## Waiver Wire" in raw and len(raw) > 50:
             return raw.strip()
     except Exception as e:
@@ -305,8 +310,13 @@ Rules:
 
     # Fallback: plain markdown list
     lines = ["## Waiver Wire"]
-    for team, players in adds_by_team.items():
-        lines.append(f"**{team}** added: {', '.join(players[:4])}")
+    for team in all_teams:
+        parts = []
+        if team in adds_by_team:
+            parts.append(f"added {', '.join(adds_by_team[team][:4])}")
+        if team in drops_by_team:
+            parts.append(f"dropped {', '.join(drops_by_team[team][:4])}")
+        lines.append(f"**{team}**: {'; '.join(parts)}")
     return "\n\n".join(lines)
 
 
@@ -376,26 +386,32 @@ def generate_recap_article(week_data: dict, standings: list[dict]) -> dict | Non
         top_ctx_lines.append(line)
     top_ctx = "\n".join(top_ctx_lines)
 
-    # Build waiver / FA pickup context
+    # Build waiver / FA add+drop context
     adds_by_team: dict[str, list[str]] = {}
+    drops_by_team: dict[str, list[str]] = {}
     seen_adds: set[tuple[str, str]] = set()
+    seen_drops: set[tuple[str, str]] = set()
     for tx in week_data.get("transactions", []):
-        if tx.get("type") not in ("add", "add/drop"):
+        if tx.get("type") not in ("add", "drop", "add/drop"):
             continue
         for p in tx.get("players", []):
-            if p.get("action") != "add":
-                continue
+            action = p.get("action")
             team = p.get("team", "")
             name = p.get("name", "Unknown")
             pos = p.get("position", "")
             if not team:
                 continue
-            key = (team, name)
-            if key in seen_adds:
-                continue
-            seen_adds.add(key)
             entry = f"{name} ({pos})" if pos else name
-            adds_by_team.setdefault(team, []).append(entry)
+            if action == "add":
+                key = (team, name)
+                if key not in seen_adds:
+                    seen_adds.add(key)
+                    adds_by_team.setdefault(team, []).append(entry)
+            elif action == "drop":
+                key = (team, name)
+                if key not in seen_drops:
+                    seen_drops.add(key)
+                    drops_by_team.setdefault(team, []).append(entry)
     waiver_lines = [
         f"  {team}: {', '.join(players[:4])}"
         for team, players in adds_by_team.items()
@@ -445,8 +461,8 @@ Respond ONLY with valid JSON — no markdown fences:
         article["is_championship"] = is_champ
 
         # Append a waiver wire narrative section
-        if adds_by_team:
-            waiver_section = _generate_waiver_narrative(adds_by_team, writer)
+        if adds_by_team or drops_by_team:
+            waiver_section = _generate_waiver_narrative(adds_by_team, drops_by_team, writer)
             article["body"] = article.get("body", "") + "\n\n" + waiver_section
 
         return article
