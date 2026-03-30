@@ -374,9 +374,10 @@ Write a weekly recap column (600–900 words) in {writer['name']}'s authentic vo
 2. Deep-dive on 3–4 matchups — name specific players and their real MLB stats when analyzing why a team won or lost
 3. A section highlighting standout individual performances: call out 2–3 real players by name with their actual stats from the week
 4. ## Standings & Race — what the week means for the playoff picture
-5. ## Looking Ahead — 1–2 paragraphs teasing next week's key matchups; if any notable waiver pickups were made, briefly mention 1–2 that could affect next week's matchups
+5. ## Looking Ahead — 1–2 paragraphs teasing next week's key matchups; if the WAIVER WIRE section above is present and non-empty, you MAY briefly mention 1–2 pickups from it by name
 
 IMPORTANT: Each matchup includes "[Team Name] contributors:" lines — these explicitly name which players belong to which team. Use these to correctly attribute players to their teams. Name real MLB players and cite their actual stats (HR, K, ERA, etc.) when explaining each team's performance. Do not swap players between teams and do not write in vague generalities when you have specific player data available.
+CRITICAL: For waiver pickups, you MUST only reference players that appear in the WAIVER WIRE / FA PICKUPS THIS WEEK section above. Do NOT invent, guess, or reference any pickup not explicitly listed there. If the section is absent or empty, omit all waiver discussion entirely.
 Use **bold** for team names throughout. Markdown OK. Write as if published on {writer['outlet']}.
 
 Respond ONLY with valid JSON — no markdown fences:
