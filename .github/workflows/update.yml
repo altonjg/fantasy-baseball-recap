@@ -126,7 +126,11 @@ jobs:
           if [ -n "${{ github.event.inputs.week }}" ]; then
             WEEK_ARG="--week ${{ github.event.inputs.week }}"
           fi
-          python ci_runner.py --mode "$MODE" $WEEK_ARG
+          FORCE_ARG=""
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            FORCE_ARG="--force"
+          fi
+          python ci_runner.py --mode "$MODE" $WEEK_ARG $FORCE_ARG
 
       - name: Commit new data files
         run: |
