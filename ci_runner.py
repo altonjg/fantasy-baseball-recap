@@ -794,6 +794,62 @@ def run_trades(week_data: dict, season: int) -> list[dict]:
     return new_articles
 
 
+def _validate_week_data(week_data: dict, season: int) -> tuple[bool, list[str]]:
+    """
+    Validate week data before article generation.
+    Returns (is_valid, list_of_issues).
+    Critical issues block generation; warnings are logged but allowed through.
+    """
+    issues: list[str] = []
+    matchups = week_data.get("matchups", [])
+    week_num = week_data.get("week", 0)
+
+    # --- Critical checks (return False) ---
+
+    if not matchups:
+        issues.append("CRITICAL: No matchups found in week data.")
+        return False, issues
+
+    scored = [m for m in matchups if any(t.get("points", 0) > 0 for t in m.get("teams", []))]
+    if not scored:
+        issues.append(
+            f"CRITICAL: All matchup scores are 0 — week {week_num} data appears stale or pre-game."
+        )
+        return False, issues
+
+    # Check week number looks reasonable for the season
+    if not (1 <= int(week_num) <= 27):
+        issues.append(f"CRITICAL: Week number {week_num} is out of expected range (1–27).")
+        return False, issues
+
+    # Check that team names aren't all generic defaults
+    all_names = [t.get("name", "") for m in matchups for t in m.get("teams", [])]
+    if sum(1 for n in all_names if n.startswith("Team ")) > len(all_names) // 2:
+        issues.append("CRITICAL: More than half of team names are generic ('Team N') — data may be malformed.")
+        return False, issues
+
+    # --- Warnings (log but allow through) ---
+
+    teams_without_stats = [
+        t.get("name", "?") for m in matchups for t in m.get("teams", [])
+        if not t.get("category_stats")
+    ]
+    if teams_without_stats:
+        issues.append(f"WARNING: Missing category_stats for: {', '.join(teams_without_stats)}")
+
+    teams_without_players = [
+        t.get("name", "?") for m in matchups for t in m.get("teams", [])
+        if not t.get("top_players")
+    ]
+    if teams_without_players:
+        issues.append(f"WARNING: Missing top_players for: {', '.join(teams_without_players)}")
+
+    if not week_data.get("standings"):
+        issues.append("WARNING: No standings data — standings section will be thin.")
+
+    return True, issues
+
+
 def run_recap(week_data: dict, season: int, force: bool = False) -> bool:
     """Generate weekly recap article. Returns True on success."""
     week_num     = week_data.get("week", 0)
@@ -803,6 +859,14 @@ def run_recap(week_data: dict, season: int, force: bool = False) -> bool:
     if out_path.exists() and not force:
         print(f"[ci_runner] Recap article for week {week_num} already exists — skipping. Use --force to regenerate.")
         return True
+
+    # Validate data quality before spending an API call on article generation
+    is_valid, issues = _validate_week_data(week_data, season)
+    for issue in issues:
+        print(f"[ci_runner] {issue}", file=sys.stderr if issue.startswith("CRITICAL") else sys.stdout)
+    if not is_valid:
+        print("[ci_runner] Aborting article generation due to critical data issues.", file=sys.stderr)
+        return False
 
     standings = week_data.get("standings", [])
 
