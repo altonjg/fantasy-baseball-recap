@@ -4,8 +4,8 @@ on:
   schedule:
     # Trade detection — every 4 hours during baseball season (Mar–Nov)
     - cron: "0 */4 * 3-11 *"
-    # Weekly recap — every Monday at 9:00 AM UTC (after Sunday night games finish)
-    - cron: "0 9 * * 1"
+    # Weekly recap — every Monday at 11:00 AM UTC (after Sunday night games finish)
+    - cron: "0 11 * * 1"
   workflow_dispatch:
     inputs:
       mode:
