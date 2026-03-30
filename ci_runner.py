@@ -290,7 +290,7 @@ def generate_recap_article(week_data: dict, standings: list[dict]) -> dict | Non
             f"{p['name']} ({p.get('position','?')}, {p.get('mlb_team','?')}): {p.get('stats','')}"
             for p in players[:3] if p.get("stats")
         ]
-        return ("    Key contributors: " + " | ".join(parts)) if parts else ""
+        return (f"    {team['name']} contributors: " + " | ".join(parts)) if parts else ""
 
     matchup_lines = []
     for m in week_data.get("matchups", []):
@@ -353,7 +353,7 @@ Write a weekly recap column (600–900 words) in {writer['name']}'s authentic vo
 4. ## Standings & Race — what the week means for the playoff picture
 5. ## Looking Ahead — 1–2 paragraphs teasing next week's key matchups
 
-IMPORTANT: Use the "Key contributors" player data provided for each team. Name real MLB players and cite their actual stats (HR, K, ERA, etc.) when explaining each team's performance. Do not write in vague generalities when you have specific player data available.
+IMPORTANT: Each matchup includes "[Team Name] contributors:" lines — these explicitly name which players belong to which team. Use these to correctly attribute players to their teams. Name real MLB players and cite their actual stats (HR, K, ERA, etc.) when explaining each team's performance. Do not swap players between teams and do not write in vague generalities when you have specific player data available.
 Use **bold** for team names throughout. Markdown OK. Write as if published on {writer['outlet']}.
 
 Respond ONLY with valid JSON — no markdown fences:
