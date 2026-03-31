@@ -1355,6 +1355,30 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1774968411,
+      "players": [
+        {
+          "name": "Eric Lauer",
+          "action": "add",
+          "team": "Canberra Wombats",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1774968360,
+      "players": [
+        {
+          "name": "Seth Lugo",
+          "action": "add",
+          "team": "Canberra Wombats",
+          "position": "SP"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1774918605,
       "players": [
@@ -1737,30 +1761,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1774455818,
-      "players": [
-        {
-          "name": "Sean Burke",
-          "action": "add",
-          "team": "Abbotsford-Colby Twins",
-          "position": "SP,RP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1774450507,
-      "players": [
-        {
-          "name": "Max Scherzer",
-          "action": "add",
-          "team": "Benchwarmers",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1782,5 +1782,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-03-31T12:59:44.192441"
+  "saved_at": "2026-03-31T16:51:22.199419"
 }
