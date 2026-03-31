@@ -1356,6 +1356,18 @@
   "transactions": [
     {
       "type": "add",
+      "timestamp": 1774985724,
+      "players": [
+        {
+          "name": "Michael Soroka",
+          "action": "add",
+          "team": "General Hospital",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
       "timestamp": 1774968411,
       "players": [
         {
@@ -1749,18 +1761,6 @@
           "position": "3B"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1774455845,
-      "players": [
-        {
-          "name": "Luis Severino",
-          "action": "add",
-          "team": "Abbotsford-Colby Twins",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1779,8 +1779,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-03-31T16:51:22.199419"
+  "saved_at": "2026-03-31T20:36:26.877826"
 }
