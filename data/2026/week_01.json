@@ -41,6 +41,13 @@
               "score": 10.0
             },
             {
+              "name": "Trevor Rogers",
+              "mlb_team": "BAL",
+              "position": "SP",
+              "stats": "K:6, WHIP:0.88, QS:1, IP:8.0",
+              "score": 7.0
+            },
+            {
               "name": "Daylen Lile",
               "mlb_team": "WSH",
               "position": "OF",
@@ -52,13 +59,6 @@
               "mlb_team": "NYM",
               "position": "SS",
               "stats": "R:4, OBP:.400",
-              "score": 6.0
-            },
-            {
-              "name": "Byron Buxton",
-              "mlb_team": "MIN",
-              "position": "OF",
-              "stats": "R:2, OBP:.385",
               "score": 6.0
             }
           ]
@@ -102,7 +102,7 @@
               "name": "Brandon Nimmo",
               "mlb_team": "TEX",
               "position": "OF",
-              "stats": "R:3, HR:1, RBI:2, SB:1, OBP:.429",
+              "stats": "R:3, HR:1, RBI:2, SB:1, OBP:.400",
               "score": 11.0
             },
             {
@@ -270,7 +270,7 @@
               "name": "Nathan Eovaldi",
               "mlb_team": "TEX",
               "position": "SP",
-              "stats": "K:7, ERA:9.64, WHIP:1.71, IP:4.2",
+              "stats": "K:7, ERA:8.44, WHIP:1.88, IP:5.1",
               "score": 7.0
             },
             {
@@ -716,7 +716,7 @@
               "name": "Corey Seager",
               "mlb_team": "TEX",
               "position": "SS",
-              "stats": "R:3, HR:1, RBI:2, OBP:.429",
+              "stats": "R:3, HR:1, RBI:2, OBP:.400",
               "score": 10.0
             },
             {
@@ -1117,7 +1117,7 @@
               "name": "Drake Baldwin",
               "mlb_team": "ATL",
               "position": "C",
-              "stats": "R:3, HR:2, RBI:2, OBP:.385",
+              "stats": "R:3, HR:2, RBI:2, OBP:.429",
               "score": 10.0
             },
             {
@@ -1354,6 +1354,54 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "add",
+      "timestamp": 1775056978,
+      "players": [
+        {
+          "name": "Tyler Alexander",
+          "action": "add",
+          "team": "Benchwarmers",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1775056853,
+      "players": [
+        {
+          "name": "Lance McCullers Jr.",
+          "action": "add",
+          "team": "Benchwarmers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1775055527,
+      "players": [
+        {
+          "name": "Liam Hicks",
+          "action": "add",
+          "team": "Buttville Skidmarks",
+          "position": "C,1B"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1775053640,
+      "players": [
+        {
+          "name": "Aaron Ashby",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "RP"
+        }
+      ]
+    },
     {
       "type": "add",
       "timestamp": 1774985724,
@@ -1713,54 +1761,6 @@
           "position": "C"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1774461678,
-      "players": [
-        {
-          "name": "Cole Young",
-          "action": "add",
-          "team": "Buttville Skidmarks",
-          "position": "2B"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1774461564,
-      "players": [
-        {
-          "name": "Didier Fuentes",
-          "action": "add",
-          "team": "Buttville Skidmarks",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1774461559,
-      "players": [
-        {
-          "name": "Colt Emerson",
-          "action": "add",
-          "team": "Buttville Skidmarks",
-          "position": "SS"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1774460059,
-      "players": [
-        {
-          "name": "Jordan Lawlar",
-          "action": "add",
-          "team": "Albuquerque Bombers",
-          "position": "3B"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1782,5 +1782,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-04-01T13:02:11.817699"
+  "saved_at": "2026-04-01T16:45:59.894159"
 }
