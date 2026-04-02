@@ -55,11 +55,11 @@
               "score": 10.0
             },
             {
-              "name": "Daylen Lile",
-              "mlb_team": "WSH",
-              "position": "OF",
-              "stats": "R:3, RBI:1, OBP:.400",
-              "score": 7.0
+              "name": "Freddie Freeman",
+              "mlb_team": "LAD",
+              "position": "1B",
+              "stats": "R:1, HR:1, RBI:2, OBP:.294",
+              "score": 8.0
             }
           ]
         },
@@ -113,10 +113,10 @@
               "score": 13.0
             },
             {
-              "name": "Brandon Nimmo",
-              "mlb_team": "TEX",
-              "position": "OF",
-              "stats": "R:3, HR:1, RBI:2, SB:1, OBP:.444",
+              "name": "Jos\u00e9 Ram\u00edrez",
+              "mlb_team": "CLE",
+              "position": "3B",
+              "stats": "R:2, HR:1, RBI:5, SB:1, OBP:.222",
               "score": 12.0
             }
           ]
@@ -205,7 +205,7 @@
               "name": "Will Smith",
               "mlb_team": "LAD",
               "position": "C",
-              "stats": "R:2, HR:2, RBI:5, OBP:.231",
+              "stats": "R:2, HR:2, RBI:5, OBP:.200",
               "score": 12.0
             },
             {
@@ -373,8 +373,8 @@
               "name": "Gavin Williams",
               "mlb_team": "CLE",
               "position": "SP",
-              "stats": "K:16, ERA:2.70, WHIP:1.10, IP:10.0",
-              "score": 16.0
+              "stats": "K:17, ERA:2.25, WHIP:1.08, QS:1, IP:12.0",
+              "score": 18.0
             },
             {
               "name": "George Kirby",
@@ -730,7 +730,7 @@
               "name": "Kyle Tucker",
               "mlb_team": "LAD",
               "position": "OF",
-              "stats": "R:3, RBI:2, SB:2, OBP:.267",
+              "stats": "R:3, RBI:2, SB:2, OBP:.235",
               "score": 9.0
             }
           ]
@@ -771,6 +771,13 @@
               "score": 10.0
             },
             {
+              "name": "Yoshinobu Yamamoto",
+              "mlb_team": "LAD",
+              "position": "SP",
+              "stats": "K:8, ERA:3.00, WHIP:0.83, QS:2, IP:12.0",
+              "score": 10.0
+            },
+            {
               "name": "Ozzie Albies",
               "mlb_team": "ATL",
               "position": "2B",
@@ -782,13 +789,6 @@
               "mlb_team": "MIL",
               "position": "C",
               "stats": "R:3, RBI:3, OBP:.368",
-              "score": 9.0
-            },
-            {
-              "name": "Geraldo Perdomo",
-              "mlb_team": "AZ",
-              "position": "SS",
-              "stats": "R:1, HR:1, RBI:2, SB:1, OBP:.250",
               "score": 9.0
             }
           ]
@@ -898,7 +898,7 @@
               "name": "Mookie Betts",
               "mlb_team": "LAD",
               "position": "SS",
-              "stats": "R:3, HR:1, RBI:4, OBP:.333",
+              "stats": "R:3, HR:1, RBI:4, OBP:.294",
               "score": 10.0
             }
           ]
@@ -1052,8 +1052,8 @@
               "name": "Royce Lewis",
               "mlb_team": "MIN",
               "position": "3B",
-              "stats": "R:4, HR:2, RBI:3, SB:1, OBP:.385",
-              "score": 13.0
+              "stats": "R:5, HR:2, RBI:3, SB:1, OBP:.357",
+              "score": 14.0
             },
             {
               "name": "Otto Lopez",
@@ -1782,5 +1782,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-04-02T01:30:20.989138"
+  "saved_at": "2026-04-02T05:29:02.511348"
 }
