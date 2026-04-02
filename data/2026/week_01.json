@@ -58,7 +58,7 @@
               "name": "Byron Buxton",
               "mlb_team": "MIN",
               "position": "OF",
-              "stats": "R:2, OBP:.385",
+              "stats": "R:2, OBP:.312",
               "score": 6.0
             }
           ]
@@ -256,8 +256,8 @@
               "name": "Taj Bradley",
               "mlb_team": "MIN",
               "position": "SP",
-              "stats": "K:9, ERA:2.08, WHIP:1.38, IP:4.1",
-              "score": 9.0
+              "stats": "K:12, ERA:0.87, WHIP:1.16, QS:1, IP:10.1",
+              "score": 13.0
             },
             {
               "name": "Nolan McLean",
@@ -1042,6 +1042,13 @@
               "score": 18.0
             },
             {
+              "name": "Cole Ragans",
+              "mlb_team": "KC",
+              "position": "SP",
+              "stats": "K:13, ERA:3.60, WHIP:1.50, QS:1, IP:10.0",
+              "score": 14.0
+            },
+            {
               "name": "Ryan O'Hearn",
               "mlb_team": "PIT",
               "position": "1B,OF",
@@ -1052,8 +1059,8 @@
               "name": "Royce Lewis",
               "mlb_team": "MIN",
               "position": "3B",
-              "stats": "R:3, HR:2, RBI:3, SB:1, OBP:.364",
-              "score": 11.0
+              "stats": "R:3, HR:2, RBI:3, SB:1, OBP:.357",
+              "score": 12.0
             },
             {
               "name": "Jacob Misiorowski",
@@ -1061,13 +1068,6 @@
               "position": "SP",
               "stats": "K:11, ERA:1.80, WHIP:1.00, IP:5.0",
               "score": 11.0
-            },
-            {
-              "name": "Xavier Edwards",
-              "mlb_team": "MIA",
-              "position": "2B,SS",
-              "stats": "R:3, SB:1, OBP:.364",
-              "score": 8.0
             }
           ]
         },
@@ -1779,8 +1779,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-04-02T16:50:32.677804"
+  "saved_at": "2026-04-02T20:28:27.803257"
 }
