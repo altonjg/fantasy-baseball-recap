@@ -58,7 +58,7 @@
               "name": "Francisco Lindor",
               "mlb_team": "NYM",
               "position": "SS",
-              "stats": "R:4, OBP:.400",
+              "stats": "R:4, OBP:.421",
               "score": 6.0
             }
           ]
@@ -384,18 +384,18 @@
               "score": 11.0
             },
             {
+              "name": "Austin Riley",
+              "mlb_team": "ATL",
+              "position": "3B",
+              "stats": "R:2, RBI:2, OBP:.438",
+              "score": 9.0
+            },
+            {
               "name": "Bobby Witt Jr.",
               "mlb_team": "KC",
               "position": "SS",
               "stats": "R:1, RBI:1, SB:1, OBP:.375",
               "score": 8.0
-            },
-            {
-              "name": "Tony Santillan",
-              "mlb_team": "CIN",
-              "position": "RP",
-              "stats": "K:5, WHIP:2.50, NSVH:2, IP:2.0",
-              "score": 7.0
             }
           ]
         },
@@ -435,6 +435,13 @@
               "score": 12.0
             },
             {
+              "name": "Robbie Ray",
+              "mlb_team": "SF",
+              "position": "SP",
+              "stats": "K:11, ERA:3.38, WHIP:1.03, IP:10.2",
+              "score": 11.0
+            },
+            {
               "name": "Pete Crow-Armstrong",
               "mlb_team": "CHC",
               "position": "OF",
@@ -447,13 +454,6 @@
               "position": "OF",
               "stats": "R:2, RBI:1, OBP:.389",
               "score": 8.0
-            },
-            {
-              "name": "Jose Altuve",
-              "mlb_team": "HOU",
-              "position": "2B,OF",
-              "stats": "R:2, RBI:1, SB:1, OBP:.444",
-              "score": 7.0
             }
           ]
         }
@@ -610,18 +610,18 @@
               "score": 10.0
             },
             {
-              "name": "MacKenzie Gore",
-              "mlb_team": "TEX",
-              "position": "SP",
-              "stats": "K:7, ERA:3.38, WHIP:0.94, IP:5.1",
-              "score": 7.0
+              "name": "Rafael Devers",
+              "mlb_team": "SF",
+              "position": "1B",
+              "stats": "R:1, HR:1, RBI:1, OBP:.294",
+              "score": 8.0
             },
             {
               "name": "Francisco Alvarez",
               "mlb_team": "NYM",
               "position": "C",
-              "stats": "R:3, HR:1, RBI:1, OBP:.500",
-              "score": 7.0
+              "stats": "R:3, HR:1, RBI:1, OBP:.455",
+              "score": 8.0
             }
           ]
         }
@@ -709,7 +709,7 @@
               "name": "Luis Robert Jr.",
               "mlb_team": "NYM",
               "position": "OF",
-              "stats": "R:3, HR:1, RBI:5, OBP:.571",
+              "stats": "R:3, HR:1, RBI:5, OBP:.500",
               "score": 14.0
             },
             {
@@ -767,28 +767,28 @@
               "name": "Michael Harris II",
               "mlb_team": "ATL",
               "position": "OF",
-              "stats": "R:2, HR:1, RBI:3, OBP:.364",
-              "score": 10.0
+              "stats": "R:3, HR:1, RBI:5, OBP:.353",
+              "score": 15.0
+            },
+            {
+              "name": "Ozzie Albies",
+              "mlb_team": "ATL",
+              "position": "2B",
+              "stats": "R:4, HR:1, RBI:2, OBP:.444",
+              "score": 13.0
             },
             {
               "name": "Geraldo Perdomo",
               "mlb_team": "AZ",
               "position": "SS",
-              "stats": "R:1, HR:1, RBI:2, SB:1, OBP:.333",
-              "score": 9.0
+              "stats": "R:1, HR:1, RBI:2, SB:1, OBP:.429",
+              "score": 10.0
             },
             {
               "name": "Eugenio Su\u00e1rez",
               "mlb_team": "CIN",
               "position": "3B",
               "stats": "R:1, HR:1, RBI:4, OBP:.231",
-              "score": 8.0
-            },
-            {
-              "name": "Ozzie Albies",
-              "mlb_team": "ATL",
-              "position": "2B",
-              "stats": "R:2, HR:1, RBI:1, OBP:.417",
               "score": 8.0
             }
           ]
@@ -925,18 +925,18 @@
           },
           "top_players": [
             {
+              "name": "Juan Soto",
+              "mlb_team": "NYM",
+              "position": "OF",
+              "stats": "R:2, RBI:3, OBP:.368",
+              "score": 11.0
+            },
+            {
               "name": "Bryan Woo",
               "mlb_team": "SEA",
               "position": "SP",
               "stats": "K:9, ERA:3.00, WHIP:0.83, QS:1, IP:6.0",
               "score": 10.0
-            },
-            {
-              "name": "Juan Soto",
-              "mlb_team": "NYM",
-              "position": "OF",
-              "stats": "R:1, RBI:3, OBP:.400",
-              "score": 9.0
             },
             {
               "name": "Kazuma Okamoto",
@@ -1093,11 +1093,25 @@
           },
           "top_players": [
             {
+              "name": "Drake Baldwin",
+              "mlb_team": "ATL",
+              "position": "C",
+              "stats": "R:6, HR:2, RBI:3, OBP:.316",
+              "score": 15.0
+            },
+            {
               "name": "Nolan Schanuel",
               "mlb_team": "LAA",
               "position": "1B",
               "stats": "R:3, HR:2, RBI:5, OBP:.450",
               "score": 15.0
+            },
+            {
+              "name": "Matt Olson",
+              "mlb_team": "ATL",
+              "position": "1B",
+              "stats": "R:4, HR:1, RBI:3, OBP:.389",
+              "score": 14.0
             },
             {
               "name": "Wilyer Abreu",
@@ -1112,20 +1126,6 @@
               "position": "OF",
               "stats": "R:2, HR:2, RBI:4, OBP:.286",
               "score": 11.0
-            },
-            {
-              "name": "Drake Baldwin",
-              "mlb_team": "ATL",
-              "position": "C",
-              "stats": "R:3, HR:2, RBI:2, OBP:.357",
-              "score": 10.0
-            },
-            {
-              "name": "Garrett Crochet",
-              "mlb_team": "BOS",
-              "position": "SP",
-              "stats": "K:8, WHIP:0.83, QS:1, IP:6.0",
-              "score": 9.0
             }
           ]
         }
@@ -1779,8 +1779,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-04-03T01:45:37.900094"
+  "saved_at": "2026-04-03T05:29:39.739163"
 }
