@@ -41,6 +41,13 @@
               "score": 10.0
             },
             {
+              "name": "Byron Buxton",
+              "mlb_team": "MIN",
+              "position": "OF",
+              "stats": "R:2, RBI:1, OBP:.294",
+              "score": 7.0
+            },
+            {
               "name": "Daylen Lile",
               "mlb_team": "WSH",
               "position": "OF",
@@ -52,13 +59,6 @@
               "mlb_team": "NYM",
               "position": "SS",
               "stats": "R:4, OBP:.400",
-              "score": 6.0
-            },
-            {
-              "name": "Byron Buxton",
-              "mlb_team": "MIN",
-              "position": "OF",
-              "stats": "R:2, OBP:.312",
               "score": 6.0
             }
           ]
@@ -384,17 +384,17 @@
               "score": 11.0
             },
             {
+              "name": "Bobby Witt Jr.",
+              "mlb_team": "KC",
+              "position": "SS",
+              "stats": "R:1, RBI:1, SB:1, OBP:.375",
+              "score": 8.0
+            },
+            {
               "name": "Tony Santillan",
               "mlb_team": "CIN",
               "position": "RP",
               "stats": "K:5, WHIP:2.50, NSVH:2, IP:2.0",
-              "score": 7.0
-            },
-            {
-              "name": "Logan Gilbert",
-              "mlb_team": "SEA",
-              "position": "SP",
-              "stats": "K:7, ERA:5.06, WHIP:0.94, IP:5.1",
               "score": 7.0
             }
           ]
@@ -1059,7 +1059,7 @@
               "name": "Royce Lewis",
               "mlb_team": "MIN",
               "position": "3B",
-              "stats": "R:3, HR:2, RBI:3, SB:1, OBP:.357",
+              "stats": "R:3, HR:2, RBI:3, SB:1, OBP:.333",
               "score": 12.0
             },
             {
@@ -1117,7 +1117,7 @@
               "name": "Drake Baldwin",
               "mlb_team": "ATL",
               "position": "C",
-              "stats": "R:3, HR:2, RBI:2, OBP:.385",
+              "stats": "R:3, HR:2, RBI:2, OBP:.357",
               "score": 10.0
             },
             {
@@ -1779,8 +1779,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-04-02T20:28:27.803257"
+  "saved_at": "2026-04-03T01:45:37.900094"
 }
