@@ -1355,6 +1355,42 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1775293641,
+      "players": [
+        {
+          "name": "Jake Bauers",
+          "action": "add",
+          "team": "North Correa",
+          "position": "1B,OF"
+        },
+        {
+          "name": "Josh Lowe",
+          "action": "drop",
+          "team": "North Correa",
+          "position": "OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1775293507,
+      "players": [
+        {
+          "name": "Josh Bell",
+          "action": "add",
+          "team": "North Correa",
+          "position": "1B"
+        },
+        {
+          "name": "Spencer Torkelson",
+          "action": "drop",
+          "team": "North Correa",
+          "position": "1B"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1775256354,
       "players": [
@@ -1743,30 +1779,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1774475982,
-      "players": [
-        {
-          "name": "Tanner Scott",
-          "action": "add",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1774462601,
-      "players": [
-        {
-          "name": "Tyler Wells",
-          "action": "add",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1788,5 +1800,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-04-04T08:33:34.622924"
+  "saved_at": "2026-04-04T12:37:58.292617"
 }
