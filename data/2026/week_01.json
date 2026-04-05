@@ -1356,6 +1356,60 @@
   "transactions": [
     {
       "type": "add/drop",
+      "timestamp": 1775404004,
+      "players": [
+        {
+          "name": "Bryce Elder",
+          "action": "add",
+          "team": "BaseballPro77",
+          "position": "SP"
+        },
+        {
+          "name": "Brady Singer",
+          "action": "drop",
+          "team": "BaseballPro77",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1775397880,
+      "players": [
+        {
+          "name": "Justin Slaten",
+          "action": "add",
+          "team": "Buttville Skidmarks",
+          "position": "RP"
+        },
+        {
+          "name": "Matt Svanson",
+          "action": "drop",
+          "team": "Buttville Skidmarks",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1775397665,
+      "players": [
+        {
+          "name": "Nick Martinez",
+          "action": "add",
+          "team": "Buttville Skidmarks",
+          "position": "SP,RP"
+        },
+        {
+          "name": "Mickey Moniak",
+          "action": "drop",
+          "team": "Buttville Skidmarks",
+          "position": "OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
       "timestamp": 1775293641,
       "players": [
         {
@@ -1743,42 +1797,6 @@
           "position": "1B,OF"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1774525886,
-      "players": [
-        {
-          "name": "Chris Martin",
-          "action": "add",
-          "team": "Riverside Roughnecks",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1774494761,
-      "players": [
-        {
-          "name": "Justin Steele",
-          "action": "add",
-          "team": "BaseballPro77",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1774488621,
-      "players": [
-        {
-          "name": "Max Meyer",
-          "action": "add",
-          "team": "Albuquerque Bombers",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1797,8 +1815,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-04-05T12:40:13.703918"
+  "saved_at": "2026-04-05T16:28:55.893683"
 }
