@@ -548,7 +548,7 @@
               "name": "Kevin McGonigle",
               "mlb_team": "DET",
               "position": "3B,SS",
-              "stats": "R:2, RBI:4, OBP:.471",
+              "stats": "R:2, RBI:4, OBP:.444",
               "score": 11.0
             },
             {
@@ -1821,8 +1821,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-04-06T01:50:55.565717"
+  "saved_at": "2026-04-06T05:56:00.984023"
 }
