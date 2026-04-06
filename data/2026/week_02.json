@@ -116,7 +116,7 @@
               "name": "Miguel Vargas",
               "mlb_team": "CWS",
               "position": "1B,3B",
-              "stats": "R:2, HR:1, RBI:7, OBP:.313",
+              "stats": "R:2, HR:1, RBI:7, OBP:.312",
               "score": 14.0
             }
           ]
@@ -1355,6 +1355,114 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1775489630,
+      "players": [
+        {
+          "name": "Graham Ashcraft",
+          "action": "add",
+          "team": "Benchwarmers",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1775489615,
+      "players": [
+        {
+          "name": "Spencer Arrighetti",
+          "action": "add",
+          "team": "Benchwarmers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1775489477,
+      "players": [
+        {
+          "name": "Mauricio Dub\u00f3n",
+          "action": "add",
+          "team": "Benchwarmers",
+          "position": "2B,3B,SS,OF"
+        },
+        {
+          "name": "Josh Smith",
+          "action": "drop",
+          "team": "Benchwarmers",
+          "position": "1B,2B,3B,SS,OF"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1775489319,
+      "players": [
+        {
+          "name": "Garrett Mitchell",
+          "action": "add",
+          "team": "Benchwarmers",
+          "position": "OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1775485667,
+      "players": [
+        {
+          "name": "Max Muncy",
+          "action": "add",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "2B,3B,SS"
+        },
+        {
+          "name": "Zach McKinstry",
+          "action": "drop",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "3B,SS,OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1775484686,
+      "players": [
+        {
+          "name": "Landen Roupp",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        },
+        {
+          "name": "Chris Bassitt",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1775483276,
+      "players": [
+        {
+          "name": "Rhett Lowder",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        },
+        {
+          "name": "Mick Abel",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1775476412,
       "players": [
@@ -1677,120 +1785,6 @@
           "position": "SP,RP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1774968411,
-      "players": [
-        {
-          "name": "Eric Lauer",
-          "action": "add",
-          "team": "Canberra Wombats",
-          "position": "SP,RP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1774968360,
-      "players": [
-        {
-          "name": "Seth Lugo",
-          "action": "add",
-          "team": "Canberra Wombats",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1774918605,
-      "players": [
-        {
-          "name": "Randy V\u00e1squez",
-          "action": "add",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "SP"
-        },
-        {
-          "name": "Kirby Yates",
-          "action": "drop",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1774889236,
-      "players": [
-        {
-          "name": "Owen Caissie",
-          "action": "add",
-          "team": "North Correa",
-          "position": "OF"
-        },
-        {
-          "name": "Cedric Mullins",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "OF"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1774889165,
-      "players": [
-        {
-          "name": "Emerson Hancock",
-          "action": "add",
-          "team": "North Correa",
-          "position": "SP,RP"
-        },
-        {
-          "name": "Shane Smith",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1774883503,
-      "players": [
-        {
-          "name": "Jordan Walker",
-          "action": "add",
-          "team": "BaseballPro77",
-          "position": "OF"
-        },
-        {
-          "name": "Dustin May",
-          "action": "drop",
-          "team": "BaseballPro77",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1774879500,
-      "players": [
-        {
-          "name": "Jonathan Lo\u00e1isiga",
-          "action": "add",
-          "team": "Albuquerque Bombers",
-          "position": "RP"
-        },
-        {
-          "name": "Max Meyer",
-          "action": "drop",
-          "team": "Albuquerque Bombers",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1809,8 +1803,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-04-06T12:53:53.036327"
+  "saved_at": "2026-04-06T16:38:27.893512"
 }
