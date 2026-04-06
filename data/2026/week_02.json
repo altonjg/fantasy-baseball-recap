@@ -1355,6 +1355,18 @@
   },
   "transactions": [
     {
+      "type": "drop",
+      "timestamp": 1775476412,
+      "players": [
+        {
+          "name": "Bryan Abreu",
+          "action": "drop",
+          "team": "Athletic Park Dragons",
+          "position": "RP"
+        }
+      ]
+    },
+    {
       "type": "add",
       "timestamp": 1775467991,
       "players": [
@@ -1779,24 +1791,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1774871193,
-      "players": [
-        {
-          "name": "Tim Hill",
-          "action": "add",
-          "team": "Riverside Roughnecks",
-          "position": "RP"
-        },
-        {
-          "name": "Carlos Est\u00e9vez",
-          "action": "drop",
-          "team": "Riverside Roughnecks",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1815,8 +1809,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-04-06T11:50:57.065359"
+  "saved_at": "2026-04-06T12:53:53.036327"
 }
