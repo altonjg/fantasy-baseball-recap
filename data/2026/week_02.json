@@ -116,7 +116,7 @@
               "name": "Miguel Vargas",
               "mlb_team": "CWS",
               "position": "1B,3B",
-              "stats": "R:2, HR:1, RBI:7, OBP:.313",
+              "stats": "R:2, HR:1, RBI:7, OBP:.312",
               "score": 14.0
             }
           ]
@@ -1821,8 +1821,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-04-07T13:04:12.136076"
+  "saved_at": "2026-04-07T16:48:11.501167"
 }
