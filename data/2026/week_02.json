@@ -58,8 +58,8 @@
               "name": "Bo Bichette",
               "mlb_team": "NYM",
               "position": "3B,SS",
-              "stats": "R:3, RBI:3, OBP:.368",
-              "score": 12.0
+              "stats": "R:3, RBI:3, OBP:.400",
+              "score": 13.0
             }
           ]
         },
@@ -116,7 +116,7 @@
               "name": "Miguel Vargas",
               "mlb_team": "CWS",
               "position": "1B,3B",
-              "stats": "R:2, HR:1, RBI:7, OBP:.312",
+              "stats": "R:2, HR:1, RBI:7, OBP:.278",
               "score": 14.0
             }
           ]
@@ -263,8 +263,8 @@
               "name": "Gunnar Henderson",
               "mlb_team": "BAL",
               "position": "SS",
-              "stats": "R:4, HR:2, RBI:6, OBP:.357",
-              "score": 19.0
+              "stats": "R:4, HR:2, RBI:6, OBP:.387",
+              "score": 20.0
             },
             {
               "name": "Teoscar Hern\u00e1ndez",
@@ -531,6 +531,13 @@
           },
           "top_players": [
             {
+              "name": "Gavin Williams",
+              "mlb_team": "CLE",
+              "position": "SP",
+              "stats": "K:18, ERA:0.71, WHIP:0.87, QS:1, IP:12.2",
+              "score": 19.0
+            },
+            {
               "name": "Giancarlo Stanton",
               "mlb_team": "NYY",
               "position": "OF",
@@ -552,17 +559,10 @@
               "score": 12.0
             },
             {
-              "name": "Gavin Williams",
-              "mlb_team": "CLE",
-              "position": "SP",
-              "stats": "K:10, WHIP:0.71, QS:1, IP:7.0",
-              "score": 11.0
-            },
-            {
-              "name": "Vinnie Pasquantino",
+              "name": "Bobby Witt Jr.",
               "mlb_team": "KC",
-              "position": "1B",
-              "stats": "R:2, RBI:4, OBP:.321",
+              "position": "SS",
+              "stats": "RBI:2, SB:5, OBP:.290",
               "score": 11.0
             }
           ]
@@ -592,7 +592,7 @@
               "name": "Corbin Carroll",
               "mlb_team": "AZ",
               "position": "OF",
-              "stats": "R:5, HR:2, RBI:8, SB:1, OBP:.519",
+              "stats": "R:5, HR:2, RBI:8, SB:1, OBP:.500",
               "score": 24.0
             },
             {
@@ -1045,14 +1045,14 @@
               "name": "Maikel Garcia",
               "mlb_team": "KC",
               "position": "2B,3B,SS,OF",
-              "stats": "R:4, HR:1, RBI:7, OBP:.444",
+              "stats": "R:4, HR:1, RBI:7, OBP:.387",
               "score": 21.0
             },
             {
               "name": "Taylor Ward",
               "mlb_team": "BAL",
               "position": "OF",
-              "stats": "R:2, RBI:5, OBP:.500",
+              "stats": "R:2, RBI:5, OBP:.516",
               "score": 18.0
             },
             {
@@ -1110,7 +1110,7 @@
               "name": "Pete Alonso",
               "mlb_team": "BAL",
               "position": "1B",
-              "stats": "R:2, HR:1, RBI:2, OBP:.269",
+              "stats": "R:2, HR:1, RBI:2, OBP:.276",
               "score": 10.0
             },
             {
@@ -1354,6 +1354,36 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "add/drop",
+      "timestamp": 1775588513,
+      "players": [
+        {
+          "name": "Orion Kerkering",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "RP"
+        },
+        {
+          "name": "Grant Taylor",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1775581288,
+      "players": [
+        {
+          "name": "Zach Eflin",
+          "action": "drop",
+          "team": "Benchwarmers",
+          "position": "SP"
+        }
+      ]
+    },
     {
       "type": "add",
       "timestamp": 1775504997,
@@ -1779,30 +1809,6 @@
           "position": "SP,RP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1775237761,
-      "players": [
-        {
-          "name": "Justin Topa",
-          "action": "add",
-          "team": "Athletic Park Dragons",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1775056978,
-      "players": [
-        {
-          "name": "Tyler Alexander",
-          "action": "add",
-          "team": "Benchwarmers",
-          "position": "SP,RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1821,8 +1827,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-04-07T16:48:11.501167"
+  "saved_at": "2026-04-07T20:39:29.784772"
 }
