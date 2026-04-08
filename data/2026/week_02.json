@@ -88,7 +88,7 @@
               "name": "Oneil Cruz",
               "mlb_team": "PIT",
               "position": "OF",
-              "stats": "R:7, HR:4, RBI:10, OBP:.407",
+              "stats": "R:7, HR:4, RBI:10, OBP:.393",
               "score": 30.0
             },
             {
@@ -116,7 +116,7 @@
               "name": "Miguel Vargas",
               "mlb_team": "CWS",
               "position": "1B,3B",
-              "stats": "R:2, HR:1, RBI:7, OBP:.313",
+              "stats": "R:2, HR:1, RBI:7, OBP:.312",
               "score": 14.0
             }
           ]
@@ -709,7 +709,7 @@
               "name": "Bryan Reynolds",
               "mlb_team": "PIT",
               "position": "OF",
-              "stats": "R:7, HR:2, RBI:4, OBP:.333",
+              "stats": "R:7, HR:2, RBI:4, OBP:.357",
               "score": 18.0
             },
             {
@@ -774,14 +774,14 @@
               "name": "Jackson Merrill",
               "mlb_team": "SD",
               "position": "OF",
-              "stats": "R:6, HR:2, RBI:5, OBP:.318",
+              "stats": "R:6, HR:2, RBI:5, OBP:.304",
               "score": 19.0
             },
             {
               "name": "Ryan O'Hearn",
               "mlb_team": "PIT",
               "position": "1B,OF",
-              "stats": "R:3, HR:2, RBI:8, OBP:.455",
+              "stats": "R:3, HR:2, RBI:8, OBP:.435",
               "score": 18.0
             },
             {
@@ -1355,6 +1355,24 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1775659217,
+      "players": [
+        {
+          "name": "Keaton Winn",
+          "action": "add",
+          "team": "Buttville Skidmarks",
+          "position": "SP,RP"
+        },
+        {
+          "name": "Justin Slaten",
+          "action": "drop",
+          "team": "Buttville Skidmarks",
+          "position": "RP"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1775620723,
       "players": [
@@ -1791,18 +1809,6 @@
           "position": "1B"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1775256354,
-      "players": [
-        {
-          "name": "Cody Ponce",
-          "action": "drop",
-          "team": "Albuquerque Bombers",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1824,5 +1830,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-04-08T13:05:35.518463"
+  "saved_at": "2026-04-08T16:54:20.088891"
 }
