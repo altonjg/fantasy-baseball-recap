@@ -702,8 +702,8 @@
               "name": "Elly De La Cruz",
               "mlb_team": "CIN",
               "position": "SS",
-              "stats": "R:5, HR:2, RBI:4, SB:1, OBP:.308",
-              "score": 19.0
+              "stats": "R:5, HR:2, RBI:4, SB:1, OBP:.321",
+              "score": 20.0
             },
             {
               "name": "Bryan Reynolds",
@@ -760,14 +760,14 @@
               "name": "Xavier Edwards",
               "mlb_team": "MIA",
               "position": "2B,SS",
-              "stats": "R:6, HR:1, RBI:5, SB:1, OBP:.560",
-              "score": 25.0
+              "stats": "R:7, HR:1, RBI:5, SB:1, OBP:.593",
+              "score": 27.0
             },
             {
               "name": "Otto Lopez",
               "mlb_team": "MIA",
               "position": "2B,SS",
-              "stats": "R:7, HR:1, RBI:2, SB:1, OBP:.440",
+              "stats": "R:7, HR:1, RBI:2, SB:1, OBP:.423",
               "score": 19.0
             },
             {
@@ -1117,7 +1117,7 @@
               "name": "Eugenio Su\u00e1rez",
               "mlb_team": "CIN",
               "position": "3B",
-              "stats": "R:2, RBI:1, OBP:.286",
+              "stats": "R:2, RBI:1, OBP:.304",
               "score": 8.0
             },
             {
@@ -1818,5 +1818,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-04-09T13:06:05.625476"
+  "saved_at": "2026-04-09T16:59:49.071775"
 }
