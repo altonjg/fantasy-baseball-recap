@@ -88,8 +88,8 @@
               "name": "Oneil Cruz",
               "mlb_team": "PIT",
               "position": "OF",
-              "stats": "R:7, HR:4, RBI:10, OBP:.407",
-              "score": 30.0
+              "stats": "R:7, HR:4, RBI:10, SB:1, OBP:.433",
+              "score": 32.0
             },
             {
               "name": "Shohei Ohtani (Batter)",
@@ -110,7 +110,7 @@
               "mlb_team": "CHC",
               "position": "2B",
               "stats": "R:4, RBI:2, SB:2, OBP:.500",
-              "score": 14.0
+              "score": 15.0
             },
             {
               "name": "Miguel Vargas",
@@ -699,18 +699,18 @@
           },
           "top_players": [
             {
+              "name": "Bryan Reynolds",
+              "mlb_team": "PIT",
+              "position": "OF",
+              "stats": "R:8, HR:3, RBI:6, OBP:.333",
+              "score": 23.0
+            },
+            {
               "name": "Elly De La Cruz",
               "mlb_team": "CIN",
               "position": "SS",
               "stats": "R:5, HR:2, RBI:4, SB:1, OBP:.308",
               "score": 19.0
-            },
-            {
-              "name": "Bryan Reynolds",
-              "mlb_team": "PIT",
-              "position": "OF",
-              "stats": "R:7, HR:2, RBI:4, OBP:.333",
-              "score": 18.0
             },
             {
               "name": "Luis Arraez",
@@ -895,10 +895,10 @@
               "score": 12.0
             },
             {
-              "name": "Chandler Simpson",
-              "mlb_team": "TB",
-              "position": "OF",
-              "stats": "R:1, SB:2, OBP:.400",
+              "name": "Carson Kelly",
+              "mlb_team": "CHC",
+              "position": "C",
+              "stats": "R:3, RBI:2, OBP:.455",
               "score": 11.0
             }
           ]
@@ -1107,6 +1107,13 @@
               "score": 15.0
             },
             {
+              "name": "Shota Imanaga",
+              "mlb_team": "CHC",
+              "position": "SP",
+              "stats": "K:13, ERA:0.82, WHIP:0.45, QS:1, IP:11.0",
+              "score": 14.0
+            },
+            {
               "name": "Pete Alonso",
               "mlb_team": "BAL",
               "position": "1B",
@@ -1118,13 +1125,6 @@
               "mlb_team": "CIN",
               "position": "3B",
               "stats": "R:2, RBI:1, OBP:.286",
-              "score": 8.0
-            },
-            {
-              "name": "Michael Harris II",
-              "mlb_team": "ATL",
-              "position": "OF",
-              "stats": "R:1, RBI:2, OBP:.200",
               "score": 8.0
             }
           ]
@@ -1354,6 +1354,54 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "add/drop",
+      "timestamp": 1775844638,
+      "players": [
+        {
+          "name": "Rico Garcia",
+          "action": "add",
+          "team": "Athletic Park Dragons",
+          "position": "RP"
+        },
+        {
+          "name": "AJ Blubaugh",
+          "action": "drop",
+          "team": "Athletic Park Dragons",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1775844495,
+      "players": [
+        {
+          "name": "Cole Winn",
+          "action": "add",
+          "team": "Athletic Park Dragons",
+          "position": "RP"
+        },
+        {
+          "name": "Phil Maton",
+          "action": "drop",
+          "team": "Athletic Park Dragons",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1775841519,
+      "players": [
+        {
+          "name": "Jordan Beck",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "OF"
+        }
+      ]
+    },
     {
       "type": "add",
       "timestamp": 1775734971,
@@ -1749,54 +1797,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1775467606,
-      "players": [
-        {
-          "name": "Hyeseong Kim",
-          "action": "add",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "2B,SS,OF"
-        },
-        {
-          "name": "Victor Scott II",
-          "action": "drop",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "OF"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1775434782,
-      "players": [
-        {
-          "name": "Luke Raley",
-          "action": "add",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "1B,OF"
-        },
-        {
-          "name": "Noelvi Marte",
-          "action": "drop",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "3B,OF"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1775411823,
-      "players": [
-        {
-          "name": "Gary S\u00e1nchez",
-          "action": "add",
-          "team": "North Correa",
-          "position": "C"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1815,8 +1815,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-04-10T16:42:45.032319"
+  "saved_at": "2026-04-10T20:27:46.277483"
 }
