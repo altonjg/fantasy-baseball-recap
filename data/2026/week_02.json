@@ -1355,6 +1355,18 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1775920740,
+      "players": [
+        {
+          "name": "Janson Junk",
+          "action": "add",
+          "team": "General Hospital",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1775844638,
       "players": [
@@ -1785,18 +1797,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1775467682,
-      "players": [
-        {
-          "name": "Yusei Kikuchi",
-          "action": "drop",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1815,8 +1815,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-04-11T12:40:16.145591"
+  "saved_at": "2026-04-11T16:28:35.144798"
 }
