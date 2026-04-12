@@ -1355,6 +1355,36 @@
   },
   "transactions": [
     {
+      "type": "drop",
+      "timestamp": 1776009070,
+      "players": [
+        {
+          "name": "Masyn Winn",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SS"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1776007285,
+      "players": [
+        {
+          "name": "Aaron Civale",
+          "action": "add",
+          "team": "Buttville Skidmarks",
+          "position": "SP,RP"
+        },
+        {
+          "name": "Brandon Sproat",
+          "action": "drop",
+          "team": "Buttville Skidmarks",
+          "position": "SP"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1775981109,
       "players": [
@@ -1773,36 +1803,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1775483276,
-      "players": [
-        {
-          "name": "Rhett Lowder",
-          "action": "add",
-          "team": "Albuquerque Bombers",
-          "position": "SP"
-        },
-        {
-          "name": "Mick Abel",
-          "action": "drop",
-          "team": "Albuquerque Bombers",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1775476412,
-      "players": [
-        {
-          "name": "Bryan Abreu",
-          "action": "drop",
-          "team": "Athletic Park Dragons",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1821,8 +1821,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-04-12T12:43:38.565621"
+  "saved_at": "2026-04-12T16:30:21.734454"
 }
