@@ -102,7 +102,7 @@
               "name": "Cam Smith",
               "mlb_team": "HOU",
               "position": "OF",
-              "stats": "R:3, HR:1, RBI:3, OBP:.333",
+              "stats": "R:3, HR:1, RBI:3, OBP:.320",
               "score": 14.0
             },
             {
@@ -226,7 +226,7 @@
               "name": "Yordan Alvarez",
               "mlb_team": "HOU",
               "position": "OF",
-              "stats": "R:2, HR:2, RBI:4, OBP:.370",
+              "stats": "R:2, HR:2, RBI:4, OBP:.357",
               "score": 14.0
             }
           ]
@@ -613,7 +613,7 @@
               "name": "Randy Arozarena",
               "mlb_team": "SEA",
               "position": "OF",
-              "stats": "R:3, HR:1, RBI:4, SB:1, OBP:.375",
+              "stats": "R:3, HR:1, RBI:4, SB:1, OBP:.360",
               "score": 15.0
             },
             {
@@ -1063,11 +1063,11 @@
               "score": 16.0
             },
             {
-              "name": "Yandy D\u00edaz",
-              "mlb_team": "TB",
-              "position": "1B",
-              "stats": "R:2, HR:1, RBI:4, SB:1, OBP:.400",
-              "score": 14.0
+              "name": "Cal Raleigh",
+              "mlb_team": "SEA",
+              "position": "C",
+              "stats": "R:4, HR:2, RBI:6, OBP:.259",
+              "score": 16.0
             }
           ]
         },
@@ -1354,6 +1354,30 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "drop",
+      "timestamp": 1776107182,
+      "players": [
+        {
+          "name": "Jordan Lawlar",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "3B,OF"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1776105504,
+      "players": [
+        {
+          "name": "Javier Assad",
+          "action": "add",
+          "team": "Benchwarmers",
+          "position": "SP"
+        }
+      ]
+    },
     {
       "type": "add",
       "timestamp": 1776096763,
@@ -1773,36 +1797,6 @@
           "position": "C"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1775495437,
-      "players": [
-        {
-          "name": "Jeffrey Springs",
-          "action": "add",
-          "team": "North Correa",
-          "position": "SP"
-        },
-        {
-          "name": "Jack Flaherty",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1775489630,
-      "players": [
-        {
-          "name": "Graham Ashcraft",
-          "action": "add",
-          "team": "Benchwarmers",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1824,5 +1818,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-04-13T16:57:17.474395"
+  "saved_at": "2026-04-13T20:45:24.984277"
 }
