@@ -1355,6 +1355,24 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1776084873,
+      "players": [
+        {
+          "name": "Noah Schultz",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        },
+        {
+          "name": "Jacob Lopez",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
       "type": "add",
       "timestamp": 1776080886,
       "players": [
@@ -1779,24 +1797,6 @@
           "position": "OF"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1775485667,
-      "players": [
-        {
-          "name": "Max Muncy",
-          "action": "add",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "2B,3B,SS"
-        },
-        {
-          "name": "Zach McKinstry",
-          "action": "drop",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "2B,3B,SS,OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1818,5 +1818,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-04-13T12:05:58.495882"
+  "saved_at": "2026-04-13T13:07:45.201751"
 }
