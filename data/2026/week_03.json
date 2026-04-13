@@ -1355,6 +1355,54 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1776096763,
+      "players": [
+        {
+          "name": "Joel Kuhnel",
+          "action": "add",
+          "team": "General Hospital",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1776096732,
+      "players": [
+        {
+          "name": "Justin Wrobleski",
+          "action": "add",
+          "team": "General Hospital",
+          "position": "RP"
+        },
+        {
+          "name": "Andre Pallante",
+          "action": "drop",
+          "team": "General Hospital",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1776092142,
+      "players": [
+        {
+          "name": "Michael McGreevy",
+          "action": "add",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "SP"
+        },
+        {
+          "name": "Tyler Mahle",
+          "action": "drop",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1776084873,
       "players": [
@@ -1755,48 +1803,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1775489615,
-      "players": [
-        {
-          "name": "Spencer Arrighetti",
-          "action": "add",
-          "team": "Benchwarmers",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1775489477,
-      "players": [
-        {
-          "name": "Mauricio Dub\u00f3n",
-          "action": "add",
-          "team": "Benchwarmers",
-          "position": "2B,3B,SS,OF"
-        },
-        {
-          "name": "Josh Smith",
-          "action": "drop",
-          "team": "Benchwarmers",
-          "position": "1B,2B,3B,SS,OF"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1775489319,
-      "players": [
-        {
-          "name": "Garrett Mitchell",
-          "action": "add",
-          "team": "Benchwarmers",
-          "position": "OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1815,8 +1821,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-04-13T13:07:45.201751"
+  "saved_at": "2026-04-13T16:57:17.474395"
 }
