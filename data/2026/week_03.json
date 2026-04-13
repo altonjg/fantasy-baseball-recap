@@ -1355,6 +1355,18 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1776080886,
+      "players": [
+        {
+          "name": "Angel Mart\u00ednez",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "2B,OF"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1776009070,
       "players": [
@@ -1785,24 +1797,6 @@
           "position": "2B,3B,SS,OF"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1775484686,
-      "players": [
-        {
-          "name": "Landen Roupp",
-          "action": "add",
-          "team": "Albuquerque Bombers",
-          "position": "SP"
-        },
-        {
-          "name": "Chris Bassitt",
-          "action": "drop",
-          "team": "Albuquerque Bombers",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1821,8 +1815,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-04-13T09:30:22.535569"
+  "saved_at": "2026-04-13T12:05:58.495882"
 }
