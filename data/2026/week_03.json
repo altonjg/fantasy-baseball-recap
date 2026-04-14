@@ -1355,6 +1355,24 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1776167933,
+      "players": [
+        {
+          "name": "Bryan Baker",
+          "action": "add",
+          "team": "Buttville Skidmarks",
+          "position": "RP"
+        },
+        {
+          "name": "Keaton Winn",
+          "action": "drop",
+          "team": "Buttville Skidmarks",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1776107182,
       "players": [
@@ -1779,24 +1797,6 @@
           "position": "1B,OF"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1775504813,
-      "players": [
-        {
-          "name": "Nick Fortes",
-          "action": "add",
-          "team": "North Correa",
-          "position": "C"
-        },
-        {
-          "name": "Gary S\u00e1nchez",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "C"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1815,8 +1815,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-04-14T09:10:52.559139"
+  "saved_at": "2026-04-14T13:09:22.403850"
 }
