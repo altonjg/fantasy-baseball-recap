@@ -1355,6 +1355,30 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1776196078,
+      "players": [
+        {
+          "name": "Jeremiah Jackson",
+          "action": "add",
+          "team": "BaseballPro77",
+          "position": "2B,3B,OF"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1776187669,
+      "players": [
+        {
+          "name": "Mick Abel",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1776167933,
       "players": [
@@ -1767,36 +1791,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1775504997,
-      "players": [
-        {
-          "name": "Andre Pallante",
-          "action": "add",
-          "team": "General Hospital",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1775504942,
-      "players": [
-        {
-          "name": "Jonathan India",
-          "action": "add",
-          "team": "North Correa",
-          "position": "2B,3B,OF"
-        },
-        {
-          "name": "Jac Caglianone",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "1B,OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1815,8 +1809,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-04-14T16:58:31.926590"
+  "saved_at": "2026-04-14T20:45:17.692434"
 }
