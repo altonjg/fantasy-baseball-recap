@@ -30,7 +30,7 @@
               "name": "Sal Stewart",
               "mlb_team": "CIN",
               "position": "1B",
-              "stats": "R:5, HR:2, RBI:5, SB:2, OBP:.346",
+              "stats": "R:5, HR:2, RBI:5, SB:2, OBP:.333",
               "score": 19.0
             },
             {
@@ -281,11 +281,11 @@
               "score": 15.0
             },
             {
-              "name": "Xander Bogaerts",
-              "mlb_team": "SD",
+              "name": "CJ Abrams",
+              "mlb_team": "WSH",
               "position": "SS",
-              "stats": "R:2, HR:1, RBI:4, SB:2, OBP:.474",
-              "score": 14.0
+              "stats": "R:2, HR:1, RBI:3, SB:2, OBP:.391",
+              "score": 15.0
             }
           ]
         }
@@ -366,7 +366,7 @@
               "name": "James Wood",
               "mlb_team": "WSH",
               "position": "OF",
-              "stats": "R:8, HR:3, RBI:8, SB:2, OBP:.655",
+              "stats": "R:8, HR:3, RBI:8, SB:2, OBP:.633",
               "score": 33.0
             },
             {
@@ -599,7 +599,7 @@
               "name": "Oneil Cruz",
               "mlb_team": "PIT",
               "position": "OF",
-              "stats": "R:2, HR:1, RBI:3, SB:6, OBP:.444",
+              "stats": "R:2, HR:1, RBI:3, SB:6, OBP:.429",
               "score": 21.0
             },
             {
@@ -870,14 +870,14 @@
               "name": "Elly De La Cruz",
               "mlb_team": "CIN",
               "position": "SS",
-              "stats": "R:7, HR:2, RBI:5, SB:4, OBP:.438",
+              "stats": "R:7, HR:2, RBI:5, SB:4, OBP:.424",
               "score": 27.0
             },
             {
               "name": "Rafael Devers",
               "mlb_team": "SF",
               "position": "1B",
-              "stats": "R:4, HR:1, RBI:4, OBP:.240",
+              "stats": "R:4, HR:1, RBI:4, OBP:.231",
               "score": 15.0
             },
             {
@@ -891,7 +891,7 @@
               "name": "Luis Arraez",
               "mlb_team": "SF",
               "position": "1B,2B",
-              "stats": "R:3, RBI:3, OBP:.450",
+              "stats": "R:3, RBI:3, OBP:.429",
               "score": 12.0
             },
             {
@@ -1356,6 +1356,36 @@
   "transactions": [
     {
       "type": "add/drop",
+      "timestamp": 1776349414,
+      "players": [
+        {
+          "name": "Sam Antonacci",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "2B,3B"
+        },
+        {
+          "name": "Jorge Polanco",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "2B,3B"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1776346356,
+      "players": [
+        {
+          "name": "Enyel De Los Santos",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
       "timestamp": 1776335911,
       "players": [
         {
@@ -1761,42 +1791,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1775722702,
-      "players": [
-        {
-          "name": "Bryan Abreu",
-          "action": "add",
-          "team": "Albuquerque Bombers",
-          "position": "RP"
-        },
-        {
-          "name": "Steven Okert",
-          "action": "drop",
-          "team": "Albuquerque Bombers",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1775676158,
-      "players": [
-        {
-          "name": "Juan Morillo",
-          "action": "add",
-          "team": "BaseballPro77",
-          "position": "RP"
-        },
-        {
-          "name": "Anthony Bender",
-          "action": "drop",
-          "team": "BaseballPro77",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1818,5 +1812,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-04-16T13:15:03.220606"
+  "saved_at": "2026-04-16T17:06:34.166585"
 }
