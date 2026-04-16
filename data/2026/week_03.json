@@ -1355,6 +1355,36 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1776335911,
+      "players": [
+        {
+          "name": "Foster Griffin",
+          "action": "add",
+          "team": "Abbotsford-Colby Twins",
+          "position": "SP,RP"
+        },
+        {
+          "name": "Luis Severino",
+          "action": "drop",
+          "team": "Abbotsford-Colby Twins",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1776335535,
+      "players": [
+        {
+          "name": "Steven Matz",
+          "action": "add",
+          "team": "Abbotsford-Colby Twins",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1776264884,
       "players": [
@@ -1767,36 +1797,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1775670981,
-      "players": [
-        {
-          "name": "Nasim Nu\u00f1ez",
-          "action": "add",
-          "team": "Hiroshima Radiation",
-          "position": "2B,SS"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1775659217,
-      "players": [
-        {
-          "name": "Keaton Winn",
-          "action": "add",
-          "team": "Buttville Skidmarks",
-          "position": "SP,RP"
-        },
-        {
-          "name": "Justin Slaten",
-          "action": "drop",
-          "team": "Buttville Skidmarks",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1815,8 +1815,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-04-16T09:11:16.090563"
+  "saved_at": "2026-04-16T13:15:03.220606"
 }
