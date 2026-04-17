@@ -102,7 +102,7 @@
               "name": "Cam Smith",
               "mlb_team": "HOU",
               "position": "OF",
-              "stats": "R:3, HR:1, RBI:3, OBP:.308",
+              "stats": "R:3, HR:1, RBI:3, OBP:.286",
               "score": 14.0
             },
             {
@@ -212,7 +212,7 @@
               "name": "Yordan Alvarez",
               "mlb_team": "HOU",
               "position": "OF",
-              "stats": "R:3, HR:2, RBI:5, OBP:.379",
+              "stats": "R:3, HR:2, RBI:5, OBP:.375",
               "score": 17.0
             },
             {
@@ -260,6 +260,13 @@
               "score": 21.0
             },
             {
+              "name": "Fernando Tatis Jr.",
+              "mlb_team": "SD",
+              "position": "OF",
+              "stats": "R:3, RBI:5, SB:2, OBP:.378",
+              "score": 19.0
+            },
+            {
               "name": "Drake Baldwin",
               "mlb_team": "ATL",
               "position": "C",
@@ -271,13 +278,6 @@
               "mlb_team": "LAD",
               "position": "3B",
               "stats": "R:6, HR:3, RBI:3, OBP:.321",
-              "score": 18.0
-            },
-            {
-              "name": "Fernando Tatis Jr.",
-              "mlb_team": "SD",
-              "position": "OF",
-              "stats": "R:2, RBI:5, SB:2, OBP:.361",
               "score": 18.0
             },
             {
@@ -435,6 +435,13 @@
               "score": 17.0
             },
             {
+              "name": "Brenton Doyle",
+              "mlb_team": "COL",
+              "position": "OF",
+              "stats": "R:6, HR:1, RBI:1, SB:3, OBP:.400",
+              "score": 17.0
+            },
+            {
               "name": "Ben Rice",
               "mlb_team": "NYY",
               "position": "C,1B",
@@ -447,13 +454,6 @@
               "position": "2B,3B,OF",
               "stats": "R:4, HR:1, RBI:4, SB:1, OBP:.389",
               "score": 16.0
-            },
-            {
-              "name": "Kris Bubic",
-              "mlb_team": "KC",
-              "position": "SP",
-              "stats": "K:14, ERA:3.86, WHIP:1.03, QS:1, IP:11.2",
-              "score": 15.0
             }
           ]
         }
@@ -613,8 +613,8 @@
               "name": "Randy Arozarena",
               "mlb_team": "SEA",
               "position": "OF",
-              "stats": "R:3, HR:1, RBI:4, SB:1, OBP:.346",
-              "score": 15.0
+              "stats": "R:3, HR:1, RBI:4, SB:1, OBP:.393",
+              "score": 16.0
             },
             {
               "name": "Chris Sale",
@@ -767,8 +767,8 @@
               "name": "Jackson Merrill",
               "mlb_team": "SD",
               "position": "OF",
-              "stats": "R:5, HR:1, RBI:5, SB:3, OBP:.257",
-              "score": 19.0
+              "stats": "R:5, HR:1, RBI:5, SB:3, OBP:.278",
+              "score": 20.0
             },
             {
               "name": "Nick Kurtz",
@@ -925,6 +925,13 @@
           },
           "top_players": [
             {
+              "name": "Manny Machado",
+              "mlb_team": "SD",
+              "position": "3B",
+              "stats": "R:4, HR:1, RBI:7, SB:1, OBP:.375",
+              "score": 19.0
+            },
+            {
               "name": "Dillon Dingler",
               "mlb_team": "DET",
               "position": "C",
@@ -937,13 +944,6 @@
               "position": "OF",
               "stats": "R:2, HR:1, RBI:7, SB:1, OBP:.417",
               "score": 19.0
-            },
-            {
-              "name": "Manny Machado",
-              "mlb_team": "SD",
-              "position": "3B",
-              "stats": "R:4, HR:1, RBI:6, SB:1, OBP:.367",
-              "score": 17.0
             },
             {
               "name": "Cam Schlittler",
@@ -1063,11 +1063,11 @@
               "score": 17.0
             },
             {
-              "name": "Jacob deGrom",
-              "mlb_team": "TEX",
-              "position": "SP",
-              "stats": "K:15, ERA:1.64, WHIP:0.82, QS:1, IP:11.0",
-              "score": 16.0
+              "name": "Cal Raleigh",
+              "mlb_team": "SEA",
+              "position": "C",
+              "stats": "R:3, HR:2, RBI:7, OBP:.267",
+              "score": 17.0
             }
           ]
         },
@@ -1809,8 +1809,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-04-17T01:54:18.298187"
+  "saved_at": "2026-04-17T05:59:50.467379"
 }
