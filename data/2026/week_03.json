@@ -58,8 +58,8 @@
               "name": "Bo Bichette",
               "mlb_team": "NYM",
               "position": "3B,SS",
-              "stats": "R:2, HR:1, RBI:3, OBP:.385",
-              "score": 13.0
+              "stats": "R:2, HR:1, RBI:3, OBP:.367",
+              "score": 14.0
             }
           ]
         },
@@ -592,8 +592,8 @@
               "name": "Nico Hoerner",
               "mlb_team": "CHC",
               "position": "2B",
-              "stats": "R:3, HR:1, RBI:7, SB:1, OBP:.400",
-              "score": 22.0
+              "stats": "R:4, HR:2, RBI:9, SB:1, OBP:.429",
+              "score": 29.0
             },
             {
               "name": "Oneil Cruz",
@@ -888,18 +888,18 @@
               "score": 13.0
             },
             {
+              "name": "Francisco Alvarez",
+              "mlb_team": "NYM",
+              "position": "C",
+              "stats": "R:3, HR:1, RBI:2, OBP:.478",
+              "score": 13.0
+            },
+            {
               "name": "Luis Arraez",
               "mlb_team": "SF",
               "position": "1B,2B",
               "stats": "R:3, RBI:3, OBP:.450",
               "score": 12.0
-            },
-            {
-              "name": "Junior Caminero",
-              "mlb_team": "TB",
-              "position": "3B",
-              "stats": "R:2, HR:1, RBI:2, OBP:.280",
-              "score": 10.0
             }
           ]
         },
@@ -1355,6 +1355,30 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1776450468,
+      "players": [
+        {
+          "name": "Hogan Harris",
+          "action": "add",
+          "team": "Hiroshima Radiation",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1776449883,
+      "players": [
+        {
+          "name": "Taylor Clarke",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "RP"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1776349414,
       "players": [
@@ -1761,36 +1785,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1775734637,
-      "players": [
-        {
-          "name": "David Peterson",
-          "action": "drop",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1775722702,
-      "players": [
-        {
-          "name": "Adrian Morejon",
-          "action": "add",
-          "team": "Albuquerque Bombers",
-          "position": "RP"
-        },
-        {
-          "name": "Aaron Ashby",
-          "action": "drop",
-          "team": "Albuquerque Bombers",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1812,5 +1806,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-04-17T16:47:38.098139"
+  "saved_at": "2026-04-17T20:37:58.436553"
 }
