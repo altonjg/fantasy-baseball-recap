@@ -428,13 +428,6 @@
               "score": 16.0
             },
             {
-              "name": "Willi Castro",
-              "mlb_team": "COL",
-              "position": "2B,3B,OF",
-              "stats": "R:4, HR:1, RBI:4, SB:1, OBP:.389",
-              "score": 16.0
-            },
-            {
               "name": "Maikel Garcia",
               "mlb_team": "KC",
               "position": "2B,3B,SS,OF",
@@ -453,6 +446,13 @@
               "mlb_team": "PHI",
               "position": "SS",
               "stats": "R:3, HR:1, RBI:3, OBP:.231",
+              "score": 12.0
+            },
+            {
+              "name": "Kris Bubic",
+              "mlb_team": "KC",
+              "position": "SP",
+              "stats": "K:11, WHIP:0.43, QS:1, IP:7.0",
               "score": 12.0
             }
           ]
@@ -1356,6 +1356,60 @@
   "transactions": [
     {
       "type": "add/drop",
+      "timestamp": 1776529710,
+      "players": [
+        {
+          "name": "Davis Martin",
+          "action": "add",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "SP"
+        },
+        {
+          "name": "Merrill Kelly",
+          "action": "drop",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1776529117,
+      "players": [
+        {
+          "name": "Brandon Marsh",
+          "action": "add",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "OF"
+        },
+        {
+          "name": "Willi Castro",
+          "action": "drop",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "2B,3B,OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1776528960,
+      "players": [
+        {
+          "name": "Oswald Peraza",
+          "action": "add",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "1B,2B,3B,SS"
+        },
+        {
+          "name": "Jake Cronenworth",
+          "action": "drop",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "1B,2B,SS"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
       "timestamp": 1776460089,
       "players": [
         {
@@ -1743,54 +1797,6 @@
           "position": "SP,RP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1775844638,
-      "players": [
-        {
-          "name": "Rico Garcia",
-          "action": "add",
-          "team": "Athletic Park Dragons",
-          "position": "RP"
-        },
-        {
-          "name": "AJ Blubaugh",
-          "action": "drop",
-          "team": "Athletic Park Dragons",
-          "position": "SP,RP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1775844495,
-      "players": [
-        {
-          "name": "Cole Winn",
-          "action": "add",
-          "team": "Athletic Park Dragons",
-          "position": "RP"
-        },
-        {
-          "name": "Phil Maton",
-          "action": "drop",
-          "team": "Athletic Park Dragons",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1775841519,
-      "players": [
-        {
-          "name": "Jordan Beck",
-          "action": "drop",
-          "team": "Riverside Roughnecks",
-          "position": "OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1812,5 +1818,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-04-18T12:43:49.155094"
+  "saved_at": "2026-04-18T16:31:16.743379"
 }
