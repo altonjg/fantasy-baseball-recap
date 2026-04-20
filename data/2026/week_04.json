@@ -1038,7 +1038,7 @@
               "name": "Jo Adell",
               "mlb_team": "LAA",
               "position": "OF",
-              "stats": "R:5, HR:2, RBI:8, OBP:.313",
+              "stats": "R:5, HR:2, RBI:8, OBP:.312",
               "score": 22.0
             },
             {
@@ -1830,5 +1830,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-04-20T09:51:57.810317"
+  "saved_at": "2026-04-20T12:07:03.007223"
 }
