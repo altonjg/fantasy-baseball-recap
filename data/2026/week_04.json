@@ -274,18 +274,18 @@
               "score": 17.0
             },
             {
+              "name": "Roman Anthony",
+              "mlb_team": "BOS",
+              "position": "OF",
+              "stats": "R:4, RBI:1, SB:1, OBP:.516",
+              "score": 13.0
+            },
+            {
               "name": "Ram\u00f3n Laureano",
               "mlb_team": "SD",
               "position": "OF",
               "stats": "R:2, RBI:4, OBP:.304",
               "score": 12.0
-            },
-            {
-              "name": "Bryce Harper",
-              "mlb_team": "PHI",
-              "position": "1B",
-              "stats": "R:3, HR:1, RBI:1, OBP:.333",
-              "score": 11.0
             }
           ]
         }
@@ -760,7 +760,7 @@
               "name": "Dillon Dingler",
               "mlb_team": "DET",
               "position": "C",
-              "stats": "R:3, HR:2, RBI:7, OBP:.409",
+              "stats": "R:3, HR:2, RBI:7, OBP:.400",
               "score": 20.0
             },
             {
@@ -1827,8 +1827,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-04-20T16:57:43.295381"
+  "saved_at": "2026-04-20T20:38:34.777149"
 }
