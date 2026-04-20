@@ -37,7 +37,7 @@
               "name": "Ronald Acu\u00f1a Jr.",
               "mlb_team": "ATL",
               "position": "OF",
-              "stats": "R:4, HR:1, RBI:3, SB:1, OBP:.375",
+              "stats": "R:4, HR:1, RBI:3, SB:1, OBP:.364",
               "score": 18.0
             },
             {
@@ -102,7 +102,7 @@
               "name": "Michael Harris II",
               "mlb_team": "ATL",
               "position": "OF",
-              "stats": "R:4, HR:2, RBI:3, SB:1, OBP:.429",
+              "stats": "R:4, HR:2, RBI:3, SB:1, OBP:.467",
               "score": 15.0
             },
             {
@@ -256,7 +256,7 @@
               "name": "Matt Olson",
               "mlb_team": "ATL",
               "position": "1B",
-              "stats": "R:8, HR:2, RBI:6, OBP:.344",
+              "stats": "R:8, HR:2, RBI:6, OBP:.333",
               "score": 23.0
             },
             {
@@ -270,7 +270,7 @@
               "name": "Drake Baldwin",
               "mlb_team": "ATL",
               "position": "C",
-              "stats": "R:5, HR:1, RBI:5, OBP:.344",
+              "stats": "R:5, HR:1, RBI:5, OBP:.333",
               "score": 19.0
             },
             {
@@ -445,7 +445,7 @@
               "name": "Trea Turner",
               "mlb_team": "PHI",
               "position": "SS",
-              "stats": "R:4, HR:1, RBI:3, OBP:.233",
+              "stats": "R:4, HR:1, RBI:3, OBP:.226",
               "score": 14.0
             },
             {
@@ -541,7 +541,7 @@
               "name": "Austin Riley",
               "mlb_team": "ATL",
               "position": "3B",
-              "stats": "R:6, RBI:5, SB:1, OBP:.464",
+              "stats": "R:6, RBI:5, SB:1, OBP:.448",
               "score": 20.0
             },
             {
@@ -1117,7 +1117,7 @@
               "name": "Kyle Schwarber",
               "mlb_team": "PHI",
               "position": "OF",
-              "stats": "R:5, HR:2, RBI:5, OBP:.448",
+              "stats": "R:5, HR:2, RBI:5, OBP:.433",
               "score": 19.0
             },
             {
@@ -1827,8 +1827,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-04-20T01:59:45.171451"
+  "saved_at": "2026-04-20T06:10:25.359182"
 }
