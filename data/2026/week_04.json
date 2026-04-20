@@ -760,8 +760,8 @@
               "name": "Dillon Dingler",
               "mlb_team": "DET",
               "position": "C",
-              "stats": "R:2, HR:2, RBI:7, OBP:.450",
-              "score": 19.0
+              "stats": "R:3, HR:2, RBI:7, OBP:.409",
+              "score": 20.0
             },
             {
               "name": "Kyle Tucker",
@@ -1830,5 +1830,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-04-20T13:13:03.836680"
+  "saved_at": "2026-04-20T16:57:43.295381"
 }
