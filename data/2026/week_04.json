@@ -1356,6 +1356,24 @@
   "transactions": [
     {
       "type": "add/drop",
+      "timestamp": 1776686833,
+      "players": [
+        {
+          "name": "Mickey Moniak",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "OF"
+        },
+        {
+          "name": "Dominic Smith",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "1B"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
       "timestamp": 1776674767,
       "players": [
         {
@@ -1791,24 +1809,6 @@
           "position": "SS"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1776007285,
-      "players": [
-        {
-          "name": "Aaron Civale",
-          "action": "add",
-          "team": "Buttville Skidmarks",
-          "position": "SP,RP"
-        },
-        {
-          "name": "Brandon Sproat",
-          "action": "drop",
-          "team": "Buttville Skidmarks",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1830,5 +1830,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-04-20T12:07:03.007223"
+  "saved_at": "2026-04-20T13:13:03.836680"
 }
