@@ -1355,6 +1355,42 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1776785563,
+      "players": [
+        {
+          "name": "Jac Caglianone",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "1B,OF"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1776785083,
+      "players": [
+        {
+          "name": "Edwin Uceta",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1776783571,
+      "players": [
+        {
+          "name": "Dustin May",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1776759345,
       "players": [
@@ -1761,48 +1797,6 @@
           "position": "3B,OF"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1776105504,
-      "players": [
-        {
-          "name": "Javier Assad",
-          "action": "add",
-          "team": "Benchwarmers",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1776096763,
-      "players": [
-        {
-          "name": "Joel Kuhnel",
-          "action": "add",
-          "team": "General Hospital",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1776096732,
-      "players": [
-        {
-          "name": "Justin Wrobleski",
-          "action": "add",
-          "team": "General Hospital",
-          "position": "SP,RP"
-        },
-        {
-          "name": "Andre Pallante",
-          "action": "drop",
-          "team": "General Hospital",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1821,8 +1815,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-04-21T13:06:56.060061"
+  "saved_at": "2026-04-21T16:52:21.627104"
 }
