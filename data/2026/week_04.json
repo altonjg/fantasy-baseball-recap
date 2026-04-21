@@ -1038,7 +1038,7 @@
               "name": "Jo Adell",
               "mlb_team": "LAA",
               "position": "OF",
-              "stats": "R:5, HR:2, RBI:8, OBP:.313",
+              "stats": "R:5, HR:2, RBI:8, OBP:.312",
               "score": 22.0
             },
             {
@@ -1354,6 +1354,18 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "drop",
+      "timestamp": 1776791133,
+      "players": [
+        {
+          "name": "Cristian Javier",
+          "action": "drop",
+          "team": "General Hospital",
+          "position": "SP"
+        }
+      ]
+    },
     {
       "type": "add",
       "timestamp": 1776785563,
@@ -1785,18 +1797,6 @@
           "position": "SP,RP"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1776107182,
-      "players": [
-        {
-          "name": "Jordan Lawlar",
-          "action": "drop",
-          "team": "Albuquerque Bombers",
-          "position": "3B,OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1818,5 +1818,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-04-21T16:52:21.627104"
+  "saved_at": "2026-04-21T20:42:06.564599"
 }
