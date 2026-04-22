@@ -1355,6 +1355,30 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1776859582,
+      "players": [
+        {
+          "name": "Scott Barlow",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1776859138,
+      "players": [
+        {
+          "name": "Matt Strahm",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "RP"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1776806002,
       "players": [
@@ -1773,30 +1797,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1776214040,
-      "players": [
-        {
-          "name": "Tomoyuki Sugano",
-          "action": "add",
-          "team": "Athletic Park Dragons",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1776196078,
-      "players": [
-        {
-          "name": "Jeremiah Jackson",
-          "action": "add",
-          "team": "BaseballPro77",
-          "position": "2B,3B,OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1815,8 +1815,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-04-22T09:13:26.622716"
+  "saved_at": "2026-04-22T13:09:54.036236"
 }
