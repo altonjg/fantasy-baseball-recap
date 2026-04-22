@@ -58,7 +58,7 @@
               "name": "Ivan Herrera",
               "mlb_team": "STL",
               "position": "C",
-              "stats": "R:5, HR:2, RBI:5, OBP:.379",
+              "stats": "R:5, HR:2, RBI:5, OBP:.367",
               "score": 17.0
             }
           ]
@@ -716,8 +716,8 @@
               "name": "Agust\u00edn Ram\u00edrez",
               "mlb_team": "MIA",
               "position": "C",
-              "stats": "R:3, HR:1, RBI:6, OBP:.261",
-              "score": 15.0
+              "stats": "R:4, HR:1, RBI:6, OBP:.292",
+              "score": 17.0
             },
             {
               "name": "Zach Neto",
@@ -888,17 +888,17 @@
               "score": 14.0
             },
             {
+              "name": "Liam Hicks",
+              "mlb_team": "MIA",
+              "position": "C,1B",
+              "stats": "R:1, HR:1, RBI:5, SB:1, OBP:.400",
+              "score": 14.0
+            },
+            {
               "name": "Elly De La Cruz",
               "mlb_team": "CIN",
               "position": "SS",
               "stats": "R:5, HR:1, RBI:2, OBP:.269",
-              "score": 13.0
-            },
-            {
-              "name": "Liam Hicks",
-              "mlb_team": "MIA",
-              "position": "C,1B",
-              "stats": "R:1, HR:1, RBI:5, SB:1, OBP:.385",
               "score": 13.0
             }
           ]
@@ -1038,7 +1038,7 @@
               "name": "Jo Adell",
               "mlb_team": "LAA",
               "position": "OF",
-              "stats": "R:5, HR:2, RBI:8, OBP:.313",
+              "stats": "R:5, HR:2, RBI:8, OBP:.312",
               "score": 22.0
             },
             {
@@ -1117,7 +1117,7 @@
               "name": "Xavier Edwards",
               "mlb_team": "MIA",
               "position": "2B,SS",
-              "stats": "R:6, OBP:.429",
+              "stats": "R:6, OBP:.400",
               "score": 13.0
             },
             {
@@ -1354,6 +1354,24 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "add/drop",
+      "timestamp": 1776873509,
+      "players": [
+        {
+          "name": "Josh Jung",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "3B"
+        },
+        {
+          "name": "Jonathan Lo\u00e1isiga",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "RP"
+        }
+      ]
+    },
     {
       "type": "add",
       "timestamp": 1776859582,
@@ -1779,24 +1797,6 @@
           "position": "2B,SS,OF"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1776260036,
-      "players": [
-        {
-          "name": "Isaac Mattson",
-          "action": "add",
-          "team": "North Correa",
-          "position": "RP"
-        },
-        {
-          "name": "Camilo Doval",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1815,8 +1815,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-04-22T13:09:54.036236"
+  "saved_at": "2026-04-22T16:52:05.599152"
 }
