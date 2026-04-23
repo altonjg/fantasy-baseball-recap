@@ -1038,7 +1038,7 @@
               "name": "Jo Adell",
               "mlb_team": "LAA",
               "position": "OF",
-              "stats": "R:5, HR:2, RBI:8, OBP:.313",
+              "stats": "R:5, HR:2, RBI:8, OBP:.312",
               "score": 22.0
             },
             {
@@ -1354,6 +1354,36 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "add",
+      "timestamp": 1776961644,
+      "players": [
+        {
+          "name": "Kai-Wei Teng",
+          "action": "add",
+          "team": "Sugar Land Skeeters",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1776955524,
+      "players": [
+        {
+          "name": "Ildemaro Vargas",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "1B,2B"
+        },
+        {
+          "name": "Taylor Clarke",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "RP"
+        }
+      ]
+    },
     {
       "type": "drop",
       "timestamp": 1776889040,
@@ -1767,36 +1797,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1776335911,
-      "players": [
-        {
-          "name": "Foster Griffin",
-          "action": "add",
-          "team": "Abbotsford-Colby Twins",
-          "position": "SP,RP"
-        },
-        {
-          "name": "Luis Severino",
-          "action": "drop",
-          "team": "Abbotsford-Colby Twins",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1776335535,
-      "players": [
-        {
-          "name": "Steven Matz",
-          "action": "add",
-          "team": "Abbotsford-Colby Twins",
-          "position": "SP,RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1815,8 +1815,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-04-23T13:08:37.605050"
+  "saved_at": "2026-04-23T17:13:03.784231"
 }
