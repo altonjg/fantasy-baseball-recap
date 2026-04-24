@@ -1038,7 +1038,7 @@
               "name": "Jo Adell",
               "mlb_team": "LAA",
               "position": "OF",
-              "stats": "R:5, HR:2, RBI:8, OBP:.313",
+              "stats": "R:5, HR:2, RBI:8, OBP:.312",
               "score": 22.0
             },
             {
@@ -1354,6 +1354,30 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "drop",
+      "timestamp": 1777057604,
+      "players": [
+        {
+          "name": "Dominic Canzone",
+          "action": "drop",
+          "team": "Hiroshima Radiation",
+          "position": "OF"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1777051811,
+      "players": [
+        {
+          "name": "Janson Junk",
+          "action": "drop",
+          "team": "General Hospital",
+          "position": "SP,RP"
+        }
+      ]
+    },
     {
       "type": "add",
       "timestamp": 1776984180,
@@ -1755,42 +1779,6 @@
           "position": "2B,3B,OF"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1776528960,
-      "players": [
-        {
-          "name": "Oswald Peraza",
-          "action": "add",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "1B,2B,3B,SS"
-        },
-        {
-          "name": "Jake Cronenworth",
-          "action": "drop",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "1B,2B,SS"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1776460089,
-      "players": [
-        {
-          "name": "Brooks Lee",
-          "action": "add",
-          "team": "North Correa",
-          "position": "2B,3B,SS"
-        },
-        {
-          "name": "Bryson Stott",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "2B,SS"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1812,5 +1800,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-04-24T16:47:49.288850"
+  "saved_at": "2026-04-24T20:38:48.899479"
 }
