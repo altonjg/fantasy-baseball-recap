@@ -30,8 +30,8 @@
               "name": "Byron Buxton",
               "mlb_team": "MIN",
               "position": "OF",
-              "stats": "R:8, HR:3, RBI:3, OBP:.364",
-              "score": 23.0
+              "stats": "R:8, HR:3, RBI:3, OBP:.382",
+              "score": 24.0
             },
             {
               "name": "Sal Stewart",
@@ -51,7 +51,7 @@
               "name": "Konnor Griffin",
               "mlb_team": "PIT",
               "position": "SS,OF",
-              "stats": "R:4, RBI:4, SB:3, OBP:.323",
+              "stats": "R:4, RBI:4, SB:3, OBP:.312",
               "score": 19.0
             },
             {
@@ -226,8 +226,8 @@
               "name": "Brandon Nimmo",
               "mlb_team": "TEX",
               "position": "OF",
-              "stats": "R:3, HR:1, RBI:2, OBP:.324",
-              "score": 13.0
+              "stats": "R:3, HR:1, RBI:2, OBP:.359",
+              "score": 14.0
             }
           ]
         },
@@ -431,7 +431,7 @@
               "name": "Oneil Cruz",
               "mlb_team": "PIT",
               "position": "OF",
-              "stats": "R:6, HR:2, RBI:7, SB:3, OBP:.297",
+              "stats": "R:6, HR:2, RBI:7, SB:3, OBP:.289",
               "score": 25.0
             },
             {
@@ -760,7 +760,7 @@
               "name": "Corey Seager",
               "mlb_team": "TEX",
               "position": "SS",
-              "stats": "R:8, HR:2, RBI:5, OBP:.400",
+              "stats": "R:8, HR:2, RBI:5, OBP:.387",
               "score": 21.0
             },
             {
@@ -877,7 +877,7 @@
               "name": "Bryan Reynolds",
               "mlb_team": "PIT",
               "position": "OF",
-              "stats": "R:4, RBI:7, OBP:.455",
+              "stats": "R:4, RBI:7, OBP:.441",
               "score": 17.0
             },
             {
@@ -935,7 +935,7 @@
               "name": "Jake Burger",
               "mlb_team": "TEX",
               "position": "1B",
-              "stats": "R:4, HR:2, RBI:7, OBP:.290",
+              "stats": "R:4, HR:2, RBI:7, OBP:.281",
               "score": 20.0
             },
             {
@@ -1812,5 +1812,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-04-24T01:58:22.339780"
+  "saved_at": "2026-04-24T06:03:52.959863"
 }
