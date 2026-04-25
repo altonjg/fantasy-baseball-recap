@@ -1038,7 +1038,7 @@
               "name": "Jo Adell",
               "mlb_team": "LAA",
               "position": "OF",
-              "stats": "R:5, HR:2, RBI:8, OBP:.313",
+              "stats": "R:5, HR:2, RBI:8, OBP:.312",
               "score": 22.0
             },
             {
@@ -1354,6 +1354,36 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "add/drop",
+      "timestamp": 1777131333,
+      "players": [
+        {
+          "name": "Colin Rea",
+          "action": "add",
+          "team": "Hiroshima Radiation",
+          "position": "SP,RP"
+        },
+        {
+          "name": "John Schreiber",
+          "action": "drop",
+          "team": "Hiroshima Radiation",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1777131298,
+      "players": [
+        {
+          "name": "Matt Strahm",
+          "action": "add",
+          "team": "BaseballPro77",
+          "position": "RP"
+        }
+      ]
+    },
     {
       "type": "drop",
       "timestamp": 1777057604,
@@ -1743,42 +1773,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1776529710,
-      "players": [
-        {
-          "name": "Davis Martin",
-          "action": "add",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "SP"
-        },
-        {
-          "name": "Merrill Kelly",
-          "action": "drop",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1776529117,
-      "players": [
-        {
-          "name": "Brandon Marsh",
-          "action": "add",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "OF"
-        },
-        {
-          "name": "Willi Castro",
-          "action": "drop",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "2B,3B,OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1797,8 +1791,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-04-25T12:44:40.738943"
+  "saved_at": "2026-04-25T16:34:07.464486"
 }
