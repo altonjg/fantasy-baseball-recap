@@ -649,20 +649,18 @@ def _pass2_write(
         t1, t2 = teams[0], teams[1]
         winner_key = m.get("winner_key")
         if m.get("is_tied"):
-            winner_col = t1["name"]
-            loser_col  = t2["name"]
-            score = f"{t1['points']:.0f}-{t2['points']:.0f} TIE"
+            matchup_col = f"{t1['name']} vs. {t2['name']}"
+            score = f"{t1['points']:.0f}–{t2['points']:.0f} TIE"
         else:
             winner = t1 if t1.get("team_key") == winner_key else t2
             loser  = t2 if winner is t1 else t1
-            winner_col = winner["name"]
-            loser_col  = loser["name"]
-            score = f"{winner['points']:.0f}-{loser['points']:.0f}"
-        table_rows.append(f"| {winner_col} | {loser_col} | {score} | — |")
+            matchup_col = f"{winner['name']} def. {loser['name']}"
+            score = f"{winner['points']:.0f}–{loser['points']:.0f}"
+        table_rows.append(f"| {matchup_col} | {score} | — |")
 
     table_md = (
-        "| Winner | Loser | Score | Player of the Matchup |\n"
-        "|--------|-------|-------|-----------------------|\n"
+        "| Matchup | Score | Player of the Matchup |\n"
+        "|---------|-------|-----------------------|\n"
         + "\n".join(table_rows)
     )
 

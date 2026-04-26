@@ -185,7 +185,10 @@
   .pr-row { display: flex; align-items: center; gap: 6px; padding: 5px 0; border-bottom: 1px solid rgba(26,45,74,0.6); font-size: 0.81em; }
   .pr-num { font-family: 'Oswald', sans-serif; font-size: 1em; font-weight: 700; color: var(--gold); width: 24px; flex-shrink: 0; }
   .pr-name { flex: 1; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .pr-arr { width: 28px; text-align: center; font-size: 0.7em; flex-shrink: 0; }
+  .pr-arr { display: inline-flex; align-items: center; justify-content: center; gap: 2px; min-width: 28px; font-size: 0.65em; font-weight: 700; font-family: 'Oswald', sans-serif; letter-spacing: 0.02em; flex-shrink: 0; border-radius: 3px; padding: 1px 4px; }
+  .pr-arr.up  { color: #22c55e; background: rgba(34,197,94,0.12); }
+  .pr-arr.dn  { color: #ef4444; background: rgba(239,68,68,0.12); }
+  .pr-arr.flat{ color: var(--muted); background: transparent; }
   .pr-form { font-size: 0.7em; white-space: nowrap; display: none; }
   .up { color: var(--green); } .dn { color: var(--red); } .flat { color: var(--muted); }
   .news-item { padding: 8px 0; border-bottom: 1px solid rgba(26,45,74,0.6); }
@@ -3360,10 +3363,10 @@
         const mvMatch = line.match(/\|\s*(up|down|same|↑|↓|—)\s*$/i);
         const mv = mvMatch ? mvMatch[1].toLowerCase() : '';
         const trendHtml = mv === 'up' || mv === '↑'
-          ? `<span class="pr-arr up"><i class="fa-solid fa-caret-up"></i></span>`
+          ? `<span class="pr-arr up"><i class="fa-solid fa-arrow-up"></i></span>`
           : mv === 'down' || mv === '↓'
-          ? `<span class="pr-arr dn"><i class="fa-solid fa-caret-down"></i></span>`
-          : `<span class="pr-arr flat"><i class="fa-solid fa-minus"></i></span>`;
+          ? `<span class="pr-arr dn"><i class="fa-solid fa-arrow-down"></i></span>`
+          : `<span class="pr-arr flat">—</span>`;
         const rankNum = (line.match(/^(\d+)\./) || [])[1] || '';
         return `<div class="pr-row">
           <span class="pr-num">${rankNum}.</span>
@@ -3428,9 +3431,9 @@
       const rank     = i + 1;
       const prev     = prevRankOf[t.name];
       const delta    = prev ? prev - rank : 0;
-      const trendHtml = delta > 0 ? `<span class="pr-arr up"><i class="fa-solid fa-caret-up"></i>${delta}</span>`
-                       : delta < 0 ? `<span class="pr-arr dn"><i class="fa-solid fa-caret-down"></i>${Math.abs(delta)}</span>`
-                       :             `<span class="pr-arr flat"><i class="fa-solid fa-minus"></i></span>`;
+      const trendHtml = delta > 0 ? `<span class="pr-arr up"><i class="fa-solid fa-arrow-up"></i>${delta > 1 ? delta : ''}</span>`
+                       : delta < 0 ? `<span class="pr-arr dn"><i class="fa-solid fa-arrow-down"></i>${Math.abs(delta) > 1 ? Math.abs(delta) : ''}</span>`
+                       :             `<span class="pr-arr flat">—</span>`;
       const form = (recentForm[t.team_key] || []).slice(0, 3);
       const formDots = form.map(c => {
         const clr = c === 'W' ? 'var(--green)' : c === 'L' ? '#ef4444' : '#94a3b8';
