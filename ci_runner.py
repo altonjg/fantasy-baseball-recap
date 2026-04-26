@@ -733,16 +733,27 @@ RULES:
 - Write in {writer['name']}s authentic voice
 - Body should be 900-1200 words (not counting the table)
 
-Respond ONLY with valid JSON, no markdown fences:
-{{
-  "headline": "...",
-  "subheadline": "...(one sharp sentence)...",
-  "body": "...(full article body, sections 2-12 in order)..."
-}}"""
+Wrap your response in XML tags exactly like this — no JSON, no preamble, nothing outside the tags:
+<headline>your headline here</headline>
+<subheadline>one sharp sentence here</subheadline>
+<body>
+full article body here, sections 2-12 in order, markdown OK
+</body>"""
 
     raw = _call_claude(prompt, max_tokens=4000)
-    article = _safe_json_parse(raw)
-    return article
+
+    headline_match    = re.search(r'<headline>(.*?)</headline>', raw, re.DOTALL)
+    subheadline_match = re.search(r'<subheadline>(.*?)</subheadline>', raw, re.DOTALL)
+    body_match        = re.search(r'<body>(.*?)(?:</body>|$)', raw, re.DOTALL)
+
+    if not (headline_match and subheadline_match and body_match):
+        raise ValueError(f"Pass 2 missing XML tags in response: {raw[:300]}")
+
+    return {
+        "headline":    headline_match.group(1).strip(),
+        "subheadline": subheadline_match.group(1).strip(),
+        "body":        body_match.group(1).strip(),
+    }
 
 
 def generate_recap_article(
