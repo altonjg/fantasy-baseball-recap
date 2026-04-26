@@ -109,14 +109,14 @@
               "name": "Brandon Nimmo",
               "mlb_team": "TEX",
               "position": "OF",
-              "stats": "R:3, HR:1, RBI:2, SB:1, OBP:.389",
+              "stats": "R:3, HR:1, RBI:2, SB:1, OBP:.368",
               "score": 12.0
             },
             {
               "name": "Reid Detmers",
               "mlb_team": "LAA",
               "position": "SP,RP",
-              "stats": "K:12, ERA:4.05, WHIP:0.90, IP:6.2",
+              "stats": "K:12, ERA:3.12, WHIP:0.81, IP:8.2",
               "score": 12.0
             }
           ]
@@ -366,7 +366,7 @@
               "name": "Mike Trout",
               "mlb_team": "LAA",
               "position": "OF",
-              "stats": "R:6, HR:3, RBI:5, SB:1, OBP:.682",
+              "stats": "R:6, HR:3, RBI:5, SB:1, OBP:.652",
               "score": 22.0
             },
             {
@@ -391,11 +391,11 @@
               "score": 9.0
             },
             {
-              "name": "Tony Santillan",
-              "mlb_team": "CIN",
-              "position": "RP",
-              "stats": "K:5, WHIP:2.50, NSVH:2, IP:2.0",
-              "score": 7.0
+              "name": "Bobby Witt Jr.",
+              "mlb_team": "KC",
+              "position": "SS",
+              "stats": "R:1, RBI:1, SB:1, OBP:.429",
+              "score": 8.0
             }
           ]
         },
@@ -442,17 +442,17 @@
               "score": 12.0
             },
             {
+              "name": "Pete Crow-Armstrong",
+              "mlb_team": "CHC",
+              "position": "OF",
+              "stats": "R:2, RBI:2, SB:2, OBP:.438",
+              "score": 11.0
+            },
+            {
               "name": "Christian Walker",
               "mlb_team": "HOU",
               "position": "1B",
               "stats": "R:1, HR:1, RBI:4, OBP:.455",
-              "score": 10.0
-            },
-            {
-              "name": "Pete Crow-Armstrong",
-              "mlb_team": "CHC",
-              "position": "OF",
-              "stats": "R:2, RBI:2, SB:2, OBP:.400",
               "score": 10.0
             }
           ]
@@ -534,8 +534,15 @@
               "name": "Zach Neto",
               "mlb_team": "LAA",
               "position": "SS",
-              "stats": "R:8, HR:2, RBI:5, SB:1, OBP:.455",
-              "score": 21.0
+              "stats": "R:8, HR:2, RBI:5, SB:1, OBP:.478",
+              "score": 22.0
+            },
+            {
+              "name": "Michael King",
+              "mlb_team": "SD",
+              "position": "SP",
+              "stats": "K:14, WHIP:0.78, IP:9.0",
+              "score": 14.0
             },
             {
               "name": "Kevin McGonigle",
@@ -543,13 +550,6 @@
               "position": "3B,SS",
               "stats": "R:3, RBI:4, OBP:.444",
               "score": 13.0
-            },
-            {
-              "name": "Michael King",
-              "mlb_team": "SD",
-              "position": "SP",
-              "stats": "K:11, WHIP:0.71, IP:7.0",
-              "score": 11.0
             },
             {
               "name": "Isaac Paredes",
@@ -613,7 +613,7 @@
               "name": "Francisco Alvarez",
               "mlb_team": "NYM",
               "position": "C",
-              "stats": "R:3, HR:1, RBI:1, OBP:.556",
+              "stats": "R:3, HR:1, RBI:1, OBP:.500",
               "score": 8.0
             },
             {
@@ -716,7 +716,7 @@
               "name": "Kyle Tucker",
               "mlb_team": "LAD",
               "position": "OF",
-              "stats": "R:4, RBI:2, SB:2, OBP:.357",
+              "stats": "R:4, RBI:2, SB:2, OBP:.333",
               "score": 11.0
             },
             {
@@ -767,21 +767,14 @@
               "name": "Shota Imanaga",
               "mlb_team": "CHC",
               "position": "SP",
-              "stats": "K:11, ERA:9.00, WHIP:1.86, IP:7.0",
-              "score": 11.0
+              "stats": "K:12, ERA:7.00, WHIP:1.44, IP:9.0",
+              "score": 12.0
             },
             {
               "name": "Michael Harris II",
               "mlb_team": "ATL",
               "position": "OF",
               "stats": "R:2, HR:1, RBI:3, OBP:.333",
-              "score": 10.0
-            },
-            {
-              "name": "Shota Imanaga",
-              "mlb_team": "CHC",
-              "position": "SP",
-              "stats": "K:10, ERA:9.45, WHIP:1.95, IP:6.2",
               "score": 10.0
             },
             {
@@ -898,7 +891,7 @@
               "name": "Alex Bregman",
               "mlb_team": "CHC",
               "position": "3B",
-              "stats": "R:2, HR:2, RBI:2, OBP:.312",
+              "stats": "R:2, HR:2, RBI:2, OBP:.353",
               "score": 9.0
             },
             {
@@ -932,6 +925,13 @@
           },
           "top_players": [
             {
+              "name": "Juan Soto",
+              "mlb_team": "NYM",
+              "position": "OF",
+              "stats": "R:1, RBI:3, OBP:.400",
+              "score": 10.0
+            },
+            {
               "name": "Bryan Woo",
               "mlb_team": "SEA",
               "position": "SP",
@@ -939,17 +939,10 @@
               "score": 10.0
             },
             {
-              "name": "Juan Soto",
-              "mlb_team": "NYM",
-              "position": "OF",
-              "stats": "R:1, RBI:3, OBP:.368",
-              "score": 9.0
-            },
-            {
               "name": "Michael Busch",
               "mlb_team": "CHC",
               "position": "1B",
-              "stats": "R:3, RBI:1, OBP:.467",
+              "stats": "R:3, RBI:1, OBP:.438",
               "score": 9.0
             },
             {
@@ -1045,7 +1038,7 @@
               "name": "Shea Langeliers",
               "mlb_team": "ATH",
               "position": "C",
-              "stats": "R:3, HR:3, RBI:6, OBP:.529",
+              "stats": "R:3, HR:3, RBI:6, OBP:.500",
               "score": 20.0
             },
             {
@@ -1798,8 +1791,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-04-26T20:57:41.636206"
+  "saved_at": "2026-04-26T21:25:28.803481"
 }
