@@ -3211,6 +3211,15 @@
       const html = t
         .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
         .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        // Movement arrows — emoji and text variants → styled pills
+        .replace(/⬆️/g, '<span class="pr-arr up"><i class="fa-solid fa-arrow-up"></i></span>')
+        .replace(/⬇️/g, '<span class="pr-arr dn"><i class="fa-solid fa-arrow-down"></i></span>')
+        .replace(/🔼/g, '<span class="pr-arr up"><i class="fa-solid fa-arrow-up"></i></span>')
+        .replace(/🔽/g, '<span class="pr-arr dn"><i class="fa-solid fa-arrow-down"></i></span>')
+        .replace(/➡️/g, '<span class="pr-arr flat">—</span>')
+        .replace(/\|\s*up\b/gi,   '| <span class="pr-arr up"><i class="fa-solid fa-arrow-up"></i></span>')
+        .replace(/\|\s*down\b/gi, '| <span class="pr-arr dn"><i class="fa-solid fa-arrow-down"></i></span>')
+        .replace(/\|\s*same\b/gi, '| <span class="pr-arr flat">—</span>')
         .replace(/\n/g, '<br>');
       return `<p style="margin-bottom:1.1em;">${html}</p>`;
     }).join('');

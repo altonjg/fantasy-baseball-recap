@@ -747,7 +747,9 @@ RULES:
 - Use **bold** for team names throughout
 - No favoritism toward any team
 - Write in {writer['name']}s authentic voice
-- Body should be 900-1200 words
+- Body should be 1500-2000 words — expand each section fully, don't compress or summarize
+- Every matchup deep-dive should be at least 3-4 sentences covering stats, context, and what it means going forward
+- Thriller of the Week and The Week's Defining Moment should each be 3-4 paragraphs
 
 Wrap your response in XML tags exactly like this — no JSON, no preamble, nothing outside the tags:
 <headline>your headline here</headline>
@@ -756,7 +758,7 @@ Wrap your response in XML tags exactly like this — no JSON, no preamble, nothi
 full article body here, sections 2-10 in order, markdown OK
 </body>"""
 
-    raw = _call_claude(prompt, max_tokens=4000)
+    raw = _call_claude(prompt, max_tokens=5000)
 
     headline_match    = re.search(r'<headline>(.*?)</headline>', raw, re.DOTALL)
     subheadline_match = re.search(r'<subheadline>(.*?)</subheadline>', raw, re.DOTALL)
