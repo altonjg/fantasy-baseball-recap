@@ -102,14 +102,14 @@
               "name": "Kodai Senga",
               "mlb_team": "NYM",
               "position": "SP",
-              "stats": "K:16, ERA:3.00, WHIP:1.17, QS:1, IP:12.0",
-              "score": 17.0
+              "stats": "K:17, ERA:3.38, WHIP:1.20, QS:1, IP:13.1",
+              "score": 18.0
             },
             {
               "name": "Nico Hoerner",
               "mlb_team": "CHC",
               "position": "2B",
-              "stats": "R:4, RBI:2, SB:2, OBP:.500",
+              "stats": "R:4, RBI:2, SB:2, OBP:.483",
               "score": 15.0
             },
             {
@@ -205,7 +205,7 @@
               "name": "Brandon Nimmo",
               "mlb_team": "TEX",
               "position": "OF",
-              "stats": "R:4, RBI:2, OBP:.452",
+              "stats": "R:4, RBI:2, OBP:.438",
               "score": 17.0
             },
             {
@@ -284,7 +284,7 @@
               "name": "Teoscar Hern\u00e1ndez",
               "mlb_team": "LAD",
               "position": "OF",
-              "stats": "R:5, HR:1, RBI:3, OBP:.524",
+              "stats": "R:5, HR:1, RBI:3, OBP:.500",
               "score": 18.0
             }
           ]
@@ -424,7 +424,7 @@
               "name": "Kyle Tucker",
               "mlb_team": "LAD",
               "position": "OF",
-              "stats": "R:6, HR:1, RBI:4, OBP:.400",
+              "stats": "R:6, HR:1, RBI:4, OBP:.385",
               "score": 19.0
             },
             {
@@ -562,7 +562,7 @@
               "name": "Vinnie Pasquantino",
               "mlb_team": "KC",
               "position": "1B",
-              "stats": "R:2, RBI:4, OBP:.310",
+              "stats": "R:2, RBI:4, OBP:.300",
               "score": 11.0
             }
           ]
@@ -592,15 +592,15 @@
               "name": "Corbin Carroll",
               "mlb_team": "AZ",
               "position": "OF",
-              "stats": "R:5, HR:2, RBI:8, SB:1, OBP:.500",
+              "stats": "R:5, HR:2, RBI:8, SB:1, OBP:.483",
               "score": 24.0
             },
             {
               "name": "Zach Neto",
               "mlb_team": "LAA",
               "position": "SS",
-              "stats": "R:5, HR:1, RBI:4, OBP:.379",
-              "score": 18.0
+              "stats": "R:5, HR:1, RBI:4, OBP:.400",
+              "score": 19.0
             },
             {
               "name": "Cody Bellinger",
@@ -610,18 +610,18 @@
               "score": 16.0
             },
             {
+              "name": "Michael King",
+              "mlb_team": "SD",
+              "position": "SP",
+              "stats": "K:13, ERA:3.72, WHIP:1.03, IP:9.2",
+              "score": 13.0
+            },
+            {
               "name": "Kevin McGonigle",
               "mlb_team": "DET",
               "position": "3B,SS",
               "stats": "R:4, RBI:1, OBP:.387",
               "score": 11.0
-            },
-            {
-              "name": "Michael King",
-              "mlb_team": "SD",
-              "position": "SP",
-              "stats": "K:10, ERA:4.70, WHIP:1.17, IP:7.2",
-              "score": 10.0
             }
           ]
         }
@@ -716,7 +716,7 @@
               "name": "Luis Arraez",
               "mlb_team": "SF",
               "position": "1B,2B",
-              "stats": "R:3, RBI:3, SB:1, OBP:.250",
+              "stats": "R:3, RBI:3, SB:1, OBP:.242",
               "score": 15.0
             },
             {
@@ -774,7 +774,7 @@
               "name": "Otto Lopez",
               "mlb_team": "MIA",
               "position": "2B,SS",
-              "stats": "R:7, HR:1, RBI:2, SB:1, OBP:.407",
+              "stats": "R:7, HR:1, RBI:2, SB:1, OBP:.393",
               "score": 19.0
             },
             {
@@ -884,7 +884,7 @@
               "name": "Matt Chapman",
               "mlb_team": "SF",
               "position": "3B",
-              "stats": "R:5, HR:1, RBI:3, OBP:.312",
+              "stats": "R:5, HR:1, RBI:3, OBP:.333",
               "score": 17.0
             },
             {
@@ -1114,17 +1114,17 @@
               "score": 10.0
             },
             {
+              "name": "Shota Imanaga",
+              "mlb_team": "CHC",
+              "position": "SP",
+              "stats": "K:9, ERA:4.00, WHIP:1.00, IP:9.0",
+              "score": 9.0
+            },
+            {
               "name": "Eugenio Su\u00e1rez",
               "mlb_team": "CIN",
               "position": "3B",
               "stats": "R:2, RBI:1, OBP:.286",
-              "score": 8.0
-            },
-            {
-              "name": "Michael Harris II",
-              "mlb_team": "ATL",
-              "position": "OF",
-              "stats": "R:1, RBI:2, OBP:.206",
               "score": 8.0
             }
           ]
@@ -1794,5 +1794,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-04-26T21:01:03.454054"
+  "saved_at": "2026-04-26T21:28:38.467860"
 }
