@@ -649,9 +649,9 @@ def _pass2_write(
         t1, t2 = teams[0], teams[1]
         winner_key = m.get("winner_key")
         if m.get("is_tied"):
-            winner_col = f"{t1['name']} / {t2['name']}"
-            loser_col = ""
-            score = f"{t1['points']:.0f}-{t2['points']:.0f}"
+            winner_col = t1["name"]
+            loser_col  = t2["name"]
+            score = f"{t1['points']:.0f}-{t2['points']:.0f} TIE"
         else:
             winner = t1 if t1.get("team_key") == winner_key else t2
             loser  = t2 if winner is t1 else t1
