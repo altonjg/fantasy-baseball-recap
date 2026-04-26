@@ -1758,19 +1758,31 @@
     },
     {
       "type": "add/drop",
-      "timestamp": 1776622330,
+      "timestamp": 1777223784,
       "players": [
         {
-          "name": "Jes\u00fas S\u00e1nchez",
+          "name": "Kumar Rocker",
           "action": "add",
-          "team": "North Correa",
-          "position": "OF"
+          "team": "General Hospital",
+          "position": "SP"
         },
         {
-          "name": "Spencer Steer",
+          "name": "Jack Leiter",
           "action": "drop",
-          "team": "North Correa",
-          "position": "1B,OF"
+          "team": "General Hospital",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1777216564,
+      "players": [
+        {
+          "name": "Kai-Wei Teng",
+          "action": "drop",
+          "team": "Sugar Land Skeeters",
+          "position": "SP,RP"
         }
       ]
     }

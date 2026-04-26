@@ -16,7 +16,23 @@
       "13. Canberra Wombats | Lost 8–2 with 0 HR and 0 QS; only Dylan Cease showed up on the mound and the offense had no power whatsoever",
       "14. Buttville Skidmarks | Lost 7–3 despite elite pitching metrics in spots; 6.02 ERA and .271 OBP are deeply problematic and the roster balance is badly off"
     ],
-    "week_02": []
+    "week_02": [],
+    "week_03": [
+      "1. Sugar Land Skeeters | Dominant 8–2 week, elite 2.11 ERA, Max Muncy launching HR, deepest all-around roster through 3 weeks | up",
+      "2. Athletic Park Dragons | James Wood and Contreras were unstoppable; 40 R and .412 OBP is a league statement | up",
+      "3. BaseballPro77 | Jordan Walker's 5-HR explosion anchored a solid 5–3 win; consistent across all three weeks | same",
+      "4. Hiroshima Radiation | Crushed Canberra 8–2 with 64 hits and 9 SB; Bryce Harper's .640 OBP a weapon | up",
+      "5. Wisconsin Rapids Reapers | Lost 6–3 but posted a 1.65 ERA and 1.04 WHIP — pitching is elite; offense needs to wake up | down",
+      "6. North Correa | Lost the matchup but 11 SB and Ohtani's 3 HR show real firepower; speed category dominance is a threat | same",
+      "7. Abbotsford-Colby Twins | Got blown out 8–2 but pitching was solid with 75 Ks and 3.99 ERA; hitting depth is the concern | down",
+      "8. Buttville Skidmarks | Elly De La Cruz is must-start elite, but tying General Hospital when you should've won is a missed opportunity | same",
+      "9. Wonder Wharf Wonderdogs | Pitching is genuinely strong — 1.13 WHIP, 7 NSVH — but hitting is a serious structural problem | up",
+      "10. General Hospital | Kumar Rocker add is intriguing; 70 Ks in a tie stings, but the pitching foundation is real | down",
+      "11. Albuquerque Bombers | Lost 5–4 in a close one; Brice Turang's .474 OBP is a bright spot but pitching remains shaky at 5.05 ERA | same",
+      "12. Canberra Wombats | Gunnar Henderson hit 4 HR and they still got steamrolled 8–2; pitching is simply not good enough | down",
+      "13. Riverside Roughnecks | Won 6–3 on the back of Trevor Story's 9 RBI but 0 quality starts and a 5.04 ERA is unsustainable | same",
+      "14. Benchwarmers | The 6–3 win flatters a team with a 5.53 ERA and 34 Ks; luck index confirms they should be much lower | same"
+    ]
   },
   "weekly_points": {
     "week_01": {
@@ -50,6 +66,22 @@
       "Sugar Land Skeeters": 8.0,
       "Wisconsin Rapids Reapers": 9.0,
       "Wonder Wharf Wonderdogs": 0.0
+    },
+    "week_03": {
+      "Albuquerque Bombers": 4.0,
+      "Wonder Wharf Wonderdogs": 5.0,
+      "Abbotsford-Colby Twins": 2.0,
+      "Sugar Land Skeeters": 8.0,
+      "Athletic Park Dragons": 6.0,
+      "Wisconsin Rapids Reapers": 3.0,
+      "BaseballPro77": 5.0,
+      "North Correa": 3.0,
+      "Benchwarmers": 3.0,
+      "Riverside Roughnecks": 6.0,
+      "Buttville Skidmarks": 4.0,
+      "General Hospital": 4.0,
+      "Canberra Wombats": 2.0,
+      "Hiroshima Radiation": 8.0
     }
   },
   "manager_spotlight_rotation": [
@@ -68,5 +100,5 @@
     "Canberra Wombats",
     "Riverside Roughnecks"
   ],
-  "last_spotlight_week": "BaseballPro77"
+  "last_spotlight_week": "Benchwarmers"
 }
