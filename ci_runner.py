@@ -430,7 +430,7 @@ def _build_recap_context(
             if players:
                 player_str = " — players: " + ", ".join(
                     f"{p['name']}({p.get('position','?')}): {p.get('stats','')}"
-                    for p in players[:3] if p.get("stats")
+                    for p in players if p.get("stats")
                 )
             lines.append(f"    {t['name']}: [{cat_str}]{player_str}")
 
@@ -753,6 +753,7 @@ RULES:
 - Every matchup deep-dive should be at least 3-4 sentences covering stats, context, and what it means going forward
 - Thriller of the Week and The Week's Defining Moment should each be 3-4 paragraphs
 - Power Rankings movement: end each line with `[UP]`, `[DOWN]`, or `[SAME]` — no emoji, no arrows, just those exact tokens
+- CRITICAL — stat accuracy: only cite specific numeric stats (HR, RBI, ERA, OBP, K, etc.) for players explicitly listed in the RAW MATCHUP DATA above. For any other player you mention, use qualitative descriptions only — never invent or estimate numbers.
 
 Wrap your response in XML tags exactly like this — no JSON, no preamble, nothing outside the tags:
 <headline>your headline here</headline>

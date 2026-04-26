@@ -791,7 +791,7 @@ def fetch_weekly_data(oauth: YahooOAuth, league_key: str, week: Optional[int] = 
     print("  Fetching per-team player stats...")
     for m in matchups:
         for t in m["teams"]:
-            t["top_players"] = get_team_top_players(session, t["team_key"], recap_week, stat_categories, top_n=5)
+            t["top_players"] = get_team_top_players(session, t["team_key"], recap_week, stat_categories, top_n=8)
 
     # Determine stat categories for lower-is-better context
     lower_is_better_names = {
