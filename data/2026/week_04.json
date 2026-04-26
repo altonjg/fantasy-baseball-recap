@@ -1038,7 +1038,7 @@
               "name": "Jo Adell",
               "mlb_team": "LAA",
               "position": "OF",
-              "stats": "R:5, HR:2, RBI:8, OBP:.313",
+              "stats": "R:5, HR:2, RBI:8, OBP:.312",
               "score": 22.0
             },
             {
@@ -1354,6 +1354,18 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "drop",
+      "timestamp": 1777216564,
+      "players": [
+        {
+          "name": "Kai-Wei Teng",
+          "action": "drop",
+          "team": "Sugar Land Skeeters",
+          "position": "SP,RP"
+        }
+      ]
+    },
     {
       "type": "add/drop",
       "timestamp": 1777152694,
@@ -1761,24 +1773,6 @@
           "position": "1B,OF"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1776622226,
-      "players": [
-        {
-          "name": "Spencer Steer",
-          "action": "add",
-          "team": "North Correa",
-          "position": "1B,OF"
-        },
-        {
-          "name": "Jonathan India",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "2B,3B,OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -1797,8 +1791,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-04-26T12:48:03.162470"
+  "saved_at": "2026-04-26T16:34:57.536735"
 }
