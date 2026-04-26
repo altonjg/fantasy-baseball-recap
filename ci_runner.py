@@ -464,7 +464,10 @@ def _build_recap_context(
         last_rk_key = max(prior_rankings.keys())
         lines.append(f"\nPRIOR POWER RANKINGS ({last_rk_key}):")
         for entry in prior_rankings[last_rk_key]:
-            lines.append(f"  {entry['rank']}. {entry['team']}")
+            if isinstance(entry, dict):
+                lines.append(f"  {entry['rank']}. {entry['team']}")
+            else:
+                lines.append(f"  {entry}")
 
     # Current season records
     if records:
