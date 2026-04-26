@@ -1,16 +1,37 @@
 {
-  "stat_of_week": "0 - Wonder Wharf Wonderdogs were shut out 9-0 by the Wisconsin Rapids Reapers, becoming the first team in league history to win zero categories in a single week",
+  "stat_of_week": "40 - Sugar Land Skeeters scored 40 runs in a single week, the highest run total of any team this season, powering an 8–1 demolition of Hiroshima Radiation",
   "thriller_teams": "BaseballPro77 vs Benchwarmers",
   "thriller_score": "5-4",
-  "thriller_note": "BaseballPro77 survived on the slimmest of margins despite a weak offensive showing (.277 OBP, only 2 HR), while the Benchwarmers out-hit and out-scored them in several categories but couldn't close it out — a result that keeps both teams hovering in the middle of the standings with little margin for error going forward.",
-  "key_storyline": "The Sugar Land Skeeters continued their reign of terror with a dominant 8-1 dismantling of Hiroshima Radiation, scoring a league-high 40 runs on the week while Drake Baldwin, Matt Olson, and CJ Abrams all put up monster numbers. Over two weeks of cumulative category wins, the Skeeters sit atop the league and look like the clear class of the field. Meanwhile, the Wonder Wharf Wonderdogs suffered one of the most embarrassing weeks in league memory, going 0-for-9 in categories against Wisconsin Rapids Reapers and posting a historically anemic offensive line — their roster construction is now a serious concern heading into Week 3.",
+  "thriller_note": "BaseballPro77 escaped with a one-category win despite being outclassed in runs, HR, RBI, and OBP, surviving on the strength of stolen bases and save/hold value — a result that keeps them near the top of the standings while Benchwarmers remain snake-bitten in close matchups.",
+  "key_storyline": "Sugar Land Skeeters put together the most dominant offensive week of the season, plating 40 runs on a .346 OBP while Drake Baldwin, Matt Olson, and CJ Abrams all delivered across the board — resulting in an 8–1 thrashing of Hiroshima Radiation that wasn't even close. Meanwhile, Wisconsin Rapids Reapers quietly posted the week's best pitching performance (2.48 ERA, 0.84 WHIP, 75 strikeouts) and swept the hapless Wonder Wharf Wonderdogs 9–0, raising serious questions about Wonderdogs' roster depth heading into Week 3. The combination of Sugar Land's offensive explosion and Wisconsin's pitching dominance signals that the top of this league is separating fast.",
   "lucky_team": "Benchwarmers",
-  "lucky_reason": "The Benchwarmers posted below-average numbers across nearly every pitching category and lost the strikeout and ERA battles badly, yet still nearly stole the matchup with a 4-5 result, reflecting the largest positive luck delta (+0.58) in the league this week.",
+  "lucky_reason": "Benchwarmers won despite a luck delta of +0.58 — the highest in the league — meaning their actual win rate far exceeded what their category performance deserved, squeaking out a 5–4 result against BaseballPro77 with underwhelming pitching (4.89 ERA, 1.50 WHIP) and just 42 strikeouts.",
   "unlucky_team": "General Hospital",
-  "unlucky_reason": "General Hospital posted a sparkling 2.10 ERA, 1.02 WHIP, and solid offensive numbers good enough to dominate most opponents, yet their expected win total of 0.92 — the highest in the league — vastly exceeded their actual result, signaling they were matched up against a team that happened to edge them in just enough categories to steal the win.",
-  "records_broken": "General Hospital ties their own league record with a 2.10 ERA in a winning week, matching the mark set in Week 2 (previous record: 2.10 ERA, General Hospital, Week 2) — technically no new record broken, but the Abbotsford-Colby Twins tied the all-time strikeout record with 77 K, matching the previous mark also set by Abbotsford-Colby Twins in Week 2.",
-  "spotlight_team": "Canberra Wombats",
+  "unlucky_reason": "General Hospital posted a sparkling 2.10 ERA, 1.02 WHIP, and a .363 OBP while winning their matchup, yet their luck delta sits at -0.52 — tied for worst in the league — indicating their strong category output has consistently been misaligned with their actual win-loss record across the season.",
+  "records_broken": "The lowest ERA by a winning team record was tied: General Hospital posted a 2.10 ERA this week, matching their own record set in Week 2 (2.10, General Hospital).",
+  "spotlight_team": "Riverside Roughnecks",
   "include_trade_value": true,
-  "power_rankings": [],
-  "waiver_highlights": []
+  "power_rankings": [
+    "1. Sugar Land Skeeters | Back-to-back dominant weeks, 40 runs this week, elite pitching and offense firing together — clear #1 | same",
+    "2. Wisconsin Rapids Reapers | 9–0 sweep with a 0.84 WHIP and 75 K's is impossible to ignore; Ben Rice emerging as a must-start | up",
+    "3. Riverside Roughnecks | 38 runs, 10 HR, and a 2.42 ERA in a 7–3 win; Xavier Edwards and Kerry Carpenter quietly carrying this roster | up",
+    "4. BaseballPro77 | Won again but the underlying numbers are shaky — low HR, high ERA; living on thin margins | down",
+    "5. General Hospital | Genuinely excellent stats being wasted by scheduling luck; Manny Machado and Kyle Tucker are elite anchors | same",
+    "6. North Correa | Oneil Cruz had a monster week (4 HR, 7 R) and the pitching held up enough; a legitimate contender | same",
+    "7. Abbotsford-Colby Twins | Yordan Alvarez's .600 OBP is absurd; pitching staff was lights-out (2.25 ERA, 1.01 WHIP) in a 6–4 win | up",
+    "8. Athletic Park Dragons | Aaron Judge is doing his part but the team ERA (4.30) and WHIP (1.46) are dragging them down | down",
+    "9. Hiroshima Radiation | Carlos Correa and Kyle Schwarber are solid but 43 strikeouts from the pitching staff is a weekly liability | down",
+    "10. Albuquerque Bombers | Kyle Harrison was brilliant (1.65 ERA, 26 K) but the offense couldn't back him up; busy waiver week shows urgency | same",
+    "11. Buttville Skidmarks | Decent pitching (3.19 ERA) but lost 7–3; offense lacks a true power anchor beyond Reynolds | same",
+    "12. Canberra Wombats | Jose Altuve (.577 OBP) and Christian Walker were excellent but pitching remains a structural problem | up",
+    "13. Benchwarmers | Lucky to win this week; pitching staff is a liability every single week and it will eventually catch up | down",
+    "14. Wonder Wharf Wonderdogs | Shut out 9–0 and scored just 16 runs with zero stolen bases; Pete Alonso posting a .233 OBP is alarming | same"
+  ],
+  "waiver_highlights": [
+    "Wonder Wharf Wonderdogs | B | Added Masyn Winn(SS) and Dustin May(SP) | Winn provides speed and eligibility depth while May is a high-upside SP add after a brutal 9–0 loss — the Wonderdogs clearly hit the reset button and these are smart foundational moves",
+    "General Hospital | B | Added Kumar Rocker(SP); dropped Jack Leiter, Janson Junk, Cristian Javier | Consolidating three fringe arms into one high-ceiling starter makes sense for a team whose pitching is already elite — Rocker's upside is real",
+    "Albuquerque Bombers | B | Added Keaton Winn, Braxton Garrett, Noelvi Marte, Josh Jung; dropped four roster fillers | Aggressive multi-player waiver haul signals the Bombers are serious about patching holes; Jung and Marte add positional flexibility but the volume of moves hints at roster instability",
+    "North Correa | C | Added Austin Wells(C); dropped J.T. Realmuto(C) | Downgrading from Realmuto to Wells is a lateral move at best and a step back at worst — curious timing given they just won",
+    "Riverside Roughnecks | C | Added Victor Vodnik(RP); dropped Mark Vientos | Trading a productive 1B/3B bat for a reliever feels like a questionable positional sacrifice for a team already winning with offense"
+  ]
 }
