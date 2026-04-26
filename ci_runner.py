@@ -750,6 +750,7 @@ RULES:
 - Body should be 1500-2000 words — expand each section fully, don't compress or summarize
 - Every matchup deep-dive should be at least 3-4 sentences covering stats, context, and what it means going forward
 - Thriller of the Week and The Week's Defining Moment should each be 3-4 paragraphs
+- Power Rankings movement: end each line with `[UP]`, `[DOWN]`, or `[SAME]` — no emoji, no arrows, just those exact tokens
 
 Wrap your response in XML tags exactly like this — no JSON, no preamble, nothing outside the tags:
 <headline>your headline here</headline>
