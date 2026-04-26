@@ -226,7 +226,7 @@
               "name": "Reid Detmers",
               "mlb_team": "LAA",
               "position": "SP,RP",
-              "stats": "K:14, ERA:1.54, WHIP:0.60, QS:1, IP:11.2",
+              "stats": "K:14, ERA:3.00, WHIP:0.83, QS:1, IP:12.0",
               "score": 15.0
             }
           ]
@@ -270,8 +270,8 @@
               "name": "Matt Chapman",
               "mlb_team": "SF",
               "position": "3B",
-              "stats": "R:4, RBI:5, OBP:.333",
-              "score": 17.0
+              "stats": "R:5, RBI:5, OBP:.355",
+              "score": 18.0
             },
             {
               "name": "Nolan McLean",
@@ -284,7 +284,7 @@
               "name": "Ram\u00f3n Laureano",
               "mlb_team": "SD",
               "position": "OF",
-              "stats": "R:2, RBI:4, OBP:.308",
+              "stats": "R:2, RBI:4, OBP:.296",
               "score": 12.0
             }
           ]
@@ -534,7 +534,7 @@
               "name": "Mike Trout",
               "mlb_team": "LAA",
               "position": "OF",
-              "stats": "R:10, HR:6, RBI:11, OBP:.486",
+              "stats": "R:10, HR:6, RBI:11, OBP:.472",
               "score": 35.0
             },
             {
@@ -559,10 +559,10 @@
               "score": 17.0
             },
             {
-              "name": "Jordan Walker",
-              "mlb_team": "STL",
-              "position": "OF",
-              "stats": "R:4, HR:1, RBI:2, SB:2, OBP:.364",
+              "name": "Bobby Witt Jr.",
+              "mlb_team": "KC",
+              "position": "SS",
+              "stats": "R:4, HR:1, RBI:3, OBP:.370",
               "score": 17.0
             }
           ]
@@ -709,14 +709,14 @@
               "name": "Michael King",
               "mlb_team": "SD",
               "position": "SP",
-              "stats": "K:19, ERA:0.60, WHIP:0.87, QS:1, IP:15.0",
+              "stats": "K:19, ERA:1.69, WHIP:0.94, QS:1, IP:16.0",
               "score": 20.0
             },
             {
               "name": "Zach Neto",
               "mlb_team": "LAA",
               "position": "SS",
-              "stats": "R:5, RBI:5, SB:1, OBP:.429",
+              "stats": "R:5, RBI:5, SB:1, OBP:.417",
               "score": 20.0
             },
             {
@@ -767,7 +767,7 @@
               "name": "Kyle Tucker",
               "mlb_team": "LAD",
               "position": "OF",
-              "stats": "R:6, HR:2, RBI:4, OBP:.367",
+              "stats": "R:6, HR:2, RBI:4, OBP:.387",
               "score": 20.0
             },
             {
@@ -785,11 +785,11 @@
               "score": 18.0
             },
             {
-              "name": "Manny Machado",
-              "mlb_team": "SD",
-              "position": "3B",
-              "stats": "R:3, HR:2, RBI:6, OBP:.222",
-              "score": 16.0
+              "name": "Andy Pages",
+              "mlb_team": "LAD",
+              "position": "OF",
+              "stats": "R:4, HR:1, RBI:5, SB:1, OBP:.333",
+              "score": 17.0
             }
           ]
         }
@@ -935,7 +935,7 @@
               "name": "Shota Imanaga",
               "mlb_team": "CHC",
               "position": "SP",
-              "stats": "K:17, ERA:3.38, WHIP:0.94, QS:1, IP:10.2",
+              "stats": "K:17, ERA:3.18, WHIP:1.06, QS:1, IP:11.1",
               "score": 18.0
             },
             {
@@ -1791,8 +1791,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-04-26T21:35:32.506416"
+  "saved_at": "2026-04-26T21:54:08.875615"
 }
