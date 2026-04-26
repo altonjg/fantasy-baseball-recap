@@ -536,67 +536,63 @@ def _repair_json_aggressive(raw: str) -> dict:
 
 def _pass1_plan(context: str, week_num: int, prior_rankings: dict) -> dict:
     """
-    Pass 1: Feed raw data into Claude. Returns structured planning JSON.
-    max_tokens=2000 — enough for all 14 rankings + 7 matchup notes.
-    Retries up to 3 times on JSON parse failure.
+    Pass 1: Feed raw data into Claude. Returns a flat planning document.
+
+    Uses a deliberately simple JSON structure — only flat strings and arrays
+    of strings — to avoid the nested-object JSON escaping failures that plague
+    more complex schemas. Pass 2 has full week data and writes prose itself;
+    Pass 1 only needs to make the key DECISIONS.
     """
     has_prior = bool(prior_rankings)
-    movement_note = (
-        'Movement: use "↑", "↓", or "—" vs prior week rankings.'
+    rankings_note = (
+        "List all 14 teams in power order. Format each entry exactly as: "
+        '"RANK. TEAM NAME | REASON | MOVEMENT" where MOVEMENT is up, down, or same.'
         if has_prior else
-        'Movement: use "—" for all entries (no prior week to compare).'
+        "List all 14 teams in power order. Format each entry exactly as: "
+        '"RANK. TEAM NAME | REASON" (no movement arrow — this is week 1).'
     )
 
-    prompt = f"""You are a fantasy baseball analyst. Analyze the data below and return a structured JSON planning document for a weekly recap article. Be TERSE — short phrases only, not full sentences.
-
-CRITICAL: Output ONLY raw JSON. No markdown fences, no comments, no trailing commas. All string values must use double quotes and must not contain unescaped double-quote characters.
+    prompt = f"""You are a fantasy baseball analyst. Read the week data below and make the key editorial decisions for a weekly recap article.
 
 {context}
 
-Return this exact JSON structure:
+Output ONLY a JSON object with these exact flat fields — no nested objects, no markdown fences, no comments:
+
 {{
-  "stat_of_week": "[number] — [brief explanation]",
-  "thriller_matchup": {{
-    "teams": ["Team A", "Team B"],
-    "score": "7-5",
-    "key_moment": "brief note",
-    "implication": "brief note"
-  }},
-  "key_storyline": "1-2 sentences on the top narrative of the week",
-  "matchup_notes": {{
-    "Team A vs Team B": {{
-      "key_perf": "player or stat highlight",
-      "implication": "what it means going forward",
-      "next_week": "their next opponent and what to watch"
-    }}
-  }},
-  "lucky_team": {{"team": "name", "reasoning": "brief"}},
-  "unlucky_team": {{"team": "name", "reasoning": "brief"}},
-  "records_broken": [],
-  "spotlight_team": "team name",
-  "trade_value_players": [],
+  "stat_of_week": "9 - category wins by Sugar Land Skeeters, the most dominant week-1 performance",
+  "thriller_teams": "General Hospital vs Wonder Wharf Wonderdogs",
+  "thriller_score": "4-4",
+  "thriller_note": "brief note on what made it close and what it means for both teams",
+  "key_storyline": "2-3 sentences on the single biggest narrative of the week",
+  "lucky_team": "Team Name",
+  "lucky_reason": "one sentence on why they were lucky",
+  "unlucky_team": "Team Name",
+  "unlucky_reason": "one sentence on why they were unlucky",
+  "records_broken": "",
+  "spotlight_team": "Team Name",
+  "include_trade_value": false,
   "power_rankings": [
-    {{"rank": 1, "team": "name", "reasoning": "brief", "movement": "—"}}
+    "1. Team Name | brief reason",
+    "2. Team Name | brief reason"
   ],
-  "waiver_grades": {{
-    "Team Name": {{"move": "dropped X, added Y", "grade": "A", "analysis": "brief"}}
-  }}
+  "waiver_highlights": [
+    "Team Name | grade | move description | brief analysis"
+  ]
 }}
 
 Rules:
-- matchup_notes must include ALL 7 matchups using the exact team names from the data
-- power_rankings must include ALL 14 teams ranked 1-14
-- {movement_note}
-- records_broken: only include if a stat this week clearly exceeds a record shown in the data
-- trade_value_players: max 3 entries; omit the field entirely if fewer than 2 players had significant shifts
-- waiver_grades: only include teams that made notable moves this week
-- Use only ASCII dashes (-) not em-dashes in score fields to avoid encoding issues
-- Keep all string values short — this is a planning doc, not prose"""
+- power_rankings: {rankings_note} Include ALL 14 teams.
+- records_broken: empty string if none broken; otherwise one sentence naming the record, who broke it, and the old mark
+- include_trade_value: true only if 2 or more players had a significant performance shift this week
+- waiver_highlights: one entry per notable move; empty array if no significant moves
+- thriller_teams: exact team names from the data separated by " vs "
+- All values are plain strings or simple arrays of strings — no nested objects anywhere
+- Use only standard ASCII characters in all fields"""
 
     last_err: Exception | None = None
     for attempt in range(3):
         try:
-            raw = _call_claude(prompt, max_tokens=2000)
+            raw = _call_claude(prompt, max_tokens=1500)
             try:
                 return _safe_json_parse(raw)
             except (json.JSONDecodeError, ValueError):
@@ -629,22 +625,17 @@ def _pass2_write(
             continue
         t1, t2 = teams[0], teams[1]
         winner_key = m.get("winner_key")
-        score = f"{max(t1['points'], t2['points']):.0f}–{min(t1['points'], t2['points']):.0f}"
         if m.get("is_tied"):
             winner_col = f"{t1['name']} / {t2['name']}"
             loser_col = ""
-            score = f"{t1['points']:.0f}–{t2['points']:.0f}"
+            score = f"{t1['points']:.0f}-{t2['points']:.0f}"
         else:
             winner = t1 if t1.get("team_key") == winner_key else t2
             loser  = t2 if winner is t1 else t1
             winner_col = winner["name"]
             loser_col  = loser["name"]
-        # Player of matchup from plan
-        matchup_key = f"{t1['name']} vs {t2['name']}"
-        alt_key     = f"{t2['name']} vs {t1['name']}"
-        notes = plan.get("matchup_notes", {}).get(matchup_key) or plan.get("matchup_notes", {}).get(alt_key, {})
-        player_of_match = notes.get("key_perf", "—")
-        table_rows.append(f"| {winner_col} | {loser_col} | {score} | {player_of_match} |")
+            score = f"{winner['points']:.0f}-{loser['points']:.0f}"
+        table_rows.append(f"| {winner_col} | {loser_col} | {score} | — |")
 
     table_md = (
         "| Winner | Loser | Score | Player of the Matchup |\n"
@@ -652,68 +643,101 @@ def _pass2_write(
         + "\n".join(table_rows)
     )
 
-    # Serialize the planning doc
-    plan_json = json.dumps(plan, indent=2)
+    # Build matchup summary lines for Pass 2
+    matchup_lines: list[str] = []
+    for m in week_data.get("matchups", []):
+        teams = m.get("teams", [])
+        if len(teams) < 2:
+            continue
+        t1, t2 = teams[0], teams[1]
+        winner_key = m.get("winner_key")
+        if m.get("is_tied"):
+            result = f"TIE: {t1['name']} {t1['points']:.0f} vs {t2['name']} {t2['points']:.0f}"
+        else:
+            winner = t1 if t1.get("team_key") == winner_key else t2
+            loser  = t2 if winner is t1 else t1
+            result = f"{winner['name']} def. {loser['name']} {winner['points']:.0f}-{loser['points']:.0f}"
+        matchup_lines.append(result)
+        for t in [t1, t2]:
+            cats = t.get("category_stats", {})
+            cat_str = " | ".join(f"{k}:{v}" for k, v in cats.items())
+            matchup_lines.append(f"  {t['name']}: {cat_str}")
 
-    # Power ranking movement arrows
-    has_movement = any(
-        e.get("movement") not in (None, "—", "")
-        for e in plan.get("power_rankings", [])
-    )
+    # Serialize the planning doc
+    plan_text = json.dumps(plan, indent=2)
 
     # Trade value section note
+    include_trade = plan.get("include_trade_value", False)
     trade_value_note = (
-        "Section 10 (Trade value): OMIT this section entirely — fewer than 2 players had significant shifts."
-        if not plan.get("trade_value_players")
-        else "Section 10 (Trade value): Include for each player: one sentence on what happened, one verdict (Buy/Sell/Hold) with brief reasoning."
+        "Section 10 (Trade value): OMIT this section entirely — no significant player shifts this week."
+        if not include_trade
+        else "Section 10 (Trade value): Include 2-3 players. For each: one sentence on what happened, one verdict (Buy/Sell/Hold) with brief reasoning."
     )
 
     # Records broken note
+    records_str = str(plan.get("records_broken", "")).strip()
     records_note = (
         "Section 8 (League record broken): OMIT this section entirely — no records were broken this week."
-        if not plan.get("records_broken")
-        else "Section 8 (League record broken): Include — name the record, player/team who broke it, previous holder and when, one sentence of context."
+        if not records_str
+        else f"Section 8 (League record broken): Include — {records_str}"
     )
+
+    # Power rankings from plan — already formatted as "1. Team | reason" strings
+    rankings_list = plan.get("power_rankings", [])
+    rankings_text = "\n".join(rankings_list) if rankings_list else "(not provided)"
+    has_movement = any("up" in r.lower() or "down" in r.lower() for r in rankings_list)
+
+    # Waiver highlights from plan
+    waiver_list = plan.get("waiver_highlights", [])
+    waiver_text = "\n".join(f"  {w}" for w in waiver_list) if waiver_list else "  (no notable moves)"
 
     prompt = f"""You are {writer['name']} of {writer['outlet']}, writing the Week {week_num} recap for "{league}."
 
 {writer['voice']}
 
-You have a PLANNING DOCUMENT with all the key facts, rankings, and analysis pre-determined. Your job is to write the full article following the section order below, using the planning doc as your source of truth.
+You have a PLANNING DOCUMENT with the key editorial decisions, and the full raw week data below. Use both to write the article.
 
 PLANNING DOCUMENT:
-{plan_json}
+{plan_text}
 
-AT-A-GLANCE TABLE (use this exactly — do not reorder or alter):
+POWER RANKINGS (use exactly as listed):
+{rankings_text}
+
+WAIVER WIRE MOVES (use exactly as listed):
+{waiver_text}
+
+RAW MATCHUP DATA (use for deep-dives and player references):
+{chr(10).join(matchup_lines)}
+
+AT-A-GLANCE TABLE (include verbatim — fill in Player of the Matchup column from the raw data):
 {table_md}
 
 WRITE THE FULL ARTICLE in this exact section order. Use ## for section headers.
 
 1. **Headline + subheadline** — returned as separate JSON fields, not in body
-2. **Stat of the Week** — bold callout block immediately after headline. Format: `**[number] — [one sentence]**`. Use the stat_of_week from the plan.
-3. **At-a-Glance** — the table above, verbatim. Header: `## At-a-Glance`
-4. **Thriller of the Week** — `## Thriller of the Week`. Closest matchup. Final score, 2–3 sentences on key performances, 1 sentence on what it means for both teams.
-5. **The Week's Defining Moment** — `## The Week's Defining Moment`. Top storyline from key_storyline and matchup context. 2–3 paragraphs.
-6. **Matchup Deep-Dives** — `## Matchup Deep-Dives`. EVERY matchup gets its own sub-section (### Team A def. Team B). For each: result line, key performance with stat line, strategic implication, next week preview. Use matchup_notes from the plan.
-7. **Lucky/Unlucky Team of the Week** — `## Lucky/Unlucky Team of the Week`. Two callouts using lucky_team and unlucky_team from the plan.
+2. **Stat of the Week** — bold callout immediately after opening. Format: **[the stat_of_week from the plan]**
+3. **At-a-Glance** (`## At-a-Glance`) — the table above, but fill in the Player of the Matchup column with the standout performer from each matchup based on the raw data
+4. **Thriller of the Week** (`## Thriller of the Week`) — write about the thriller_teams matchup. 2-3 sentences on key performances, 1 sentence on stakes for both teams
+5. **The Week's Defining Moment** (`## The Week's Defining Moment`) — expand key_storyline into 2-3 paragraphs using raw matchup data
+6. **Matchup Deep-Dives** (`## Matchup Deep-Dives`) — every matchup gets its own subsection (### Result). For each: result line, key category stats, strategic implication, next week preview
+7. **Lucky/Unlucky Team of the Week** (`## Lucky/Unlucky Team of the Week`) — use lucky_team/unlucky_team and their reasons from the plan
 8. {records_note}
-9. **Manager Spotlight** — `## Manager Spotlight`. Feature the spotlight_team. Cover: current record and power ranking position, how draft strategy is playing out, best/worst performers vs expectations, playoff outlook, one thing to watch.
+9. **Manager Spotlight** (`## Manager Spotlight`) — feature spotlight_team. Cover their record, power ranking position, how their roster is performing, playoff outlook
 10. {trade_value_note}
-11. **Power Rankings** — `## Power Rankings`. Ordered 1–14 list from plan. Each: rank, team name, one sentence reasoning, movement arrow{"" if has_movement else " (omit arrows — week 1, no prior week)"}.
-12. **Waiver Wire** — `## Waiver Wire`. Use waiver_grades from plan. Format each notable move with grade badge (e.g. **[A]**), team name, move description, 1–2 sentence analysis.
+11. **Power Rankings** (`## Power Rankings`) — use the rankings list exactly as provided above, one entry per line{"" if has_movement else " (week 1 — no movement arrows)"}
+12. **Waiver Wire** (`## Waiver Wire`) — use the waiver highlights above. Format: **[GRADE]** Team — move — analysis
 
 RULES:
-- Use **bold** for team names throughout the article body
-- No highlighting or favoritism toward any specific team
-- Thriller of the Week section is purely the closest game by margin — use plan data
-- Write in {writer['name']}'s authentic voice throughout
-- Body should be 800–1100 words total (not counting the table)
+- Use **bold** for team names throughout
+- No favoritism toward any team
+- Write in {writer['name']}s authentic voice
+- Body should be 900-1200 words (not counting the table)
 
-Respond ONLY with valid JSON — no markdown fences:
+Respond ONLY with valid JSON, no markdown fences:
 {{
   "headline": "...",
   "subheadline": "...(one sharp sentence)...",
-  "body": "...(full article body, sections 2–12 in order)..."
+  "body": "...(full article body, sections 2-12 in order)..."
 }}"""
 
     raw = _call_claude(prompt, max_tokens=4000)
