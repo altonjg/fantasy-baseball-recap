@@ -15,7 +15,8 @@
       "12. Riverside Roughnecks | 9–1 blowout loss and a catastrophic 7.91 ERA with 0 QS; Langeliers and Lewis hit well but pitching is broken",
       "13. Canberra Wombats | Lost 8–2 with 0 HR and 0 QS; only Dylan Cease showed up on the mound and the offense had no power whatsoever",
       "14. Buttville Skidmarks | Lost 7–3 despite elite pitching metrics in spots; 6.02 ERA and .271 OBP are deeply problematic and the roster balance is badly off"
-    ]
+    ],
+    "week_02": []
   },
   "weekly_points": {
     "week_01": {
@@ -33,6 +34,22 @@
       "Wisconsin Rapids Reapers": 3.0,
       "Riverside Roughnecks": 1.0,
       "Sugar Land Skeeters": 9.0
+    },
+    "week_02": {
+      "Albuquerque Bombers": 3.0,
+      "North Correa": 7.0,
+      "Abbotsford-Colby Twins": 6.0,
+      "Canberra Wombats": 4.0,
+      "Athletic Park Dragons": 4.0,
+      "General Hospital": 6.0,
+      "BaseballPro77": 5.0,
+      "Benchwarmers": 4.0,
+      "Buttville Skidmarks": 3.0,
+      "Riverside Roughnecks": 7.0,
+      "Hiroshima Radiation": 1.0,
+      "Sugar Land Skeeters": 8.0,
+      "Wisconsin Rapids Reapers": 9.0,
+      "Wonder Wharf Wonderdogs": 0.0
     }
   },
   "manager_spotlight_rotation": [
@@ -51,5 +68,5 @@
     "Canberra Wombats",
     "Riverside Roughnecks"
   ],
-  "last_spotlight_week": "Sugar Land Skeeters"
+  "last_spotlight_week": "BaseballPro77"
 }

@@ -5,9 +5,9 @@
     "week": 1
   },
   "most_hr_team": {
-    "value": 8.0,
-    "team": "BaseballPro77",
-    "week": 1
+    "value": 11.0,
+    "team": "North Correa",
+    "week": 2
   },
   "highest_obp": {
     "value": 0.414,
@@ -15,23 +15,23 @@
     "week": 1
   },
   "most_sb": {
-    "value": 5.0,
-    "team": "Abbotsford-Colby Twins",
-    "week": 1
+    "value": 7.0,
+    "team": "Albuquerque Bombers",
+    "week": 2
   },
   "most_rbi": {
-    "value": 23.0,
-    "team": "General Hospital",
-    "week": 1
+    "value": 38.0,
+    "team": "North Correa",
+    "week": 2
   },
   "most_k_team": {
-    "value": 47.0,
-    "team": "Buttville Skidmarks",
-    "week": 1
+    "value": 77.0,
+    "team": "Abbotsford-Colby Twins",
+    "week": 2
   },
   "lowest_era_winner": {
-    "value": 2.48,
-    "team": "Albuquerque Bombers",
-    "week": 1
+    "value": 2.1,
+    "team": "General Hospital",
+    "week": 2
   }
 }
