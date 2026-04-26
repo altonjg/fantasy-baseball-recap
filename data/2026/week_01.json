@@ -99,6 +99,13 @@
               "score": 15.0
             },
             {
+              "name": "Reid Detmers",
+              "mlb_team": "LAA",
+              "position": "SP,RP",
+              "stats": "K:13, ERA:3.00, WHIP:0.78, IP:9.0",
+              "score": 13.0
+            },
+            {
               "name": "Alec Burleson",
               "mlb_team": "STL",
               "position": "1B,OF",
@@ -195,6 +202,13 @@
           },
           "top_players": [
             {
+              "name": "Gleyber Torres",
+              "mlb_team": "DET",
+              "position": "2B",
+              "stats": "R:6, HR:1, RBI:2, OBP:.526",
+              "score": 14.0
+            },
+            {
               "name": "Will Smith",
               "mlb_team": "LAD",
               "position": "C",
@@ -220,13 +234,6 @@
               "mlb_team": "NYY",
               "position": "OF",
               "stats": "R:2, HR:2, RBI:2, OBP:.154",
-              "score": 8.0
-            },
-            {
-              "name": "Jos\u00e9 Soriano",
-              "mlb_team": "LAA",
-              "position": "SP",
-              "stats": "K:7, WHIP:1.00, QS:1, IP:6.0",
               "score": 8.0
             }
           ]
