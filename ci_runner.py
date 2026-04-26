@@ -615,10 +615,12 @@ Rules:
     last_err: Exception | None = None
     for attempt in range(3):
         try:
-            raw = _call_claude(prompt, max_tokens=1500)
+            raw = _call_claude(prompt, max_tokens=2500)
             plan = _parse_pass1_xml(raw)
             if not plan.get("key_storyline"):
                 raise ValueError("Pass 1 response missing key fields — retrying")
+            if not plan.get("power_rankings"):
+                raise ValueError("Pass 1 response missing power_rankings — retrying")
             return plan
         except Exception as e:
             last_err = e
