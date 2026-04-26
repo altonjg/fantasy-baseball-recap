@@ -284,7 +284,7 @@
               "name": "Xander Bogaerts",
               "mlb_team": "SD",
               "position": "SS",
-              "stats": "R:3, HR:1, RBI:4, SB:2, OBP:.455",
+              "stats": "R:3, HR:1, RBI:4, SB:2, OBP:.435",
               "score": 16.0
             }
           ]
@@ -377,13 +377,6 @@
               "score": 31.0
             },
             {
-              "name": "Gleyber Torres",
-              "mlb_team": "DET",
-              "position": "2B",
-              "stats": "R:6, HR:1, RBI:5, OBP:.357",
-              "score": 19.0
-            },
-            {
               "name": "Aaron Judge",
               "mlb_team": "NYY",
               "position": "OF",
@@ -396,6 +389,13 @@
               "position": "SS",
               "stats": "R:8, HR:1, RBI:2, SB:1, OBP:.345",
               "score": 16.0
+            },
+            {
+              "name": "Jarren Duran",
+              "mlb_team": "BOS",
+              "position": "OF",
+              "stats": "R:5, RBI:4, SB:1, OBP:.261",
+              "score": 13.0
             }
           ]
         },
@@ -928,7 +928,7 @@
               "name": "Manny Machado",
               "mlb_team": "SD",
               "position": "3B",
-              "stats": "R:6, HR:3, RBI:11, SB:1, OBP:.387",
+              "stats": "R:6, HR:3, RBI:11, SB:1, OBP:.375",
               "score": 27.0
             },
             {
