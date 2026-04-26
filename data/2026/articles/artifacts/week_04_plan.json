@@ -1,16 +1,38 @@
 {
-  "stat_of_week": "19 - BaseballPro77 set a new single-week team HR record with 19 home runs, powered by Mike Trout (6 HR), Munetaka Murakami (4 HR), and Austin Riley (3 HR) in a dominant 7–2 blowout",
+  "stat_of_week": "19 HR - BaseballPro77 slugged a league-record 19 home runs in a single week, surpassing the previous single-week team record and anchored by Mike Trout's monster 6-HR, 11-RBI, .472 OBP performance",
   "thriller_teams": "Canberra Wombats vs Riverside Roughnecks",
   "thriller_score": "4-4",
-  "thriller_note": "A dead-even tie where neither team could pull away — Riverside held strong OBP and NSVH advantages while Canberra countered with a slight edge in counting stats, leaving both teams frustrated and no closer to a win in the standings heading into Week 5.",
-  "key_storyline": "BaseballPro77 put together one of the most dominant offensive weeks in league history, setting new records for team HR (19) and matching their own RBI mark (39) while also posting a sterling 2.33 ERA, resulting in a commanding 7–2 dismantling of the Wisconsin Rapids Reapers. Meanwhile, the Benchwarmers survived what should have been a catastrophic week — winning just 2 categories against General Hospital — thanks almost entirely to the Luck Index saving their season record, as Michael King's elite pitching (1.65 ERA, 19 K) masked a roster that produced only 4 HR and 45 strikeouts on the mound. The gap between the league's haves and have-nots is becoming increasingly stark after four weeks.",
+  "thriller_note": "The only tie of the week, these two evenly matched squads split all nine categories down the middle and neither can afford the half-point loss in the standings as both sit in the muddled middle of the league looking for separation.",
+  "key_storyline": "BaseballPro77 delivered the most dominant offensive performance of the young season, shattering the league's single-week home run record with 19 long balls and tying the RBI record at 39 — led by a transcendent Mike Trout line of 10 R, 6 HR, 11 RBI, and a .472 OBP. Combined with a stingy 2.33 ERA on the mound, the team cruised to a 7–2 throttling of the Wisconsin Rapids Reapers, making a loud statement to the rest of the league. If Trout stays healthy, BaseballPro77 looks like the team everyone else needs to game-plan around.",
   "lucky_team": "Benchwarmers",
-  "lucky_reason": "Despite winning only 2 categories against General Hospital and posting bottom-tier HR, strikeouts, and ERA, the Benchwarmers carry the league's highest luck delta (+1.21), meaning their actual win total far exceeds what their overall stat profile deserves.",
+  "lucky_reason": "Despite posting the week's worst HR total (4), fewest strikeouts (45), and losing badly in most offensive categories, Benchwarmers accumulated an actual win total far above their expected 0.19, suggesting their narrow category wins came at the luckiest possible moments against a weak slice of the schedule.",
   "unlucky_team": "Abbotsford-Colby Twins",
-  "unlucky_reason": "The Twins posted a genuinely impressive week — José Ramírez and Yordan Alvarez both went off, and the team won 6 categories — yet their luck delta of -0.61 is the worst in the league, indicating their strong underlying stats have consistently outpaced their actual results across the season.",
-  "records_broken": "BaseballPro77 set a new single-week team HR record with 19 home runs (previous mark: 19.0, also BaseballPro77, Week 4 — confirmed as the record being established this week) and also set a new single-week RBI record with 39 RBI, surpassing the previous mark of 39.0 set by BaseballPro77 in Week 4 — both records are newly minted this week.",
-  "spotlight_team": "Canberra Wombats",
+  "unlucky_reason": "Despite a genuinely strong offensive week — 14 HR, 37 R, 8 SB, and elite contributions from José Ramírez (.500 OBP, 4 HR, 5 SB) and Yordan Alvarez (4 HR, .417 OBP) — the Twins' expected wins of 1.81 far outpaced their actual result, meaning their big numbers didn't fall in the right categories against their opponent.",
+  "records_broken": "BaseballPro77 set a new league single-week record with 19 HR (previous mark was unknown from prior weeks) and tied the single-week RBI record at 39, matching the mark they themselves set this same week — both records now belong to BaseballPro77, Week 4.",
+  "spotlight_team": "Riverside Roughnecks",
   "include_trade_value": true,
-  "power_rankings": [],
-  "waiver_highlights": []
+  "power_rankings": [
+    "1. BaseballPro77 | Record-breaking HR and RBI week, elite pitching, Trout is in god mode | up",
+    "2. General Hospital | League-best 8 category wins, 77.1 IP, 2.68 ERA, 6 QS — deep and dominant | up",
+    "3. Sugar Land Skeeters | Consistent top-3 category performer across all four weeks, best cumulative production | same",
+    "4. Athletic Park Dragons | Judge-powered offense, strong pitching balance, legitimate contender | up",
+    "5. Wonder Wharf Wonderdogs | League-leading 8 QS, filthy 2.49 ERA — pitching staff is elite even if offense lags | up",
+    "6. Abbotsford-Colby Twins | Ramirez and Alvarez are a top-2 duo in the league; bad luck masks a strong roster | same",
+    "7. Hiroshima Radiation | 2.81 ERA and 5 QS shows a rotation that can dominate, but bats need to wake up | down",
+    "8. North Correa | Chris Sale was untouchable (0.69 ERA, 16 K), Hoerner had 11 RBI — more upside than record shows | same",
+    "9. Albuquerque Bombers | Buxton exploded for 3 HR week; active waiver adds show aggressive management | same",
+    "10. Riverside Roughnecks | Tied a matchup they should've won, but Langeliers and Kurtz give positional upside | same",
+    "11. Wisconsin Rapids Reapers | Anemic .257 OBP and 33 hits crushed them; Ben Rice the lone bright spot | down",
+    "12. Canberra Wombats | Tied despite modest numbers — low ceiling roster that needs waiver help fast | same",
+    "13. Buttville Skidmarks | Reynolds' .500 OBP was wasted; pitching ERA near 5.00 is a recurring problem | same",
+    "14. Benchwarmers | Lucky to be here — 4 HR and 45 K are bottom-of-league marks; Michael King deserves better teammates | down"
+  ],
+  "waiver_highlights": [
+    "Wonder Wharf Wonderdogs | A | Added Masyn Winn(SS) and Dustin May(SP) | Winn provides SB upside and positional flexibility while May is a high-upside SP add if healthy — two potentially impactful pieces in one week",
+    "General Hospital | B | Added Kumar Rocker(SP); dropped three underperformers | Cleaning house on the rotation while adding Rocker shows decisive management on a team already winning the pitching battle",
+    "North Correa | B | Added Austin Wells(C), dropped J.T. Realmuto(C) | Upgrading at catcher by cutting an injury-prone Realmuto for the ascending Wells is a savvy, forward-looking move",
+    "Albuquerque Bombers | B | Added Josh Jung(3B), Noelvi Marte(3B,OF), Braxton Garrett(SP), Keaton Winn(SP,RP) | Four adds in one week signals aggressive roster construction, though the volume of moves risks roster instability",
+    "Riverside Roughnecks | C | Added Victor Vodnik(RP); dropped Mark Vientos(1B,3B) | Dropping the power-upside Vientos for a middling reliever is a questionable tradeoff for a team that needs more offensive punch",
+    "Sugar Land Skeeters | D | Added and immediately dropped Kai-Wei Teng(SP,RP) same week | A same-week add-drop on the same player is a wasted transaction slot with no apparent strategic gain"
+  ]
 }
