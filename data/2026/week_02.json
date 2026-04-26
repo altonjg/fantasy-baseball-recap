@@ -37,7 +37,7 @@
               "name": "Freddie Freeman",
               "mlb_team": "LAD",
               "position": "1B",
-              "stats": "R:4, HR:2, RBI:8, OBP:.241",
+              "stats": "R:4, HR:2, RBI:8, OBP:.233",
               "score": 20.0
             },
             {
@@ -95,14 +95,14 @@
               "name": "Shohei Ohtani (Batter)",
               "mlb_team": "LAD",
               "position": "Util",
-              "stats": "R:4, HR:2, RBI:6, SB:1, OBP:.406",
-              "score": 22.0
+              "stats": "R:4, HR:2, RBI:6, SB:1, OBP:.424",
+              "score": 23.0
             },
             {
               "name": "Kodai Senga",
               "mlb_team": "NYM",
               "position": "SP",
-              "stats": "K:17, ERA:3.38, WHIP:1.20, QS:1, IP:13.1",
+              "stats": "K:17, ERA:4.40, WHIP:1.40, QS:1, IP:14.1",
               "score": 18.0
             },
             {
@@ -284,7 +284,7 @@
               "name": "Teoscar Hern\u00e1ndez",
               "mlb_team": "LAD",
               "position": "OF",
-              "stats": "R:5, HR:1, RBI:3, OBP:.500",
+              "stats": "R:5, HR:1, RBI:3, OBP:.478",
               "score": 18.0
             }
           ]
@@ -421,18 +421,18 @@
           },
           "top_players": [
             {
-              "name": "Kyle Tucker",
-              "mlb_team": "LAD",
-              "position": "OF",
-              "stats": "R:6, HR:1, RBI:4, OBP:.385",
-              "score": 19.0
-            },
-            {
               "name": "Manny Machado",
               "mlb_team": "SD",
               "position": "3B",
-              "stats": "R:5, HR:2, RBI:5, OBP:.455",
-              "score": 17.0
+              "stats": "R:6, HR:3, RBI:8, OBP:.478",
+              "score": 23.0
+            },
+            {
+              "name": "Kyle Tucker",
+              "mlb_team": "LAD",
+              "position": "OF",
+              "stats": "R:6, HR:1, RBI:4, OBP:.407",
+              "score": 19.0
             },
             {
               "name": "Vladimir Guerrero Jr.",
@@ -531,6 +531,13 @@
           },
           "top_players": [
             {
+              "name": "Bobby Witt Jr.",
+              "mlb_team": "KC",
+              "position": "SS",
+              "stats": "R:1, HR:1, RBI:4, SB:3, OBP:.333",
+              "score": 15.0
+            },
+            {
               "name": "Giancarlo Stanton",
               "mlb_team": "NYY",
               "position": "OF",
@@ -556,13 +563,6 @@
               "mlb_team": "CLE",
               "position": "SP",
               "stats": "K:10, WHIP:0.71, QS:1, IP:7.0",
-              "score": 11.0
-            },
-            {
-              "name": "Vinnie Pasquantino",
-              "mlb_team": "KC",
-              "position": "1B",
-              "stats": "R:2, RBI:4, OBP:.300",
               "score": 11.0
             }
           ]
@@ -599,7 +599,7 @@
               "name": "Zach Neto",
               "mlb_team": "LAA",
               "position": "SS",
-              "stats": "R:5, HR:1, RBI:4, OBP:.400",
+              "stats": "R:5, HR:1, RBI:4, OBP:.387",
               "score": 19.0
             },
             {
@@ -613,7 +613,7 @@
               "name": "Michael King",
               "mlb_team": "SD",
               "position": "SP",
-              "stats": "K:13, ERA:3.72, WHIP:1.03, IP:9.2",
+              "stats": "K:13, ERA:5.06, WHIP:1.12, IP:10.2",
               "score": 13.0
             },
             {
@@ -713,6 +713,13 @@
               "score": 18.0
             },
             {
+              "name": "Marcus Semien",
+              "mlb_team": "NYM",
+              "position": "2B",
+              "stats": "R:2, HR:1, RBI:4, OBP:.364",
+              "score": 15.0
+            },
+            {
               "name": "Luis Arraez",
               "mlb_team": "SF",
               "position": "1B,2B",
@@ -720,18 +727,11 @@
               "score": 15.0
             },
             {
-              "name": "Marcus Semien",
-              "mlb_team": "NYM",
-              "position": "2B",
-              "stats": "R:2, HR:1, RBI:4, OBP:.344",
-              "score": 14.0
-            },
-            {
-              "name": "Parker Messick",
-              "mlb_team": "CLE",
-              "position": "SP",
-              "stats": "K:11, ERA:0.82, WHIP:0.91, QS:1, IP:11.0",
-              "score": 12.0
+              "name": "Rafael Devers",
+              "mlb_team": "SF",
+              "position": "1B",
+              "stats": "R:3, HR:1, RBI:3, OBP:.324",
+              "score": 13.0
             }
           ]
         },
@@ -767,8 +767,8 @@
               "name": "Jackson Merrill",
               "mlb_team": "SD",
               "position": "OF",
-              "stats": "R:6, HR:2, RBI:5, OBP:.320",
-              "score": 20.0
+              "stats": "R:7, HR:2, RBI:5, OBP:.320",
+              "score": 21.0
             },
             {
               "name": "Kerry Carpenter",
@@ -782,13 +782,6 @@
               "mlb_team": "MIA",
               "position": "2B,SS",
               "stats": "R:7, HR:1, RBI:2, SB:1, OBP:.393",
-              "score": 19.0
-            },
-            {
-              "name": "Jackson Merrill",
-              "mlb_team": "SD",
-              "position": "OF",
-              "stats": "R:6, HR:2, RBI:5, OBP:.292",
               "score": 19.0
             },
             {
@@ -891,8 +884,8 @@
               "name": "Matt Chapman",
               "mlb_team": "SF",
               "position": "3B",
-              "stats": "R:5, HR:1, RBI:3, OBP:.333",
-              "score": 17.0
+              "stats": "R:6, HR:1, RBI:3, OBP:.353",
+              "score": 18.0
             },
             {
               "name": "Bryce Harper",
@@ -1124,8 +1117,8 @@
               "name": "Shota Imanaga",
               "mlb_team": "CHC",
               "position": "SP",
-              "stats": "K:9, ERA:4.00, WHIP:1.00, IP:9.0",
-              "score": 9.0
+              "stats": "K:10, ERA:3.60, WHIP:1.20, IP:10.0",
+              "score": 10.0
             },
             {
               "name": "Eugenio Su\u00e1rez",
@@ -1801,5 +1794,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-04-26T21:28:38.467860"
+  "saved_at": "2026-04-26T21:53:55.982580"
 }
