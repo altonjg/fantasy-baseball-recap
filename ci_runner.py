@@ -509,32 +509,60 @@ def _build_recap_context(
     return "\n".join(lines)
 
 
+def _repair_json_aggressive(raw: str) -> dict:
+    """
+    More aggressive JSON repair beyond _safe_json_parse:
+    - Strips JS-style // comments
+    - Removes trailing commas before } or ]
+    - Falls back to extracting the outermost {...} block
+    """
+    import re as _re
+    # Strip // comments (not inside strings — best-effort)
+    cleaned = _re.sub(r'(?<!:)//[^\n]*', '', raw)
+    # Remove trailing commas before closing braces/brackets
+    cleaned = _re.sub(r',\s*([}\]])', r'\1', cleaned)
+    # Fix literal control chars in strings
+    cleaned = _fix_json_strings(cleaned)
+    try:
+        return json.loads(cleaned)
+    except json.JSONDecodeError:
+        pass
+    # Last resort: grab outermost { ... }
+    match = _re.search(r'\{.*\}', cleaned, _re.DOTALL)
+    if match:
+        return json.loads(match.group())
+    raise ValueError("Could not repair JSON")
+
+
 def _pass1_plan(context: str, week_num: int, prior_rankings: dict) -> dict:
     """
     Pass 1: Feed raw data into Claude. Returns structured planning JSON.
-    Capped at max_tokens=1500 — output must be terse structured JSON.
+    max_tokens=2000 — enough for all 14 rankings + 7 matchup notes.
+    Retries up to 3 times on JSON parse failure.
     """
     has_prior = bool(prior_rankings)
     movement_note = (
-        'Movement: "↑", "↓", or "—" vs prior week rankings.'
+        'Movement: use "↑", "↓", or "—" vs prior week rankings.'
         if has_prior else
-        'Movement: omit field or use "—" (no prior week to compare).'
+        'Movement: use "—" for all entries (no prior week to compare).'
     )
 
     prompt = f"""You are a fantasy baseball analyst. Analyze the data below and return a structured JSON planning document for a weekly recap article. Be TERSE — short phrases only, not full sentences.
 
+CRITICAL: Output ONLY raw JSON. No markdown fences, no comments, no trailing commas. All string values must use double quotes and must not contain unescaped double-quote characters.
+
 {context}
 
-Return ONLY valid JSON with this exact structure (no markdown fences):
+Return this exact JSON structure:
 {{
   "stat_of_week": "[number] — [brief explanation]",
   "thriller_matchup": {{
     "teams": ["Team A", "Team B"],
-    "score": "7–5",
+    "score": "7-5",
     "key_moment": "brief note",
     "implication": "brief note"
   }},
-  "key_storyline": "1–2 sentences on the top narrative of the week",
+  "key_storyline": "1-2 sentences on the top narrative of the week",
   "matchup_notes": {{
     "Team A vs Team B": {{
       "key_perf": "player or stat highlight",
@@ -548,24 +576,35 @@ Return ONLY valid JSON with this exact structure (no markdown fences):
   "spotlight_team": "team name",
   "trade_value_players": [],
   "power_rankings": [
-    {{"rank": 1, "team": "name", "reasoning": "brief", "movement": "↑"}}
+    {{"rank": 1, "team": "name", "reasoning": "brief", "movement": "—"}}
   ],
   "waiver_grades": {{
-    "Team Name": {{"move": "dropped X → added Y", "grade": "A", "analysis": "brief"}}
+    "Team Name": {{"move": "dropped X, added Y", "grade": "A", "analysis": "brief"}}
   }}
 }}
 
 Rules:
-- matchup_notes must include ALL {7} matchups
-- power_rankings must include ALL 14 teams, ranked 1–14
+- matchup_notes must include ALL 7 matchups using the exact team names from the data
+- power_rankings must include ALL 14 teams ranked 1-14
 - {movement_note}
-- records_broken: include only if a current week stat clearly beats a season record shown in the data
-- trade_value_players: max 3 players, omit array entirely if fewer than 2 had significant shifts
-- waiver_grades: only include teams that made notable moves; use A/B/C/D grades
-- All values must be brief phrases — this is a planning doc, not prose"""
+- records_broken: only include if a stat this week clearly exceeds a record shown in the data
+- trade_value_players: max 3 entries; omit the field entirely if fewer than 2 players had significant shifts
+- waiver_grades: only include teams that made notable moves this week
+- Use only ASCII dashes (-) not em-dashes in score fields to avoid encoding issues
+- Keep all string values short — this is a planning doc, not prose"""
 
-    raw = _call_claude(prompt, max_tokens=1500)
-    return _safe_json_parse(raw)
+    last_err: Exception | None = None
+    for attempt in range(3):
+        try:
+            raw = _call_claude(prompt, max_tokens=2000)
+            try:
+                return _safe_json_parse(raw)
+            except (json.JSONDecodeError, ValueError):
+                return _repair_json_aggressive(raw)
+        except Exception as e:
+            last_err = e
+            print(f"[ci_runner] Pass 1 attempt {attempt+1}/3 failed: {e}", file=sys.stderr)
+    raise RuntimeError(f"Pass 1 failed after 3 attempts: {last_err}")
 
 
 def _pass2_write(
