@@ -226,6 +226,10 @@
   .article-body h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); margin: 22px 0 10px; }
   .article-body p { margin-bottom: 14px; }
   .article-body strong { color: var(--text); font-weight: 600; }
+  .article-body table { width: 100%; border-collapse: collapse; margin-bottom: 1.2em; font-size: 0.88em; }
+  .article-body table th { text-align: left; padding: 7px 10px; border-bottom: 2px solid var(--gold); color: var(--gold); font-weight: 700; font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; }
+  .article-body table td { padding: 6px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .article-body table tbody tr:hover td { background: rgba(255,255,255,0.03); }
   .asb-box { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 13px 14px; margin-bottom: 8px; }
   .asb-box.gold { border-color: rgba(240,192,64,0.35); }
   .asb-lbl { font-size: 0.7em; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 3px; display: flex; align-items: center; gap: 5px; }
@@ -3180,6 +3184,21 @@
       if (/^>\s/.test(t)) {
         const inner = t.replace(/^>\s*/gm, '').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\*(.+?)\*/g, '<em>$1</em>');
         return `<blockquote style="border-left:3px solid ${color};margin:14px 0;padding:6px 14px;color:var(--muted);font-style:italic;">${inner}</blockquote>`;
+      }
+      // GFM table (lines starting with |)
+      if (/^\|/.test(t) && t.includes('\n')) {
+        const lines = t.split('\n').map(l => l.trim()).filter(l => l);
+        if (lines.length >= 3 && /^[\|\s\-:]+$/.test(lines[1])) {
+          const parseRow = l => l.split('|').slice(1, -1).map(c => c.trim());
+          const inlineHtml = s => s
+            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.+?)\*/g, '<em>$1</em>');
+          const headers = parseRow(lines[0]);
+          const dataRows = lines.slice(2).map(parseRow);
+          const thead = `<thead><tr>${headers.map(h => `<th>${inlineHtml(h)}</th>`).join('')}</tr></thead>`;
+          const tbody = `<tbody>${dataRows.map(r => `<tr>${r.map(c => `<td>${inlineHtml(c)}</td>`).join('')}</tr>`).join('')}</tbody>`;
+          return `<table>${thead}${tbody}</table>`;
+        }
       }
       // Regular paragraph
       const html = t
