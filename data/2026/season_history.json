@@ -47,7 +47,8 @@
       "12. Riverside Roughnecks | Won 6–3 again with zero quality starts and a 1.43 WHIP — Trevor Story's 9 RBI carried them last week and this roster cannot keep winning on individual heroics alone | down",
       "13. Canberra Wombats | Gunnar Henderson hit 5 HR and they still lost 8–2; this team has pop but the pitching is consistently too soft to compete in a full-category format | same",
       "14. Benchwarmers | The luck index doesn't lie — a +0.91 luck delta masks a roster with serious pitching problems; 34 Ks and a 5.53 ERA will eventually catch up to them | same"
-    ]
+    ],
+    "week_04": []
   },
   "weekly_points": {
     "week_01": {
@@ -97,6 +98,22 @@
       "General Hospital": 4.0,
       "Canberra Wombats": 2.0,
       "Hiroshima Radiation": 8.0
+    },
+    "week_04": {
+      "Albuquerque Bombers": 5.0,
+      "Sugar Land Skeeters": 4.0,
+      "Abbotsford-Colby Twins": 6.0,
+      "Hiroshima Radiation": 4.0,
+      "Athletic Park Dragons": 5.0,
+      "North Correa": 2.0,
+      "BaseballPro77": 7.0,
+      "Wisconsin Rapids Reapers": 2.0,
+      "Benchwarmers": 2.0,
+      "General Hospital": 8.0,
+      "Buttville Skidmarks": 3.0,
+      "Wonder Wharf Wonderdogs": 6.0,
+      "Canberra Wombats": 4.0,
+      "Riverside Roughnecks": 4.0
     }
   },
   "manager_spotlight_rotation": [
@@ -115,5 +132,5 @@
     "Canberra Wombats",
     "Riverside Roughnecks"
   ],
-  "last_spotlight_week": "General Hospital"
+  "last_spotlight_week": "Wonder Wharf Wonderdogs"
 }
