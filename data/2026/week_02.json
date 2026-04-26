@@ -431,8 +431,8 @@
               "name": "Kyle Tucker",
               "mlb_team": "LAD",
               "position": "OF",
-              "stats": "R:6, HR:1, RBI:4, OBP:.407",
-              "score": 19.0
+              "stats": "R:7, HR:1, RBI:4, OBP:.407",
+              "score": 20.0
             },
             {
               "name": "Vladimir Guerrero Jr.",
@@ -592,7 +592,7 @@
               "name": "Corbin Carroll",
               "mlb_team": "AZ",
               "position": "OF",
-              "stats": "R:5, HR:2, RBI:8, SB:1, OBP:.483",
+              "stats": "R:5, HR:2, RBI:8, SB:1, OBP:.467",
               "score": 24.0
             },
             {
@@ -613,8 +613,8 @@
               "name": "Michael King",
               "mlb_team": "SD",
               "position": "SP",
-              "stats": "K:13, ERA:5.06, WHIP:1.12, IP:10.2",
-              "score": 13.0
+              "stats": "K:13, ERA:4.63, WHIP:1.03, QS:1, IP:11.2",
+              "score": 14.0
             },
             {
               "name": "Kevin McGonigle",
@@ -767,8 +767,8 @@
               "name": "Jackson Merrill",
               "mlb_team": "SD",
               "position": "OF",
-              "stats": "R:7, HR:2, RBI:5, OBP:.320",
-              "score": 21.0
+              "stats": "R:7, HR:2, RBI:5, OBP:.346",
+              "score": 22.0
             },
             {
               "name": "Kerry Carpenter",
@@ -953,11 +953,11 @@
               "score": 17.0
             },
             {
-              "name": "Ian Happ",
-              "mlb_team": "CHC",
+              "name": "Fernando Tatis Jr.",
+              "mlb_team": "SD",
               "position": "OF",
-              "stats": "R:4, HR:2, RBI:3, OBP:.304",
-              "score": 13.0
+              "stats": "R:5, RBI:2, SB:1, OBP:.355",
+              "score": 14.0
             }
           ]
         }
@@ -1117,7 +1117,7 @@
               "name": "Shota Imanaga",
               "mlb_team": "CHC",
               "position": "SP",
-              "stats": "K:10, ERA:3.60, WHIP:1.20, IP:10.0",
+              "stats": "K:10, ERA:5.23, WHIP:1.26, IP:10.1",
               "score": 10.0
             },
             {
@@ -1791,8 +1791,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-04-26T21:53:55.982580"
+  "saved_at": "2026-04-26T22:03:19.347321"
 }
