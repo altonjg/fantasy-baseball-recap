@@ -189,6 +189,17 @@
   .pr-arr.up  { color: #22c55e; background: rgba(34,197,94,0.12); }
   .pr-arr.dn  { color: #ef4444; background: rgba(239,68,68,0.12); }
   .pr-arr.flat{ color: var(--muted); background: transparent; }
+  /* Waiver wire cards */
+  .waiver-card { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .waiver-card:last-child { border-bottom: none; }
+  .waiver-grade-badge { font-family: 'Oswald', sans-serif; font-size: 1.05em; font-weight: 700; width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; letter-spacing: 0.02em; }
+  .waiver-grade-a { color: #22c55e; background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); }
+  .waiver-grade-b { color: #86efac; background: rgba(134,239,172,0.12); border: 1px solid rgba(134,239,172,0.25); }
+  .waiver-grade-c { color: #f0c040; background: rgba(240,192,64,0.12); border: 1px solid rgba(240,192,64,0.25); }
+  .waiver-grade-d { color: #ef4444; background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.25); }
+  .waiver-content { flex: 1; min-width: 0; }
+  .waiver-team { font-weight: 700; font-size: 0.88em; color: var(--text); margin-bottom: 4px; }
+  .waiver-move { font-size: 0.82em; color: var(--muted); line-height: 1.5; }
   .pr-form { font-size: 0.7em; white-space: nowrap; display: none; }
   .up { color: var(--green); } .dn { color: var(--red); } .flat { color: var(--muted); }
   .news-item { padding: 8px 0; border-bottom: 1px solid rgba(26,45,74,0.6); }
@@ -3228,6 +3239,28 @@
           const tbody = `<tbody>${dataRows.map(r => `<tr>${r.map(c => `<td>${inlineHtml(c)}</td>`).join('')}</tr>`).join('')}</tbody>`;
           return `<table>${thead}${tbody}</table>`;
         }
+      }
+      // Waiver wire entry — **[A] Team Name** — move and analysis
+      const waiverM = t.match(/^\*\*\[([A-D][+-]?)\]\s+(.+?)\*\*\s*[—–-]\s*([\s\S]*)$/i);
+      if (waiverM) {
+        const grade    = waiverM[1].toUpperCase();
+        const teamName = waiverM[2].trim();
+        const body     = waiverM[3].trim()
+          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\*(.+?)\*/g, '<em>$1</em>')
+          .replace(/\n/g, '<br>');
+        const gradeLetter = grade[0];
+        const gradeClass  = gradeLetter === 'A' ? 'waiver-grade-a'
+                          : gradeLetter === 'B' ? 'waiver-grade-b'
+                          : gradeLetter === 'C' ? 'waiver-grade-c'
+                          :                       'waiver-grade-d';
+        return `<div class="waiver-card">
+          <div class="waiver-grade-badge ${gradeClass}">${grade}</div>
+          <div class="waiver-content">
+            <div class="waiver-team">${_badge(teamName,'',16)} ${teamName}</div>
+            <div class="waiver-move">${body}</div>
+          </div>
+        </div>`;
       }
       // Regular paragraph
       const html = t
