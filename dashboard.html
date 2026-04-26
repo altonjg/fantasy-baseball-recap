@@ -3192,6 +3192,28 @@
         const inner = t.replace(/^>\s*/gm, '').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\*(.+?)\*/g, '<em>$1</em>');
         return `<blockquote style="border-left:3px solid ${color};margin:14px 0;padding:6px 14px;color:var(--muted);font-style:italic;">${inner}</blockquote>`;
       }
+      // Power Rankings block — lines like "1. **Team** | reason | [UP]"
+      if (/^\d+\.\s+\*\*/.test(t) && t.includes('|')) {
+        const lines = t.split('\n').map(l => l.trim()).filter(l => l);
+        const isPRBlock = lines.every(l => /^\d+\.\s+/.test(l));
+        if (isPRBlock) {
+          const rows = lines.map(line => {
+            const rankM  = line.match(/^(\d+)\./);
+            const nameM  = line.match(/\*\*(.+?)\*\*/);
+            const mvM    = line.match(/\[(UP|DOWN|SAME)\]/i);
+            // fallback: catch stray emoji
+            const hasUp  = mvM?.[1]?.toUpperCase() === 'UP'   || /⬆️|🔼/.test(line);
+            const hasDn  = mvM?.[1]?.toUpperCase() === 'DOWN' || /⬇️|🔽/.test(line);
+            const rank   = rankM ? rankM[1] : '';
+            const name   = nameM ? nameM[1] : line.replace(/^\d+\.\s*/, '').split('|')[0].replace(/\*\*/g,'').trim();
+            const arrow  = hasUp  ? `<span class="pr-arr up"><i class="fa-solid fa-arrow-up"></i></span>`
+                         : hasDn  ? `<span class="pr-arr dn"><i class="fa-solid fa-arrow-down"></i></span>`
+                         :          `<span class="pr-arr flat">—</span>`;
+            return `<div class="pr-row"><span class="pr-num">${rank}.</span>${_badge(name,'',18)}<span class="pr-name">${name}</span>${arrow}</div>`;
+          });
+          return `<div style="margin-bottom:1.2em;">${rows.join('')}</div>`;
+        }
+      }
       // GFM table (lines starting with |)
       if (/^\|/.test(t) && t.includes('\n')) {
         const lines = t.split('\n').map(l => l.trim()).filter(l => l);
