@@ -1,0 +1,38 @@
+{
+  "power_rankings": {},
+  "weekly_points": {
+    "week_01": {
+      "Albuquerque Bombers": 6.0,
+      "Abbotsford-Colby Twins": 4.0,
+      "Athletic Park Dragons": 5.0,
+      "Hiroshima Radiation": 4.0,
+      "BaseballPro77": 8.0,
+      "Canberra Wombats": 2.0,
+      "Benchwarmers": 7.0,
+      "Buttville Skidmarks": 3.0,
+      "General Hospital": 4.0,
+      "Wonder Wharf Wonderdogs": 4.0,
+      "North Correa": 7.0,
+      "Wisconsin Rapids Reapers": 3.0,
+      "Riverside Roughnecks": 1.0,
+      "Sugar Land Skeeters": 9.0
+    }
+  },
+  "manager_spotlight_rotation": [
+    "Sugar Land Skeeters",
+    "BaseballPro77",
+    "Benchwarmers",
+    "North Correa",
+    "Albuquerque Bombers",
+    "Athletic Park Dragons",
+    "General Hospital",
+    "Wonder Wharf Wonderdogs",
+    "Hiroshima Radiation",
+    "Abbotsford-Colby Twins",
+    "Buttville Skidmarks",
+    "Wisconsin Rapids Reapers",
+    "Canberra Wombats",
+    "Riverside Roughnecks"
+  ],
+  "last_spotlight_week": null
+}

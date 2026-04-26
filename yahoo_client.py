@@ -809,3 +809,29 @@ def fetch_weekly_data(oauth: YahooOAuth, league_key: str, week: Optional[int] = 
         "stat_categories": stat_categories,
         "lower_is_better_stats": list(lower_is_better_names - {None}),
     }
+
+
+def fetch_next_week_schedule(
+    session: requests.Session, league_key: str, current_week: int
+) -> list[dict]:
+    """
+    Return the matchup pairings for current_week + 1 as a list of:
+      [{"team_a": str, "team_b": str}, ...]
+
+    Raises on any API failure — callers must handle and abort the run.
+    Returns an empty list if the next week is beyond the season end.
+    """
+    next_week = current_week + 1
+    try:
+        matchups = get_scoreboard(session, league_key, next_week)
+    except Exception as exc:
+        raise RuntimeError(
+            f"fetch_next_week_schedule: scoreboard fetch failed for week {next_week}: {exc}"
+        ) from exc
+
+    pairs = []
+    for m in matchups:
+        teams = m.get("teams", [])
+        if len(teams) == 2:
+            pairs.append({"team_a": teams[0]["name"], "team_b": teams[1]["name"]})
+    return pairs

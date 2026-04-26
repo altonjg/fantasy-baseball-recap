@@ -1,0 +1,37 @@
+{
+  "most_category_wins": {
+    "value": 9.0,
+    "team": "Sugar Land Skeeters",
+    "week": 1
+  },
+  "most_hr_team": {
+    "value": 8.0,
+    "team": "BaseballPro77",
+    "week": 1
+  },
+  "highest_obp": {
+    "value": 0.414,
+    "team": "General Hospital",
+    "week": 1
+  },
+  "most_sb": {
+    "value": 5.0,
+    "team": "Abbotsford-Colby Twins",
+    "week": 1
+  },
+  "most_rbi": {
+    "value": 23.0,
+    "team": "General Hospital",
+    "week": 1
+  },
+  "most_k_team": {
+    "value": 47.0,
+    "team": "Buttville Skidmarks",
+    "week": 1
+  },
+  "lowest_era_winner": {
+    "value": 2.48,
+    "team": "Albuquerque Bombers",
+    "week": 1
+  }
+}

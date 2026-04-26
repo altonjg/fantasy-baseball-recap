@@ -45,7 +45,12 @@ if hasattr(sys.stderr, "reconfigure"):
 sys.path.insert(0, str(Path(__file__).parent))
 
 from ci_auth import setup_ci_oauth
-from yahoo_client import fetch_weekly_data, get_draft_results_enriched, get_league_meta
+from yahoo_client import (
+    fetch_next_week_schedule,
+    fetch_weekly_data,
+    get_draft_results_enriched,
+    get_league_meta,
+)
 try:
     from mlb_stats import enrich_top_players, week_date_range
     _MLB_STATS_AVAILABLE = True
@@ -197,6 +202,588 @@ def _safe_json_parse(raw: str) -> dict:
             raise
 
 
+# ── Season history helpers ────────────────────────────────────────────────────
+
+_SEASON_HISTORY_TEMPLATE: dict = {
+    "power_rankings": {},
+    "weekly_points": {},
+    "manager_spotlight_rotation": [],
+    "last_spotlight_week": None,
+}
+
+_RECORDS_LOWER_IS_BETTER = {"lowest_era_winner"}
+
+
+def _load_season_history(season: int) -> dict:
+    path = DATA_ROOT / str(season) / "season_history.json"
+    if path.exists():
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    import copy
+    return copy.deepcopy(_SEASON_HISTORY_TEMPLATE)
+
+
+def _save_season_history(season: int, data: dict) -> None:
+    path = DATA_ROOT / str(season) / "season_history.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+
+def _load_records(season: int) -> dict:
+    path = DATA_ROOT / str(season) / "records.json"
+    if path.exists():
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+
+def _save_records(season: int, data: dict) -> None:
+    path = DATA_ROOT / str(season) / "records.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+
+def _parse_cat_stat(key: str, value: str) -> float:
+    """Parse a category stat string to float. Returns -1 on failure."""
+    try:
+        if key == "H/AB":
+            parts = str(value).split("/")
+            if len(parts) == 2 and int(parts[1]) > 0:
+                return int(parts[0]) / int(parts[1])
+            return 0.0
+        return float(value)
+    except (ValueError, ZeroDivisionError):
+        return -1.0
+
+
+def _check_and_update_records(
+    week_data: dict, week_num: int, records: dict
+) -> tuple[dict, list[dict]]:
+    """
+    Compare current week stats against stored records.
+    Returns (updated_records, broken_records_list).
+    broken_records entries: {record, new_value, team, prev_value, prev_team, prev_week}
+    """
+    broken: list[dict] = []
+
+    def _update(key: str, value: float, team: str, higher: bool) -> None:
+        if value < 0:
+            return
+        current = records.get(key)
+        is_better = (value > current["value"]) if higher else (value < current["value"])
+        if current is None or is_better:
+            if current is not None and is_better:
+                broken.append({
+                    "record": key,
+                    "new_value": value,
+                    "team": team,
+                    "prev_value": current["value"],
+                    "prev_team": current["team"],
+                    "prev_week": current["week"],
+                })
+            records[key] = {"value": value, "team": team, "week": week_num}
+
+    for m in week_data.get("matchups", []):
+        winner_key = m.get("winner_key")
+        for t in m.get("teams", []):
+            name = t.get("name", "")
+            stats = t.get("category_stats", {})
+            pts = float(t.get("points", 0.0))
+            is_winner = (t.get("team_key") == winner_key) and not m.get("is_tied")
+
+            _update("most_category_wins", pts, name, higher=True)
+            _update("most_hr_team", _parse_cat_stat("HR", stats.get("HR", "-1")), name, higher=True)
+            _update("highest_obp", _parse_cat_stat("OBP", stats.get("OBP", "-1")), name, higher=True)
+            _update("most_sb", _parse_cat_stat("SB", stats.get("SB", "-1")), name, higher=True)
+            _update("most_rbi", _parse_cat_stat("RBI", stats.get("RBI", "-1")), name, higher=True)
+            _update("most_k_team", _parse_cat_stat("K", stats.get("K", "-1")), name, higher=True)
+            if is_winner:
+                era = _parse_cat_stat("ERA", stats.get("ERA", "-1"))
+                if era >= 0:
+                    _update("lowest_era_winner", era, name, higher=False)
+
+    return records, broken
+
+
+# ── Luck index calculator ─────────────────────────────────────────────────────
+
+_LOWER_IS_BETTER_CATS = {"ERA", "WHIP"}
+
+
+def _calculate_luck_index(season: int, through_week: int) -> dict[str, dict]:
+    """
+    For each team, compute:
+      actual_wins   — real season wins from matchup data
+      expected_wins — sum of (simulated wins vs every other team) / 13 per week
+      luck_delta    — actual_wins - expected_wins (positive = lucky)
+
+    Returns {team_name: {actual_wins, expected_wins, luck_delta}}
+    """
+    season_dir = DATA_ROOT / str(season)
+    week_files = sorted(
+        f for f in season_dir.glob("week_*.json")
+        if int(f.stem.split("_")[1]) < through_week
+    )
+
+    totals: dict[str, dict] = {}
+
+    for wf in week_files:
+        try:
+            with open(wf, encoding="utf-8") as f:
+                wd = json.load(f)
+        except Exception:
+            continue
+
+        # Gather all teams' category stats for this week
+        teams_stats: dict[str, dict] = {}
+        teams_actual_wins: dict[str, float] = {}
+        for m in wd.get("matchups", []):
+            for t in m.get("teams", []):
+                name = t.get("name", "")
+                if name:
+                    teams_stats[name] = t.get("category_stats", {})
+                    teams_actual_wins[name] = float(t.get("points", 0.0))
+
+        all_teams = list(teams_stats.keys())
+        n = len(all_teams)
+        if n < 2:
+            continue
+
+        # For each team, simulate against every other team
+        for team_a in all_teams:
+            sim_wins = 0.0
+            cats_a = teams_stats[team_a]
+            for team_b in all_teams:
+                if team_a == team_b:
+                    continue
+                cats_b = teams_stats[team_b]
+                # Count categories team_a would win
+                a_cat_wins = 0
+                for cat in cats_a:
+                    val_a = _parse_cat_stat(cat, str(cats_a.get(cat, "-1")))
+                    val_b = _parse_cat_stat(cat, str(cats_b.get(cat, "-1")))
+                    if val_a < 0 or val_b < 0:
+                        continue
+                    if cat in _LOWER_IS_BETTER_CATS:
+                        if val_a < val_b:
+                            a_cat_wins += 1
+                    else:
+                        if val_a > val_b:
+                            a_cat_wins += 1
+                # Win = more categories won than opponent (out of 12)
+                if a_cat_wins > 6:
+                    sim_wins += 1
+                elif a_cat_wins == 6:
+                    sim_wins += 0.5  # simulated tie
+
+            expected_this_week = sim_wins / (n - 1)
+
+            if team_a not in totals:
+                totals[team_a] = {"actual_wins": 0.0, "expected_wins": 0.0}
+            totals[team_a]["actual_wins"] += teams_actual_wins.get(team_a, 0.0) / 10  # normalize to match wins
+            totals[team_a]["expected_wins"] += expected_this_week
+
+    for team, data in totals.items():
+        data["luck_delta"] = round(data["actual_wins"] - data["expected_wins"], 2)
+        data["actual_wins"] = round(data["actual_wins"], 2)
+        data["expected_wins"] = round(data["expected_wins"], 2)
+
+    return totals
+
+
+# ── Two-pass recap generation ─────────────────────────────────────────────────
+
+def _build_recap_context(
+    week_data: dict,
+    season_history: dict,
+    records: dict,
+    luck_index: dict,
+    next_week_schedule: list[dict],
+    spotlight_team: str,
+) -> str:
+    """Assemble all raw data into a context string for Pass 1."""
+    week_num = week_data.get("week", "?")
+    lines: list[str] = [f"WEEK {week_num} DATA\n"]
+
+    # Matchup results
+    lines.append("MATCHUP RESULTS (category stats per team):")
+    for m in week_data.get("matchups", []):
+        teams = m.get("teams", [])
+        if len(teams) < 2:
+            continue
+        t1, t2 = teams[0], teams[1]
+        winner_key = m.get("winner_key")
+        if m.get("is_tied"):
+            result = f"TIE: {t1['name']} {t1['points']:.0f}–{t2['name']} {t2['points']:.0f}"
+        else:
+            winner = t1 if t1.get("team_key") == winner_key else t2
+            loser  = t2 if winner is t1 else t1
+            result = f"{winner['name']} def. {loser['name']} {winner['points']:.0f}–{loser['points']:.0f}"
+        lines.append(f"  {result}")
+        for t in [t1, t2]:
+            cats = t.get("category_stats", {})
+            cat_str = " | ".join(f"{k}:{v}" for k, v in cats.items())
+            players = t.get("top_players", [])
+            player_str = ""
+            if players:
+                player_str = " — players: " + ", ".join(
+                    f"{p['name']}({p.get('position','?')}): {p.get('stats','')}"
+                    for p in players[:3] if p.get("stats")
+                )
+            lines.append(f"    {t['name']}: [{cat_str}]{player_str}")
+
+    # Live standings
+    lines.append("\nLIVE STANDINGS:")
+    for s in week_data.get("standings", []):
+        lines.append(
+            f"  {s['rank']}. {s['name']}: {s['wins']}-{s['losses']}-{s.get('ties',0)} "
+            f"(PF: {s.get('points_for',0):.0f})"
+        )
+
+    # Luck index
+    if luck_index:
+        lines.append("\nLUCK INDEX (actual wins vs expected wins, luck_delta = difference):")
+        for team, data in sorted(luck_index.items(), key=lambda x: x[1]["luck_delta"], reverse=True):
+            lines.append(
+                f"  {team}: actual={data['actual_wins']:.1f}, "
+                f"expected={data['expected_wins']:.2f}, delta={data['luck_delta']:+.2f}"
+            )
+
+    # Season history — weekly points and prior power rankings
+    weekly_pts = season_history.get("weekly_points", {})
+    if weekly_pts:
+        lines.append("\nWEEKLY CATEGORY WINS HISTORY:")
+        for wk, pts in sorted(weekly_pts.items()):
+            top = sorted(pts.items(), key=lambda x: x[1], reverse=True)
+            lines.append(f"  {wk}: " + ", ".join(f"{t}:{v:.0f}" for t, v in top))
+
+    prior_rankings = season_history.get("power_rankings", {})
+    if prior_rankings:
+        last_rk_key = max(prior_rankings.keys())
+        lines.append(f"\nPRIOR POWER RANKINGS ({last_rk_key}):")
+        for entry in prior_rankings[last_rk_key]:
+            lines.append(f"  {entry['rank']}. {entry['team']}")
+
+    # Current season records
+    if records:
+        lines.append("\nCURRENT SEASON RECORDS (compare current week stats to flag new records):")
+        for k, v in records.items():
+            lines.append(f"  {k}: {v['value']} ({v['team']}, week {v['week']})")
+
+    # Transactions
+    adds: dict[str, list[str]] = {}
+    drops: dict[str, list[str]] = {}
+    for tx in week_data.get("transactions", []):
+        if tx.get("type") not in ("add", "drop", "add/drop"):
+            continue
+        for p in tx.get("players", []):
+            team = p.get("team", "")
+            name = p.get("name", "")
+            pos = p.get("position", "")
+            entry = f"{name}({pos})" if pos else name
+            if p.get("action") == "add":
+                adds.setdefault(team, []).append(entry)
+            elif p.get("action") == "drop":
+                drops.setdefault(team, []).append(entry)
+    if adds or drops:
+        lines.append("\nWAIVER WIRE MOVES THIS WEEK:")
+        for team in sorted(set(list(adds.keys()) + list(drops.keys()))):
+            parts = []
+            if team in adds:
+                parts.append(f"added {', '.join(adds[team][:4])}")
+            if team in drops:
+                parts.append(f"dropped {', '.join(drops[team][:4])}")
+            lines.append(f"  {team}: {'; '.join(parts)}")
+
+    # Manager spotlight
+    lines.append(f"\nMANAGER SPOTLIGHT THIS WEEK: {spotlight_team}")
+
+    # Next week schedule
+    if next_week_schedule:
+        lines.append(f"\nNEXT WEEK MATCHUPS (week {int(week_num)+1}):")
+        for pair in next_week_schedule:
+            lines.append(f"  {pair['team_a']} vs {pair['team_b']}")
+
+    return "\n".join(lines)
+
+
+def _pass1_plan(context: str, week_num: int, prior_rankings: dict) -> dict:
+    """
+    Pass 1: Feed raw data into Claude. Returns structured planning JSON.
+    Capped at max_tokens=1500 — output must be terse structured JSON.
+    """
+    has_prior = bool(prior_rankings)
+    movement_note = (
+        'Movement: "↑", "↓", or "—" vs prior week rankings.'
+        if has_prior else
+        'Movement: omit field or use "—" (no prior week to compare).'
+    )
+
+    prompt = f"""You are a fantasy baseball analyst. Analyze the data below and return a structured JSON planning document for a weekly recap article. Be TERSE — short phrases only, not full sentences.
+
+{context}
+
+Return ONLY valid JSON with this exact structure (no markdown fences):
+{{
+  "stat_of_week": "[number] — [brief explanation]",
+  "thriller_matchup": {{
+    "teams": ["Team A", "Team B"],
+    "score": "7–5",
+    "key_moment": "brief note",
+    "implication": "brief note"
+  }},
+  "key_storyline": "1–2 sentences on the top narrative of the week",
+  "matchup_notes": {{
+    "Team A vs Team B": {{
+      "key_perf": "player or stat highlight",
+      "implication": "what it means going forward",
+      "next_week": "their next opponent and what to watch"
+    }}
+  }},
+  "lucky_team": {{"team": "name", "reasoning": "brief"}},
+  "unlucky_team": {{"team": "name", "reasoning": "brief"}},
+  "records_broken": [],
+  "spotlight_team": "team name",
+  "trade_value_players": [],
+  "power_rankings": [
+    {{"rank": 1, "team": "name", "reasoning": "brief", "movement": "↑"}}
+  ],
+  "waiver_grades": {{
+    "Team Name": {{"move": "dropped X → added Y", "grade": "A", "analysis": "brief"}}
+  }}
+}}
+
+Rules:
+- matchup_notes must include ALL {7} matchups
+- power_rankings must include ALL 14 teams, ranked 1–14
+- {movement_note}
+- records_broken: include only if a current week stat clearly beats a season record shown in the data
+- trade_value_players: max 3 players, omit array entirely if fewer than 2 had significant shifts
+- waiver_grades: only include teams that made notable moves; use A/B/C/D grades
+- All values must be brief phrases — this is a planning doc, not prose"""
+
+    raw = _call_claude(prompt, max_tokens=1500)
+    return _safe_json_parse(raw)
+
+
+def _pass2_write(
+    week_data: dict,
+    plan: dict,
+    writer_key: str,
+    next_week_schedule: list[dict],
+) -> dict:
+    """
+    Pass 2: Feed the planning document into Claude and generate the full article.
+    Returns {headline, subheadline, body}.
+    """
+    writer = WRITER_STYLES[writer_key]
+    week_num = week_data.get("week", "?")
+    league = week_data.get("league_name", "MillerLite® BeerLeagueBaseball")
+
+    # Build the at-a-glance table rows from matchup data
+    table_rows: list[str] = []
+    for m in week_data.get("matchups", []):
+        teams = m.get("teams", [])
+        if len(teams) < 2:
+            continue
+        t1, t2 = teams[0], teams[1]
+        winner_key = m.get("winner_key")
+        score = f"{max(t1['points'], t2['points']):.0f}–{min(t1['points'], t2['points']):.0f}"
+        if m.get("is_tied"):
+            winner_col = f"{t1['name']} / {t2['name']}"
+            loser_col = ""
+            score = f"{t1['points']:.0f}–{t2['points']:.0f}"
+        else:
+            winner = t1 if t1.get("team_key") == winner_key else t2
+            loser  = t2 if winner is t1 else t1
+            winner_col = winner["name"]
+            loser_col  = loser["name"]
+        # Player of matchup from plan
+        matchup_key = f"{t1['name']} vs {t2['name']}"
+        alt_key     = f"{t2['name']} vs {t1['name']}"
+        notes = plan.get("matchup_notes", {}).get(matchup_key) or plan.get("matchup_notes", {}).get(alt_key, {})
+        player_of_match = notes.get("key_perf", "—")
+        table_rows.append(f"| {winner_col} | {loser_col} | {score} | {player_of_match} |")
+
+    table_md = (
+        "| Winner | Loser | Score | Player of the Matchup |\n"
+        "|--------|-------|-------|-----------------------|\n"
+        + "\n".join(table_rows)
+    )
+
+    # Serialize the planning doc
+    plan_json = json.dumps(plan, indent=2)
+
+    # Power ranking movement arrows
+    has_movement = any(
+        e.get("movement") not in (None, "—", "")
+        for e in plan.get("power_rankings", [])
+    )
+
+    # Trade value section note
+    trade_value_note = (
+        "Section 10 (Trade value): OMIT this section entirely — fewer than 2 players had significant shifts."
+        if not plan.get("trade_value_players")
+        else "Section 10 (Trade value): Include for each player: one sentence on what happened, one verdict (Buy/Sell/Hold) with brief reasoning."
+    )
+
+    # Records broken note
+    records_note = (
+        "Section 8 (League record broken): OMIT this section entirely — no records were broken this week."
+        if not plan.get("records_broken")
+        else "Section 8 (League record broken): Include — name the record, player/team who broke it, previous holder and when, one sentence of context."
+    )
+
+    prompt = f"""You are {writer['name']} of {writer['outlet']}, writing the Week {week_num} recap for "{league}."
+
+{writer['voice']}
+
+You have a PLANNING DOCUMENT with all the key facts, rankings, and analysis pre-determined. Your job is to write the full article following the section order below, using the planning doc as your source of truth.
+
+PLANNING DOCUMENT:
+{plan_json}
+
+AT-A-GLANCE TABLE (use this exactly — do not reorder or alter):
+{table_md}
+
+WRITE THE FULL ARTICLE in this exact section order. Use ## for section headers.
+
+1. **Headline + subheadline** — returned as separate JSON fields, not in body
+2. **Stat of the Week** — bold callout block immediately after headline. Format: `**[number] — [one sentence]**`. Use the stat_of_week from the plan.
+3. **At-a-Glance** — the table above, verbatim. Header: `## At-a-Glance`
+4. **Thriller of the Week** — `## Thriller of the Week`. Closest matchup. Final score, 2–3 sentences on key performances, 1 sentence on what it means for both teams.
+5. **The Week's Defining Moment** — `## The Week's Defining Moment`. Top storyline from key_storyline and matchup context. 2–3 paragraphs.
+6. **Matchup Deep-Dives** — `## Matchup Deep-Dives`. EVERY matchup gets its own sub-section (### Team A def. Team B). For each: result line, key performance with stat line, strategic implication, next week preview. Use matchup_notes from the plan.
+7. **Lucky/Unlucky Team of the Week** — `## Lucky/Unlucky Team of the Week`. Two callouts using lucky_team and unlucky_team from the plan.
+8. {records_note}
+9. **Manager Spotlight** — `## Manager Spotlight`. Feature the spotlight_team. Cover: current record and power ranking position, how draft strategy is playing out, best/worst performers vs expectations, playoff outlook, one thing to watch.
+10. {trade_value_note}
+11. **Power Rankings** — `## Power Rankings`. Ordered 1–14 list from plan. Each: rank, team name, one sentence reasoning, movement arrow{"" if has_movement else " (omit arrows — week 1, no prior week)"}.
+12. **Waiver Wire** — `## Waiver Wire`. Use waiver_grades from plan. Format each notable move with grade badge (e.g. **[A]**), team name, move description, 1–2 sentence analysis.
+
+RULES:
+- Use **bold** for team names throughout the article body
+- No highlighting or favoritism toward any specific team
+- Thriller of the Week section is purely the closest game by margin — use plan data
+- Write in {writer['name']}'s authentic voice throughout
+- Body should be 800–1100 words total (not counting the table)
+
+Respond ONLY with valid JSON — no markdown fences:
+{{
+  "headline": "...",
+  "subheadline": "...(one sharp sentence)...",
+  "body": "...(full article body, sections 2–12 in order)..."
+}}"""
+
+    raw = _call_claude(prompt, max_tokens=4000)
+    article = _safe_json_parse(raw)
+    return article
+
+
+def generate_recap_article(
+    week_data: dict,
+    season: int,
+    season_history: dict,
+    records: dict,
+    luck_index: dict,
+    next_week_schedule: list[dict],
+) -> dict | None:
+    """
+    Two-pass recap generation.
+    Pass 1: planning document (max 1500 tokens)
+    Pass 2: full article from planning doc (max 4000 tokens)
+    Returns article dict or None on failure.
+    """
+    is_champ   = any(m.get("is_championship") for m in week_data.get("matchups", []))
+    is_playoff = any(m.get("is_playoffs") and not m.get("is_consolation")
+                     for m in week_data.get("matchups", []))
+
+    if is_champ:
+        writer_key = _PLAYOFF_WRITER
+    elif is_playoff:
+        writer_key = random.choice([_PLAYOFF_WRITER] + _RECAP_WRITERS)
+    else:
+        writer_key = random.choice(_RECAP_WRITERS)
+
+    week_num = week_data.get("week", 0)
+
+    # Determine spotlight team from rotation
+    rotation = season_history.get("manager_spotlight_rotation", [])
+    last_spotlight = season_history.get("last_spotlight_week")
+    if rotation:
+        # Advance rotation by 1 from last used index
+        try:
+            last_idx = rotation.index(last_spotlight) if last_spotlight in rotation else -1
+        except ValueError:
+            last_idx = -1
+        spotlight_team = rotation[(last_idx + 1) % len(rotation)]
+    else:
+        spotlight_team = ""
+
+    # Build context
+    prior_rankings = season_history.get("power_rankings", {})
+    context = _build_recap_context(
+        week_data, season_history, records, luck_index,
+        next_week_schedule, spotlight_team,
+    )
+
+    # Pass 1 — planning
+    print(f"[ci_runner] Pass 1: generating planning document for week {week_num}…")
+    try:
+        plan = _pass1_plan(context, week_num, prior_rankings)
+    except Exception as e:
+        print(f"[ci_runner] Pass 1 failed: {e}", file=sys.stderr)
+        return None
+
+    # Save Pass 1 artifact for debugging
+    artifacts_dir = DATA_ROOT / str(season) / "articles" / "artifacts"
+    artifacts_dir.mkdir(parents=True, exist_ok=True)
+    artifact_path = artifacts_dir / f"week_{int(week_num):02d}_plan.json"
+    try:
+        with open(artifact_path, "w", encoding="utf-8") as f:
+            json.dump(plan, f, indent=2, ensure_ascii=False)
+        print(f"[ci_runner]   ✓ Pass 1 plan saved to {artifact_path.name}")
+    except Exception as e:
+        print(f"[ci_runner] Warning: could not save Pass 1 artifact: {e}", file=sys.stderr)
+
+    # Pass 2 — writing
+    print(f"[ci_runner] Pass 2: generating article for week {week_num}…")
+    for attempt in range(3):
+        try:
+            article = _pass2_write(week_data, plan, writer_key, next_week_schedule)
+            break
+        except Exception as e:
+            print(f"[ci_runner] Pass 2 attempt {attempt+1}/3 failed: {e}", file=sys.stderr)
+            if attempt == 2:
+                return None
+
+    article["generated_at"]    = datetime.now().isoformat()
+    article["week"]            = week_num
+    article["writer_key"]      = writer_key
+    article["writer_name"]     = WRITER_STYLES[writer_key]["name"]
+    article["writer_outlet"]   = WRITER_STYLES[writer_key]["outlet"]
+    article["is_playoff"]      = is_playoff
+    article["is_championship"] = is_champ
+    article["spotlight_team"]  = spotlight_team
+    article["power_rankings"]  = plan.get("power_rankings", [])
+
+    # Update season_history with this week's data
+    wk_key = f"week_{int(week_num):02d}"
+    weekly_pts: dict[str, float] = {}
+    for m in week_data.get("matchups", []):
+        for t in m.get("teams", []):
+            if t.get("name"):
+                weekly_pts[t["name"]] = float(t.get("points", 0.0))
+    season_history["weekly_points"][wk_key] = weekly_pts
+    season_history["power_rankings"][wk_key] = plan.get("power_rankings", [])
+    if spotlight_team:
+        season_history["last_spotlight_week"] = spotlight_team
+
+    return article
+
+
 # ── Trade article generation ──────────────────────────────────────────────────
 
 def generate_trade_article(trade_tx: dict, standings: list[dict]) -> dict | None:
@@ -265,211 +852,6 @@ Respond ONLY with valid JSON — no markdown fences:
 
 
 # ── Recap article generation ──────────────────────────────────────────────────
-
-def _generate_waiver_narrative(
-    adds_by_team: dict[str, list[str]],
-    drops_by_team: dict[str, list[str]],
-    writer: dict,
-) -> str:
-    """
-    Generate a short narrative section about waiver wire moves using a focused,
-    isolated Claude prompt. Falls back to a plain markdown list if the call fails.
-    """
-    # Build the moves list — pair adds with drops per team where possible
-    all_teams = sorted(set(list(adds_by_team.keys()) + list(drops_by_team.keys())))
-    moves_lines = []
-    for team in all_teams:
-        parts = []
-        if team in adds_by_team:
-            parts.append(f"added {', '.join(adds_by_team[team][:4])}")
-        if team in drops_by_team:
-            parts.append(f"dropped {', '.join(drops_by_team[team][:4])}")
-        moves_lines.append(f"  {team}: {'; '.join(parts)}")
-    moves_list = "\n".join(moves_lines)
-
-    prompt = f"""You are writing a short "Waiver Wire" section for a fantasy baseball weekly column (voice: {writer['name']}, {writer['outlet']}).
-
-The following teams made these roster moves this week. This list is complete — no other moves were made.
-
-{moves_list}
-
-Write a ## Waiver Wire section (3–5 sentences of narrative prose, no bullet points) that summarizes the most noteworthy adds and drops and what they signal about each team's strategy.
-
-Rules:
-- Reference ONLY the player names and teams shown in the list above. Do not invent or add any others.
-- Use **bold** for team names.
-- Do not use bullet points or sub-headers — prose only.
-- Output only the section content (starting with ## Waiver Wire), no JSON wrapper."""
-
-    try:
-        raw = _call_claude(prompt, max_tokens=450)
-        if "## Waiver Wire" in raw and len(raw) > 50:
-            return raw.strip()
-    except Exception as e:
-        print(f"[ci_runner] Waiver narrative generation failed, using plain list: {e}", file=sys.stderr)
-
-    # Fallback: plain markdown list
-    lines = ["## Waiver Wire"]
-    for team in all_teams:
-        parts = []
-        if team in adds_by_team:
-            parts.append(f"added {', '.join(adds_by_team[team][:4])}")
-        if team in drops_by_team:
-            parts.append(f"dropped {', '.join(drops_by_team[team][:4])}")
-        lines.append(f"**{team}**: {'; '.join(parts)}")
-    return "\n\n".join(lines)
-
-
-def generate_recap_article(week_data: dict, standings: list[dict]) -> dict | None:
-    is_champ   = any(m.get("is_championship") for m in week_data.get("matchups", []))
-    is_playoff = any(m.get("is_playoffs") and not m.get("is_consolation")
-                     for m in week_data.get("matchups", []))
-
-    if is_champ:
-        writer_key = _PLAYOFF_WRITER
-    elif is_playoff:
-        writer_key = random.choice([_PLAYOFF_WRITER] + _RECAP_WRITERS)
-    else:
-        writer_key = random.choice(_RECAP_WRITERS)
-
-    writer   = WRITER_STYLES[writer_key]
-    week_num = week_data.get("week", "?")
-    league   = week_data.get("league_name", "MillerLite® BeerLeagueBaseball")
-
-    def _fmt_team_players(team: dict) -> str:
-        players = team.get("top_players", [])
-        if not players:
-            return ""
-        parts = [
-            f"{p['name']} ({p.get('position','?')}, {p.get('mlb_team','?')}): {p.get('stats','')}"
-            for p in players[:3] if p.get("stats")
-        ]
-        return (f"    {team['name']} contributors: " + " | ".join(parts)) if parts else ""
-
-    matchup_lines = []
-    for m in week_data.get("matchups", []):
-        teams = m.get("teams", [])
-        if len(teams) < 2:
-            continue
-        t1, t2 = teams[0], teams[1]
-        label = (
-            "[CHAMPIONSHIP] " if m.get("is_championship") else
-            "[PLAYOFF] "      if m.get("is_playoffs") and not m.get("is_consolation") else
-            "[CONSOLATION] "  if m.get("is_consolation") else ""
-        )
-        if m.get("is_tied"):
-            line = f"  {label}TIE: {t1['name']} {t1['points']:.1f} vs {t2['name']} {t2['points']:.1f}"
-        else:
-            winner = t1 if t1.get("team_key") == m.get("winner_key") else t2
-            loser  = t2 if winner is t1 else t1
-            line = (
-                f"  {label}{winner['name']} def. {loser['name']} "
-                f"({winner['points']:.1f}–{loser['points']:.1f})"
-            )
-        matchup_lines.append(line)
-        for t in [t1, t2]:
-            player_line = _fmt_team_players(t)
-            if player_line:
-                matchup_lines.append(player_line)
-
-    standings_ctx = "\n".join(
-        f"  {s['rank']}. {s['name']}: {s['wins']}-{s['losses']} ({s.get('points_for',0):.0f} PF)"
-        for s in standings[:10]
-    ) if standings else "  (unavailable)"
-
-    top_players = week_data.get("top_players", [])
-    top_ctx_lines = []
-    for p in top_players[:5]:
-        line = f"  {p['name']} ({p.get('position','?')}, {p.get('mlb_team','?')}): {p.get('points',0):.1f} fantasy pts"
-        if p.get("mlb_week_log"):
-            line += f"  |  Real MLB this week: {p['mlb_week_log']}"
-        top_ctx_lines.append(line)
-    top_ctx = "\n".join(top_ctx_lines)
-
-    # Build waiver / FA add+drop context
-    adds_by_team: dict[str, list[str]] = {}
-    drops_by_team: dict[str, list[str]] = {}
-    seen_adds: set[tuple[str, str]] = set()
-    seen_drops: set[tuple[str, str]] = set()
-    for tx in week_data.get("transactions", []):
-        if tx.get("type") not in ("add", "drop", "add/drop"):
-            continue
-        for p in tx.get("players", []):
-            action = p.get("action")
-            team = p.get("team", "")
-            name = p.get("name", "Unknown")
-            pos = p.get("position", "")
-            if not team:
-                continue
-            entry = f"{name} ({pos})" if pos else name
-            if action == "add":
-                key = (team, name)
-                if key not in seen_adds:
-                    seen_adds.add(key)
-                    adds_by_team.setdefault(team, []).append(entry)
-            elif action == "drop":
-                key = (team, name)
-                if key not in seen_drops:
-                    seen_drops.add(key)
-                    drops_by_team.setdefault(team, []).append(entry)
-    waiver_lines = [
-        f"  {team}: {', '.join(players[:4])}"
-        for team, players in adds_by_team.items()
-    ]
-    waiver_ctx = "\n".join(waiver_lines)
-
-    week_type = "CHAMPIONSHIP" if is_champ else "PLAYOFF" if is_playoff else "REGULAR SEASON"
-
-    prompt = f"""You are {writer['name']} of {writer['outlet']}, writing a weekly column for "{league}."
-
-{writer['voice']}
-
-WEEK {week_num} ({week_type}) RESULTS:
-{chr(10).join(matchup_lines)}
-
-CURRENT STANDINGS (top 10):
-{standings_ctx}
-
-{"TOP PERFORMERS:" + chr(10) + top_ctx if top_ctx else ""}
-
-Write a weekly recap column (600–900 words) in {writer['name']}'s authentic voice. Use 3–4 bold section headers (## Header) to break the piece into readable chunks — e.g. a lede section, a matchup deep-dive, a standings section, and a closing. Structure:
-1. Open with the most compelling storyline of the week (2–3 paragraphs)
-2. Deep-dive on 3–4 matchups — name specific players and their real MLB stats when analyzing why a team won or lost
-3. A section highlighting standout individual performances: call out 2–3 real players by name with their actual stats from the week
-4. ## Standings & Race — what the week means for the playoff picture
-5. ## Looking Ahead — 1–2 paragraphs teasing next week's key matchups (do NOT mention waiver pickups or roster moves — those will be appended separately)
-
-IMPORTANT: Each matchup includes "[Team Name] contributors:" lines — these explicitly name which players belong to which team. Use these to correctly attribute players to their teams. Name real MLB players and cite their actual stats (HR, K, ERA, etc.) when explaining each team's performance. Do not swap players between teams and do not write in vague generalities when you have specific player data available.
-Use **bold** for team names throughout. Markdown OK. Write as if published on {writer['outlet']}.
-
-Respond ONLY with valid JSON — no markdown fences:
-{{
-  "headline": "...",
-  "subheadline": "...(one-sentence deck)...",
-  "body": "...(full column, 600–900 words)..."
-}}"""
-
-    try:
-        raw     = _call_claude(prompt, max_tokens=3000)
-        article = _safe_json_parse(raw)
-        article["generated_at"]    = datetime.now().isoformat()
-        article["week"]            = week_num
-        article["writer_key"]      = writer_key
-        article["writer_name"]     = writer["name"]
-        article["writer_outlet"]   = writer["outlet"]
-        article["is_playoff"]      = is_playoff
-        article["is_championship"] = is_champ
-
-        # Append a waiver wire narrative section
-        if adds_by_team or drops_by_team:
-            waiver_section = _generate_waiver_narrative(adds_by_team, drops_by_team, writer)
-            article["body"] = article.get("body", "") + "\n\n" + waiver_section
-
-        return article
-    except Exception as e:
-        print(f"[ci_runner] Recap article generation failed: {e}", file=sys.stderr)
-        return None
-
 
 # ── Season preview generation ─────────────────────────────────────────────────
 
@@ -908,7 +1290,12 @@ def _validate_week_data(week_data: dict, season: int) -> tuple[bool, list[str]]:
     return True, issues
 
 
-def run_recap(week_data: dict, season: int, force: bool = False) -> bool:
+def run_recap(
+    week_data: dict,
+    season: int,
+    force: bool = False,
+    next_week_schedule: list[dict] | None = None,
+) -> bool:
     """Generate weekly recap article. Returns True on success."""
     week_num     = week_data.get("week", 0)
     articles_dir = DATA_ROOT / str(season) / "articles"
@@ -926,8 +1313,6 @@ def run_recap(week_data: dict, season: int, force: bool = False) -> bool:
         print("[ci_runner] Aborting article generation due to critical data issues.", file=sys.stderr)
         return False
 
-    standings = week_data.get("standings", [])
-
     # Enrich top_players with real MLB game log data for the week
     if _MLB_STATS_AVAILABLE and week_data.get("top_players"):
         generated_at = week_data.get("generated_at", "")
@@ -944,15 +1329,45 @@ def run_recap(week_data: dict, season: int, force: bool = False) -> bool:
         except Exception as e:
             print(f"[ci_runner] MLB Stats enrichment failed (non-fatal): {e}", file=sys.stderr)
 
-    print(f"[ci_runner] Generating recap article for week {week_num}…")
-    article = generate_recap_article(week_data, standings)
+    # Load supporting data
+    season_history = _load_season_history(season)
+    records        = _load_records(season)
+
+    print(f"[ci_runner] Calculating luck index through week {week_num}…")
+    luck_index = _calculate_luck_index(season, through_week=int(week_num))
+
+    print(f"[ci_runner] Checking records for week {week_num}…")
+    records, broken_records = _check_and_update_records(week_data, int(week_num), records)
+    if broken_records:
+        print(f"[ci_runner]   {len(broken_records)} record(s) broken this week!")
+        for br in broken_records:
+            print(f"    {br['record']}: {br['new_value']} by {br['team']} (prev: {br['prev_value']} by {br['prev_team']})")
+
+    print(f"[ci_runner] Generating recap article for week {week_num} (two-pass)…")
+    article = generate_recap_article(
+        week_data=week_data,
+        season=season,
+        season_history=season_history,
+        records=records,
+        luck_index=luck_index,
+        next_week_schedule=next_week_schedule or [],
+    )
     if not article:
+        print("[ci_runner] Article generation failed — season_history and records NOT updated.", file=sys.stderr)
         return False
 
+    # Persist article
     articles_dir.mkdir(parents=True, exist_ok=True)
-    with open(out_path, "w") as f:
-        json.dump(article, f, indent=2)
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(article, f, indent=2, ensure_ascii=False)
     print(f"[ci_runner]   ✓ Saved {out_path.name} (by {article['writer_name']})")
+
+    # Only commit updated season_history and records after a successful article write
+    _save_season_history(season, season_history)
+    print(f"[ci_runner]   ✓ Updated season_history.json")
+    _save_records(season, records)
+    print(f"[ci_runner]   ✓ Updated records.json")
+
     return True
 
 
@@ -1653,7 +2068,7 @@ def main() -> None:
                 week_data.setdefault("week", wk_num)
                 week_data.setdefault("season", season)
                 print(f"[ci_runner] Backfilling recap for {season} Week {wk_num}…")
-                ok = run_recap(week_data, season)
+                ok = run_recap(week_data, season, next_week_schedule=[])
                 if ok:
                     generated += 1
             except Exception as e:
@@ -1671,36 +2086,49 @@ def main() -> None:
     print("[ci_runner] Setting up Yahoo OAuth…")
     oauth = setup_ci_oauth()
 
-    # Fetch league data
+    # Fetch league data — any failure here aborts the run with non-zero exit
     print(f"[ci_runner] Fetching Yahoo data (week={args.week or 'latest'})…")
-    week_data = fetch_weekly_data(oauth, league_key, week=args.week)
-    season    = week_data.get("season", datetime.now().year)
-    week_num  = week_data.get("week", 0)
+    try:
+        week_data = fetch_weekly_data(oauth, league_key, week=args.week)
+    except Exception as e:
+        print(f"[ci_runner] FATAL: Yahoo API fetch failed: {e}", file=sys.stderr)
+        print("[ci_runner] Aborting — no files written, no article published.", file=sys.stderr)
+        sys.exit(1)
+
+    season   = week_data.get("season", datetime.now().year)
+    week_num = week_data.get("week", 0)
     print(f"[ci_runner] Got data for {season} Week {week_num}")
 
+    # Fetch next week's schedule for next-week preview in the article
+    next_week_schedule: list[dict] = []
+    if args.mode in ("recap", "full"):
+        try:
+            session = oauth.get_session()
+            next_week_schedule = fetch_next_week_schedule(session, league_key, int(week_num))
+            print(f"[ci_runner] Fetched next week schedule ({len(next_week_schedule)} matchups)")
+        except Exception as e:
+            print(f"[ci_runner] FATAL: next week schedule fetch failed: {e}", file=sys.stderr)
+            print("[ci_runner] Aborting — no files written, no article published.", file=sys.stderr)
+            sys.exit(1)
+
     if args.dry_run:
-        print("[ci_runner] --dry-run: showing recap prompt context (no files written, no Claude call).")
-        standings = week_data.get("standings", [])
-        # Reuse the same prompt-building logic so output mirrors what Claude sees
-        _dry_prompt = generate_recap_article.__wrapped__(week_data, standings) if hasattr(generate_recap_article, "__wrapped__") else None
-        if _dry_prompt is None:
-            # Fallback: print matchups + per-team players
-            print(f"\n=== Week {week_num} Matchups ===")
-            for m in week_data.get("matchups", []):
-                teams = m.get("teams", [])
-                if len(teams) < 2:
-                    continue
-                t1, t2 = teams[0], teams[1]
-                print(f"  {t1['name']} ({t1['points']}) vs {t2['name']} ({t2['points']})")
-                for t in [t1, t2]:
-                    players = t.get("top_players", [])
-                    if players:
-                        print(f"    {t['name']} contributors:")
-                        for p in players:
-                            print(f"      {p['name']} ({p.get('position','?')}, {p.get('mlb_team','?')}): {p.get('stats','')}")
-            print(f"\n=== Standings ===")
-            for s in standings[:10]:
-                print(f"  {s.get('rank')}. {s['name']}: {s.get('wins',0)}-{s.get('losses',0)}")
+        print("[ci_runner] --dry-run: showing week data summary (no files written, no Claude call).")
+        print(f"\n=== Week {week_num} Matchups ===")
+        for m in week_data.get("matchups", []):
+            teams = m.get("teams", [])
+            if len(teams) < 2:
+                continue
+            t1, t2 = teams[0], teams[1]
+            print(f"  {t1['name']} ({t1['points']}) vs {t2['name']} ({t2['points']})")
+            for t in [t1, t2]:
+                players = t.get("top_players", [])
+                if players:
+                    print(f"    {t['name']} contributors:")
+                    for p in players:
+                        print(f"      {p['name']} ({p.get('position','?')}, {p.get('mlb_team','?')}): {p.get('stats','')}")
+        print(f"\n=== Standings ===")
+        for s in week_data.get("standings", [])[:10]:
+            print(f"  {s.get('rank')}. {s['name']}: {s.get('wins',0)}-{s.get('losses',0)}")
         return
 
     # Guard: skip saving if there are no regular-season matchups with real points.
@@ -1724,13 +2152,16 @@ def main() -> None:
     if args.mode in ("trades", "full"):
         new_trade_articles = run_trades(week_data, season)
         print(f"[ci_runner] Trade articles written: {len(new_trade_articles)}")
-        # Post each new trade article to Discord
         for article in new_trade_articles:
             discord_post_trade(article, season)
 
     # Weekly recap
     if args.mode in ("recap", "full"):
-        ok = run_recap(week_data, season, force=args.force)
+        ok = run_recap(
+            week_data, season,
+            force=args.force,
+            next_week_schedule=next_week_schedule,
+        )
         if not ok:
             print("[ci_runner] Recap article generation failed.", file=sys.stderr)
             sys.exit(1)
