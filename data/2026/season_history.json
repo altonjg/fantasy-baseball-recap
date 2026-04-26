@@ -33,20 +33,20 @@
       "14. Wonder Wharf Wonderdogs | A 9–0 shutout loss with zero stolen bases and a .270 OBP; desperate waiver moves needed immediately | down"
     ],
     "week_03": [
-      "1. Sugar Land Skeeters | Back-to-back elite weeks; 8 wins, 2.11 ERA, and an offense that scores from every position — nobody is touching this roster right now | same",
-      "2. Athletic Park Dragons | James Wood's .636 OBP and Contreras's .594 are not normal — 40 runs and .412 team OBP is a historic statement week; this team is ascending fast | up",
-      "3. BaseballPro77 | Jordan Walker's 5 HR explosion last week proved it wasn't a fluke; consistent top-5 category performer across all three weeks with solid pitching to match | same",
-      "4. Hiroshima Radiation | An 8–2 demolition of Canberra with 64 hits, league-leading 6 QS, and Bryce Harper's .552 OBP signals this team has fully woken up after a shaky Week 2 | up",
-      "5. Wisconsin Rapids Reapers | A 1.65 ERA and 1.04 WHIP in a loss is the definition of unlucky — this pitching staff is elite and once the offense clicks, watch out | down",
-      "6. Wonder Wharf Wonderdogs | Strongest pitching in the league over three weeks may finally be enough to climb; offense remains a structural crisis that one good waiver week won't fix | up",
-      "7. North Correa | Chris Sale's 22 Ks and Oneil Cruz's 6 SB show the ceiling is enormous, but 51 IP and a 4.73 ERA in a losing effort reveals the floor is still dangerous | down",
-      "8. Albuquerque Bombers | Three active adds including Josh Jung and Noelvi Marte show a manager trying to fix real problems; another 5–4 loss stings but the lineup is improving | up",
-      "9. Abbotsford-Colby Twins | Merrill Kelly is a smart add and the pitching was creditable with 75 Ks, but an 8–2 blowout loss and zero NSVH points to a roster that needs more help than one wire move | same",
-      "10. General Hospital | The spotlight team this week — Kumar Rocker is a big swing and the 70 Ks in a tie show pitching upside, but a 5.48 ERA and a luck delta of -0.54 means they're genuinely underperforming expectations | down",
-      "11. Buttville Skidmarks | Elly De La Cruz is a weekly engine with 4 SB and 2 HR, but a 2.25 ERA somehow only produced a tie and the offense outside Elly remains thin | same",
-      "12. Riverside Roughnecks | Won 6–3 again with zero quality starts and a 1.43 WHIP — Trevor Story's 9 RBI carried them last week and this roster cannot keep winning on individual heroics alone | down",
-      "13. Canberra Wombats | Gunnar Henderson hit 5 HR and they still lost 8–2; this team has pop but the pitching is consistently too soft to compete in a full-category format | same",
-      "14. Benchwarmers | The luck index doesn't lie — a +0.91 luck delta masks a roster with serious pitching problems; 34 Ks and a 5.53 ERA will eventually catch up to them | same"
+      "1. Sugar Land Skeeters | Three weeks of category dominance, elite pitching ERA of 2.11 this week, and an 8–2 beatdown make them the undisputed No. 1 | same",
+      "2. Athletic Park Dragons | James Wood (3 HR, 8 RBI, .636 OBP) and Willson Contreras (3 HR, 11 RBI, .594 OBP) powered a 6–3 win; offense is elite | up",
+      "3. BaseballPro77 | Jordan Walker's massive 5-HR week carried a 5–3 win; consistent category producer across three weeks | same",
+      "4. Hiroshima Radiation | Bounced back emphatically with an 8–2 rout, 6 QS, and 75 Ks; Bryce Harper's .552 OBP is a weapon | up",
+      "5. Wisconsin Rapids Reapers | Lost 6–3 but posted a freakish 1.65 ERA and 1.04 WHIP; pitching is elite, offense needs to wake up | down",
+      "6. General Hospital | Tied despite Manny Machado (3 HR, 11 RBI) and a 70-K pitching week; 5.48 ERA is a concern but talent is undeniable | same",
+      "7. North Correa | 11 SB week is elite and Chris Sale delivered 22 Ks, but 4.73 ERA and only 51.1 IP hurt badly in the loss | same",
+      "8. Riverside Roughnecks | Won 6–3 on the back of Trevor Story's 9 RBI despite zero QS and a 5.04 ERA; fluky but effective | up",
+      "9. Albuquerque Bombers | Acuña, Turang, and Stewart all had strong weeks, but the pitching (5.05 ERA) cost them a winnable matchup | same",
+      "10. Buttville Skidmarks | Elly De La Cruz is electric and the ERA (2.25) is elite, but a tie against General Hospital with this pitching staff is a missed opportunity | down",
+      "11. Abbotsford-Colby Twins | Crushed 8–2 despite decent pitching (3.99 ERA, 75 Ks); bats outside Nimmo and Alvarez are underperforming | down",
+      "12. Wonder Wharf Wonderdogs | Shota Imanaga (2.70 ERA, 14 Ks) and a 4.30 team ERA should be winning more; the luck just isn't coming | same",
+      "13. Canberra Wombats | Gunnar Henderson (5 HR, 8 RBI) is a stud but the team fell 8–2; pitching gave up too many categories | down",
+      "14. Benchwarmers | Won this week but carried by hitters alone; 42.1 IP and a 5.53 ERA is unsustainable and the luck will run out | same"
     ],
     "week_04": []
   },
@@ -132,5 +132,5 @@
     "Canberra Wombats",
     "Riverside Roughnecks"
   ],
-  "last_spotlight_week": "Abbotsford-Colby Twins"
+  "last_spotlight_week": "Buttville Skidmarks"
 }
