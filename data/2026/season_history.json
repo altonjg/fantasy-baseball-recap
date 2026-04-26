@@ -1,20 +1,20 @@
 {
   "power_rankings": {
     "week_01": [
-      "1. Sugar Land Skeeters | Dominant 9–1 blowout with 8 HR, 38 K, and three contributors (Abreu, Schanuel, Baldwin) each going deep — the most complete team in the league through four weeks | same",
-      "2. BaseballPro77 | Trout's 3-HR, .667 OBP explosion and Murakami's 3 HR made this an 8–2 rout; consistent elite production in all three phases | up",
-      "3. Athletic Park Dragons | Survived a near-upset with a 5–4 squeaker; Gleyber Torres and Andrés Giménez were excellent, but that ERA needs cleaning up | down",
-      "4. North Correa | Chris Sale's 15 K, 0.75 WHIP masterclass anchored a 7–3 win; Arozarena, Betts providing steady offense — quietly the most balanced staff in the league | up",
-      "5. Benchwarmers | Zach Neto's 7-run, 2-HR week is a revelation and the 7–3 win is real, but 0 quality starts and a 4.50 ERA will catch up to them against tougher opponents | up",
-      "6. Albuquerque Bombers | Kyle Harrison's 12-K, 0.33 WHIP gem carried a 6–4 win; Yelich and Turang contributing — this is a team trending the right direction after waiver activity | up",
-      "7. General Hospital | Tied 4–4 despite posting a .414 OBP, 23 RBI, and 3 QS — this roster is legitimately good and the tie is a fluke against a scrappy Wonderdogs team | down",
-      "8. Hiroshima Radiation | The 5–4 loss to the Dragons is a gut-punch considering they dominated pitching categories; McLean's 15 Ks show real ceiling | same",
-      "9. Wonder Wharf Wonderdogs | Tied 4–4 in a game they probably deserved to lose — 3 QS and a 2.98 ERA are genuine strengths but the offense remains structurally thin | up",
-      "10. Abbotsford-Colby Twins | Lost 6–4 but posted 6 HR, 5 SB, and Yordan Alvarez and Jonathan Aranda are real weapons; adding Merrill Kelly is a smart pitching fix | same",
-      "11. Wisconsin Rapids Reapers | Lost 7–3 but Bryan Woo's 0.83 WHIP and 5 NSVH show this team can win pitching weeks — Juan Soto is criminally underperforming so far | down",
-      "12. Buttville Skidmarks | Chase DeLauter's 4-HR week and Gausman's 0.17 WHIP are stars on a 3–7 team — the talent is there but the surrounding roster is too inconsistent | same",
-      "13. Canberra Wombats | Dylan Cease was excellent and still lost 8–2; zero home runs as a team is a death sentence in this format and the lineup has no answer | same",
-      "14. Riverside Roughnecks | A 1–9 loss with a 7.91 ERA and 0 quality starts is as bad as it gets; Shea Langeliers and Royce Lewis provide some hope but the pitching is a disaster | down"
+      "1. Sugar Land Skeeters | Third dominant week in four — 9–1 blowout, balanced offense led by Baldwin/Abreu/Schanuel, pitching holds up; no one else is close | same",
+      "2. BaseballPro77 | Mike Trout's 3-HR, 6-R explosion headline an 8–2 throttling of Canberra; Murakami adds another HR bat in a deep, dangerous lineup | up",
+      "3. North Correa | Chris Sale was otherworldly — 15 K, 0.75 WHIP, two quality starts — and the offense delivered 23 runs; this team is peaking at the right time | up",
+      "4. Athletic Park Dragons | Won a tight 5–4 game they arguably shouldn't have; Giménez and Will Smith showed up big, and 4 NSVH remains an underrated weapon | down",
+      "5. General Hospital | The tie last week is forgiven — 4–4 with Wonder Wharf is a missed opportunity, but the pitching depth (3 QS, 3.15 ERA, 0.95 WHIP) is legitimately elite | same",
+      "6. Hiroshima Radiation | Nolan McLean's 15-K debut is a revelation; this team outperformed its opponent in nearly every pitching metric and still lost — regression will favor them | up",
+      "7. Albuquerque Bombers | Kyle Harrison's 0.33 WHIP gem anchored a 6–4 win; Christian Yelich at .600 OBP is back; the waiver haul of Marte and Jung adds real positional depth | up",
+      "8. Wonder Wharf Wonderdogs | Shota Imanaga's 9.00 ERA cost them dearly in the tie; Brendan Donovan's .556 OBP keeps the offense afloat but structural hitting concerns persist | same",
+      "9. Wisconsin Rapids Reapers | Dropped 7–3 to North Correa but Bryan Woo's 0.83 WHIP and 39 team strikeouts show the pitching is real; offense still the glaring weakness | down",
+      "10. Abbotsford-Colby Twins | Yordan Alvarez and Jonathan Aranda had monster weeks but the pitching surrendered a 6.00 ERA with zero quality starts — addition of Merrill Kelly is urgent | down",
+      "11. Buttville Skidmarks | Chase DeLauter's 4-HR week is an eye-opener for a prospect, but Kevin Gausman's 1.50 ERA was wasted in a 7–3 loss; the lineup depth beyond DeLauter is thin | same",
+      "12. Benchwarmers | Zach Neto's 8-run, 2-HR week was spectacular and papered over a rotation with zero quality starts; they won 7–3 but this pitching staff is a ticking clock | up",
+      "13. Riverside Roughnecks | A 9–1 demolition at the hands of Sugar Land exposes everything — no quality starts, a 7.91 ERA, and a WHIP of 1.76; Shea Langeliers' bat can't carry this alone | down",
+      "14. Canberra Wombats | Zero home runs, zero quality starts from Aaron Nola (8.38 ERA in 9.2 IP), and only 2 category wins in an 8–2 shellacking; Dylan Cease was the lone bright spot | same"
     ],
     "week_02": [],
     "week_03": [
@@ -100,5 +100,5 @@
     "Canberra Wombats",
     "Riverside Roughnecks"
   ],
-  "last_spotlight_week": "North Correa"
+  "last_spotlight_week": "Albuquerque Bombers"
 }
