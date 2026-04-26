@@ -534,69 +534,89 @@ def _repair_json_aggressive(raw: str) -> dict:
     raise ValueError("Could not repair JSON")
 
 
+def _parse_pass1_xml(raw: str) -> dict:
+    """Parse Pass 1 XML-tagged output into a dict. Robust to missing tags."""
+    def _tag(name: str, default: str = "") -> str:
+        m = re.search(rf'<{name}>(.*?)</{name}>', raw, re.DOTALL)
+        return m.group(1).strip() if m else default
+
+    def _tag_lines(name: str) -> list[str]:
+        m = re.search(rf'<{name}>(.*?)</{name}>', raw, re.DOTALL)
+        if not m:
+            return []
+        return [ln.strip() for ln in m.group(1).strip().splitlines() if ln.strip()]
+
+    return {
+        "stat_of_week":       _tag("stat_of_week"),
+        "thriller_teams":     _tag("thriller_teams"),
+        "thriller_score":     _tag("thriller_score"),
+        "thriller_note":      _tag("thriller_note"),
+        "key_storyline":      _tag("key_storyline"),
+        "lucky_team":         _tag("lucky_team"),
+        "lucky_reason":       _tag("lucky_reason"),
+        "unlucky_team":       _tag("unlucky_team"),
+        "unlucky_reason":     _tag("unlucky_reason"),
+        "records_broken":     _tag("records_broken"),
+        "spotlight_team":     _tag("spotlight_team"),
+        "include_trade_value": _tag("include_trade_value", "false").lower() == "true",
+        "power_rankings":     _tag_lines("power_rankings"),
+        "waiver_highlights":  _tag_lines("waiver_highlights"),
+    }
+
+
 def _pass1_plan(context: str, week_num: int, prior_rankings: dict) -> dict:
     """
-    Pass 1: Feed raw data into Claude. Returns a flat planning document.
-
-    Uses a deliberately simple JSON structure — only flat strings and arrays
-    of strings — to avoid the nested-object JSON escaping failures that plague
-    more complex schemas. Pass 2 has full week data and writes prose itself;
-    Pass 1 only needs to make the key DECISIONS.
+    Pass 1: Feed raw data into Claude. Returns a planning dict.
+    Uses XML tags — no JSON parsing, completely avoids escaping issues.
     """
     has_prior = bool(prior_rankings)
     rankings_note = (
-        "List all 14 teams in power order. Format each entry exactly as: "
-        '"RANK. TEAM NAME | REASON | MOVEMENT" where MOVEMENT is up, down, or same.'
+        "List all 14 teams in power order, one per line: RANK. TEAM NAME | brief reason | movement (up/down/same)"
         if has_prior else
-        "List all 14 teams in power order. Format each entry exactly as: "
-        '"RANK. TEAM NAME | REASON" (no movement arrow — this is week 1).'
+        "List all 14 teams in power order, one per line: RANK. TEAM NAME | brief reason"
     )
 
     prompt = f"""You are a fantasy baseball analyst. Read the week data below and make the key editorial decisions for a weekly recap article.
 
 {context}
 
-Output ONLY a JSON object with these exact flat fields — no nested objects, no markdown fences, no comments:
+Respond using ONLY these XML tags — no JSON, no markdown, no preamble, nothing outside the tags:
 
-{{
-  "stat_of_week": "9 - category wins by Sugar Land Skeeters, the most dominant week-1 performance",
-  "thriller_teams": "General Hospital vs Wonder Wharf Wonderdogs",
-  "thriller_score": "4-4",
-  "thriller_note": "brief note on what made it close and what it means for both teams",
-  "key_storyline": "2-3 sentences on the single biggest narrative of the week",
-  "lucky_team": "Team Name",
-  "lucky_reason": "one sentence on why they were lucky",
-  "unlucky_team": "Team Name",
-  "unlucky_reason": "one sentence on why they were unlucky",
-  "records_broken": "",
-  "spotlight_team": "Team Name",
-  "include_trade_value": false,
-  "power_rankings": [
-    "1. Team Name | brief reason",
-    "2. Team Name | brief reason"
-  ],
-  "waiver_highlights": [
-    "Team Name | grade | move description | brief analysis"
-  ]
-}}
+<stat_of_week>NUMBER - brief explanation of the most striking stat</stat_of_week>
+<thriller_teams>Team A vs Team B</thriller_teams>
+<thriller_score>X-Y</thriller_score>
+<thriller_note>One sentence on what made it close and what it means for both teams going forward</thriller_note>
+<key_storyline>2-3 sentences on the single biggest narrative of the week</key_storyline>
+<lucky_team>Team Name</lucky_team>
+<lucky_reason>One sentence on why they were lucky this week</lucky_reason>
+<unlucky_team>Team Name</unlucky_team>
+<unlucky_reason>One sentence on why they were unlucky this week</unlucky_reason>
+<records_broken>Empty if none. Otherwise: one sentence naming the record, who broke it, and the previous mark.</records_broken>
+<spotlight_team>Team Name</spotlight_team>
+<include_trade_value>true or false</include_trade_value>
+<power_rankings>
+{rankings_note}
+Include ALL 14 teams.
+</power_rankings>
+<waiver_highlights>
+One line per notable move: Team Name | grade (A/B/C/D) | move description | brief analysis
+Leave empty if no significant moves this week.
+</waiver_highlights>
 
 Rules:
-- power_rankings: {rankings_note} Include ALL 14 teams.
-- records_broken: empty string if none broken; otherwise one sentence naming the record, who broke it, and the old mark
-- include_trade_value: true only if 2 or more players had a significant performance shift this week
-- waiver_highlights: one entry per notable move; empty array if no significant moves
-- thriller_teams: exact team names from the data separated by " vs "
-- All values are plain strings or simple arrays of strings — no nested objects anywhere
-- Use only standard ASCII characters in all fields"""
+- thriller_teams must be the matchup with the smallest margin of victory (fewest categories separating teams)
+- lucky_team: won despite below-average category stats; unlucky_team: strong stats but lost
+- include_trade_value: true only if 2 or more players had significant performance shifts
+- Use exact team names from the data"""
 
     last_err: Exception | None = None
     for attempt in range(3):
         try:
             raw = _call_claude(prompt, max_tokens=1500)
-            try:
-                return _safe_json_parse(raw)
-            except (json.JSONDecodeError, ValueError):
-                return _repair_json_aggressive(raw)
+            plan = _parse_pass1_xml(raw)
+            if not plan.get("key_storyline"):
+                raise ValueError("Pass 1 response missing key fields — retrying")
+            return plan
         except Exception as e:
             last_err = e
             print(f"[ci_runner] Pass 1 attempt {attempt+1}/3 failed: {e}", file=sys.stderr)
