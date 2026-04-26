@@ -3346,10 +3346,36 @@
   }
 
   // ── Power Rankings — with real rank movement + recent form ───
-  function _renderPowerRankings(standings, season, week) {
+  function _renderPowerRankings(standings, season, week, article) {
     const el = document.getElementById('live-power-rankings');
     if (!el || !standings) return;
 
+    // If the article has editorial power rankings, use those instead of standings-sort.
+    // Article rankings look like: "1. Team Name | reasoning | movement"
+    if (article && Array.isArray(article.power_rankings) && article.power_rankings.length > 0) {
+      el.innerHTML = article.power_rankings.map(line => {
+        // Parse: "1. Team Name | reasoning | ↑/↓/same"
+        const m = line.match(/^\d+\.\s*(.+?)(?:\s*\|.*)?$/);
+        const teamName = m ? m[1].trim().replace(/\s*\|.*$/, '') : line;
+        const mvMatch = line.match(/\|\s*(up|down|same|↑|↓|—)\s*$/i);
+        const mv = mvMatch ? mvMatch[1].toLowerCase() : '';
+        const trendHtml = mv === 'up' || mv === '↑'
+          ? `<span class="pr-arr up"><i class="fa-solid fa-caret-up"></i></span>`
+          : mv === 'down' || mv === '↓'
+          ? `<span class="pr-arr dn"><i class="fa-solid fa-caret-down"></i></span>`
+          : `<span class="pr-arr flat"><i class="fa-solid fa-minus"></i></span>`;
+        const rankNum = (line.match(/^(\d+)\./) || [])[1] || '';
+        return `<div class="pr-row">
+          <span class="pr-num">${rankNum}.</span>
+          ${_badge(teamName,'',18)}
+          <span class="pr-name">${teamName}</span>
+          ${trendHtml}
+        </div>`;
+      }).join('');
+      return;
+    }
+
+    // Fallback: compute from standings when no article is available
     // Compute last week's standings for rank-movement arrows
     const prevRankOf = {};
     const ld = window.LEAGUE_DATA?.[season];
@@ -4060,7 +4086,7 @@
     const article  = articles[recapKey] || null;
     _renderRecapArticle(season, week, weekData, article);
     _renderRecapQuickStats(weekData, season, week);
-    _renderPowerRankings(standings, season, week);
+    _renderPowerRankings(standings, season, week, article);
 
     // Matchups + Transactions
     _renderMatchups(weekData, week, season);
