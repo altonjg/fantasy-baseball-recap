@@ -48,7 +48,22 @@
       "13. Canberra Wombats | Gunnar Henderson (5 HR, 8 RBI) is a stud but the team fell 8–2; pitching gave up too many categories | down",
       "14. Benchwarmers | Won this week but carried by hitters alone; 42.1 IP and a 5.53 ERA is unsustainable and the luck will run out | same"
     ],
-    "week_04": []
+    "week_04": [
+      "1. BaseballPro77 | Historic offensive week with league-record HR and RBI; elite ERA and rotation depth; clear top dog | up",
+      "2. General Hospital | 8-category win total this week, dominant pitching (6 QS, 2.68 ERA, 0.96 WHIP), consistent across all categories | up",
+      "3. Sugar Land Skeeters | Dropped their matchup but still lead cumulative category wins over four weeks; deep and balanced roster | same",
+      "4. Athletic Park Dragons | Aaron Judge continues to destroy, elite pitching staff, 5 QS and solid ERA; winning the right way | up",
+      "5. Wonder Wharf Wonderdogs | 8 QS is a league-high this week, pitching is elite (2.49 ERA, 0.98 WHIP); offense just enough to win | up",
+      "6. Abbotsford-Colby Twins | José Ramírez and Yordan Alvarez both exploded; unluckiest team per index despite a W; real upside here | up",
+      "7. North Correa | Chris Sale was filthy (0.69 ERA, 0.69 WHIP); lost on pitching ERA meltdown elsewhere but competitive roster | down",
+      "8. Hiroshima Radiation | Fantastic pitching (2.81 ERA, 1.09 WHIP, 5 QS) not enough to overcome negative NSVH; dangerous sleeper | same",
+      "9. Albuquerque Bombers | Byron Buxton and Sal Stewart carried the week; waiver activity suggests roster instability but scrappy enough to win | same",
+      "10. Riverside Roughnecks | Tied when they should have won; Shea Langeliers and Nick Kurtz quietly excellent; pitching ERA needs work | down",
+      "11. Canberra Wombats | Tied when they needed a full win; thin offense and limited pitching make ceiling hard to envision | same",
+      "12. Wisconsin Rapids Reapers | Got steamrolled 7–2; historically bad hit total (33 H) and anemic OBP (.257); Ben Rice a bright spot but roster is thin | down",
+      "13. Buttville Skidmarks | Lost a winnable matchup; ERA issues and low HR output; Bryan Reynolds' .500 OBP masked a broader offensive slump | same",
+      "14. Benchwarmers | Luck can't paper over a 2-category week for long; bottom-tier HR, K, and ERA; Michael King was excellent but can't do it alone | down"
+    ]
   },
   "weekly_points": {
     "week_01": {
@@ -132,5 +147,5 @@
     "Canberra Wombats",
     "Riverside Roughnecks"
   ],
-  "last_spotlight_week": "Buttville Skidmarks"
+  "last_spotlight_week": "Wisconsin Rapids Reapers"
 }

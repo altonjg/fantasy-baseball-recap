@@ -384,17 +384,17 @@
               "score": 21.0
             },
             {
+              "name": "Gleyber Torres",
+              "mlb_team": "DET",
+              "position": "2B",
+              "stats": "R:6, HR:1, RBI:4, OBP:.357",
+              "score": 18.0
+            },
+            {
               "name": "Cristopher S\u00e1nchez",
               "mlb_team": "PHI",
               "position": "SP",
               "stats": "K:16, ERA:1.50, WHIP:1.50, QS:2, IP:12.0",
-              "score": 18.0
-            },
-            {
-              "name": "Bailey Ober",
-              "mlb_team": "MIN",
-              "position": "SP",
-              "stats": "K:17, ERA:2.92, WHIP:1.22, QS:1, IP:12.1",
               "score": 18.0
             }
           ]
