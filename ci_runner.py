@@ -730,35 +730,30 @@ WAIVER WIRE MOVES (use exactly as listed):
 RAW MATCHUP DATA (use for deep-dives and player references):
 {chr(10).join(matchup_lines)}
 
-AT-A-GLANCE TABLE (include verbatim — fill in Player of the Matchup column from the raw data):
-{table_md}
+WRITE THE FULL ARTICLE in this exact section order. Use ## for major section headers, ### for matchup sub-headers.
 
-WRITE THE FULL ARTICLE in this exact section order. Use ## for section headers.
-
-1. **Headline + subheadline** — returned as separate JSON fields, not in body
-2. **Stat of the Week** — bold callout immediately after opening. Format: **[the stat_of_week from the plan]**
-3. **At-a-Glance** (`## At-a-Glance`) — the table above, but fill in the Player of the Matchup column with the standout performer from each matchup based on the raw data
-4. **Thriller of the Week** (`## Thriller of the Week`) — write about the thriller_teams matchup. 2-3 sentences on key performances, 1 sentence on stakes for both teams
-5. **The Week's Defining Moment** (`## The Week's Defining Moment`) — expand key_storyline into 2-3 paragraphs using raw matchup data
-6. **Matchup Deep-Dives** (`## Matchup Deep-Dives`) — every matchup gets its own subsection (### Result). For each: result line, key category stats, strategic implication, next week preview
-7. **Lucky/Unlucky Team of the Week** (`## Lucky/Unlucky Team of the Week`) — use lucky_team/unlucky_team and their reasons from the plan
-8. {records_note}
-9. **Manager Spotlight** (`## Manager Spotlight`) — feature spotlight_team. Cover their record, power ranking position, how their roster is performing, playoff outlook
-10. {trade_value_note}
-11. **Power Rankings** (`## Power Rankings`) — use the rankings list exactly as provided above, one entry per line{"" if has_movement else " (week 1 — no movement arrows)"}
-12. **Waiver Wire** (`## Waiver Wire`) — use the waiver highlights above. Format: **[GRADE]** Team — move — analysis
+1. **Headline + subheadline** — returned as separate XML fields, not in body
+2. **Thriller of the Week** (`## Thriller of the Week`) — write about the thriller_teams matchup. 2-3 sentences on key performances, 1 sentence on stakes for both teams
+3. **The Week's Defining Moment** (`## The Week's Defining Moment`) — expand key_storyline into 2-3 paragraphs using raw matchup data
+4. **Matchup Deep-Dives** (`## Matchup Deep-Dives`) — every matchup gets its own subsection (`### Winner def. Loser, Score`). For each: key category stats, strategic implication, next week preview
+5. **Lucky/Unlucky Team of the Week** (`## Lucky/Unlucky Team of the Week`) — use lucky_team/unlucky_team and their reasons from the plan
+6. {records_note}
+7. **Manager Spotlight** (`## Manager Spotlight`) — feature spotlight_team. Cover their record, power ranking position, how their roster is performing, playoff outlook
+8. {trade_value_note}
+9. **Power Rankings** (`## Power Rankings`) — use the rankings list exactly as provided above, one entry per line{"" if has_movement else " (week 1 — no movement arrows)"}
+10. **Waiver Wire** (`## Waiver Wire`) — use the waiver highlights above. Format: **[GRADE]** Team — move — analysis
 
 RULES:
 - Use **bold** for team names throughout
 - No favoritism toward any team
 - Write in {writer['name']}s authentic voice
-- Body should be 900-1200 words (not counting the table)
+- Body should be 900-1200 words
 
 Wrap your response in XML tags exactly like this — no JSON, no preamble, nothing outside the tags:
 <headline>your headline here</headline>
 <subheadline>one sharp sentence here</subheadline>
 <body>
-full article body here, sections 2-12 in order, markdown OK
+full article body here, sections 2-10 in order, markdown OK
 </body>"""
 
     raw = _call_claude(prompt, max_tokens=4000)
