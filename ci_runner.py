@@ -602,7 +602,8 @@ Respond using ONLY these XML tags — no JSON, no markdown, no preamble, nothing
 Include ALL 14 teams.
 </power_rankings>
 <waiver_highlights>
-One line per notable move: Team Name | grade (A/B/C/D) | move description | brief analysis
+One line per TEAM (never split one team across multiple lines): Team Name | grade (A/B/C/D) | combined move description | brief analysis
+Combine ALL adds and drops for the same team into a single line — a team that made 4 pickups gets exactly one entry.
 Leave empty if no significant moves this week.
 </waiver_highlights>
 
