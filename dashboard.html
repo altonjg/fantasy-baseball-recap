@@ -2731,8 +2731,13 @@
     const weeks = Object.keys(d).filter(k => /^\d+$/.test(k)).map(Number).sort((a,b)=>a-b);
     let firstPlayoffWk = null;
     const playoffTeamKeys = new Set();
+
+    // Collect end_week / playoff_start_week stored in week data (set by yahoo_client since the fix)
+    let endWk = 0;
+    let playoffStartWk = 0;
     for (const wk of weeks) {
-      const matchups = d[wk]?.matchups || [];
+      const wd = d[wk];
+      const matchups = wd?.matchups || [];
       const hasPlayoff = matchups.some(m => m.is_playoffs && !m.is_consolation);
       if (hasPlayoff) {
         if (firstPlayoffWk === null) firstPlayoffWk = wk;
@@ -2740,11 +2745,23 @@
           m.teams?.forEach(t => { if (t.team_key) playoffTeamKeys.add(t.team_key); })
         );
       }
+      if (wd?.end_week > endWk) endWk = wd.end_week;
+      if (!playoffStartWk && wd?.playoff_start_week) playoffStartWk = wd.playoff_start_week;
     }
-    const totalWks     = weeks.length;
-    const regularWks   = firstPlayoffWk ? firstPlayoffWk - 1 : totalWks;
+
+    // Fallback: all known seasons run 24 weeks with playoffs starting week 22
+    // (used when older week JSONs pre-date the end_week/playoff_start_week fields)
+    const _KNOWN_END_WK        = { 2017:24, 2021:24, 2022:24, 2023:24, 2024:24, 2025:24, 2026:24 };
+    const _KNOWN_PLAYOFF_START = { 2017:22, 2021:22, 2022:22, 2023:22, 2024:22, 2025:22, 2026:22 };
+    if (!endWk)        endWk        = _KNOWN_END_WK[season]        || 0;
+    if (!playoffStartWk) playoffStartWk = _KNOWN_PLAYOFF_START[season] || 0;
+
+    const totalWks   = endWk || weeks.length;
+    const regularWks = firstPlayoffWk
+      ? firstPlayoffWk - 1
+      : (playoffStartWk ? playoffStartWk - 1 : (endWk ? endWk - 3 : weeks.length));
     const playoffSpots = playoffTeamKeys.size || 6;
-    return { totalWks, regularWks, playoffSpots };
+    return { totalWks, regularWks, playoffSpots, firstPlayoffWk, playoffStartWk };
   }
 
   function _teamColor(name) {
@@ -5987,7 +6004,7 @@
       return;
     }
 
-    const { playoffSpots: PLAYOFF_SPOTS, regularWks: TOTAL_REG_WEEKS } = _getLeagueConfig(season);
+    const { playoffSpots: PLAYOFF_SPOTS, regularWks: TOTAL_REG_WEEKS, firstPlayoffWk, playoffStartWk } = _getLeagueConfig(season);
     const MONTE_CARLO_N   = 1000;
 
     // Gather regular-season weeks
@@ -6029,7 +6046,11 @@
     }
 
     const weeksPlayed  = regWeeks.length;
-    const isComplete   = weeksPlayed >= TOTAL_REG_WEEKS;
+    // Season is complete only if we've actually seen playoff matchups in the data,
+    // OR if we know the playoff start week and enough regular-season weeks have been played.
+    // This prevents premature "SEASON COMPLETE" when only a few weeks are stored.
+    const isComplete   = firstPlayoffWk !== null
+      || (playoffStartWk > 0 && weeksPlayed >= playoffStartWk - 1);
     const remaining    = isComplete ? 0 : TOTAL_REG_WEEKS - weeksPlayed;
 
     // Sort teams for seeding tie-break

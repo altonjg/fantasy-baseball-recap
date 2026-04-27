@@ -733,6 +733,16 @@ def fetch_weekly_data(oauth: YahooOAuth, league_key: str, week: Optional[int] = 
     print("  Fetching stat categories...")
     stat_categories = get_league_stat_categories(session, league_key)
 
+    # Extract playoff_start_week from settings (already cached by get_league_stat_categories)
+    playoff_start_week = 0
+    try:
+        for block in _get_league_settings(session, league_key):
+            if isinstance(block, dict) and "playoff_start_week" in block:
+                playoff_start_week = int(block["playoff_start_week"])
+                break
+    except Exception:
+        pass
+
     print("  Fetching scoreboard...")
     matchups = get_scoreboard(session, league_key, recap_week)
 
@@ -801,6 +811,8 @@ def fetch_weekly_data(oauth: YahooOAuth, league_key: str, week: Optional[int] = 
     return {
         "league_name": league_name,
         "week": recap_week,
+        "end_week": end_week or None,
+        "playoff_start_week": playoff_start_week or None,
         "matchups": matchups,
         "standings": standings,
         "divisions": divisions,
