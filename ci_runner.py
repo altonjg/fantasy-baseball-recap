@@ -2193,7 +2193,7 @@ def main() -> None:
                 week_data.setdefault("week", wk_num)
                 week_data.setdefault("season", season)
                 print(f"[ci_runner] Backfilling recap for {season} Week {wk_num}…")
-                ok = run_recap(week_data, season, next_week_schedule=[])
+                ok = run_recap(week_data, season, force=args.force, next_week_schedule=[])
                 if ok:
                     generated += 1
             except Exception as e:
@@ -2211,14 +2211,28 @@ def main() -> None:
     print("[ci_runner] Setting up Yahoo OAuth…")
     oauth = setup_ci_oauth()
 
-    # Fetch league data — any failure here aborts the run with non-zero exit
-    print(f"[ci_runner] Fetching Yahoo data (week={args.week or 'latest'})…")
-    try:
-        week_data = fetch_weekly_data(oauth, league_key, week=args.week)
-    except Exception as e:
-        print(f"[ci_runner] FATAL: Yahoo API fetch failed: {e}", file=sys.stderr)
-        print("[ci_runner] Aborting — no files written, no article published.", file=sys.stderr)
-        sys.exit(1)
+    # When --week N is explicitly given AND a stored week_N.json already exists,
+    # use the stored data for article regeneration instead of re-fetching from Yahoo.
+    # Re-fetching a past week loses transaction data because Yahoo's transactions
+    # endpoint only returns recent transactions (not week-specific history).
+    week_data = None
+    if args.week:
+        stored_season = args.season or datetime.now().year
+        stored_path = DATA_ROOT / str(stored_season) / f"week_{int(args.week):02d}.json"
+        if stored_path.exists():
+            print(f"[ci_runner] Using stored data from {stored_path.name} (avoids losing past-week transactions)…")
+            with open(stored_path, encoding="utf-8") as f:
+                week_data = json.load(f)
+
+    if week_data is None:
+        # Fetch live data — either no stored file or no --week specified
+        print(f"[ci_runner] Fetching Yahoo data (week={args.week or 'latest'})…")
+        try:
+            week_data = fetch_weekly_data(oauth, league_key, week=args.week)
+        except Exception as e:
+            print(f"[ci_runner] FATAL: Yahoo API fetch failed: {e}", file=sys.stderr)
+            print("[ci_runner] Aborting — no files written, no article published.", file=sys.stderr)
+            sys.exit(1)
 
     season   = week_data.get("season", datetime.now().year)
     week_num = week_data.get("week", 0)
