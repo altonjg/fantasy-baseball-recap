@@ -666,13 +666,6 @@
               "score": 23.0
             },
             {
-              "name": "Josh Naylor",
-              "mlb_team": "SEA",
-              "position": "1B",
-              "stats": "R:3, HR:1, RBI:3, SB:3, OBP:.444",
-              "score": 16.0
-            },
-            {
               "name": "Ceddanne Rafaela",
               "mlb_team": "BOS",
               "position": "2B,OF",
@@ -712,6 +705,13 @@
               "mlb_team": "NYY",
               "position": "OF",
               "stats": "R:3, RBI:3, OBP:.292",
+              "score": 9.0
+            },
+            {
+              "name": "Julio Rodr\u00edguez",
+              "mlb_team": "SEA",
+              "position": "OF",
+              "stats": "R:1, RBI:1, SB:1, OBP:.538",
               "score": 9.0
             }
           ]
@@ -1651,6 +1651,108 @@
   },
   "transactions": [
     {
+      "type": "drop",
+      "timestamp": 1777308423,
+      "players": [
+        {
+          "name": "Roki Sasaki",
+          "action": "drop",
+          "team": "Canberra Wombats",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1777308398,
+      "players": [
+        {
+          "name": "JR Ritchie",
+          "action": "add",
+          "team": "Canberra Wombats",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1777306782,
+      "players": [
+        {
+          "name": "Casey Schmitt",
+          "action": "add",
+          "team": "Benchwarmers",
+          "position": "1B,2B,3B"
+        },
+        {
+          "name": "Josh Naylor",
+          "action": "drop",
+          "team": "Benchwarmers",
+          "position": "1B"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1777306512,
+      "players": [
+        {
+          "name": "Max Scherzer",
+          "action": "drop",
+          "team": "Benchwarmers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1777306286,
+      "players": [
+        {
+          "name": "Javier Assad",
+          "action": "drop",
+          "team": "Benchwarmers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1777305785,
+      "players": [
+        {
+          "name": "Chase Dollander",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP,RP"
+        },
+        {
+          "name": "Jack Flaherty",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1777305748,
+      "players": [
+        {
+          "name": "Justin Bruihl",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "RP"
+        },
+        {
+          "name": "Justin Sterner",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "RP"
+        }
+      ]
+    },
+    {
       "type": "add",
       "timestamp": 1777291230,
       "players": [
@@ -1967,96 +2069,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1776791133,
-      "players": [
-        {
-          "name": "Cristian Javier",
-          "action": "drop",
-          "team": "General Hospital",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1776785563,
-      "players": [
-        {
-          "name": "Jac Caglianone",
-          "action": "add",
-          "team": "Albuquerque Bombers",
-          "position": "1B,OF"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1776785083,
-      "players": [
-        {
-          "name": "Edwin Uceta",
-          "action": "drop",
-          "team": "Albuquerque Bombers",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1776783571,
-      "players": [
-        {
-          "name": "Dustin May",
-          "action": "add",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1776759345,
-      "players": [
-        {
-          "name": "Merrill Kelly",
-          "action": "add",
-          "team": "Abbotsford-Colby Twins",
-          "position": "SP"
-        },
-        {
-          "name": "Ryne Nelson",
-          "action": "drop",
-          "team": "Abbotsford-Colby Twins",
-          "position": "SP,RP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1776732884,
-      "players": [
-        {
-          "name": "Kody Funderburk",
-          "action": "add",
-          "team": "Sugar Land Skeeters",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1776726752,
-      "players": [
-        {
-          "name": "Angel Mart\u00ednez",
-          "action": "drop",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "2B,OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2078,5 +2090,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-04-27T13:23:13.502506"
+  "saved_at": "2026-04-27T17:15:23.125510"
 }
