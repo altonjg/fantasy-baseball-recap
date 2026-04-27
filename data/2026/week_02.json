@@ -468,6 +468,13 @@
               "score": 15.0
             },
             {
+              "name": "Gleyber Torres",
+              "mlb_team": "DET",
+              "position": "2B",
+              "stats": "R:5, HR:2, RBI:3, OBP:.500",
+              "score": 15.0
+            },
+            {
               "name": "Jarren Duran",
               "mlb_team": "BOS",
               "position": "OF",
@@ -494,13 +501,6 @@
               "position": "SP",
               "stats": "K:8, WHIP:0.60, IP:5.0",
               "score": 8.0
-            },
-            {
-              "name": "Will Smith",
-              "mlb_team": "LAD",
-              "position": "C",
-              "stats": "R:2, OBP:.316",
-              "score": 7.0
             }
           ]
         },
@@ -660,7 +660,7 @@
               "name": "Bobby Witt Jr.",
               "mlb_team": "KC",
               "position": "SS",
-              "stats": "R:1, HR:1, RBI:4, SB:3, OBP:.333",
+              "stats": "R:1, HR:1, RBI:4, SB:3, OBP:.323",
               "score": 15.0
             },
             {
@@ -675,6 +675,13 @@
               "mlb_team": "SEA",
               "position": "SP",
               "stats": "K:11, ERA:2.79, WHIP:1.24, QS:1, IP:9.2",
+              "score": 12.0
+            },
+            {
+              "name": "Vinnie Pasquantino",
+              "mlb_team": "KC",
+              "position": "1B",
+              "stats": "R:2, RBI:5, OBP:.312",
               "score": 12.0
             },
             {
@@ -699,17 +706,10 @@
               "score": 11.0
             },
             {
-              "name": "Vinnie Pasquantino",
-              "mlb_team": "KC",
-              "position": "1B",
-              "stats": "R:2, RBI:4, OBP:.323",
-              "score": 11.0
-            },
-            {
               "name": "Mike Trout",
               "mlb_team": "LAA",
               "position": "OF",
-              "stats": "R:4, HR:1, RBI:2, SB:1, OBP:.300",
+              "stats": "R:4, HR:1, RBI:2, SB:1, OBP:.290",
               "score": 10.0
             }
           ]
@@ -746,7 +746,7 @@
               "name": "Zach Neto",
               "mlb_team": "LAA",
               "position": "SS",
-              "stats": "R:5, HR:1, RBI:4, OBP:.387",
+              "stats": "R:5, HR:1, RBI:4, OBP:.375",
               "score": 19.0
             },
             {
@@ -2088,5 +2088,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-04-26T23:43:16.084574"
+  "saved_at": "2026-04-27T00:09:50.211143"
 }
