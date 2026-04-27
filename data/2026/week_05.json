@@ -1652,6 +1652,18 @@
   "transactions": [
     {
       "type": "add",
+      "timestamp": 1777291230,
+      "players": [
+        {
+          "name": "Sam Bachman",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
       "timestamp": 1777281571,
       "players": [
         {
@@ -2045,18 +2057,6 @@
           "position": "2B,OF"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1776718411,
-      "players": [
-        {
-          "name": "Masyn Winn",
-          "action": "add",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "SS"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2078,5 +2078,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-04-27T10:08:51.558989"
+  "saved_at": "2026-04-27T12:21:27.014552"
 }

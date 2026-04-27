@@ -63,6 +63,22 @@
       "12. Wisconsin Rapids Reapers | Got steamrolled 7-2 by the league's hottest team; Ben Rice is a real piece but 33 hits and a .257 OBP league-wide signal a roster that needs significant offensive upgrades | down",
       "13. Buttville Skidmarks | Reynolds posted a .500 OBP again and it meant nothing; the pitching posted a 4.87 ERA and the team managed just 3 category wins — the same structural problems, the same result | same",
       "14. Benchwarmers | Michael King's 19 K effort is elite and real, but a +1.21 luck delta masking 4 HR, 45 K, and bottom-five offense means regression is coming fast unless major additions are made | same"
+    ],
+    "week_05": [
+      "1. Sugar Land Skeeters | 52 runs and 15 HR in a single week is a statement; this offense is the most dangerous in the league and the Skeeters remain the most consistent team across all five weeks | up",
+      "2. General Hospital | A 5-5 tie stings when you expected a win, but Wrobleski's 0.69 ERA, Fried's 0.63 WHIP, and 5 QS confirm this rotation is elite; Kumar Rocker waiting in the wings makes this even scarier | same",
+      "3. BaseballPro77 | Lost 5-3 but Murakami (3 HR), Trout (2 HR, 2 SB), and Basallo (.611 OBP) all showed up — this offense is loaded and Strahm adds late-inning reliability to a staff that needed it | same",
+      "4. Athletic Park Dragons | Led the league with 13 HR and 39 RBI and still lost 6-4 because the pitching staff posted a 6.31 ERA with zero quality starts — the talent ceiling is enormous but the rotation is a genuine crisis | down",
+      "5. Albuquerque Bombers | An 8-1 demolition fueled by Harrison, Roupp, and a fully activated lineup; four waiver adds including Josh Jung show a manager aggressively patching holes, and this week proved the roster has real teeth | up",
+      "6. North Correa | Lost a heartbreaker 5-4 despite Glasnow posting a 0.25 WHIP and Sale a 0.50 WHIP — you simply cannot pitch better than that and lose; Ohtani's 3 SB and the 10-steal week show elite multi-category upside | same",
+      "7. Hiroshima Radiation | McLean's 17 K and 12 NSVH as a team are real weapons; the 5-5 tie feels like a loss given the opportunity, but the saves-and-holds structure makes this team uniquely dangerous in a close race | up",
+      "8. Abbotsford-Colby Twins | A 5-3 win with Aranda (3 HR), Chisholm, and Griffin delivering is encouraging; the -0.43 luck delta continues to haunt but this roster is too talented to stay in the middle tier long | same",
+      "9. Riverside Roughnecks | Won 6-4 over a loaded Dragons squad — Kurtz (8 R, 3 HR), Suzuki (3 HR, .524 OBP), and 5 QS show a team that is quietly building something real; Ragans and Misiorowski both looked sharp | up",
+      "10. Canberra Wombats | Cal Raleigh (4 HR, 6 R) and Christian Walker (3 HR) gave the offense a pulse, but Aaron Nola's 11.00 ERA is a disaster and a team ERA of 5.59 with just 2 QS won't sustain ties, let alone wins | same",
+      "11. Wonder Wharf Wonderdogs | The worst luck delta in the league (-0.62) is becoming an identity crisis; Harris (9 RBI), Moniak (2 HR), and solid pitching all week and they still can't get past a tie — Dustin May adds rotation hope | down",
+      "12. Buttville Skidmarks | De La Cruz and Caminero each went 3 HR and the team still only scored 24 runs; 5 NSVH is a real asset but Bradish's 2.03 WHIP is alarming and the offense is too inconsistent to trust | same",
+      "13. Wisconsin Rapids Reapers | Got blasted 8-1 in every pitching category and the rotation gave up a 5.81 ERA; dropping McGreevy without a meaningful replacement signals a front office that doesn't have answers yet | down",
+      "14. Benchwarmers | The +1.33 luck delta is the highest in the league and the most unsustainable number in the data — 3 HR, a 5.28 ERA, and a thin power profile mean the house of cards is one bad week from collapsing | same"
     ]
   },
   "weekly_points": {
@@ -129,6 +145,22 @@
       "Wonder Wharf Wonderdogs": 6.0,
       "Canberra Wombats": 4.0,
       "Riverside Roughnecks": 4.0
+    },
+    "week_05": {
+      "Albuquerque Bombers": 8.0,
+      "Wisconsin Rapids Reapers": 1.0,
+      "Abbotsford-Colby Twins": 5.0,
+      "BaseballPro77": 3.0,
+      "Athletic Park Dragons": 4.0,
+      "Riverside Roughnecks": 6.0,
+      "Benchwarmers": 4.0,
+      "Buttville Skidmarks": 6.0,
+      "Canberra Wombats": 5.0,
+      "Wonder Wharf Wonderdogs": 5.0,
+      "General Hospital": 5.0,
+      "Hiroshima Radiation": 5.0,
+      "North Correa": 4.0,
+      "Sugar Land Skeeters": 5.0
     }
   },
   "manager_spotlight_rotation": [
