@@ -454,7 +454,7 @@
   /* ── TEAM PROFILE DRAWER ──────────────────────────────────── */
   .tp-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:900; opacity:0; pointer-events:none; transition:opacity 0.25s ease; }
   .tp-overlay.open { opacity:1; pointer-events:all; }
-  .tp-drawer { position:fixed; top:0; right:0; height:100%; width:min(400px,100vw); background:var(--bg2); border-left:1px solid var(--border); z-index:901; overflow-y:auto; transform:translateX(100%); transition:transform 0.3s cubic-bezier(0.22,1,0.36,1); display:flex; flex-direction:column; }
+  .tp-drawer { position:fixed; top:0; right:0; height:100%; width:min(430px,100vw); background:var(--bg2); border-left:1px solid var(--border); z-index:901; overflow-y:auto; transform:translateX(100%); transition:transform 0.3s cubic-bezier(0.22,1,0.36,1); display:flex; flex-direction:column; }
   .tp-drawer.open { transform:translateX(0); }
   /* ── PLAYER STAT CARD POPUP ──────────────────────────────── */
   .pc-popup { position:fixed; z-index:950; width:272px; background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:14px 16px; box-shadow:0 12px 40px rgba(0,0,0,0.75); opacity:0; pointer-events:none; transition:opacity 0.14s, transform 0.14s; transform:scale(0.95) translateY(6px); }
@@ -464,9 +464,9 @@
   .tp-close-btn { background:var(--card); border:1px solid var(--border); color:var(--text); border-radius: 8px; padding:5px 12px; cursor:pointer; font-size:0.8em; display:inline-flex; align-items:center; gap:5px; transition:background 0.15s; }
   .tp-close-btn:hover { background:var(--border); }
   .tp-body { padding:18px 16px; flex:1; overflow-y:auto; min-height:0; }
-  .tp-stat-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; margin-bottom:20px; }
-  .tp-stat-box { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:8px 6px; text-align:center; }
-  .tp-stat-lbl { font-size:0.7em; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .tp-stat-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:6px; margin-bottom:20px; }
+  .tp-stat-box { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:8px 6px; text-align:center; min-width:0; }
+  .tp-stat-lbl { font-size:0.68em; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .tp-stat-val { font-size:0.95em; font-weight:700; }
   .tp-section-lbl { font-size:0.68em; color:var(--muted); text-transform:uppercase; letter-spacing:0.09em; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
   .tp-section-lbl::after { content:''; flex:1; height:1px; background:var(--border); }
@@ -545,7 +545,7 @@
 
     /* Team profile: full width + 3-col stat grid */
     .tp-drawer { width: 100vw !important; }
-    .tp-stat-grid { grid-template-columns: repeat(3, 1fr) !important; }
+    .tp-stat-grid { grid-template-columns: repeat(3, minmax(0,1fr)) !important; }
 
     /* Draft metrics single col */
     #live-draft-metrics { grid-template-columns: 1fr !important; }
