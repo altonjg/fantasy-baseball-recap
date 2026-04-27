@@ -762,7 +762,7 @@ Wrap your response in XML tags exactly like this — no JSON, no preamble, nothi
 full article body here, sections 2-10 in order, markdown OK
 </body>"""
 
-    raw = _call_claude(prompt, max_tokens=5000)
+    raw = _call_claude(prompt, max_tokens=8000)
 
     headline_match    = re.search(r'<headline>(.*?)</headline>', raw, re.DOTALL)
     subheadline_match = re.search(r'<subheadline>(.*?)</subheadline>', raw, re.DOTALL)

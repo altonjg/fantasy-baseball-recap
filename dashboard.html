@@ -224,6 +224,11 @@
 
   /* ── ARTICLE ── */
   .article-wrap { display: grid; grid-template-columns: 1fr 250px; gap: 28px; align-items: start; }
+  #live-recap-sidebar { position: sticky; top: 0; max-height: calc(100vh - 90px); overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.15) transparent; }
+  #live-recap-sidebar::-webkit-scrollbar { width: 4px; }
+  #live-recap-sidebar::-webkit-scrollbar-track { background: transparent; }
+  #live-recap-sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+  #live-recap-sidebar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
   .article-wrap.preview-fullwidth { grid-template-columns: 1fr; }
   .article-wrap.preview-fullwidth .article-body { max-width: none; }
 
@@ -1639,8 +1644,10 @@
         </label>
       </div>
       <div id="mlbstats-table-wrap" style="overflow-x:auto;"></div>
-      <div id="mlbstats-empty" style="display:none;color:var(--muted);font-size:13px;padding:20px 0;text-align:center;">
-        No advanced stats available for this season.
+      <div id="mlbstats-empty" style="display:none;text-align:center;padding:52px 20px;">
+        <i class="fa-solid fa-chart-line" style="font-size:2.2em;color:var(--border);margin-bottom:16px;display:block;"></i>
+        <div style="font-weight:700;color:var(--text);margin-bottom:8px;font-size:0.95em;">No Advanced Stats Yet</div>
+        <div style="color:var(--muted);font-size:0.82em;max-width:300px;margin:0 auto;line-height:1.65;">Statcast data will appear here as the season progresses. Stats are fetched periodically from Baseball Savant for all drafted players.</div>
       </div>
     </div><!-- /season-mlbstats -->
 
@@ -7027,7 +7034,14 @@
       // ── Shame ──────────────────────────────────────────────────
       if (glassCan)   html += accolade('<i class="fa-solid fa-gun" style="color:#f97316"></i>',                 'Glass Cannon',      glassCan.name,         `${glassCan.pf.toFixed(1)} PF — missed playoffs`, true);
       if (hardLuck)   html += accolade('<i class="fa-solid fa-face-sad-tear" style="color:var(--red)"></i>',    'Hard Luck',         hardLuck.name,         `${hardLuck.pa.toFixed(1)} PA — highest points against`, true);
-      if (doormat && doormat.name !== champ?.name) html += accolade('<i class="fa-solid fa-skull" style="color:var(--red)"></i>', 'The Doormat', doormat.name, `${doormat.wins}–${doormat.losses} — last in standings`, true);
+      if (doormat && doormat.name !== champ?.name) {
+        const doormatSub = `${doormat.wins}–${doormat.losses} — last in standings`
+          .replace(/([\d]+[\d.,/-]*[\d]+|[\d]+)/g, '<strong style="color:var(--text);font-weight:600">$1</strong>');
+        html += `<div style="background:var(--card);border:1px solid rgba(239,68,68,0.25);border-radius:10px;padding:14px;grid-column:1/-1;max-width:228px;justify-self:center;">
+          <div style="font-size:0.7em;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;"><i class="fa-solid fa-skull" style="color:var(--red)"></i> The Doormat</div>
+          <div style="display:flex;align-items:center;gap:8px;">${_badge(doormat.name,'',30)}<div><div style="font-weight:700;font-size:0.92em">${doormat.name}</div><div style="font-size:0.82em;color:var(--text);margin-top:2px;">${doormatSub}</div></div></div>
+        </div>`;
+      }
       accolEl.innerHTML = html || '<div style="color:var(--muted);font-size:0.85em;">No accolade data yet</div>';
     }
 
