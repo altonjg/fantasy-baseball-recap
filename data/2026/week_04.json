@@ -660,7 +660,7 @@
               "name": "Mike Trout",
               "mlb_team": "LAA",
               "position": "OF",
-              "stats": "R:10, HR:6, RBI:11, OBP:.472",
+              "stats": "R:10, HR:6, RBI:11, OBP:.459",
               "score": 35.0
             },
             {
@@ -688,7 +688,7 @@
               "name": "Bobby Witt Jr.",
               "mlb_team": "KC",
               "position": "SS",
-              "stats": "R:4, HR:1, RBI:3, OBP:.370",
+              "stats": "R:4, HR:1, RBI:3, OBP:.357",
               "score": 17.0
             },
             {
@@ -706,11 +706,11 @@
               "score": 16.0
             },
             {
-              "name": "George Kirby",
-              "mlb_team": "SEA",
-              "position": "SP",
-              "stats": "K:11, ERA:2.02, WHIP:1.27, QS:1, IP:13.1",
-              "score": 12.0
+              "name": "Vinnie Pasquantino",
+              "mlb_team": "KC",
+              "position": "1B",
+              "stats": "R:3, HR:2, RBI:4, OBP:.207",
+              "score": 13.0
             }
           ]
         },
@@ -884,7 +884,7 @@
               "name": "Zach Neto",
               "mlb_team": "LAA",
               "position": "SS",
-              "stats": "R:5, RBI:5, SB:1, OBP:.417",
+              "stats": "R:5, RBI:5, SB:1, OBP:.405",
               "score": 20.0
             },
             {
@@ -2085,8 +2085,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-04-26T23:43:25.969354"
+  "saved_at": "2026-04-27T00:09:52.265552"
 }
