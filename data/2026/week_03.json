@@ -667,14 +667,14 @@
               "name": "Bobby Witt Jr.",
               "mlb_team": "KC",
               "position": "SS",
-              "stats": "R:1, HR:1, RBI:6, SB:4, OBP:.441",
+              "stats": "R:1, HR:1, RBI:6, SB:4, OBP:.429",
               "score": 22.0
             },
             {
               "name": "Mike Trout",
               "mlb_team": "LAA",
               "position": "OF",
-              "stats": "R:6, HR:1, RBI:6, OBP:.357",
+              "stats": "R:6, HR:1, RBI:6, OBP:.345",
               "score": 18.0
             },
             {
@@ -870,7 +870,7 @@
               "name": "Zach Neto",
               "mlb_team": "LAA",
               "position": "SS",
-              "stats": "R:8, HR:2, RBI:5, OBP:.424",
+              "stats": "R:8, HR:2, RBI:5, OBP:.412",
               "score": 25.0
             },
             {
@@ -2085,8 +2085,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-04-26T23:43:27.002730"
+  "saved_at": "2026-04-27T00:10:02.128819"
 }
