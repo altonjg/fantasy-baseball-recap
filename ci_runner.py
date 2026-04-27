@@ -687,6 +687,37 @@ def _pass2_write(
             cat_str = " | ".join(f"{k}:{v}" for k, v in cats.items())
             matchup_lines.append(f"  {t['name']}: {cat_str}")
 
+    # Pre-compute league leaders per category (ground truth for accuracy)
+    lower_is_better = set(week_data.get("lower_is_better_stats", []))
+    cat_totals: dict[str, dict[str, float]] = {}
+    for m in week_data.get("matchups", []):
+        for t in m.get("teams", []):
+            tname = t.get("name", "")
+            for cat, val in t.get("category_stats", {}).items():
+                try:
+                    if "/" in str(val):
+                        continue  # skip ratio stats like H/AB
+                    cat_totals.setdefault(cat, {})[tname] = float(val)
+                except (ValueError, TypeError):
+                    pass
+
+    leader_lines: list[str] = ["LEAGUE-WIDE CATEGORY LEADERS THIS WEEK (ground truth — verify ALL league-wide claims against this list):"]
+    for cat in sorted(cat_totals):
+        vals = cat_totals[cat]
+        if not vals:
+            continue
+        if cat in lower_is_better:
+            best = min(vals, key=lambda t: vals[t])
+            qualifier = "lowest"
+        else:
+            best = max(vals, key=lambda t: vals[t])
+            qualifier = "highest"
+        # Also include 2nd place for context
+        ranked = sorted(vals, key=lambda t: vals[t], reverse=(cat not in lower_is_better))
+        second = f", 2nd: {ranked[1]} ({vals[ranked[1]]})" if len(ranked) > 1 else ""
+        leader_lines.append(f"  {cat} ({qualifier}): {best} ({vals[best]}){second}")
+    league_leaders_text = "\n".join(leader_lines)
+
     # Serialize the planning doc
     plan_text = json.dumps(plan, indent=2)
 
@@ -730,6 +761,8 @@ POWER RANKINGS (use exactly as listed):
 WAIVER WIRE MOVES (use exactly as listed):
 {waiver_text}
 
+{league_leaders_text}
+
 RAW MATCHUP DATA (use for deep-dives and player references):
 {chr(10).join(matchup_lines)}
 
@@ -755,6 +788,7 @@ RULES:
 - Thriller of the Week and The Week's Defining Moment should each be 3-4 paragraphs
 - Power Rankings movement: end each line with `[UP]`, `[DOWN]`, or `[SAME]` — no emoji, no arrows, just those exact tokens
 - CRITICAL — stat accuracy: only cite specific numeric stats (HR, RBI, ERA, OBP, K, etc.) for players explicitly listed in the RAW MATCHUP DATA above. For any other player you mention, use qualitative descriptions only — never invent or estimate numbers.
+- CRITICAL — league-wide claims: before writing ANY claim like "led the league in X" or "highest/lowest Y in the league", check the LEAGUE-WIDE CATEGORY LEADERS section above. Only use the exact leader shown there — never guess or infer league leaders from a single matchup.
 
 Wrap your response in XML tags exactly like this — no JSON, no preamble, nothing outside the tags:
 <headline>your headline here</headline>
