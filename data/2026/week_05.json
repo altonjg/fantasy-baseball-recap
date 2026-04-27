@@ -1124,7 +1124,7 @@
               "name": "Max Fried",
               "mlb_team": "NYY",
               "position": "SP",
-              "stats": "K:9, WHIP:0.63, QS:1, IP:8.0",
+              "stats": "K:9, WHIP:0.62, QS:1, IP:8.0",
               "score": 10.0
             },
             {
@@ -2090,5 +2090,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-04-27T18:55:46.735080"
+  "saved_at": "2026-04-27T20:54:28.585212"
 }
