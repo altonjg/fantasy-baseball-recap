@@ -1,6 +1,8 @@
 {
   "league_name": "MillerLite\u00ae BeerLeagueBaseball",
   "week": 4,
+  "end_week": 25,
+  "playoff_start_week": 23,
   "matchups": [
     {
       "week": 4,
@@ -1649,6 +1651,18 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1777256346,
+      "players": [
+        {
+          "name": "Nathan Church",
+          "action": "add",
+          "team": "Buttville Skidmarks",
+          "position": "OF"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1777223784,
       "players": [
@@ -2049,24 +2063,6 @@
           "position": "1B"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1776674767,
-      "players": [
-        {
-          "name": "Brayan Rocchio",
-          "action": "add",
-          "team": "North Correa",
-          "position": "2B,SS"
-        },
-        {
-          "name": "Brooks Lee",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "2B,3B,SS"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2088,5 +2084,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-04-27T02:04:06.086524"
+  "saved_at": "2026-04-27T06:23:54.212531"
 }
