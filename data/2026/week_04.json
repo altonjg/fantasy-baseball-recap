@@ -286,10 +286,10 @@
               "score": 13.0
             },
             {
-              "name": "Willy Adames",
-              "mlb_team": "SF",
-              "position": "SS",
-              "stats": "R:4, HR:1, RBI:1, OBP:.250",
+              "name": "Salvador Perez",
+              "mlb_team": "KC",
+              "position": "C,1B",
+              "stats": "R:2, HR:1, RBI:5, OBP:.154",
               "score": 12.0
             }
           ]
@@ -660,7 +660,7 @@
               "name": "Mike Trout",
               "mlb_team": "LAA",
               "position": "OF",
-              "stats": "R:10, HR:6, RBI:11, OBP:.459",
+              "stats": "R:10, HR:6, RBI:11, OBP:.447",
               "score": 35.0
             },
             {
@@ -688,7 +688,7 @@
               "name": "Bobby Witt Jr.",
               "mlb_team": "KC",
               "position": "SS",
-              "stats": "R:4, HR:1, RBI:3, OBP:.357",
+              "stats": "R:4, HR:1, RBI:3, OBP:.345",
               "score": 17.0
             },
             {
@@ -709,8 +709,8 @@
               "name": "Vinnie Pasquantino",
               "mlb_team": "KC",
               "position": "1B",
-              "stats": "R:3, HR:2, RBI:4, OBP:.207",
-              "score": 13.0
+              "stats": "R:4, HR:2, RBI:4, OBP:.233",
+              "score": 15.0
             }
           ]
         },
@@ -884,7 +884,7 @@
               "name": "Zach Neto",
               "mlb_team": "LAA",
               "position": "SS",
-              "stats": "R:5, RBI:5, SB:1, OBP:.405",
+              "stats": "R:5, RBI:5, SB:1, OBP:.421",
               "score": 20.0
             },
             {
@@ -1290,8 +1290,8 @@
               "name": "Jo Adell",
               "mlb_team": "LAA",
               "position": "OF",
-              "stats": "R:5, HR:2, RBI:9, OBP:.306",
-              "score": 24.0
+              "stats": "R:5, HR:2, RBI:9, SB:1, OBP:.324",
+              "score": 25.0
             },
             {
               "name": "Christian Walker",
@@ -2088,5 +2088,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-04-27T00:09:52.265552"
+  "saved_at": "2026-04-27T02:04:06.086524"
 }
