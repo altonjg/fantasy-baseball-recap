@@ -224,7 +224,7 @@
 
   /* ── ARTICLE ── */
   .article-wrap { display: grid; grid-template-columns: 1fr 250px; gap: 28px; align-items: start; }
-  #live-recap-sidebar { position: sticky; top: 0; max-height: calc(100vh - 90px); overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.15) transparent; }
+  #live-recap-sidebar { position: sticky; top: 0; max-height: 680px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.15) transparent; }
   #live-recap-sidebar::-webkit-scrollbar { width: 4px; }
   #live-recap-sidebar::-webkit-scrollbar-track { background: transparent; }
   #live-recap-sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
@@ -7461,7 +7461,20 @@
     window.parent.postMessage({ isStreamlitMessage: true, type: 'streamlit:setFrameHeight', height: totalH }, '*');
   }
   window.addEventListener('load', _notifyHeight);
-  window.addEventListener('resize', () => { _notifyHeight(); _updateTickerOverflow(); });
+  window.addEventListener('resize', () => { _notifyHeight(); _updateTickerOverflow(); _setSidebarHeight(); });
+
+  // ── Sidebar max-height: use real viewport from parent window ──────────────
+  function _setSidebarHeight() {
+    const sidebar = document.getElementById('live-recap-sidebar');
+    if (!sidebar) return;
+    try {
+      const vh = (window.top || window.parent || window).innerHeight;
+      sidebar.style.maxHeight = Math.max(400, vh - 90) + 'px';
+    } catch(e) {
+      sidebar.style.maxHeight = '680px'; // cross-origin fallback
+    }
+  }
+  window.addEventListener('load', _setSidebarHeight);
 </script>
 
 <!-- ── ARTICLE READER MODAL ─────────────────────────────────── -->
