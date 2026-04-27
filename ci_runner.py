@@ -805,16 +805,11 @@ def generate_recap_article(
 
     week_num = week_data.get("week", 0)
 
-    # Determine spotlight team from rotation
+    # Determine spotlight team from rotation — deterministic by week number
+    # so forced re-runs and parallel jobs always produce the same result.
     rotation = season_history.get("manager_spotlight_rotation", [])
-    last_spotlight = season_history.get("last_spotlight_week")
     if rotation:
-        # Advance rotation by 1 from last used index
-        try:
-            last_idx = rotation.index(last_spotlight) if last_spotlight in rotation else -1
-        except ValueError:
-            last_idx = -1
-        spotlight_team = rotation[(last_idx + 1) % len(rotation)]
+        spotlight_team = rotation[(int(week_num) - 1) % len(rotation)]
     else:
         spotlight_team = ""
 
@@ -874,8 +869,7 @@ def generate_recap_article(
                 weekly_pts[t["name"]] = float(t.get("points", 0.0))
     season_history["weekly_points"][wk_key] = weekly_pts
     season_history["power_rankings"][wk_key] = plan.get("power_rankings", [])
-    if spotlight_team:
-        season_history["last_spotlight_week"] = spotlight_team
+    # spotlight rotation is now week-deterministic; no mutable pointer needed
 
     return article
 
