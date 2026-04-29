@@ -342,7 +342,7 @@
               "name": "Mike Trout",
               "mlb_team": "LAA",
               "position": "OF",
-              "stats": "R:4, HR:2, RBI:4, SB:2, OBP:.393",
+              "stats": "R:4, HR:2, RBI:4, SB:2, OBP:.379",
               "score": 17.0
             },
             {
@@ -676,7 +676,7 @@
               "name": "Zach Neto",
               "mlb_team": "LAA",
               "position": "SS",
-              "stats": "R:3, RBI:3, SB:2, OBP:.321",
+              "stats": "R:3, RBI:3, SB:2, OBP:.310",
               "score": 14.0
             },
             {
@@ -1124,7 +1124,7 @@
               "name": "Max Fried",
               "mlb_team": "NYY",
               "position": "SP",
-              "stats": "K:9, WHIP:0.63, QS:1, IP:8.0",
+              "stats": "K:9, WHIP:0.62, QS:1, IP:8.0",
               "score": 10.0
             },
             {
@@ -1651,6 +1651,84 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1777482348,
+      "players": [
+        {
+          "name": "Janson Junk",
+          "action": "add",
+          "team": "Sugar Land Skeeters",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1777482153,
+      "players": [
+        {
+          "name": "Jackson Holliday",
+          "action": "drop",
+          "team": "Sugar Land Skeeters",
+          "position": "2B,SS"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1777480340,
+      "players": [
+        {
+          "name": "Peter Lambert",
+          "action": "add",
+          "team": "Athletic Park Dragons",
+          "position": "SP"
+        },
+        {
+          "name": "Matthew Liberatore",
+          "action": "drop",
+          "team": "Athletic Park Dragons",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1777477021,
+      "players": [
+        {
+          "name": "Brady Singer",
+          "action": "add",
+          "team": "Sugar Land Skeeters",
+          "position": "SP"
+        },
+        {
+          "name": "Reynaldo L\u00f3pez",
+          "action": "drop",
+          "team": "Sugar Land Skeeters",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1777476971,
+      "players": [
+        {
+          "name": "Daniel Schneemann",
+          "action": "add",
+          "team": "Sugar Land Skeeters",
+          "position": "2B,3B,SS,OF"
+        },
+        {
+          "name": "Brett Baty",
+          "action": "drop",
+          "team": "Sugar Land Skeeters",
+          "position": "1B,2B,3B,OF"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1777427246,
       "players": [
@@ -1991,84 +2069,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1776961644,
-      "players": [
-        {
-          "name": "Kai-Wei Teng",
-          "action": "add",
-          "team": "Sugar Land Skeeters",
-          "position": "SP,RP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1776955524,
-      "players": [
-        {
-          "name": "Ildemaro Vargas",
-          "action": "add",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "1B,2B"
-        },
-        {
-          "name": "Taylor Clarke",
-          "action": "drop",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1776889040,
-      "players": [
-        {
-          "name": "Michael McGreevy",
-          "action": "drop",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1776887948,
-      "players": [
-        {
-          "name": "Austin Wells",
-          "action": "add",
-          "team": "North Correa",
-          "position": "C"
-        },
-        {
-          "name": "J.T. Realmuto",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "C"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1776873509,
-      "players": [
-        {
-          "name": "Josh Jung",
-          "action": "add",
-          "team": "Albuquerque Bombers",
-          "position": "3B"
-        },
-        {
-          "name": "Jonathan Lo\u00e1isiga",
-          "action": "drop",
-          "team": "Albuquerque Bombers",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2090,5 +2090,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-04-29T13:28:24.409829"
+  "saved_at": "2026-04-29T17:20:41.078165"
 }
