@@ -1651,6 +1651,66 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1777549884,
+      "players": [
+        {
+          "name": "Michael Lorenzen (Pitcher)",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1777549800,
+      "players": [
+        {
+          "name": "Chris Martin",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1777548530,
+      "players": [
+        {
+          "name": "Brooks Lee",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "2B,3B,SS"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1777548487,
+      "players": [
+        {
+          "name": "Jake Burger",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "1B"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1777548429,
+      "players": [
+        {
+          "name": "Luke Raley",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "1B,OF"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1777537019,
       "players": [
@@ -2003,84 +2063,6 @@
           "position": "OF"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1777223784,
-      "players": [
-        {
-          "name": "Kumar Rocker",
-          "action": "add",
-          "team": "General Hospital",
-          "position": "SP"
-        },
-        {
-          "name": "Jack Leiter",
-          "action": "drop",
-          "team": "General Hospital",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1777216564,
-      "players": [
-        {
-          "name": "Kai-Wei Teng",
-          "action": "drop",
-          "team": "Sugar Land Skeeters",
-          "position": "SP,RP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1777152694,
-      "players": [
-        {
-          "name": "Dalton Rushing",
-          "action": "add",
-          "team": "Athletic Park Dragons",
-          "position": "C"
-        },
-        {
-          "name": "Colton Cowser",
-          "action": "drop",
-          "team": "Athletic Park Dragons",
-          "position": "OF"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1777131333,
-      "players": [
-        {
-          "name": "Colin Rea",
-          "action": "add",
-          "team": "Hiroshima Radiation",
-          "position": "SP,RP"
-        },
-        {
-          "name": "John Schreiber",
-          "action": "drop",
-          "team": "Hiroshima Radiation",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1777131298,
-      "players": [
-        {
-          "name": "Matt Strahm",
-          "action": "add",
-          "team": "BaseballPro77",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2099,8 +2081,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-04-30T10:00:12.035248"
+  "saved_at": "2026-04-30T13:25:50.045160"
 }
