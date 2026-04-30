@@ -263,8 +263,8 @@
               "name": "Salvador Perez",
               "mlb_team": "KC",
               "position": "C,1B",
-              "stats": "R:4, HR:1, RBI:4, OBP:.276",
-              "score": 17.0
+              "stats": "R:4, HR:1, RBI:4, OBP:.281",
+              "score": 18.0
             },
             {
               "name": "Caleb Durbin",
@@ -274,17 +274,17 @@
               "score": 16.0
             },
             {
+              "name": "Jacob Wilson",
+              "mlb_team": "ATH",
+              "position": "SS",
+              "stats": "R:3, RBI:3, OBP:.476",
+              "score": 15.0
+            },
+            {
               "name": "Foster Griffin",
               "mlb_team": "WSH",
               "position": "SP,RP",
               "stats": "K:11, ERA:2.08, WHIP:0.77, QS:2, IP:13.0",
-              "score": 13.0
-            },
-            {
-              "name": "Jacob Wilson",
-              "mlb_team": "ATH",
-              "position": "SS",
-              "stats": "R:2, RBI:3, OBP:.444",
               "score": 13.0
             },
             {
@@ -318,18 +318,18 @@
           },
           "top_players": [
             {
+              "name": "Bobby Witt Jr.",
+              "mlb_team": "KC",
+              "position": "SS",
+              "stats": "R:5, HR:1, RBI:4, SB:1, OBP:.400",
+              "score": 22.0
+            },
+            {
               "name": "Mike Trout",
               "mlb_team": "LAA",
               "position": "OF",
               "stats": "R:5, HR:3, RBI:5, SB:2, OBP:.375",
               "score": 21.0
-            },
-            {
-              "name": "Bobby Witt Jr.",
-              "mlb_team": "KC",
-              "position": "SS",
-              "stats": "R:4, HR:1, RBI:4, SB:1, OBP:.406",
-              "score": 20.0
             },
             {
               "name": "Samuel Basallo",
@@ -346,6 +346,13 @@
               "score": 19.0
             },
             {
+              "name": "Ketel Marte",
+              "mlb_team": "AZ",
+              "position": "2B",
+              "stats": "R:3, HR:1, RBI:2, OBP:.379",
+              "score": 15.0
+            },
+            {
               "name": "Gavin Williams",
               "mlb_team": "CLE",
               "position": "SP",
@@ -358,13 +365,6 @@
               "position": "1B",
               "stats": "R:5, HR:1, RBI:4, OBP:.385",
               "score": 13.0
-            },
-            {
-              "name": "Ketel Marte",
-              "mlb_team": "AZ",
-              "position": "2B",
-              "stats": "R:2, RBI:1, OBP:.357",
-              "score": 11.0
             },
             {
               "name": "Jordan Walker",
@@ -531,8 +531,8 @@
               "name": "Nick Kurtz",
               "mlb_team": "ATH",
               "position": "1B",
-              "stats": "R:8, HR:3, RBI:3, SB:1, OBP:.419",
-              "score": 22.0
+              "stats": "R:8, HR:3, RBI:4, SB:1, OBP:.429",
+              "score": 24.0
             },
             {
               "name": "Seiya Suzuki",
@@ -545,8 +545,8 @@
               "name": "Shea Langeliers",
               "mlb_team": "ATH",
               "position": "C",
-              "stats": "R:4, HR:2, RBI:2, OBP:.300",
-              "score": 16.0
+              "stats": "R:4, HR:2, RBI:2, OBP:.324",
+              "score": 17.0
             },
             {
               "name": "Cole Ragans",
@@ -673,6 +673,13 @@
               "score": 16.0
             },
             {
+              "name": "Corbin Carroll",
+              "mlb_team": "AZ",
+              "position": "OF",
+              "stats": "R:4, HR:1, RBI:2, SB:2, OBP:.435",
+              "score": 15.0
+            },
+            {
               "name": "Zach Neto",
               "mlb_team": "LAA",
               "position": "SS",
@@ -685,13 +692,6 @@
               "position": "C",
               "stats": "R:3, HR:1, RBI:2, SB:1, OBP:.318",
               "score": 13.0
-            },
-            {
-              "name": "Corbin Carroll",
-              "mlb_team": "AZ",
-              "position": "OF",
-              "stats": "R:3, RBI:1, SB:2, OBP:.409",
-              "score": 11.0
             },
             {
               "name": "Emmet Sheehan",
@@ -972,7 +972,7 @@
               "name": "Ildemaro Vargas",
               "mlb_team": "AZ",
               "position": "1B,2B",
-              "stats": "R:5, HR:1, RBI:4, OBP:.412",
+              "stats": "R:5, HR:1, RBI:4, OBP:.389",
               "score": 17.0
             },
             {
@@ -1417,10 +1417,10 @@
               "score": 14.0
             },
             {
-              "name": "Fernando Tatis Jr.",
-              "mlb_team": "SD",
-              "position": "2B,OF",
-              "stats": "R:2, RBI:1, SB:1, OBP:.296",
+              "name": "Michael Wacha",
+              "mlb_team": "KC",
+              "position": "SP",
+              "stats": "K:10, ERA:8.71, WHIP:2.03, IP:10.1",
               "score": 10.0
             }
           ]
@@ -2093,8 +2093,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-04-30T02:11:53.901196"
+  "saved_at": "2026-04-30T06:23:06.898455"
 }
