@@ -452,8 +452,8 @@
               "name": "Dansby Swanson",
               "mlb_team": "CHC",
               "position": "SS",
-              "stats": "R:3, HR:2, RBI:9, OBP:.323",
-              "score": 19.0
+              "stats": "R:4, HR:2, RBI:10, OBP:.324",
+              "score": 22.0
             },
             {
               "name": "James Wood",
@@ -538,7 +538,7 @@
               "name": "Seiya Suzuki",
               "mlb_team": "CHC",
               "position": "OF",
-              "stats": "R:4, HR:3, RBI:5, OBP:.524",
+              "stats": "R:4, HR:3, RBI:5, OBP:.500",
               "score": 19.0
             },
             {
@@ -697,7 +697,7 @@
               "name": "Corbin Carroll",
               "mlb_team": "AZ",
               "position": "OF",
-              "stats": "R:3, RBI:1, SB:2, OBP:.444",
+              "stats": "R:3, RBI:1, SB:2, OBP:.364",
               "score": 10.0
             },
             {
@@ -780,18 +780,18 @@
               "score": 10.0
             },
             {
-              "name": "Jakob Marsee",
-              "mlb_team": "MIA",
-              "position": "OF",
-              "stats": "R:1, RBI:3, SB:2, OBP:.238",
-              "score": 9.0
-            },
-            {
               "name": "Bryan Reynolds",
               "mlb_team": "PIT",
               "position": "OF",
               "stats": "R:3, RBI:2, OBP:.370",
               "score": 8.0
+            },
+            {
+              "name": "Nick Martinez",
+              "mlb_team": "TB",
+              "position": "SP,RP",
+              "stats": "K:6, ERA:1.13, WHIP:0.75, QS:1, IP:8.0",
+              "score": 7.0
             }
           ]
         }
@@ -897,17 +897,17 @@
               "score": 16.0
             },
             {
+              "name": "Pete Crow-Armstrong",
+              "mlb_team": "CHC",
+              "position": "OF",
+              "stats": "R:4, RBI:2, SB:1, OBP:.367",
+              "score": 15.0
+            },
+            {
               "name": "Jo Adell",
               "mlb_team": "LAA",
               "position": "OF",
               "stats": "R:2, HR:1, RBI:4, SB:1, OBP:.259",
-              "score": 13.0
-            },
-            {
-              "name": "Pete Crow-Armstrong",
-              "mlb_team": "CHC",
-              "position": "OF",
-              "stats": "R:3, RBI:2, SB:1, OBP:.370",
               "score": 13.0
             },
             {
@@ -972,8 +972,8 @@
               "name": "Ildemaro Vargas",
               "mlb_team": "AZ",
               "position": "1B,2B",
-              "stats": "R:4, HR:1, RBI:4, OBP:.385",
-              "score": 14.0
+              "stats": "R:4, HR:1, RBI:5, OBP:.529",
+              "score": 19.0
             },
             {
               "name": "Masyn Winn",
@@ -1186,6 +1186,13 @@
               "score": 12.0
             },
             {
+              "name": "Carson Kelly",
+              "mlb_team": "CHC",
+              "position": "C",
+              "stats": "R:3, RBI:1, OBP:.455",
+              "score": 11.0
+            },
+            {
               "name": "Louis Varland",
               "mlb_team": "TOR",
               "position": "RP",
@@ -1193,25 +1200,18 @@
               "score": 11.0
             },
             {
+              "name": "Colin Rea",
+              "mlb_team": "CHC",
+              "position": "SP,RP",
+              "stats": "K:10, ERA:8.31, WHIP:2.08, IP:8.2",
+              "score": 10.0
+            },
+            {
               "name": "Tyler Soderstrom",
               "mlb_team": "ATH",
               "position": "1B,OF",
               "stats": "R:3, HR:1, RBI:2, OBP:.273",
               "score": 10.0
-            },
-            {
-              "name": "Nasim Nu\u00f1ez",
-              "mlb_team": "WSH",
-              "position": "2B,SS",
-              "stats": "RBI:4, SB:2, OBP:.333",
-              "score": 9.0
-            },
-            {
-              "name": "Chandler Simpson",
-              "mlb_team": "TB",
-              "position": "OF",
-              "stats": "R:3, RBI:2, SB:1, OBP:.273",
-              "score": 9.0
             }
           ]
         }
@@ -1296,17 +1296,17 @@
               "score": 17.0
             },
             {
+              "name": "Nico Hoerner",
+              "mlb_team": "CHC",
+              "position": "2B",
+              "stats": "R:4, HR:1, RBI:2, OBP:.343",
+              "score": 16.0
+            },
+            {
               "name": "Alex Bregman",
               "mlb_team": "CHC",
               "position": "3B",
               "stats": "R:3, HR:1, RBI:1, OBP:.412",
-              "score": 14.0
-            },
-            {
-              "name": "Nico Hoerner",
-              "mlb_team": "CHC",
-              "position": "2B",
-              "stats": "R:3, HR:1, RBI:2, OBP:.324",
               "score": 14.0
             },
             {
@@ -1650,6 +1650,72 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "add/drop",
+      "timestamp": 1777665477,
+      "players": [
+        {
+          "name": "Spencer Steer",
+          "action": "add",
+          "team": "Buttville Skidmarks",
+          "position": "1B,OF"
+        },
+        {
+          "name": "Jakob Marsee",
+          "action": "drop",
+          "team": "Buttville Skidmarks",
+          "position": "OF"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1777665314,
+      "players": [
+        {
+          "name": "Mike Burrows",
+          "action": "drop",
+          "team": "Buttville Skidmarks",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1777664373,
+      "players": [
+        {
+          "name": "Jake Bennett",
+          "action": "add",
+          "team": "Canberra Wombats",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1777664331,
+      "players": [
+        {
+          "name": "David Hamilton",
+          "action": "drop",
+          "team": "Canberra Wombats",
+          "position": "2B,3B,SS"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1777657207,
+      "players": [
+        {
+          "name": "Braydon Fisher",
+          "action": "drop",
+          "team": "Sugar Land Skeeters",
+          "position": "RP"
+        }
+      ]
+    },
     {
       "type": "add",
       "timestamp": 1777643868,
@@ -1997,84 +2063,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1777306782,
-      "players": [
-        {
-          "name": "Casey Schmitt",
-          "action": "add",
-          "team": "Benchwarmers",
-          "position": "1B,2B,3B"
-        },
-        {
-          "name": "Josh Naylor",
-          "action": "drop",
-          "team": "Benchwarmers",
-          "position": "1B"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1777306512,
-      "players": [
-        {
-          "name": "Max Scherzer",
-          "action": "drop",
-          "team": "Benchwarmers",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1777306286,
-      "players": [
-        {
-          "name": "Javier Assad",
-          "action": "drop",
-          "team": "Benchwarmers",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1777305785,
-      "players": [
-        {
-          "name": "Chase Dollander",
-          "action": "add",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "SP,RP"
-        },
-        {
-          "name": "Jack Flaherty",
-          "action": "drop",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1777305748,
-      "players": [
-        {
-          "name": "Justin Bruihl",
-          "action": "add",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "RP"
-        },
-        {
-          "name": "Justin Sterner",
-          "action": "drop",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2096,5 +2084,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-05-01T16:48:46.983471"
+  "saved_at": "2026-05-01T20:42:36.529606"
 }
