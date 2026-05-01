@@ -1651,6 +1651,18 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1777643868,
+      "players": [
+        {
+          "name": "Carlos Cortes",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "OF"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1777555894,
       "players": [
@@ -2063,18 +2075,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1777291230,
-      "players": [
-        {
-          "name": "Sam Bachman",
-          "action": "add",
-          "team": "Riverside Roughnecks",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2096,5 +2096,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-05-01T13:02:09.224166"
+  "saved_at": "2026-05-01T16:48:46.983471"
 }
