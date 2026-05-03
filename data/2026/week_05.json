@@ -1651,6 +1651,18 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1777810310,
+      "players": [
+        {
+          "name": "Nick Gonzales",
+          "action": "add",
+          "team": "Canberra Wombats",
+          "position": "2B,3B,SS"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1777755820,
       "players": [
@@ -2057,24 +2069,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1777360527,
-      "players": [
-        {
-          "name": "Spencer Torkelson",
-          "action": "add",
-          "team": "North Correa",
-          "position": "1B"
-        },
-        {
-          "name": "Josh Bell",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "1B"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2096,5 +2090,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-05-03T09:16:37.106972"
+  "saved_at": "2026-05-03T12:53:14.191792"
 }
