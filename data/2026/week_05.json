@@ -1124,7 +1124,7 @@
               "name": "Max Fried",
               "mlb_team": "NYY",
               "position": "SP",
-              "stats": "K:9, WHIP:0.63, QS:1, IP:8.0",
+              "stats": "K:9, WHIP:0.62, QS:1, IP:8.0",
               "score": 10.0
             },
             {
@@ -1651,6 +1651,48 @@
   },
   "transactions": [
     {
+      "type": "drop",
+      "timestamp": 1777821634,
+      "players": [
+        {
+          "name": "Chase Dollander",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1777819646,
+      "players": [
+        {
+          "name": "Jack Kochanowicz",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "SP"
+        },
+        {
+          "name": "Amed Rosario",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "2B,3B"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1777819588,
+      "players": [
+        {
+          "name": "Bryson Stott",
+          "action": "add",
+          "team": "North Correa",
+          "position": "2B,SS"
+        }
+      ]
+    },
+    {
       "type": "add",
       "timestamp": 1777810310,
       "players": [
@@ -2027,48 +2069,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1777476971,
-      "players": [
-        {
-          "name": "Daniel Schneemann",
-          "action": "add",
-          "team": "Sugar Land Skeeters",
-          "position": "2B,3B,SS,OF"
-        },
-        {
-          "name": "Brett Baty",
-          "action": "drop",
-          "team": "Sugar Land Skeeters",
-          "position": "1B,2B,3B,OF"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1777427246,
-      "players": [
-        {
-          "name": "Kody Funderburk",
-          "action": "drop",
-          "team": "Sugar Land Skeeters",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1777412681,
-      "players": [
-        {
-          "name": "Tyler Mahle",
-          "action": "add",
-          "team": "North Correa",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2090,5 +2090,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-05-03T12:53:14.191792"
+  "saved_at": "2026-05-03T16:39:50.991777"
 }
