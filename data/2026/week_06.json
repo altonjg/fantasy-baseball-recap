@@ -1651,6 +1651,24 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1777911335,
+      "players": [
+        {
+          "name": "Max Meyer",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        },
+        {
+          "name": "Rhett Lowder",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1777821634,
       "players": [
@@ -2051,24 +2069,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1777477021,
-      "players": [
-        {
-          "name": "Brady Singer",
-          "action": "add",
-          "team": "Sugar Land Skeeters",
-          "position": "SP"
-        },
-        {
-          "name": "Reynaldo L\u00f3pez",
-          "action": "drop",
-          "team": "Sugar Land Skeeters",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2087,8 +2087,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-05-04T13:26:52.799356"
+  "saved_at": "2026-05-04T17:24:40.715792"
 }
