@@ -79,6 +79,22 @@
       "12. Wisconsin Rapids Reapers | Got blown out 8-1 across nearly every pitching category, and dropping McGreevy without a clear replacement signals a front office without answers; this roster is trending the wrong direction | down",
       "13. Wonder Wharf Wonderdogs | The -0.62 luck delta is now a recurring identity crisis — Harris, Moniak, and solid pitching all week produced only a tie; Dollander's addition offers rotation hope but the losses are piling up in the standings | same",
       "14. Benchwarmers | A +1.33 luck delta is the most unsustainable number in the league; 3 HR, a 5.28 ERA, and dropping Scherzer and Assad leave this roster with very little margin for error going forward | same"
+    ],
+    "week_06": [
+      "1. Wonder Wharf Wonderdogs | The 8-2 demolition of the Skeeters — with a new season-record .419 OBP, 12 HR, and 38 runs — is the kind of statement week that reshapes a season; the luck pendulum has finally swung and this lineup looks dangerous | up",
+      "2. Sugar Land Skeeters | An 8-2 blowout loss is jarring for the preseason favorite, but Chase Burns' 16 Ks, Matt Olson's 3 HR, and a 7 SB week remind you the talent floor here is still elite; one bad week doesn't erase five strong ones | down",
+      "3. Wisconsin Rapids Reapers | Kazuma Okamoto's 4 HR and 11 RBI, Ben Rice's 3 HR, and 12 team homers — the most explosive offensive week in the league this week — fueled a 6-4 win over Canberra; this team has been sleeping and just woke up | up",
+      "4. BaseballPro77 | Ranger Suarez was borderline untouchable at 0.50 WHIP with 13 Ks over 12 IP, Jordan Walker drove in 11, and the 7-3 win was convincing; a Week 7 showdown with General Hospital is the biggest game of the season so far | same",
+      "5. Abbotsford-Colby Twins | Luzardo (1.35 ERA, 18 Ks), Clay Holmes (0.71 ERA), and 10 team quality starts are the most dominant pitching week any team has had all season; the 6-3 win was built on rotation excellence | up",
+      "6. Athletic Park Dragons | Aaron Judge's 3 HR and .556 OBP headlined a 7-2 win that showed what this lineup can do; Peter Lambert replaces Liberatore but the rotation still needs more before anyone trusts it in a playoff spot | same",
+      "7. Albuquerque Bombers | Byron Buxton's 5 HR week was a reminder of his ceiling and Zack Wheeler's 1.50 ERA kept things competitive, but the 7-3 loss to BaseballPro77 revealed real pitching depth concerns beyond Wheeler | down",
+      "8. General Hospital | The 6-3 loss stings despite 35 runs scored and a Vladdy-led offense generating real thunder; Max Fried was solid, but the team ERA of 3.76 and WHIP of 1.42 signal the rotation outside Fried isn't holding up its end — Jared Jones is a critical add | down",
+      "9. Riverside Roughnecks | Misiorowski's 0.38 WHIP, Langeliers' .542 OBP, and a disciplined 6-2 win over the Benchwarmers make this one of the quieter success stories of the week; the rotation is slowly becoming an asset | up",
+      "10. North Correa | Hancock and Sale each posted 1.29 ERAs in the same week and still lost 5-4 — that kind of rotation luck inversion is maddening; Bryson Stott and Luis Severino are smart adds but the offense needs to hit to support this staff | same",
+      "11. Hiroshima Radiation | A 5-4 squeaker over North Correa is a win, but 73 team strikeouts and only 3 HR and 14 RBI from the lineup is a troubling offensive imbalance; the pitching is real but this team cannot sustain without run support | same",
+      "12. Canberra Wombats | Pete Crow-Armstrong was excellent and Dylan Cease logged 12.2 innings, but 23 runs scored and a .316 OBP tell the story of an offense that simply isn't generating enough; Jake Bennett is a sensible rotation add but this team needs bats | down",
+      "13. Buttville Skidmarks | Bryan Reynolds' .469 OBP and Parker Messick's 15 Ks were bright spots in a 7-2 loss, but 22 runs scored and a 4.01 ERA say this roster is stuck in neutral; Spencer Steer is a useful add but not a difference-maker | same",
+      "14. Benchwarmers | The +1.58 luck delta is the loudest alarm bell in the league — Yesavage's 0.96 ERA was a genuine positive but one quality start, a 4.07 ERA, and an offense that scored 25 runs all week cannot sustain a winning record | same"
     ]
   },
   "weekly_points": {
@@ -161,6 +177,22 @@
       "Hiroshima Radiation": 5.0,
       "North Correa": 4.0,
       "Sugar Land Skeeters": 5.0
+    },
+    "week_06": {
+      "Albuquerque Bombers": 3.0,
+      "BaseballPro77": 7.0,
+      "Abbotsford-Colby Twins": 6.0,
+      "General Hospital": 3.0,
+      "Athletic Park Dragons": 7.0,
+      "Buttville Skidmarks": 2.0,
+      "Benchwarmers": 2.0,
+      "Riverside Roughnecks": 6.0,
+      "Canberra Wombats": 4.0,
+      "Wisconsin Rapids Reapers": 6.0,
+      "Hiroshima Radiation": 5.0,
+      "North Correa": 4.0,
+      "Sugar Land Skeeters": 2.0,
+      "Wonder Wharf Wonderdogs": 8.0
     }
   },
   "manager_spotlight_rotation": [
