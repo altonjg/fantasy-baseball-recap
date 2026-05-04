@@ -321,7 +321,7 @@
               "name": "JJ Wetherholt",
               "mlb_team": "STL",
               "position": "2B,3B,SS",
-              "stats": "R:6, HR:2, RBI:3, OBP:.313",
+              "stats": "R:6, HR:2, RBI:3, OBP:.312",
               "score": 18.0
             },
             {
@@ -1651,6 +1651,54 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1777921555,
+      "players": [
+        {
+          "name": "Trevor McDonald",
+          "action": "add",
+          "team": "Hiroshima Radiation",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1777919976,
+      "players": [
+        {
+          "name": "Ryan Pepiot",
+          "action": "drop",
+          "team": "Abbotsford-Colby Twins",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1777919332,
+      "players": [
+        {
+          "name": "Brandon Valenzuela",
+          "action": "add",
+          "team": "Benchwarmers",
+          "position": "C,1B"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1777919320,
+      "players": [
+        {
+          "name": "Jesus Rodriguez",
+          "action": "add",
+          "team": "Benchwarmers",
+          "position": "C"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1777911335,
       "players": [
@@ -2015,60 +2063,6 @@
           "position": "Util"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1777483932,
-      "players": [
-        {
-          "name": "Jared Jones",
-          "action": "add",
-          "team": "General Hospital",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1777482348,
-      "players": [
-        {
-          "name": "Janson Junk",
-          "action": "add",
-          "team": "Sugar Land Skeeters",
-          "position": "SP,RP"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1777482153,
-      "players": [
-        {
-          "name": "Jackson Holliday",
-          "action": "drop",
-          "team": "Sugar Land Skeeters",
-          "position": "2B,SS"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1777480340,
-      "players": [
-        {
-          "name": "Peter Lambert",
-          "action": "add",
-          "team": "Athletic Park Dragons",
-          "position": "SP"
-        },
-        {
-          "name": "Matthew Liberatore",
-          "action": "drop",
-          "team": "Athletic Park Dragons",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2087,8 +2081,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-05-04T17:24:40.715792"
+  "saved_at": "2026-05-04T21:01:07.747289"
 }
