@@ -1652,6 +1652,18 @@
   "transactions": [
     {
       "type": "add",
+      "timestamp": 1777980931,
+      "players": [
+        {
+          "name": "Erick Fedde",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
       "timestamp": 1777935238,
       "players": [
         {
@@ -2045,24 +2057,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1777487611,
-      "players": [
-        {
-          "name": "Jung Hoo Lee",
-          "action": "add",
-          "team": "Abbotsford-Colby Twins",
-          "position": "OF"
-        },
-        {
-          "name": "Justin Crawford",
-          "action": "drop",
-          "team": "Abbotsford-Colby Twins",
-          "position": "OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2081,8 +2075,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-05-05T09:56:08.773658"
+  "saved_at": "2026-05-05T13:21:21.788476"
 }
