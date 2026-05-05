@@ -321,7 +321,7 @@
               "name": "JJ Wetherholt",
               "mlb_team": "STL",
               "position": "2B,3B,SS",
-              "stats": "R:6, HR:2, RBI:3, OBP:.313",
+              "stats": "R:6, HR:2, RBI:3, OBP:.312",
               "score": 18.0
             },
             {
@@ -2078,5 +2078,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-05-05T17:17:04.876897"
+  "saved_at": "2026-05-05T20:56:32.440013"
 }
