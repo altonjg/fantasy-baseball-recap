@@ -36,18 +36,18 @@
               "score": 30.0
             },
             {
+              "name": "Brice Turang",
+              "mlb_team": "MIL",
+              "position": "2B",
+              "stats": "R:8, RBI:2, OBP:.625",
+              "score": 19.0
+            },
+            {
               "name": "Ivan Herrera",
               "mlb_team": "STL",
               "position": "C",
               "stats": "R:10, RBI:1, SB:1, OBP:.469",
               "score": 19.0
-            },
-            {
-              "name": "Brice Turang",
-              "mlb_team": "MIL",
-              "position": "2B",
-              "stats": "R:7, RBI:2, OBP:.609",
-              "score": 17.0
             },
             {
               "name": "Bo Bichette",
@@ -263,7 +263,7 @@
               "name": "Jonathan Aranda",
               "mlb_team": "TB",
               "position": "1B",
-              "stats": "R:1, HR:1, RBI:5, OBP:.471",
+              "stats": "R:1, HR:1, RBI:5, OBP:.500",
               "score": 15.0
             },
             {
@@ -321,7 +321,7 @@
               "name": "JJ Wetherholt",
               "mlb_team": "STL",
               "position": "2B,3B,SS",
-              "stats": "R:6, HR:2, RBI:3, OBP:.313",
+              "stats": "R:6, HR:2, RBI:3, OBP:.312",
               "score": 18.0
             },
             {
@@ -335,7 +335,7 @@
               "name": "Vladimir Guerrero Jr.",
               "mlb_team": "TOR",
               "position": "1B",
-              "stats": "R:6, RBI:1, OBP:.400",
+              "stats": "R:6, RBI:1, OBP:.387",
               "score": 15.0
             },
             {
@@ -573,7 +573,7 @@
               "name": "Junior Caminero",
               "mlb_team": "TB",
               "position": "3B",
-              "stats": "R:3, HR:1, RBI:1, OBP:.429",
+              "stats": "R:3, HR:1, RBI:1, OBP:.409",
               "score": 10.0
             },
             {
@@ -951,8 +951,8 @@
               "name": "Kazuma Okamoto",
               "mlb_team": "TOR",
               "position": "1B,3B",
-              "stats": "R:6, HR:4, RBI:11, OBP:.333",
-              "score": 28.0
+              "stats": "R:6, HR:4, RBI:11, OBP:.355",
+              "score": 29.0
             },
             {
               "name": "Ben Rice",
@@ -1093,13 +1093,6 @@
               "score": 13.0
             },
             {
-              "name": "Carlos Correa",
-              "mlb_team": "HOU",
-              "position": "3B,SS",
-              "stats": "R:2, HR:1, RBI:2, OBP:.400",
-              "score": 12.0
-            },
-            {
               "name": "Bryce Harper",
               "mlb_team": "PHI",
               "position": "1B",
@@ -1133,6 +1126,13 @@
               "position": "OF",
               "stats": "R:1, RBI:1, OBP:.417",
               "score": 9.0
+            },
+            {
+              "name": "Nathan Eovaldi",
+              "mlb_team": "TEX",
+              "position": "SP",
+              "stats": "K:7, WHIP:0.71, QS:1, IP:7.0",
+              "score": 8.0
             }
           ]
         },
@@ -1172,17 +1172,17 @@
               "score": 15.0
             },
             {
+              "name": "Jake Bauers",
+              "mlb_team": "MIL",
+              "position": "1B,OF",
+              "stats": "R:4, RBI:5, OBP:.345",
+              "score": 14.0
+            },
+            {
               "name": "Chris Sale",
               "mlb_team": "ATL",
               "position": "SP",
               "stats": "K:11, ERA:1.29, WHIP:0.86, QS:1, IP:7.0",
-              "score": 12.0
-            },
-            {
-              "name": "Jake Bauers",
-              "mlb_team": "MIL",
-              "position": "1B,OF",
-              "stats": "R:4, RBI:4, OBP:.321",
               "score": 12.0
             },
             {
@@ -1371,7 +1371,7 @@
               "name": "William Contreras",
               "mlb_team": "MIL",
               "position": "C",
-              "stats": "R:7, HR:1, RBI:9, OBP:.500",
+              "stats": "R:7, HR:1, RBI:9, OBP:.517",
               "score": 28.0
             },
             {
@@ -1650,6 +1650,18 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "drop",
+      "timestamp": 1778085692,
+      "players": [
+        {
+          "name": "Carlos Correa",
+          "action": "drop",
+          "team": "Hiroshima Radiation",
+          "position": "3B,SS"
+        }
+      ]
+    },
     {
       "type": "drop",
       "timestamp": 1778014998,
@@ -2039,18 +2051,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1777548530,
-      "players": [
-        {
-          "name": "Brooks Lee",
-          "action": "add",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "2B,3B,SS"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2069,8 +2069,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-05-06T13:49:51.650064"
+  "saved_at": "2026-05-06T17:24:38.463151"
 }
