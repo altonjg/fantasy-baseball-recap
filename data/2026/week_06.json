@@ -32,7 +32,7 @@
               "name": "Byron Buxton",
               "mlb_team": "MIN",
               "position": "OF",
-              "stats": "R:6, HR:5, RBI:7, SB:2, OBP:.406",
+              "stats": "R:6, HR:5, RBI:7, SB:2, OBP:.382",
               "score": 30.0
             },
             {
@@ -60,7 +60,7 @@
               "name": "Josh Jung",
               "mlb_team": "TEX",
               "position": "3B",
-              "stats": "RBI:5, OBP:.462",
+              "stats": "RBI:5, OBP:.464",
               "score": 14.0
             },
             {
@@ -291,7 +291,7 @@
               "name": "Jazz Chisholm Jr.",
               "mlb_team": "NYY",
               "position": "2B,3B",
-              "stats": "R:2, HR:1, RBI:3, OBP:.280",
+              "stats": "R:2, HR:1, RBI:3, OBP:.269",
               "score": 10.0
             }
           ]
@@ -321,7 +321,7 @@
               "name": "JJ Wetherholt",
               "mlb_team": "STL",
               "position": "2B,3B,SS",
-              "stats": "R:6, HR:2, RBI:3, OBP:.313",
+              "stats": "R:6, HR:2, RBI:3, OBP:.312",
               "score": 18.0
             },
             {
@@ -452,15 +452,15 @@
               "name": "Aaron Judge",
               "mlb_team": "NYY",
               "position": "OF",
-              "stats": "R:8, HR:3, RBI:5, OBP:.556",
+              "stats": "R:8, HR:3, RBI:5, OBP:.517",
               "score": 25.0
             },
             {
               "name": "Ryan Jeffers",
               "mlb_team": "MIN",
               "position": "C",
-              "stats": "R:5, HR:1, RBI:5, SB:1, OBP:.364",
-              "score": 19.0
+              "stats": "R:6, HR:1, RBI:5, SB:1, OBP:.391",
+              "score": 20.0
             },
             {
               "name": "Willson Contreras",
@@ -494,7 +494,7 @@
               "name": "James Wood",
               "mlb_team": "WSH",
               "position": "OF",
-              "stats": "R:3, RBI:3, OBP:.269",
+              "stats": "R:3, RBI:3, OBP:.296",
               "score": 10.0
             },
             {
@@ -659,18 +659,18 @@
           },
           "top_players": [
             {
+              "name": "Cody Bellinger",
+              "mlb_team": "NYY",
+              "position": "OF",
+              "stats": "R:3, HR:2, RBI:7, SB:1, OBP:.429",
+              "score": 23.0
+            },
+            {
               "name": "Julio Rodr\u00edguez",
               "mlb_team": "SEA",
               "position": "OF",
               "stats": "R:5, HR:2, RBI:6, OBP:.409",
               "score": 22.0
-            },
-            {
-              "name": "Cody Bellinger",
-              "mlb_team": "NYY",
-              "position": "OF",
-              "stats": "R:3, HR:2, RBI:6, SB:1, OBP:.423",
-              "score": 21.0
             },
             {
               "name": "Isaac Paredes",
@@ -1089,8 +1089,8 @@
               "name": "Luke Keaschall",
               "mlb_team": "MIN",
               "position": "2B",
-              "stats": "R:2, RBI:3, SB:1, OBP:.379",
-              "score": 13.0
+              "stats": "R:3, RBI:3, SB:1, OBP:.400",
+              "score": 15.0
             },
             {
               "name": "Bryce Harper",
@@ -1299,7 +1299,7 @@
               "name": "CJ Abrams",
               "mlb_team": "WSH",
               "position": "SS",
-              "stats": "R:4, HR:1, RBI:6, SB:1, OBP:.520",
+              "stats": "R:4, HR:1, RBI:6, SB:1, OBP:.500",
               "score": 21.0
             },
             {
@@ -1341,7 +1341,7 @@
               "name": "Trent Grisham",
               "mlb_team": "NYY",
               "position": "OF",
-              "stats": "R:3, HR:1, RBI:3, OBP:.263",
+              "stats": "R:3, HR:1, RBI:3, OBP:.250",
               "score": 10.0
             }
           ]
@@ -1650,6 +1650,24 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "add/drop",
+      "timestamp": 1778164839,
+      "players": [
+        {
+          "name": "Robby Snelling",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        },
+        {
+          "name": "Noah Schultz",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        }
+      ]
+    },
     {
       "type": "add",
       "timestamp": 1778115290,
@@ -2039,18 +2057,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1777549884,
-      "players": [
-        {
-          "name": "Michael Lorenzen (Pitcher)",
-          "action": "add",
-          "team": "Riverside Roughnecks",
-          "position": "SP,RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2072,5 +2078,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-05-07T13:47:33.013889"
+  "saved_at": "2026-05-07T17:42:52.730269"
 }
