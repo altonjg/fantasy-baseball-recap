@@ -321,7 +321,7 @@
               "name": "JJ Wetherholt",
               "mlb_team": "STL",
               "position": "2B,3B,SS",
-              "stats": "R:6, HR:2, RBI:3, OBP:.313",
+              "stats": "R:6, HR:2, RBI:3, OBP:.312",
               "score": 18.0
             },
             {
@@ -1651,6 +1651,18 @@
   },
   "transactions": [
     {
+      "type": "drop",
+      "timestamp": 1778268915,
+      "players": [
+        {
+          "name": "Matthew Liberatore",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP"
+        }
+      ]
+    },
+    {
       "type": "add",
       "timestamp": 1778252677,
       "players": [
@@ -2033,18 +2045,6 @@
           "position": "OF"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1777665314,
-      "players": [
-        {
-          "name": "Mike Burrows",
-          "action": "drop",
-          "team": "Buttville Skidmarks",
-          "position": "SP,RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2063,8 +2063,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-05-08T17:05:33.394516"
+  "saved_at": "2026-05-08T20:51:46.625225"
 }
