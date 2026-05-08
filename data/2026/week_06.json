@@ -556,13 +556,6 @@
               "score": 11.0
             },
             {
-              "name": "Cade Cavalli",
-              "mlb_team": "WSH",
-              "position": "SP",
-              "stats": "K:10, ERA:3.00, WHIP:1.67, QS:1, IP:6.0",
-              "score": 11.0
-            },
-            {
               "name": "Chase DeLauter",
               "mlb_team": "CLE",
               "position": "OF",
@@ -582,6 +575,13 @@
               "position": "OF",
               "stats": "R:1, RBI:3, OBP:.200",
               "score": 10.0
+            },
+            {
+              "name": "Liam Hicks",
+              "mlb_team": "MIA",
+              "position": "C,1B",
+              "stats": "R:1, HR:1, RBI:4, OBP:.333",
+              "score": 8.0
             }
           ]
         }
@@ -1651,6 +1651,18 @@
   },
   "transactions": [
     {
+      "type": "drop",
+      "timestamp": 1778241247,
+      "players": [
+        {
+          "name": "Cade Cavalli",
+          "action": "drop",
+          "team": "Buttville Skidmarks",
+          "position": "SP"
+        }
+      ]
+    },
+    {
       "type": "add",
       "timestamp": 1778196197,
       "players": [
@@ -2033,18 +2045,6 @@
           "position": "2B,3B,SS"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1777657207,
-      "players": [
-        {
-          "name": "Braydon Fisher",
-          "action": "drop",
-          "team": "Sugar Land Skeeters",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2063,8 +2063,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-05-08T09:08:34.889348"
+  "saved_at": "2026-05-08T13:14:05.751267"
 }
