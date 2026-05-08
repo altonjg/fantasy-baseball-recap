@@ -1651,6 +1651,30 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1778252677,
+      "players": [
+        {
+          "name": "Braydon Fisher",
+          "action": "add",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1778246683,
+      "players": [
+        {
+          "name": "Jake Bennett",
+          "action": "drop",
+          "team": "Canberra Wombats",
+          "position": "SP"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1778241247,
       "players": [
@@ -2021,30 +2045,6 @@
           "position": "SP,RP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1777664373,
-      "players": [
-        {
-          "name": "Jake Bennett",
-          "action": "add",
-          "team": "Canberra Wombats",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1777664331,
-      "players": [
-        {
-          "name": "David Hamilton",
-          "action": "drop",
-          "team": "Canberra Wombats",
-          "position": "2B,3B,SS"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2063,8 +2063,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-05-08T13:14:05.751267"
+  "saved_at": "2026-05-08T17:05:33.394516"
 }
