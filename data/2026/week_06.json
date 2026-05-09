@@ -321,7 +321,7 @@
               "name": "JJ Wetherholt",
               "mlb_team": "STL",
               "position": "2B,3B,SS",
-              "stats": "R:6, HR:2, RBI:3, OBP:.313",
+              "stats": "R:6, HR:2, RBI:3, OBP:.312",
               "score": 18.0
             },
             {
@@ -1651,6 +1651,18 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1778337676,
+      "players": [
+        {
+          "name": "Travis Bazzana",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "2B"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1778268915,
       "players": [
@@ -2027,24 +2039,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1777665477,
-      "players": [
-        {
-          "name": "Spencer Steer",
-          "action": "add",
-          "team": "Buttville Skidmarks",
-          "position": "1B,OF"
-        },
-        {
-          "name": "Jakob Marsee",
-          "action": "drop",
-          "team": "Buttville Skidmarks",
-          "position": "OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2063,8 +2057,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-05-09T12:59:26.095121"
+  "saved_at": "2026-05-09T16:44:07.493693"
 }
