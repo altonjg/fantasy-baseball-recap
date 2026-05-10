@@ -1651,6 +1651,60 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1778417680,
+      "players": [
+        {
+          "name": "Daniel Lynch IV",
+          "action": "add",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "RP"
+        },
+        {
+          "name": "Drew Pomeranz",
+          "action": "drop",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1778413714,
+      "players": [
+        {
+          "name": "Chris Bassitt",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "SP"
+        },
+        {
+          "name": "Zack Littell",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1778407525,
+      "players": [
+        {
+          "name": "Tyler Mahle",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP"
+        },
+        {
+          "name": "Justin Bruihl",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "RP"
+        }
+      ]
+    },
+    {
       "type": "add",
       "timestamp": 1778337676,
       "players": [
@@ -1991,54 +2045,6 @@
           "position": "2B,3B,SS"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1777755820,
-      "players": [
-        {
-          "name": "Brooks Raley",
-          "action": "add",
-          "team": "BaseballPro77",
-          "position": "RP"
-        },
-        {
-          "name": "Will Vest",
-          "action": "drop",
-          "team": "BaseballPro77",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1777741964,
-      "players": [
-        {
-          "name": "Michael McGreevy",
-          "action": "add",
-          "team": "Sugar Land Skeeters",
-          "position": "SP"
-        },
-        {
-          "name": "Brady Singer",
-          "action": "drop",
-          "team": "Sugar Land Skeeters",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1777671463,
-      "players": [
-        {
-          "name": "Tyler Kinley",
-          "action": "add",
-          "team": "Sugar Land Skeeters",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2057,8 +2063,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-05-10T09:24:09.775617"
+  "saved_at": "2026-05-10T13:01:25.324276"
 }
