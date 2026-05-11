@@ -1089,7 +1089,7 @@
               "name": "Jacob deGrom",
               "mlb_team": "TEX",
               "position": "SP",
-              "stats": "K:17, ERA:4.05, WHIP:0.83, QS:1, IP:13.1",
+              "stats": "K:17, ERA:4.05, WHIP:0.82, QS:1, IP:13.1",
               "score": 18.0
             },
             {
@@ -1327,7 +1327,7 @@
               "name": "Nathan Eovaldi",
               "mlb_team": "TEX",
               "position": "SP",
-              "stats": "K:8, ERA:1.13, WHIP:0.38, QS:1, IP:8.0",
+              "stats": "K:8, ERA:1.12, WHIP:0.38, QS:1, IP:8.0",
               "score": 9.0
             },
             {
@@ -2072,5 +2072,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-05-11T17:50:12.363721"
+  "saved_at": "2026-05-11T21:11:48.252929"
 }
