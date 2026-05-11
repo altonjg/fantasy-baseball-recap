@@ -15,9 +15,9 @@
     "week": 6
   },
   "most_sb": {
-    "value": 11.0,
+    "value": 12.0,
     "team": "North Correa",
-    "week": 3
+    "week": 7
   },
   "most_rbi": {
     "value": 39.0,
@@ -30,8 +30,8 @@
     "week": 2
   },
   "lowest_era_winner": {
-    "value": 2.1,
-    "team": "General Hospital",
-    "week": 2
+    "value": 1.71,
+    "team": "Wisconsin Rapids Reapers",
+    "week": 7
   }
 }

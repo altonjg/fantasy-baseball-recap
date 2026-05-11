@@ -1651,6 +1651,30 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1778499338,
+      "players": [
+        {
+          "name": "Roki Sasaki",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1778499301,
+      "players": [
+        {
+          "name": "Shawn Armstrong",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "RP"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1778448805,
       "players": [
@@ -2027,30 +2051,6 @@
           "position": "SP,RP"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1777919976,
-      "players": [
-        {
-          "name": "Ryan Pepiot",
-          "action": "drop",
-          "team": "Abbotsford-Colby Twins",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1777919332,
-      "players": [
-        {
-          "name": "Brandon Valenzuela",
-          "action": "add",
-          "team": "Benchwarmers",
-          "position": "C,1B"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2069,8 +2069,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-05-11T10:55:18.429884"
+  "saved_at": "2026-05-11T13:49:02.670387"
 }
