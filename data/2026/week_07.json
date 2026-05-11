@@ -1,0 +1,2076 @@
+{
+  "league_name": "MillerLite\u00ae BeerLeagueBaseball",
+  "week": 7,
+  "end_week": 25,
+  "playoff_start_week": 23,
+  "matchups": [
+    {
+      "week": 7,
+      "teams": [
+        {
+          "name": "Albuquerque Bombers",
+          "team_key": "469.l.10470.t.1",
+          "manager": "Zach",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/f8c6fb771026d77f358e549f60074d0af11e9ed22d2d40d7685d5fb5b530b13e.png",
+          "points": 5.0,
+          "category_stats": {
+            "H/AB": "64/224",
+            "R": "33",
+            "HR": "11",
+            "RBI": "28",
+            "SB": "8",
+            "OBP": ".348",
+            "IP": "57.2",
+            "K": "58",
+            "ERA": "5.15",
+            "WHIP": "1.47",
+            "QS": "2",
+            "NSVH": "4"
+          },
+          "top_players": [
+            {
+              "name": "Byron Buxton",
+              "mlb_team": "MIN",
+              "position": "OF",
+              "stats": "R:5, HR:3, RBI:7, SB:1, OBP:.310",
+              "score": 24.0
+            },
+            {
+              "name": "Josh Naylor",
+              "mlb_team": "SEA",
+              "position": "1B",
+              "stats": "R:4, HR:1, RBI:3, SB:3, OBP:.500",
+              "score": 22.0
+            },
+            {
+              "name": "Brice Turang",
+              "mlb_team": "MIL",
+              "position": "2B",
+              "stats": "R:4, HR:2, RBI:3, SB:1, OBP:.391",
+              "score": 17.0
+            },
+            {
+              "name": "Josh Jung",
+              "mlb_team": "TEX",
+              "position": "3B",
+              "stats": "R:5, HR:1, RBI:1, OBP:.385",
+              "score": 16.0
+            },
+            {
+              "name": "Ivan Herrera",
+              "mlb_team": "STL",
+              "position": "C",
+              "stats": "R:1, RBI:4, OBP:.385",
+              "score": 14.0
+            },
+            {
+              "name": "Konnor Griffin",
+              "mlb_team": "PIT",
+              "position": "SS,OF",
+              "stats": "R:2, HR:1, RBI:3, SB:2, OBP:.308",
+              "score": 13.0
+            },
+            {
+              "name": "Freddie Freeman",
+              "mlb_team": "LAD",
+              "position": "1B",
+              "stats": "R:2, HR:1, RBI:4, OBP:.333",
+              "score": 12.0
+            },
+            {
+              "name": "Jac Caglianone",
+              "mlb_team": "KC",
+              "position": "1B,OF",
+              "stats": "R:4, HR:1, RBI:1, OBP:.250",
+              "score": 11.0
+            }
+          ]
+        },
+        {
+          "name": "Athletic Park Dragons",
+          "team_key": "469.l.10470.t.3",
+          "manager": "James Mazur",
+          "logo_url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_3_w.png",
+          "points": 5.0,
+          "category_stats": {
+            "H/AB": "45/200",
+            "R": "26",
+            "HR": "7",
+            "RBI": "24",
+            "SB": "7",
+            "OBP": ".316",
+            "IP": "64.2",
+            "K": "66",
+            "ERA": "3.90",
+            "WHIP": "1.21",
+            "QS": "5",
+            "NSVH": "6"
+          },
+          "top_players": [
+            {
+              "name": "Aaron Judge",
+              "mlb_team": "NYY",
+              "position": "OF",
+              "stats": "R:5, HR:3, RBI:7, OBP:.419",
+              "score": 22.0
+            },
+            {
+              "name": "Cristopher S\u00e1nchez",
+              "mlb_team": "PHI",
+              "position": "SP",
+              "stats": "K:17, WHIP:0.67, QS:2, IP:15.0",
+              "score": 19.0
+            },
+            {
+              "name": "James Wood",
+              "mlb_team": "WSH",
+              "position": "OF",
+              "stats": "R:5, HR:1, RBI:4, SB:2, OBP:.444",
+              "score": 19.0
+            },
+            {
+              "name": "Jarren Duran",
+              "mlb_team": "BOS",
+              "position": "OF",
+              "stats": "R:2, HR:1, RBI:3, SB:3, OBP:.286",
+              "score": 15.0
+            },
+            {
+              "name": "Jos\u00e9 Soriano",
+              "mlb_team": "LAA",
+              "position": "SP",
+              "stats": "K:12, ERA:4.63, WHIP:1.46, QS:1, IP:11.2",
+              "score": 13.0
+            },
+            {
+              "name": "Ryan Jeffers",
+              "mlb_team": "MIN",
+              "position": "C",
+              "stats": "R:4, HR:1, RBI:2, OBP:.450",
+              "score": 13.0
+            },
+            {
+              "name": "Dansby Swanson",
+              "mlb_team": "CHC",
+              "position": "SS",
+              "stats": "R:2, RBI:1, SB:1, OBP:.185",
+              "score": 8.0
+            },
+            {
+              "name": "Willson Contreras",
+              "mlb_team": "BOS",
+              "position": "1B",
+              "stats": "R:2, HR:1, RBI:2, OBP:.333",
+              "score": 7.0
+            }
+          ]
+        }
+      ],
+      "winner_key": null,
+      "is_tied": true,
+      "is_playoffs": false,
+      "is_consolation": false,
+      "is_championship": false,
+      "stat_winners": [
+        {
+          "stat_id": "7",
+          "is_tied": false
+        },
+        {
+          "stat_id": "12",
+          "is_tied": false
+        },
+        {
+          "stat_id": "13",
+          "is_tied": false
+        },
+        {
+          "stat_id": "16",
+          "is_tied": false
+        },
+        {
+          "stat_id": "4",
+          "is_tied": false
+        },
+        {
+          "stat_id": "42",
+          "is_tied": false
+        },
+        {
+          "stat_id": "26",
+          "is_tied": false
+        },
+        {
+          "stat_id": "27",
+          "is_tied": false
+        },
+        {
+          "stat_id": "83",
+          "is_tied": false
+        },
+        {
+          "stat_id": "90",
+          "is_tied": false
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "teams": [
+        {
+          "name": "Abbotsford-Colby Twins",
+          "team_key": "469.l.10470.t.2",
+          "manager": "Dylan",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/1e3ff5f937d5cf5c66d8a78b44dd66603689a7bdcd0101d8d7921ec34b20dafa.png",
+          "points": 3.0,
+          "category_stats": {
+            "H/AB": "44/201",
+            "R": "20",
+            "HR": "4",
+            "RBI": "19",
+            "SB": "9",
+            "OBP": ".298",
+            "IP": "48.0",
+            "K": "50",
+            "ERA": "4.50",
+            "WHIP": "1.29",
+            "QS": "3",
+            "NSVH": "0"
+          },
+          "top_players": [
+            {
+              "name": "Jos\u00e9 Ram\u00edrez",
+              "mlb_team": "CLE",
+              "position": "3B",
+              "stats": "R:5, RBI:2, SB:3, OBP:.419",
+              "score": 16.0
+            },
+            {
+              "name": "Jacob Wilson",
+              "mlb_team": "ATH",
+              "position": "SS",
+              "stats": "R:2, HR:1, RBI:4, SB:1, OBP:.304",
+              "score": 14.0
+            },
+            {
+              "name": "Jazz Chisholm Jr.",
+              "mlb_team": "NYY",
+              "position": "2B,3B",
+              "stats": "R:3, HR:1, RBI:2, SB:2, OBP:.241",
+              "score": 13.0
+            },
+            {
+              "name": "Alec Burleson",
+              "mlb_team": "STL",
+              "position": "1B,OF",
+              "stats": "R:3, HR:1, RBI:2, SB:1, OBP:.231",
+              "score": 12.0
+            },
+            {
+              "name": "Foster Griffin",
+              "mlb_team": "WSH",
+              "position": "SP,RP",
+              "stats": "K:9, ERA:1.29, WHIP:0.71, QS:1, IP:7.0",
+              "score": 10.0
+            },
+            {
+              "name": "Yordan Alvarez",
+              "mlb_team": "HOU",
+              "position": "OF",
+              "stats": "R:2, HR:1, RBI:2, OBP:.364",
+              "score": 10.0
+            },
+            {
+              "name": "Jonathan Aranda",
+              "mlb_team": "TB",
+              "position": "1B",
+              "stats": "R:2, RBI:1, OBP:.476",
+              "score": 9.0
+            },
+            {
+              "name": "Connelly Early",
+              "mlb_team": "BOS",
+              "position": "SP",
+              "stats": "K:8, WHIP:0.71, QS:1, IP:7.0",
+              "score": 9.0
+            }
+          ]
+        },
+        {
+          "name": "Riverside Roughnecks",
+          "team_key": "469.l.10470.t.11",
+          "manager": "Zach",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/4efb06d6fb742e3c0b95e024b2d4ce139c1ca3bf9ea361da488d02aaed36bc47.jpg",
+          "points": 7.0,
+          "category_stats": {
+            "H/AB": "54/210",
+            "R": "29",
+            "HR": "7",
+            "RBI": "24",
+            "SB": "5",
+            "OBP": ".338",
+            "IP": "62.2",
+            "K": "58",
+            "ERA": "4.16",
+            "WHIP": "1.29",
+            "QS": "2",
+            "NSVH": "5"
+          },
+          "top_players": [
+            {
+              "name": "Otto Lopez",
+              "mlb_team": "MIA",
+              "position": "2B,SS",
+              "stats": "R:4, HR:1, RBI:2, OBP:.357",
+              "score": 17.0
+            },
+            {
+              "name": "Seiya Suzuki",
+              "mlb_team": "CHC",
+              "position": "OF",
+              "stats": "R:4, HR:2, RBI:6, OBP:.407",
+              "score": 17.0
+            },
+            {
+              "name": "Xavier Edwards",
+              "mlb_team": "MIA",
+              "position": "2B,SS",
+              "stats": "R:4, HR:2, RBI:3, OBP:.333",
+              "score": 15.0
+            },
+            {
+              "name": "Jackson Merrill",
+              "mlb_team": "SD",
+              "position": "OF",
+              "stats": "R:3, HR:1, RBI:3, SB:1, OBP:.346",
+              "score": 15.0
+            },
+            {
+              "name": "Tanner Bibee",
+              "mlb_team": "CLE",
+              "position": "SP",
+              "stats": "K:13, ERA:4.50, WHIP:1.00, QS:1, IP:10.0",
+              "score": 14.0
+            },
+            {
+              "name": "Nick Kurtz",
+              "mlb_team": "ATH",
+              "position": "1B",
+              "stats": "R:4, RBI:3, SB:1, OBP:.421",
+              "score": 13.0
+            },
+            {
+              "name": "Jacob Misiorowski",
+              "mlb_team": "MIL",
+              "position": "SP",
+              "stats": "K:11, WHIP:0.67, QS:1, IP:6.0",
+              "score": 12.0
+            },
+            {
+              "name": "Jackson Chourio",
+              "mlb_team": "MIL",
+              "position": "OF",
+              "stats": "R:1, RBI:2, OBP:.450",
+              "score": 10.0
+            }
+          ]
+        }
+      ],
+      "winner_key": "469.l.10470.t.11",
+      "is_tied": false,
+      "is_playoffs": false,
+      "is_consolation": false,
+      "is_championship": false,
+      "stat_winners": [
+        {
+          "stat_id": "7",
+          "is_tied": false
+        },
+        {
+          "stat_id": "12",
+          "is_tied": false
+        },
+        {
+          "stat_id": "13",
+          "is_tied": false
+        },
+        {
+          "stat_id": "16",
+          "is_tied": false
+        },
+        {
+          "stat_id": "4",
+          "is_tied": false
+        },
+        {
+          "stat_id": "42",
+          "is_tied": false
+        },
+        {
+          "stat_id": "26",
+          "is_tied": false
+        },
+        {
+          "stat_id": "27",
+          "is_tied": false
+        },
+        {
+          "stat_id": "83",
+          "is_tied": false
+        },
+        {
+          "stat_id": "90",
+          "is_tied": false
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "teams": [
+        {
+          "name": "BaseballPro77",
+          "team_key": "469.l.10470.t.4",
+          "manager": "Zach",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/33282009271_0a5042202c.jpg",
+          "points": 6.0,
+          "category_stats": {
+            "H/AB": "58/219",
+            "R": "32",
+            "HR": "9",
+            "RBI": "28",
+            "SB": "4",
+            "OBP": ".326",
+            "IP": "59.0",
+            "K": "63",
+            "ERA": "4.42",
+            "WHIP": "1.14",
+            "QS": "3",
+            "NSVH": "1"
+          },
+          "top_players": [
+            {
+              "name": "Bobby Witt Jr.",
+              "mlb_team": "KC",
+              "position": "SS",
+              "stats": "R:7, HR:3, RBI:4, SB:2, OBP:.448",
+              "score": 27.0
+            },
+            {
+              "name": "Bryce Elder",
+              "mlb_team": "ATL",
+              "position": "SP",
+              "stats": "K:17, ERA:1.54, WHIP:0.86, QS:1, IP:11.2",
+              "score": 18.0
+            },
+            {
+              "name": "Samuel Basallo",
+              "mlb_team": "BAL",
+              "position": "C",
+              "stats": "R:4, RBI:5, OBP:.385",
+              "score": 18.0
+            },
+            {
+              "name": "Munetaka Murakami",
+              "mlb_team": "CWS",
+              "position": "1B,3B",
+              "stats": "R:5, HR:2, RBI:3, OBP:.375",
+              "score": 16.0
+            },
+            {
+              "name": "Logan Gilbert",
+              "mlb_team": "SEA",
+              "position": "SP",
+              "stats": "K:13, ERA:3.00, WHIP:0.75, QS:1, IP:12.0",
+              "score": 14.0
+            },
+            {
+              "name": "Vinnie Pasquantino",
+              "mlb_team": "KC",
+              "position": "1B",
+              "stats": "R:2, HR:1, RBI:3, SB:1, OBP:.276",
+              "score": 14.0
+            },
+            {
+              "name": "Austin Riley",
+              "mlb_team": "ATL",
+              "position": "3B",
+              "stats": "R:3, HR:1, RBI:3, OBP:.292",
+              "score": 13.0
+            },
+            {
+              "name": "Jordan Walker",
+              "mlb_team": "STL",
+              "position": "OF",
+              "stats": "R:4, HR:1, RBI:2, SB:1, OBP:.400",
+              "score": 13.0
+            }
+          ]
+        },
+        {
+          "name": "General Hospital",
+          "team_key": "469.l.10470.t.8",
+          "manager": "Doctor",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/32596192523_42cc32e995.jpg",
+          "points": 4.0,
+          "category_stats": {
+            "H/AB": "50/203",
+            "R": "29",
+            "HR": "10",
+            "RBI": "32",
+            "SB": "2",
+            "OBP": ".332",
+            "IP": "64.2",
+            "K": "59",
+            "ERA": "4.87",
+            "WHIP": "1.31",
+            "QS": "2",
+            "NSVH": "6"
+          },
+          "top_players": [
+            {
+              "name": "Andy Pages",
+              "mlb_team": "LAD",
+              "position": "OF",
+              "stats": "R:5, HR:4, RBI:8, SB:1, OBP:.440",
+              "score": 28.0
+            },
+            {
+              "name": "Kyle Tucker",
+              "mlb_team": "LAD",
+              "position": "OF",
+              "stats": "R:4, HR:1, RBI:4, OBP:.478",
+              "score": 15.0
+            },
+            {
+              "name": "Brandon Lowe",
+              "mlb_team": "PIT",
+              "position": "2B",
+              "stats": "R:4, HR:1, RBI:5, OBP:.368",
+              "score": 15.0
+            },
+            {
+              "name": "Riley Greene",
+              "mlb_team": "DET",
+              "position": "OF",
+              "stats": "R:2, RBI:1, OBP:.560",
+              "score": 13.0
+            },
+            {
+              "name": "JJ Wetherholt",
+              "mlb_team": "STL",
+              "position": "2B,3B,SS",
+              "stats": "R:3, RBI:4, SB:1, OBP:.333",
+              "score": 13.0
+            },
+            {
+              "name": "Cam Schlittler",
+              "mlb_team": "NYY",
+              "position": "SP",
+              "stats": "K:10, ERA:0.77, WHIP:1.03, QS:1, IP:11.2",
+              "score": 11.0
+            },
+            {
+              "name": "Adley Rutschman",
+              "mlb_team": "BAL",
+              "position": "C",
+              "stats": "R:2, HR:1, RBI:2, OBP:.316",
+              "score": 10.0
+            },
+            {
+              "name": "Jorge Soler",
+              "mlb_team": "LAA",
+              "position": "OF",
+              "stats": "R:2, HR:1, RBI:2, OBP:.261",
+              "score": 8.0
+            }
+          ]
+        }
+      ],
+      "winner_key": "469.l.10470.t.4",
+      "is_tied": false,
+      "is_playoffs": false,
+      "is_consolation": false,
+      "is_championship": false,
+      "stat_winners": [
+        {
+          "stat_id": "7",
+          "is_tied": false
+        },
+        {
+          "stat_id": "12",
+          "is_tied": false
+        },
+        {
+          "stat_id": "13",
+          "is_tied": false
+        },
+        {
+          "stat_id": "16",
+          "is_tied": false
+        },
+        {
+          "stat_id": "4",
+          "is_tied": false
+        },
+        {
+          "stat_id": "42",
+          "is_tied": false
+        },
+        {
+          "stat_id": "26",
+          "is_tied": false
+        },
+        {
+          "stat_id": "27",
+          "is_tied": false
+        },
+        {
+          "stat_id": "83",
+          "is_tied": false
+        },
+        {
+          "stat_id": "90",
+          "is_tied": false
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "teams": [
+        {
+          "name": "Benchwarmers",
+          "team_key": "469.l.10470.t.5",
+          "manager": "Scott",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3b72ff7dd841ca12197296bc032a16603fa79168dddd5df7af41d458c34df9bd.jpg",
+          "points": 5.0,
+          "category_stats": {
+            "H/AB": "53/199",
+            "R": "26",
+            "HR": "9",
+            "RBI": "33",
+            "SB": "3",
+            "OBP": ".346",
+            "IP": "60.0",
+            "K": "64",
+            "ERA": "4.20",
+            "WHIP": "1.23",
+            "QS": "2",
+            "NSVH": "0"
+          },
+          "top_players": [
+            {
+              "name": "Cody Bellinger",
+              "mlb_team": "NYY",
+              "position": "OF",
+              "stats": "R:4, RBI:8, SB:1, OBP:.484",
+              "score": 22.0
+            },
+            {
+              "name": "Julio Rodr\u00edguez",
+              "mlb_team": "SEA",
+              "position": "OF",
+              "stats": "R:4, HR:2, RBI:2, OBP:.346",
+              "score": 15.0
+            },
+            {
+              "name": "Zach Neto",
+              "mlb_team": "LAA",
+              "position": "SS",
+              "stats": "R:4, HR:1, RBI:3, OBP:.308",
+              "score": 14.0
+            },
+            {
+              "name": "Brandon Valenzuela",
+              "mlb_team": "TOR",
+              "position": "C,1B",
+              "stats": "R:3, HR:1, RBI:4, OBP:.467",
+              "score": 13.0
+            },
+            {
+              "name": "Payton Tolle",
+              "mlb_team": "BOS",
+              "position": "SP,RP",
+              "stats": "K:12, ERA:2.25, WHIP:0.75, QS:1, IP:12.0",
+              "score": 13.0
+            },
+            {
+              "name": "Mauricio Dub\u00f3n",
+              "mlb_team": "ATL",
+              "position": "2B,3B,SS,OF",
+              "stats": "R:1, RBI:5, OBP:.444",
+              "score": 12.0
+            },
+            {
+              "name": "Corbin Carroll",
+              "mlb_team": "AZ",
+              "position": "OF",
+              "stats": "R:3, HR:1, RBI:2, OBP:.240",
+              "score": 10.0
+            },
+            {
+              "name": "Casey Schmitt",
+              "mlb_team": "SF",
+              "position": "1B,2B,3B",
+              "stats": "R:2, HR:2, RBI:3, OBP:.200",
+              "score": 10.0
+            }
+          ]
+        },
+        {
+          "name": "North Correa",
+          "team_key": "469.l.10470.t.10",
+          "manager": "Brady",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/d1a0552506243a6fe80463c70f554850aefb67d29aef3ae6a56abc67078c9d37.jpg",
+          "points": 4.0,
+          "category_stats": {
+            "H/AB": "49/205",
+            "R": "31",
+            "HR": "3",
+            "RBI": "13",
+            "SB": "12",
+            "OBP": ".322",
+            "IP": "46.2",
+            "K": "47",
+            "ERA": "4.05",
+            "WHIP": "1.29",
+            "QS": "2",
+            "NSVH": "3"
+          },
+          "top_players": [
+            {
+              "name": "Oneil Cruz",
+              "mlb_team": "PIT",
+              "position": "OF",
+              "stats": "R:6, HR:1, RBI:1, SB:4, OBP:.310",
+              "score": 17.0
+            },
+            {
+              "name": "Edward Cabrera",
+              "mlb_team": "CHC",
+              "position": "SP",
+              "stats": "K:14, ERA:6.55, WHIP:1.73, QS:1, IP:11.0",
+              "score": 15.0
+            },
+            {
+              "name": "Randy Arozarena",
+              "mlb_team": "SEA",
+              "position": "OF",
+              "stats": "R:3, RBI:1, SB:2, OBP:.400",
+              "score": 13.0
+            },
+            {
+              "name": "Brayan Rocchio",
+              "mlb_team": "CLE",
+              "position": "2B,SS",
+              "stats": "R:3, SB:3, OBP:.476",
+              "score": 13.0
+            },
+            {
+              "name": "Shohei Ohtani (Batter)",
+              "mlb_team": "LAD",
+              "position": "Util",
+              "stats": "R:4, RBI:3, SB:1, OBP:.318",
+              "score": 12.0
+            },
+            {
+              "name": "Nico Hoerner",
+              "mlb_team": "CHC",
+              "position": "2B",
+              "stats": "R:2, RBI:2, SB:1, OBP:.242",
+              "score": 10.0
+            },
+            {
+              "name": "Chris Sale",
+              "mlb_team": "ATL",
+              "position": "SP",
+              "stats": "K:7, ERA:2.57, WHIP:0.71, QS:1, IP:7.0",
+              "score": 8.0
+            },
+            {
+              "name": "Nick Fortes",
+              "mlb_team": "TB",
+              "position": "C",
+              "stats": "R:2, OBP:.400",
+              "score": 8.0
+            }
+          ]
+        }
+      ],
+      "winner_key": "469.l.10470.t.5",
+      "is_tied": false,
+      "is_playoffs": false,
+      "is_consolation": false,
+      "is_championship": false,
+      "stat_winners": [
+        {
+          "stat_id": "7",
+          "is_tied": false
+        },
+        {
+          "stat_id": "12",
+          "is_tied": false
+        },
+        {
+          "stat_id": "13",
+          "is_tied": false
+        },
+        {
+          "stat_id": "16",
+          "is_tied": false
+        },
+        {
+          "stat_id": "4",
+          "is_tied": false
+        },
+        {
+          "stat_id": "42",
+          "is_tied": false
+        },
+        {
+          "stat_id": "26",
+          "is_tied": false
+        },
+        {
+          "stat_id": "27",
+          "is_tied": false
+        },
+        {
+          "stat_id": "83",
+          "is_tied": true
+        },
+        {
+          "stat_id": "90",
+          "is_tied": false
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "teams": [
+        {
+          "name": "Buttville Skidmarks",
+          "team_key": "469.l.10470.t.6",
+          "manager": "Gavin",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/ff108c6d665b7920df4d3f43f864cc2dd7514d7e90dd76b54ac9383bbea63544.png",
+          "points": 3.0,
+          "category_stats": {
+            "H/AB": "52/197",
+            "R": "22",
+            "HR": "8",
+            "RBI": "25",
+            "SB": "3",
+            "OBP": ".338",
+            "IP": "71.1",
+            "K": "64",
+            "ERA": "3.53",
+            "WHIP": "1.33",
+            "QS": "3",
+            "NSVH": "8"
+          },
+          "top_players": [
+            {
+              "name": "Elly De La Cruz",
+              "mlb_team": "CIN",
+              "position": "SS",
+              "stats": "R:2, RBI:4, SB:1, OBP:.375",
+              "score": 18.0
+            },
+            {
+              "name": "Spencer Steer",
+              "mlb_team": "CIN",
+              "position": "1B,OF",
+              "stats": "R:3, HR:2, RBI:3, SB:1, OBP:.300",
+              "score": 16.0
+            },
+            {
+              "name": "Liam Hicks",
+              "mlb_team": "MIA",
+              "position": "C,1B",
+              "stats": "R:2, HR:2, RBI:5, OBP:.389",
+              "score": 15.0
+            },
+            {
+              "name": "Junior Caminero",
+              "mlb_team": "TB",
+              "position": "3B",
+              "stats": "R:4, HR:2, RBI:3, OBP:.280",
+              "score": 13.0
+            },
+            {
+              "name": "Marcus Semien",
+              "mlb_team": "NYM",
+              "position": "2B",
+              "stats": "R:4, HR:1, RBI:2, OBP:.500",
+              "score": 11.0
+            },
+            {
+              "name": "Rafael Devers",
+              "mlb_team": "SF",
+              "position": "1B",
+              "stats": "R:2, HR:1, RBI:3, OBP:.368",
+              "score": 11.0
+            },
+            {
+              "name": "Kyle Bradish",
+              "mlb_team": "BAL",
+              "position": "SP",
+              "stats": "K:10, ERA:3.86, WHIP:0.86, QS:1, IP:7.0",
+              "score": 11.0
+            },
+            {
+              "name": "Spencer Strider",
+              "mlb_team": "ATL",
+              "position": "SP",
+              "stats": "K:8, WHIP:0.50, QS:1, IP:6.0",
+              "score": 9.0
+            }
+          ]
+        },
+        {
+          "name": "Wisconsin Rapids Reapers",
+          "team_key": "469.l.10470.t.13",
+          "manager": "Bailey",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/77cadcf6794004dac592d2fff0c7ccbbfb69064929661a14e233f137cd1425d3.jpg",
+          "points": 4.0,
+          "category_stats": {
+            "H/AB": "51/198",
+            "R": "25",
+            "HR": "4",
+            "RBI": "23",
+            "SB": "2",
+            "OBP": ".349",
+            "IP": "52.2",
+            "K": "64",
+            "ERA": "1.71",
+            "WHIP": "0.87",
+            "QS": "3",
+            "NSVH": "8"
+          },
+          "top_players": [
+            {
+              "name": "Brandon Marsh",
+              "mlb_team": "PHI",
+              "position": "OF",
+              "stats": "R:6, RBI:3, OBP:.533",
+              "score": 23.0
+            },
+            {
+              "name": "Davis Martin",
+              "mlb_team": "CWS",
+              "position": "SP",
+              "stats": "K:19, ERA:0.69, WHIP:0.77, QS:2, IP:13.0",
+              "score": 21.0
+            },
+            {
+              "name": "Michael Busch",
+              "mlb_team": "CHC",
+              "position": "1B",
+              "stats": "R:2, HR:1, RBI:5, SB:1, OBP:.524",
+              "score": 16.0
+            },
+            {
+              "name": "Maikel Garcia",
+              "mlb_team": "KC",
+              "position": "2B,3B,SS,OF",
+              "stats": "R:3, RBI:3, OBP:.448",
+              "score": 15.0
+            },
+            {
+              "name": "Kazuma Okamoto",
+              "mlb_team": "TOR",
+              "position": "1B,3B",
+              "stats": "R:2, HR:1, RBI:4, OBP:.400",
+              "score": 14.0
+            },
+            {
+              "name": "Trea Turner",
+              "mlb_team": "PHI",
+              "position": "SS",
+              "stats": "R:3, RBI:2, SB:1, OBP:.219",
+              "score": 13.0
+            },
+            {
+              "name": "Andrew Vaughn",
+              "mlb_team": "MIL",
+              "position": "1B",
+              "stats": "R:3, HR:1, RBI:3, OBP:.429",
+              "score": 10.0
+            },
+            {
+              "name": "Bryan Woo",
+              "mlb_team": "SEA",
+              "position": "SP",
+              "stats": "K:9, WHIP:0.50, QS:1, IP:6.0",
+              "score": 10.0
+            }
+          ]
+        }
+      ],
+      "winner_key": "469.l.10470.t.13",
+      "is_tied": false,
+      "is_playoffs": false,
+      "is_consolation": false,
+      "is_championship": false,
+      "stat_winners": [
+        {
+          "stat_id": "7",
+          "is_tied": false
+        },
+        {
+          "stat_id": "12",
+          "is_tied": false
+        },
+        {
+          "stat_id": "13",
+          "is_tied": false
+        },
+        {
+          "stat_id": "16",
+          "is_tied": false
+        },
+        {
+          "stat_id": "4",
+          "is_tied": false
+        },
+        {
+          "stat_id": "42",
+          "is_tied": true
+        },
+        {
+          "stat_id": "26",
+          "is_tied": false
+        },
+        {
+          "stat_id": "27",
+          "is_tied": false
+        },
+        {
+          "stat_id": "83",
+          "is_tied": true
+        },
+        {
+          "stat_id": "90",
+          "is_tied": true
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "teams": [
+        {
+          "name": "Canberra Wombats",
+          "team_key": "469.l.10470.t.7",
+          "manager": "Noah",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/cfbc80ba38c8c7bd4e5c314d87348d041b0c755f999ff4489897d978f7961618.png",
+          "points": 1.0,
+          "category_stats": {
+            "H/AB": "41/207",
+            "R": "14",
+            "HR": "4",
+            "RBI": "14",
+            "SB": "4",
+            "OBP": ".254",
+            "IP": "67.0",
+            "K": "69",
+            "ERA": "4.03",
+            "WHIP": "1.22",
+            "QS": "4",
+            "NSVH": "3"
+          },
+          "top_players": [
+            {
+              "name": "Pete Crow-Armstrong",
+              "mlb_team": "CHC",
+              "position": "OF",
+              "stats": "R:4, HR:1, RBI:4, SB:3, OBP:.370",
+              "score": 19.0
+            },
+            {
+              "name": "Jacob deGrom",
+              "mlb_team": "TEX",
+              "position": "SP",
+              "stats": "K:17, ERA:4.05, WHIP:0.83, QS:1, IP:13.1",
+              "score": 18.0
+            },
+            {
+              "name": "Jo Adell",
+              "mlb_team": "LAA",
+              "position": "OF",
+              "stats": "R:2, HR:2, RBI:3, OBP:.381",
+              "score": 13.0
+            },
+            {
+              "name": "Dylan Cease",
+              "mlb_team": "TOR",
+              "position": "SP",
+              "stats": "K:10, WHIP:0.71, QS:1, IP:7.0",
+              "score": 11.0
+            },
+            {
+              "name": "Aaron Nola",
+              "mlb_team": "PHI",
+              "position": "SP",
+              "stats": "K:9, ERA:2.53, WHIP:1.22, QS:1, IP:10.2",
+              "score": 10.0
+            },
+            {
+              "name": "Gunnar Henderson",
+              "mlb_team": "BAL",
+              "position": "SS",
+              "stats": "RBI:2, OBP:.242",
+              "score": 9.0
+            },
+            {
+              "name": "Nick Gonzales",
+              "mlb_team": "PIT",
+              "position": "2B,3B,SS",
+              "stats": "R:2, RBI:1, SB:1, OBP:.450",
+              "score": 9.0
+            },
+            {
+              "name": "Robbie Ray",
+              "mlb_team": "SF",
+              "position": "SP",
+              "stats": "K:7, ERA:1.50, WHIP:1.33, QS:1, IP:6.0",
+              "score": 8.0
+            }
+          ]
+        },
+        {
+          "name": "Sugar Land Skeeters",
+          "team_key": "469.l.10470.t.12",
+          "manager": "Alton Gilbert",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/a4690f59483b3a7819515779958c2ed82e754f8270b200ad5ce6b2e017711884.jpg",
+          "points": 9.0,
+          "category_stats": {
+            "H/AB": "48/218",
+            "R": "35",
+            "HR": "12",
+            "RBI": "36",
+            "SB": "7",
+            "OBP": ".319",
+            "IP": "73.2",
+            "K": "66",
+            "ERA": "2.08",
+            "WHIP": "0.91",
+            "QS": "6",
+            "NSVH": "9"
+          },
+          "top_players": [
+            {
+              "name": "Matt Olson",
+              "mlb_team": "ATL",
+              "position": "1B",
+              "stats": "R:4, HR:3, RBI:5, SB:1, OBP:.360",
+              "score": 19.0
+            },
+            {
+              "name": "CJ Abrams",
+              "mlb_team": "WSH",
+              "position": "SS",
+              "stats": "R:4, HR:1, RBI:8, OBP:.318",
+              "score": 19.0
+            },
+            {
+              "name": "Wilyer Abreu",
+              "mlb_team": "BOS",
+              "position": "OF",
+              "stats": "R:4, HR:2, RBI:4, SB:2, OBP:.435",
+              "score": 18.0
+            },
+            {
+              "name": "Trent Grisham",
+              "mlb_team": "NYY",
+              "position": "OF",
+              "stats": "R:5, RBI:4, SB:1, OBP:.364",
+              "score": 16.0
+            },
+            {
+              "name": "Xander Bogaerts",
+              "mlb_team": "SD",
+              "position": "SS",
+              "stats": "R:3, HR:2, RBI:4, SB:1, OBP:.353",
+              "score": 15.0
+            },
+            {
+              "name": "Ian Happ",
+              "mlb_team": "CHC",
+              "position": "OF",
+              "stats": "R:6, HR:1, RBI:3, SB:1, OBP:.300",
+              "score": 15.0
+            },
+            {
+              "name": "Eduardo Rodriguez",
+              "mlb_team": "AZ",
+              "position": "SP",
+              "stats": "K:11, ERA:0.59, WHIP:0.78, QS:2, IP:15.1",
+              "score": 13.0
+            },
+            {
+              "name": "Janson Junk",
+              "mlb_team": "MIA",
+              "position": "SP,RP",
+              "stats": "K:12, ERA:3.97, WHIP:1.24, IP:11.1",
+              "score": 12.0
+            }
+          ]
+        }
+      ],
+      "winner_key": "469.l.10470.t.12",
+      "is_tied": false,
+      "is_playoffs": false,
+      "is_consolation": false,
+      "is_championship": false,
+      "stat_winners": [
+        {
+          "stat_id": "7",
+          "is_tied": false
+        },
+        {
+          "stat_id": "12",
+          "is_tied": false
+        },
+        {
+          "stat_id": "13",
+          "is_tied": false
+        },
+        {
+          "stat_id": "16",
+          "is_tied": false
+        },
+        {
+          "stat_id": "4",
+          "is_tied": false
+        },
+        {
+          "stat_id": "42",
+          "is_tied": false
+        },
+        {
+          "stat_id": "26",
+          "is_tied": false
+        },
+        {
+          "stat_id": "27",
+          "is_tied": false
+        },
+        {
+          "stat_id": "83",
+          "is_tied": false
+        },
+        {
+          "stat_id": "90",
+          "is_tied": false
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "teams": [
+        {
+          "name": "Hiroshima Radiation",
+          "team_key": "469.l.10470.t.9",
+          "manager": "Shane",
+          "logo_url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_4_h.png",
+          "points": 6.0,
+          "category_stats": {
+            "H/AB": "39/186",
+            "R": "32",
+            "HR": "11",
+            "RBI": "24",
+            "SB": "5",
+            "OBP": ".312",
+            "IP": "69.2",
+            "K": "68",
+            "ERA": "2.58",
+            "WHIP": "1.16",
+            "QS": "7",
+            "NSVH": "2"
+          },
+          "top_players": [
+            {
+              "name": "Kyle Schwarber",
+              "mlb_team": "PHI",
+              "position": "OF",
+              "stats": "R:6, HR:5, RBI:7, OBP:.281",
+              "score": 26.0
+            },
+            {
+              "name": "Bryce Harper",
+              "mlb_team": "PHI",
+              "position": "1B",
+              "stats": "R:7, HR:4, RBI:5, OBP:.520",
+              "score": 25.0
+            },
+            {
+              "name": "Chandler Simpson",
+              "mlb_team": "TB",
+              "position": "OF",
+              "stats": "R:3, RBI:4, SB:1, OBP:.333",
+              "score": 15.0
+            },
+            {
+              "name": "Tyler Soderstrom",
+              "mlb_team": "ATH",
+              "position": "1B,OF",
+              "stats": "R:5, HR:1, RBI:1, OBP:.231",
+              "score": 10.0
+            },
+            {
+              "name": "Andrew Abbott",
+              "mlb_team": "CIN",
+              "position": "SP",
+              "stats": "K:9, WHIP:1.03, QS:1, IP:11.2",
+              "score": 10.0
+            },
+            {
+              "name": "Nathan Eovaldi",
+              "mlb_team": "TEX",
+              "position": "SP",
+              "stats": "K:8, ERA:1.13, WHIP:0.38, QS:1, IP:8.0",
+              "score": 9.0
+            },
+            {
+              "name": "Taj Bradley",
+              "mlb_team": "MIN",
+              "position": "SP",
+              "stats": "K:8, ERA:3.00, WHIP:1.00, QS:1, IP:6.0",
+              "score": 9.0
+            },
+            {
+              "name": "Trevor McDonald",
+              "mlb_team": "SF",
+              "position": "SP,RP",
+              "stats": "K:8, ERA:1.29, WHIP:0.29, QS:1, IP:7.0",
+              "score": 9.0
+            }
+          ]
+        },
+        {
+          "name": "Wonder Wharf Wonderdogs",
+          "team_key": "469.l.10470.t.14",
+          "manager": "Justin",
+          "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/73f27351360d269932d4f16d6f4739fe5364d156b819c869b2c268fa9cfa94ba.png",
+          "points": 4.0,
+          "category_stats": {
+            "H/AB": "45/222",
+            "R": "24",
+            "HR": "4",
+            "RBI": "32",
+            "SB": "2",
+            "OBP": ".247",
+            "IP": "70.1",
+            "K": "73",
+            "ERA": "3.45",
+            "WHIP": "1.12",
+            "QS": "6",
+            "NSVH": "4"
+          },
+          "top_players": [
+            {
+              "name": "Pete Alonso",
+              "mlb_team": "BAL",
+              "position": "1B",
+              "stats": "R:6, HR:2, RBI:7, OBP:.267",
+              "score": 21.0
+            },
+            {
+              "name": "Colson Montgomery",
+              "mlb_team": "CWS",
+              "position": "3B,SS",
+              "stats": "R:2, HR:1, RBI:6, OBP:.222",
+              "score": 14.0
+            },
+            {
+              "name": "Ozzie Albies",
+              "mlb_team": "ATL",
+              "position": "2B",
+              "stats": "R:3, HR:1, RBI:3, OBP:.192",
+              "score": 11.0
+            },
+            {
+              "name": "Shota Imanaga",
+              "mlb_team": "CHC",
+              "position": "SP",
+              "stats": "K:10, ERA:1.50, WHIP:1.50, QS:1, IP:6.0",
+              "score": 11.0
+            },
+            {
+              "name": "Ildemaro Vargas",
+              "mlb_team": "AZ",
+              "position": "1B,2B",
+              "stats": "R:2, RBI:3, SB:1, OBP:.200",
+              "score": 10.0
+            },
+            {
+              "name": "Jameson Taillon",
+              "mlb_team": "CHC",
+              "position": "SP",
+              "stats": "K:9, ERA:2.45, WHIP:1.09, IP:11.0",
+              "score": 9.0
+            },
+            {
+              "name": "William Contreras",
+              "mlb_team": "MIL",
+              "position": "C",
+              "stats": "R:1, RBI:3, OBP:.348",
+              "score": 9.0
+            },
+            {
+              "name": "Michael Harris II",
+              "mlb_team": "ATL",
+              "position": "OF",
+              "stats": "R:2, RBI:1, OBP:.273",
+              "score": 9.0
+            }
+          ]
+        }
+      ],
+      "winner_key": "469.l.10470.t.9",
+      "is_tied": false,
+      "is_playoffs": false,
+      "is_consolation": false,
+      "is_championship": false,
+      "stat_winners": [
+        {
+          "stat_id": "7",
+          "is_tied": false
+        },
+        {
+          "stat_id": "12",
+          "is_tied": false
+        },
+        {
+          "stat_id": "13",
+          "is_tied": false
+        },
+        {
+          "stat_id": "16",
+          "is_tied": false
+        },
+        {
+          "stat_id": "4",
+          "is_tied": false
+        },
+        {
+          "stat_id": "42",
+          "is_tied": false
+        },
+        {
+          "stat_id": "26",
+          "is_tied": false
+        },
+        {
+          "stat_id": "27",
+          "is_tied": false
+        },
+        {
+          "stat_id": "83",
+          "is_tied": false
+        },
+        {
+          "stat_id": "90",
+          "is_tied": false
+        }
+      ]
+    }
+  ],
+  "standings": [
+    {
+      "rank": 1,
+      "name": "Sugar Land Skeeters",
+      "team_key": "469.l.10470.t.12",
+      "division_id": "2",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0,
+      "division_name": "National League"
+    },
+    {
+      "rank": 2,
+      "name": "BaseballPro77",
+      "team_key": "469.l.10470.t.4",
+      "division_id": "1",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0,
+      "division_name": "American League"
+    },
+    {
+      "rank": 3,
+      "name": "Riverside Roughnecks",
+      "team_key": "469.l.10470.t.11",
+      "division_id": "2",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0,
+      "division_name": "National League"
+    },
+    {
+      "rank": 4,
+      "name": "Athletic Park Dragons",
+      "team_key": "469.l.10470.t.3",
+      "division_id": "2",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0,
+      "division_name": "National League"
+    },
+    {
+      "rank": 5,
+      "name": "General Hospital",
+      "team_key": "469.l.10470.t.8",
+      "division_id": "1",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0,
+      "division_name": "American League"
+    },
+    {
+      "rank": 6,
+      "name": "Albuquerque Bombers",
+      "team_key": "469.l.10470.t.1",
+      "division_id": "1",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0,
+      "division_name": "American League"
+    },
+    {
+      "rank": 7,
+      "name": "North Correa",
+      "team_key": "469.l.10470.t.10",
+      "division_id": "2",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0,
+      "division_name": "National League"
+    },
+    {
+      "rank": 8,
+      "name": "Hiroshima Radiation",
+      "team_key": "469.l.10470.t.9",
+      "division_id": "2",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0,
+      "division_name": "National League"
+    },
+    {
+      "rank": 9,
+      "name": "Wonder Wharf Wonderdogs",
+      "team_key": "469.l.10470.t.14",
+      "division_id": "1",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0,
+      "division_name": "American League"
+    },
+    {
+      "rank": 10,
+      "name": "Abbotsford-Colby Twins",
+      "team_key": "469.l.10470.t.2",
+      "division_id": "1",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0,
+      "division_name": "American League"
+    },
+    {
+      "rank": 11,
+      "name": "Wisconsin Rapids Reapers",
+      "team_key": "469.l.10470.t.13",
+      "division_id": "1",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0,
+      "division_name": "American League"
+    },
+    {
+      "rank": 12,
+      "name": "Benchwarmers",
+      "team_key": "469.l.10470.t.5",
+      "division_id": "2",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0,
+      "division_name": "National League"
+    },
+    {
+      "rank": 13,
+      "name": "Buttville Skidmarks",
+      "team_key": "469.l.10470.t.6",
+      "division_id": "2",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0,
+      "division_name": "National League"
+    },
+    {
+      "rank": 14,
+      "name": "Canberra Wombats",
+      "team_key": "469.l.10470.t.7",
+      "division_id": "1",
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "points_for": 0.0,
+      "points_against": 0.0,
+      "division_name": "American League"
+    }
+  ],
+  "divisions": {
+    "1": "American League",
+    "2": "National League"
+  },
+  "transactions": [
+    {
+      "type": "add/drop",
+      "timestamp": 1778448805,
+      "players": [
+        {
+          "name": "Keider Montero",
+          "action": "add",
+          "team": "Abbotsford-Colby Twins",
+          "position": "SP,RP"
+        },
+        {
+          "name": "Grant Holmes",
+          "action": "drop",
+          "team": "Abbotsford-Colby Twins",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1778448204,
+      "players": [
+        {
+          "name": "Chase Dollander",
+          "action": "add",
+          "team": "Abbotsford-Colby Twins",
+          "position": "SP,RP"
+        },
+        {
+          "name": "Andrew Painter",
+          "action": "drop",
+          "team": "Abbotsford-Colby Twins",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1778447910,
+      "players": [
+        {
+          "name": "Chase Meidroth",
+          "action": "add",
+          "team": "Abbotsford-Colby Twins",
+          "position": "2B,3B,SS"
+        },
+        {
+          "name": "Caleb Durbin",
+          "action": "drop",
+          "team": "Abbotsford-Colby Twins",
+          "position": "2B,3B"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1778435747,
+      "players": [
+        {
+          "name": "George Soriano",
+          "action": "add",
+          "team": "Hiroshima Radiation",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1778435430,
+      "players": [
+        {
+          "name": "Gus Varland",
+          "action": "add",
+          "team": "Hiroshima Radiation",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1778435411,
+      "players": [
+        {
+          "name": "Ryan Walker",
+          "action": "drop",
+          "team": "Hiroshima Radiation",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1778417680,
+      "players": [
+        {
+          "name": "Daniel Lynch IV",
+          "action": "add",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "RP"
+        },
+        {
+          "name": "Drew Pomeranz",
+          "action": "drop",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1778413714,
+      "players": [
+        {
+          "name": "Chris Bassitt",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "SP"
+        },
+        {
+          "name": "Zack Littell",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1778407525,
+      "players": [
+        {
+          "name": "Tyler Mahle",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP"
+        },
+        {
+          "name": "Justin Bruihl",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1778337676,
+      "players": [
+        {
+          "name": "Travis Bazzana",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "2B"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1778268915,
+      "players": [
+        {
+          "name": "Matthew Liberatore",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1778252677,
+      "players": [
+        {
+          "name": "Braydon Fisher",
+          "action": "add",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1778246683,
+      "players": [
+        {
+          "name": "Jake Bennett",
+          "action": "drop",
+          "team": "Canberra Wombats",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1778241247,
+      "players": [
+        {
+          "name": "Cade Cavalli",
+          "action": "drop",
+          "team": "Buttville Skidmarks",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1778196197,
+      "players": [
+        {
+          "name": "Matthew Liberatore",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1778195726,
+      "players": [
+        {
+          "name": "Cam Smith",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "OF"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1778194928,
+      "players": [
+        {
+          "name": "Kyle Karros",
+          "action": "add",
+          "team": "Hiroshima Radiation",
+          "position": "3B"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1778164839,
+      "players": [
+        {
+          "name": "Robby Snelling",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        },
+        {
+          "name": "Noah Schultz",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1778115290,
+      "players": [
+        {
+          "name": "Kevin Kelly",
+          "action": "add",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1778085692,
+      "players": [
+        {
+          "name": "Carlos Correa",
+          "action": "drop",
+          "team": "Hiroshima Radiation",
+          "position": "3B,SS"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1778014998,
+      "players": [
+        {
+          "name": "Victor Vodnik",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1778014769,
+      "players": [
+        {
+          "name": "Cole Winn",
+          "action": "drop",
+          "team": "Athletic Park Dragons",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1778014737,
+      "players": [
+        {
+          "name": "Tyler Holton",
+          "action": "drop",
+          "team": "Athletic Park Dragons",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1777980931,
+      "players": [
+        {
+          "name": "Erick Fedde",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1777935238,
+      "players": [
+        {
+          "name": "Brent Headrick",
+          "action": "add",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1777934728,
+      "players": [
+        {
+          "name": "Ian Seymour",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1777931007,
+      "players": [
+        {
+          "name": "Enyel De Los Santos",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1777921555,
+      "players": [
+        {
+          "name": "Trevor McDonald",
+          "action": "add",
+          "team": "Hiroshima Radiation",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1777919976,
+      "players": [
+        {
+          "name": "Ryan Pepiot",
+          "action": "drop",
+          "team": "Abbotsford-Colby Twins",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1777919332,
+      "players": [
+        {
+          "name": "Brandon Valenzuela",
+          "action": "add",
+          "team": "Benchwarmers",
+          "position": "C,1B"
+        }
+      ]
+    }
+  ],
+  "top_players": [],
+  "stat_categories": {
+    "60": "H/AB",
+    "7": "R",
+    "12": "HR",
+    "13": "RBI",
+    "16": "SB",
+    "4": "OBP",
+    "50": "IP",
+    "42": "K",
+    "26": "ERA",
+    "27": "WHIP",
+    "83": "QS",
+    "90": "NSVH"
+  },
+  "lower_is_better_stats": [
+    "WHIP",
+    "ERA"
+  ],
+  "saved_at": "2026-05-11T10:55:18.429884"
+}
