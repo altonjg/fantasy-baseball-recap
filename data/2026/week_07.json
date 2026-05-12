@@ -1089,7 +1089,7 @@
               "name": "Jacob deGrom",
               "mlb_team": "TEX",
               "position": "SP",
-              "stats": "K:17, ERA:4.05, WHIP:0.83, QS:1, IP:13.1",
+              "stats": "K:17, ERA:4.05, WHIP:0.82, QS:1, IP:13.1",
               "score": 18.0
             },
             {
@@ -1652,6 +1652,54 @@
   "transactions": [
     {
       "type": "add/drop",
+      "timestamp": 1778616597,
+      "players": [
+        {
+          "name": "Austin Martin",
+          "action": "add",
+          "team": "Hiroshima Radiation",
+          "position": "2B,OF"
+        },
+        {
+          "name": "Andrew Kittredge",
+          "action": "drop",
+          "team": "Hiroshima Radiation",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1778616543,
+      "players": [
+        {
+          "name": "Jacob Latz",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP,RP"
+        },
+        {
+          "name": "Tyler Mahle",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1778616364,
+      "players": [
+        {
+          "name": "Carter Jensen",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "C"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
       "timestamp": 1778593533,
       "players": [
         {
@@ -2021,42 +2069,6 @@
           "position": "SP,RP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1777980931,
-      "players": [
-        {
-          "name": "Erick Fedde",
-          "action": "add",
-          "team": "Riverside Roughnecks",
-          "position": "SP,RP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1777935238,
-      "players": [
-        {
-          "name": "Brent Headrick",
-          "action": "add",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1777934728,
-      "players": [
-        {
-          "name": "Ian Seymour",
-          "action": "add",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "SP,RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2075,8 +2087,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-05-12T17:54:17.932992"
+  "saved_at": "2026-05-12T21:11:53.605311"
 }
