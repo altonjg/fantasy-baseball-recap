@@ -1651,6 +1651,24 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1778593533,
+      "players": [
+        {
+          "name": "A.J. Ewing",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "2B,OF"
+        },
+        {
+          "name": "Masyn Winn",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SS"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1778551837,
       "players": [
@@ -2039,18 +2057,6 @@
           "position": "SP,RP"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1777931007,
-      "players": [
-        {
-          "name": "Enyel De Los Santos",
-          "action": "drop",
-          "team": "Riverside Roughnecks",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2069,8 +2075,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-05-12T10:25:34.332434"
+  "saved_at": "2026-05-12T14:02:12.523801"
 }
