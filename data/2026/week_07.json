@@ -111,7 +111,7 @@
               "name": "Aaron Judge",
               "mlb_team": "NYY",
               "position": "OF",
-              "stats": "R:5, HR:3, RBI:7, OBP:.419",
+              "stats": "R:5, HR:3, RBI:7, OBP:.406",
               "score": 22.0
             },
             {
@@ -242,8 +242,8 @@
               "name": "Jos\u00e9 Ram\u00edrez",
               "mlb_team": "CLE",
               "position": "3B",
-              "stats": "R:5, RBI:2, SB:3, OBP:.419",
-              "score": 16.0
+              "stats": "R:6, RBI:2, SB:4, OBP:.438",
+              "score": 18.0
             },
             {
               "name": "Jacob Wilson",
@@ -256,7 +256,7 @@
               "name": "Jazz Chisholm Jr.",
               "mlb_team": "NYY",
               "position": "2B,3B",
-              "stats": "R:3, HR:1, RBI:2, SB:2, OBP:.241",
+              "stats": "R:3, HR:1, RBI:2, SB:2, OBP:.233",
               "score": 13.0
             },
             {
@@ -573,14 +573,14 @@
               "name": "Adley Rutschman",
               "mlb_team": "BAL",
               "position": "C",
-              "stats": "R:2, HR:1, RBI:2, OBP:.316",
+              "stats": "R:2, HR:1, RBI:2, OBP:.300",
               "score": 10.0
             },
             {
               "name": "Jorge Soler",
               "mlb_team": "LAA",
               "position": "OF",
-              "stats": "R:2, HR:1, RBI:2, OBP:.261",
+              "stats": "R:2, HR:1, RBI:2, OBP:.250",
               "score": 8.0
             }
           ]
@@ -662,7 +662,7 @@
               "name": "Cody Bellinger",
               "mlb_team": "NYY",
               "position": "OF",
-              "stats": "R:4, RBI:8, SB:1, OBP:.484",
+              "stats": "R:4, RBI:8, SB:1, OBP:.469",
               "score": 22.0
             },
             {
@@ -676,7 +676,7 @@
               "name": "Zach Neto",
               "mlb_team": "LAA",
               "position": "SS",
-              "stats": "R:4, HR:1, RBI:3, OBP:.308",
+              "stats": "R:4, HR:1, RBI:3, OBP:.333",
               "score": 14.0
             },
             {
@@ -762,7 +762,7 @@
               "name": "Brayan Rocchio",
               "mlb_team": "CLE",
               "position": "2B,SS",
-              "stats": "R:3, SB:3, OBP:.476",
+              "stats": "R:3, SB:3, OBP:.455",
               "score": 13.0
             },
             {
@@ -890,6 +890,13 @@
               "score": 15.0
             },
             {
+              "name": "Kyle Bradish",
+              "mlb_team": "BAL",
+              "position": "SP",
+              "stats": "K:13, ERA:2.70, WHIP:0.70, QS:1, IP:10.0",
+              "score": 14.0
+            },
+            {
               "name": "Junior Caminero",
               "mlb_team": "TB",
               "position": "3B",
@@ -908,13 +915,6 @@
               "mlb_team": "SF",
               "position": "1B",
               "stats": "R:2, HR:1, RBI:3, OBP:.368",
-              "score": 11.0
-            },
-            {
-              "name": "Kyle Bradish",
-              "mlb_team": "BAL",
-              "position": "SP",
-              "stats": "K:10, ERA:3.86, WHIP:0.86, QS:1, IP:7.0",
               "score": 11.0
             },
             {
@@ -1089,14 +1089,14 @@
               "name": "Jacob deGrom",
               "mlb_team": "TEX",
               "position": "SP",
-              "stats": "K:17, ERA:4.05, WHIP:0.82, QS:1, IP:13.1",
+              "stats": "K:17, ERA:4.05, WHIP:0.83, QS:1, IP:13.1",
               "score": 18.0
             },
             {
               "name": "Jo Adell",
               "mlb_team": "LAA",
               "position": "OF",
-              "stats": "R:2, HR:2, RBI:3, OBP:.381",
+              "stats": "R:2, HR:2, RBI:3, OBP:.364",
               "score": 13.0
             },
             {
@@ -1117,7 +1117,7 @@
               "name": "Gunnar Henderson",
               "mlb_team": "BAL",
               "position": "SS",
-              "stats": "RBI:2, OBP:.242",
+              "stats": "RBI:2, OBP:.235",
               "score": 9.0
             },
             {
@@ -1182,7 +1182,7 @@
               "name": "Trent Grisham",
               "mlb_team": "NYY",
               "position": "OF",
-              "stats": "R:5, RBI:4, SB:1, OBP:.364",
+              "stats": "R:5, RBI:4, SB:1, OBP:.391",
               "score": 16.0
             },
             {
@@ -1371,8 +1371,8 @@
               "name": "Pete Alonso",
               "mlb_team": "BAL",
               "position": "1B",
-              "stats": "R:6, HR:2, RBI:7, OBP:.267",
-              "score": 21.0
+              "stats": "R:6, HR:2, RBI:7, OBP:.290",
+              "score": 22.0
             },
             {
               "name": "Colson Montgomery",
@@ -2087,8 +2087,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-05-13T14:11:48.873865"
+  "saved_at": "2026-05-13T17:56:20.458615"
 }
