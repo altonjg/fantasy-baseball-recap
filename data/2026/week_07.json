@@ -1089,7 +1089,7 @@
               "name": "Jacob deGrom",
               "mlb_team": "TEX",
               "position": "SP",
-              "stats": "K:17, ERA:4.05, WHIP:0.83, QS:1, IP:13.1",
+              "stats": "K:17, ERA:4.05, WHIP:0.82, QS:1, IP:13.1",
               "score": 18.0
             },
             {
@@ -2087,8 +2087,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-05-13T10:15:45.418161"
+  "saved_at": "2026-05-13T14:11:48.873865"
 }
