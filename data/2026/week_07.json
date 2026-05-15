@@ -71,18 +71,18 @@
               "score": 16.0
             },
             {
+              "name": "Landen Roupp",
+              "mlb_team": "SF",
+              "position": "SP",
+              "stats": "K:15, ERA:4.82, WHIP:1.50, IP:9.1",
+              "score": 15.0
+            },
+            {
               "name": "Kyle Harrison",
               "mlb_team": "MIL",
               "position": "SP,RP",
               "stats": "K:13, ERA:2.00, WHIP:1.44, IP:9.0",
               "score": 13.0
-            },
-            {
-              "name": "Freddie Freeman",
-              "mlb_team": "LAD",
-              "position": "1B",
-              "stats": "R:2, HR:1, RBI:4, OBP:.320",
-              "score": 12.0
             }
           ]
         },
@@ -531,7 +531,7 @@
               "name": "Andy Pages",
               "mlb_team": "LAD",
               "position": "OF",
-              "stats": "R:5, HR:4, RBI:8, SB:1, OBP:.423",
+              "stats": "R:5, HR:4, RBI:8, SB:1, OBP:.414",
               "score": 28.0
             },
             {
@@ -545,7 +545,7 @@
               "name": "Kyle Tucker",
               "mlb_team": "LAD",
               "position": "OF",
-              "stats": "R:4, HR:1, RBI:4, OBP:.458",
+              "stats": "R:4, HR:1, RBI:4, OBP:.407",
               "score": 15.0
             },
             {
@@ -680,6 +680,13 @@
               "score": 14.0
             },
             {
+              "name": "Emmet Sheehan",
+              "mlb_team": "LAD",
+              "position": "SP",
+              "stats": "K:13, ERA:2.53, WHIP:1.03, QS:1, IP:10.2",
+              "score": 14.0
+            },
+            {
               "name": "Brandon Valenzuela",
               "mlb_team": "TOR",
               "position": "C,1B",
@@ -705,13 +712,6 @@
               "mlb_team": "AZ",
               "position": "OF",
               "stats": "R:3, HR:1, RBI:2, OBP:.240",
-              "score": 10.0
-            },
-            {
-              "name": "Casey Schmitt",
-              "mlb_team": "SF",
-              "position": "1B,2B,3B",
-              "stats": "R:2, HR:2, RBI:3, OBP:.190",
               "score": 10.0
             }
           ]
@@ -897,17 +897,17 @@
               "score": 13.0
             },
             {
+              "name": "Rafael Devers",
+              "mlb_team": "SF",
+              "position": "1B",
+              "stats": "R:2, HR:1, RBI:3, OBP:.348",
+              "score": 12.0
+            },
+            {
               "name": "Marcus Semien",
               "mlb_team": "NYM",
               "position": "2B",
               "stats": "R:4, HR:1, RBI:2, OBP:.500",
-              "score": 11.0
-            },
-            {
-              "name": "Rafael Devers",
-              "mlb_team": "SF",
-              "position": "1B",
-              "stats": "R:2, HR:1, RBI:3, OBP:.350",
               "score": 11.0
             },
             {
@@ -2105,8 +2105,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-05-15T02:30:22.613096"
+  "saved_at": "2026-05-15T06:51:06.487938"
 }
