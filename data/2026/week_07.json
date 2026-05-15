@@ -1651,6 +1651,66 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1778861576,
+      "players": [
+        {
+          "name": "Sean Newcomb",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1778861409,
+      "players": [
+        {
+          "name": "Tyler Mahle",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1778861307,
+      "players": [
+        {
+          "name": "Kyle Finnegan",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1778861296,
+      "players": [
+        {
+          "name": "Jakob Junis",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1778853395,
+      "players": [
+        {
+          "name": "Carter Jensen",
+          "action": "add",
+          "team": "Canberra Wombats",
+          "position": "C"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1778790218,
       "players": [
@@ -2027,66 +2087,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1778252677,
-      "players": [
-        {
-          "name": "Braydon Fisher",
-          "action": "add",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1778246683,
-      "players": [
-        {
-          "name": "Jake Bennett",
-          "action": "drop",
-          "team": "Canberra Wombats",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1778241247,
-      "players": [
-        {
-          "name": "Cade Cavalli",
-          "action": "drop",
-          "team": "Buttville Skidmarks",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1778196197,
-      "players": [
-        {
-          "name": "Matthew Liberatore",
-          "action": "add",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1778195726,
-      "players": [
-        {
-          "name": "Cam Smith",
-          "action": "drop",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2105,8 +2105,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-05-15T13:48:40.107966"
+  "saved_at": "2026-05-15T17:23:13.498559"
 }
