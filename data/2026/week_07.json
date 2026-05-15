@@ -1651,6 +1651,24 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1778877008,
+      "players": [
+        {
+          "name": "Mark Vientos",
+          "action": "add",
+          "team": "Buttville Skidmarks",
+          "position": "1B,3B"
+        },
+        {
+          "name": "Francisco Alvarez",
+          "action": "drop",
+          "team": "Buttville Skidmarks",
+          "position": "C"
+        }
+      ]
+    },
+    {
       "type": "add",
       "timestamp": 1778861576,
       "players": [
@@ -2075,18 +2093,6 @@
           "position": "2B"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1778268915,
-      "players": [
-        {
-          "name": "Matthew Liberatore",
-          "action": "drop",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2108,5 +2114,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-05-15T17:23:13.498559"
+  "saved_at": "2026-05-15T20:53:48.197987"
 }
