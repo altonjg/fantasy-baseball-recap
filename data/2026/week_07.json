@@ -1651,6 +1651,30 @@
   },
   "transactions": [
     {
+      "type": "drop",
+      "timestamp": 1778931571,
+      "players": [
+        {
+          "name": "Jack Kochanowicz",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1778931127,
+      "players": [
+        {
+          "name": "Tyler Mahle",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1778877008,
       "players": [
@@ -2063,36 +2087,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1778407525,
-      "players": [
-        {
-          "name": "Tyler Mahle",
-          "action": "add",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "SP"
-        },
-        {
-          "name": "Justin Bruihl",
-          "action": "drop",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1778337676,
-      "players": [
-        {
-          "name": "Travis Bazzana",
-          "action": "add",
-          "team": "Riverside Roughnecks",
-          "position": "2B"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2114,5 +2108,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-05-16T09:24:04.936321"
+  "saved_at": "2026-05-16T13:05:02.129462"
 }
