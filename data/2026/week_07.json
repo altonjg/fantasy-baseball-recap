@@ -78,11 +78,11 @@
               "score": 12.0
             },
             {
-              "name": "Jac Caglianone",
-              "mlb_team": "KC",
-              "position": "1B,OF",
-              "stats": "R:4, HR:1, RBI:1, OBP:.250",
-              "score": 11.0
+              "name": "Sandy Alcantara",
+              "mlb_team": "MIA",
+              "position": "SP",
+              "stats": "K:8, ERA:7.84, WHIP:1.74, QS:1, IP:10.1",
+              "score": 9.0
             }
           ]
         },
@@ -1089,7 +1089,7 @@
               "name": "Jacob deGrom",
               "mlb_team": "TEX",
               "position": "SP",
-              "stats": "K:17, ERA:4.05, WHIP:0.83, QS:1, IP:13.1",
+              "stats": "K:17, ERA:4.05, WHIP:0.82, QS:1, IP:13.1",
               "score": 18.0
             },
             {
@@ -1651,6 +1651,36 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1778943313,
+      "players": [
+        {
+          "name": "Henry Bolte",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "OF"
+        },
+        {
+          "name": "Jac Caglianone",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "1B,OF"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1778943265,
+      "players": [
+        {
+          "name": "Robby Snelling",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1778931571,
       "players": [
@@ -2051,42 +2081,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1778417680,
-      "players": [
-        {
-          "name": "Daniel Lynch IV",
-          "action": "add",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "RP"
-        },
-        {
-          "name": "Drew Pomeranz",
-          "action": "drop",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "SP,RP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1778413714,
-      "players": [
-        {
-          "name": "Chris Bassitt",
-          "action": "add",
-          "team": "Riverside Roughnecks",
-          "position": "SP"
-        },
-        {
-          "name": "Zack Littell",
-          "action": "drop",
-          "team": "Riverside Roughnecks",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2105,8 +2099,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-05-16T13:05:02.129462"
+  "saved_at": "2026-05-16T16:50:24.714148"
 }
