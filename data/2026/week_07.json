@@ -284,7 +284,7 @@
               "name": "Jonathan Aranda",
               "mlb_team": "TB",
               "position": "1B",
-              "stats": "R:2, RBI:1, OBP:.476",
+              "stats": "R:2, RBI:1, OBP:.455",
               "score": 9.0
             },
             {
@@ -321,8 +321,8 @@
               "name": "Otto Lopez",
               "mlb_team": "MIA",
               "position": "2B,SS",
-              "stats": "R:4, HR:1, RBI:2, OBP:.357",
-              "score": 17.0
+              "stats": "R:4, HR:1, RBI:2, SB:1, OBP:.379",
+              "score": 18.0
             },
             {
               "name": "Seiya Suzuki",
@@ -335,7 +335,7 @@
               "name": "Xavier Edwards",
               "mlb_team": "MIA",
               "position": "2B,SS",
-              "stats": "R:4, HR:2, RBI:3, OBP:.333",
+              "stats": "R:4, HR:2, RBI:3, OBP:.321",
               "score": 15.0
             },
             {
@@ -876,6 +876,13 @@
               "score": 18.0
             },
             {
+              "name": "Junior Caminero",
+              "mlb_team": "TB",
+              "position": "3B",
+              "stats": "R:5, HR:3, RBI:4, OBP:.308",
+              "score": 17.0
+            },
+            {
               "name": "Spencer Steer",
               "mlb_team": "CIN",
               "position": "1B,OF",
@@ -886,15 +893,8 @@
               "name": "Liam Hicks",
               "mlb_team": "MIA",
               "position": "C,1B",
-              "stats": "R:2, HR:2, RBI:5, OBP:.389",
+              "stats": "R:2, HR:2, RBI:5, OBP:.368",
               "score": 15.0
-            },
-            {
-              "name": "Junior Caminero",
-              "mlb_team": "TB",
-              "position": "3B",
-              "stats": "R:4, HR:2, RBI:3, OBP:.280",
-              "score": 13.0
             },
             {
               "name": "Marcus Semien",
@@ -1089,7 +1089,7 @@
               "name": "Jacob deGrom",
               "mlb_team": "TEX",
               "position": "SP",
-              "stats": "K:17, ERA:4.05, WHIP:0.83, QS:1, IP:13.1",
+              "stats": "K:17, ERA:4.05, WHIP:0.82, QS:1, IP:13.1",
               "score": 18.0
             },
             {
@@ -1306,7 +1306,7 @@
               "name": "Chandler Simpson",
               "mlb_team": "TB",
               "position": "OF",
-              "stats": "R:3, RBI:4, SB:1, OBP:.333",
+              "stats": "R:3, RBI:4, SB:1, OBP:.318",
               "score": 15.0
             },
             {
@@ -1327,7 +1327,7 @@
               "name": "Nathan Eovaldi",
               "mlb_team": "TEX",
               "position": "SP",
-              "stats": "K:8, ERA:1.13, WHIP:0.38, QS:1, IP:8.0",
+              "stats": "K:8, ERA:1.12, WHIP:0.38, QS:1, IP:8.0",
               "score": 9.0
             },
             {
@@ -1650,6 +1650,54 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "add/drop",
+      "timestamp": 1779031838,
+      "players": [
+        {
+          "name": "Angel Mart\u00ednez",
+          "action": "add",
+          "team": "Athletic Park Dragons",
+          "position": "2B,OF"
+        },
+        {
+          "name": "Spencer Horwitz",
+          "action": "drop",
+          "team": "Athletic Park Dragons",
+          "position": "1B"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1779031822,
+      "players": [
+        {
+          "name": "Brandon Young",
+          "action": "add",
+          "team": "General Hospital",
+          "position": "SP"
+        },
+        {
+          "name": "Kumar Rocker",
+          "action": "drop",
+          "team": "General Hospital",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1779031699,
+      "players": [
+        {
+          "name": "Grant Holmes",
+          "action": "add",
+          "team": "General Hospital",
+          "position": "SP"
+        }
+      ]
+    },
     {
       "type": "add/drop",
       "timestamp": 1778958179,
@@ -2045,54 +2093,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1778499301,
-      "players": [
-        {
-          "name": "Shawn Armstrong",
-          "action": "drop",
-          "team": "Riverside Roughnecks",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1778448805,
-      "players": [
-        {
-          "name": "Keider Montero",
-          "action": "add",
-          "team": "Abbotsford-Colby Twins",
-          "position": "SP,RP"
-        },
-        {
-          "name": "Grant Holmes",
-          "action": "drop",
-          "team": "Abbotsford-Colby Twins",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1778448204,
-      "players": [
-        {
-          "name": "Chase Dollander",
-          "action": "add",
-          "team": "Abbotsford-Colby Twins",
-          "position": "SP,RP"
-        },
-        {
-          "name": "Andrew Painter",
-          "action": "drop",
-          "team": "Abbotsford-Colby Twins",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2114,5 +2114,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-05-17T13:02:42.915185"
+  "saved_at": "2026-05-17T16:49:21.693152"
 }
