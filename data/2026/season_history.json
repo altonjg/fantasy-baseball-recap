@@ -111,6 +111,22 @@
       "12. Wonder Wharf Wonderdogs | Pete Alonso's 7 RBI, 6 QS, and 73 Ks are legitimate — this team is not as bad as their record suggests, and the -0.89 luck delta is a real injustice; Tyler Mahle adds rotation depth but they need the schedule to even out | up",
       "13. Buttville Skidmarks | Eight NSVH and a 3.53 ERA are genuinely good pitching marks but losing 4-3 to a Reapers team with fewer innings and lower power output is a familiar story — this roster cannot score enough runs to win close matchups | same",
       "14. Canberra Wombats | Getting blown out 9-1 with a .254 OBP and only 14 runs scored while dropping Jake Bennett off the roster is moving in the wrong direction on every front; deGrom's 4.05 ERA is concerning and the offense is the worst in the league this week | down"
+    ],
+    "week_08": [
+      "1. Sugar Land Skeeters | Max Muncy's 9 runs, Drake Baldwin's 3 HR, a league-leading 36 runs scored, and 5 QS in an 8-2 demolition of General Hospital — this is the most complete roster in the league and it isn't particularly close | same",
+      "2. Riverside Roughnecks | A 7-1 blowout of Canberra backed by Nick Kurtz's 3 HR and 8 RBI, Roki Sasaki's 13 Ks, Jacob Misiorowski's 0.57 WHIP, and a season-record-tying 78 strikeouts signals this rotation has fully arrived | up",
+      "3. BaseballPro77 | Bobby Witt Jr., Austin Riley, and Munetaka Murakami each went deep twice in a 6-3 win; the offense finally has multiple credible power threats and the rotation held together well enough to get the job done | same",
+      "4. Athletic Park Dragons | Winning 5-4 despite a .296 OBP and only 39 hits is a testament to pitching depth — Cristopher Sánchez's 0.67 WHIP and Bailey Ober's 1.93 ERA anchored 4 QS — but the offense remains a genuine liability | same",
+      "5. Albuquerque Bombers | Daylen Lile's 4 HR and 10 RBI is a breakout performance that single-handedly won a close matchup, and Zack Wheeler's continued dominance makes this a dangerous team; the Max Meyer implosion (6.35 ERA) is the only real concern | up",
+      "6. North Correa | Setting a season RBI record with 40 and still only tying is the most North Correa outcome imaginable — the underlying talent is undeniable with Ohtani, Arozarena, and Bregman all producing, but one save/hold and shaky pitching depth keep costing them | down",
+      "7. Wisconsin Rapids Reapers | Juan Soto's 2 HR, Ben Rice's pop, and a solid 3.40 ERA aren't enough to overcome losing 6-4 to the Benchwarmers — a team with a -1 NSVH — which is a frustrating result for a squad with genuine upside | down",
+      "8. Hiroshima Radiation | Losing to the Bombers despite winning the pitching battle, 5 QS, and a 2.93 ERA is a damning result; the offense needs more than Schwarber and Harper carrying the load and this team is trending the wrong direction | down",
+      "9. Abbotsford-Colby Twins | The offensive numbers are legitimately good — 8 HR, 32 RBI, José Ramírez, Yordan Alvarez, Jazz Chisholm — but a 6.35 ERA and zero NSVH is a catastrophic pitching performance that needs immediate triage | same",
+      "10. Benchwarmers | Winning 6-4 with a negative NSVH and only 32 strikeouts while riding Corbin Carroll's .607 OBP is not a sustainable model; the luck delta of +1.70 is the highest in the league and this roster will be exposed when it regresses | down",
+      "11. General Hospital | Getting blown out 8-2 by the Skeeters when your staff posts a 3.18 ERA and 4 QS is an indictment of a lineup hitting .190 and posting a .270 OBP; the rotation is actually fine but there are simply not enough runs being scored | same",
+      "12. Buttville Skidmarks | Tying North Correa 5-5 when the opponent posts 40 RBI and 10 stolen bases is arguably the best result of the week on a per-talent basis; Cade Smith's 0.30 WHIP and 7 Ks in relief is a legitimate weapon, but the power numbers remain anemic | up",
+      "13. Wonder Wharf Wonderdogs | Paul Skenes' 17 Ks are the best single-pitcher strikeout performance of the week and Colson Montgomery's 3 HR show real individual talent, but losing 6-3 to a BaseballPro77 team they should be competing with keeps the frustration running deep | same",
+      "14. Canberra Wombats | Getting blown out 7-1 despite Dylan Cease's 1.29 ERA is a damning indictment of an offense that could not generate runs against one of the hotter rosters in the league; this team needs a complete offensive overhaul and time is running short | same"
     ]
   },
   "weekly_points": {
@@ -225,6 +241,22 @@
       "Sugar Land Skeeters": 9.0,
       "Hiroshima Radiation": 6.0,
       "Wonder Wharf Wonderdogs": 4.0
+    },
+    "week_08": {
+      "Albuquerque Bombers": 5.0,
+      "Hiroshima Radiation": 4.0,
+      "Abbotsford-Colby Twins": 4.0,
+      "Athletic Park Dragons": 5.0,
+      "BaseballPro77": 6.0,
+      "Wonder Wharf Wonderdogs": 3.0,
+      "Benchwarmers": 6.0,
+      "Wisconsin Rapids Reapers": 4.0,
+      "Buttville Skidmarks": 5.0,
+      "North Correa": 5.0,
+      "Canberra Wombats": 1.0,
+      "Riverside Roughnecks": 7.0,
+      "General Hospital": 2.0,
+      "Sugar Land Skeeters": 8.0
     }
   },
   "manager_spotlight_rotation": [
