@@ -1651,6 +1651,36 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1779124822,
+      "players": [
+        {
+          "name": "J.T. Ginn",
+          "action": "add",
+          "team": "Hiroshima Radiation",
+          "position": "SP,RP"
+        },
+        {
+          "name": "Colin Rea",
+          "action": "drop",
+          "team": "Hiroshima Radiation",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1779124731,
+      "players": [
+        {
+          "name": "Jakob Marsee",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "OF"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1779114302,
       "players": [
@@ -2051,42 +2081,6 @@
           "position": "OF"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1778616597,
-      "players": [
-        {
-          "name": "Austin Martin",
-          "action": "add",
-          "team": "Hiroshima Radiation",
-          "position": "2B,OF"
-        },
-        {
-          "name": "Andrew Kittredge",
-          "action": "drop",
-          "team": "Hiroshima Radiation",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1778616543,
-      "players": [
-        {
-          "name": "Jacob Latz",
-          "action": "add",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "SP,RP"
-        },
-        {
-          "name": "Tyler Mahle",
-          "action": "drop",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2105,8 +2099,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-05-18T14:57:48.950217"
+  "saved_at": "2026-05-18T17:53:49.441989"
 }
