@@ -17,8 +17,10 @@ Usage:
 from __future__ import annotations
 
 import json
+import threading
 import time
 import urllib.parse
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
@@ -218,6 +220,47 @@ def summarize_game_log(games: list[dict]) -> str:
 # Bulk enrichment — top_players list
 # ---------------------------------------------------------------------------
 
+_enrich_semaphore = threading.Semaphore(3)  # max 3 concurrent MLB API requests
+
+
+def _enrich_one(
+    player: dict,
+    year: int,
+    week_start: str | None,
+    week_end: str | None,
+    delay: float,
+) -> dict:
+    if "mlb_id" in player:
+        return player
+    name = player.get("name", "")
+    if not name:
+        return player
+
+    with _enrich_semaphore:
+        pid = get_player_id(name)
+        p = dict(player)
+        if pid:
+            p["mlb_id"] = pid
+            p["mlb_headshot"] = (
+                f"{_IMG_BASE}/d_people:generic:headshot:67:current.png"
+                f"/w_213,q_auto:best/v1/people/{pid}/headshot/67/current"
+            )
+            try:
+                p["mlb_season"] = get_season_stats(pid, year)
+            except Exception:
+                p["mlb_season"] = {}
+            if week_start and week_end:
+                try:
+                    games = get_game_log(pid, year, week_start, week_end)
+                    p["mlb_week_games"] = games
+                    p["mlb_week_log"] = summarize_game_log(games)
+                except Exception:
+                    p["mlb_week_games"] = []
+                    p["mlb_week_log"] = ""
+            time.sleep(delay)
+        return p
+
+
 def enrich_top_players(
     players: list[dict],
     year: int,
@@ -238,49 +281,20 @@ def enrich_top_players(
 
     Players without an MLB ID (or lookup failures) are returned unchanged.
     Skips players already enriched (have 'mlb_id' key).
-
-    delay: seconds between API calls to be polite to the free endpoint.
     """
-    enriched = []
-    for player in players[:max_players]:
-        if "mlb_id" in player:
-            enriched.append(player)
-            continue
+    to_enrich = players[:max_players]
+    results: dict[int, dict] = {}
 
-        name = player.get("name", "")
-        if not name:
-            enriched.append(player)
-            continue
+    with ThreadPoolExecutor(max_workers=5) as ex:
+        futures = {
+            ex.submit(_enrich_one, p, year, week_start, week_end, delay): i
+            for i, p in enumerate(to_enrich)
+        }
+        for future in as_completed(futures):
+            idx = futures[future]
+            results[idx] = future.result()
 
-        pid = get_player_id(name)
-        p   = dict(player)
-
-        if pid:
-            p["mlb_id"]       = pid
-            p["mlb_headshot"] = (
-                f"{_IMG_BASE}/d_people:generic:headshot:67:current.png"
-                f"/w_213,q_auto:best/v1/people/{pid}/headshot/67/current"
-            )
-            try:
-                season_stats = get_season_stats(pid, year)
-                p["mlb_season"] = season_stats
-            except Exception:
-                p["mlb_season"] = {}
-
-            if week_start and week_end:
-                try:
-                    games = get_game_log(pid, year, week_start, week_end)
-                    p["mlb_week_games"] = games
-                    p["mlb_week_log"]   = summarize_game_log(games)
-                except Exception:
-                    p["mlb_week_games"] = []
-                    p["mlb_week_log"]   = ""
-
-            time.sleep(delay)  # polite rate limiting
-
-        enriched.append(p)
-
-    # Append any players beyond max_players unchanged
+    enriched = [results[i] for i in range(len(to_enrich))]
     enriched.extend(players[max_players:])
     return enriched
 

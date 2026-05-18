@@ -23,6 +23,13 @@ _LOWER_IS_BETTER = {"26", "27"}
 _stat_categories_cache: dict[str, dict[str, str]] = {}
 
 
+def _parse_float(val) -> float:
+    try:
+        return float(val) if val and val != "-" else 0.0
+    except (ValueError, TypeError):
+        return 0.0
+
+
 # ---------------------------------------------------------------------------
 # Low-level request helper
 # ---------------------------------------------------------------------------
@@ -656,12 +663,6 @@ def get_player_adp(
                                 da.update(item)
                     elif isinstance(da_raw, dict):
                         da = da_raw
-
-                def _parse_float(val) -> float:
-                    try:
-                        return float(val) if val and val != "-" else 0.0
-                    except (ValueError, TypeError):
-                        return 0.0
 
                 # Use in-season ADP if available, fall back to preseason ADP
                 adp = _parse_float(da.get("average_pick"))

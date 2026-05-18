@@ -51,67 +51,14 @@ from yahoo_client import (
     get_draft_results_enriched,
     get_league_meta,
 )
+from writer_styles import (
+    WRITER_STYLES, _TRADE_WRITERS, _RECAP_WRITERS, _RECAP_WRITER_WEIGHTS, _PLAYOFF_WRITER,
+)
 try:
     from mlb_stats import enrich_top_players, week_date_range
     _MLB_STATS_AVAILABLE = True
 except ImportError:
     _MLB_STATS_AVAILABLE = False
-
-# Writer pools — mirrors app.py so both stay in sync
-WRITER_STYLES: dict[str, dict] = {
-    "passan": {
-        "name": "Jeff Passan", "outlet": "ESPN",
-        "voice": (
-            "Write in Jeff Passan's style: urgent, authoritative breaking-news tone. "
-            "Open with a declarative statement of fact. Use em-dashes liberally. "
-            "Reference 'sources familiar with the situation.' Sharp, punchy sentences. "
-            "Every sentence feels like it belongs in a push notification."
-        ),
-    },
-    "heyman": {
-        "name": "Jon Heyman", "outlet": "MLB Network",
-        "voice": (
-            "Write in Jon Heyman's style: blunt, telegraphic, tweet-like bursts of fact. "
-            "Gets straight to the point immediately. Short declarative sentences. No fluff. "
-            "Grades are blunt and opinionated. Lead with 'Sources:' or the key fact."
-        ),
-    },
-    "rosenthal": {
-        "name": "Ken Rosenthal", "outlet": "The Athletic",
-        "voice": (
-            "Write in Ken Rosenthal's style: measured, formal, old-school baseball journalism. "
-            "Thorough historical context. Balanced, fair analysis of both sides. "
-            "Dignified tone. Every sentence carries weight and credibility."
-        ),
-    },
-    "olney": {
-        "name": "Buster Olney", "outlet": "ESPN",
-        "voice": (
-            "Write in Buster Olney's style: analytical, even-handed, rich in historical context. "
-            "Focus on team-building implications and long-term impact. "
-            "Uses statistics naturally within prose. Thoughtful, measured conclusions."
-        ),
-    },
-    "gammons": {
-        "name": "Peter Gammons", "outlet": "MLB Network",
-        "voice": (
-            "Write in Peter Gammons's style: poetic, flowing prose with legendary gravitas. "
-            "Draw historical comparisons. Lyrical and dramatic — make it feel like it matters forever. "
-            "Long, beautiful sentences. This is the voice of baseball history itself."
-        ),
-    },
-    "simmons": {
-        "name": "Bill Simmons", "outlet": "The Ringer",
-        "voice": (
-            "Write in Bill Simmons's style: fan-first perspective with pop culture references "
-            "and parenthetical asides (lots of them). Self-aware humor. Reference movies, TV, music. "
-            "Trash talk is encouraged. Feels like a smart, opinionated friend texting about fantasy."
-        ),
-    },
-}
-_TRADE_WRITERS  = ["passan", "heyman"]
-_RECAP_WRITERS  = ["rosenthal", "olney", "simmons"]
-_PLAYOFF_WRITER = "gammons"
 
 DATA_ROOT = Path(__file__).parent / "data"
 
@@ -272,17 +219,19 @@ def _check_and_update_records(
         if value < 0:
             return
         current = records.get(key)
+        if current is None:
+            records[key] = {"value": value, "team": team, "week": week_num}
+            return
         is_better = (value > current["value"]) if higher else (value < current["value"])
-        if current is None or is_better:
-            if current is not None and is_better:
-                broken.append({
-                    "record": key,
-                    "new_value": value,
-                    "team": team,
-                    "prev_value": current["value"],
-                    "prev_team": current["team"],
-                    "prev_week": current["week"],
-                })
+        if is_better:
+            broken.append({
+                "record": key,
+                "new_value": value,
+                "team": team,
+                "prev_value": current["value"],
+                "prev_team": current["team"],
+                "prev_week": current["week"],
+            })
             records[key] = {"value": value, "team": team, "week": week_num}
 
     for m in week_data.get("matchups", []):
@@ -315,9 +264,13 @@ _LOWER_IS_BETTER_CATS = {"ERA", "WHIP"}
 def _calculate_luck_index(season: int, through_week: int) -> dict[str, dict]:
     """
     For each team, compute:
-      actual_wins   — real season wins from matchup data
-      expected_wins — sum of (simulated wins vs every other team) / 13 per week
+      actual_wins   — real matchup results: 1.0 win / 0.5 tie / 0.0 loss, summed
+      expected_wins — sum of (simulated all-play win rate vs the field) per week
       luck_delta    — actual_wins - expected_wins (positive = lucky)
+
+    Luck = winning your real matchups more often than your category profile
+    predicts against the field. Both terms are on the same 0-1-per-week scale,
+    so deltas balance to roughly zero across the league.
 
     Returns {team_name: {actual_wins, expected_wins, luck_delta}}
     """
@@ -336,22 +289,31 @@ def _calculate_luck_index(season: int, through_week: int) -> dict[str, dict]:
         except Exception:
             continue
 
-        # Gather all teams' category stats for this week
+        # Gather category stats + the actual matchup result (1.0/0.5/0.0) per team
         teams_stats: dict[str, dict] = {}
-        teams_actual_wins: dict[str, float] = {}
+        teams_result: dict[str, float] = {}
         for m in wd.get("matchups", []):
-            for t in m.get("teams", []):
+            mteams = m.get("teams", [])
+            winner_key = m.get("winner_key")
+            is_tied = m.get("is_tied", False)
+            for t in mteams:
                 name = t.get("name", "")
-                if name:
-                    teams_stats[name] = t.get("category_stats", {})
-                    teams_actual_wins[name] = float(t.get("points", 0.0))
+                if not name:
+                    continue
+                teams_stats[name] = t.get("category_stats", {})
+                if is_tied:
+                    teams_result[name] = 0.5
+                elif t.get("team_key") == winner_key:
+                    teams_result[name] = 1.0
+                else:
+                    teams_result[name] = 0.0
 
         all_teams = list(teams_stats.keys())
         n = len(all_teams)
         if n < 2:
             continue
 
-        # For each team, simulate against every other team
+        # For each team, simulate an all-play matchup against every other team
         for team_a in all_teams:
             sim_wins = 0.0
             cats_a = teams_stats[team_a]
@@ -359,30 +321,35 @@ def _calculate_luck_index(season: int, through_week: int) -> dict[str, dict]:
                 if team_a == team_b:
                     continue
                 cats_b = teams_stats[team_b]
-                # Count categories team_a would win
-                a_cat_wins = 0
+                # Count categories team_a would win (ties count 0.5 each)
+                a_cat_wins = 0.0
+                cats_counted = 0
                 for cat in cats_a:
                     val_a = _parse_cat_stat(cat, str(cats_a.get(cat, "-1")))
                     val_b = _parse_cat_stat(cat, str(cats_b.get(cat, "-1")))
                     if val_a < 0 or val_b < 0:
                         continue
-                    if cat in _LOWER_IS_BETTER_CATS:
+                    cats_counted += 1
+                    if val_a == val_b:
+                        a_cat_wins += 0.5
+                    elif cat in _LOWER_IS_BETTER_CATS:
                         if val_a < val_b:
                             a_cat_wins += 1
                     else:
                         if val_a > val_b:
                             a_cat_wins += 1
-                # Win = more categories won than opponent (out of 12)
-                if a_cat_wins > 6:
+                # Win = more than half the categories counted
+                half = cats_counted / 2
+                if a_cat_wins > half:
                     sim_wins += 1
-                elif a_cat_wins == 6:
+                elif a_cat_wins == half:
                     sim_wins += 0.5  # simulated tie
 
             expected_this_week = sim_wins / (n - 1)
 
             if team_a not in totals:
                 totals[team_a] = {"actual_wins": 0.0, "expected_wins": 0.0}
-            totals[team_a]["actual_wins"] += teams_actual_wins.get(team_a, 0.0) / 10  # normalize to match wins
+            totals[team_a]["actual_wins"]   += teams_result.get(team_a, 0.0)
             totals[team_a]["expected_wins"] += expected_this_week
 
     for team, data in totals.items():
@@ -391,6 +358,61 @@ def _calculate_luck_index(season: int, through_week: int) -> dict[str, dict]:
         data["expected_wins"] = round(data["expected_wins"], 2)
 
     return totals
+
+
+def _compute_standings(season: int, through_week: int) -> list[dict]:
+    """
+    Compute real W-L-T standings by tallying cumulative matchup results across
+    weeks 1..through_week. Works around Yahoo sometimes returning all-zero
+    records in the per-week JSON's `standings` field.
+
+    Regular-season matchups only (playoff/consolation excluded).
+    Returns a list of {rank, name, wins, losses, ties, points_for}
+    sorted by wins, then points-for.
+    """
+    season_dir = DATA_ROOT / str(season)
+    week_files = sorted(
+        f for f in season_dir.glob("week_*.json")
+        if f.stem.split("_")[1].isdigit() and int(f.stem.split("_")[1]) <= through_week
+    )
+
+    rec: dict[str, dict] = {}
+    for wf in week_files:
+        try:
+            with open(wf, encoding="utf-8") as f:
+                wd = json.load(f)
+        except Exception:
+            continue
+        for m in wd.get("matchups", []):
+            if m.get("is_playoffs") or m.get("is_consolation"):
+                continue
+            mteams = m.get("teams", [])
+            if len(mteams) < 2:
+                continue
+            winner_key = m.get("winner_key")
+            is_tied = m.get("is_tied", False)
+            for t in mteams:
+                name = t.get("name", "")
+                if not name:
+                    continue
+                r = rec.setdefault(
+                    name,
+                    {"name": name, "wins": 0, "losses": 0, "ties": 0, "points_for": 0.0},
+                )
+                r["points_for"] += float(t.get("points", 0.0) or 0.0)
+                if is_tied:
+                    r["ties"] += 1
+                elif t.get("team_key") == winner_key:
+                    r["wins"] += 1
+                else:
+                    r["losses"] += 1
+
+    standings = sorted(
+        rec.values(), key=lambda r: (r["wins"], r["points_for"]), reverse=True
+    )
+    for i, r in enumerate(standings, 1):
+        r["rank"] = i
+    return standings
 
 
 # ── Two-pass recap generation ─────────────────────────────────────────────────
@@ -603,7 +625,7 @@ Include ALL 14 teams.
 </power_rankings>
 <waiver_highlights>
 List the most notable waiver wire moves. One entry per team — group all of a team's adds and drops into one line even if they made multiple moves.
-Format each line: Team Name | grade (A/B/C/D) | move summary | brief analysis
+Format each line: Team Name | grade (A through F, plus/minus allowed) | move summary | brief analysis
 Leave empty if truly no significant moves this week.
 </waiver_highlights>
 
@@ -627,6 +649,45 @@ Rules:
             last_err = e
             print(f"[ci_runner] Pass 1 attempt {attempt+1}/3 failed: {e}", file=sys.stderr)
     raise RuntimeError(f"Pass 1 failed after 3 attempts: {last_err}")
+
+
+# Em-dashes, en-dashes and emoji are tells of AI-generated text.
+_EMOJI_RE = re.compile(
+    "["
+    "\U0001F000-\U0001FAFF"  # symbols, pictographs, emoji
+    "\U00002600-\U000027BF"  # misc symbols + dingbats
+    "\U00002B00-\U00002BFF"  # misc symbols and arrows
+    "\U0001F1E6-\U0001F1FF"  # regional indicators
+    "\U0000FE0F"             # variation selector
+    "]"
+)
+
+
+def _sanitize_prose(text: str) -> str:
+    """
+    Strip AI-tell punctuation and symbols from generated article text.
+    Em-dashes / en-dashes become ordinary punctuation; emoji are removed.
+    Ordinary hyphens in scores (5-3), records (4-1-0) and team names
+    (Abbotsford-Colby) are left untouched.
+    """
+    if not text:
+        return text
+    # Em-dash used as a break or parenthetical → comma
+    text = text.replace(" — ", ", ").replace("—", ", ")
+    # En-dash → comma when spaced, hyphen otherwise (ranges/scores)
+    text = text.replace(" – ", ", ").replace("–", "-")
+    # Inline runs of 2+ ASCII hyphens (an em-dash substitute) → comma. Requires
+    # non-space context on BOTH sides, so markdown horizontal rules (--- alone
+    # on a line) survive, and single hyphens in scores (5-3), records (4-1-0)
+    # and names (Abbotsford-Colby) are untouched.
+    text = re.sub(r"(?<=\S)[ \t]*-{2,}[ \t]*(?=\S)", ", ", text)
+    # Remove emoji
+    text = _EMOJI_RE.sub("", text)
+    # Clean up artifacts from the replacements above
+    text = re.sub(r"\s+([,.;:!?])", r"\1", text)  # stray space before punctuation
+    text = re.sub(r",\s*,", ",", text)            # doubled commas
+    text = re.sub(r"[ \t]{2,}", " ", text)        # collapsed runs of spaces
+    return text
 
 
 def _pass2_write(
@@ -724,17 +785,17 @@ def _pass2_write(
     # Trade value section note
     include_trade = plan.get("include_trade_value", False)
     trade_value_note = (
-        "Section 10 (Trade value): OMIT this section entirely — no significant player shifts this week."
+        "Trade Value Watch: OMIT this section entirely — no significant player shifts this week."
         if not include_trade
-        else "Section 10 (Trade value): Include 2-3 players. For each: one sentence on what happened, one verdict (Buy/Sell/Hold) with brief reasoning."
+        else "Trade Value Watch: Include 2-3 players. For each: one sentence on what happened, one verdict (Buy/Sell/Hold) with brief reasoning."
     )
 
     # Records broken note
     records_str = str(plan.get("records_broken", "")).strip()
     records_note = (
-        "Section 8 (League record broken): OMIT this section entirely — no records were broken this week."
+        "Record Alert: OMIT this section entirely — no records were broken this week."
         if not records_str
-        else f"Section 8 (League record broken): Include — {records_str}"
+        else f"Record Alert: Include — {records_str}"
     )
 
     # Power rankings from plan — already formatted as "1. Team | reason" strings
@@ -745,6 +806,28 @@ def _pass2_write(
     # Waiver highlights from plan
     waiver_list = plan.get("waiver_highlights", [])
     waiver_text = "\n".join(f"  {w}" for w in waiver_list) if waiver_list else "  (no notable moves)"
+
+    # Live standings — computed from cumulative matchup results. Yahoo's per-week
+    # `standings` field is sometimes all-zero, so we tally W-L-T ourselves.
+    season = week_data.get("season", datetime.now().year)
+    standings_data: list[dict] = []
+    if str(week_num).isdigit():
+        standings_data = _compute_standings(int(season), int(week_num))
+    if not standings_data:
+        standings_data = week_data.get("standings", [])
+    standings_lines: list[str] = []
+    for s in standings_data:
+        standings_lines.append(
+            f"  {s.get('rank','?')}. {s.get('name','?')}: "
+            f"{s.get('wins',0)}-{s.get('losses',0)}-{s.get('ties',0)} "
+            f"(PF: {s.get('points_for',0):.0f})"
+        )
+    standings_text = "\n".join(standings_lines) if standings_lines else "  (standings unavailable)"
+
+    # Next week's schedule — for the Looking Ahead section
+    next_week_lines = [f"  {p['team_a']} vs {p['team_b']}" for p in (next_week_schedule or [])]
+    next_week_text = "\n".join(next_week_lines) if next_week_lines else "  (schedule unavailable)"
+    spotlight_team = str(plan.get("spotlight_team", "")).strip()
 
     prompt = f"""You are {writer['name']} of {writer['outlet']}, writing the Week {week_num} recap for "{league}."
 
@@ -761,31 +844,45 @@ POWER RANKINGS (use exactly as listed):
 WAIVER WIRE MOVES (use exactly as listed):
 {waiver_text}
 
+CURRENT STANDINGS (after this week):
+{standings_text}
+
+NEXT WEEK'S MATCHUPS (Week {int(week_num) + 1 if str(week_num).isdigit() else '?'}):
+{next_week_text}
+
 {league_leaders_text}
 
 RAW MATCHUP DATA (use for deep-dives and player references):
 {chr(10).join(matchup_lines)}
 
-WRITE THE FULL ARTICLE in this exact section order. Use ## for major section headers, ### for matchup sub-headers.
+WRITE THE FULL ARTICLE in this exact section order. Use ## for major section headers, ### for sub-headers.
 
 1. **Headline + subheadline** — returned as separate XML fields, not in body
-2. **Thriller of the Week** (`## Thriller of the Week`) — write about the thriller_teams matchup. 2-3 sentences on key performances, 1 sentence on stakes for both teams
-3. **The Week's Defining Moment** (`## The Week's Defining Moment`) — expand key_storyline into 2-3 paragraphs using raw matchup data
-4. **Matchup Deep-Dives** (`## Matchup Deep-Dives`) — every matchup gets its own subsection (`### Winner def. Loser, Score`). For each: key category stats, strategic implication, next week preview
-5. **Lucky/Unlucky Team of the Week** (`## Lucky/Unlucky Team of the Week`) — use lucky_team/unlucky_team and their reasons from the plan
-6. {records_note}
-7. **Manager Spotlight** (`## Manager Spotlight`) — feature spotlight_team. Cover their record, power ranking position, how their roster is performing, playoff outlook
-8. {trade_value_note}
-9. **Power Rankings** (`## Power Rankings`) — use the rankings list exactly as provided above, one entry per line{"" if has_movement else " (week 1 — no movement arrows)"}
-10. **Waiver Wire** (`## Waiver Wire`) — use the waiver highlights above. Format: **[GRADE]** Team — move — analysis
+2. **Thriller of the Week** (`## Thriller of the Week`) — the thriller_teams matchup. A full, deep treatment: key performances, what each team did well, and what the result means for both going forward. ~250 words.
+3. **The Week's Defining Moment** (`## The Week's Defining Moment`) — expand key_storyline into a deep narrative using raw matchup data. ~250 words.
+4. **Matchups** (`## Matchups`) — EVERY matchup must be covered, but tier the depth:
+   - Pick the single most notable game (besides the thriller/defining moment) — the biggest upset or most strategically interesting result. Give it a `### The Upset: ...` or `### Notable: ...` sub-header and a full paragraph (~180 words).
+   - Pick up to 2 more games with a real storyline. Each gets a `### Notable: Winner def. Loser, Score` sub-header and ~80-90 words.
+   - Bundle ALL remaining matchups under a single `### Quick Takes` sub-header. Each is 1-2 sharp sentences, leading with **Winner def. Loser, Score** in bold. Do NOT pad these — brevity is the point.
+   - Do not give a forgettable blowout the same word count as the thriller. Match depth to how interesting the game actually was.
+5. **Standings Watch** (`## Standings Watch`) — ~250 words of genuine analysis on the playoff race: who has separated at the top, who is in the bubble logjam, who is trending up or down, and what is at stake. Use the CURRENT STANDINGS data above. This is a depth section — make it insightful, not a list.
+6. **Lucky/Unlucky Team of the Week** (`## Lucky/Unlucky Team of the Week`) — use lucky_team/unlucky_team and their reasons from the plan.
+7. {records_note}
+8. **Waiver Wire** (`## Waiver Wire`) — use the waiver highlights above, one entry per team. Start each entry with the grade and team name bolded together exactly as `**[GRADE] Team Name**`, then continue directly into the move summary and analysis as plain sentences. Do NOT place a dash, double-hyphen, or other separator between the bolded team and the analysis; just start the sentence. Grades may be A through F (plus or minus allowed, e.g. B+). Give EVERY team's entry equal, even treatment: 2-3 sentences each covering what they did and whether it was a smart move. Do not single out any one team for a noticeably longer write-up than the others.
+9. {trade_value_note}
+10. **Power Rankings** (`## Power Rankings`) — use the rankings list exactly as provided above, all 14 teams, one entry per line{"" if has_movement else " (week 1 — no movement arrows)"}.
+11. **Looking Ahead** (`## Looking Ahead`) — ~130 words. Name 2-3 specific Week {int(week_num) + 1 if str(week_num).isdigit() else '?'} matchups from the schedule above worth watching and why. End the article with forward momentum, not a backward-looking summary.
 
 RULES:
 - Use **bold** for team names throughout
 - No favoritism toward any team
-- Write in {writer['name']}s authentic voice
-- Body should be 1500-2000 words — expand each section fully, don't compress or summarize
-- Every matchup deep-dive should be at least 3-4 sentences covering stats, context, and what it means going forward
-- Thriller of the Week and The Week's Defining Moment should each be 3-4 paragraphs
+- Write in {writer['name']}'s authentic voice
+- Write with real depth and thoroughness — a substantial article is welcome (2,500+ words is fine). But depth must come from ANALYSIS — connecting results to season-long trends, roster construction, and forward implications — NOT from padding. A boring result written at length is filler, not depth.
+- Spend words where there is something to analyze: the Thriller, Defining Moment, the feature matchup, and Standings Watch earn full treatment; Quick Takes and forgettable results stay tight.
+- Include ONLY the sections listed above (2-11), in that exact order. Do NOT invent additional sections or headers. If a section is marked OMIT, skip it entirely and move to the next, never substituting another section in its place.
+- The stat_of_week from the planning document must be woven into the prose of The Week's Defining Moment (or the Thriller). It does NOT get its own section or header.
+- Do NOT use em-dashes or en-dashes (the "—" and "–" characters) anywhere in the headline, subheadline, or body. Write sentences that use commas, periods, colons, or parentheses instead. Ordinary hyphens in scores (5-3), records (4-1-0) and team names (Abbotsford-Colby) are fine.
+- Do NOT use any emoji anywhere. Section headers are plain text with no symbols.
 - Power Rankings movement: end each line with `[UP]`, `[DOWN]`, or `[SAME]` — no emoji, no arrows, just those exact tokens
 - CRITICAL — stat accuracy: only cite specific numeric stats (HR, RBI, ERA, OBP, K, etc.) for players explicitly listed in the RAW MATCHUP DATA above. For any other player you mention, use qualitative descriptions only — never invent or estimate numbers.
 - CRITICAL — league-wide claims: before writing ANY claim like "led the league in X" or "highest/lowest Y in the league", check the LEAGUE-WIDE CATEGORY LEADERS section above. Only use the exact leader shown there — never guess or infer league leaders from a single matchup.
@@ -794,7 +891,7 @@ Wrap your response in XML tags exactly like this — no JSON, no preamble, nothi
 <headline>your headline here</headline>
 <subheadline>one sharp sentence here</subheadline>
 <body>
-full article body here, sections 2-10 in order, markdown OK
+full article body here, sections 2-11 in order, markdown OK
 </body>"""
 
     raw = _call_claude(prompt, max_tokens=8000)
@@ -807,9 +904,9 @@ full article body here, sections 2-10 in order, markdown OK
         raise ValueError(f"Pass 2 missing XML tags in response: {raw[:300]}")
 
     return {
-        "headline":    headline_match.group(1).strip(),
-        "subheadline": subheadline_match.group(1).strip(),
-        "body":        body_match.group(1).strip(),
+        "headline":    _sanitize_prose(headline_match.group(1).strip()),
+        "subheadline": _sanitize_prose(subheadline_match.group(1).strip()),
+        "body":        _sanitize_prose(body_match.group(1).strip()),
     }
 
 
@@ -836,7 +933,7 @@ def generate_recap_article(
     elif is_playoff:
         writer_key = random.choice([_PLAYOFF_WRITER] + _RECAP_WRITERS)
     else:
-        writer_key = random.choice(_RECAP_WRITERS)
+        writer_key = random.choices(_RECAP_WRITERS, weights=_RECAP_WRITER_WEIGHTS)[0]
 
     week_num = week_data.get("week", 0)
 

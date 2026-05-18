@@ -74,8 +74,8 @@ def load_league_data() -> tuple[dict, int, int]:
             try:
                 week_num = int(wf.stem.split("_")[1])
                 league_data[season][week_num] = json.loads(wf.read_text(encoding="utf-8"))
-            except Exception:
-                pass
+            except Exception as e:
+                print(f"Warning: failed to load {wf.name}: {e}")
 
         # Articles
         articles_dir = year_dir / "articles"
@@ -84,40 +84,40 @@ def load_league_data() -> tuple[dict, int, int]:
             for af in sorted(articles_dir.glob("*.json")):
                 try:
                     league_data[season]["articles"][af.stem] = json.loads(af.read_text(encoding="utf-8"))
-                except Exception:
-                    pass
+                except Exception as e:
+                    print(f"Warning: failed to load {af.name}: {e}")
 
         # Draft order
         draft_file = year_dir / "draft_order.json"
         if draft_file.exists():
             try:
                 league_data[season]["draft"] = json.loads(draft_file.read_text(encoding="utf-8"))
-            except Exception:
-                pass
+            except Exception as e:
+                print(f"Warning: failed to load {draft_file.name}: {e}")
 
         # Draft results (actual picks, populated by backfill.py --draft after the draft)
         draft_results_file = year_dir / "draft_results.json"
         if draft_results_file.exists():
             try:
                 league_data[season]["draft_results"] = json.loads(draft_results_file.read_text(encoding="utf-8"))
-            except Exception:
-                pass
+            except Exception as e:
+                print(f"Warning: failed to load {draft_results_file.name}: {e}")
 
         # ADP snapshot (populated by backfill.py --adp)
         adp_file = year_dir / "adp_snapshot.json"
         if adp_file.exists():
             try:
                 league_data[season]["adp"] = json.loads(adp_file.read_text(encoding="utf-8"))
-            except Exception:
-                pass
+            except Exception as e:
+                print(f"Warning: failed to load {adp_file.name}: {e}")
 
         # Advanced stats — Fangraphs WAR/wRC+/FIP (populated by backfill.py --stats)
         stats_file = year_dir / "advanced_stats.json"
         if stats_file.exists():
             try:
                 league_data[season]["advanced_stats"] = json.loads(stats_file.read_text(encoding="utf-8"))
-            except Exception:
-                pass
+            except Exception as e:
+                print(f"Warning: failed to load {stats_file.name}: {e}")
 
         # Division names (populated by backfill.py --divisions)
         divisions_file = year_dir / "divisions.json"
@@ -133,32 +133,32 @@ def load_league_data() -> tuple[dict, int, int]:
                         if team.get("team_key") in team_divisions:
                             team["division_name"] = team_divisions[team["team_key"]]
                 league_data[season]["divisions"] = div_data.get("divisions", {})
-            except Exception:
-                pass
+            except Exception as e:
+                print(f"Warning: failed to load {divisions_file.name}: {e}")
 
     # Global MLB player headshot cache (populated by backfill.py --headshots)
     mlb_players_file = data_dir / "mlb_players.json"
     if mlb_players_file.exists():
         try:
             league_data["mlb_players"] = json.loads(mlb_players_file.read_text(encoding="utf-8"))
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"Warning: failed to load {mlb_players_file.name}: {e}")
 
     # Team logos map (name → url, populated by fetch_logos.py)
     team_logos_file = data_dir / "team_logos.json"
     if team_logos_file.exists():
         try:
             league_data["team_logos"] = json.loads(team_logos_file.read_text(encoding="utf-8"))
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"Warning: failed to load {team_logos_file.name}: {e}")
 
     # League logo (populated by fetch_league_logo.py)
     league_logo_file = data_dir / "league_logo.json"
     if league_logo_file.exists():
         try:
             league_data["league_logo"] = json.loads(league_logo_file.read_text(encoding="utf-8"))
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"Warning: failed to load {league_logo_file.name}: {e}")
 
     # Determine current season — find the latest season that has at least one
     # regular season week (not is_playoffs) with actual points scored.
@@ -227,4 +227,4 @@ if trophy_path.exists():
 
 html_content = html_content.replace("</head>", data_script + "\n</head>", 1)
 
-components.html(html_content, height=1400, scrolling=False)
+components.html(html_content, height=3000, scrolling=False)
