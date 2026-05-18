@@ -60,7 +60,7 @@
               "name": "Josh Naylor",
               "mlb_team": "SEA",
               "position": "1B",
-              "stats": "R:2, RBI:1, SB:3, OBP:.313",
+              "stats": "R:2, RBI:1, SB:3, OBP:.312",
               "score": 12.0
             },
             {
@@ -2099,8 +2099,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-05-18T17:53:49.441989"
+  "saved_at": "2026-05-18T21:04:34.997213"
 }
