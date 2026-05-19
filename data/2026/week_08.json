@@ -60,7 +60,7 @@
               "name": "Josh Naylor",
               "mlb_team": "SEA",
               "position": "1B",
-              "stats": "R:2, RBI:1, SB:3, OBP:.313",
+              "stats": "R:2, RBI:1, SB:3, OBP:.312",
               "score": 12.0
             },
             {
@@ -1651,6 +1651,42 @@
   },
   "transactions": [
     {
+      "type": "drop",
+      "timestamp": 1779204613,
+      "players": [
+        {
+          "name": "Trevor Rogers",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1779204142,
+      "players": [
+        {
+          "name": "Keibert Ruiz",
+          "action": "add",
+          "team": "Sugar Land Skeeters",
+          "position": "C"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1779203996,
+      "players": [
+        {
+          "name": "Tyler Kinley",
+          "action": "drop",
+          "team": "Sugar Land Skeeters",
+          "position": "RP"
+        }
+      ]
+    },
+    {
       "type": "add",
       "timestamp": 1779144794,
       "players": [
@@ -2033,54 +2069,6 @@
           "position": "C"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1778709923,
-      "players": [
-        {
-          "name": "Ezequiel Duran",
-          "action": "add",
-          "team": "Riverside Roughnecks",
-          "position": "1B,2B,3B,SS,OF"
-        },
-        {
-          "name": "Kyle Manzardo",
-          "action": "drop",
-          "team": "Riverside Roughnecks",
-          "position": "1B"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1778696630,
-      "players": [
-        {
-          "name": "Carmen Mlodzinski",
-          "action": "add",
-          "team": "North Correa",
-          "position": "SP,RP"
-        },
-        {
-          "name": "Owen Caissie",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "OF"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1778622501,
-      "players": [
-        {
-          "name": "Spencer Horwitz",
-          "action": "add",
-          "team": "Athletic Park Dragons",
-          "position": "1B"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2099,8 +2087,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-05-19T14:42:53.005011"
+  "saved_at": "2026-05-19T17:59:23.747430"
 }
