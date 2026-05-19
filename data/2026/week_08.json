@@ -32,8 +32,15 @@
               "name": "Daylen Lile",
               "mlb_team": "WSH",
               "position": "OF",
-              "stats": "R:6, HR:4, RBI:10, SB:1, OBP:.333",
+              "stats": "R:6, HR:4, RBI:10, SB:1, OBP:.324",
               "score": 31.0
+            },
+            {
+              "name": "Josh Naylor",
+              "mlb_team": "SEA",
+              "position": "1B",
+              "stats": "R:3, RBI:2, SB:5, OBP:.361",
+              "score": 19.0
             },
             {
               "name": "Brice Turang",
@@ -57,10 +64,10 @@
               "score": 14.0
             },
             {
-              "name": "Josh Naylor",
-              "mlb_team": "SEA",
-              "position": "1B",
-              "stats": "R:2, RBI:1, SB:3, OBP:.333",
+              "name": "Bo Bichette",
+              "mlb_team": "NYM",
+              "position": "3B,SS",
+              "stats": "R:4, HR:1, RBI:4, OBP:.316",
               "score": 13.0
             },
             {
@@ -75,13 +82,6 @@
               "mlb_team": "STL",
               "position": "C",
               "stats": "R:3, RBI:2, OBP:.321",
-              "score": 12.0
-            },
-            {
-              "name": "Sal Stewart",
-              "mlb_team": "CIN",
-              "position": "1B,2B,3B",
-              "stats": "R:3, HR:1, RBI:2, SB:2, OBP:.409",
               "score": 12.0
             }
           ]
@@ -139,8 +139,22 @@
               "name": "Austin Martin",
               "mlb_team": "MIN",
               "position": "2B,OF",
-              "stats": "R:3, RBI:3, SB:2, OBP:.286",
+              "stats": "R:3, RBI:3, SB:2, OBP:.267",
               "score": 13.0
+            },
+            {
+              "name": "Luke Keaschall",
+              "mlb_team": "MIN",
+              "position": "2B",
+              "stats": "R:3, RBI:2, SB:2, OBP:.333",
+              "score": 13.0
+            },
+            {
+              "name": "J.T. Ginn",
+              "mlb_team": "ATH",
+              "position": "SP,RP",
+              "stats": "K:10, ERA:2.25, WHIP:0.38, QS:1, IP:8.0",
+              "score": 11.0
             },
             {
               "name": "Trevor McDonald",
@@ -148,20 +162,6 @@
               "position": "SP,RP",
               "stats": "K:9, ERA:3.00, WHIP:1.42, QS:1, IP:12.0",
               "score": 10.0
-            },
-            {
-              "name": "Luke Keaschall",
-              "mlb_team": "MIN",
-              "position": "2B",
-              "stats": "R:3, SB:2, OBP:.318",
-              "score": 10.0
-            },
-            {
-              "name": "Nathan Eovaldi",
-              "mlb_team": "TEX",
-              "position": "SP",
-              "stats": "K:8, WHIP:1.00, QS:1, IP:7.0",
-              "score": 9.0
             }
           ]
         }
@@ -263,7 +263,7 @@
               "name": "Willy Adames",
               "mlb_team": "SF",
               "position": "SS",
-              "stats": "R:3, HR:1, RBI:6, OBP:.417",
+              "stats": "R:3, HR:1, RBI:6, OBP:.440",
               "score": 19.0
             },
             {
@@ -277,14 +277,14 @@
               "name": "Yordan Alvarez",
               "mlb_team": "HOU",
               "position": "OF",
-              "stats": "R:3, HR:2, RBI:2, OBP:.433",
-              "score": 14.0
+              "stats": "R:3, HR:2, RBI:2, OBP:.455",
+              "score": 15.0
             },
             {
               "name": "Chase Meidroth",
               "mlb_team": "CWS",
               "position": "2B,3B,SS",
-              "stats": "R:4, HR:1, RBI:5, OBP:.250",
+              "stats": "R:4, HR:1, RBI:5, OBP:.280",
               "score": 13.0
             },
             {
@@ -318,6 +318,13 @@
           },
           "top_players": [
             {
+              "name": "James Wood",
+              "mlb_team": "WSH",
+              "position": "OF",
+              "stats": "R:6, HR:1, RBI:2, OBP:.412",
+              "score": 17.0
+            },
+            {
               "name": "Andr\u00e9s Gim\u00e9nez",
               "mlb_team": "TOR",
               "position": "2B,SS",
@@ -325,10 +332,10 @@
               "score": 15.0
             },
             {
-              "name": "James Wood",
-              "mlb_team": "WSH",
-              "position": "OF",
-              "stats": "R:6, HR:1, RBI:1, OBP:.394",
+              "name": "Ryan Jeffers",
+              "mlb_team": "MIN",
+              "position": "C",
+              "stats": "R:5, HR:2, RBI:3, OBP:.435",
               "score": 15.0
             },
             {
@@ -350,13 +357,6 @@
               "mlb_team": "HOU",
               "position": "SP",
               "stats": "K:12, ERA:5.54, WHIP:0.92, QS:1, IP:13.0",
-              "score": 13.0
-            },
-            {
-              "name": "Ryan Jeffers",
-              "mlb_team": "MIN",
-              "position": "C",
-              "stats": "R:4, HR:2, RBI:3, OBP:.409",
               "score": 13.0
             },
             {
@@ -466,7 +466,14 @@
               "name": "Munetaka Murakami",
               "mlb_team": "CWS",
               "position": "1B,3B",
-              "stats": "R:5, HR:2, RBI:3, OBP:.464",
+              "stats": "R:5, HR:2, RBI:3, OBP:.467",
+              "score": 17.0
+            },
+            {
+              "name": "Carson Benge",
+              "mlb_team": "NYM",
+              "position": "OF",
+              "stats": "R:5, RBI:4, SB:1, OBP:.364",
               "score": 16.0
             },
             {
@@ -475,6 +482,13 @@
               "position": "3B",
               "stats": "R:3, HR:2, RBI:4, OBP:.259",
               "score": 15.0
+            },
+            {
+              "name": "Ketel Marte",
+              "mlb_team": "AZ",
+              "position": "2B",
+              "stats": "R:4, RBI:2, OBP:.321",
+              "score": 13.0
             },
             {
               "name": "George Kirby",
@@ -489,20 +503,6 @@
               "position": "C",
               "stats": "R:4, HR:1, RBI:2, OBP:.375",
               "score": 12.0
-            },
-            {
-              "name": "Carson Benge",
-              "mlb_team": "NYM",
-              "position": "OF",
-              "stats": "R:4, RBI:2, SB:1, OBP:.333",
-              "score": 12.0
-            },
-            {
-              "name": "Ketel Marte",
-              "mlb_team": "AZ",
-              "position": "2B",
-              "stats": "R:3, RBI:1, OBP:.320",
-              "score": 10.0
             }
           ]
         },
@@ -531,8 +531,15 @@
               "name": "Colson Montgomery",
               "mlb_team": "CWS",
               "position": "3B,SS",
-              "stats": "R:6, HR:3, RBI:3, OBP:.435",
+              "stats": "R:6, HR:3, RBI:3, OBP:.400",
               "score": 19.0
+            },
+            {
+              "name": "Ildemaro Vargas",
+              "mlb_team": "AZ",
+              "position": "1B,2B",
+              "stats": "R:5, RBI:5, OBP:.286",
+              "score": 18.0
             },
             {
               "name": "Paul Skenes",
@@ -542,11 +549,18 @@
               "score": 18.0
             },
             {
-              "name": "Ildemaro Vargas",
-              "mlb_team": "AZ",
-              "position": "1B,2B",
-              "stats": "R:4, RBI:5, OBP:.280",
-              "score": 16.0
+              "name": "Yoshinobu Yamamoto",
+              "mlb_team": "LAD",
+              "position": "SP",
+              "stats": "K:16, ERA:4.05, WHIP:0.82, QS:1, IP:13.1",
+              "score": 17.0
+            },
+            {
+              "name": "A.J. Ewing",
+              "mlb_team": "NYM",
+              "position": "2B,OF",
+              "stats": "R:4, HR:1, RBI:2, SB:1, OBP:.400",
+              "score": 14.0
             },
             {
               "name": "Framber Valdez",
@@ -563,25 +577,11 @@
               "score": 11.0
             },
             {
-              "name": "A.J. Ewing",
-              "mlb_team": "NYM",
-              "position": "2B,OF",
-              "stats": "R:3, HR:1, RBI:1, SB:1, OBP:.375",
-              "score": 11.0
-            },
-            {
-              "name": "Yoshinobu Yamamoto",
-              "mlb_team": "LAD",
-              "position": "SP",
-              "stats": "K:11, ERA:5.59, WHIP:0.93, IP:9.2",
-              "score": 11.0
-            },
-            {
               "name": "Geraldo Perdomo",
               "mlb_team": "AZ",
               "position": "SS",
-              "stats": "R:2, RBI:1, SB:1, OBP:.375",
-              "score": 10.0
+              "stats": "R:2, RBI:1, SB:1, OBP:.370",
+              "score": 11.0
             }
           ]
         }
@@ -662,22 +662,36 @@
               "name": "Corbin Carroll",
               "mlb_team": "AZ",
               "position": "OF",
-              "stats": "R:9, HR:2, RBI:4, SB:2, OBP:.633",
+              "stats": "R:9, HR:2, RBI:4, SB:2, OBP:.594",
               "score": 27.0
             },
             {
               "name": "Casey Schmitt",
               "mlb_team": "SF",
               "position": "1B,2B,3B",
-              "stats": "R:6, HR:2, RBI:3, SB:1, OBP:.385",
-              "score": 20.0
+              "stats": "R:6, HR:2, RBI:3, SB:1, OBP:.393",
+              "score": 21.0
             },
             {
               "name": "Julio Rodr\u00edguez",
               "mlb_team": "SEA",
               "position": "OF",
-              "stats": "R:4, HR:2, RBI:3, SB:2, OBP:.235",
+              "stats": "R:4, HR:2, RBI:3, SB:2, OBP:.222",
               "score": 16.0
+            },
+            {
+              "name": "Michael King",
+              "mlb_team": "SD",
+              "position": "SP",
+              "stats": "K:14, ERA:0.71, WHIP:1.11, QS:1, IP:12.2",
+              "score": 15.0
+            },
+            {
+              "name": "Zach Neto",
+              "mlb_team": "LAA",
+              "position": "SS",
+              "stats": "R:4, HR:2, RBI:4, OBP:.296",
+              "score": 15.0
             },
             {
               "name": "Cody Bellinger",
@@ -694,25 +708,11 @@
               "score": 12.0
             },
             {
-              "name": "Michael King",
-              "mlb_team": "SD",
-              "position": "SP",
-              "stats": "K:11, ERA:0.93, WHIP:1.03, IP:9.2",
-              "score": 11.0
-            },
-            {
               "name": "Kevin McGonigle",
               "mlb_team": "DET",
               "position": "3B,SS",
               "stats": "R:2, SB:2, OBP:.400",
               "score": 11.0
-            },
-            {
-              "name": "Zach Neto",
-              "mlb_team": "LAA",
-              "position": "SS",
-              "stats": "R:3, HR:1, RBI:2, OBP:.240",
-              "score": 10.0
             }
           ]
         },
@@ -741,8 +741,15 @@
               "name": "Juan Soto",
               "mlb_team": "NYM",
               "position": "OF",
-              "stats": "R:7, HR:2, RBI:6, SB:3, OBP:.469",
+              "stats": "R:7, HR:2, RBI:6, SB:3, OBP:.455",
               "score": 28.0
+            },
+            {
+              "name": "Bryan Woo",
+              "mlb_team": "SEA",
+              "position": "SP",
+              "stats": "K:17, ERA:1.50, WHIP:0.92, QS:2, IP:12.0",
+              "score": 19.0
             },
             {
               "name": "Ben Rice",
@@ -756,13 +763,6 @@
               "mlb_team": "CHC",
               "position": "1B",
               "stats": "R:3, HR:1, RBI:4, OBP:.469",
-              "score": 14.0
-            },
-            {
-              "name": "Bryan Woo",
-              "mlb_team": "SEA",
-              "position": "SP",
-              "stats": "K:13, ERA:2.00, WHIP:1.22, QS:1, IP:9.0",
               "score": 14.0
             },
             {
@@ -780,17 +780,17 @@
               "score": 12.0
             },
             {
+              "name": "Mason Miller",
+              "mlb_team": "SD",
+              "position": "RP",
+              "stats": "K:7, WHIP:1.80, NSVH:3, IP:3.1",
+              "score": 10.0
+            },
+            {
               "name": "Taylor Ward",
               "mlb_team": "BAL",
               "position": "OF",
               "stats": "R:2, RBI:1, OBP:.409",
-              "score": 9.0
-            },
-            {
-              "name": "Brandon Marsh",
-              "mlb_team": "PHI",
-              "position": "OF",
-              "stats": "R:3, RBI:1, OBP:.192",
               "score": 9.0
             }
           ]
@@ -893,7 +893,7 @@
               "name": "Rafael Devers",
               "mlb_team": "SF",
               "position": "1B",
-              "stats": "R:5, HR:1, RBI:3, OBP:.375",
+              "stats": "R:5, HR:1, RBI:3, OBP:.343",
               "score": 18.0
             },
             {
@@ -951,21 +951,21 @@
               "name": "Randy Arozarena",
               "mlb_team": "SEA",
               "position": "OF",
-              "stats": "R:6, HR:1, RBI:6, SB:3, OBP:.485",
-              "score": 28.0
-            },
-            {
-              "name": "Miguel Vargas",
-              "mlb_team": "CWS",
-              "position": "1B,3B",
-              "stats": "R:6, HR:2, RBI:7, OBP:.393",
-              "score": 23.0
+              "stats": "R:7, HR:1, RBI:6, SB:3, OBP:.486",
+              "score": 30.0
             },
             {
               "name": "Shohei Ohtani (Batter)",
               "mlb_team": "LAD",
               "position": "Util",
-              "stats": "R:5, HR:1, RBI:8, SB:1, OBP:.464",
+              "stats": "R:5, HR:1, RBI:8, SB:1, OBP:.500",
+              "score": 25.0
+            },
+            {
+              "name": "Miguel Vargas",
+              "mlb_team": "CWS",
+              "position": "1B,3B",
+              "stats": "R:6, HR:2, RBI:7, OBP:.367",
               "score": 23.0
             },
             {
@@ -1000,7 +1000,7 @@
               "name": "Mookie Betts",
               "mlb_team": "LAD",
               "position": "SS",
-              "stats": "R:3, HR:2, RBI:2, OBP:.312",
+              "stats": "R:3, HR:2, RBI:2, OBP:.278",
               "score": 11.0
             }
           ]
@@ -1089,8 +1089,15 @@
               "name": "Teoscar Hern\u00e1ndez",
               "mlb_team": "LAD",
               "position": "OF",
-              "stats": "R:5, HR:1, RBI:6, OBP:.452",
+              "stats": "R:5, HR:1, RBI:6, OBP:.424",
               "score": 23.0
+            },
+            {
+              "name": "Christian Walker",
+              "mlb_team": "HOU",
+              "position": "1B",
+              "stats": "R:3, HR:2, RBI:4, OBP:.290",
+              "score": 14.0
             },
             {
               "name": "Jose Altuve",
@@ -1112,13 +1119,6 @@
               "position": "SS",
               "stats": "R:1, HR:1, RBI:3, SB:1, OBP:.233",
               "score": 12.0
-            },
-            {
-              "name": "Christian Walker",
-              "mlb_team": "HOU",
-              "position": "1B",
-              "stats": "R:3, HR:2, RBI:3, OBP:.250",
-              "score": 11.0
             },
             {
               "name": "Pete Crow-Armstrong",
@@ -1168,14 +1168,14 @@
               "name": "Nick Kurtz",
               "mlb_team": "ATH",
               "position": "1B",
-              "stats": "R:5, HR:3, RBI:8, OBP:.522",
-              "score": 21.0
+              "stats": "R:5, HR:3, RBI:8, OBP:.500",
+              "score": 22.0
             },
             {
               "name": "Shea Langeliers",
               "mlb_team": "ATH",
               "position": "C",
-              "stats": "R:4, HR:1, RBI:5, OBP:.417",
+              "stats": "R:4, HR:1, RBI:5, OBP:.407",
               "score": 18.0
             },
             {
@@ -1207,11 +1207,11 @@
               "score": 13.0
             },
             {
-              "name": "Jacob Misiorowski",
-              "mlb_team": "MIL",
-              "position": "SP",
-              "stats": "K:10, WHIP:0.57, QS:1, IP:7.0",
-              "score": 11.0
+              "name": "Ezequiel Duran",
+              "mlb_team": "TEX",
+              "position": "1B,2B,3B,SS,OF",
+              "stats": "R:4, RBI:3, OBP:.312",
+              "score": 12.0
             }
           ]
         }
@@ -1292,8 +1292,8 @@
               "name": "Kyle Tucker",
               "mlb_team": "LAD",
               "position": "OF",
-              "stats": "R:5, RBI:3, OBP:.423",
-              "score": 15.0
+              "stats": "R:5, RBI:3, SB:1, OBP:.414",
+              "score": 16.0
             },
             {
               "name": "Adley Rutschman",
@@ -1310,17 +1310,17 @@
               "score": 15.0
             },
             {
+              "name": "Andy Pages",
+              "mlb_team": "LAD",
+              "position": "OF",
+              "stats": "R:4, HR:1, RBI:6, OBP:.235",
+              "score": 15.0
+            },
+            {
               "name": "Vladimir Guerrero Jr.",
               "mlb_team": "TOR",
               "position": "1B",
               "stats": "R:5, HR:1, RBI:3, SB:1, OBP:.258",
-              "score": 14.0
-            },
-            {
-              "name": "Andy Pages",
-              "mlb_team": "LAD",
-              "position": "OF",
-              "stats": "R:4, HR:1, RBI:6, OBP:.226",
               "score": 14.0
             },
             {
@@ -1392,8 +1392,8 @@
               "name": "CJ Abrams",
               "mlb_team": "WSH",
               "position": "SS",
-              "stats": "R:6, RBI:3, OBP:.364",
-              "score": 19.0
+              "stats": "R:6, RBI:3, OBP:.382",
+              "score": 20.0
             },
             {
               "name": "Ryan Weathers",
@@ -2102,5 +2102,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-05-19T02:36:22.197626"
+  "saved_at": "2026-05-19T07:39:11.464776"
 }
