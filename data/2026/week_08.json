@@ -139,7 +139,7 @@
               "name": "Carson Kelly",
               "mlb_team": "CHC",
               "position": "C",
-              "stats": "R:1, RBI:4, OBP:.500",
+              "stats": "R:1, RBI:4, OBP:.438",
               "score": 10.0
             },
             {
@@ -267,17 +267,17 @@
               "score": 15.0
             },
             {
+              "name": "Yordan Alvarez",
+              "mlb_team": "HOU",
+              "position": "OF",
+              "stats": "R:3, HR:2, RBI:2, OBP:.438",
+              "score": 15.0
+            },
+            {
               "name": "Jazz Chisholm Jr.",
               "mlb_team": "NYY",
               "position": "2B,3B",
               "stats": "R:3, RBI:2, SB:1, OBP:.478",
-              "score": 14.0
-            },
-            {
-              "name": "Yordan Alvarez",
-              "mlb_team": "HOU",
-              "position": "OF",
-              "stats": "R:3, HR:2, RBI:2, OBP:.429",
               "score": 14.0
             },
             {
@@ -687,6 +687,13 @@
               "score": 12.0
             },
             {
+              "name": "Spencer Arrighetti",
+              "mlb_team": "HOU",
+              "position": "SP",
+              "stats": "K:10, WHIP:0.89, QS:1, IP:12.1",
+              "score": 11.0
+            },
+            {
               "name": "Zach Neto",
               "mlb_team": "LAA",
               "position": "SS",
@@ -705,13 +712,6 @@
               "mlb_team": "HOU",
               "position": "3B",
               "stats": "R:1, HR:1, RBI:2, OBP:.333",
-              "score": 9.0
-            },
-            {
-              "name": "Brent Rooker",
-              "mlb_team": "ATH",
-              "position": "OF",
-              "stats": "R:1, HR:1, RBI:3, OBP:.294",
               "score": 9.0
             }
           ]
@@ -755,7 +755,7 @@
               "name": "Michael Busch",
               "mlb_team": "CHC",
               "position": "1B",
-              "stats": "R:3, HR:1, RBI:3, OBP:.393",
+              "stats": "R:3, HR:1, RBI:3, OBP:.406",
               "score": 11.0
             },
             {
@@ -986,8 +986,8 @@
               "name": "Alex Bregman",
               "mlb_team": "CHC",
               "position": "3B",
-              "stats": "R:2, RBI:2, SB:1, OBP:.444",
-              "score": 12.0
+              "stats": "R:2, RBI:2, SB:1, OBP:.500",
+              "score": 13.0
             },
             {
               "name": "Mookie Betts",
@@ -1086,6 +1086,20 @@
               "score": 23.0
             },
             {
+              "name": "Pete Crow-Armstrong",
+              "mlb_team": "CHC",
+              "position": "OF",
+              "stats": "R:2, HR:2, RBI:5, SB:3, OBP:.379",
+              "score": 16.0
+            },
+            {
+              "name": "Christian Walker",
+              "mlb_team": "HOU",
+              "position": "1B",
+              "stats": "R:4, HR:2, RBI:3, OBP:.267",
+              "score": 13.0
+            },
+            {
               "name": "Yandy D\u00edaz",
               "mlb_team": "TB",
               "position": "1B",
@@ -1105,20 +1119,6 @@
               "position": "SS",
               "stats": "R:1, HR:1, RBI:3, SB:1, OBP:.269",
               "score": 12.0
-            },
-            {
-              "name": "Christian Walker",
-              "mlb_team": "HOU",
-              "position": "1B",
-              "stats": "R:3, HR:2, RBI:3, OBP:.269",
-              "score": 11.0
-            },
-            {
-              "name": "Pete Crow-Armstrong",
-              "mlb_team": "CHC",
-              "position": "OF",
-              "stats": "R:1, HR:1, RBI:3, SB:3, OBP:.320",
-              "score": 11.0
             },
             {
               "name": "Dylan Cease",
@@ -2105,8 +2105,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-05-22T17:46:34.350345"
+  "saved_at": "2026-05-22T21:03:48.777971"
 }
