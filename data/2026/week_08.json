@@ -1651,6 +1651,18 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1779463078,
+      "players": [
+        {
+          "name": "Antonio Senzatela",
+          "action": "add",
+          "team": "Athletic Park Dragons",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1779431537,
       "players": [
@@ -2075,24 +2087,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1778955218,
-      "players": [
-        {
-          "name": "Jos\u00e9 Alvarado",
-          "action": "add",
-          "team": "BaseballPro77",
-          "position": "RP"
-        },
-        {
-          "name": "Matt Strahm",
-          "action": "drop",
-          "team": "BaseballPro77",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2114,5 +2108,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-05-22T14:23:19.960555"
+  "saved_at": "2026-05-22T17:46:34.350345"
 }
