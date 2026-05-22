@@ -325,6 +325,13 @@
               "score": 15.0
             },
             {
+              "name": "Jos\u00e9 Soriano",
+              "mlb_team": "LAA",
+              "position": "SP",
+              "stats": "K:13, ERA:6.00, WHIP:1.17, QS:1, IP:12.0",
+              "score": 14.0
+            },
+            {
               "name": "Cristopher S\u00e1nchez",
               "mlb_team": "PHI",
               "position": "SP",
@@ -344,13 +351,6 @@
               "position": "C",
               "stats": "R:4, HR:2, RBI:3, OBP:.450",
               "score": 13.0
-            },
-            {
-              "name": "Jos\u00e9 Soriano",
-              "mlb_team": "LAA",
-              "position": "SP",
-              "stats": "K:12, ERA:5.59, WHIP:1.03, IP:9.2",
-              "score": 12.0
             },
             {
               "name": "James Wood",
@@ -501,8 +501,8 @@
               "name": "Ketel Marte",
               "mlb_team": "AZ",
               "position": "2B",
-              "stats": "R:2, OBP:.320",
-              "score": 8.0
+              "stats": "R:2, OBP:.357",
+              "score": 9.0
             }
           ]
         },
@@ -545,7 +545,7 @@
               "name": "Ildemaro Vargas",
               "mlb_team": "AZ",
               "position": "1B,2B",
-              "stats": "R:3, RBI:5, OBP:.240",
+              "stats": "R:3, RBI:5, OBP:.259",
               "score": 14.0
             },
             {
@@ -563,18 +563,18 @@
               "score": 11.0
             },
             {
+              "name": "Geraldo Perdomo",
+              "mlb_team": "AZ",
+              "position": "SS",
+              "stats": "R:1, RBI:1, SB:2, OBP:.385",
+              "score": 10.0
+            },
+            {
               "name": "A.J. Ewing",
               "mlb_team": "NYM",
               "position": "2B,OF",
               "stats": "R:3, HR:1, RBI:1, SB:1, OBP:.409",
               "score": 10.0
-            },
-            {
-              "name": "Geraldo Perdomo",
-              "mlb_team": "AZ",
-              "position": "SS",
-              "stats": "R:1, RBI:1, SB:1, OBP:.333",
-              "score": 9.0
             },
             {
               "name": "Framber Valdez",
@@ -662,8 +662,8 @@
               "name": "Corbin Carroll",
               "mlb_team": "AZ",
               "position": "OF",
-              "stats": "R:8, HR:2, RBI:4, SB:2, OBP:.567",
-              "score": 24.0
+              "stats": "R:8, HR:2, RBI:6, SB:2, OBP:.545",
+              "score": 27.0
             },
             {
               "name": "Casey Schmitt",
@@ -687,6 +687,13 @@
               "score": 12.0
             },
             {
+              "name": "Brent Rooker",
+              "mlb_team": "ATH",
+              "position": "OF",
+              "stats": "R:1, HR:1, RBI:3, OBP:.364",
+              "score": 11.0
+            },
+            {
               "name": "Kevin McGonigle",
               "mlb_team": "DET",
               "position": "3B,SS",
@@ -694,17 +701,10 @@
               "score": 11.0
             },
             {
-              "name": "Brent Rooker",
-              "mlb_team": "ATH",
-              "position": "OF",
-              "stats": "R:1, HR:1, RBI:3, OBP:.316",
-              "score": 10.0
-            },
-            {
               "name": "Zach Neto",
               "mlb_team": "LAA",
               "position": "SS",
-              "stats": "R:3, HR:1, RBI:2, OBP:.240",
+              "stats": "R:3, HR:1, RBI:2, OBP:.222",
               "score": 10.0
             },
             {
@@ -976,18 +976,18 @@
               "score": 23.0
             },
             {
+              "name": "Luis Severino",
+              "mlb_team": "ATH",
+              "position": "SP",
+              "stats": "K:17, ERA:4.85, WHIP:1.15, QS:1, IP:13.0",
+              "score": 18.0
+            },
+            {
               "name": "Oneil Cruz",
               "mlb_team": "PIT",
               "position": "OF",
               "stats": "R:5, RBI:3, SB:1, OBP:.323",
               "score": 17.0
-            },
-            {
-              "name": "Luis Severino",
-              "mlb_team": "ATH",
-              "position": "SP",
-              "stats": "K:15, ERA:6.30, WHIP:1.40, IP:10.0",
-              "score": 15.0
             },
             {
               "name": "Alex Bregman",
@@ -997,11 +997,11 @@
               "score": 12.0
             },
             {
-              "name": "Mookie Betts",
-              "mlb_team": "LAD",
-              "position": "SS",
-              "stats": "R:3, HR:2, RBI:2, OBP:.286",
-              "score": 10.0
+              "name": "Gabriel Moreno",
+              "mlb_team": "AZ",
+              "position": "C",
+              "stats": "R:2, RBI:3, SB:2, OBP:.429",
+              "score": 12.0
             }
           ]
         }
@@ -1131,8 +1131,8 @@
               "name": "Jo Adell",
               "mlb_team": "LAA",
               "position": "OF",
-              "stats": "RBI:4, OBP:.240",
-              "score": 7.0
+              "stats": "RBI:4, OBP:.259",
+              "score": 8.0
             }
           ]
         },
@@ -1161,8 +1161,15 @@
               "name": "Nick Kurtz",
               "mlb_team": "ATH",
               "position": "1B",
-              "stats": "R:5, HR:3, RBI:8, OBP:.565",
-              "score": 21.0
+              "stats": "R:6, HR:3, RBI:9, OBP:.577",
+              "score": 24.0
+            },
+            {
+              "name": "Shea Langeliers",
+              "mlb_team": "ATH",
+              "position": "C",
+              "stats": "R:5, HR:1, RBI:5, OBP:.407",
+              "score": 19.0
             },
             {
               "name": "Xavier Edwards",
@@ -1170,13 +1177,6 @@
               "position": "2B,SS",
               "stats": "R:6, RBI:2, SB:2, OBP:.355",
               "score": 18.0
-            },
-            {
-              "name": "Shea Langeliers",
-              "mlb_team": "ATH",
-              "position": "C",
-              "stats": "R:4, HR:1, RBI:5, OBP:.375",
-              "score": 17.0
             },
             {
               "name": "Otto Lopez",
@@ -1403,6 +1403,13 @@
               "score": 15.0
             },
             {
+              "name": "Eduardo Rodriguez",
+              "mlb_team": "AZ",
+              "position": "SP",
+              "stats": "K:10, ERA:2.19, WHIP:1.14, QS:1, IP:12.1",
+              "score": 11.0
+            },
+            {
               "name": "Ian Happ",
               "mlb_team": "CHC",
               "position": "OF",
@@ -1415,13 +1422,6 @@
               "position": "2B,3B,SS,OF",
               "stats": "R:3, RBI:4, SB:1, OBP:.286",
               "score": 11.0
-            },
-            {
-              "name": "Eduardo Rodriguez",
-              "mlb_team": "AZ",
-              "position": "SP",
-              "stats": "K:10, ERA:2.89, WHIP:1.07, IP:9.1",
-              "score": 10.0
             }
           ]
         }
@@ -1650,6 +1650,18 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "drop",
+      "timestamp": 1779431537,
+      "players": [
+        {
+          "name": "Matt Chapman",
+          "action": "drop",
+          "team": "Hiroshima Radiation",
+          "position": "3B"
+        }
+      ]
+    },
     {
       "type": "add/drop",
       "timestamp": 1779378868,
@@ -2081,24 +2093,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1778943313,
-      "players": [
-        {
-          "name": "Henry Bolte",
-          "action": "add",
-          "team": "Albuquerque Bombers",
-          "position": "OF"
-        },
-        {
-          "name": "Jac Caglianone",
-          "action": "drop",
-          "team": "Albuquerque Bombers",
-          "position": "1B,OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2117,8 +2111,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-05-22T02:39:31.917803"
+  "saved_at": "2026-05-22T07:38:06.784223"
 }
