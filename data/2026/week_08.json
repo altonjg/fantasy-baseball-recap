@@ -60,7 +60,7 @@
               "name": "Josh Naylor",
               "mlb_team": "SEA",
               "position": "1B",
-              "stats": "R:2, RBI:1, SB:3, OBP:.313",
+              "stats": "R:2, RBI:1, SB:3, OBP:.312",
               "score": 12.0
             },
             {
@@ -1651,6 +1651,18 @@
   },
   "transactions": [
     {
+      "type": "drop",
+      "timestamp": 1779550154,
+      "players": [
+        {
+          "name": "Juan Morillo",
+          "action": "drop",
+          "team": "BaseballPro77",
+          "position": "RP"
+        }
+      ]
+    },
+    {
       "type": "add",
       "timestamp": 1779463078,
       "players": [
@@ -1727,7 +1739,7 @@
       "timestamp": 1779375068,
       "players": [
         {
-          "name": "Jose A. Ferrer",
+          "name": "Jos\u00e9 A. Ferrer",
           "action": "add",
           "team": "Wonder Wharf Wonderdogs",
           "position": "RP"
@@ -2075,18 +2087,6 @@
           "position": "C"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1778957137,
-      "players": [
-        {
-          "name": "Walker Buehler",
-          "action": "add",
-          "team": "Riverside Roughnecks",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2108,5 +2108,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-05-23T13:07:08.498152"
+  "saved_at": "2026-05-23T16:53:04.457733"
 }
