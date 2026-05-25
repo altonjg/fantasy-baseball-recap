@@ -1,0 +1,38 @@
+{
+  "stat_of_week": "0.43 WHIP - Kyle Harrison posted a 0.43 WHIP across 7 innings for the Albuquerque Bombers, one of the most dominant short-stint pitching lines of the season",
+  "thriller_teams": "Athletic Park Dragons vs Wonder Wharf Wonderdogs",
+  "thriller_score": "5-4",
+  "thriller_note": "The Dragons escaped with a one-category win despite the Wonderdogs generating more innings, more strikeouts, and a brilliant 1.29 ERA/0.93 WHIP from Yoshinobu Yamamoto, making it a matchup the Wonderdogs will feel they let slip away as they continue to hover just outside contention.",
+  "key_storyline": "Ketel Marte was absolutely otherworldly for BaseballPro77 this week, posting 11 runs, 3 HR, and 12 RBI with a .563 OBP — a single-player performance that nearly carried the entire offensive burden in a 6-3 win over the Sugar Land Skeeters. The Skeeters, meanwhile, got exceptional pitching from Chase Burns and Michael Wacha (both with 1.50 ERAs) but simply couldn't manufacture enough offense to keep pace. With BaseballPro77 surging and the Skeeters holding steady at the top of the standings, this matchup may preview a legitimate title race forming between the league's two hottest teams.",
+  "lucky_team": "Riverside Roughnecks",
+  "lucky_reason": "The Roughnecks won 6-4 despite a .299 OBP, only 4 HR, and Shane McClanahan posting a 7.20 ERA, relying heavily on Nick Kurtz's RBI production and two pitchers who avoided giving up earned runs over limited innings — their luck delta of +2.42 is the highest in the league this week.",
+  "unlucky_team": "Buttville Skidmarks",
+  "unlucky_reason": "The Skidmarks won their matchup 6-2 but their luck delta of -1.35 is the worst in the league, reflecting a roster whose underlying category production — solid pitching, 9 NSVH, respectable hitting — consistently underperforms in actual matchup wins relative to what the numbers should deliver.",
+  "records_broken": "None.",
+  "spotlight_team": "Hiroshima Radiation",
+  "include_trade_value": true,
+  "power_rankings": [
+    "1. Sugar Land Skeeters | Lost to BaseballPro77 but pitching was excellent — Burns, Wacha, and Weathers all shone — and the depth of this roster remains unmatched; a one-week stumble doesn't move the needle at the top | down",
+    "2. BaseballPro77 | Ketel Marte's 11-run, 12-RBI, .563 OBP week was the most dominant individual performance of the season and Gavin Williams posted a 0.50 WHIP; this team is playing its best baseball of the year at exactly the right time | up",
+    "3. Riverside Roughnecks | A 6-4 win built more on luck (+2.42 delta) than dominance is a yellow flag — only 4 HR and McClanahan's 7.20 ERA are real concerns — but Nick Kurtz's continued production and a deep bullpen keep them firmly in the top tier | same",
+    "4. Albuquerque Bombers | An 8-2 demolition of the Wombats backed by Harrison's 0.43 WHIP, Meyer's 14 Ks, and balanced offensive contributions across the lineup is the most complete performance this team has put together in weeks | up",
+    "5. Athletic Park Dragons | Squeaking out a 5-4 win when the opponent out-pitched you is a credit to a balanced lineup — Wood, Contreras, Duran, and Clement all contributed — but the rotation's low innings total (43.0 IP) remains a structural vulnerability | same",
+    "6. Benchwarmers | Casey Schmitt's breakout (3 HR, 8 RBI) and Zach Neto's 3 HR gave this offense a genuine power identity it hasn't shown all season; the pitching was solid enough to hold, and this is the most convincing win the Benchwarmers have posted | up",
+    "7. Wonder Wharf Wonderdogs | Yamamoto's 1.29 ERA, Keller's solid outing, and a league-high 79.2 innings pitched is an impressive pitching performance that deserved better than a 4-5 loss; this team keeps doing enough to almost win but not enough to actually win | same",
+    "8. General Hospital | An 8-1 blowout of North Correa with balanced contributions across the lineup and a 2.34 ERA suggests this team is healthier than their recent skid implied; the Jackson Holliday addition on the wire is an upside play worth watching | up",
+    "9. North Correa | Getting blown out 8-1 despite Ohtani, Arozarena, and genuine pitching talent from Sale and Severino is a baffling result; the offense simply didn't show up, and the pattern of underperforming in big spots is becoming a defining trait | down",
+    "10. Abbotsford-Colby Twins | A 5-2 loss despite 11 HR and a .372 OBP is maddening — the offense is legitimately good — but zero NSVH and a 3.96 ERA in only 52.1 innings means the pitching continues to give back everything the bats produce | same",
+    "11. Wisconsin Rapids Reapers | Juan Soto's 4 HR and 7 RBI in a losing effort is the most Wisconsin Rapids Reapers outcome possible; only 1 QS and 40.1 innings pitched is catastrophically low and this rotation cannot sustain a playoff push if it keeps falling apart | down",
+    "12. Hiroshima Radiation | A 6-2 loss despite 7 NSVH, a 3.38 ERA, and 72.0 innings pitched is the most damning offensive indictment of the season — 33 hits, 1 HR, and a .233 OBP from a lineup that includes Bryce Harper is simply not acceptable | same",
+    "13. Buttville Skidmarks | A 6-2 win over Hiroshima is welcome but hardly inspiring; the offense is still generating too few hits (.217 AVG implied by 44/203) and the luck delta of -1.35 suggests even this win came against a historically weak opponent | up",
+    "14. Canberra Wombats | Dylan Cease's 17 Ks, Seth Lugo's 2 QS, and Christian Walker's 3 HR weren't nearly enough to overcome a 8.31 ERA from the rest of the staff; this team is in freefall and has now been blown out twice in consecutive weeks | same"
+  ],
+  "waiver_highlights": [
+    "Hiroshima Radiation | D | Added Zack Gelof, Gavin Sheets, J.T. Ginn; dropped Matt Chapman, Colt Keith, Kyle Karros, Colin Rea | A four-player roster purge signals panic more than strategy — losing Chapman and Keith removes established names for speculative upside, and while Ginn showed up in the box score with 14 Ks this week, overhauling this much of the roster mid-season rarely ends well for a team already in freefall.",
+    "General Hospital | B+ | Added Jackson Holliday; dropped Jared Koenig | Holliday is a high-upside prospect with multi-position eligibility who could stabilize a middle infield that has been inconsistent all season — low-cost, high-ceiling add for a team that just reminded everyone they're not dead yet.",
+    "BaseballPro77 | B- | Added Ryne Nelson, Nick Lodolo; dropped Juan Morillo, Brayan Bello | Rotating through multiple SP options while Lodolo bounced in and out of the wire shows aggressive roster management; adding controllable starters to back a rotation already producing is smart depth-building even if the execution was choppy.",
+    "Wisconsin Rapids Reapers | C+ | Added Garrett Mitchell, Martín Pérez; dropped Brenton Doyle, Braydon Fisher, Tyler Wells | Replacing Doyle with Mitchell is a lateral OF move, but adding Pérez to a rotation that threw only 40.1 innings this week is a necessary if uninspiring band-aid on a glaring wound.",
+    "Wonder Wharf Wonderdogs | C | Added Taylor Clarke, José A. Ferrer, Jakob Marsee; dropped Erik Miller, Sean Newcomb | Three adds suggests urgency in the bullpen and outfield, but none of these names inspire confidence; adding relievers to a team that already threw 79.2 innings is treating symptoms rather than causes.",
+    "Albuquerque Bombers | C | Added Grant Taylor; dropped Trevor Rogers | A quiet, low-stakes swap of one speculative arm for another — neither moves the needle significantly for a rotation that already performed well this week."
+  ]
+}
