@@ -64,18 +64,18 @@
               "score": 15.0
             },
             {
+              "name": "Josh Naylor",
+              "mlb_team": "SEA",
+              "position": "1B",
+              "stats": "R:4, RBI:3, SB:2, OBP:.320",
+              "score": 15.0
+            },
+            {
               "name": "Konnor Griffin",
               "mlb_team": "PIT",
               "position": "SS,OF",
               "stats": "R:7, SB:2, OBP:.346",
               "score": 15.0
-            },
-            {
-              "name": "Josh Naylor",
-              "mlb_team": "SEA",
-              "position": "1B",
-              "stats": "R:3, RBI:3, SB:2, OBP:.318",
-              "score": 13.0
             },
             {
               "name": "Bo Bichette",
@@ -118,7 +118,7 @@
               "name": "Teoscar Hern\u00e1ndez",
               "mlb_team": "LAD",
               "position": "OF",
-              "stats": "R:6, HR:2, RBI:8, SB:1, OBP:.423",
+              "stats": "R:6, HR:2, RBI:8, SB:1, OBP:.393",
               "score": 25.0
             },
             {
@@ -335,7 +335,7 @@
               "name": "Julio Rodr\u00edguez",
               "mlb_team": "SEA",
               "position": "OF",
-              "stats": "R:5, HR:2, RBI:3, OBP:.370",
+              "stats": "R:5, HR:2, RBI:3, OBP:.345",
               "score": 19.0
             },
             {
@@ -1093,6 +1093,13 @@
               "score": 14.0
             },
             {
+              "name": "Andy Pages",
+              "mlb_team": "LAD",
+              "position": "OF",
+              "stats": "R:3, HR:1, RBI:5, OBP:.241",
+              "score": 14.0
+            },
+            {
               "name": "Brandon Lowe",
               "mlb_team": "PIT",
               "position": "2B",
@@ -1107,13 +1114,6 @@
               "score": 12.0
             },
             {
-              "name": "Andy Pages",
-              "mlb_team": "LAD",
-              "position": "OF",
-              "stats": "R:3, HR:1, RBI:4, OBP:.222",
-              "score": 12.0
-            },
-            {
               "name": "Manny Machado",
               "mlb_team": "SD",
               "position": "3B",
@@ -1124,7 +1124,7 @@
               "name": "Kyle Tucker",
               "mlb_team": "LAD",
               "position": "OF",
-              "stats": "R:3, RBI:3, SB:1, OBP:.321",
+              "stats": "R:3, RBI:3, SB:1, OBP:.300",
               "score": 11.0
             },
             {
@@ -1161,7 +1161,14 @@
               "name": "Randy Arozarena",
               "mlb_team": "SEA",
               "position": "OF",
-              "stats": "R:5, HR:1, RBI:5, SB:2, OBP:.423",
+              "stats": "R:6, HR:2, RBI:7, SB:2, OBP:.414",
+              "score": 24.0
+            },
+            {
+              "name": "Shohei Ohtani (Batter)",
+              "mlb_team": "LAD",
+              "position": "Util",
+              "stats": "R:4, HR:1, RBI:5, OBP:.515",
               "score": 19.0
             },
             {
@@ -1169,13 +1176,6 @@
               "mlb_team": "MIL",
               "position": "1B,OF",
               "stats": "R:3, HR:1, RBI:6, OBP:.333",
-              "score": 17.0
-            },
-            {
-              "name": "Shohei Ohtani (Batter)",
-              "mlb_team": "LAD",
-              "position": "Util",
-              "stats": "R:3, HR:1, RBI:4, OBP:.548",
               "score": 17.0
             },
             {
@@ -1292,7 +1292,7 @@
               "name": "Nick Kurtz",
               "mlb_team": "ATH",
               "position": "1B",
-              "stats": "R:6, RBI:8, SB:1, OBP:.529",
+              "stats": "R:6, RBI:8, SB:1, OBP:.514",
               "score": 26.0
             },
             {
@@ -2102,5 +2102,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-05-26T02:32:46.687019"
+  "saved_at": "2026-05-26T07:38:43.473311"
 }
