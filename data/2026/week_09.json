@@ -662,7 +662,7 @@
               "name": "Ketel Marte",
               "mlb_team": "AZ",
               "position": "2B",
-              "stats": "R:11, HR:3, RBI:12, OBP:.563",
+              "stats": "R:11, HR:3, RBI:12, OBP:.562",
               "score": 41.0
             },
             {
@@ -1651,6 +1651,18 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1779812434,
+      "players": [
+        {
+          "name": "Zebby Matthews",
+          "action": "add",
+          "team": "Sugar Land Skeeters",
+          "position": "SP"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1779739996,
       "players": [
@@ -2069,18 +2081,6 @@
           "position": "SP,RP"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1779041365,
-      "players": [
-        {
-          "name": "Nick Lodolo",
-          "action": "drop",
-          "team": "Buttville Skidmarks",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2102,5 +2102,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-05-26T14:50:44.839177"
+  "saved_at": "2026-05-26T18:19:16.724446"
 }
