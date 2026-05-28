@@ -157,10 +157,10 @@
               "score": 10.0
             },
             {
-              "name": "Nick Gonzales",
-              "mlb_team": "PIT",
-              "position": "2B,3B,SS",
-              "stats": "R:3, RBI:2, OBP:.261",
+              "name": "Jo Adell",
+              "mlb_team": "LAA",
+              "position": "OF",
+              "stats": "R:3, HR:1, RBI:1, OBP:.226",
               "score": 10.0
             }
           ]
@@ -291,7 +291,7 @@
               "name": "Chase Meidroth",
               "mlb_team": "CWS",
               "position": "2B,3B,SS",
-              "stats": "R:3, HR:1, RBI:3, OBP:.348",
+              "stats": "R:3, HR:1, RBI:3, OBP:.333",
               "score": 12.0
             }
           ]
@@ -328,8 +328,8 @@
               "name": "Zach Neto",
               "mlb_team": "LAA",
               "position": "SS",
-              "stats": "R:6, HR:3, RBI:4, OBP:.323",
-              "score": 19.0
+              "stats": "R:6, HR:3, RBI:5, OBP:.324",
+              "score": 21.0
             },
             {
               "name": "Julio Rodr\u00edguez",
@@ -349,7 +349,7 @@
               "name": "Kevin McGonigle",
               "mlb_team": "DET",
               "position": "3B,SS",
-              "stats": "R:4, HR:1, RBI:3, SB:1, OBP:.333",
+              "stats": "R:4, HR:1, RBI:3, SB:1, OBP:.312",
               "score": 15.0
             },
             {
@@ -669,8 +669,8 @@
               "name": "Mike Trout",
               "mlb_team": "LAA",
               "position": "OF",
-              "stats": "R:6, HR:2, RBI:5, OBP:.400",
-              "score": 19.0
+              "stats": "R:6, HR:2, RBI:5, OBP:.424",
+              "score": 20.0
             },
             {
               "name": "Jordan Walker",
@@ -711,7 +711,7 @@
               "name": "Munetaka Murakami",
               "mlb_team": "CWS",
               "position": "1B,3B",
-              "stats": "R:2, RBI:4, OBP:.455",
+              "stats": "R:2, RBI:4, OBP:.435",
               "score": 11.0
             }
           ]
@@ -1121,17 +1121,17 @@
               "score": 11.0
             },
             {
+              "name": "Riley Greene",
+              "mlb_team": "DET",
+              "position": "OF",
+              "stats": "R:3, RBI:1, OBP:.367",
+              "score": 11.0
+            },
+            {
               "name": "Andy Pages",
               "mlb_team": "LAD",
               "position": "OF",
               "stats": "R:3, HR:1, RBI:4, OBP:.200",
-              "score": 11.0
-            },
-            {
-              "name": "Bubba Chandler",
-              "mlb_team": "PIT",
-              "position": "SP",
-              "stats": "K:11, ERA:1.80, WHIP:1.00, IP:5.0",
               "score": 11.0
             }
           ]
@@ -1182,8 +1182,8 @@
               "name": "Miguel Vargas",
               "mlb_team": "CWS",
               "position": "1B,3B",
-              "stats": "R:3, HR:1, RBI:2, SB:2, OBP:.364",
-              "score": 12.0
+              "stats": "R:4, HR:1, RBI:2, SB:3, OBP:.391",
+              "score": 14.0
             },
             {
               "name": "Luis Severino",
@@ -1403,18 +1403,18 @@
               "score": 9.0
             },
             {
+              "name": "Davis Martin",
+              "mlb_team": "CWS",
+              "position": "SP",
+              "stats": "K:9, ERA:4.70, WHIP:1.04, IP:7.2",
+              "score": 9.0
+            },
+            {
               "name": "Kyle Stowers",
               "mlb_team": "MIA",
               "position": "OF",
               "stats": "R:2, HR:2, RBI:2, OBP:.133",
               "score": 8.0
-            },
-            {
-              "name": "Davis Martin",
-              "mlb_team": "CWS",
-              "position": "SP",
-              "stats": "K:7, ERA:6.35, WHIP:1.41, IP:5.2",
-              "score": 7.0
             },
             {
               "name": "Brandon Marsh",
@@ -2108,5 +2108,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-05-28T15:33:44.815318"
+  "saved_at": "2026-05-28T18:30:56.011875"
 }
