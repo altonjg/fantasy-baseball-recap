@@ -662,7 +662,7 @@
               "name": "Ketel Marte",
               "mlb_team": "AZ",
               "position": "2B",
-              "stats": "R:11, HR:3, RBI:12, OBP:.563",
+              "stats": "R:11, HR:3, RBI:12, OBP:.562",
               "score": 41.0
             },
             {
@@ -2108,5 +2108,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-05-28T11:31:29.570702"
+  "saved_at": "2026-05-28T15:33:44.815318"
 }
