@@ -1651,6 +1651,18 @@
   },
   "transactions": [
     {
+      "type": "drop",
+      "timestamp": 1780065913,
+      "players": [
+        {
+          "name": "Aaron Civale",
+          "action": "drop",
+          "team": "Buttville Skidmarks",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1780020542,
       "players": [
@@ -2081,24 +2093,6 @@
           "position": "2B,SS"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1779124822,
-      "players": [
-        {
-          "name": "J.T. Ginn",
-          "action": "add",
-          "team": "Hiroshima Radiation",
-          "position": "SP,RP"
-        },
-        {
-          "name": "Colin Rea",
-          "action": "drop",
-          "team": "Hiroshima Radiation",
-          "position": "SP,RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2120,5 +2114,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-05-29T11:21:28.113333"
+  "saved_at": "2026-05-29T14:46:09.273346"
 }
