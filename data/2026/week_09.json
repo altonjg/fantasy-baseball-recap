@@ -662,7 +662,7 @@
               "name": "Ketel Marte",
               "mlb_team": "AZ",
               "position": "2B",
-              "stats": "R:11, HR:3, RBI:12, OBP:.563",
+              "stats": "R:11, HR:3, RBI:12, OBP:.562",
               "score": 41.0
             },
             {
@@ -1651,6 +1651,48 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1780091107,
+      "players": [
+        {
+          "name": "Will Klein",
+          "action": "add",
+          "team": "Benchwarmers",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1780090718,
+      "players": [
+        {
+          "name": "Graham Ashcraft",
+          "action": "drop",
+          "team": "Benchwarmers",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1780082988,
+      "players": [
+        {
+          "name": "Troy Melton",
+          "action": "add",
+          "team": "North Correa",
+          "position": "SP,RP"
+        },
+        {
+          "name": "Justin Slaten",
+          "action": "drop",
+          "team": "North Correa",
+          "position": "RP"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1780065913,
       "players": [
@@ -2057,42 +2099,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1779204142,
-      "players": [
-        {
-          "name": "Keibert Ruiz",
-          "action": "add",
-          "team": "Sugar Land Skeeters",
-          "position": "C"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1779203996,
-      "players": [
-        {
-          "name": "Tyler Kinley",
-          "action": "drop",
-          "team": "Sugar Land Skeeters",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1779144794,
-      "players": [
-        {
-          "name": "Jackson Holliday",
-          "action": "add",
-          "team": "General Hospital",
-          "position": "2B,SS"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2114,5 +2120,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-05-29T18:27:59.604056"
+  "saved_at": "2026-05-29T21:47:28.829231"
 }
