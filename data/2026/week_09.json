@@ -662,7 +662,7 @@
               "name": "Ketel Marte",
               "mlb_team": "AZ",
               "position": "2B",
-              "stats": "R:11, HR:3, RBI:12, OBP:.563",
+              "stats": "R:11, HR:3, RBI:12, OBP:.562",
               "score": 41.0
             },
             {
@@ -1385,7 +1385,7 @@
               "name": "Trea Turner",
               "mlb_team": "PHI",
               "position": "SS",
-              "stats": "R:3, HR:1, RBI:1, SB:3, OBP:.313",
+              "stats": "R:3, HR:1, RBI:1, SB:3, OBP:.312",
               "score": 11.0
             },
             {
@@ -1650,6 +1650,84 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "add/drop",
+      "timestamp": 1780157268,
+      "players": [
+        {
+          "name": "Walbert Ure\u00f1a",
+          "action": "add",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "SP"
+        },
+        {
+          "name": "Logan O'Hoppe",
+          "action": "drop",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "C"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1780157013,
+      "players": [
+        {
+          "name": "Jordan Leasure",
+          "action": "drop",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1780148861,
+      "players": [
+        {
+          "name": "Kyle Hurt",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1780148813,
+      "players": [
+        {
+          "name": "Anthony Kay",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1780148597,
+      "players": [
+        {
+          "name": "Trevor Story",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "SS"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1780148512,
+      "players": [
+        {
+          "name": "Kerry Carpenter",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "OF"
+        }
+      ]
+    },
     {
       "type": "add/drop",
       "timestamp": 1780115570,
@@ -2015,96 +2093,6 @@
           "position": "SP,RP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1779268582,
-      "players": [
-        {
-          "name": "Nick Lodolo",
-          "action": "add",
-          "team": "BaseballPro77",
-          "position": "SP"
-        },
-        {
-          "name": "Brayan Bello",
-          "action": "drop",
-          "team": "BaseballPro77",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1779234168,
-      "players": [
-        {
-          "name": "Miguel Andujar",
-          "action": "add",
-          "team": "Riverside Roughnecks",
-          "position": "3B,OF"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1779234140,
-      "players": [
-        {
-          "name": "Royce Lewis",
-          "action": "drop",
-          "team": "Riverside Roughnecks",
-          "position": "3B"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1779229923,
-      "players": [
-        {
-          "name": "Gavin Sheets",
-          "action": "add",
-          "team": "Hiroshima Radiation",
-          "position": "1B,OF"
-        },
-        {
-          "name": "Colt Keith",
-          "action": "drop",
-          "team": "Hiroshima Radiation",
-          "position": "1B,2B,3B"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1779223701,
-      "players": [
-        {
-          "name": "Justin Topa",
-          "action": "drop",
-          "team": "Athletic Park Dragons",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1779214562,
-      "players": [
-        {
-          "name": "Ben Brown",
-          "action": "add",
-          "team": "North Correa",
-          "position": "SP,RP"
-        },
-        {
-          "name": "Carmen Mlodzinski",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "SP,RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2126,5 +2114,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-05-30T13:09:24.182158"
+  "saved_at": "2026-05-30T16:54:01.663985"
 }
