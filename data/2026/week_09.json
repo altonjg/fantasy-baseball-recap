@@ -1652,6 +1652,24 @@
   "transactions": [
     {
       "type": "add/drop",
+      "timestamp": 1780232980,
+      "players": [
+        {
+          "name": "Cade Cavalli",
+          "action": "add",
+          "team": "BaseballPro77",
+          "position": "SP"
+        },
+        {
+          "name": "Ryne Nelson",
+          "action": "drop",
+          "team": "BaseballPro77",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
       "timestamp": 1780157268,
       "players": [
         {
@@ -2075,24 +2093,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1779296598,
-      "players": [
-        {
-          "name": "Mart\u00edn P\u00e9rez",
-          "action": "add",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "SP"
-        },
-        {
-          "name": "Braydon Fisher",
-          "action": "drop",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "SP,RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2111,8 +2111,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-05-31T10:08:40.535469"
+  "saved_at": "2026-05-31T13:20:53.624798"
 }
