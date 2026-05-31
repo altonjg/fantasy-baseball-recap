@@ -139,8 +139,8 @@
               "name": "Gunnar Henderson",
               "mlb_team": "BAL",
               "position": "SS",
-              "stats": "R:3, HR:1, RBI:1, OBP:.346",
-              "score": 13.0
+              "stats": "R:3, HR:1, RBI:1, OBP:.357",
+              "score": 14.0
             },
             {
               "name": "Alec Bohm",
@@ -473,7 +473,7 @@
               "name": "Ernie Clement",
               "mlb_team": "TOR",
               "position": "1B,2B,3B,SS",
-              "stats": "R:3, HR:1, RBI:5, OBP:.471",
+              "stats": "R:3, HR:1, RBI:5, OBP:.444",
               "score": 16.0
             },
             {
@@ -501,7 +501,7 @@
               "name": "Andr\u00e9s Gim\u00e9nez",
               "mlb_team": "TOR",
               "position": "2B,SS",
-              "stats": "R:1, RBI:2, SB:1, OBP:.318",
+              "stats": "R:1, RBI:2, SB:1, OBP:.304",
               "score": 7.0
             }
           ]
@@ -545,8 +545,8 @@
               "name": "Pete Alonso",
               "mlb_team": "BAL",
               "position": "1B",
-              "stats": "R:2, HR:2, RBI:6, SB:1, OBP:.333",
-              "score": 15.0
+              "stats": "R:3, HR:2, RBI:6, SB:1, OBP:.364",
+              "score": 17.0
             },
             {
               "name": "Geraldo Perdomo",
@@ -662,7 +662,7 @@
               "name": "Ketel Marte",
               "mlb_team": "AZ",
               "position": "2B",
-              "stats": "R:11, HR:3, RBI:12, OBP:.563",
+              "stats": "R:11, HR:3, RBI:12, OBP:.562",
               "score": 41.0
             },
             {
@@ -1082,7 +1082,7 @@
               "name": "Vladimir Guerrero Jr.",
               "mlb_team": "TOR",
               "position": "1B",
-              "stats": "R:5, RBI:2, SB:1, OBP:.467",
+              "stats": "R:5, RBI:2, SB:1, OBP:.452",
               "score": 14.0
             },
             {
@@ -1117,7 +1117,7 @@
               "name": "Adley Rutschman",
               "mlb_team": "BAL",
               "position": "C",
-              "stats": "R:3, HR:1, RBI:2, OBP:.407",
+              "stats": "R:3, HR:1, RBI:2, OBP:.393",
               "score": 11.0
             },
             {
@@ -1385,7 +1385,7 @@
               "name": "Trea Turner",
               "mlb_team": "PHI",
               "position": "SS",
-              "stats": "R:3, HR:1, RBI:1, SB:3, OBP:.313",
+              "stats": "R:3, HR:1, RBI:1, SB:3, OBP:.312",
               "score": 11.0
             },
             {
@@ -2111,8 +2111,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-05-31T13:20:53.624798"
+  "saved_at": "2026-05-31T16:59:21.291903"
 }
