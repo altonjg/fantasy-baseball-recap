@@ -1652,6 +1652,24 @@
   "transactions": [
     {
       "type": "add/drop",
+      "timestamp": 1780341900,
+      "players": [
+        {
+          "name": "Shane Drohan",
+          "action": "add",
+          "team": "North Correa",
+          "position": "SP,RP"
+        },
+        {
+          "name": "Luis Severino",
+          "action": "drop",
+          "team": "North Correa",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
       "timestamp": 1780232980,
       "players": [
         {
@@ -2075,24 +2093,6 @@
           "position": "SP,RP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1779357909,
-      "players": [
-        {
-          "name": "Justin Slaten",
-          "action": "add",
-          "team": "North Correa",
-          "position": "RP"
-        },
-        {
-          "name": "Isaac Mattson",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2111,8 +2111,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-06-01T17:22:18.618673"
+  "saved_at": "2026-06-01T22:31:05.523661"
 }
