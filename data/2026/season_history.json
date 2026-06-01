@@ -143,6 +143,22 @@
       "12. Hiroshima Radiation | A 6-2 loss despite 7 NSVH, a 3.38 ERA, and 72.0 innings pitched is the most damning offensive indictment of the season — 33 hits, 1 HR, and a .233 OBP from a lineup that includes Bryce Harper is simply not acceptable | same",
       "13. Buttville Skidmarks | A 6-2 win over Hiroshima is welcome but hardly inspiring; the offense is still generating too few hits (.217 AVG implied by 44/203) and the luck delta of -1.35 suggests even this win came against a historically weak opponent | up",
       "14. Canberra Wombats | Dylan Cease's 17 Ks, Seth Lugo's 2 QS, and Christian Walker's 3 HR weren't nearly enough to overcome a 8.31 ERA from the rest of the staff; this team is in freefall and has now been blown out twice in consecutive weeks | same"
+    ],
+    "week_10": [
+      "1. Athletic Park Dragons | James Wood (7 R, 3 HR, .536 OBP), Jarren Duran (4 HR, 8 RBI), and Will Smith (.526 OBP) led an 8-2 blowout, and even with a thin rotation this offense is now the most dangerous in the league week to week | up",
+      "2. Sugar Land Skeeters | Scratching out a 5-5 tie against Hiroshima despite a 6.75 ERA is exactly the kind of resilient floor this roster provides; Trent Grisham, Ian Happ, and Keibert Ruiz all contributed and the week-11 matchup with Wisconsin Rapids is winnable | same",
+      "3. Abbotsford-Colby Twins | The 8-1 destruction of the Wonderdogs was the most complete performance of the week — elite three-man rotation, Aranda's .607 OBP, and Adames's power all firing simultaneously; this team is rounding into form at the right time | up",
+      "4. BaseballPro77 | A heartbreaking 5-4 loss despite 15 HR, 41 runs, and 60 strikeouts is the most unlucky outcome of the week; Ranger Suárez's implosion cost them dearly, but the underlying talent here is still top-three in the league | down",
+      "5. Albuquerque Bombers | Ronald Acuña's 5-HR, 10-RBI, .517 OBP week was the single best individual performance of Week 10, and the 6-4 win over Riverside shows this team can beat quality opponents; pitching depth remains the ceiling question | up",
+      "6. North Correa | Oneil Cruz (2 HR, 7 RBI, 3 SB), Shohei Ohtani, and Gabriel Moreno all contributed in a 7-3 win, and a 2.28 ERA from the bullpen is encouraging; this team is steadier than its luck delta suggests | up",
+      "7. Wisconsin Rapids Reapers | Ben Rice's 9 RBI and Juan Soto's 3-HR, 8-RBI week powered a 7-3 upset of General Hospital, and Bryan Woo's 0.29 WHIP was electric; the rotation's low innings total (35.1 IP) is still the structural flaw that limits this team | up",
+      "8. Riverside Roughnecks | A 6-4 win that paper-hides real weaknesses — only 5 HR, 25 runs, and a .304 OBP — with a luck delta that is the most inflated in the league; the drop-off when the schedule normalizes is coming | down",
+      "9. Buttville Skidmarks | Stealing a 5-4 win on the strength of a 2.72 ERA and 72.2 IP against BaseballPro77's explosive offense is a legitimate achievement; Bryan Reynolds's .581 OBP headlined the lineup, but only 3 HR all week remains the core offensive problem | up",
+      "10. General Hospital | Seven quality starts and a 3.48 ERA from the pitching staff deserved a better fate than a 7-3 loss; Justin Wrobleski's 0.14 WHIP was extraordinary, but the offense managed only 6 HR and 25 RBI against a team that threw just 35.1 innings | down",
+      "11. Benchwarmers | A 7-3 loss despite solid pitching (3.38 ERA, 4 QS) and 7 SB reveals the same offensive ceiling problem — only 8 HR and 30 RBI — but Luis García Jr.'s .600 OBP and Kevin McGonigle's .423 OBP show lineup depth that can be built on | same",
+      "12. Wonder Wharf Wonderdogs | Getting shut down 8-1 with zero quality starts and a 5.44 ERA is a brutal regression after weeks of strong pitching; the bats (8 HR, 31 RBI) showed up but the rotation's complete collapse is an alarming red flag | down",
+      "13. Hiroshima Radiation | Eleven NSVH and 64 innings pitched but only a 5-5 tie tells you everything about this team's offensive dysfunction — 22 runs and 0 SB from a lineup featuring Bryce Harper and Kyle Schwarber is genuinely baffling; the Gelof and Mead additions are urgently needed | same",
+      "14. Canberra Wombats | Losing 8-2 despite 13 HR and a 2.10 ERA is a statistical anomaly that speaks to how badly this team was outmatched in the non-power categories — a .271 OBP, only 30 IP, and 3 SB meant the Dragons took every peripheral category running | same"
     ]
   },
   "weekly_points": {
@@ -289,6 +305,22 @@
       "North Correa": 1.0,
       "Riverside Roughnecks": 6.0,
       "Wisconsin Rapids Reapers": 4.0
+    },
+    "week_10": {
+      "Albuquerque Bombers": 6.0,
+      "Riverside Roughnecks": 4.0,
+      "Abbotsford-Colby Twins": 8.0,
+      "Wonder Wharf Wonderdogs": 1.0,
+      "Athletic Park Dragons": 8.0,
+      "Canberra Wombats": 2.0,
+      "BaseballPro77": 4.0,
+      "Buttville Skidmarks": 5.0,
+      "Benchwarmers": 3.0,
+      "North Correa": 7.0,
+      "General Hospital": 3.0,
+      "Wisconsin Rapids Reapers": 7.0,
+      "Hiroshima Radiation": 5.0,
+      "Sugar Land Skeeters": 5.0
     }
   },
   "manager_spotlight_rotation": [
