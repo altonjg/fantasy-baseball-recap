@@ -1651,6 +1651,42 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1780436628,
+      "players": [
+        {
+          "name": "Willi Castro",
+          "action": "add",
+          "team": "BaseballPro77",
+          "position": "1B,2B,3B,SS,OF"
+        },
+        {
+          "name": "Jeremiah Jackson",
+          "action": "drop",
+          "team": "BaseballPro77",
+          "position": "2B,3B,OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1780435362,
+      "players": [
+        {
+          "name": "Braydon Fisher",
+          "action": "add",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "SP,RP"
+        },
+        {
+          "name": "Brent Headrick",
+          "action": "drop",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "RP"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1780400296,
       "players": [
@@ -2057,36 +2093,6 @@
           "position": "OF"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1779375282,
-      "players": [
-        {
-          "name": "Grant Taylor",
-          "action": "add",
-          "team": "Albuquerque Bombers",
-          "position": "SP,RP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1779375208,
-      "players": [
-        {
-          "name": "Taylor Clarke",
-          "action": "add",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "RP"
-        },
-        {
-          "name": "Erik Miller",
-          "action": "drop",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2108,5 +2114,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-06-02T16:07:08.968040"
+  "saved_at": "2026-06-02T22:18:15.098404"
 }
