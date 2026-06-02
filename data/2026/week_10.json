@@ -1651,6 +1651,18 @@
   },
   "transactions": [
     {
+      "type": "drop",
+      "timestamp": 1780400296,
+      "players": [
+        {
+          "name": "Miguel Andujar",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "3B,OF"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1780341900,
       "players": [
@@ -2075,24 +2087,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1779375068,
-      "players": [
-        {
-          "name": "Jos\u00e9 A. Ferrer",
-          "action": "add",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "RP"
-        },
-        {
-          "name": "Sean Newcomb",
-          "action": "drop",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "SP,RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2111,8 +2105,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-06-02T08:21:45.867171"
+  "saved_at": "2026-06-02T16:07:08.968040"
 }
