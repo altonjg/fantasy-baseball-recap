@@ -1651,6 +1651,30 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1780579445,
+      "players": [
+        {
+          "name": "Jake Burger",
+          "action": "add",
+          "team": "Sugar Land Skeeters",
+          "position": "1B"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1780579370,
+      "players": [
+        {
+          "name": "Nolan Schanuel",
+          "action": "drop",
+          "team": "Sugar Land Skeeters",
+          "position": "1B"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1780511681,
       "players": [
@@ -2069,30 +2093,6 @@
           "position": "3B"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1779564643,
-      "players": [
-        {
-          "name": "Walbert Ure\u00f1a",
-          "action": "add",
-          "team": "BaseballPro77",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1779550154,
-      "players": [
-        {
-          "name": "Juan Morillo",
-          "action": "drop",
-          "team": "BaseballPro77",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2114,5 +2114,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-06-04T08:13:35.799388"
+  "saved_at": "2026-06-04T14:41:33.519495"
 }
