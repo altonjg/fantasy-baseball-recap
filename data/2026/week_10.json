@@ -139,7 +139,7 @@
               "name": "Seiya Suzuki",
               "mlb_team": "CHC",
               "position": "OF",
-              "stats": "R:3, RBI:2, OBP:.304",
+              "stats": "R:3, RBI:2, OBP:.360",
               "score": 12.0
             },
             {
@@ -239,18 +239,18 @@
           },
           "top_players": [
             {
+              "name": "Willy Adames",
+              "mlb_team": "SF",
+              "position": "SS",
+              "stats": "R:9, HR:4, RBI:9, OBP:.519",
+              "score": 32.0
+            },
+            {
               "name": "Jonathan Aranda",
               "mlb_team": "TB",
               "position": "1B",
               "stats": "R:6, HR:3, RBI:5, OBP:.607",
               "score": 25.0
-            },
-            {
-              "name": "Willy Adames",
-              "mlb_team": "SF",
-              "position": "SS",
-              "stats": "R:5, HR:2, RBI:5, OBP:.435",
-              "score": 20.0
             },
             {
               "name": "Chase Meidroth",
@@ -501,7 +501,7 @@
               "name": "Dansby Swanson",
               "mlb_team": "CHC",
               "position": "SS",
-              "stats": "R:4, SB:2, OBP:.321",
+              "stats": "R:4, SB:2, OBP:.300",
               "score": 9.0
             }
           ]
@@ -535,6 +535,13 @@
               "score": 19.0
             },
             {
+              "name": "Pete Crow-Armstrong",
+              "mlb_team": "CHC",
+              "position": "OF",
+              "stats": "R:5, HR:1, RBI:3, OBP:.405",
+              "score": 19.0
+            },
+            {
               "name": "Yandy D\u00edaz",
               "mlb_team": "TB",
               "position": "1B",
@@ -546,13 +553,6 @@
               "mlb_team": "BAL",
               "position": "SS",
               "stats": "R:4, HR:2, RBI:7, OBP:.242",
-              "score": 18.0
-            },
-            {
-              "name": "Pete Crow-Armstrong",
-              "mlb_team": "CHC",
-              "position": "OF",
-              "stats": "R:5, HR:1, RBI:3, OBP:.382",
               "score": 18.0
             },
             {
@@ -570,18 +570,18 @@
               "score": 15.0
             },
             {
+              "name": "Robbie Ray",
+              "mlb_team": "SF",
+              "position": "SP",
+              "stats": "K:10, ERA:1.00, WHIP:1.56, IP:9.0",
+              "score": 10.0
+            },
+            {
               "name": "Carter Jensen",
               "mlb_team": "KC",
               "position": "C",
               "stats": "R:2, HR:1, RBI:3, OBP:.200",
               "score": 10.0
-            },
-            {
-              "name": "Alec Bohm",
-              "mlb_team": "PHI",
-              "position": "1B,3B",
-              "stats": "R:1, HR:1, RBI:2, OBP:.250",
-              "score": 8.0
             }
           ]
         }
@@ -748,8 +748,8 @@
               "name": "Rafael Devers",
               "mlb_team": "SF",
               "position": "1B",
-              "stats": "R:5, RBI:5, OBP:.393",
-              "score": 18.0
+              "stats": "R:6, RBI:6, OBP:.406",
+              "score": 22.0
             },
             {
               "name": "Cole Young",
@@ -757,6 +757,13 @@
               "position": "2B",
               "stats": "R:5, HR:1, RBI:3, OBP:.280",
               "score": 15.0
+            },
+            {
+              "name": "Luis Arraez",
+              "mlb_team": "SF",
+              "position": "1B,2B",
+              "stats": "R:3, RBI:3, SB:1, OBP:.471",
+              "score": 14.0
             },
             {
               "name": "Spencer Steer",
@@ -784,13 +791,6 @@
               "mlb_team": "CIN",
               "position": "SS",
               "stats": "R:3, RBI:2, SB:1, OBP:.269",
-              "score": 11.0
-            },
-            {
-              "name": "Junior Caminero",
-              "mlb_team": "TB",
-              "position": "3B",
-              "stats": "R:2, RBI:1, OBP:.500",
               "score": 11.0
             }
           ]
@@ -869,6 +869,13 @@
           },
           "top_players": [
             {
+              "name": "Casey Schmitt",
+              "mlb_team": "SF",
+              "position": "1B,2B,3B,OF",
+              "stats": "R:4, HR:2, RBI:6, SB:2, OBP:.312",
+              "score": 24.0
+            },
+            {
               "name": "Julio Rodr\u00edguez",
               "mlb_team": "SEA",
               "position": "OF",
@@ -881,13 +888,6 @@
               "position": "OF",
               "stats": "R:5, HR:2, RBI:6, OBP:.357",
               "score": 19.0
-            },
-            {
-              "name": "Casey Schmitt",
-              "mlb_team": "SF",
-              "position": "1B,2B,3B,OF",
-              "stats": "R:2, HR:1, RBI:4, SB:2, OBP:.286",
-              "score": 17.0
             },
             {
               "name": "Zach Neto",
@@ -965,7 +965,7 @@
               "name": "Alex Bregman",
               "mlb_team": "CHC",
               "position": "3B",
-              "stats": "R:5, HR:1, RBI:2, OBP:.357",
+              "stats": "R:5, HR:1, RBI:2, OBP:.355",
               "score": 17.0
             },
             {
@@ -1175,7 +1175,7 @@
               "name": "Michael Busch",
               "mlb_team": "CHC",
               "position": "1B",
-              "stats": "R:5, HR:1, RBI:6, OBP:.441",
+              "stats": "R:5, HR:1, RBI:6, OBP:.444",
               "score": 21.0
             },
             {
@@ -1378,7 +1378,7 @@
               "name": "Ian Happ",
               "mlb_team": "CHC",
               "position": "OF",
-              "stats": "R:3, HR:2, RBI:5, OBP:.364",
+              "stats": "R:3, HR:2, RBI:5, OBP:.333",
               "score": 17.0
             },
             {
@@ -1650,6 +1650,114 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "drop",
+      "timestamp": 1780690398,
+      "players": [
+        {
+          "name": "Grayson Rodriguez",
+          "action": "drop",
+          "team": "Buttville Skidmarks",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1780690100,
+      "players": [
+        {
+          "name": "Jack Leiter",
+          "action": "add",
+          "team": "Canberra Wombats",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1780690067,
+      "players": [
+        {
+          "name": "Michael Massey",
+          "action": "add",
+          "team": "Canberra Wombats",
+          "position": "2B,OF"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1780690057,
+      "players": [
+        {
+          "name": "Alex Lange",
+          "action": "add",
+          "team": "Canberra Wombats",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1780690044,
+      "players": [
+        {
+          "name": "Kumar Rocker",
+          "action": "add",
+          "team": "Canberra Wombats",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1780690014,
+      "players": [
+        {
+          "name": "JR Ritchie",
+          "action": "drop",
+          "team": "Canberra Wombats",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1780689995,
+      "players": [
+        {
+          "name": "Addison Barger",
+          "action": "drop",
+          "team": "Canberra Wombats",
+          "position": "3B,OF"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1780689989,
+      "players": [
+        {
+          "name": "Javier B\u00e1ez",
+          "action": "drop",
+          "team": "Canberra Wombats",
+          "position": "2B,3B,SS,OF"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1780689969,
+      "players": [
+        {
+          "name": "Adolis Garc\u00eda",
+          "action": "drop",
+          "team": "Canberra Wombats",
+          "position": "OF"
+        }
+      ]
+    },
     {
       "type": "add/drop",
       "timestamp": 1780681563,
@@ -1955,144 +2063,6 @@
           "position": "OF"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1780115570,
-      "players": [
-        {
-          "name": "Kai-Wei Teng",
-          "action": "add",
-          "team": "North Correa",
-          "position": "SP,RP"
-        },
-        {
-          "name": "Kodai Senga",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1780091107,
-      "players": [
-        {
-          "name": "Will Klein",
-          "action": "add",
-          "team": "Benchwarmers",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1780090718,
-      "players": [
-        {
-          "name": "Graham Ashcraft",
-          "action": "drop",
-          "team": "Benchwarmers",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1780082988,
-      "players": [
-        {
-          "name": "Troy Melton",
-          "action": "add",
-          "team": "North Correa",
-          "position": "SP,RP"
-        },
-        {
-          "name": "Justin Slaten",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1780065913,
-      "players": [
-        {
-          "name": "Aaron Civale",
-          "action": "drop",
-          "team": "Buttville Skidmarks",
-          "position": "SP,RP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1780020542,
-      "players": [
-        {
-          "name": "Sam Antonacci",
-          "action": "add",
-          "team": "Albuquerque Bombers",
-          "position": "2B,3B,OF"
-        },
-        {
-          "name": "Henry Bolte",
-          "action": "drop",
-          "team": "Albuquerque Bombers",
-          "position": "OF"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1780010814,
-      "players": [
-        {
-          "name": "Lance McCullers Jr.",
-          "action": "drop",
-          "team": "Benchwarmers",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1779994782,
-      "players": [
-        {
-          "name": "Matt Strahm",
-          "action": "add",
-          "team": "Athletic Park Dragons",
-          "position": "RP"
-        },
-        {
-          "name": "Garrett Cleavinger",
-          "action": "drop",
-          "team": "Athletic Park Dragons",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1779910302,
-      "players": [
-        {
-          "name": "Curtis Mead",
-          "action": "add",
-          "team": "Hiroshima Radiation",
-          "position": "1B,2B,3B"
-        },
-        {
-          "name": "Ram\u00f3n Laureano",
-          "action": "drop",
-          "team": "Hiroshima Radiation",
-          "position": "OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2114,5 +2084,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-06-05T17:48:34.864930"
+  "saved_at": "2026-06-05T21:18:49.448943"
 }
