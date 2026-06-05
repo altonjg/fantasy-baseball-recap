@@ -1652,6 +1652,48 @@
   "transactions": [
     {
       "type": "add/drop",
+      "timestamp": 1780681563,
+      "players": [
+        {
+          "name": "Jakob Junis",
+          "action": "add",
+          "team": "Athletic Park Dragons",
+          "position": "RP"
+        },
+        {
+          "name": "Ryan Thompson",
+          "action": "drop",
+          "team": "Athletic Park Dragons",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1780676966,
+      "players": [
+        {
+          "name": "Christian Scott",
+          "action": "add",
+          "team": "Buttville Skidmarks",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1780676913,
+      "players": [
+        {
+          "name": "Luke Raley",
+          "action": "add",
+          "team": "Buttville Skidmarks",
+          "position": "1B,OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
       "timestamp": 1780638786,
       "players": [
         {
@@ -2051,48 +2093,6 @@
           "position": "OF"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1779812434,
-      "players": [
-        {
-          "name": "Zebby Matthews",
-          "action": "add",
-          "team": "Sugar Land Skeeters",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1779739996,
-      "players": [
-        {
-          "name": "Yoendrys G\u00f3mez",
-          "action": "add",
-          "team": "BaseballPro77",
-          "position": "SP,RP"
-        },
-        {
-          "name": "Jos\u00e9 Alvarado",
-          "action": "drop",
-          "team": "BaseballPro77",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1779648099,
-      "players": [
-        {
-          "name": "Janson Junk",
-          "action": "drop",
-          "team": "Sugar Land Skeeters",
-          "position": "SP,RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2111,8 +2111,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-06-05T14:30:32.454805"
+  "saved_at": "2026-06-05T17:48:34.864930"
 }
