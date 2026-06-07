@@ -1652,6 +1652,24 @@
   "transactions": [
     {
       "type": "add/drop",
+      "timestamp": 1780831081,
+      "players": [
+        {
+          "name": "Lars Nootbaar",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "OF"
+        },
+        {
+          "name": "Ian Seymour",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
       "timestamp": 1780763107,
       "players": [
         {
@@ -2075,24 +2093,6 @@
           "position": "SP,RP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1780157268,
-      "players": [
-        {
-          "name": "Walbert Ure\u00f1a",
-          "action": "add",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "SP"
-        },
-        {
-          "name": "Logan O'Hoppe",
-          "action": "drop",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "C"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2111,8 +2111,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-06-07T10:23:38.405185"
+  "saved_at": "2026-06-07T13:26:03.236242"
 }
