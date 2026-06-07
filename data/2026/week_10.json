@@ -1652,6 +1652,24 @@
   "transactions": [
     {
       "type": "add/drop",
+      "timestamp": 1780851252,
+      "players": [
+        {
+          "name": "Colton Cowser",
+          "action": "add",
+          "team": "North Correa",
+          "position": "OF"
+        },
+        {
+          "name": "Jac Caglianone",
+          "action": "drop",
+          "team": "North Correa",
+          "position": "1B,OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
       "timestamp": 1780831081,
       "players": [
         {
@@ -2075,24 +2093,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1780232980,
-      "players": [
-        {
-          "name": "Cade Cavalli",
-          "action": "add",
-          "team": "BaseballPro77",
-          "position": "SP"
-        },
-        {
-          "name": "Ryne Nelson",
-          "action": "drop",
-          "team": "BaseballPro77",
-          "position": "SP,RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2114,5 +2114,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-06-07T13:26:03.236242"
+  "saved_at": "2026-06-07T17:07:28.329175"
 }
