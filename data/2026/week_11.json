@@ -1186,13 +1186,6 @@
               "score": 11.0
             },
             {
-              "name": "Jameson Taillon",
-              "mlb_team": "CHC",
-              "position": "SP",
-              "stats": "K:8, ERA:3.68, WHIP:1.50, QS:1, IP:7.1",
-              "score": 9.0
-            },
-            {
               "name": "Dustin May",
               "mlb_team": "STL",
               "position": "SP",
@@ -1211,6 +1204,13 @@
               "mlb_team": "CWS",
               "position": "3B,SS",
               "stats": "R:3, HR:1, RBI:2, OBP:.316",
+              "score": 9.0
+            },
+            {
+              "name": "Jakob Marsee",
+              "mlb_team": "MIA",
+              "position": "OF",
+              "stats": "R:4, SB:2, OBP:.529",
               "score": 9.0
             }
           ]
@@ -1651,6 +1651,30 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1780948377,
+      "players": [
+        {
+          "name": "David Hamilton",
+          "action": "add",
+          "team": "Hiroshima Radiation",
+          "position": "2B,3B,SS"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1780943891,
+      "players": [
+        {
+          "name": "Jameson Taillon",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1780851252,
       "players": [
@@ -2063,36 +2087,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1780400296,
-      "players": [
-        {
-          "name": "Miguel Andujar",
-          "action": "drop",
-          "team": "Riverside Roughnecks",
-          "position": "3B,OF"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1780341900,
-      "players": [
-        {
-          "name": "Shane Drohan",
-          "action": "add",
-          "team": "North Correa",
-          "position": "SP,RP"
-        },
-        {
-          "name": "Luis Severino",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2114,5 +2108,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-06-08T18:20:45.506484"
+  "saved_at": "2026-06-08T21:45:56.370261"
 }
