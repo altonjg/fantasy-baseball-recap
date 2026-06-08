@@ -1,0 +1,31 @@
+{
+  "stat_of_week": "0.14 - Drew Rasmussen posted a 0.14 WHIP across 7.0 innings for Hiroshima Radiation, the most dominant single-pitcher ratio line of the week and one of the most absurd WHIP figures seen all season",
+  "thriller_teams": "Wisconsin Rapids Reapers vs Sugar Land Skeeters",
+  "thriller_score": "5-4",
+  "thriller_note": "The Reapers edged out a one-category win despite getting badly outpitched (6.18 ERA vs 4.07, only 1 QS vs 5), surviving on the strength of their hitting to hand the Skeeters a damaging loss in a key standings matchup — the rematch in Week 12 against Albuquerque is now a must-win for Sugar Land to stay relevant.",
+  "key_storyline": "Riverside Roughnecks delivered the most complete performance of Week 11, dismantling the Wonder Wharf Wonderdogs 8–1 behind Noah Cameron's historically dominant outing (15 K, 0.69 ERA, 0.31 WHIP across 13 IP) and Jackson Chourio's explosive 8-run, 8-RBI week. The Roughnecks also benefited from the largest luck delta in the league this week at +3.12, meaning their gaudy win total flatters a roster that may not sustain this level of dominance. Still, the combination of Cameron, Roki Sasaki, and a lineup finally clicking across the board makes Riverside a legitimate threat if the schedule continues to cooperate.",
+  "lucky_team": "Riverside Roughnecks",
+  "lucky_reason": "Their +3.12 luck delta was the largest in the league by a wide margin, winning 7.5 actual categories against an expected 4.38, suggesting their dominant-looking 8–1 result significantly outpaced what their underlying numbers deserved.",
+  "unlucky_team": "Canberra Wombats",
+  "unlucky_reason": "Despite Jacob deGrom striking out 14 with a 0.91 WHIP, Pete Crow-Armstrong blasting 4 HR, and the team posting 8 HR and 34 RBI, the Wombats managed only a 5–5 tie with General Hospital, finishing with a –1.96 luck delta — the worst in the league this week.",
+  "records_broken": "None.",
+  "spotlight_team": "Buttville Skidmarks",
+  "include_trade_value": true,
+  "power_rankings": [
+    "1. Riverside Roughnecks | Noah Cameron's 15-K, 0.31 WHIP masterpiece headlined an 8–1 blowout, Chourio and Goodman mashed, and six quality starts show a rotation finally performing at an elite level; luck-inflated record aside, this is the hottest team in the league right now | up",
+    "2. Albuquerque Bombers | A 7–2 win was the second-most dominant result of the week — Turang, Yelich, and Freeman all hit above .367 OBP, Alcantara was pristine, and Kyle Harrison's 1.59 ERA in relief adds real pitching depth; this roster is firing on all cylinders | up",
+    "3. Sugar Land Skeeters | Losing 5–4 to the Reapers despite leading in ERA, QS, and WHIP is a brutal gut-punch, but the underlying rotation quality (5 QS, 4.07 ERA) and waiver activity adding Ryne Nelson and Jake Burger show a manager still fighting hard | down",
+    "4. Athletic Park Dragons | Losing 7–1 to Hiroshima is a shocking result, but the luck data says they were outperformed legitimately; Cristopher Sánchez's 1.29 ERA and 0.71 WHIP is a major positive, and the offense led by Willson Contreras and James Wood still has top-five upside | down",
+    "5. BaseballPro77 | A 7–2 loss stings, but Bobby Witt Jr.'s 6 SB, Jeremy Peña's .481 OBP, and Bryce Elder's 0.87 WHIP show real talent — the –2 NSVH was a killer and the luck index (+1.77 cumulative) suggests the schedule has been kind; week 12 vs. Dragons is a defining test | same",
+    "6. North Correa | Shohei Ohtani's .650 OBP, Jake Bauers's .556 OBP, and Oneil Cruz's .591 OBP powered a 7–2 win — this lineup is loaded with on-base threats and the pitching held firm enough; the –0.65 luck delta means they're actually performing slightly above their fortune | up",
+    "7. Hiroshima Radiation | A stunning 7–1 demolition of the Athletic Park Dragons driven by 5 QS, 74.2 IP, a 2.89 ERA, and Rasmussen's freakish 0.14 WHIP line; the offense remains inconsistent but when this rotation locks in nobody can touch it | up",
+    "8. Abbotsford-Colby Twins | Winning 6–4 over the Skidmarks is a positive result but a 7.51 ERA and only 1 QS from the rotation is alarming regression from a team that was pitching its way to contention — Yordan Alvarez's .577 OBP kept this afloat offensively | down",
+    "9. General Hospital | A 5–5 tie against Canberra when you throw 75.2 innings and post a 4.40 ERA is deeply disappointing; Dillon Dingler's 3-HR, 10-RBI explosion was elite and Michael Soroka's 0.92 WHIP gave them a chance, but the offense outside Dingler was flat | same",
+    "10. Wisconsin Rapids Reapers | A 5–4 squeaker over Sugar Land was fueled by Brandon Marsh's 3-HR week and strong depth hitting, but a 6.18 ERA and only 1 QS exposes a rotation that simply cannot be trusted in big spots; surviving on offense has a ceiling | up",
+    "11. Buttville Skidmarks | Losing 6–4 to the Twins despite their pitching staff throwing 59 innings is exasperating — Junior Caminero ran hard, Kevin Gausman punched in 13 K, and the waiver adds of Christian Scott and Luke Raley show active roster management, but only 1 SB all week killed them | same",
+    "12. Benchwarmers | A 7–2 loss to the Bombers exposes the persistent ceiling problem — 16 HR and 35 RBI are genuinely strong but a 4.84 ERA, 1.47 WHIP, and only 36 strikeouts from the pitching staff handed Albuquerque six easy categories; Corbin Carroll's return to power is a real positive | same",
+    "13. Wonder Wharf Wonderdogs | Getting dismantled 8–1 for the second time in recent memory reveals a structural problem — only 4 HR, 21 RBI, and a rotation that managed just 2 QS; Lars Nootbaar is a solid waiver add but this team needs starting pitching urgently | down",
+    "14. Canberra Wombats | Pete Crow-Armstrong's 4-HR, 6-RBI explosion and deGrom's 14-K gem should have produced a win, but a 5–5 tie is all they got — the –1.96 luck delta is the worst in the league, and the fire sale of García, Báez, and Barger raises serious questions about the direction of this roster | same"
+  ],
+  "waiver_highlights": []
+}
