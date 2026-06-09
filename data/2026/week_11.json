@@ -1652,6 +1652,18 @@
   "transactions": [
     {
       "type": "add",
+      "timestamp": 1781025530,
+      "players": [
+        {
+          "name": "Braden Montgomery",
+          "action": "add",
+          "team": "General Hospital",
+          "position": "OF"
+        }
+      ]
+    },
+    {
+      "type": "add",
       "timestamp": 1781005152,
       "players": [
         {
@@ -2057,24 +2069,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1780440827,
-      "players": [
-        {
-          "name": "Jac Caglianone",
-          "action": "add",
-          "team": "North Correa",
-          "position": "1B,OF"
-        },
-        {
-          "name": "Lawrence Butler",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2093,8 +2087,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-06-09T14:31:55.150456"
+  "saved_at": "2026-06-09T17:54:33.530419"
 }
