@@ -1651,6 +1651,18 @@
   },
   "transactions": [
     {
+      "type": "drop",
+      "timestamp": 1781034667,
+      "players": [
+        {
+          "name": "Mark Vientos",
+          "action": "drop",
+          "team": "Buttville Skidmarks",
+          "position": "1B,3B"
+        }
+      ]
+    },
+    {
       "type": "add",
       "timestamp": 1781025530,
       "players": [
@@ -2057,18 +2069,6 @@
           "position": "OF"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1780442304,
-      "players": [
-        {
-          "name": "Kade Anderson",
-          "action": "add",
-          "team": "General Hospital",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2087,8 +2087,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-06-09T17:54:33.530419"
+  "saved_at": "2026-06-09T21:46:59.584978"
 }
