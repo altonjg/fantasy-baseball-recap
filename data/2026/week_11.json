@@ -1652,6 +1652,30 @@
   "transactions": [
     {
       "type": "add",
+      "timestamp": 1781005152,
+      "players": [
+        {
+          "name": "Matt Chapman",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "3B"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1781005023,
+      "players": [
+        {
+          "name": "Chris Bassitt",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
       "timestamp": 1780948377,
       "players": [
         {
@@ -2051,42 +2075,6 @@
           "position": "OF"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1780436628,
-      "players": [
-        {
-          "name": "Willi Castro",
-          "action": "add",
-          "team": "BaseballPro77",
-          "position": "1B,2B,3B,SS,OF"
-        },
-        {
-          "name": "Jeremiah Jackson",
-          "action": "drop",
-          "team": "BaseballPro77",
-          "position": "2B,3B,OF"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1780435362,
-      "players": [
-        {
-          "name": "Braydon Fisher",
-          "action": "add",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "SP,RP"
-        },
-        {
-          "name": "Brent Headrick",
-          "action": "drop",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2108,5 +2096,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-06-09T10:54:23.412743"
+  "saved_at": "2026-06-09T14:31:55.150456"
 }
