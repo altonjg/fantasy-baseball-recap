@@ -1651,6 +1651,24 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1781178094,
+      "players": [
+        {
+          "name": "Elvis Alvarado",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "RP"
+        },
+        {
+          "name": "Tim Hill",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "RP"
+        }
+      ]
+    },
+    {
       "type": "add",
       "timestamp": 1781101976,
       "players": [
@@ -2045,18 +2063,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1780676966,
-      "players": [
-        {
-          "name": "Christian Scott",
-          "action": "add",
-          "team": "Buttville Skidmarks",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2078,5 +2084,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-06-11T08:29:13.563615"
+  "saved_at": "2026-06-11T15:40:47.326293"
 }
