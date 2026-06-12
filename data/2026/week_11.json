@@ -1652,6 +1652,18 @@
   "transactions": [
     {
       "type": "add",
+      "timestamp": 1781295948,
+      "players": [
+        {
+          "name": "Blaze Jordan",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "1B,3B"
+        }
+      ]
+    },
+    {
+      "type": "add",
       "timestamp": 1781200076,
       "players": [
         {
@@ -2045,18 +2057,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1780689995,
-      "players": [
-        {
-          "name": "Addison Barger",
-          "action": "drop",
-          "team": "Canberra Wombats",
-          "position": "3B,OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2078,5 +2078,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-06-12T18:00:54.271352"
+  "saved_at": "2026-06-12T21:25:59.579367"
 }
