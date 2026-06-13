@@ -570,17 +570,17 @@
               "score": 10.0
             },
             {
-              "name": "Austin Martin",
-              "mlb_team": "MIN",
-              "position": "2B,OF",
-              "stats": "R:4, RBI:1, SB:1, OBP:.208",
-              "score": 9.0
-            },
-            {
               "name": "J.T. Ginn",
               "mlb_team": "ATH",
               "position": "SP,RP",
               "stats": "K:8, ERA:1.50, WHIP:0.50, QS:1, IP:6.0",
+              "score": 9.0
+            },
+            {
+              "name": "Luke Keaschall",
+              "mlb_team": "MIN",
+              "position": "2B",
+              "stats": "R:3, RBI:3, OBP:.250",
               "score": 9.0
             }
           ]
@@ -1651,6 +1651,48 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1781364362,
+      "players": [
+        {
+          "name": "Dominic Canzone",
+          "action": "add",
+          "team": "Athletic Park Dragons",
+          "position": "OF"
+        },
+        {
+          "name": "Daulton Varsho",
+          "action": "drop",
+          "team": "Athletic Park Dragons",
+          "position": "OF"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1781363571,
+      "players": [
+        {
+          "name": "Blaze Alexander",
+          "action": "drop",
+          "team": "Sugar Land Skeeters",
+          "position": "2B,3B,SS,OF"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1781362569,
+      "players": [
+        {
+          "name": "Austin Martin",
+          "action": "drop",
+          "team": "Hiroshima Radiation",
+          "position": "2B,OF"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1781354062,
       "players": [
@@ -2021,42 +2063,6 @@
           "position": "2B,3B,SS,OF"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1780690398,
-      "players": [
-        {
-          "name": "Grayson Rodriguez",
-          "action": "drop",
-          "team": "Buttville Skidmarks",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1780690100,
-      "players": [
-        {
-          "name": "Jack Leiter",
-          "action": "add",
-          "team": "Canberra Wombats",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1780690067,
-      "players": [
-        {
-          "name": "Michael Massey",
-          "action": "add",
-          "team": "Canberra Wombats",
-          "position": "2B,OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2078,5 +2084,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-06-13T13:43:05.989626"
+  "saved_at": "2026-06-13T17:15:06.180237"
 }
