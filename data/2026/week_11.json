@@ -1651,6 +1651,18 @@
   },
   "transactions": [
     {
+      "type": "drop",
+      "timestamp": 1781354062,
+      "players": [
+        {
+          "name": "Erick Fedde",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
       "type": "add",
       "timestamp": 1781305179,
       "players": [
@@ -2045,18 +2057,6 @@
           "position": "2B,OF"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1780690057,
-      "players": [
-        {
-          "name": "Alex Lange",
-          "action": "add",
-          "team": "Canberra Wombats",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2078,5 +2078,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-06-13T10:23:45.377989"
+  "saved_at": "2026-06-13T13:43:05.989626"
 }
