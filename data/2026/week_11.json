@@ -370,7 +370,7 @@
               "name": "Liam Hicks",
               "mlb_team": "MIA",
               "position": "C,1B",
-              "stats": "R:5, HR:1, RBI:2, OBP:.364",
+              "stats": "R:5, HR:1, RBI:2, OBP:.375",
               "score": 11.0
             }
           ]
@@ -972,7 +972,7 @@
               "name": "Brandon Lowe",
               "mlb_team": "PIT",
               "position": "2B",
-              "stats": "R:4, HR:1, RBI:4, OBP:.208",
+              "stats": "R:4, HR:1, RBI:4, OBP:.192",
               "score": 12.0
             },
             {
@@ -1124,7 +1124,7 @@
               "name": "Otto Lopez",
               "mlb_team": "MIA",
               "position": "2B,SS",
-              "stats": "R:3, HR:1, RBI:1, OBP:.368",
+              "stats": "R:3, HR:1, RBI:1, OBP:.333",
               "score": 11.0
             },
             {
@@ -1172,18 +1172,18 @@
               "score": 16.0
             },
             {
-              "name": "A.J. Ewing",
-              "mlb_team": "NYM",
-              "position": "2B,OF",
-              "stats": "R:3, RBI:1, SB:3, OBP:.360",
-              "score": 14.0
-            },
-            {
               "name": "Pete Alonso",
               "mlb_team": "BAL",
               "position": "1B",
               "stats": "R:3, HR:1, RBI:2, OBP:.364",
               "score": 11.0
+            },
+            {
+              "name": "Paul Skenes",
+              "mlb_team": "PIT",
+              "position": "SP",
+              "stats": "K:10, ERA:5.87, WHIP:1.57, IP:7.2",
+              "score": 10.0
             },
             {
               "name": "Dustin May",
@@ -1210,7 +1210,7 @@
               "name": "Jakob Marsee",
               "mlb_team": "MIA",
               "position": "OF",
-              "stats": "R:4, SB:2, OBP:.529",
+              "stats": "R:4, SB:2, OBP:.500",
               "score": 9.0
             }
           ]
@@ -1420,7 +1420,7 @@
               "name": "Kyle Stowers",
               "mlb_team": "MIA",
               "position": "1B,OF",
-              "stats": "R:1, HR:1, RBI:3, OBP:.286",
+              "stats": "R:1, HR:1, RBI:3, OBP:.250",
               "score": 8.0
             }
           ]
@@ -1650,6 +1650,102 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "add/drop",
+      "timestamp": 1781448236,
+      "players": [
+        {
+          "name": "Alejandro Kirk",
+          "action": "add",
+          "team": "Hiroshima Radiation",
+          "position": "C"
+        },
+        {
+          "name": "Carson Kelly",
+          "action": "drop",
+          "team": "Hiroshima Radiation",
+          "position": "C"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1781448091,
+      "players": [
+        {
+          "name": "Michael Lorenzen (Pitcher)",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1781445517,
+      "players": [
+        {
+          "name": "Stephen Kolek",
+          "action": "add",
+          "team": "General Hospital",
+          "position": "SP"
+        },
+        {
+          "name": "Grant Holmes",
+          "action": "drop",
+          "team": "General Hospital",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1781445329,
+      "players": [
+        {
+          "name": "Samad Taylor",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "2B,OF"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1781445303,
+      "players": [
+        {
+          "name": "Esteury Ruiz",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "OF"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1781445117,
+      "players": [
+        {
+          "name": "A.J. Ewing",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "2B,OF"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1781445105,
+      "players": [
+        {
+          "name": "Ildemaro Vargas",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "1B,2B"
+        }
+      ]
+    },
     {
       "type": "add",
       "timestamp": 1781433840,
@@ -1937,120 +2033,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1780948377,
-      "players": [
-        {
-          "name": "David Hamilton",
-          "action": "add",
-          "team": "Hiroshima Radiation",
-          "position": "2B,3B,SS"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1780943891,
-      "players": [
-        {
-          "name": "Jameson Taillon",
-          "action": "drop",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1780851252,
-      "players": [
-        {
-          "name": "Colton Cowser",
-          "action": "add",
-          "team": "North Correa",
-          "position": "OF"
-        },
-        {
-          "name": "Jac Caglianone",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "1B,OF"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1780831081,
-      "players": [
-        {
-          "name": "Lars Nootbaar",
-          "action": "add",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "OF"
-        },
-        {
-          "name": "Ian Seymour",
-          "action": "drop",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "SP,RP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1780763107,
-      "players": [
-        {
-          "name": "Clayton Beeter",
-          "action": "add",
-          "team": "General Hospital",
-          "position": "RP"
-        },
-        {
-          "name": "Joel Kuhnel",
-          "action": "drop",
-          "team": "General Hospital",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1780759410,
-      "players": [
-        {
-          "name": "Jake McCarthy",
-          "action": "add",
-          "team": "Athletic Park Dragons",
-          "position": "OF"
-        },
-        {
-          "name": "Dalton Rushing",
-          "action": "drop",
-          "team": "Athletic Park Dragons",
-          "position": "C"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1780703243,
-      "players": [
-        {
-          "name": "Enyel De Los Santos",
-          "action": "add",
-          "team": "Sugar Land Skeeters",
-          "position": "RP"
-        },
-        {
-          "name": "Jeremiah Estrada",
-          "action": "drop",
-          "team": "Sugar Land Skeeters",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2072,5 +2054,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-06-14T13:45:10.071508"
+  "saved_at": "2026-06-14T17:12:44.159211"
 }
