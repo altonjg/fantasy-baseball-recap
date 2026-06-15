@@ -175,6 +175,22 @@
       "12. Benchwarmers | A 7–2 loss to the Bombers exposes the persistent ceiling problem — 16 HR and 35 RBI are genuinely strong but a 4.84 ERA, 1.47 WHIP, and only 36 strikeouts from the pitching staff handed Albuquerque six easy categories; Corbin Carroll's return to power is a real positive | same",
       "13. Wonder Wharf Wonderdogs | Getting dismantled 8–1 for the second time in recent memory reveals a structural problem — only 4 HR, 21 RBI, and a rotation that managed just 2 QS; Lars Nootbaar is a solid waiver add but this team needs starting pitching urgently | down",
       "14. Canberra Wombats | Pete Crow-Armstrong's 4-HR, 6-RBI explosion and deGrom's 14-K gem should have produced a win, but a 5–5 tie is all they got — the –1.96 luck delta is the worst in the league, and the fire sale of García, Báez, and Barger raises serious questions about the direction of this roster | same"
+    ],
+    "week_12": [
+      "1. Riverside Roughnecks | Misiorowski's 0.11 WHIP, Chourio's 5-HR/10-RBI explosion, and a 7–2 demolition of General Hospital make this the most complete team in the league; week 13 vs. Hiroshima is a true title-contender clash | up",
+      "2. Albuquerque Bombers | An 8–2 beatdown fueled by Buxton's 4 HR, Herrera's .607 OBP, and a balanced pitching line confirms this roster is elite top-to-bottom; they tied the season RBI record and face General Hospital in week 13 — a winnable tuneup | same",
+      "3. Hiroshima Radiation | Setting a new season strikeout record with 92 K while winning 7–3 is a statement week; Soderstrom (4 HR, 9 RBI), Gelof (8 R), and a three-man rotation that posted 4 QS make this the most dangerous pitching-forward team in the league | up",
+      "4. Athletic Park Dragons | James Wood's 3-HR, 9-run, 3-SB monster week and Cristopher Sánchez's 13-K outing powered a 7–3 win; the luck index remains inflated but the talent is undeniable heading into a tough North Correa matchup | same",
+      "5. Sugar Land Skeeters | Losing 8–2 to the Bombers is an ugly result, but the offense still showed life with Muncy, Olson, and Tatis contributing; the rotation's 7.28 ERA is a genuine crisis that must be addressed before the Skidmarks matchup | down",
+      "6. North Correa | A 5–5 tie is a disappointing result for a roster led by Ohtani (.542 OBP, 3 HR) and a lineup loaded with on-base threats; zero quality starts all week is the glaring rot underneath, and week 13 vs. the Dragons is a brutal draw | same",
+      "7. BaseballPro77 | A 7–3 loss to the Dragons stings but Kirby, Suárez, and Witt Jr. showed flashes; the cumulative luck delta of +1.27 means the schedule has been a friend — a week 13 date with Wisconsin Rapids will reveal how real this team is | down",
+      "8. Wisconsin Rapids Reapers | Winning 5–4 over the Twins on the strength of NSVH (9), solid pitching, and surprising depth from Okamoto and Andrew Vaughn makes this week the most encouraging performance of their season; more on this team below | up",
+      "9. Abbotsford-Colby Twins | Alec Burleson's 5 HR and 8 RBI was a genuine standout performance but a 5.22 ERA and a razor-thin 5–4 loss shows the rotation remains the team's Achilles heel; adding Pallante and Carpenter signals an effort to patch the holes | down",
+      "10. General Hospital | Getting steamrolled 7–2 by the Roughnecks despite decent pitching (3.72 ERA) exposes an offense that simply cannot generate enough runs — only 25 scored all week — and adding Kolek and Montgomery suggests a roster rethink is underway | same",
+      "11. Buttville Skidmarks | A 5–5 tie with the Wombats when you score 33 runs and go yard 11 times should be a win; zero stolen bases cost them two category wins and dropping Vientos without a quality replacement thins an already shallow bench | same",
+      "12. Benchwarmers | Sonny Gray's 1.50 ERA gem and Spencer Arrighetti's 14 Ks were genuinely excellent, but a flat offense (only 20 runs, .278 OBP) handed Hiroshima a 7–3 win; structural offensive weakness continues to cap this team's ceiling | same",
+      "13. Wonder Wharf Wonderdogs | Paul Skenes delivered 17 K and 2 QS — a legitimately elite pitching performance — but the offense mustered only 8 HR and 21 RBI in a 5–5 tie; adding Taylor, Ruiz, and Jordan signals urgency but these are depth moves, not difference-makers | up",
+      "14. Canberra Wombats | Jo Adell's 8 runs and Henderson's contributions weren't enough to push past a 5–5 tie, and with only 37 IP and 33 K from the pitching staff they remain dependent on opponents making mistakes; the –1.96 cumulative luck delta is the worst in the league | down"
     ]
   },
   "weekly_points": {
@@ -353,6 +369,22 @@
       "Wonder Wharf Wonderdogs": 1.0,
       "Sugar Land Skeeters": 4.0,
       "Wisconsin Rapids Reapers": 5.0
+    },
+    "week_12": {
+      "Albuquerque Bombers": 8.0,
+      "Sugar Land Skeeters": 2.0,
+      "Abbotsford-Colby Twins": 4.0,
+      "Wisconsin Rapids Reapers": 5.0,
+      "Athletic Park Dragons": 7.0,
+      "BaseballPro77": 3.0,
+      "Benchwarmers": 3.0,
+      "Hiroshima Radiation": 7.0,
+      "Buttville Skidmarks": 5.0,
+      "Canberra Wombats": 5.0,
+      "General Hospital": 2.0,
+      "Riverside Roughnecks": 7.0,
+      "North Correa": 5.0,
+      "Wonder Wharf Wonderdogs": 5.0
     }
   },
   "manager_spotlight_rotation": [
