@@ -1652,6 +1652,18 @@
   "transactions": [
     {
       "type": "add",
+      "timestamp": 1781610042,
+      "players": [
+        {
+          "name": "Slade Cecconi",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
       "timestamp": 1781596401,
       "players": [
         {
@@ -2021,18 +2033,6 @@
           "position": "1B,2B,3B"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1781034667,
-      "players": [
-        {
-          "name": "Mark Vientos",
-          "action": "drop",
-          "team": "Buttville Skidmarks",
-          "position": "1B,3B"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2051,8 +2051,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-06-16T09:19:47.939605"
+  "saved_at": "2026-06-16T16:28:14.689132"
 }
