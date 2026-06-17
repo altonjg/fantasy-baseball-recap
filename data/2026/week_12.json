@@ -879,7 +879,7 @@
               "name": "Cole Young",
               "mlb_team": "SEA",
               "position": "2B",
-              "stats": "R:4, HR:1, RBI:1, OBP:.313",
+              "stats": "R:4, HR:1, RBI:1, OBP:.312",
               "score": 16.0
             },
             {
@@ -1651,6 +1651,18 @@
   },
   "transactions": [
     {
+      "type": "drop",
+      "timestamp": 1781696306,
+      "players": [
+        {
+          "name": "Slade Cecconi",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "SP"
+        }
+      ]
+    },
+    {
       "type": "add",
       "timestamp": 1781684569,
       "players": [
@@ -2021,18 +2033,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1781101818,
-      "players": [
-        {
-          "name": "Anthony Nunez",
-          "action": "drop",
-          "team": "Sugar Land Skeeters",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2051,8 +2051,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-06-17T08:55:37.379545"
+  "saved_at": "2026-06-17T14:56:07.709761"
 }
