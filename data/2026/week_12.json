@@ -879,7 +879,7 @@
               "name": "Cole Young",
               "mlb_team": "SEA",
               "position": "2B",
-              "stats": "R:4, HR:1, RBI:1, OBP:.313",
+              "stats": "R:4, HR:1, RBI:1, OBP:.312",
               "score": 16.0
             },
             {
@@ -2054,5 +2054,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-06-18T08:38:47.130651"
+  "saved_at": "2026-06-18T14:51:31.320499"
 }
