@@ -67,7 +67,7 @@
               "name": "Christian Yelich",
               "mlb_team": "MIL",
               "position": "OF",
-              "stats": "R:6, RBI:2, SB:1, OBP:.333",
+              "stats": "R:6, RBI:2, SB:1, OBP:.321",
               "score": 15.0
             },
             {
@@ -325,6 +325,13 @@
               "score": 19.0
             },
             {
+              "name": "Kazuma Okamoto",
+              "mlb_team": "TOR",
+              "position": "1B,3B",
+              "stats": "R:3, HR:2, RBI:5, OBP:.320",
+              "score": 16.0
+            },
+            {
               "name": "Michael Busch",
               "mlb_team": "CHC",
               "position": "1B",
@@ -337,13 +344,6 @@
               "position": "2B,3B,SS,OF",
               "stats": "R:3, RBI:5, SB:1, OBP:.353",
               "score": 15.0
-            },
-            {
-              "name": "Kazuma Okamoto",
-              "mlb_team": "TOR",
-              "position": "1B,3B",
-              "stats": "R:2, HR:2, RBI:5, OBP:.292",
-              "score": 14.0
             },
             {
               "name": "Andrew Vaughn",
@@ -459,7 +459,7 @@
               "name": "Willson Contreras",
               "mlb_team": "BOS",
               "position": "1B",
-              "stats": "R:5, HR:3, RBI:4, OBP:.440",
+              "stats": "R:5, HR:3, RBI:4, OBP:.423",
               "score": 20.0
             },
             {
@@ -494,14 +494,14 @@
               "name": "Jarren Duran",
               "mlb_team": "BOS",
               "position": "OF",
-              "stats": "R:2, HR:1, RBI:3, OBP:.200",
+              "stats": "R:2, HR:1, RBI:3, OBP:.192",
               "score": 11.0
             },
             {
               "name": "Ernie Clement",
               "mlb_team": "TOR",
               "position": "1B,2B,3B,SS",
-              "stats": "R:3, RBI:2, OBP:.273",
+              "stats": "R:3, RBI:2, OBP:.250",
               "score": 10.0
             }
           ]
@@ -687,18 +687,18 @@
               "score": 13.0
             },
             {
+              "name": "Sonny Gray",
+              "mlb_team": "BOS",
+              "position": "SP",
+              "stats": "K:8, ERA:3.00, WHIP:1.11, QS:1, IP:9.0",
+              "score": 9.0
+            },
+            {
               "name": "Julio Rodr\u00edguez",
               "mlb_team": "SEA",
               "position": "OF",
               "stats": "R:3, RBI:2, OBP:.258",
               "score": 9.0
-            },
-            {
-              "name": "Sonny Gray",
-              "mlb_team": "BOS",
-              "position": "SP",
-              "stats": "K:7, ERA:1.50, WHIP:0.83, QS:1, IP:6.0",
-              "score": 8.0
             },
             {
               "name": "Pete Fairbanks",
@@ -1121,18 +1121,18 @@
               "score": 12.0
             },
             {
+              "name": "Vladimir Guerrero Jr.",
+              "mlb_team": "TOR",
+              "position": "1B",
+              "stats": "R:2, HR:1, RBI:3, OBP:.300",
+              "score": 10.0
+            },
+            {
               "name": "Corey Seager",
               "mlb_team": "TEX",
               "position": "SS",
               "stats": "R:2, HR:1, RBI:2, OBP:.286",
               "score": 8.0
-            },
-            {
-              "name": "Vladimir Guerrero Jr.",
-              "mlb_team": "TOR",
-              "position": "1B",
-              "stats": "R:1, RBI:2, OBP:.278",
-              "score": 6.0
             }
           ]
         },
@@ -1161,7 +1161,7 @@
               "name": "Jackson Chourio",
               "mlb_team": "MIL",
               "position": "OF",
-              "stats": "R:8, HR:5, RBI:10, OBP:.452",
+              "stats": "R:8, HR:5, RBI:10, OBP:.438",
               "score": 36.0
             },
             {
@@ -2054,5 +2054,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-06-18T14:51:31.320499"
+  "saved_at": "2026-06-18T18:22:43.884394"
 }
