@@ -122,6 +122,13 @@
               "score": 20.0
             },
             {
+              "name": "Ian Happ",
+              "mlb_team": "CHC",
+              "position": "OF",
+              "stats": "R:7, HR:2, RBI:3, SB:2, OBP:.290",
+              "score": 19.0
+            },
+            {
               "name": "Matt Olson",
               "mlb_team": "ATL",
               "position": "1B",
@@ -134,13 +141,6 @@
               "position": "SS",
               "stats": "R:4, RBI:4, SB:1, OBP:.462",
               "score": 15.0
-            },
-            {
-              "name": "Ian Happ",
-              "mlb_team": "CHC",
-              "position": "OF",
-              "stats": "R:4, HR:2, RBI:3, SB:2, OBP:.231",
-              "score": 14.0
             },
             {
               "name": "Kody Clemens",
@@ -253,6 +253,13 @@
               "score": 22.0
             },
             {
+              "name": "George Springer",
+              "mlb_team": "TOR",
+              "position": "OF",
+              "stats": "R:5, HR:2, RBI:4, OBP:.435",
+              "score": 15.0
+            },
+            {
               "name": "Jazz Chisholm Jr.",
               "mlb_team": "NYY",
               "position": "2B,3B",
@@ -272,13 +279,6 @@
               "position": "1B",
               "stats": "R:1, RBI:4, OBP:.318",
               "score": 11.0
-            },
-            {
-              "name": "George Springer",
-              "mlb_team": "TOR",
-              "position": "OF",
-              "stats": "R:4, HR:1, RBI:2, OBP:.421",
-              "score": 9.0
             },
             {
               "name": "Jos\u00e9 Ram\u00edrez",
@@ -342,7 +342,7 @@
               "name": "Kazuma Okamoto",
               "mlb_team": "TOR",
               "position": "1B,3B",
-              "stats": "R:2, HR:2, RBI:5, OBP:.292",
+              "stats": "R:2, HR:2, RBI:5, OBP:.259",
               "score": 14.0
             },
             {
@@ -897,6 +897,13 @@
               "score": 12.0
             },
             {
+              "name": "Kevin Gausman",
+              "mlb_team": "TOR",
+              "position": "SP",
+              "stats": "K:10, ERA:8.00, WHIP:1.56, QS:1, IP:9.0",
+              "score": 11.0
+            },
+            {
               "name": "Bryan Reynolds",
               "mlb_team": "PIT",
               "position": "OF",
@@ -915,13 +922,6 @@
               "mlb_team": "SEA",
               "position": "1B,OF",
               "stats": "R:2, HR:1, RBI:4, OBP:.250",
-              "score": 9.0
-            },
-            {
-              "name": "Junior Caminero",
-              "mlb_team": "TB",
-              "position": "3B",
-              "stats": "R:1, HR:1, RBI:2, OBP:.308",
               "score": 9.0
             }
           ]
@@ -948,18 +948,18 @@
           },
           "top_players": [
             {
+              "name": "Pete Crow-Armstrong",
+              "mlb_team": "CHC",
+              "position": "OF",
+              "stats": "R:6, HR:1, RBI:2, SB:4, OBP:.469",
+              "score": 25.0
+            },
+            {
               "name": "Jo Adell",
               "mlb_team": "LAA",
               "position": "OF",
               "stats": "R:8, RBI:3, OBP:.448",
               "score": 20.0
-            },
-            {
-              "name": "Pete Crow-Armstrong",
-              "mlb_team": "CHC",
-              "position": "OF",
-              "stats": "R:5, HR:1, RBI:1, SB:2, OBP:.370",
-              "score": 18.0
             },
             {
               "name": "Christian Walker",
@@ -1131,7 +1131,7 @@
               "name": "Vladimir Guerrero Jr.",
               "mlb_team": "TOR",
               "position": "1B",
-              "stats": "R:1, RBI:2, OBP:.278",
+              "stats": "R:1, RBI:2, OBP:.238",
               "score": 6.0
             }
           ]
@@ -1651,6 +1651,60 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1781893857,
+      "players": [
+        {
+          "name": "Eduard Bazardo",
+          "action": "add",
+          "team": "Sugar Land Skeeters",
+          "position": "RP"
+        },
+        {
+          "name": "Steven Okert",
+          "action": "drop",
+          "team": "Sugar Land Skeeters",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1781893717,
+      "players": [
+        {
+          "name": "Mason Fluharty",
+          "action": "add",
+          "team": "Sugar Land Skeeters",
+          "position": "SP,RP"
+        },
+        {
+          "name": "Enyel De Los Santos",
+          "action": "drop",
+          "team": "Sugar Land Skeeters",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1781893435,
+      "players": [
+        {
+          "name": "Andrew Benintendi",
+          "action": "add",
+          "team": "Sugar Land Skeeters",
+          "position": "OF"
+        },
+        {
+          "name": "Steven Kwan",
+          "action": "drop",
+          "team": "Sugar Land Skeeters",
+          "position": "OF"
+        }
+      ]
+    },
+    {
       "type": "add",
       "timestamp": 1781886853,
       "players": [
@@ -1991,42 +2045,6 @@
           "position": "1B,3B"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1781200076,
-      "players": [
-        {
-          "name": "Jac Caglianone",
-          "action": "add",
-          "team": "North Correa",
-          "position": "1B,OF"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1781200017,
-      "players": [
-        {
-          "name": "Alejandro Kirk",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "C"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1781193103,
-      "players": [
-        {
-          "name": "Bryce Eldridge",
-          "action": "add",
-          "team": "Albuquerque Bombers",
-          "position": "1B"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2045,8 +2063,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-06-19T17:49:17.638942"
+  "saved_at": "2026-06-19T21:03:21.688636"
 }
