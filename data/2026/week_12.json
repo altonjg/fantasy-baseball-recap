@@ -879,7 +879,7 @@
               "name": "Cole Young",
               "mlb_team": "SEA",
               "position": "2B",
-              "stats": "R:4, HR:1, RBI:1, OBP:.313",
+              "stats": "R:4, HR:1, RBI:1, OBP:.312",
               "score": 16.0
             },
             {
@@ -1652,6 +1652,18 @@
   "transactions": [
     {
       "type": "add",
+      "timestamp": 1781886853,
+      "players": [
+        {
+          "name": "Gage Jump",
+          "action": "add",
+          "team": "Sugar Land Skeeters",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
       "timestamp": 1781726512,
       "players": [
         {
@@ -2015,24 +2027,6 @@
           "position": "1B"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1781178094,
-      "players": [
-        {
-          "name": "Elvis Alvarado",
-          "action": "add",
-          "team": "Riverside Roughnecks",
-          "position": "RP"
-        },
-        {
-          "name": "Tim Hill",
-          "action": "drop",
-          "team": "Riverside Roughnecks",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2051,8 +2045,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-06-19T14:46:59.637022"
+  "saved_at": "2026-06-19T17:49:17.638942"
 }
