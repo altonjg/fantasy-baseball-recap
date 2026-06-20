@@ -1320,7 +1320,7 @@
               "name": "Miguel Vargas",
               "mlb_team": "CWS",
               "position": "1B,3B",
-              "stats": "R:4, HR:1, RBI:3, SB:1, OBP:.364",
+              "stats": "R:4, HR:1, RBI:3, SB:1, OBP:.348",
               "score": 15.0
             },
             {
@@ -1650,6 +1650,18 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "drop",
+      "timestamp": 1781970199,
+      "players": [
+        {
+          "name": "Ryne Nelson",
+          "action": "drop",
+          "team": "Sugar Land Skeeters",
+          "position": "SP,RP"
+        }
+      ]
+    },
     {
       "type": "add/drop",
       "timestamp": 1781893857,
@@ -2033,18 +2045,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1781295948,
-      "players": [
-        {
-          "name": "Blaze Jordan",
-          "action": "add",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "1B,3B"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2066,5 +2066,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-06-20T13:44:44.505317"
+  "saved_at": "2026-06-20T17:18:01.520193"
 }
