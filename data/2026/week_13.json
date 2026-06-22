@@ -1652,6 +1652,24 @@
   "transactions": [
     {
       "type": "add/drop",
+      "timestamp": 1782124460,
+      "players": [
+        {
+          "name": "Keibert Ruiz",
+          "action": "add",
+          "team": "Buttville Skidmarks",
+          "position": "C"
+        },
+        {
+          "name": "Luke Raley",
+          "action": "drop",
+          "team": "Buttville Skidmarks",
+          "position": "1B,OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
       "timestamp": 1781980066,
       "players": [
         {
@@ -2039,18 +2057,6 @@
           "position": "SP,RP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1781305179,
-      "players": [
-        {
-          "name": "Kerry Carpenter",
-          "action": "add",
-          "team": "Abbotsford-Colby Twins",
-          "position": "OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2072,5 +2078,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-06-22T09:40:33.470662"
+  "saved_at": "2026-06-22T15:54:28.813978"
 }

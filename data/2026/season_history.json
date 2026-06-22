@@ -191,6 +191,22 @@
       "12. Benchwarmers | Sonny Gray's 1.50 ERA gem and Spencer Arrighetti's 14 Ks were genuinely excellent, but a flat offense (only 20 runs, .278 OBP) handed Hiroshima a 7–3 win; structural offensive weakness continues to cap this team's ceiling | same",
       "13. Wonder Wharf Wonderdogs | Paul Skenes delivered 17 K and 2 QS — a legitimately elite pitching performance — but the offense mustered only 8 HR and 21 RBI in a 5–5 tie; adding Taylor, Ruiz, and Jordan signals urgency but these are depth moves, not difference-makers | up",
       "14. Canberra Wombats | Jo Adell's 8 runs and Henderson's contributions weren't enough to push past a 5–5 tie, and with only 37 IP and 33 K from the pitching staff they remain dependent on opponents making mistakes; the –1.96 cumulative luck delta is the worst in the league | down"
+    ],
+    "week_13": [
+      "1. Albuquerque Bombers | An 8–1 demolition of General Hospital with balanced contributions across the entire roster — Herrera (.483 OBP), Buxton (2 HR), Wheeler (16 K, 1.54 ERA), and Freeman all delivering — confirms this is the most complete team in the league heading into a Week 14 clash with the Dragons | same",
+      "2. Hiroshima Radiation | Kyle Schwarber's absurd 5 HR, 10 RBI, 9 runs, and .444 OBP was one of the great individual fantasy weeks of the season, and 82 K from the pitching staff is historically elite; losing to the Roughnecks 6–4 is a minor blemish on a resume that still screams contender | down",
+      "3. BaseballPro77 | Logan Gilbert's 18 K, 1.35 ERA, and 0.60 WHIP in 13.1 innings was a dominant anchor performance, and Jeremy Peña's 3 HR plus Bobby Witt Jr.'s .563 OBP gave the offense real teeth in a 7–3 win over the Reapers; a Week 14 date with Hiroshima is the biggest matchup of the season | up",
+      "4. Riverside Roughnecks | Nick Kurtz (3 HR, 9 RBI) and Travis Bazzana (3 HR, 7 RBI, .588 OBP) gave this team a legitimately elite offensive punch, but losing 6–4 to Hiroshima despite 40 RBI and 11 HR exposes continued pitching fragility with only 1 quality start; the luck delta of +3.35 remains the most inflated in the league | down",
+      "5. Athletic Park Dragons | Peter Lambert's 1.29 ERA gem and Jake McCarthy's .407 OBP led a scrappy effort, but losing 5–4 to North Correa despite superior pitching metrics (2.93 ERA, 5 NSVH) stings; the offense's .276 OBP is a structural concern heading into a Week 14 showdown with the Bombers | down",
+      "6. Sugar Land Skeeters | Chase Burns' 14 K and 0.90 ERA anchored a pitching staff that posted a 3.57 ERA and 5 QS, and CJ Abrams went deep 3 times, but a 6–4 loss to Buttville in which the offense managed only 5 HR and 17 RBI reveals the lineup's persistent inability to generate run-support; a massive Week 14 matchup with the Twins looms | same",
+      "7. North Correa | Jac Caglianone's breakout — 4 HR, 7 RBI, 7 runs — was one of the best individual performances of the week and carried North Correa to a 5–4 squeaker over the Dragons; zero stolen bases remains a recurring weakness, and Week 14 against the Roughnecks is a true measuring-stick moment | up",
+      "8. Buttville Skidmarks | Wyatt Langford (3 HR, 8 RBI) and Bryan Reynolds (.600 OBP) were excellent, Kyle Bradish posted a 1.17 ERA, and 65 strikeouts led the league this week — a 6–4 win over the Skeeters is a solid result; the rotation's 5.12 ERA is the only persistent red flag on an otherwise above-average roster | up",
+      "9. Wisconsin Rapids Reapers | Ben Rice and Kyle Stowers each slammed 3 HR with 6 RBI in a week that generated 12 HR total, and Juan Soto's .526 OBP was elite, but losing 7–3 to BaseballPro77 while posting only 34.2 IP and 2 QS reveals a team still dependent on opponents' pitching going cold | same",
+      "10. Abbotsford-Colby Twins | Jazz Chisholm's 2 HR and 3 SB provided needed pop and speed, but a .285 OBP as a team and a 4.68 ERA underscore why this was a fortunate 5–4 win; adding Slade Cecconi and Grant Holmes signals urgency around a rotation that needs immediate stabilization | same",
+      "11. Benchwarmers | Zach Neto (2 HR, 5 RBI), Kevin McGonigle (2 HR), and Corbin Carroll's 8 RBI were genuine offensive contributors in an 8–2 win over the Wonderdogs; a 0.98 WHIP from the pitching staff is legitimately impressive, and this feels like a team quietly steadying itself | up",
+      "12. General Hospital | Dillon Dingler (2 HR, .423 OBP) and JJ Wetherholt (.483 OBP) had strong individual weeks, and Cam Schlittler's 0.67 WHIP was eye-catching, but an 8–1 blowout loss to the Bombers with only 51 K and a 5.02 ERA from the rotation tells the story of a team that cannot win pitching categories consistently | same",
+      "13. Wonder Wharf Wonderdogs | Samad Taylor's 6 runs and 2 SB and Esteury Ruiz's .474 OBP gave the offense some life, and Dustin May's 11 K in 11 IP was efficient, but an 8–2 loss to the Benchwarmers with only 6 HR and 26 RBI reveals an offense that still cannot generate enough power; 37 runs scored but only 29.2 IP from the rotation is a dangerous imbalance | same",
+      "14. Canberra Wombats | Pete Crow-Armstrong's 4 HR, 7 RBI, 5 runs, and .600 OBP was one of the great individual weeks of the entire season and deserves every superlative, but a 6.10 ERA, 0 quality starts, and only 31 innings from the pitching staff handed a winnable matchup to the Twins; until this rotation is fixed, elite hitting will keep going to waste | same"
     ]
   },
   "weekly_points": {
@@ -385,6 +401,22 @@
       "Riverside Roughnecks": 7.0,
       "North Correa": 5.0,
       "Wonder Wharf Wonderdogs": 5.0
+    },
+    "week_13": {
+      "Albuquerque Bombers": 8.0,
+      "General Hospital": 1.0,
+      "Abbotsford-Colby Twins": 5.0,
+      "Canberra Wombats": 4.0,
+      "Athletic Park Dragons": 4.0,
+      "North Correa": 5.0,
+      "BaseballPro77": 7.0,
+      "Wisconsin Rapids Reapers": 3.0,
+      "Benchwarmers": 8.0,
+      "Wonder Wharf Wonderdogs": 2.0,
+      "Buttville Skidmarks": 6.0,
+      "Sugar Land Skeeters": 4.0,
+      "Hiroshima Radiation": 6.0,
+      "Riverside Roughnecks": 4.0
     }
   },
   "manager_spotlight_rotation": [
