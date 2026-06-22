@@ -1651,6 +1651,18 @@
   },
   "transactions": [
     {
+      "type": "drop",
+      "timestamp": 1782144057,
+      "players": [
+        {
+          "name": "Alejandro Kirk",
+          "action": "drop",
+          "team": "Hiroshima Radiation",
+          "position": "C"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1782124460,
       "players": [
@@ -2045,18 +2057,6 @@
           "position": "2B,OF"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1781354062,
-      "players": [
-        {
-          "name": "Erick Fedde",
-          "action": "drop",
-          "team": "Riverside Roughnecks",
-          "position": "SP,RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2078,5 +2078,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-06-22T15:54:28.813978"
+  "saved_at": "2026-06-22T16:41:13.862351"
 }
