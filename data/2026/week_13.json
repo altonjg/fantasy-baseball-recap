@@ -1651,6 +1651,42 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1782161803,
+      "players": [
+        {
+          "name": "Carson Kelly",
+          "action": "add",
+          "team": "North Correa",
+          "position": "C"
+        },
+        {
+          "name": "Hunter Feduccia",
+          "action": "drop",
+          "team": "North Correa",
+          "position": "C"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1782147956,
+      "players": [
+        {
+          "name": "Colin Holderman",
+          "action": "add",
+          "team": "Hiroshima Radiation",
+          "position": "RP"
+        },
+        {
+          "name": "Gus Varland",
+          "action": "drop",
+          "team": "Hiroshima Radiation",
+          "position": "RP"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1782144057,
       "players": [
@@ -2033,30 +2069,6 @@
           "position": "OF"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1781363571,
-      "players": [
-        {
-          "name": "Blaze Alexander",
-          "action": "drop",
-          "team": "Sugar Land Skeeters",
-          "position": "2B,3B,SS,OF"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1781362569,
-      "players": [
-        {
-          "name": "Austin Martin",
-          "action": "drop",
-          "team": "Hiroshima Radiation",
-          "position": "2B,OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2075,8 +2087,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-06-22T16:41:13.862351"
+  "saved_at": "2026-06-22T21:56:32.661698"
 }
