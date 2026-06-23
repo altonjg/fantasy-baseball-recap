@@ -139,7 +139,7 @@
               "name": "Vladimir Guerrero Jr.",
               "mlb_team": "TOR",
               "position": "1B",
-              "stats": "R:3, HR:1, RBI:4, OBP:.263",
+              "stats": "R:3, HR:1, RBI:4, OBP:.238",
               "score": 13.0
             },
             {
@@ -249,8 +249,8 @@
               "name": "Yordan Alvarez",
               "mlb_team": "HOU",
               "position": "OF",
-              "stats": "R:5, HR:1, RBI:2, OBP:.360",
-              "score": 14.0
+              "stats": "R:5, HR:1, RBI:2, OBP:.393",
+              "score": 15.0
             },
             {
               "name": "Salvador Perez",
@@ -470,6 +470,13 @@
               "score": 13.0
             },
             {
+              "name": "Peter Lambert",
+              "mlb_team": "HOU",
+              "position": "SP",
+              "stats": "K:9, ERA:2.61, WHIP:0.97, QS:1, IP:10.1",
+              "score": 10.0
+            },
+            {
               "name": "Dansby Swanson",
               "mlb_team": "CHC",
               "position": "SS",
@@ -496,13 +503,6 @@
               "position": "SP",
               "stats": "K:7, WHIP:1.00, IP:5.0",
               "score": 7.0
-            },
-            {
-              "name": "Peter Lambert",
-              "mlb_team": "HOU",
-              "position": "SP",
-              "stats": "K:5, ERA:1.29, WHIP:0.29, QS:1, IP:7.0",
-              "score": 6.0
             }
           ]
         },
@@ -783,7 +783,7 @@
               "name": "Kazuma Okamoto",
               "mlb_team": "TOR",
               "position": "1B,3B",
-              "stats": "R:4, HR:1, RBI:3, OBP:.263",
+              "stats": "R:4, HR:1, RBI:3, OBP:.286",
               "score": 10.0
             },
             {
@@ -886,8 +886,8 @@
               "name": "Isaac Paredes",
               "mlb_team": "HOU",
               "position": "1B,3B",
-              "stats": "R:3, HR:1, RBI:4, OBP:.542",
-              "score": 17.0
+              "stats": "R:3, HR:1, RBI:5, OBP:.538",
+              "score": 19.0
             },
             {
               "name": "Kevin McGonigle",
@@ -1651,6 +1651,54 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1782245498,
+      "players": [
+        {
+          "name": "Denzer Guzman",
+          "action": "add",
+          "team": "BaseballPro77",
+          "position": "3B,SS"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1782245406,
+      "players": [
+        {
+          "name": "Justin Steele",
+          "action": "drop",
+          "team": "BaseballPro77",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1782243015,
+      "players": [
+        {
+          "name": "Emmet Sheehan",
+          "action": "drop",
+          "team": "Benchwarmers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1782240058,
+      "players": [
+        {
+          "name": "Victor Caratini",
+          "action": "add",
+          "team": "Athletic Park Dragons",
+          "position": "C,1B"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1782161803,
       "players": [
@@ -2015,60 +2063,6 @@
           "position": "2B,OF"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1781445105,
-      "players": [
-        {
-          "name": "Ildemaro Vargas",
-          "action": "drop",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "1B,2B"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1781433840,
-      "players": [
-        {
-          "name": "Royce Lewis",
-          "action": "add",
-          "team": "BaseballPro77",
-          "position": "1B,3B"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1781412953,
-      "players": [
-        {
-          "name": "Giancarlo Stanton",
-          "action": "drop",
-          "team": "BaseballPro77",
-          "position": "OF"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1781364362,
-      "players": [
-        {
-          "name": "Dominic Canzone",
-          "action": "add",
-          "team": "Athletic Park Dragons",
-          "position": "OF"
-        },
-        {
-          "name": "Daulton Varsho",
-          "action": "drop",
-          "team": "Athletic Park Dragons",
-          "position": "OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2090,5 +2084,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-06-23T17:46:18.520508"
+  "saved_at": "2026-06-23T21:26:02.750010"
 }
