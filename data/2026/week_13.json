@@ -676,7 +676,7 @@
               "name": "Bobby Witt Jr.",
               "mlb_team": "KC",
               "position": "SS",
-              "stats": "R:4, HR:1, RBI:4, SB:2, OBP:.563",
+              "stats": "R:4, HR:1, RBI:4, SB:2, OBP:.562",
               "score": 17.0
             },
             {
@@ -2090,5 +2090,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-06-25T10:36:18.127537"
+  "saved_at": "2026-06-25T14:08:45.809585"
 }
