@@ -115,18 +115,18 @@
               "score": 24.0
             },
             {
+              "name": "Brandon Lowe",
+              "mlb_team": "PIT",
+              "position": "2B",
+              "stats": "R:5, HR:2, RBI:5, OBP:.344",
+              "score": 21.0
+            },
+            {
               "name": "JJ Wetherholt",
               "mlb_team": "STL",
               "position": "2B,3B,SS",
               "stats": "R:4, HR:2, RBI:3, SB:1, OBP:.483",
               "score": 20.0
-            },
-            {
-              "name": "Brandon Lowe",
-              "mlb_team": "PIT",
-              "position": "2B",
-              "stats": "R:5, HR:2, RBI:4, OBP:.333",
-              "score": 19.0
             },
             {
               "name": "Cam Schlittler",
@@ -242,8 +242,8 @@
               "name": "Jonathan Aranda",
               "mlb_team": "TB",
               "position": "1B",
-              "stats": "R:3, HR:1, RBI:4, OBP:.433",
-              "score": 17.0
+              "stats": "R:4, HR:1, RBI:4, OBP:.452",
+              "score": 19.0
             },
             {
               "name": "Jacob Wilson",
@@ -263,7 +263,7 @@
               "name": "Salvador Perez",
               "mlb_team": "KC",
               "position": "C,1B",
-              "stats": "R:3, HR:1, RBI:2, OBP:.276",
+              "stats": "R:3, HR:1, RBI:2, OBP:.267",
               "score": 13.0
             },
             {
@@ -328,8 +328,8 @@
               "name": "Carter Jensen",
               "mlb_team": "KC",
               "position": "C",
-              "stats": "R:6, HR:2, RBI:4, SB:1, OBP:.500",
-              "score": 23.0
+              "stats": "R:7, HR:3, RBI:6, SB:1, OBP:.519",
+              "score": 28.0
             },
             {
               "name": "Alec Bohm",
@@ -531,7 +531,7 @@
               "name": "Jac Caglianone",
               "mlb_team": "KC",
               "position": "1B,OF",
-              "stats": "R:7, HR:4, RBI:7, OBP:.355",
+              "stats": "R:7, HR:4, RBI:7, OBP:.344",
               "score": 26.0
             },
             {
@@ -556,6 +556,13 @@
               "score": 13.0
             },
             {
+              "name": "Jeffrey Springs",
+              "mlb_team": "ATH",
+              "position": "SP",
+              "stats": "K:10, ERA:7.00, WHIP:1.44, IP:9.0",
+              "score": 10.0
+            },
+            {
               "name": "Spencer Torkelson",
               "mlb_team": "DET",
               "position": "1B",
@@ -575,13 +582,6 @@
               "position": "C",
               "stats": "RBI:2, OBP:.471",
               "score": 8.0
-            },
-            {
-              "name": "Chris Sale",
-              "mlb_team": "ATL",
-              "position": "SP",
-              "stats": "K:7, WHIP:1.06, IP:5.2",
-              "score": 7.0
             }
           ]
         }
@@ -883,18 +883,18 @@
               "score": 20.0
             },
             {
+              "name": "Bryce Miller",
+              "mlb_team": "SEA",
+              "position": "SP",
+              "stats": "K:18, ERA:3.38, WHIP:0.75, IP:10.2",
+              "score": 18.0
+            },
+            {
               "name": "Isaac Paredes",
               "mlb_team": "HOU",
               "position": "1B,3B",
               "stats": "R:3, HR:1, RBI:4, OBP:.542",
               "score": 17.0
-            },
-            {
-              "name": "Bryce Miller",
-              "mlb_team": "SEA",
-              "position": "SP",
-              "stats": "K:16, ERA:3.60, WHIP:0.70, IP:10.0",
-              "score": 16.0
             },
             {
               "name": "Kevin McGonigle",
@@ -1079,6 +1079,13 @@
           },
           "top_players": [
             {
+              "name": "Junior Caminero",
+              "mlb_team": "TB",
+              "position": "3B",
+              "stats": "R:5, HR:3, RBI:8, OBP:.448",
+              "score": 27.0
+            },
+            {
               "name": "Wyatt Langford",
               "mlb_team": "TEX",
               "position": "OF",
@@ -1089,15 +1096,8 @@
               "name": "Bryan Reynolds",
               "mlb_team": "PIT",
               "position": "OF",
-              "stats": "R:4, HR:2, RBI:6, OBP:.588",
-              "score": 21.0
-            },
-            {
-              "name": "Junior Caminero",
-              "mlb_team": "TB",
-              "position": "3B",
-              "stats": "R:4, HR:2, RBI:5, OBP:.429",
-              "score": 21.0
+              "stats": "R:5, HR:2, RBI:6, OBP:.579",
+              "score": 22.0
             },
             {
               "name": "Kyle Bradish",
@@ -1313,8 +1313,8 @@
               "name": "Tyler Soderstrom",
               "mlb_team": "ATH",
               "position": "1B,OF",
-              "stats": "R:7, HR:1, RBI:2, OBP:.419",
-              "score": 16.0
+              "stats": "R:7, HR:1, RBI:2, OBP:.441",
+              "score": 18.0
             },
             {
               "name": "Luke Keaschall",
@@ -1371,8 +1371,8 @@
               "name": "Nick Kurtz",
               "mlb_team": "ATH",
               "position": "1B",
-              "stats": "R:7, HR:3, RBI:9, OBP:.455",
-              "score": 28.0
+              "stats": "R:7, HR:3, RBI:10, OBP:.417",
+              "score": 29.0
             },
             {
               "name": "Travis Bazzana",
@@ -1385,14 +1385,14 @@
               "name": "Ryan O'Hearn",
               "mlb_team": "PIT",
               "position": "1B,OF",
-              "stats": "R:2, HR:1, RBI:6, OBP:.250",
-              "score": 16.0
+              "stats": "R:2, HR:1, RBI:7, OBP:.267",
+              "score": 18.0
             },
             {
               "name": "Shea Langeliers",
               "mlb_team": "ATH",
               "position": "C",
-              "stats": "R:3, HR:1, RBI:4, OBP:.222",
+              "stats": "R:3, HR:1, RBI:4, OBP:.200",
               "score": 12.0
             },
             {
@@ -2090,5 +2090,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-06-25T18:04:58.677332"
+  "saved_at": "2026-06-25T21:24:37.489635"
 }
