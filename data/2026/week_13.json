@@ -1652,6 +1652,36 @@
   "transactions": [
     {
       "type": "add/drop",
+      "timestamp": 1782493423,
+      "players": [
+        {
+          "name": "Joey Cantillo",
+          "action": "add",
+          "team": "North Correa",
+          "position": "SP,RP"
+        },
+        {
+          "name": "Edward Cabrera",
+          "action": "drop",
+          "team": "North Correa",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1782491029,
+      "players": [
+        {
+          "name": "Masyn Winn",
+          "action": "add",
+          "team": "Hiroshima Radiation",
+          "position": "SS"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
       "timestamp": 1782276549,
       "players": [
         {
@@ -2045,30 +2075,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1781445329,
-      "players": [
-        {
-          "name": "Samad Taylor",
-          "action": "add",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "2B,OF"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1781445303,
-      "players": [
-        {
-          "name": "Esteury Ruiz",
-          "action": "add",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2090,5 +2096,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-06-26T14:08:02.125465"
+  "saved_at": "2026-06-26T17:41:45.771900"
 }
