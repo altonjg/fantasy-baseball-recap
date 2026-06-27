@@ -676,7 +676,7 @@
               "name": "Bobby Witt Jr.",
               "mlb_team": "KC",
               "position": "SS",
-              "stats": "R:4, HR:1, RBI:4, SB:2, OBP:.563",
+              "stats": "R:4, HR:1, RBI:4, SB:2, OBP:.562",
               "score": 17.0
             },
             {
@@ -1121,17 +1121,17 @@
               "score": 12.0
             },
             {
-              "name": "Marcus Semien",
-              "mlb_team": "NYM",
-              "position": "2B",
-              "stats": "R:2, RBI:3, OBP:.471",
-              "score": 10.0
-            },
-            {
               "name": "MacKenzie Gore",
               "mlb_team": "TEX",
               "position": "SP",
               "stats": "K:10, ERA:5.14, WHIP:0.86, IP:7.0",
+              "score": 10.0
+            },
+            {
+              "name": "Parker Messick",
+              "mlb_team": "CLE",
+              "position": "SP",
+              "stats": "K:9, ERA:3.00, WHIP:1.17, QS:1, IP:6.0",
               "score": 10.0
             }
           ]
@@ -1651,6 +1651,36 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1782577345,
+      "players": [
+        {
+          "name": "Lawrence Butler",
+          "action": "add",
+          "team": "Buttville Skidmarks",
+          "position": "OF"
+        },
+        {
+          "name": "Marcus Semien",
+          "action": "drop",
+          "team": "Buttville Skidmarks",
+          "position": "2B"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1782577016,
+      "players": [
+        {
+          "name": "Jake Bennett",
+          "action": "add",
+          "team": "Buttville Skidmarks",
+          "position": "SP"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1782557020,
       "players": [
@@ -2039,36 +2069,6 @@
           "position": "1B"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1781595921,
-      "players": [
-        {
-          "name": "Tommy Edman",
-          "action": "add",
-          "team": "Benchwarmers",
-          "position": "2B,3B,OF"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1781448236,
-      "players": [
-        {
-          "name": "Alejandro Kirk",
-          "action": "add",
-          "team": "Hiroshima Radiation",
-          "position": "C"
-        },
-        {
-          "name": "Carson Kelly",
-          "action": "drop",
-          "team": "Hiroshima Radiation",
-          "position": "C"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2090,5 +2090,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-06-27T13:16:48.296164"
+  "saved_at": "2026-06-27T17:01:01.565440"
 }
