@@ -1652,6 +1652,18 @@
   "transactions": [
     {
       "type": "drop",
+      "timestamp": 1782557020,
+      "players": [
+        {
+          "name": "Scott Barlow",
+          "action": "drop",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
       "timestamp": 1782513297,
       "players": [
         {
@@ -2057,18 +2069,6 @@
           "position": "C"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1781448091,
-      "players": [
-        {
-          "name": "Michael Lorenzen (Pitcher)",
-          "action": "drop",
-          "team": "Riverside Roughnecks",
-          "position": "SP,RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2090,5 +2090,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-06-27T09:58:15.872106"
+  "saved_at": "2026-06-27T13:16:48.296164"
 }
