@@ -676,7 +676,7 @@
               "name": "Bobby Witt Jr.",
               "mlb_team": "KC",
               "position": "SS",
-              "stats": "R:4, HR:1, RBI:4, SB:2, OBP:.563",
+              "stats": "R:4, HR:1, RBI:4, SB:2, OBP:.562",
               "score": 17.0
             },
             {
@@ -1651,6 +1651,18 @@
   },
   "transactions": [
     {
+      "type": "drop",
+      "timestamp": 1782662610,
+      "players": [
+        {
+          "name": "Bryce Eldridge",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "1B"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1782577345,
       "players": [
@@ -2057,18 +2069,6 @@
           "position": "SS"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1781596347,
-      "players": [
-        {
-          "name": "Paul Goldschmidt",
-          "action": "add",
-          "team": "Benchwarmers",
-          "position": "1B"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2087,8 +2087,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-06-28T13:21:13.687453"
+  "saved_at": "2026-06-28T17:00:41.284873"
 }
