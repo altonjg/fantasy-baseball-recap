@@ -349,7 +349,7 @@
               "name": "Kody Clemens",
               "mlb_team": "MIN",
               "position": "1B,2B,OF",
-              "stats": "R:3, HR:2, RBI:4, OBP:.313",
+              "stats": "R:3, HR:2, RBI:4, OBP:.312",
               "score": 12.0
             },
             {
@@ -1651,6 +1651,36 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1782767893,
+      "players": [
+        {
+          "name": "Henry Bolte",
+          "action": "add",
+          "team": "Hiroshima Radiation",
+          "position": "OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1782763587,
+      "players": [
+        {
+          "name": "Anthony Bender",
+          "action": "add",
+          "team": "BaseballPro77",
+          "position": "RP"
+        },
+        {
+          "name": "Denzer Guzman",
+          "action": "drop",
+          "team": "BaseballPro77",
+          "position": "3B,SS"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1782754141,
       "players": [
@@ -2051,30 +2081,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1781654925,
-      "players": [
-        {
-          "name": "Keibert Ruiz",
-          "action": "drop",
-          "team": "Sugar Land Skeeters",
-          "position": "C"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1781646751,
-      "players": [
-        {
-          "name": "Michael Petersen",
-          "action": "add",
-          "team": "Hiroshima Radiation",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2096,5 +2102,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-06-29T18:04:10.840607"
+  "saved_at": "2026-06-29T21:18:45.610372"
 }
