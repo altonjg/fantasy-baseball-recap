@@ -207,6 +207,22 @@
       "12. General Hospital | Dillon Dingler (2 HR, .423 OBP) and JJ Wetherholt (.483 OBP) had strong individual weeks, and Cam Schlittler's 0.67 WHIP was eye-catching, but an 8–1 blowout loss to the Bombers with only 51 K and a 5.02 ERA from the rotation tells the story of a team that cannot win pitching categories consistently | same",
       "13. Wonder Wharf Wonderdogs | Samad Taylor's 6 runs and 2 SB and Esteury Ruiz's .474 OBP gave the offense some life, and Dustin May's 11 K in 11 IP was efficient, but an 8–2 loss to the Benchwarmers with only 6 HR and 26 RBI reveals an offense that still cannot generate enough power; 37 runs scored but only 29.2 IP from the rotation is a dangerous imbalance | same",
       "14. Canberra Wombats | Pete Crow-Armstrong's 4 HR, 7 RBI, 5 runs, and .600 OBP was one of the great individual weeks of the entire season and deserves every superlative, but a 6.10 ERA, 0 quality starts, and only 31 innings from the pitching staff handed a winnable matchup to the Twins; until this rotation is fixed, elite hitting will keep going to waste | same"
+    ],
+    "week_14": [
+      "1. Albuquerque Bombers | Survived a 5–4 scare against the Dragons despite being outgunned offensively — the pitching staff's 2.48 ERA, 1.07 WHIP, and 3 QS won the key categories, and with a luck delta of just +0.15, this team's record is earned; the most complete roster in the league entering the playoff push | same",
+      "2. Buttville Skidmarks | Junior Caminero's 7 HR and 15 RBI in a single week is arguably the most dominant individual offensive performance of the season, and a 9–1 demolition of General Hospital vaults this team into legitimate title contention; if Parker Messick and Kyle Bradish stabilize the rotation, this team is dangerous | up",
+      "3. BaseballPro77 | A 5–5 tie with Hiroshima in the week's marquee matchup is a missed opportunity, but Gavin Williams' 14 K, Ranger Suárez's 1.50 ERA, and Jeremy Peña's 3 SB show a well-rounded roster; a luck delta of +1.27 means the record is slightly padded, but the talent is real | same",
+      "4. Hiroshima Radiation | Bryce Harper (2 HR, 7 RBI), Curtis Mead (3 HR, 5 RBI), and Drew Rasmussen's 1.50 ERA were excellent, but tying BaseballPro77 when you had 82 K and 6 QS from your pitching staff stings; a luck delta of –0.77 suggests this team is slightly underperforming its potential | down",
+      "5. Riverside Roughnecks | Hunter Goodman (4 HR, 8 RBI) and Ryan O'Hearn (2 HR, 9 RBI) gave this offense a genuine power-and-production punch in a 6–4 win over North Correa, and Jacob Misiorowski's 1.50 ERA is promising from the backend; the luck delta of +2.69 — highest in the league — remains the biggest red flag on an otherwise dangerous roster | same",
+      "6. Abbotsford-Colby Twins | Foster Griffin (18 K, 0.63 ERA) and Jesús Luzardo (19 K, 1.54 ERA) were a historically dominant pitching duo in a 6–3 win over the Skeeters, and with 82.1 IP and 8 QS this team led the league in pitching volume; the offense needs to produce more consistently to make this a true contender | up",
+      "7. North Correa | Miguel Vargas (3 HR, 8 RBI), Mookie Betts (3 HR, 8 RBI), and Shohei Ohtani (6 runs, .345 OBP) gave this team an elite offensive week, but a 6–4 loss to the Roughnecks despite those numbers reveals persistent pitching fragility; the luck delta is nearly neutral at +0.23, meaning this record is an honest reflection | same",
+      "8. Sugar Land Skeeters | Michael Wacha (12 K, 1.23 ERA) and Chase Burns (10 K) anchored a solid pitching week, but the offense's 36 hits in 197 ABs and a .275 OBP in a 6–3 loss to the Twins shows the lineup continues to underperform; a luck delta of –1.00 means this team deserves better than its record suggests | down",
+      "9. Wisconsin Rapids Reapers | Kazuma Okamoto (3 HR, 8 RBI) and Trea Turner's speed were genuine contributors in a 7–2 win over the Wonderdogs, but zero quality starts and a 5.61 ERA from the pitching staff is deeply concerning; this team wins batting categories and hopes the opponent's pitching collapses, which is not a sustainable playoff strategy | same",
+      "10. Athletic Park Dragons | Dansby Swanson's 3 HR and 15 RBI were monster numbers and José Caballero's 3 SB gave the team speed, but a 6.17 ERA and zero quality starts in a 5–4 loss to the Bombers confirms that pitching remains an existential problem; the luck delta of +2.38 means the standings are actively lying about where this team stands | down",
+      "11. Benchwarmers | Sonny Gray's 20 K, 0.63 ERA, and 0.77 WHIP was one of the most dominant individual pitching performances of the season, and the 6–3 win over the Wombats is a quality result, but 2 HR and a .286 OBP from the offense remain chronic concerns heading into the playoff stretch | up",
+      "12. General Hospital | Andy Pages' 7 runs and Manny Machado's 2 HR were bright spots, but a 9–1 obliteration at the hands of Buttville — with only 1 quality start and 43 IP from the rotation — exposes a team that simply cannot compete in pitching categories; a luck delta of –1.15 suggests they deserve a slightly better record, but the talent gap is real | same",
+      "13. Wonder Wharf Wonderdogs | William Contreras (2 HR, .455 OBP) and Brooks Lee (2 HR) had solid weeks, and the team's 0.98 WHIP is legitimately elite, but only 34.2 IP and a 7–2 loss to the Reapers despite a better ERA tells the story of a team that cannot generate enough pitching volume to win consistently; a luck delta of –2.00 makes this the most snakebitten roster in the league | same",
+      "14. Canberra Wombats | Yandy Díaz's .536 OBP, Kumar Rocker's 14 K and 1.64 ERA, and a team 2.63 ERA all pointed to a competitive week, but only 48 IP and 4 QS from the staff limited their ability to win pitching volume categories in a 6–3 loss; with a luck delta of –2.23 — the worst in the league — this team's true talent is being systematically obscured by their scheduling misfortune | same"
     ]
   },
   "weekly_points": {
@@ -417,6 +433,22 @@
       "Sugar Land Skeeters": 4.0,
       "Hiroshima Radiation": 6.0,
       "Riverside Roughnecks": 4.0
+    },
+    "week_14": {
+      "Albuquerque Bombers": 5.0,
+      "Athletic Park Dragons": 4.0,
+      "Abbotsford-Colby Twins": 6.0,
+      "Sugar Land Skeeters": 3.0,
+      "BaseballPro77": 5.0,
+      "Hiroshima Radiation": 5.0,
+      "Benchwarmers": 3.0,
+      "Canberra Wombats": 6.0,
+      "Buttville Skidmarks": 9.0,
+      "General Hospital": 1.0,
+      "North Correa": 4.0,
+      "Riverside Roughnecks": 6.0,
+      "Wisconsin Rapids Reapers": 7.0,
+      "Wonder Wharf Wonderdogs": 2.0
     }
   },
   "manager_spotlight_rotation": [
