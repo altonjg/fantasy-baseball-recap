@@ -1651,6 +1651,48 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1782754141,
+      "players": [
+        {
+          "name": "Garrett Cleavinger",
+          "action": "add",
+          "team": "BaseballPro77",
+          "position": "RP"
+        },
+        {
+          "name": "Brooks Raley",
+          "action": "drop",
+          "team": "BaseballPro77",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1782753479,
+      "players": [
+        {
+          "name": "Robert Gasser",
+          "action": "add",
+          "team": "North Correa",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1782753330,
+      "players": [
+        {
+          "name": "Kai-Wei Teng",
+          "action": "drop",
+          "team": "North Correa",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1782662610,
       "players": [
@@ -2033,42 +2075,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1781642489,
-      "players": [
-        {
-          "name": "Trevor McDonald",
-          "action": "drop",
-          "team": "Hiroshima Radiation",
-          "position": "SP,RP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1781610042,
-      "players": [
-        {
-          "name": "Slade Cecconi",
-          "action": "add",
-          "team": "Riverside Roughnecks",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1781596401,
-      "players": [
-        {
-          "name": "Cooper Pratt",
-          "action": "add",
-          "team": "Benchwarmers",
-          "position": "SS"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2087,8 +2093,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-06-29T15:34:02.090276"
+  "saved_at": "2026-06-29T18:04:10.840607"
 }
