@@ -36,18 +36,18 @@
               "score": 22.0
             },
             {
+              "name": "Sam Antonacci",
+              "mlb_team": "CWS",
+              "position": "2B,3B,OF",
+              "stats": "R:6, HR:1, RBI:4, SB:2, OBP:.433",
+              "score": 22.0
+            },
+            {
               "name": "Bo Bichette",
               "mlb_team": "NYM",
               "position": "3B,SS",
               "stats": "R:5, HR:2, RBI:4, OBP:.385",
               "score": 19.0
-            },
-            {
-              "name": "Sam Antonacci",
-              "mlb_team": "CWS",
-              "position": "2B,3B,OF",
-              "stats": "R:5, RBI:3, SB:2, OBP:.429",
-              "score": 18.0
             },
             {
               "name": "Byron Buxton",
@@ -160,7 +160,7 @@
               "name": "James Wood",
               "mlb_team": "WSH",
               "position": "OF",
-              "stats": "R:4, OBP:.235",
+              "stats": "R:4, OBP:.229",
               "score": 8.0
             }
           ]
@@ -263,7 +263,7 @@
               "name": "Kerry Carpenter",
               "mlb_team": "DET",
               "position": "OF",
-              "stats": "R:4, HR:2, RBI:6, OBP:.333",
+              "stats": "R:4, HR:2, RBI:6, OBP:.318",
               "score": 18.0
             },
             {
@@ -284,7 +284,7 @@
               "name": "Chase Meidroth",
               "mlb_team": "CWS",
               "position": "2B,3B,SS",
-              "stats": "R:4, RBI:2, OBP:.385",
+              "stats": "R:4, RBI:2, OBP:.357",
               "score": 14.0
             },
             {
@@ -538,8 +538,8 @@
               "name": "Curtis Mead",
               "mlb_team": "WSH",
               "position": "1B,2B,3B",
-              "stats": "R:3, HR:3, RBI:5, OBP:.200",
-              "score": 16.0
+              "stats": "R:4, HR:3, RBI:5, OBP:.231",
+              "score": 18.0
             },
             {
               "name": "Kyle Teel",
@@ -683,7 +683,7 @@
               "name": "Kevin McGonigle",
               "mlb_team": "DET",
               "position": "3B,SS",
-              "stats": "R:4, RBI:2, SB:2, OBP:.406",
+              "stats": "R:4, RBI:2, SB:2, OBP:.394",
               "score": 15.0
             },
             {
@@ -708,11 +708,11 @@
               "score": 9.0
             },
             {
-              "name": "Isaac Paredes",
-              "mlb_team": "HOU",
-              "position": "1B,3B",
-              "stats": "RBI:4, OBP:.263",
-              "score": 8.0
+              "name": "Payton Tolle",
+              "mlb_team": "BOS",
+              "position": "SP,RP",
+              "stats": "K:8, ERA:2.25, WHIP:0.88, QS:1, IP:8.0",
+              "score": 9.0
             }
           ]
         },
@@ -976,17 +976,17 @@
               "score": 12.0
             },
             {
-              "name": "Riley Greene",
-              "mlb_team": "DET",
-              "position": "OF",
-              "stats": "R:3, HR:1, RBI:1, OBP:.333",
-              "score": 11.0
-            },
-            {
               "name": "Dillon Dingler",
               "mlb_team": "DET",
               "position": "C",
-              "stats": "R:2, HR:1, RBI:3, OBP:.222",
+              "stats": "R:2, HR:1, RBI:3, OBP:.250",
+              "score": 12.0
+            },
+            {
+              "name": "Riley Greene",
+              "mlb_team": "DET",
+              "position": "OF",
+              "stats": "R:3, HR:1, RBI:1, OBP:.323",
               "score": 11.0
             },
             {
@@ -1082,7 +1082,7 @@
               "name": "Miguel Vargas",
               "mlb_team": "CWS",
               "position": "1B,3B",
-              "stats": "R:5, HR:3, RBI:8, OBP:.519",
+              "stats": "R:5, HR:3, RBI:8, OBP:.483",
               "score": 26.0
             },
             {
@@ -1107,6 +1107,13 @@
               "score": 13.0
             },
             {
+              "name": "Joey Cantillo",
+              "mlb_team": "CLE",
+              "position": "SP,RP",
+              "stats": "K:11, ERA:1.12, WHIP:0.88, QS:1, IP:8.0",
+              "score": 12.0
+            },
+            {
               "name": "Chris Sale",
               "mlb_team": "ATL",
               "position": "SP",
@@ -1118,13 +1125,6 @@
               "mlb_team": "MIL",
               "position": "1B,OF",
               "stats": "R:4, HR:1, RBI:2, OBP:.348",
-              "score": 10.0
-            },
-            {
-              "name": "Joey Cantillo",
-              "mlb_team": "CLE",
-              "position": "SP,RP",
-              "stats": "K:9, ERA:1.50, WHIP:0.67, QS:1, IP:6.0",
               "score": 10.0
             },
             {
@@ -1420,7 +1420,7 @@
               "name": "Pete Alonso",
               "mlb_team": "BAL",
               "position": "1B",
-              "stats": "R:2, HR:1, RBI:3, OBP:.333",
+              "stats": "R:2, HR:1, RBI:3, OBP:.273",
               "score": 8.0
             }
           ]
@@ -1650,6 +1650,42 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "add",
+      "timestamp": 1782926442,
+      "players": [
+        {
+          "name": "Tyron Guerrero",
+          "action": "add",
+          "team": "BaseballPro77",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1782926205,
+      "players": [
+        {
+          "name": "Tony Santillan",
+          "action": "drop",
+          "team": "BaseballPro77",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1782926161,
+      "players": [
+        {
+          "name": "Anthony Bender",
+          "action": "drop",
+          "team": "BaseballPro77",
+          "position": "RP"
+        }
+      ]
+    },
     {
       "type": "add",
       "timestamp": 1782885554,
@@ -2033,54 +2069,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1782144057,
-      "players": [
-        {
-          "name": "Alejandro Kirk",
-          "action": "drop",
-          "team": "Hiroshima Radiation",
-          "position": "C"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1782124460,
-      "players": [
-        {
-          "name": "Keibert Ruiz",
-          "action": "add",
-          "team": "Buttville Skidmarks",
-          "position": "C"
-        },
-        {
-          "name": "Luke Raley",
-          "action": "drop",
-          "team": "Buttville Skidmarks",
-          "position": "1B,OF"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1781980066,
-      "players": [
-        {
-          "name": "Slade Cecconi",
-          "action": "add",
-          "team": "Abbotsford-Colby Twins",
-          "position": "SP"
-        },
-        {
-          "name": "Steven Matz",
-          "action": "drop",
-          "team": "Abbotsford-Colby Twins",
-          "position": "SP,RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2099,8 +2087,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-07-01T14:14:34.686030"
+  "saved_at": "2026-07-01T17:47:37.916379"
 }
