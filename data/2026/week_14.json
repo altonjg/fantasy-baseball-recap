@@ -1651,6 +1651,66 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1782992504,
+      "players": [
+        {
+          "name": "Caleb Kilian",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "RP"
+        },
+        {
+          "name": "Noah Cameron",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1782992440,
+      "players": [
+        {
+          "name": "Javier Sanoja",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "2B,3B,SS,OF"
+        },
+        {
+          "name": "Elvis Alvarado",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1782992395,
+      "players": [
+        {
+          "name": "Ian Seymour",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1782989088,
+      "players": [
+        {
+          "name": "Lawrence Butler",
+          "action": "drop",
+          "team": "Buttville Skidmarks",
+          "position": "OF"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1782961595,
       "players": [
@@ -2009,60 +2069,6 @@
           "position": "3B,SS"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1782245406,
-      "players": [
-        {
-          "name": "Justin Steele",
-          "action": "drop",
-          "team": "BaseballPro77",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1782243015,
-      "players": [
-        {
-          "name": "Emmet Sheehan",
-          "action": "drop",
-          "team": "Benchwarmers",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1782240058,
-      "players": [
-        {
-          "name": "Victor Caratini",
-          "action": "add",
-          "team": "Athletic Park Dragons",
-          "position": "C,1B"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1782161803,
-      "players": [
-        {
-          "name": "Carson Kelly",
-          "action": "add",
-          "team": "North Correa",
-          "position": "C"
-        },
-        {
-          "name": "Hunter Feduccia",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "C"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2084,5 +2090,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-07-02T10:30:31.326610"
+  "saved_at": "2026-07-02T13:42:08.145998"
 }
