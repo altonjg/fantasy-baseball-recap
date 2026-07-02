@@ -42,7 +42,7 @@ jobs:
     name: Detect & write trade articles
     runs-on: ubuntu-latest
     if: |
-      (github.event_name == 'workflow_dispatch' && github.event.inputs.mode != 'preview' && github.event.inputs.mode != 'draft') ||
+      (github.event_name == 'workflow_dispatch' && (github.event.inputs.mode == 'full' || github.event.inputs.mode == 'trades')) ||
       (github.event_name == 'schedule' && github.event.schedule == '0 */4 * 3-11 *')
 
     steps:
@@ -69,7 +69,6 @@ jobs:
           ANTHROPIC_API_KEY:   ${{ secrets.ANTHROPIC_API_KEY }}
           PYTHONUTF8:          "1"
         run: |
-          MODE="${{ github.event.inputs.mode || 'trades' }}"
           WEEK_ARG=""
           if [ -n "${{ github.event.inputs.week }}" ]; then
             WEEK_ARG="--week ${{ github.event.inputs.week }}"
@@ -78,7 +77,7 @@ jobs:
           if [ "${{ github.event.inputs.force }}" = "true" ]; then
             FORCE_ARG="--force"
           fi
-          python ci_runner.py --mode "$MODE" $WEEK_ARG $FORCE_ARG
+          python ci_runner.py --mode trades $WEEK_ARG $FORCE_ARG
 
       - name: Commit new data files
         run: |
@@ -96,7 +95,7 @@ jobs:
     needs: detect-trades
     if: |
       always() && (
-        (github.event_name == 'workflow_dispatch' && github.event.inputs.mode != 'preview' && github.event.inputs.mode != 'draft') ||
+        (github.event_name == 'workflow_dispatch' && (github.event.inputs.mode == 'full' || github.event.inputs.mode == 'recap')) ||
         (github.event_name == 'schedule' && github.event.schedule == '0 11 * * 1')
       )
 
@@ -125,7 +124,6 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           PYTHONUTF8:          "1"
         run: |
-          MODE="${{ github.event.inputs.mode || 'recap' }}"
           WEEK_ARG=""
           if [ -n "${{ github.event.inputs.week }}" ]; then
             WEEK_ARG="--week ${{ github.event.inputs.week }}"
@@ -134,7 +132,7 @@ jobs:
           if [ "${{ github.event.inputs.force }}" = "true" ]; then
             FORCE_ARG="--force"
           fi
-          python ci_runner.py --mode "$MODE" $WEEK_ARG $FORCE_ARG
+          python ci_runner.py --mode recap $WEEK_ARG $FORCE_ARG
 
       - name: Commit new data files
         run: |
