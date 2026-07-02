@@ -87,6 +87,17 @@ def load_league_data() -> tuple[dict, int, int]:
                 except Exception as e:
                     print(f"Warning: failed to load {af.name}: {e}")
 
+        # Trade articles (written by ci_runner.py --mode trades into the trades/ subdir,
+        # keyed by transaction timestamp — kept separate from the articles/ dict)
+        trades_dir = year_dir / "trades"
+        if trades_dir.exists():
+            league_data[season]["trades"] = {}
+            for tf in sorted(trades_dir.glob("trade_*.json")):
+                try:
+                    league_data[season]["trades"][tf.stem] = json.loads(tf.read_text(encoding="utf-8"))
+                except Exception as e:
+                    print(f"Warning: failed to load {tf.name}: {e}")
+
         # Draft order
         draft_file = year_dir / "draft_order.json"
         if draft_file.exists():

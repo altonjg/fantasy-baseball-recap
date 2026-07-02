@@ -63,6 +63,116 @@ except ImportError:
 DATA_ROOT = Path(__file__).parent / "data"
 
 
+# ── Anti-cliché / anti-repetition guards ─────────────────────────────────────
+# The article writers recycle a handful of framing devices and running gags
+# because each article is generated in isolation with no memory of the others.
+# _cliche_rules() bans the worst offenders in every prompt; _recent_article_flavor()
+# feeds the last few weeks' openers/motifs into the recap prompt as a "don't repeat" list.
+
+_BANNED_CLICHES = [
+    "this is the kind of",
+    "the kind of ... that separates",
+    "separates the contenders from the pretenders",
+    "here's the thing",
+    "make no mistake",
+    "at the end of the day",
+    "when the dust settles",
+    "the fantasy equivalent of",
+    "for the ages",
+    "one thing is clear",
+    "the numbers don't lie",
+]
+
+_OVERUSED_MOTIFS = [
+    "Pablo Sanchez",
+    "Backyard Baseball",
+    "Will Smith's right hand",
+    "Ted Lasso",
+    "drug dealer",
+]
+
+
+def _cliche_rules() -> str:
+    """Constraint block appended to every article prompt to curb recycled phrasing."""
+    banned = "; ".join(f'"{c}"' for c in _BANNED_CLICHES)
+    return (
+        "ANTI-CLICHE (mandatory):\n"
+        f"- Do NOT use these worn phrases or close variants anywhere: {banned}.\n"
+        "- Do NOT open the article, a section, or a paragraph with a throat-clearing framing "
+        "device such as \"This is the kind of...\" or \"There are X, and then there are Y.\" "
+        "Lead with a concrete detail, image, or claim instead.\n"
+        "- Vary your sentence openers; do not fall back on the same rhetorical scaffolding.\n"
+        "- Recycled pop-culture running gags go stale fast. Do not lean on a signature bit "
+        "(a stock video-game character, sitcom, or celebrity comparison) as a crutch — earn any "
+        "reference with a fresh, specific observation.\n"
+        "- Opener examples:\n"
+        "    BAD (throat-clearing, generic): \"This is the kind of week that separates the "
+        "contenders from the pretenders.\"\n"
+        "    BAD (stock framing): \"There are good teams, and then there are great teams.\"\n"
+        "    GOOD (concrete detail first): \"Down four runs with two innings left, the Reapers "
+        "sent up a waiver-wire catcher nobody had heard of on Tuesday — and he won them the week.\"\n"
+        "  Start with a specific image, number, or moment from THIS week's data, not a thesis "
+        "statement about baseball."
+    )
+
+
+def _recent_article_flavor(season, week_num, lookback: int = 3) -> str:
+    """Read the previous few weeks' recap articles and return a 'do not repeat' block
+    listing their headlines, opening lines, and any overused motifs already used, so the
+    current article can steer clear of self-plagiarism. Returns "" if nothing is found."""
+    try:
+        wk = int(week_num)
+        yr = int(season)
+    except (TypeError, ValueError):
+        return ""
+    articles_dir = DATA_ROOT / str(yr) / "articles"
+    if not articles_dir.exists():
+        return ""
+
+    opening_lines: list[str] = []
+    used_motifs: set[str] = set()
+    for prev in range(wk - 1, max(0, wk - 1 - lookback), -1):
+        af = articles_dir / f"week_{prev:02d}_recap.json"
+        if not af.exists():
+            continue
+        try:
+            art = json.loads(af.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        body = str(art.get("body", ""))
+        headline = str(art.get("headline", "")).strip()
+        # First substantive sentence of prose — skip markdown headers, tables, and blanks
+        first_line = ""
+        for line in body.splitlines():
+            s = line.strip()
+            if not s or s.startswith("#") or s.startswith("|"):
+                continue
+            first_line = s
+            break
+        if headline:
+            opening_lines.append(f"  Week {prev} headline: {headline}")
+        if first_line:
+            opening_lines.append(f"  Week {prev} opening: {first_line[:200]}")
+        combined = f"{headline}\n{body}".lower()
+        for motif in _OVERUSED_MOTIFS:
+            if motif.lower() in combined:
+                used_motifs.add(motif)
+
+    if not opening_lines and not used_motifs:
+        return ""
+
+    parts = ["DO NOT REPEAT RECENT ARTICLES (the last few weeks already used these — find a different angle):"]
+    if opening_lines:
+        parts.append("Recent headlines and openers to avoid echoing:")
+        parts.extend(opening_lines)
+    if used_motifs:
+        parts.append(
+            "Running gags/motifs already used recently — do NOT reuse them: "
+            + ", ".join(sorted(used_motifs)) + "."
+        )
+    return "\n".join(parts)
+
+
 # ── Anthropic helpers ─────────────────────────────────────────────────────────
 
 def _anthropic_client():
@@ -829,10 +939,14 @@ def _pass2_write(
     next_week_text = "\n".join(next_week_lines) if next_week_lines else "  (schedule unavailable)"
     spotlight_team = str(plan.get("spotlight_team", "")).strip()
 
+    # Anti-repetition context — the last few weeks' openers/motifs to avoid echoing
+    recent_flavor = _recent_article_flavor(season, week_num)
+    recent_flavor_block = f"\n{recent_flavor}\n" if recent_flavor else ""
+
     prompt = f"""You are {writer['name']} of {writer['outlet']}, writing the Week {week_num} recap for "{league}."
 
 {writer['voice']}
-
+{recent_flavor_block}
 You have a PLANNING DOCUMENT with the key editorial decisions, and the full raw week data below. Use both to write the article.
 
 PLANNING DOCUMENT:
@@ -886,6 +1000,8 @@ RULES:
 - Power Rankings movement: end each line with `[UP]`, `[DOWN]`, or `[SAME]` — no emoji, no arrows, just those exact tokens
 - CRITICAL — stat accuracy: only cite specific numeric stats (HR, RBI, ERA, OBP, K, etc.) for players explicitly listed in the RAW MATCHUP DATA above. For any other player you mention, use qualitative descriptions only — never invent or estimate numbers.
 - CRITICAL — league-wide claims: before writing ANY claim like "led the league in X" or "highest/lowest Y in the league", check the LEAGUE-WIDE CATEGORY LEADERS section above. Only use the exact leader shown there — never guess or infer league leaders from a single matchup.
+
+{_cliche_rules()}
 
 Wrap your response in XML tags exactly like this — no JSON, no preamble, nothing outside the tags:
 <headline>your headline here</headline>
@@ -1048,6 +1164,8 @@ Write a trade wire article (220–300 words) including:
 3. Analysis of what each team gains/loses strategically
 4. A clear verdict on who wins the trade
 5. Trade grades for each side (A+ through F)
+
+{_cliche_rules()}
 
 Respond ONLY with valid JSON — no markdown fences:
 {{
@@ -1320,7 +1438,7 @@ LEAGUE STRUCTURE:
 RECENT FINISH POSITIONS (last 2 seasons, {season - 2}–{season - 1}):
 {alltime_ctx}
 
-Write a LONG, richly detailed season preview (1800–2200 words). Use Roman numeral section headers (I, II, III, IV, V). Go deep — this is the kind of feature-length piece that readers bookmark and return to throughout the season.
+Write a LONG, richly detailed season preview (1800–2200 words). Use Roman numeral section headers (I, II, III, IV, V). Go deep — a feature-length piece that readers bookmark and return to throughout the season.
 
 I. **Opening: The Gathering Storm** (3–4 paragraphs)
    - Open with a vivid, atmospheric scene-setter. Paint a picture of spring baseball arriving.
@@ -1350,6 +1468,8 @@ V. **The Pick: A Champion Crowned** (1–2 paragraphs)
    Name your champion with conviction. Build a case using draft position, recent trajectory, historical patterns. End with a memorable final line.
 
 Use **bold** for team names throughout. Markdown OK. Section headers as Roman numerals in bold.
+
+{_cliche_rules()}
 
 Respond ONLY with valid JSON — no markdown fences:
 {{
@@ -1990,6 +2110,8 @@ Write a LONG, richly detailed draft review (2000–2500 words). Use Roman numera
 {section_vi}
 
 Use **bold** for team and player names throughout. Markdown OK.
+
+{_cliche_rules()}
 
 Wrap your response in XML tags exactly like this — no JSON, no preamble:
 <subheadline>your one sharp sentence that makes readers want to read the whole thing</subheadline>

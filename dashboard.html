@@ -5924,15 +5924,37 @@
     const recapsSection = document.getElementById('news-recaps-section');
     if (!recapsSection) return;
 
-    // Always blank the trades section — it has no dynamic population yet,
-    // so we clear the static mockup cards to avoid stale data showing
+    // Trade Coverage — cards built from LEAGUE_DATA[season].trades (populated by
+    // app.py from data/{season}/trades/trade_*.json), newest trade first.
     const tradesSection = document.getElementById('news-trades-section');
-    if (tradesSection) tradesSection.innerHTML = `
-      <div class="news-section-header" style="margin-top:8px;"><i class="fa-solid fa-right-left" style="margin-right:6px"></i>Trade Coverage</div>
-      <div style="padding:20px 0 12px;text-align:center;color:var(--muted);font-size:0.82em;">
-        <i class="fa-solid fa-right-left" style="font-size:1.4em;opacity:0.3;display:block;margin-bottom:8px;"></i>
-        No trade articles yet for this season.
-      </div>`;
+    if (tradesSection) {
+      const trades = window.LEAGUE_DATA?.[season]?.trades || {};
+      const tradeKeys = Object.keys(trades).sort((a, b) =>
+        (trades[b]?.transaction_timestamp || 0) - (trades[a]?.transaction_timestamp || 0));
+      let tradesHtml = `<div class="news-section-header" style="margin-top:8px;"><i class="fa-solid fa-right-left" style="margin-right:6px"></i>Trade Coverage</div>`;
+      if (tradeKeys.length) {
+        tradesHtml += tradeKeys.map(key => {
+          const art = trades[key];
+          if (!art) return '';
+          const dateStr = art.generated_at ? art.generated_at.substring(0, 10) : '';
+          return `<div class="news-card" role="article" tabindex="0" onclick="openArticleModal('${key}', ${season})">
+            <div>
+              <div class="news-card-type"><i class="fa-solid fa-right-left"></i> Trade Wire</div>
+              <div class="news-card-hed">${art.headline || ''}</div>
+              <div class="news-card-dek">${art.team_a || ''} (${art.grade_team_a || '—'}) &nbsp;&harr;&nbsp; ${art.team_b || ''} (${art.grade_team_b || '—'})</div>
+              <div class="news-card-meta"><i class="fa-solid fa-pen-nib"></i> ${art.writer_name || ''} &nbsp;·&nbsp; ${art.writer_outlet || ''} &nbsp;·&nbsp; ${dateStr}</div>
+            </div>
+            <div class="news-card-badge"><i class="fa-solid fa-right-left"></i><br><span>Trade</span></div>
+          </div>`;
+        }).join('');
+      } else {
+        tradesHtml += `<div style="padding:20px 0 12px;text-align:center;color:var(--muted);font-size:0.82em;">
+          <i class="fa-solid fa-right-left" style="font-size:1.4em;opacity:0.3;display:block;margin-bottom:8px;"></i>
+          No trade articles yet for this season.
+        </div>`;
+      }
+      tradesSection.innerHTML = tradesHtml;
+    }
 
     const articles = window.LEAGUE_DATA?.[season]?.articles || {};
     const preview  = articles['season_preview'];
@@ -6016,15 +6038,22 @@
   }
 
   function openArticleModal(articleKey, season) {
-    const art = window.LEAGUE_DATA?.[season]?.articles?.[articleKey];
+    const sd  = window.LEAGUE_DATA?.[season];
+    const art = sd?.articles?.[articleKey] || sd?.trades?.[articleKey];
     if (!art) return;
-    const typeLabel = art.type === 'season_preview' ? '⚾ Season Preview'
-                    : art.type === 'draft_recap'   ? '📋 Draft Review'
-                    : art.type === 'recap'         ? '📋 Weekly Recap'
+    // Trade articles live in the trades collection and carry team_a/grade_team_a
+    // instead of a type field.
+    const isTrade = art.type === 'trade' || (art.team_a !== undefined && art.grade_team_a !== undefined);
+    const typeLabel = isTrade                        ? '🔄 Trade Wire'
+                    : art.type === 'season_preview'  ? '⚾ Season Preview'
+                    : art.type === 'draft_recap'     ? '📋 Draft Review'
+                    : art.type === 'recap'           ? '📋 Weekly Recap'
                     : (art.type || '');
+    const dek = art.subheadline
+              || (isTrade ? `${art.team_a || ''} (${art.grade_team_a || '—'}) ↔ ${art.team_b || ''} (${art.grade_team_b || '—'})` : '');
     document.getElementById('article-modal-type').textContent = typeLabel;
     document.getElementById('article-modal-hed').textContent  = art.headline || '';
-    document.getElementById('article-modal-dek').textContent  = art.subheadline || '';
+    document.getElementById('article-modal-dek').textContent  = dek;
     const dateStr = art.generated_at ? art.generated_at.substring(0, 10) : '';
     document.getElementById('article-modal-byline').innerHTML =
       `<i class="fa-solid fa-pen-nib"></i> ${art.writer_name || ''} &nbsp;·&nbsp; ${art.writer_outlet || ''} &nbsp;·&nbsp; ${dateStr}`;
