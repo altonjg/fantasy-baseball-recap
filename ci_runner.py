@@ -1193,6 +1193,8 @@ Write a trade wire article (220–300 words) including:
 
 This is a close-knit league of friends who have played together for years. Pointed, specific needling of the teams involved is welcome — but every claim must be grounded in the data above, never invented stats.
 
+STANDINGS ACCURACY: Cite each team's record and points-for exactly as shown above. Refer to a team's position only by the rank number given (e.g. "9th") or in qualitative terms (contender, mid-pack, cellar-dweller). Do NOT compute games-back numbers, ordinal superlatives ("third-worst", "second in the division"), or any placement that is not printed verbatim in the standings block — if it is not shown above, do not state it as fact.
+
 {_cliche_rules()}
 
 Respond ONLY with valid JSON — no markdown fences:
@@ -1575,16 +1577,19 @@ def _find_unprocessed_trades(week_data: dict, covered_ts: set[int]) -> list[dict
 
 # ── Main runner ───────────────────────────────────────────────────────────────
 
-def run_trades(week_data: dict, season: int) -> list[dict]:
-    """Detect and write articles for new trades. Returns list of newly-written articles."""
+def run_trades(week_data: dict, season: int, force: bool = False) -> list[dict]:
+    """Detect and write articles for new trades. Returns list of newly-written articles.
+    With force=True, regenerate articles for every trade in the data even if one
+    already exists (used by the manual `--force` dispatch)."""
     season      = season or datetime.now().year
     week_num    = week_data.get("week")
     trades_dir  = DATA_ROOT / str(season) / "trades"
-    covered_ts  = _load_existing_article_timestamps(trades_dir)
+    covered_ts  = set() if force else _load_existing_article_timestamps(trades_dir)
     unprocessed = _find_unprocessed_trades(week_data, covered_ts)
 
     if not unprocessed:
-        print("[ci_runner] No new trades detected.")
+        print("[ci_runner] No new trades detected."
+              + (" (--force set, but no trades present in this week's data)" if force else ""))
         return []
 
     # Real W-L standings — Yahoo's per-week `standings` field is often all-zero,
@@ -2546,7 +2551,7 @@ def main() -> None:
 
     # Trade articles
     if args.mode in ("trades", "full"):
-        new_trade_articles = run_trades(week_data, season)
+        new_trade_articles = run_trades(week_data, season, force=args.force)
         print(f"[ci_runner] Trade articles written: {len(new_trade_articles)}")
         for article in new_trade_articles:
             discord_post_trade(article, season)
