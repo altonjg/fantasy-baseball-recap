@@ -1124,7 +1124,8 @@ def generate_recap_article(
 
 # ── Trade article generation ──────────────────────────────────────────────────
 
-def generate_trade_article(trade_tx: dict, standings: list[dict]) -> dict | None:
+def generate_trade_article(trade_tx: dict, standings: list[dict],
+                           week_num: int | None = None) -> dict | None:
     writer_key  = random.choice(_TRADE_WRITERS)
     writer      = WRITER_STYLES[writer_key]
 
@@ -1141,29 +1142,56 @@ def generate_trade_article(trade_tx: dict, standings: list[dict]) -> dict | None
         return [f"{p['name']} ({p.get('position','?')})" for p in players if p.get("team") == team]
 
     all_names = ", ".join(f"{p['name']} ({p.get('position','?')})" for p in players)
-    standings_ctx = "\n".join(
-        f"  {s['name']}: {s['wins']}-{s['losses']} ({s.get('points_for',0):.0f} PF)"
-        for s in standings[:8]
-    ) if standings else "  (pre-season)"
 
-    prompt = f"""You are {writer['name']} of {writer['outlet']}, writing a breaking news trade article for "MillerLite® BeerLeagueBaseball."
+    # Full standings with the two trading teams marked, so the model can ground
+    # the verdict in where each side actually sits (not just the top 8).
+    def _fmt(s: dict) -> str:
+        mark = ">>" if s.get("name") in (team_a, team_b) else "  "
+        return (f"  {mark} {s.get('rank','?')}. {s.get('name','?')}: "
+                f"{s.get('wins',0)}-{s.get('losses',0)}-{s.get('ties',0)} "
+                f"({s.get('points_for',0):.0f} PF)")
+    standings_ctx = "\n".join(_fmt(s) for s in standings) if standings else "  (pre-season — no standings yet)"
+
+    # Temporal grounding — without this the model guesses and often calls a
+    # midseason trade "early season." Regular season runs ~24 weeks.
+    if isinstance(week_num, int) or (week_num and str(week_num).isdigit()):
+        wk = int(week_num)
+        if wk <= 4:
+            phase = "the opening weeks — teams are still figuring out what they have"
+        elif wk <= 9:
+            phase = "the first third of the season"
+        elif wk <= 15:
+            phase = "midseason, past the halfway mark, with playoff races taking shape"
+        else:
+            phase = "the stretch run, with the playoff picture hardening"
+        timing_ctx = (f"TIMING: This trade happened in Week {wk} of a ~24-week regular season "
+                      f"— {phase}. Frame the stakes for THIS point in the calendar. "
+                      f'Do NOT describe it as "early season" unless it truly is.')
+    else:
+        timing_ctx = "TIMING: Week unknown — do not make specific claims about how early or late in the season it is."
+
+    prompt = f"""You are {writer['name']} of {writer['outlet']}, writing a breaking news trade article for "MillerLite® BeerLeagueBaseball," a 14-team head-to-head league scored across 12 categories (H/AB, R, HR, RBI, SB, OBP, IP, K, ERA, WHIP, QS, NSVH — ERA and WHIP are lower-is-better).
 
 {writer['voice']}
+
+{timing_ctx}
 
 TRADE DETAILS:
 {team_a} receives: {', '.join(side(team_a)) or 'undisclosed'}
 {team_b} receives: {', '.join(side(team_b)) or 'undisclosed'}
 All players: {all_names}
 
-CURRENT STANDINGS (top 8):
+CURRENT STANDINGS (real W-L-T records; the two trading teams are marked with >>):
 {standings_ctx}
 
 Write a trade wire article (220–300 words) including:
 1. A punchy breaking-news headline referencing BeerLeague
-2. Opening in {writer['name']}'s authentic voice
-3. Analysis of what each team gains/loses strategically
-4. A clear verdict on who wins the trade
+2. Opening in {writer['name']}'s authentic voice, leading with the concrete deal — not a generic "a trade is done" framing
+3. Analysis of what each team gains/loses — name the SPECIFIC scoring categories this shifts (e.g. SB and OBP for a speed bat, K/QS/ERA for a starter) and tie it to where each team sits in the standings above and what they need
+4. A clear verdict on who wins the trade, both short term and rest-of-season
 5. Trade grades for each side (A+ through F)
+
+This is a close-knit league of friends who have played together for years. Pointed, specific needling of the teams involved is welcome — but every claim must be grounded in the data above, never invented stats.
 
 {_cliche_rules()}
 
@@ -1549,6 +1577,8 @@ def _find_unprocessed_trades(week_data: dict, covered_ts: set[int]) -> list[dict
 
 def run_trades(week_data: dict, season: int) -> list[dict]:
     """Detect and write articles for new trades. Returns list of newly-written articles."""
+    season      = season or datetime.now().year
+    week_num    = week_data.get("week")
     trades_dir  = DATA_ROOT / str(season) / "trades"
     covered_ts  = _load_existing_article_timestamps(trades_dir)
     unprocessed = _find_unprocessed_trades(week_data, covered_ts)
@@ -1557,11 +1587,19 @@ def run_trades(week_data: dict, season: int) -> list[dict]:
         print("[ci_runner] No new trades detected.")
         return []
 
-    standings    = week_data.get("standings", [])
+    # Real W-L standings — Yahoo's per-week `standings` field is often all-zero,
+    # so tally records ourselves (same workaround the recap path uses). Falls back
+    # to whatever Yahoo returned if computation yields nothing.
+    standings: list[dict] = []
+    if str(week_num).isdigit():
+        standings = _compute_standings(int(season), int(week_num))
+    if not standings:
+        standings = week_data.get("standings", [])
+
     new_articles = []
     for tx in unprocessed:
         print(f"[ci_runner] Generating trade article for timestamp {tx.get('timestamp')}…")
-        article = generate_trade_article(tx, standings)
+        article = generate_trade_article(tx, standings, week_num=week_num)
         if article:
             trades_dir.mkdir(parents=True, exist_ok=True)
             ts   = article.get("transaction_timestamp", int(datetime.now().timestamp()))
