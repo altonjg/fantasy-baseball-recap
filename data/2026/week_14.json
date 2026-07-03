@@ -111,7 +111,7 @@
               "name": "Dansby Swanson",
               "mlb_team": "CHC",
               "position": "SS",
-              "stats": "R:5, HR:3, RBI:15, SB:1, OBP:.241",
+              "stats": "R:5, HR:3, RBI:15, SB:1, OBP:.233",
               "score": 31.0
             },
             {
@@ -342,14 +342,14 @@
               "name": "Ian Happ",
               "mlb_team": "CHC",
               "position": "OF",
-              "stats": "R:4, HR:1, RBI:4, OBP:.296",
+              "stats": "R:4, HR:1, RBI:4, OBP:.286",
               "score": 13.0
             },
             {
               "name": "Kody Clemens",
               "mlb_team": "MIN",
               "position": "1B,2B,OF",
-              "stats": "R:3, HR:2, RBI:4, OBP:.313",
+              "stats": "R:3, HR:2, RBI:4, OBP:.312",
               "score": 12.0
             },
             {
@@ -755,7 +755,7 @@
               "name": "Pete Crow-Armstrong",
               "mlb_team": "CHC",
               "position": "OF",
-              "stats": "R:4, HR:1, RBI:5, SB:2, OBP:.371",
+              "stats": "R:4, HR:1, RBI:5, SB:2, OBP:.361",
               "score": 17.0
             },
             {
@@ -918,11 +918,11 @@
               "score": 11.0
             },
             {
-              "name": "Keibert Ruiz",
-              "mlb_team": "WSH",
-              "position": "C",
-              "stats": "R:1, RBI:1, SB:1, OBP:.368",
-              "score": 7.0
+              "name": "Nathan Church",
+              "mlb_team": "STL",
+              "position": "OF",
+              "stats": "R:2, HR:1, RBI:4, SB:1, OBP:.333",
+              "score": 11.0
             }
           ]
         },
@@ -1331,17 +1331,17 @@
               "score": 9.0
             },
             {
+              "name": "Michael Busch",
+              "mlb_team": "CHC",
+              "position": "1B",
+              "stats": "R:1, HR:1, RBI:3, OBP:.267",
+              "score": 8.0
+            },
+            {
               "name": "Juan Soto",
               "mlb_team": "NYM",
               "position": "OF",
               "stats": "R:2, RBI:1, OBP:.556",
-              "score": 7.0
-            },
-            {
-              "name": "Andr\u00e9s Mu\u00f1oz",
-              "mlb_team": "SEA",
-              "position": "RP",
-              "stats": "K:5, NSVH:2, IP:2.0",
               "score": 7.0
             }
           ]
@@ -2102,5 +2102,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-07-03T17:16:14.462082"
+  "saved_at": "2026-07-03T20:55:53.084351"
 }
