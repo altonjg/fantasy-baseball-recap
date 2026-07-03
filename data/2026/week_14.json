@@ -1652,6 +1652,42 @@
   "transactions": [
     {
       "type": "add/drop",
+      "timestamp": 1783091681,
+      "players": [
+        {
+          "name": "Luke Weaver",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "RP"
+        },
+        {
+          "name": "Orion Kerkering",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1783091165,
+      "players": [
+        {
+          "name": "Trevor Rogers",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        },
+        {
+          "name": "Noelvi Marte",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "3B,OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
       "timestamp": 1783029058,
       "players": [
         {
@@ -2045,36 +2081,6 @@
           "position": "2B,3B,OF"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1782493423,
-      "players": [
-        {
-          "name": "Joey Cantillo",
-          "action": "add",
-          "team": "North Correa",
-          "position": "SP,RP"
-        },
-        {
-          "name": "Edward Cabrera",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1782491029,
-      "players": [
-        {
-          "name": "Masyn Winn",
-          "action": "add",
-          "team": "Hiroshima Radiation",
-          "position": "SS"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2093,8 +2099,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-07-03T13:47:14.545729"
+  "saved_at": "2026-07-03T17:16:14.462082"
 }
