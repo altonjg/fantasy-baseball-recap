@@ -136,6 +136,13 @@
               "score": 14.0
             },
             {
+              "name": "James Wood",
+              "mlb_team": "WSH",
+              "position": "OF",
+              "stats": "R:5, HR:1, RBI:1, OBP:.270",
+              "score": 12.0
+            },
+            {
               "name": "Andr\u00e9s Gim\u00e9nez",
               "mlb_team": "TOR",
               "position": "2B,SS",
@@ -155,13 +162,6 @@
               "position": "SP",
               "stats": "K:9, ERA:6.00, WHIP:1.50, IP:6.0",
               "score": 9.0
-            },
-            {
-              "name": "James Wood",
-              "mlb_team": "WSH",
-              "position": "OF",
-              "stats": "R:4, OBP:.235",
-              "score": 8.0
             }
           ]
         }
@@ -260,6 +260,13 @@
               "score": 20.0
             },
             {
+              "name": "Braxton Ashcraft",
+              "mlb_team": "PIT",
+              "position": "SP,RP",
+              "stats": "K:17, ERA:1.54, WHIP:1.11, QS:1, IP:11.2",
+              "score": 18.0
+            },
+            {
               "name": "Kerry Carpenter",
               "mlb_team": "DET",
               "position": "OF",
@@ -286,13 +293,6 @@
               "position": "2B,3B,SS",
               "stats": "R:4, RBI:2, OBP:.385",
               "score": 14.0
-            },
-            {
-              "name": "Jazz Chisholm Jr.",
-              "mlb_team": "NYY",
-              "position": "2B,3B",
-              "stats": "R:3, HR:1, RBI:2, SB:1, OBP:.217",
-              "score": 11.0
             }
           ]
         },
@@ -538,8 +538,8 @@
               "name": "Curtis Mead",
               "mlb_team": "WSH",
               "position": "1B,2B,3B",
-              "stats": "R:3, HR:3, RBI:5, OBP:.200",
-              "score": 16.0
+              "stats": "R:3, HR:3, RBI:5, OBP:.214",
+              "score": 17.0
             },
             {
               "name": "Kyle Teel",
@@ -890,18 +890,18 @@
               "score": 19.0
             },
             {
+              "name": "Bryan Reynolds",
+              "mlb_team": "PIT",
+              "position": "OF",
+              "stats": "R:4, RBI:1, SB:1, OBP:.419",
+              "score": 13.0
+            },
+            {
               "name": "Kyle Bradish",
               "mlb_team": "BAL",
               "position": "SP",
               "stats": "K:11, ERA:2.25, WHIP:1.08, QS:1, IP:12.0",
               "score": 12.0
-            },
-            {
-              "name": "Bryan Reynolds",
-              "mlb_team": "PIT",
-              "position": "OF",
-              "stats": "R:4, RBI:1, OBP:.429",
-              "score": 11.0
             },
             {
               "name": "Parker Messick",
@@ -951,8 +951,8 @@
               "name": "Brandon Lowe",
               "mlb_team": "PIT",
               "position": "2B",
-              "stats": "R:4, HR:2, RBI:7, OBP:.241",
-              "score": 19.0
+              "stats": "R:4, HR:2, RBI:9, OBP:.250",
+              "score": 22.0
             },
             {
               "name": "Manny Machado",
@@ -1651,6 +1651,24 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1783182151,
+      "players": [
+        {
+          "name": "Dalton Rushing",
+          "action": "add",
+          "team": "Benchwarmers",
+          "position": "C"
+        },
+        {
+          "name": "Brandon Valenzuela",
+          "action": "drop",
+          "team": "Benchwarmers",
+          "position": "C,1B"
+        }
+      ]
+    },
+    {
       "type": "add",
       "timestamp": 1783168854,
       "players": [
@@ -2069,18 +2087,6 @@
           "position": "2B"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1782577016,
-      "players": [
-        {
-          "name": "Jake Bennett",
-          "action": "add",
-          "team": "Buttville Skidmarks",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2102,5 +2108,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-07-04T13:05:59.314227"
+  "saved_at": "2026-07-04T16:56:07.090553"
 }
