@@ -1651,6 +1651,42 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1783258709,
+      "players": [
+        {
+          "name": "Peyton Gray",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "RP"
+        },
+        {
+          "name": "Kyle Hurt",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1783258525,
+      "players": [
+        {
+          "name": "Brandon Sproat",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "SP"
+        },
+        {
+          "name": "Roki Sasaki",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "SP"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1783255455,
       "players": [
@@ -2051,36 +2087,6 @@
           "position": "3B,SS"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1782754141,
-      "players": [
-        {
-          "name": "Garrett Cleavinger",
-          "action": "add",
-          "team": "BaseballPro77",
-          "position": "RP"
-        },
-        {
-          "name": "Brooks Raley",
-          "action": "drop",
-          "team": "BaseballPro77",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1782753479,
-      "players": [
-        {
-          "name": "Robert Gasser",
-          "action": "add",
-          "team": "North Correa",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2102,5 +2108,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-07-05T13:14:42.640610"
+  "saved_at": "2026-07-05T16:59:16.902652"
 }
