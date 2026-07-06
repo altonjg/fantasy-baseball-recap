@@ -1196,7 +1196,7 @@
               "name": "Luke Keaschall",
               "mlb_team": "MIN",
               "position": "2B,OF",
-              "stats": "R:5, HR:1, RBI:1, SB:1, OBP:.563",
+              "stats": "R:5, HR:1, RBI:1, SB:1, OBP:.562",
               "score": 13.0
             },
             {
@@ -2099,8 +2099,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-07-06T14:28:12.575577"
+  "saved_at": "2026-07-06T15:16:18.686723"
 }
