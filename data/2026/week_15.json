@@ -1651,6 +1651,18 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1783326552,
+      "players": [
+        {
+          "name": "Orion Kerkering",
+          "action": "add",
+          "team": "Buttville Skidmarks",
+          "position": "RP"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1783258709,
       "players": [
@@ -2069,24 +2081,6 @@
           "position": "OF"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1782763587,
-      "players": [
-        {
-          "name": "Anthony Bender",
-          "action": "add",
-          "team": "BaseballPro77",
-          "position": "RP"
-        },
-        {
-          "name": "Denzer Guzman",
-          "action": "drop",
-          "team": "BaseballPro77",
-          "position": "3B,SS"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2108,5 +2102,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-07-06T08:13:26.264636"
+  "saved_at": "2026-07-06T14:28:12.575577"
 }

@@ -223,6 +223,22 @@
       "12. General Hospital | Andy Pages' 7 runs and Manny Machado's 2 HR were bright spots, but a 9–1 obliteration at the hands of Buttville — with only 1 quality start and 43 IP from the rotation — exposes a team that simply cannot compete in pitching categories; a luck delta of –1.15 suggests they deserve a slightly better record, but the talent gap is real | same",
       "13. Wonder Wharf Wonderdogs | William Contreras (2 HR, .455 OBP) and Brooks Lee (2 HR) had solid weeks, and the team's 0.98 WHIP is legitimately elite, but only 34.2 IP and a 7–2 loss to the Reapers despite a better ERA tells the story of a team that cannot generate enough pitching volume to win consistently; a luck delta of –2.00 makes this the most snakebitten roster in the league | same",
       "14. Canberra Wombats | Yandy Díaz's .536 OBP, Kumar Rocker's 14 K and 1.64 ERA, and a team 2.63 ERA all pointed to a competitive week, but only 48 IP and 4 QS from the staff limited their ability to win pitching volume categories in a 6–3 loss; with a luck delta of –2.23 — the worst in the league — this team's true talent is being systematically obscured by their scheduling misfortune | same"
+    ],
+    "week_15": [
+      "1. Buttville Skidmarks | A 10–0 sweep is the most complete performance of the season — 18 HR, 45 R, Caminero and Devers both going 4 HR, and a 2.75 ERA/0.88 WHIP from the staff; this team has no weaknesses right now | up",
+      "2. Albuquerque Bombers | A 5–3 win over the Twins is steady if unspectacular — Freeman, Lindor, and Turang all contributed and Sandy Alcantara provided a quality start; the most consistent team in the league and a legitimate title favorite | same",
+      "3. BaseballPro77 | A 6–2 demolition of the Roughnecks backed by a league-best 2.36 ERA and 0.93 WHIP, with Cade Cavalli's near-perfect 0.14 WHIP and Jordan Walker's 7 runs leading the way; deep, balanced, and dangerous | same",
+      "4. Hiroshima Radiation | Won 6–4 over General Hospital on the strength of 83 K and 5 QS from the rotation — Nolan McLean and Taj Bradley were dominant — but only 4 HR from the offense remains the one hole in an otherwise elite roster | up",
+      "5. Athletic Park Dragons | Swanson (5 HR, 11 RBI), Wood (3 HR, 7 RBI), and McCarthy (3 HR, 13 RBI) combined for arguably the best offensive trio of the week, and the team tied the all-time RBI record; pitching was adequate enough for a 7–3 win, and this team is clicking at the right time | up",
+      "6. Riverside Roughnecks | Lost 6–2 to BaseballPro77 despite generating 72 hits and a solid pitching line from Casey Mize (14 K, 1.32 ERA) — the team simply couldn't win the power categories and got exposed; a luck delta of +2.88 means the record still needs scrutiny | down",
+      "7. Abbotsford-Colby Twins | Lost 5–3 to the Bombers despite Sean Burke (19 K, 2.38 ERA), Jesús Luzardo (9 K, 1.50 ERA), and Braxton Ashcraft (15 K, 1.20 WHIP) delivering elite pitching across the board; Yordan Alvarez (4 HR, 11 RBI) was heroic but the offense outside him remains thin | same",
+      "8. North Correa | Getting swept 10–0 by Buttville is brutal, but context matters — the Skidmarks were historically good this week; Michael Harris II (2 HR, 8 RBI) and Tristan Peters (6 R, .450 OBP) showed upside, and JP Sears adds rotation depth via the wire | down",
+      "9. Wisconsin Rapids Reapers | Kyle Stowers (3 HR, 7 RBI, 10 R) and Trea Turner (3 HR, 7 RBI) were outstanding, but zero quality starts and only 33.1 IP cost this team a winnable matchup against Canberra; the pitching-volume problem is not going away | same",
+      "10. Sugar Land Skeeters | Won 6–3 over the Wonderdogs behind Fernando Tatis Jr. and Kody Clemens leading the offense and five quality starts anchoring the pitching — but a 5.79 ERA, 1.47 WHIP, and .277 OBP are genuinely ugly numbers for a winning team; sustainable? No | same",
+      "11. General Hospital | Eury Pérez (16 K, 0.73 ERA, 0.49 WHIP) was one of the best individual pitching performances of the week and Kyle Tucker (.536 OBP) and Riley Greene (4 HR, 10 RBI) kept the offense alive, but losing 6–4 despite all that production confirms systemic pitching depth issues | down",
+      "12. Benchwarmers | Lost 7–3 to the Dragons despite a legitimately elite pitching line — Trey Yesavage (10 K, 2.13 ERA, 0.63 WHIP), Bryce Miller (0.29 WHIP), and Sonny Gray (1.50 ERA) were excellent — but the offense managed just 6 HR and the Dragons' power simply overwhelmed them | same",
+      "13. Canberra Wombats | Pete Crow-Armstrong (.615 OBP, 2 HR, 3 SB) and Jacob deGrom's return (9 K, 2.57 ERA, 0.57 WHIP) were genuine bright spots, but a 6–4 win that required the opponent to implode is not a blueprint; Aaron Nola's 7.94 ERA remains a serious concern | up",
+      "14. Wonder Wharf Wonderdogs | Lost 6–3 despite a better ERA, better WHIP, and Yoshinobu Yamamoto's strong return (10 K, 0.71 WHIP) — this team is the most snakebitten roster in the league with a –2.50 luck delta and faces Buttville in Week 16, which projects as an extremely difficult draw | down"
     ]
   },
   "weekly_points": {
@@ -449,6 +465,22 @@
       "Riverside Roughnecks": 6.0,
       "Wisconsin Rapids Reapers": 7.0,
       "Wonder Wharf Wonderdogs": 2.0
+    },
+    "week_15": {
+      "Albuquerque Bombers": 5.0,
+      "Abbotsford-Colby Twins": 3.0,
+      "Athletic Park Dragons": 7.0,
+      "Benchwarmers": 3.0,
+      "BaseballPro77": 6.0,
+      "Riverside Roughnecks": 2.0,
+      "Buttville Skidmarks": 10.0,
+      "North Correa": 0.0,
+      "Canberra Wombats": 6.0,
+      "Wisconsin Rapids Reapers": 4.0,
+      "General Hospital": 4.0,
+      "Hiroshima Radiation": 6.0,
+      "Sugar Land Skeeters": 6.0,
+      "Wonder Wharf Wonderdogs": 3.0
     }
   },
   "manager_spotlight_rotation": [
