@@ -29,6 +29,13 @@
           },
           "top_players": [
             {
+              "name": "Brice Turang",
+              "mlb_team": "MIL",
+              "position": "2B",
+              "stats": "R:4, HR:1, RBI:4, SB:1, OBP:.342",
+              "score": 21.0
+            },
+            {
               "name": "Freddie Freeman",
               "mlb_team": "LAD",
               "position": "1B",
@@ -36,10 +43,10 @@
               "score": 20.0
             },
             {
-              "name": "Brice Turang",
-              "mlb_team": "MIL",
-              "position": "2B",
-              "stats": "R:4, HR:1, RBI:4, OBP:.364",
+              "name": "Ivan Herrera",
+              "mlb_team": "STL",
+              "position": "C",
+              "stats": "R:6, HR:1, RBI:5, OBP:.355",
               "score": 20.0
             },
             {
@@ -50,18 +57,18 @@
               "score": 16.0
             },
             {
-              "name": "Ivan Herrera",
-              "mlb_team": "STL",
-              "position": "C",
-              "stats": "R:5, RBI:4, OBP:.333",
-              "score": 15.0
-            },
-            {
               "name": "Konnor Griffin",
               "mlb_team": "PIT",
               "position": "SS,OF",
               "stats": "R:3, SB:5, OBP:.292",
               "score": 14.0
+            },
+            {
+              "name": "Christian Yelich",
+              "mlb_team": "MIL",
+              "position": "OF",
+              "stats": "R:3, HR:1, RBI:4, SB:1, OBP:.300",
+              "score": 13.0
             },
             {
               "name": "Sal Stewart",
@@ -76,13 +83,6 @@
               "position": "2B,3B,OF",
               "stats": "R:5, HR:1, RBI:2, OBP:.300",
               "score": 13.0
-            },
-            {
-              "name": "Sandy Alcantara",
-              "mlb_team": "MIA",
-              "position": "SP",
-              "stats": "K:11, ERA:3.95, WHIP:1.39, QS:1, IP:13.2",
-              "score": 12.0
             }
           ]
         },
@@ -125,7 +125,7 @@
               "name": "Alec Burleson",
               "mlb_team": "STL",
               "position": "1B,OF",
-              "stats": "R:4, HR:1, RBI:6, SB:1, OBP:.318",
+              "stats": "R:4, HR:1, RBI:6, SB:1, OBP:.269",
               "score": 19.0
             },
             {
@@ -452,8 +452,8 @@
               "name": "Jordan Walker",
               "mlb_team": "STL",
               "position": "OF",
-              "stats": "R:7, HR:2, RBI:9, SB:1, OBP:.462",
-              "score": 25.0
+              "stats": "R:8, HR:3, RBI:11, SB:1, OBP:.433",
+              "score": 30.0
             },
             {
               "name": "Ketel Marte",
@@ -535,6 +535,13 @@
               "score": 27.0
             },
             {
+              "name": "Jacob Misiorowski",
+              "mlb_team": "MIL",
+              "position": "SP",
+              "stats": "K:21, ERA:3.00, WHIP:0.67, QS:1, IP:12.0",
+              "score": 22.0
+            },
+            {
               "name": "Xavier Edwards",
               "mlb_team": "MIA",
               "position": "2B,SS",
@@ -545,7 +552,7 @@
               "name": "Jackson Chourio",
               "mlb_team": "MIL",
               "position": "OF",
-              "stats": "R:5, HR:2, RBI:4, OBP:.387",
+              "stats": "R:5, HR:2, RBI:4, OBP:.333",
               "score": 19.0
             },
             {
@@ -574,13 +581,6 @@
               "mlb_team": "PIT",
               "position": "1B,OF",
               "stats": "R:5, RBI:1, OBP:.320",
-              "score": 11.0
-            },
-            {
-              "name": "Hunter Goodman",
-              "mlb_team": "COL",
-              "position": "C",
-              "stats": "R:4, RBI:1, OBP:.533",
               "score": 11.0
             }
           ]
@@ -704,7 +704,7 @@
               "name": "Nathan Church",
               "mlb_team": "STL",
               "position": "OF",
-              "stats": "R:4, HR:2, RBI:5, OBP:.333",
+              "stats": "R:4, HR:2, RBI:5, OBP:.273",
               "score": 15.0
             },
             {
@@ -748,8 +748,8 @@
               "name": "Jake Bauers",
               "mlb_team": "MIL",
               "position": "1B,OF",
-              "stats": "R:5, HR:2, RBI:5, OBP:.269",
-              "score": 19.0
+              "stats": "R:6, HR:2, RBI:5, OBP:.310",
+              "score": 22.0
             },
             {
               "name": "Miguel Vargas",
@@ -914,7 +914,7 @@
               "name": "Sal Frelick",
               "mlb_team": "MIL",
               "position": "OF",
-              "stats": "R:3, RBI:1, OBP:.368",
+              "stats": "R:3, RBI:1, OBP:.304",
               "score": 9.0
             },
             {
@@ -1100,6 +1100,13 @@
               "score": 18.0
             },
             {
+              "name": "JJ Wetherholt",
+              "mlb_team": "STL",
+              "position": "2B,3B,SS",
+              "stats": "R:6, HR:1, RBI:2, OBP:.424",
+              "score": 18.0
+            },
+            {
               "name": "Eury P\u00e9rez",
               "mlb_team": "MIA",
               "position": "SP",
@@ -1111,13 +1118,6 @@
               "mlb_team": "LAD",
               "position": "OF",
               "stats": "R:3, HR:1, RBI:5, OBP:.387",
-              "score": 16.0
-            },
-            {
-              "name": "JJ Wetherholt",
-              "mlb_team": "STL",
-              "position": "2B,3B,SS",
-              "stats": "R:5, HR:1, RBI:2, OBP:.414",
               "score": 16.0
             },
             {
@@ -2111,8 +2111,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-07-07T17:53:26.130561"
+  "saved_at": "2026-07-07T21:16:41.988797"
 }
