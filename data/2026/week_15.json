@@ -1196,7 +1196,7 @@
               "name": "Luke Keaschall",
               "mlb_team": "MIN",
               "position": "2B,OF",
-              "stats": "R:5, HR:1, RBI:1, SB:1, OBP:.563",
+              "stats": "R:5, HR:1, RBI:1, SB:1, OBP:.562",
               "score": 13.0
             },
             {
@@ -1651,6 +1651,42 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1783443478,
+      "players": [
+        {
+          "name": "Luis Lara",
+          "action": "add",
+          "team": "North Correa",
+          "position": "OF"
+        },
+        {
+          "name": "Colton Cowser",
+          "action": "drop",
+          "team": "North Correa",
+          "position": "OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1783443104,
+      "players": [
+        {
+          "name": "Andrew Morris",
+          "action": "add",
+          "team": "Sugar Land Skeeters",
+          "position": "SP,RP"
+        },
+        {
+          "name": "Mason Fluharty",
+          "action": "drop",
+          "team": "Sugar Land Skeeters",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
       "type": "add",
       "timestamp": 1783326552,
       "players": [
@@ -2057,30 +2093,6 @@
           "position": "OF"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1782772742,
-      "players": [
-        {
-          "name": "Tristan Peters",
-          "action": "add",
-          "team": "North Correa",
-          "position": "OF"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1782767893,
-      "players": [
-        {
-          "name": "Henry Bolte",
-          "action": "add",
-          "team": "Hiroshima Radiation",
-          "position": "OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2102,5 +2114,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-07-07T14:11:56.908123"
+  "saved_at": "2026-07-07T17:53:26.130561"
 }
