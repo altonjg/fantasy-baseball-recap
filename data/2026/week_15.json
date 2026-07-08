@@ -473,7 +473,7 @@
               "name": "Heliot Ramos",
               "mlb_team": "SF",
               "position": "OF",
-              "stats": "R:4, HR:2, RBI:3, OBP:.280",
+              "stats": "R:4, HR:2, RBI:3, OBP:.259",
               "score": 15.0
             },
             {
@@ -669,7 +669,7 @@
               "name": "Rafael Devers",
               "mlb_team": "SF",
               "position": "1B",
-              "stats": "R:5, HR:4, RBI:4, OBP:.462",
+              "stats": "R:5, HR:4, RBI:4, OBP:.429",
               "score": 21.0
             },
             {
@@ -983,6 +983,13 @@
               "score": 13.0
             },
             {
+              "name": "Kazuma Okamoto",
+              "mlb_team": "TOR",
+              "position": "1B,3B",
+              "stats": "R:2, HR:1, RBI:5, OBP:.286",
+              "score": 12.0
+            },
+            {
               "name": "Ben Rice",
               "mlb_team": "NYY",
               "position": "C,1B",
@@ -994,13 +1001,6 @@
               "mlb_team": "MIL",
               "position": "SP",
               "stats": "K:6, ERA:7.36, WHIP:0.82, IP:3.2",
-              "score": 6.0
-            },
-            {
-              "name": "Walbert Ure\u00f1a",
-              "mlb_team": "LAA",
-              "position": "SP",
-              "stats": "K:6, ERA:1.59, WHIP:0.88, IP:5.2",
               "score": 6.0
             }
           ]
@@ -1651,6 +1651,54 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1783543347,
+      "players": [
+        {
+          "name": "Dean Kremer",
+          "action": "add",
+          "team": "Athletic Park Dragons",
+          "position": "SP"
+        },
+        {
+          "name": "Bailey Ober",
+          "action": "drop",
+          "team": "Athletic Park Dragons",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1783536928,
+      "players": [
+        {
+          "name": "Chandler Simpson",
+          "action": "drop",
+          "team": "Hiroshima Radiation",
+          "position": "OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1783532281,
+      "players": [
+        {
+          "name": "Sean Newcomb",
+          "action": "add",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "SP,RP"
+        },
+        {
+          "name": "Jordan Romano",
+          "action": "drop",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "RP"
+        }
+      ]
+    },
+    {
       "type": "add",
       "timestamp": 1783523022,
       "players": [
@@ -2039,42 +2087,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1782885554,
-      "players": [
-        {
-          "name": "TJ Rumfield",
-          "action": "add",
-          "team": "Hiroshima Radiation",
-          "position": "1B"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1782885468,
-      "players": [
-        {
-          "name": "Andrew Abbott",
-          "action": "drop",
-          "team": "Hiroshima Radiation",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1782857361,
-      "players": [
-        {
-          "name": "Caleb Durbin",
-          "action": "add",
-          "team": "Abbotsford-Colby Twins",
-          "position": "2B,3B"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2093,8 +2105,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-07-08T17:21:52.785854"
+  "saved_at": "2026-07-08T20:58:47.105101"
 }
