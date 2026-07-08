@@ -1196,7 +1196,7 @@
               "name": "Luke Keaschall",
               "mlb_team": "MIN",
               "position": "2B,OF",
-              "stats": "R:5, HR:1, RBI:1, SB:1, OBP:.563",
+              "stats": "R:5, HR:1, RBI:1, SB:1, OBP:.562",
               "score": 13.0
             },
             {
@@ -1651,6 +1651,54 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1783523022,
+      "players": [
+        {
+          "name": "Tyler Tolbert",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "SS,OF"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1783522753,
+      "players": [
+        {
+          "name": "Steven Okert",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1783522571,
+      "players": [
+        {
+          "name": "A.J. Ewing",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "2B,OF"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1783522433,
+      "players": [
+        {
+          "name": "Bryan Abreu",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "RP"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1783443478,
       "players": [
@@ -2027,72 +2075,6 @@
           "position": "2B,3B"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1782857344,
-      "players": [
-        {
-          "name": "Chase Dollander",
-          "action": "drop",
-          "team": "Abbotsford-Colby Twins",
-          "position": "SP,RP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1782851176,
-      "players": [
-        {
-          "name": "JP Sears",
-          "action": "add",
-          "team": "North Correa",
-          "position": "SP"
-        },
-        {
-          "name": "Robert Gasser",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1782807649,
-      "players": [
-        {
-          "name": "Jeffrey Springs",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "trade",
-      "timestamp": 1782807649,
-      "players": [
-        {
-          "name": "Randy Arozarena",
-          "action": "trade",
-          "team": "Wonder Wharf Wonderdogs",
-          "position": "OF"
-        },
-        {
-          "name": "Dustin May",
-          "action": "trade",
-          "team": "North Correa",
-          "position": "SP"
-        },
-        {
-          "name": "Michael Harris II",
-          "action": "trade",
-          "team": "North Correa",
-          "position": "OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2111,8 +2093,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-07-08T13:46:28.799628"
+  "saved_at": "2026-07-08T17:21:52.785854"
 }
