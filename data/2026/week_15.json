@@ -146,7 +146,7 @@
               "name": "Jonathan Aranda",
               "mlb_team": "TB",
               "position": "1B",
-              "stats": "R:3, RBI:1, OBP:.370",
+              "stats": "R:3, RBI:1, OBP:.357",
               "score": 11.0
             },
             {
@@ -321,8 +321,8 @@
               "name": "Mauricio Dub\u00f3n",
               "mlb_team": "ATL",
               "position": "2B,3B,SS,OF",
-              "stats": "R:7, HR:1, RBI:5, OBP:.500",
-              "score": 20.0
+              "stats": "R:7, HR:1, RBI:6, OBP:.500",
+              "score": 22.0
             },
             {
               "name": "Zach Neto",
@@ -466,7 +466,7 @@
               "name": "Bobby Witt Jr.",
               "mlb_team": "KC",
               "position": "SS",
-              "stats": "R:4, HR:2, RBI:3, SB:2, OBP:.350",
+              "stats": "R:4, HR:2, RBI:3, SB:2, OBP:.333",
               "score": 17.0
             },
             {
@@ -535,6 +535,13 @@
               "score": 27.0
             },
             {
+              "name": "Seiya Suzuki",
+              "mlb_team": "CHC",
+              "position": "OF",
+              "stats": "R:5, HR:1, RBI:5, SB:1, OBP:.360",
+              "score": 20.0
+            },
+            {
               "name": "Xavier Edwards",
               "mlb_team": "MIA",
               "position": "2B,SS",
@@ -547,13 +554,6 @@
               "position": "OF",
               "stats": "R:5, HR:2, RBI:4, OBP:.387",
               "score": 19.0
-            },
-            {
-              "name": "Seiya Suzuki",
-              "mlb_team": "CHC",
-              "position": "OF",
-              "stats": "R:5, HR:1, RBI:5, OBP:.333",
-              "score": 18.0
             },
             {
               "name": "Casey Mize",
@@ -573,7 +573,7 @@
               "name": "Ryan O'Hearn",
               "mlb_team": "PIT",
               "position": "1B,OF",
-              "stats": "R:5, RBI:1, OBP:.320",
+              "stats": "R:5, RBI:1, OBP:.296",
               "score": 11.0
             },
             {
@@ -662,21 +662,21 @@
               "name": "Junior Caminero",
               "mlb_team": "TB",
               "position": "3B",
-              "stats": "R:5, HR:4, RBI:7, SB:1, OBP:.296",
-              "score": 23.0
+              "stats": "R:6, HR:5, RBI:8, SB:1, OBP:.321",
+              "score": 27.0
+            },
+            {
+              "name": "Bryan Reynolds",
+              "mlb_team": "PIT",
+              "position": "OF",
+              "stats": "R:7, HR:3, RBI:5, SB:1, OBP:.306",
+              "score": 25.0
             },
             {
               "name": "Rafael Devers",
               "mlb_team": "SF",
               "position": "1B",
               "stats": "R:5, HR:4, RBI:4, OBP:.462",
-              "score": 21.0
-            },
-            {
-              "name": "Bryan Reynolds",
-              "mlb_team": "PIT",
-              "position": "OF",
-              "stats": "R:6, HR:2, RBI:4, SB:1, OBP:.294",
               "score": 21.0
             },
             {
@@ -711,7 +711,7 @@
               "name": "Chase DeLauter",
               "mlb_team": "CLE",
               "position": "OF",
-              "stats": "R:2, HR:1, RBI:4, OBP:.273",
+              "stats": "R:2, HR:1, RBI:4, OBP:.261",
               "score": 13.0
             }
           ]
@@ -741,8 +741,8 @@
               "name": "Michael Harris II",
               "mlb_team": "ATL",
               "position": "OF",
-              "stats": "R:5, HR:2, RBI:8, OBP:.407",
-              "score": 24.0
+              "stats": "R:6, HR:2, RBI:8, SB:1, OBP:.414",
+              "score": 27.0
             },
             {
               "name": "Jake Bauers",
@@ -783,7 +783,7 @@
               "name": "Brayan Rocchio",
               "mlb_team": "CLE",
               "position": "2B,SS",
-              "stats": "R:2, HR:1, RBI:3, SB:1, OBP:.500",
+              "stats": "R:2, HR:1, RBI:3, SB:1, OBP:.467",
               "score": 12.0
             },
             {
@@ -872,7 +872,7 @@
               "name": "Pete Crow-Armstrong",
               "mlb_team": "CHC",
               "position": "OF",
-              "stats": "R:6, HR:2, RBI:4, SB:3, OBP:.615",
+              "stats": "R:6, HR:2, RBI:4, SB:3, OBP:.593",
               "score": 24.0
             },
             {
@@ -972,21 +972,21 @@
               "name": "Juan Soto",
               "mlb_team": "NYM",
               "position": "OF",
-              "stats": "R:2, HR:1, RBI:4, OBP:.423",
+              "stats": "R:2, HR:1, RBI:4, OBP:.407",
               "score": 13.0
             },
             {
               "name": "Michael Busch",
               "mlb_team": "CHC",
               "position": "1B",
-              "stats": "R:4, HR:2, RBI:2, OBP:.321",
+              "stats": "R:4, HR:2, RBI:2, OBP:.310",
               "score": 13.0
             },
             {
               "name": "Ben Rice",
               "mlb_team": "NYY",
               "position": "C,1B",
-              "stats": "R:2, HR:2, RBI:3, OBP:.346",
+              "stats": "R:2, HR:2, RBI:3, OBP:.333",
               "score": 11.0
             },
             {
@@ -1096,7 +1096,7 @@
               "name": "Brandon Lowe",
               "mlb_team": "PIT",
               "position": "2B",
-              "stats": "R:3, HR:1, RBI:7, SB:1, OBP:.300",
+              "stats": "R:3, HR:1, RBI:7, SB:1, OBP:.281",
               "score": 18.0
             },
             {
@@ -1296,6 +1296,13 @@
               "score": 23.0
             },
             {
+              "name": "Matt Olson",
+              "mlb_team": "ATL",
+              "position": "1B",
+              "stats": "R:6, HR:3, RBI:3, OBP:.310",
+              "score": 18.0
+            },
+            {
               "name": "Kody Clemens",
               "mlb_team": "MIN",
               "position": "1B,2B,OF",
@@ -1306,15 +1313,8 @@
               "name": "Drake Baldwin",
               "mlb_team": "ATL",
               "position": "C",
-              "stats": "R:6, HR:1, RBI:4, OBP:.321",
+              "stats": "R:6, HR:1, RBI:4, OBP:.300",
               "score": 16.0
-            },
-            {
-              "name": "Matt Olson",
-              "mlb_team": "ATL",
-              "position": "1B",
-              "stats": "R:5, HR:2, RBI:2, OBP:.296",
-              "score": 14.0
             },
             {
               "name": "Max Muncy",
@@ -1338,11 +1338,11 @@
               "score": 12.0
             },
             {
-              "name": "Andrew Benintendi",
-              "mlb_team": "CWS",
-              "position": "OF",
-              "stats": "R:2, RBI:2, OBP:.364",
-              "score": 9.0
+              "name": "Michael Wacha",
+              "mlb_team": "KC",
+              "position": "SP",
+              "stats": "K:10, ERA:5.62, WHIP:1.38, IP:8.0",
+              "score": 10.0
             }
           ]
         },
@@ -1371,8 +1371,8 @@
               "name": "Ozzie Albies",
               "mlb_team": "ATL",
               "position": "2B",
-              "stats": "R:6, HR:2, RBI:5, OBP:.286",
-              "score": 19.0
+              "stats": "R:7, HR:2, RBI:6, OBP:.300",
+              "score": 22.0
             },
             {
               "name": "Randy Arozarena",
@@ -1650,6 +1650,66 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "add",
+      "timestamp": 1783613528,
+      "players": [
+        {
+          "name": "Andrew Abbott",
+          "action": "add",
+          "team": "BaseballPro77",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1783613059,
+      "players": [
+        {
+          "name": "Blaze Alexander",
+          "action": "add",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "2B,3B,SS,OF"
+        },
+        {
+          "name": "Oswald Peraza",
+          "action": "drop",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "1B,2B,3B,SS"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1783612667,
+      "players": [
+        {
+          "name": "Kyle Karros",
+          "action": "add",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "3B"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1783612572,
+      "players": [
+        {
+          "name": "Ryan Feltner",
+          "action": "add",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "SP"
+        },
+        {
+          "name": "Quinn Priester",
+          "action": "drop",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "SP,RP"
+        }
+      ]
+    },
     {
       "type": "drop",
       "timestamp": 1783548532,
@@ -2033,60 +2093,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1782992440,
-      "players": [
-        {
-          "name": "Javier Sanoja",
-          "action": "add",
-          "team": "Riverside Roughnecks",
-          "position": "2B,3B,SS,OF"
-        },
-        {
-          "name": "Elvis Alvarado",
-          "action": "drop",
-          "team": "Riverside Roughnecks",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1782992395,
-      "players": [
-        {
-          "name": "Ian Seymour",
-          "action": "add",
-          "team": "Riverside Roughnecks",
-          "position": "SP,RP"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1782989088,
-      "players": [
-        {
-          "name": "Lawrence Butler",
-          "action": "drop",
-          "team": "Buttville Skidmarks",
-          "position": "OF"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1782961595,
-      "players": [
-        {
-          "name": "Mick Abel",
-          "action": "drop",
-          "team": "Albuquerque Bombers",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2108,5 +2114,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-07-09T14:37:33.432491"
+  "saved_at": "2026-07-09T17:49:07.616173"
 }
