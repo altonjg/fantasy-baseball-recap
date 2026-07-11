@@ -39,7 +39,7 @@
               "name": "Brice Turang",
               "mlb_team": "MIL",
               "position": "2B",
-              "stats": "R:4, HR:1, RBI:4, OBP:.364",
+              "stats": "R:4, HR:1, RBI:4, OBP:.353",
               "score": 20.0
             },
             {
@@ -132,8 +132,8 @@
               "name": "Braxton Ashcraft",
               "mlb_team": "PIT",
               "position": "SP,RP",
-              "stats": "K:15, ERA:4.63, WHIP:1.20, IP:11.2",
-              "score": 15.0
+              "stats": "K:16, ERA:5.27, WHIP:1.17, IP:13.2",
+              "score": 16.0
             },
             {
               "name": "Bryson Stott",
@@ -573,7 +573,7 @@
               "name": "Ryan O'Hearn",
               "mlb_team": "PIT",
               "position": "1B,OF",
-              "stats": "R:5, RBI:1, OBP:.320",
+              "stats": "R:5, RBI:1, OBP:.308",
               "score": 11.0
             },
             {
@@ -666,17 +666,17 @@
               "score": 23.0
             },
             {
+              "name": "Bryan Reynolds",
+              "mlb_team": "PIT",
+              "position": "OF",
+              "stats": "R:7, HR:2, RBI:4, SB:1, OBP:.314",
+              "score": 22.0
+            },
+            {
               "name": "Rafael Devers",
               "mlb_team": "SF",
               "position": "1B",
               "stats": "R:5, HR:4, RBI:4, OBP:.462",
-              "score": 21.0
-            },
-            {
-              "name": "Bryan Reynolds",
-              "mlb_team": "PIT",
-              "position": "OF",
-              "stats": "R:6, HR:2, RBI:4, SB:1, OBP:.294",
               "score": 21.0
             },
             {
@@ -738,18 +738,18 @@
           },
           "top_players": [
             {
+              "name": "Jake Bauers",
+              "mlb_team": "MIL",
+              "position": "1B,OF",
+              "stats": "R:6, HR:3, RBI:7, OBP:.296",
+              "score": 24.0
+            },
+            {
               "name": "Michael Harris II",
               "mlb_team": "ATL",
               "position": "OF",
               "stats": "R:5, HR:2, RBI:8, OBP:.407",
               "score": 24.0
-            },
-            {
-              "name": "Jake Bauers",
-              "mlb_team": "MIL",
-              "position": "1B,OF",
-              "stats": "R:5, HR:2, RBI:5, OBP:.269",
-              "score": 19.0
             },
             {
               "name": "Miguel Vargas",
@@ -914,7 +914,7 @@
               "name": "Sal Frelick",
               "mlb_team": "MIL",
               "position": "OF",
-              "stats": "R:3, RBI:1, OBP:.368",
+              "stats": "R:3, RBI:1, OBP:.350",
               "score": 9.0
             },
             {
@@ -1096,7 +1096,7 @@
               "name": "Brandon Lowe",
               "mlb_team": "PIT",
               "position": "2B",
-              "stats": "R:3, HR:1, RBI:7, SB:1, OBP:.300",
+              "stats": "R:3, HR:1, RBI:7, SB:1, OBP:.290",
               "score": 18.0
             },
             {
@@ -1196,7 +1196,7 @@
               "name": "Luke Keaschall",
               "mlb_team": "MIN",
               "position": "2B,OF",
-              "stats": "R:5, HR:1, RBI:1, SB:1, OBP:.563",
+              "stats": "R:5, HR:1, RBI:1, SB:1, OBP:.562",
               "score": 13.0
             },
             {
@@ -1410,18 +1410,18 @@
               "score": 11.0
             },
             {
+              "name": "William Contreras",
+              "mlb_team": "MIL",
+              "position": "C",
+              "stats": "R:2, RBI:1, OBP:.310",
+              "score": 10.0
+            },
+            {
               "name": "Jakob Marsee",
               "mlb_team": "MIA",
               "position": "OF",
               "stats": "R:4, HR:1, RBI:1, OBP:.296",
               "score": 9.0
-            },
-            {
-              "name": "Eugenio Su\u00e1rez",
-              "mlb_team": "CIN",
-              "position": "3B",
-              "stats": "R:2, RBI:2, OBP:.320",
-              "score": 8.0
             }
           ]
         }
@@ -2093,8 +2093,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-07-11T13:00:52.058195"
+  "saved_at": "2026-07-11T16:45:26.234165"
 }
