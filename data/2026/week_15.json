@@ -1651,6 +1651,18 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1783860715,
+      "players": [
+        {
+          "name": "Robert Gasser",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "SP"
+        }
+      ]
+    },
+    {
       "type": "drop",
       "timestamp": 1783722236,
       "players": [
@@ -2057,24 +2069,6 @@
           "position": "SP,RP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1783091681,
-      "players": [
-        {
-          "name": "Luke Weaver",
-          "action": "add",
-          "team": "Albuquerque Bombers",
-          "position": "RP"
-        },
-        {
-          "name": "Orion Kerkering",
-          "action": "drop",
-          "team": "Albuquerque Bombers",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2096,5 +2090,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-07-12T09:44:48.497541"
+  "saved_at": "2026-07-12T13:02:33.323049"
 }
