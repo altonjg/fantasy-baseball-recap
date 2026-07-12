@@ -39,7 +39,7 @@
               "name": "Brice Turang",
               "mlb_team": "MIL",
               "position": "2B",
-              "stats": "R:4, HR:1, RBI:4, OBP:.364",
+              "stats": "R:4, HR:1, RBI:4, OBP:.353",
               "score": 20.0
             },
             {
@@ -545,7 +545,7 @@
               "name": "Jackson Chourio",
               "mlb_team": "MIL",
               "position": "OF",
-              "stats": "R:5, HR:2, RBI:4, OBP:.387",
+              "stats": "R:5, HR:2, RBI:4, OBP:.375",
               "score": 19.0
             },
             {
@@ -573,8 +573,8 @@
               "name": "Ryan O'Hearn",
               "mlb_team": "PIT",
               "position": "1B,OF",
-              "stats": "R:5, RBI:1, OBP:.320",
-              "score": 11.0
+              "stats": "R:6, RBI:2, OBP:.346",
+              "score": 14.0
             },
             {
               "name": "Hunter Goodman",
@@ -676,7 +676,7 @@
               "name": "Bryan Reynolds",
               "mlb_team": "PIT",
               "position": "OF",
-              "stats": "R:6, HR:2, RBI:4, SB:1, OBP:.294",
+              "stats": "R:6, HR:2, RBI:4, SB:1, OBP:.286",
               "score": 21.0
             },
             {
@@ -748,7 +748,7 @@
               "name": "Jake Bauers",
               "mlb_team": "MIL",
               "position": "1B,OF",
-              "stats": "R:5, HR:2, RBI:5, OBP:.269",
+              "stats": "R:5, HR:2, RBI:5, OBP:.259",
               "score": 19.0
             },
             {
@@ -914,7 +914,7 @@
               "name": "Sal Frelick",
               "mlb_team": "MIL",
               "position": "OF",
-              "stats": "R:3, RBI:1, OBP:.368",
+              "stats": "R:3, RBI:1, OBP:.350",
               "score": 9.0
             },
             {
@@ -1096,7 +1096,7 @@
               "name": "Brandon Lowe",
               "mlb_team": "PIT",
               "position": "2B",
-              "stats": "R:3, HR:1, RBI:7, SB:1, OBP:.300",
+              "stats": "R:3, HR:1, RBI:7, SB:1, OBP:.290",
               "score": 18.0
             },
             {
@@ -1196,7 +1196,7 @@
               "name": "Luke Keaschall",
               "mlb_team": "MIN",
               "position": "2B,OF",
-              "stats": "R:5, HR:1, RBI:1, SB:1, OBP:.563",
+              "stats": "R:5, HR:1, RBI:1, SB:1, OBP:.562",
               "score": 13.0
             },
             {
@@ -2090,5 +2090,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-07-12T13:02:33.323049"
+  "saved_at": "2026-07-12T16:50:49.986442"
 }
