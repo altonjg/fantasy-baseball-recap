@@ -1651,6 +1651,24 @@
   },
   "transactions": [
     {
+      "type": "add/drop",
+      "timestamp": 1783954274,
+      "players": [
+        {
+          "name": "Jack Flaherty",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        },
+        {
+          "name": "Keaton Winn",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
       "type": "add",
       "timestamp": 1783860715,
       "players": [
@@ -2057,18 +2075,6 @@
           "position": "SP,RP"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1783168596,
-      "players": [
-        {
-          "name": "Antonio Senzatela",
-          "action": "drop",
-          "team": "Athletic Park Dragons",
-          "position": "SP,RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2090,5 +2096,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-07-13T14:12:58.960230"
+  "saved_at": "2026-07-13T17:49:34.624350"
 }
