@@ -136,13 +136,6 @@
               "score": 12.0
             },
             {
-              "name": "Blaze Alexander",
-              "mlb_team": "BAL",
-              "position": "2B,3B,SS,OF",
-              "stats": "R:4, HR:1, RBI:1, OBP:.500",
-              "score": 10.0
-            },
-            {
               "name": "Trea Turner",
               "mlb_team": "PHI",
               "position": "SS",
@@ -161,6 +154,13 @@
               "mlb_team": "MIA",
               "position": "1B,OF",
               "stats": "R:1, HR:1, RBI:3, OBP:.174",
+              "score": 8.0
+            },
+            {
+              "name": "Mason Miller",
+              "mlb_team": "SD",
+              "position": "RP",
+              "stats": "K:5, WHIP:0.33, NSVH:3, IP:3.0",
               "score": 8.0
             }
           ]
@@ -1652,6 +1652,24 @@
   "transactions": [
     {
       "type": "add/drop",
+      "timestamp": 1784042070,
+      "players": [
+        {
+          "name": "Willi Castro",
+          "action": "add",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "1B,2B,3B,SS,OF"
+        },
+        {
+          "name": "Blaze Alexander",
+          "action": "drop",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "2B,3B,SS,OF"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
       "timestamp": 1783954274,
       "players": [
         {
@@ -2063,18 +2081,6 @@
           "position": "C,1B"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1783168854,
-      "players": [
-        {
-          "name": "Tyler Wells",
-          "action": "add",
-          "team": "Athletic Park Dragons",
-          "position": "SP,RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2093,8 +2099,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-07-14T13:15:04.100571"
+  "saved_at": "2026-07-14T17:05:50.140700"
 }
