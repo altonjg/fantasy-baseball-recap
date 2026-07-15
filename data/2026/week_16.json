@@ -1652,6 +1652,42 @@
   "transactions": [
     {
       "type": "add/drop",
+      "timestamp": 1784129492,
+      "players": [
+        {
+          "name": "Chandler Simpson",
+          "action": "add",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "OF"
+        },
+        {
+          "name": "Andrew Vaughn",
+          "action": "drop",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "1B"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1784129337,
+      "players": [
+        {
+          "name": "Brent Headrick",
+          "action": "add",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "RP"
+        },
+        {
+          "name": "Brandon Woodruff",
+          "action": "drop",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
       "timestamp": 1784042070,
       "players": [
         {
@@ -2051,36 +2087,6 @@
           "position": "C"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1783231598,
-      "players": [
-        {
-          "name": "David Hamilton",
-          "action": "drop",
-          "team": "Hiroshima Radiation",
-          "position": "2B,3B,SS"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1783182151,
-      "players": [
-        {
-          "name": "Dalton Rushing",
-          "action": "add",
-          "team": "Benchwarmers",
-          "position": "C"
-        },
-        {
-          "name": "Brandon Valenzuela",
-          "action": "drop",
-          "team": "Benchwarmers",
-          "position": "C,1B"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2102,5 +2108,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-07-15T13:19:28.033532"
+  "saved_at": "2026-07-15T17:08:38.238811"
 }
