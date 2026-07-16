@@ -2105,8 +2105,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-07-16T13:26:01.997307"
+  "saved_at": "2026-07-16T17:06:45.234671"
 }
