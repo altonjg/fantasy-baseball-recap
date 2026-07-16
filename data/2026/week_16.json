@@ -1651,6 +1651,18 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1784229672,
+      "players": [
+        {
+          "name": "Yennier Cano",
+          "action": "add",
+          "team": "Hiroshima Radiation",
+          "position": "RP"
+        }
+      ]
+    },
+    {
       "type": "add/drop",
       "timestamp": 1784129492,
       "players": [
@@ -2075,18 +2087,6 @@
           "position": "SP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1783239819,
-      "players": [
-        {
-          "name": "Will Smith",
-          "action": "add",
-          "team": "Benchwarmers",
-          "position": "C"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2108,5 +2108,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-07-16T17:06:45.234671"
+  "saved_at": "2026-07-16T20:49:09.269677"
 }
