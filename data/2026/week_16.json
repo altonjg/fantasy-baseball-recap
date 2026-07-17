@@ -242,7 +242,7 @@
               "name": "Jonathan Aranda",
               "mlb_team": "TB",
               "position": "1B",
-              "stats": "R:3, HR:1, RBI:6, OBP:.467",
+              "stats": "R:3, HR:1, RBI:6, OBP:.441",
               "score": 21.0
             },
             {
@@ -325,6 +325,13 @@
               "score": 19.0
             },
             {
+              "name": "Griffin Jax",
+              "mlb_team": "TB",
+              "position": "SP,RP",
+              "stats": "K:19, ERA:6.60, WHIP:1.27, IP:15.0",
+              "score": 19.0
+            },
+            {
               "name": "Cam Schlittler",
               "mlb_team": "NYY",
               "position": "SP",
@@ -344,13 +351,6 @@
               "position": "OF",
               "stats": "R:4, HR:1, RBI:3, OBP:.409",
               "score": 14.0
-            },
-            {
-              "name": "Griffin Jax",
-              "mlb_team": "TB",
-              "position": "SP,RP",
-              "stats": "K:13, ERA:3.60, WHIP:1.00, IP:10.0",
-              "score": 13.0
             },
             {
               "name": "Manny Machado",
@@ -498,11 +498,11 @@
               "score": 12.0
             },
             {
-              "name": "Cristopher S\u00e1nchez",
-              "mlb_team": "PHI",
-              "position": "SP",
-              "stats": "K:8, ERA:9.58, WHIP:2.32, QS:1, IP:10.1",
-              "score": 9.0
+              "name": "Jarren Duran",
+              "mlb_team": "BOS",
+              "position": "OF",
+              "stats": "R:3, RBI:5, OBP:.250",
+              "score": 12.0
             }
           ]
         },
@@ -538,7 +538,7 @@
               "name": "Yandy D\u00edaz",
               "mlb_team": "TB",
               "position": "1B",
-              "stats": "R:5, HR:1, RBI:2, OBP:.333",
+              "stats": "R:5, HR:1, RBI:2, OBP:.294",
               "score": 18.0
             },
             {
@@ -738,18 +738,18 @@
           },
           "top_players": [
             {
+              "name": "Ceddanne Rafaela",
+              "mlb_team": "BOS",
+              "position": "2B,OF",
+              "stats": "R:4, HR:1, RBI:4, SB:1, OBP:.273",
+              "score": 18.0
+            },
+            {
               "name": "Luis Garc\u00eda Jr.",
               "mlb_team": "WSH",
               "position": "1B,2B",
               "stats": "R:3, HR:1, RBI:4, SB:1, OBP:.360",
               "score": 16.0
-            },
-            {
-              "name": "Ceddanne Rafaela",
-              "mlb_team": "BOS",
-              "position": "2B,OF",
-              "stats": "R:3, HR:1, RBI:3, OBP:.286",
-              "score": 14.0
             },
             {
               "name": "Zach Neto",
@@ -900,8 +900,8 @@
               "name": "Junior Caminero",
               "mlb_team": "TB",
               "position": "3B",
-              "stats": "R:4, HR:2, RBI:3, SB:1, OBP:.300",
-              "score": 14.0
+              "stats": "R:4, HR:2, RBI:3, SB:1, OBP:.294",
+              "score": 15.0
             },
             {
               "name": "Cole Young",
@@ -918,10 +918,10 @@
               "score": 12.0
             },
             {
-              "name": "Cole Carrigg",
-              "mlb_team": "COL",
-              "position": "OF",
-              "stats": "R:3, RBI:3, OBP:.261",
+              "name": "Jake Bennett",
+              "mlb_team": "BOS",
+              "position": "SP",
+              "stats": "K:7, WHIP:0.54, QS:2, IP:13.0",
               "score": 9.0
             }
           ]
@@ -2108,5 +2108,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-07-17T17:03:42.565061"
+  "saved_at": "2026-07-17T20:44:18.035080"
 }
