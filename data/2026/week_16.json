@@ -50,18 +50,18 @@
               "score": 16.0
             },
             {
-              "name": "A.J. Ewing",
-              "mlb_team": "NYM",
-              "position": "2B,OF",
-              "stats": "R:3, HR:1, RBI:2, OBP:.259",
-              "score": 13.0
-            },
-            {
               "name": "Christian Yelich",
               "mlb_team": "MIL",
               "position": "OF",
               "stats": "R:2, RBI:3, OBP:.333",
               "score": 12.0
+            },
+            {
+              "name": "A.J. Ewing",
+              "mlb_team": "NYM",
+              "position": "2B,OF",
+              "stats": "R:3, HR:1, RBI:1, OBP:.273",
+              "score": 11.0
             },
             {
               "name": "Josh Naylor",
@@ -74,7 +74,7 @@
               "name": "Francisco Lindor",
               "mlb_team": "NYM",
               "position": "SS",
-              "stats": "R:2, HR:1, RBI:2, OBP:.200",
+              "stats": "R:2, HR:1, RBI:2, OBP:.231",
               "score": 9.0
             },
             {
@@ -118,8 +118,8 @@
               "name": "Juan Soto",
               "mlb_team": "NYM",
               "position": "OF",
-              "stats": "R:4, HR:3, RBI:8, SB:1, OBP:.457",
-              "score": 21.0
+              "stats": "R:4, HR:3, RBI:8, SB:1, OBP:.387",
+              "score": 20.0
             },
             {
               "name": "Kazuma Okamoto",
@@ -129,18 +129,18 @@
               "score": 15.0
             },
             {
-              "name": "Trea Turner",
-              "mlb_team": "PHI",
-              "position": "SS",
-              "stats": "R:3, HR:1, RBI:3, OBP:.300",
-              "score": 13.0
-            },
-            {
               "name": "Michael Busch",
               "mlb_team": "CHC",
               "position": "1B",
               "stats": "R:3, RBI:2, OBP:.385",
               "score": 12.0
+            },
+            {
+              "name": "Trea Turner",
+              "mlb_team": "PHI",
+              "position": "SS",
+              "stats": "R:2, RBI:2, OBP:.308",
+              "score": 9.0
             },
             {
               "name": "Kyle Karros",
@@ -549,13 +549,6 @@
               "score": 16.0
             },
             {
-              "name": "Aaron Nola",
-              "mlb_team": "PHI",
-              "position": "SP",
-              "stats": "K:14, ERA:4.09, WHIP:1.36, QS:1, IP:11.0",
-              "score": 15.0
-            },
-            {
               "name": "Michael Massey",
               "mlb_team": "KC",
               "position": "2B,OF",
@@ -582,6 +575,13 @@
               "position": "1B",
               "stats": "R:3, RBI:1, OBP:.333",
               "score": 9.0
+            },
+            {
+              "name": "Aaron Nola",
+              "mlb_team": "PHI",
+              "position": "SP",
+              "stats": "K:8, ERA:3.60, WHIP:1.00, IP:5.0",
+              "score": 8.0
             }
           ]
         }
@@ -669,8 +669,8 @@
               "name": "Carson Benge",
               "mlb_team": "NYM",
               "position": "OF",
-              "stats": "R:6, HR:1, RBI:3, SB:5, OBP:.433",
-              "score": 23.0
+              "stats": "R:6, HR:1, RBI:3, SB:4, OBP:.462",
+              "score": 21.0
             },
             {
               "name": "Heliot Ramos",
@@ -911,18 +911,18 @@
               "score": 13.0
             },
             {
-              "name": "Christian Scott",
-              "mlb_team": "NYM",
-              "position": "SP",
-              "stats": "K:12, WHIP:0.66, IP:10.2",
-              "score": 12.0
-            },
-            {
               "name": "Liam Hicks",
               "mlb_team": "MIA",
               "position": "C,1B",
               "stats": "R:2, RBI:2, SB:1, OBP:.391",
               "score": 12.0
+            },
+            {
+              "name": "Cole Carrigg",
+              "mlb_team": "COL",
+              "position": "OF",
+              "stats": "R:3, RBI:3, OBP:.261",
+              "score": 9.0
             }
           ]
         },
@@ -1096,8 +1096,8 @@
               "name": "Kyle Schwarber",
               "mlb_team": "PHI",
               "position": "OF",
-              "stats": "R:2, HR:2, RBI:4, OBP:.324",
-              "score": 16.0
+              "stats": "R:2, HR:2, RBI:4, OBP:.333",
+              "score": 15.0
             },
             {
               "name": "Tarik Skubal",
@@ -2105,8 +2105,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "ERA",
-    "WHIP"
+    "WHIP",
+    "ERA"
   ],
-  "saved_at": "2026-07-17T06:09:45.339573"
+  "saved_at": "2026-07-17T09:50:07.166538"
 }
