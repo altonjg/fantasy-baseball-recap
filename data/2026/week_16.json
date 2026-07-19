@@ -125,7 +125,7 @@
               "name": "Kazuma Okamoto",
               "mlb_team": "TOR",
               "position": "1B,3B",
-              "stats": "R:4, HR:2, RBI:5, OBP:.286",
+              "stats": "R:4, HR:2, RBI:5, OBP:.267",
               "score": 15.0
             },
             {
@@ -288,10 +288,10 @@
               "score": 12.0
             },
             {
-              "name": "Chase Meidroth",
+              "name": "Sean Burke",
               "mlb_team": "CWS",
-              "position": "2B,3B,SS",
-              "stats": "R:3, RBI:2, OBP:.375",
+              "position": "SP,RP",
+              "stats": "K:10, ERA:1.00, WHIP:0.44, QS:1, IP:9.0",
               "score": 11.0
             }
           ]
@@ -321,15 +321,15 @@
               "name": "Vladimir Guerrero Jr.",
               "mlb_team": "TOR",
               "position": "1B",
-              "stats": "R:5, HR:2, RBI:6, SB:1, OBP:.321",
+              "stats": "R:5, HR:2, RBI:6, SB:1, OBP:.310",
               "score": 19.0
             },
             {
               "name": "Cam Schlittler",
               "mlb_team": "NYY",
               "position": "SP",
-              "stats": "K:14, ERA:1.84, WHIP:0.82, QS:2, IP:14.2",
-              "score": 16.0
+              "stats": "K:17, ERA:1.72, WHIP:0.77, QS:2, IP:15.2",
+              "score": 19.0
             },
             {
               "name": "Brandon Lowe",
@@ -342,7 +342,7 @@
               "name": "Andy Pages",
               "mlb_team": "LAD",
               "position": "OF",
-              "stats": "R:4, HR:1, RBI:3, OBP:.409",
+              "stats": "R:4, HR:1, RBI:3, OBP:.391",
               "score": 14.0
             },
             {
@@ -473,7 +473,7 @@
               "name": "Ernie Clement",
               "mlb_team": "TOR",
               "position": "1B,2B,3B,SS",
-              "stats": "R:4, HR:1, RBI:3, SB:1, OBP:.345",
+              "stats": "R:4, HR:1, RBI:3, SB:1, OBP:.333",
               "score": 18.0
             },
             {
@@ -1161,7 +1161,7 @@
               "name": "Shohei Ohtani (Batter)",
               "mlb_team": "LAD",
               "position": "Util",
-              "stats": "R:5, HR:4, RBI:7, OBP:.400",
+              "stats": "R:5, HR:4, RBI:7, OBP:.385",
               "score": 24.0
             },
             {
@@ -1210,7 +1210,7 @@
               "name": "Miguel Vargas",
               "mlb_team": "CWS",
               "position": "1B,3B",
-              "stats": "R:3, HR:1, RBI:3, OBP:.240",
+              "stats": "R:3, HR:1, RBI:3, OBP:.231",
               "score": 12.0
             }
           ]
@@ -1371,7 +1371,7 @@
               "name": "Matt Olson",
               "mlb_team": "ATL",
               "position": "1B",
-              "stats": "R:5, HR:3, RBI:4, OBP:.313",
+              "stats": "R:5, HR:3, RBI:4, OBP:.312",
               "score": 18.0
             },
             {
@@ -1650,6 +1650,42 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "add/drop",
+      "timestamp": 1784474298,
+      "players": [
+        {
+          "name": "Justin Slaten",
+          "action": "add",
+          "team": "BaseballPro77",
+          "position": "RP"
+        },
+        {
+          "name": "Justin Sterner",
+          "action": "drop",
+          "team": "BaseballPro77",
+          "position": "RP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1784473700,
+      "players": [
+        {
+          "name": "Trent Thornton",
+          "action": "add",
+          "team": "Buttville Skidmarks",
+          "position": "RP"
+        },
+        {
+          "name": "Dennis Santana",
+          "action": "drop",
+          "team": "Buttville Skidmarks",
+          "position": "RP"
+        }
+      ]
+    },
     {
       "type": "drop",
       "timestamp": 1784419588,
@@ -2051,36 +2087,6 @@
           "position": "SP,RP"
         }
       ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1783326552,
-      "players": [
-        {
-          "name": "Orion Kerkering",
-          "action": "add",
-          "team": "Buttville Skidmarks",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1783258709,
-      "players": [
-        {
-          "name": "Peyton Gray",
-          "action": "add",
-          "team": "Riverside Roughnecks",
-          "position": "RP"
-        },
-        {
-          "name": "Kyle Hurt",
-          "action": "drop",
-          "team": "Riverside Roughnecks",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2102,5 +2108,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-07-19T12:59:11.707360"
+  "saved_at": "2026-07-19T16:48:57.697051"
 }
