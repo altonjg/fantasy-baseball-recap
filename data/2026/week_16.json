@@ -1371,7 +1371,7 @@
               "name": "Matt Olson",
               "mlb_team": "ATL",
               "position": "1B",
-              "stats": "R:5, HR:3, RBI:4, OBP:.313",
+              "stats": "R:5, HR:3, RBI:4, OBP:.312",
               "score": 18.0
             },
             {
@@ -2108,5 +2108,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-07-20T17:27:01.211425"
+  "saved_at": "2026-07-20T21:03:30.652767"
 }
