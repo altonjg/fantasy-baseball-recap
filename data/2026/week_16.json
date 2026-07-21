@@ -1371,7 +1371,7 @@
               "name": "Matt Olson",
               "mlb_team": "ATL",
               "position": "1B",
-              "stats": "R:5, HR:3, RBI:4, OBP:.313",
+              "stats": "R:5, HR:3, RBI:4, OBP:.312",
               "score": 18.0
             },
             {
@@ -1650,6 +1650,18 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "add",
+      "timestamp": 1784656419,
+      "players": [
+        {
+          "name": "J.T. Realmuto",
+          "action": "add",
+          "team": "Hiroshima Radiation",
+          "position": "C"
+        }
+      ]
+    },
     {
       "type": "add/drop",
       "timestamp": 1784645496,
@@ -2069,24 +2081,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1783443478,
-      "players": [
-        {
-          "name": "Luis Lara",
-          "action": "add",
-          "team": "North Correa",
-          "position": "OF"
-        },
-        {
-          "name": "Colton Cowser",
-          "action": "drop",
-          "team": "North Correa",
-          "position": "OF"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2108,5 +2102,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-07-21T17:08:02.245265"
+  "saved_at": "2026-07-21T20:59:07.213755"
 }
