@@ -356,8 +356,8 @@
               "name": "Manny Machado",
               "mlb_team": "SD",
               "position": "3B",
-              "stats": "R:1, RBI:3, OBP:.381",
-              "score": 11.0
+              "stats": "R:1, RBI:3, OBP:.391",
+              "score": 12.0
             },
             {
               "name": "Jorge Soler",
@@ -790,7 +790,7 @@
               "name": "Mauricio Dub\u00f3n",
               "mlb_team": "ATL",
               "position": "2B,3B,SS,OF",
-              "stats": "R:1, HR:1, RBI:3, SB:1, OBP:.167",
+              "stats": "R:1, HR:1, RBI:3, SB:1, OBP:.161",
               "score": 11.0
             }
           ]
@@ -979,7 +979,7 @@
               "name": "Ozzie Albies",
               "mlb_team": "ATL",
               "position": "2B",
-              "stats": "R:4, RBI:2, OBP:.290",
+              "stats": "R:4, RBI:2, OBP:.281",
               "score": 12.0
             },
             {
@@ -1179,6 +1179,13 @@
               "score": 20.0
             },
             {
+              "name": "Michael Harris II",
+              "mlb_team": "ATL",
+              "position": "OF",
+              "stats": "R:4, HR:1, RBI:3, SB:1, OBP:.286",
+              "score": 18.0
+            },
+            {
               "name": "Jac Caglianone",
               "mlb_team": "KC",
               "position": "1B,OF",
@@ -1200,17 +1207,10 @@
               "score": 16.0
             },
             {
-              "name": "Michael Harris II",
+              "name": "Chris Sale",
               "mlb_team": "ATL",
-              "position": "OF",
-              "stats": "R:3, RBI:2, SB:1, OBP:.265",
-              "score": 14.0
-            },
-            {
-              "name": "Miguel Vargas",
-              "mlb_team": "CWS",
-              "position": "1B,3B",
-              "stats": "R:3, HR:1, RBI:3, OBP:.240",
+              "position": "SP",
+              "stats": "K:12, ERA:4.05, WHIP:1.20, IP:6.2",
               "score": 12.0
             }
           ]
@@ -1371,7 +1371,7 @@
               "name": "Matt Olson",
               "mlb_team": "ATL",
               "position": "1B",
-              "stats": "R:5, HR:3, RBI:4, OBP:.313",
+              "stats": "R:5, HR:3, RBI:4, OBP:.303",
               "score": 18.0
             },
             {
@@ -1385,14 +1385,14 @@
               "name": "Fernando Tatis Jr.",
               "mlb_team": "SD",
               "position": "2B,OF",
-              "stats": "R:4, RBI:1, SB:2, OBP:.267",
-              "score": 12.0
+              "stats": "R:4, RBI:2, SB:2, OBP:.281",
+              "score": 13.0
             },
             {
               "name": "Drake Baldwin",
               "mlb_team": "ATL",
               "position": "C",
-              "stats": "R:1, RBI:3, OBP:.433",
+              "stats": "R:1, RBI:3, OBP:.406",
               "score": 11.0
             },
             {
@@ -1406,7 +1406,7 @@
               "name": "Xander Bogaerts",
               "mlb_team": "SD",
               "position": "SS",
-              "stats": "R:1, RBI:2, SB:2, OBP:.273",
+              "stats": "R:1, RBI:2, SB:2, OBP:.250",
               "score": 7.0
             },
             {
@@ -1650,6 +1650,66 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "add",
+      "timestamp": 1784822593,
+      "players": [
+        {
+          "name": "Francisco Alvarez",
+          "action": "add",
+          "team": "BaseballPro77",
+          "position": "C"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1784818132,
+      "players": [
+        {
+          "name": "David Peterson",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1784818096,
+      "players": [
+        {
+          "name": "Jordan Hicks",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP,RP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1784818049,
+      "players": [
+        {
+          "name": "Brady Singer",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1784818022,
+      "players": [
+        {
+          "name": "Kyle Leahy",
+          "action": "add",
+          "team": "Wonder Wharf Wonderdogs",
+          "position": "SP,RP"
+        }
+      ]
+    },
     {
       "type": "add",
       "timestamp": 1784757559,
@@ -1997,78 +2057,6 @@
           "position": "1B,2B,3B,SS,OF"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1783720907,
-      "players": [
-        {
-          "name": "Matt Strahm",
-          "action": "drop",
-          "team": "Athletic Park Dragons",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1783697652,
-      "players": [
-        {
-          "name": "Jacob Webb",
-          "action": "add",
-          "team": "BaseballPro77",
-          "position": "RP"
-        },
-        {
-          "name": "Caleb Thielbar",
-          "action": "drop",
-          "team": "BaseballPro77",
-          "position": "RP"
-        }
-      ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1783679465,
-      "players": [
-        {
-          "name": "Keibert Ruiz",
-          "action": "drop",
-          "team": "Buttville Skidmarks",
-          "position": "C"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1783613528,
-      "players": [
-        {
-          "name": "Andrew Abbott",
-          "action": "add",
-          "team": "BaseballPro77",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1783613059,
-      "players": [
-        {
-          "name": "Blaze Alexander",
-          "action": "add",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "2B,3B,SS,OF"
-        },
-        {
-          "name": "Oswald Peraza",
-          "action": "drop",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "1B,2B,3B,SS"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2090,5 +2078,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-07-23T13:29:03.989232"
+  "saved_at": "2026-07-23T17:11:43.667201"
 }
