@@ -1371,7 +1371,7 @@
               "name": "Matt Olson",
               "mlb_team": "ATL",
               "position": "1B",
-              "stats": "R:5, HR:3, RBI:4, OBP:.313",
+              "stats": "R:5, HR:3, RBI:4, OBP:.312",
               "score": 18.0
             },
             {
@@ -1650,6 +1650,36 @@
     "2": "National League"
   },
   "transactions": [
+    {
+      "type": "drop",
+      "timestamp": 1784997296,
+      "players": [
+        {
+          "name": "Mart\u00edn P\u00e9rez",
+          "action": "drop",
+          "team": "Wisconsin Rapids Reapers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1784992409,
+      "players": [
+        {
+          "name": "Christian Encarnacion-Strand",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "1B,3B"
+        },
+        {
+          "name": "Walker Buehler",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "SP"
+        }
+      ]
+    },
     {
       "type": "drop",
       "timestamp": 1784967815,
@@ -2027,42 +2057,6 @@
           "position": "RP"
         }
       ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1784129492,
-      "players": [
-        {
-          "name": "Chandler Simpson",
-          "action": "add",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "OF"
-        },
-        {
-          "name": "Andrew Vaughn",
-          "action": "drop",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "1B"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1784129337,
-      "players": [
-        {
-          "name": "Brent Headrick",
-          "action": "add",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "RP"
-        },
-        {
-          "name": "Brandon Woodruff",
-          "action": "drop",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2084,5 +2078,5 @@
     "ERA",
     "WHIP"
   ],
-  "saved_at": "2026-07-25T13:06:17.803911"
+  "saved_at": "2026-07-25T16:48:41.081200"
 }
