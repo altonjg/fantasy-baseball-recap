@@ -538,7 +538,7 @@
               "name": "Yandy D\u00edaz",
               "mlb_team": "TB",
               "position": "1B",
-              "stats": "R:5, HR:1, RBI:2, OBP:.333",
+              "stats": "R:5, HR:1, RBI:2, OBP:.323",
               "score": 18.0
             },
             {
@@ -872,7 +872,7 @@
               "name": "Chase DeLauter",
               "mlb_team": "CLE",
               "position": "OF",
-              "stats": "R:4, HR:3, RBI:5, OBP:.444",
+              "stats": "R:4, HR:3, RBI:5, OBP:.429",
               "score": 20.0
             },
             {
@@ -900,7 +900,7 @@
               "name": "Junior Caminero",
               "mlb_team": "TB",
               "position": "3B",
-              "stats": "R:4, HR:2, RBI:3, SB:1, OBP:.300",
+              "stats": "R:4, HR:2, RBI:3, SB:1, OBP:.290",
               "score": 14.0
             },
             {
@@ -1175,7 +1175,7 @@
               "name": "Brayan Rocchio",
               "mlb_team": "CLE",
               "position": "2B,SS",
-              "stats": "R:4, HR:2, RBI:7, OBP:.280",
+              "stats": "R:4, HR:2, RBI:7, OBP:.269",
               "score": 20.0
             },
             {
@@ -1651,6 +1651,72 @@
   },
   "transactions": [
     {
+      "type": "add",
+      "timestamp": 1785073933,
+      "players": [
+        {
+          "name": "Carson Whisenhunt",
+          "action": "add",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1785073841,
+      "players": [
+        {
+          "name": "Jack Flaherty",
+          "action": "drop",
+          "team": "Albuquerque Bombers",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add/drop",
+      "timestamp": 1785073822,
+      "players": [
+        {
+          "name": "Luinder Avila",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "SP,RP"
+        },
+        {
+          "name": "Brandon Sproat",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "drop",
+      "timestamp": 1785073800,
+      "players": [
+        {
+          "name": "Anthony Kay",
+          "action": "drop",
+          "team": "Riverside Roughnecks",
+          "position": "SP"
+        }
+      ]
+    },
+    {
+      "type": "add",
+      "timestamp": 1785073660,
+      "players": [
+        {
+          "name": "Dylan Dodd",
+          "action": "add",
+          "team": "Hiroshima Radiation",
+          "position": "RP"
+        }
+      ]
+    },
+    {
       "type": "trade",
       "timestamp": 1785054151,
       "players": [
@@ -2033,84 +2099,6 @@
           "position": "1B"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1784696054,
-      "players": [
-        {
-          "name": "Ryan Feltner",
-          "action": "drop",
-          "team": "Wisconsin Rapids Reapers",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1784668935,
-      "players": [
-        {
-          "name": "Brandon Pfaadt",
-          "action": "add",
-          "team": "Albuquerque Bombers",
-          "position": "SP,RP"
-        },
-        {
-          "name": "Tyler Tolbert",
-          "action": "drop",
-          "team": "Albuquerque Bombers",
-          "position": "SS,OF"
-        }
-      ]
-    },
-    {
-      "type": "add",
-      "timestamp": 1784656419,
-      "players": [
-        {
-          "name": "J.T. Realmuto",
-          "action": "add",
-          "team": "Hiroshima Radiation",
-          "position": "C"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1784645496,
-      "players": [
-        {
-          "name": "Zac Thornton",
-          "action": "add",
-          "team": "Athletic Park Dragons",
-          "position": "SP"
-        },
-        {
-          "name": "Dean Kremer",
-          "action": "drop",
-          "team": "Athletic Park Dragons",
-          "position": "SP"
-        }
-      ]
-    },
-    {
-      "type": "add/drop",
-      "timestamp": 1784474298,
-      "players": [
-        {
-          "name": "Justin Slaten",
-          "action": "add",
-          "team": "BaseballPro77",
-          "position": "RP"
-        },
-        {
-          "name": "Justin Sterner",
-          "action": "drop",
-          "team": "BaseballPro77",
-          "position": "RP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2129,8 +2117,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-07-26T13:03:31.561340"
+  "saved_at": "2026-07-26T16:51:11.562192"
 }
