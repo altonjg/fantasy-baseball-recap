@@ -669,7 +669,7 @@
               "name": "Carson Benge",
               "mlb_team": "NYM",
               "position": "OF",
-              "stats": "R:7, HR:1, RBI:3, SB:4, OBP:.467",
+              "stats": "R:7, HR:1, RBI:3, SB:4, OBP:.452",
               "score": 23.0
             },
             {
@@ -1094,7 +1094,7 @@
             },
             {
               "name": "Curtis Mead",
-              "mlb_team": "WSH",
+              "mlb_team": "BOS",
               "position": "1B,2B,3B",
               "stats": "R:4, HR:2, RBI:4, OBP:.464",
               "score": 18.0
@@ -2078,5 +2078,5 @@
     "WHIP",
     "ERA"
   ],
-  "saved_at": "2026-07-26T02:01:58.456328"
+  "saved_at": "2026-07-26T06:30:28.745098"
 }
