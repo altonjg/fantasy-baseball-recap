@@ -255,6 +255,22 @@
       "12. Benchwarmers | Payton Tolle's 0.93 ERA and Shane Baz's 12 K showed pitching upside, but the offense produced only 4 HR and 19 RBI in a 7-3 loss — this team's inability to generate power remains the ceiling-capper heading into the final weeks | same",
       "13. Canberra Wombats | Pete Crow-Armstrong and Michael Massey were productive, but 27.0 IP, a 6.67 ERA, and zero quality starts in a 10-0 sweep is a complete collapse; Aaron Nola's absence from the quality start column and the paper-thin pitching depth make this team extremely hard to trust | same",
       "14. Wonder Wharf Wonderdogs | Framber Valdez's 0.43 WHIP and Paul Skenes's solid outing show the ace talent is real, but 40.2 IP, a 5.53 ERA, and a 10-0 loss to Buttville confirms the pitching depth behind those two is non-existent; the worst luck delta in the league at -2.58 tells only part of the story | same"
+    ],
+    "week_17": [
+      "1. Sugar Land Skeeters | Historic offensive week — 25 HR and 65 RBI are new season records, CJ Abrams and Drake Baldwin are scorching hot, and an 8–2 rout of North Correa announces this team is peaking at exactly the right moment; they face the toughest test of the season next week against Buttville | up",
+      "2. Athletic Park Dragons | A 7–2 win with balanced contributions across James Wood, Esmerlyn Valdez, Dansby Swanson, and Peter Lambert keeps them at the top tier, and back-to-back dominant weeks with 10 and 7 category wins confirms this is the most consistent team in the second half | same",
+      "3. Albuquerque Bombers | A 5–3 win over Buttville is a genuinely impressive result given the opponent, and the combination of Freddie Freeman's .447 OBP, Josh Naylor's .429 OBP, and a 3.65 ERA suggests a well-rounded roster that refuses to fade; they remain the season's most consistent performer | up",
+      "4. Buttville Skidmarks | Wyatt Langford, Elly De La Cruz, and Rafael Devers all went deep as the offense delivered, but a 5–3 loss to the Bombers snaps the team's dominant streak — Parker Messick and Christian Scott gave strong pitching efforts and the roster is still elite, but the Skeeters matchup looms large next week | down",
+      "5. Hiroshima Radiation | Tarik Skubal's 21 K at a 0.63 ERA is the best individual pitching line of the week and a 9-QS, 108-K, 2.40-ERA pitching performance is genuinely elite, but a 5–5 tie against the Reapers when the offense manages only 7 HR and 33 runs is a chronic problem this team cannot seem to solve | same",
+      "6. BaseballPro77 | Gavin Williams (22 K), Cade Cavalli (17 K), and Logan Gilbert (14 K) combined for a monster strikeout week and 111 team K ties the season record, but losing 6–4 to General Hospital despite a 3.13 ERA and 9 QS stings — the offense's 44 runs and 10 HR were simply not enough when it mattered | down",
+      "7. Riverside Roughnecks | Jacob Misiorowski's 18 K at a 1.00 ERA and 0.67 WHIP is one of the best individual pitching performances of the season, and 107 total team strikeouts are dominant, but a 5–5 tie against the Twins when your pitching is that good is a damning indictment of an offense that hit just .242 as a team | same",
+      "8. Abbotsford-Colby Twins | Yordan Alvarez, Salvador Perez, Willy Adames, and Jazz Chisholm all delivered power in a big offensive week — 17 HR, 51 RBI, and .363 OBP are excellent numbers — but zero NSVH cost them the tie-breaker margin in a winnable matchup and this roster's bullpen remains a structural liability | same",
+      "9. General Hospital | A 6–4 win built on elite pitching (2.71 ERA, 0.95 WHIP, 8 QS) from Cam Schlittler and Brandon Young, and Manny Machado and Dillon Dingler both launched multiple home runs — this team is quietly playing much better baseball than their season record reflects and the luck delta of -1.88 suggests more wins are owed | up",
+      "10. Wisconsin Rapids Reapers | Trea Turner's 4 HR, 8 RBI, and .400 OBP led a strong offensive week and Chandler Simpson's 4 SB added speed, but a 5–5 tie against Hiroshima's elite pitching staff when you have only 2 QS and 61.1 IP all week confirms the rotation remains the existential threat to this roster's playoff hopes | same",
+      "11. North Correa | Chris Sale's 17 K at a 2.08 ERA and 0.62 WHIP was outstanding and Gabriel Moreno's .457 OBP was excellent, but getting swept 8–2 by Sugar Land's historic offensive week while your own starters Shane Drohan and Dustin May combined for a 5.40 ERA is a damaging result at a critical point in the season | down",
+      "12. Benchwarmers | Trey Yesavage's 18 K were impressive but a 5.40 ERA undermined the effort, Michael King's 1.64 ERA provided a bright spot, yet the offense generated only 9 HR and 33 RBI in a 7–2 loss to the Dragons — this team's power shortage continues to cap their ceiling and the Reapers matchup next week is a must-win | same",
+      "13. Canberra Wombats | Pete Crow-Armstrong, Jo Adell, and Alec Bohm all contributed offensively but an 8–2 blowout loss to the Wonderdogs while posting only 50.2 IP and a 1.40 WHIP is inexcusable — the pitching staff is running on fumes and Robbie Ray's 1.80 WHIP despite a good ERA summarizes a rotation that cannot be trusted | same",
+      "14. Wonder Wharf Wonderdogs | An 8–2 win is a welcome result and Ozzie Albies, Eugenio Suárez, and Geraldo Perdomo all homered, but this team hit only .200 as a team and Paul Skenes posted a 4.38 ERA — they are the most luck-dependent team in the league with a -2.65 delta and four pitching pickups on the waiver wire scream desperation | same"
     ]
   },
   "weekly_points": {
@@ -513,6 +529,22 @@
       "North Correa": 5.0,
       "Riverside Roughnecks": 4.0,
       "Sugar Land Skeeters": 4.0
+    },
+    "week_17": {
+      "Albuquerque Bombers": 3.0,
+      "Buttville Skidmarks": 5.0,
+      "Abbotsford-Colby Twins": 5.0,
+      "Riverside Roughnecks": 5.0,
+      "Athletic Park Dragons": 7.0,
+      "Benchwarmers": 2.0,
+      "BaseballPro77": 4.0,
+      "General Hospital": 6.0,
+      "Canberra Wombats": 2.0,
+      "Wonder Wharf Wonderdogs": 8.0,
+      "Hiroshima Radiation": 5.0,
+      "Wisconsin Rapids Reapers": 5.0,
+      "North Correa": 2.0,
+      "Sugar Land Skeeters": 8.0
     }
   },
   "manager_spotlight_rotation": [

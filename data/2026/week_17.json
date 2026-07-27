@@ -1652,6 +1652,18 @@
   "transactions": [
     {
       "type": "add",
+      "timestamp": 1785152155,
+      "players": [
+        {
+          "name": "Joe Mack",
+          "action": "add",
+          "team": "Riverside Roughnecks",
+          "position": "C"
+        }
+      ]
+    },
+    {
+      "type": "add",
       "timestamp": 1785086910,
       "players": [
         {
@@ -2087,18 +2099,6 @@
           "position": "1B,3B"
         }
       ]
-    },
-    {
-      "type": "drop",
-      "timestamp": 1784735962,
-      "players": [
-        {
-          "name": "Stephen Kolek",
-          "action": "drop",
-          "team": "General Hospital",
-          "position": "SP"
-        }
-      ]
     }
   ],
   "top_players": [],
@@ -2117,8 +2117,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-07-27T11:12:05.374047"
+  "saved_at": "2026-07-27T13:40:04.253570"
 }
