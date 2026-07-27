@@ -111,8 +111,8 @@
               "name": "Ben Rice",
               "mlb_team": "NYY",
               "position": "C,1B",
-              "stats": "R:8, HR:6, RBI:13, OBP:.471",
-              "score": 39.0
+              "stats": "R:8, HR:6, RBI:13, OBP:.486",
+              "score": 40.0
             },
             {
               "name": "Juan Soto",
@@ -566,7 +566,7 @@
               "name": "Alec Bohm",
               "mlb_team": "PHI",
               "position": "1B,3B",
-              "stats": "R:3, RBI:5, OBP:.257",
+              "stats": "R:3, RBI:5, OBP:.250",
               "score": 12.0
             },
             {
@@ -1082,7 +1082,7 @@
               "name": "Kyle Schwarber",
               "mlb_team": "PHI",
               "position": "OF",
-              "stats": "R:4, HR:2, RBI:5, OBP:.353",
+              "stats": "R:4, HR:2, RBI:5, OBP:.371",
               "score": 19.0
             },
             {
@@ -1131,7 +1131,7 @@
               "name": "Bryce Harper",
               "mlb_team": "PHI",
               "position": "1B",
-              "stats": "R:4, SB:1, OBP:.324",
+              "stats": "R:4, SB:1, OBP:.314",
               "score": 9.0
             }
           ]
@@ -2117,8 +2117,8 @@
     "90": "NSVH"
   },
   "lower_is_better_stats": [
-    "WHIP",
-    "ERA"
+    "ERA",
+    "WHIP"
   ],
-  "saved_at": "2026-07-27T02:09:50.843378"
+  "saved_at": "2026-07-27T06:56:30.526887"
 }
