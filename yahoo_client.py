@@ -214,6 +214,11 @@ def get_scoreboard(
                 "is_consolation": is_consolation,
                 "is_championship": False,  # set below in fetch_weekly_data
                 "stat_winners": stat_winners,
+                # Yahoo reports these as "YYYY-MM-DD" on each matchup. Used to scope
+                # transactions to the week, since the transactions endpoint is not
+                # week-aware and always returns the most recent ~30 league-wide.
+                "week_start": raw.get("week_start", ""),
+                "week_end": raw.get("week_end", ""),
             }
         )
 
@@ -809,9 +814,15 @@ def fetch_weekly_data(oauth: YahooOAuth, league_key: str, week: Optional[int] = 
         stat_categories.get(sid) for sid in _LOWER_IS_BETTER if sid in stat_categories
     }
 
+    # Week date range — identical across matchups, so take it from the first that has it.
+    week_start = next((m.get("week_start") for m in matchups if m.get("week_start")), "")
+    week_end   = next((m.get("week_end")   for m in matchups if m.get("week_end")),   "")
+
     return {
         "league_name": league_name,
         "week": recap_week,
+        "week_start": week_start or None,
+        "week_end": week_end or None,
         "end_week": end_week or None,
         "playoff_start_week": playoff_start_week or None,
         "matchups": matchups,

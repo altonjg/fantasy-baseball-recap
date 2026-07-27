@@ -31,7 +31,7 @@ import os
 import random
 import re
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 # Force UTF-8 for stdout/stderr — GitHub Actions runners default to ASCII
@@ -527,6 +527,63 @@ def _compute_standings(season: int, through_week: int) -> list[dict]:
 
 # ── Two-pass recap generation ─────────────────────────────────────────────────
 
+def _week_bounds(week_data: dict) -> tuple[float, float] | None:
+    """Return (start_ts, end_ts) for the fantasy week, or None if unknown.
+
+    Yahoo's transactions endpoint is not week-scoped — it always returns the most
+    recent ~30 transactions league-wide — so a Monday recap fetch also sees moves
+    made after the week closed. week_start/week_end come from the scoreboard as
+    "YYYY-MM-DD" local dates; the window runs to the end of the final day.
+    Week files written before these fields were captured return None, in which
+    case callers fall back to no filtering rather than dropping everything.
+    """
+    start, end = week_data.get("week_start"), week_data.get("week_end")
+    if not start or not end:
+        return None
+    try:
+        start_dt = datetime.strptime(start, "%Y-%m-%d")
+        end_dt = datetime.strptime(end, "%Y-%m-%d") + timedelta(days=1)
+    except (ValueError, TypeError):
+        return None
+    return start_dt.timestamp(), end_dt.timestamp()
+
+
+def _format_trades(week_data: dict) -> list[str]:
+    """One line per completed trade in this fantasy week: who received what.
+
+    In a trade transaction each player's "team" is the team that RECEIVED them,
+    so grouping the players by team yields each side's return. Shared by both
+    passes so the plan and the article describe the same deals identically.
+    """
+    bounds = _week_bounds(week_data)
+    lines: list[str] = []
+    for tx in week_data.get("transactions", []):
+        if tx.get("type", "").upper() != "TRADE":
+            continue
+        if bounds and tx.get("timestamp"):
+            ts = float(tx["timestamp"])
+            if not (bounds[0] <= ts < bounds[1]):
+                continue  # outside this fantasy week — belongs to an adjacent recap
+        received: dict[str, list[str]] = {}
+        for p in tx.get("players", []):
+            pos = p.get("position", "")
+            name = p.get("name", "")
+            received.setdefault(p.get("team", ""), []).append(
+                f"{name}({pos})" if pos else name
+            )
+        if len(received) < 2:
+            continue  # malformed/one-sided payload — nothing meaningful to describe
+        when = ""
+        if tx.get("timestamp"):
+            when = datetime.fromtimestamp(int(tx["timestamp"])).strftime("%b %d")
+        sides = " | ".join(
+            f"{team} received {', '.join(players)}"
+            for team, players in received.items()
+        )
+        lines.append(f"{when}: {sides}" if when else sides)
+    return lines
+
+
 def _build_recap_context(
     week_data: dict,
     season_history: dict,
@@ -631,6 +688,11 @@ def _build_recap_context(
             if team in drops:
                 parts.append(f"dropped {', '.join(drops[team][:4])}")
             lines.append(f"  {team}: {'; '.join(parts)}")
+
+    trade_lines = _format_trades(week_data)
+    if trade_lines:
+        lines.append(f"\nTRADES COMPLETED THIS WEEK ({len(trade_lines)}):")
+        lines.extend(f"  {t}" for t in trade_lines)
 
     # Manager spotlight
     lines.append(f"\nMANAGER SPOTLIGHT THIS WEEK: {spotlight_team}")
@@ -892,13 +954,37 @@ def _pass2_write(
     # Serialize the planning doc
     plan_text = json.dumps(plan, indent=2)
 
-    # Trade value section note
+    # Trade section note. Real completed trades outrank speculation: when any trade
+    # happened this week the slot becomes a Trade Report on the actual deals, and the
+    # speculative Buy/Sell/Hold section steps aside. Quiet weeks keep Trade Value Watch.
+    trade_lines = _format_trades(week_data)
     include_trade = plan.get("include_trade_value", False)
-    trade_value_note = (
-        "Trade Value Watch: OMIT this section entirely — no significant player shifts this week."
-        if not include_trade
-        else "Trade Value Watch: Include 2-3 players. For each: one sentence on what happened, one verdict (Buy/Sell/Hold) with brief reasoning."
-    )
+    if trade_lines:
+        trades_block = "\n".join(f"  {t}" for t in trade_lines)
+        trade_value_note = (
+            f"**Trade Report** (`## Trade Report`) — {len(trade_lines)} trade(s) were completed this "
+            "week. Cover EVERY one of them. These are the only real trades; do not invent, infer, or "
+            "reference any deal not listed here:\n"
+            f"{trades_block}\n"
+            "   For each trade: name both teams in bold, state exactly who each side received, then "
+            "give ~60-90 words on why it happened and what it means for both rosters and the playoff "
+            "race. Tie the deal to where those teams sit in the CURRENT STANDINGS above. Then give "
+            "each side a letter grade in bold, formatted exactly as `**Team Name: B+**`. Grades may "
+            "be A through F with plus or minus. If this week is at or near the trade deadline, frame "
+            "the section around buyers vs sellers. Only cite numeric stats for players who appear in "
+            "the RAW MATCHUP DATA above; otherwise describe them qualitatively."
+        )
+    elif include_trade:
+        trade_value_note = (
+            "**Trade Value Watch** (`## Trade Value Watch`) — no trades were completed this week. "
+            "Include 2-3 players. For each: one sentence on what happened, one verdict (Buy/Sell/Hold) "
+            "with brief reasoning."
+        )
+    else:
+        trade_value_note = (
+            "Trade Value Watch / Trade Report: OMIT this section entirely — no trades were completed "
+            "and no significant player shifts this week."
+        )
 
     # Records broken note
     records_str = str(plan.get("records_broken", "")).strip()
