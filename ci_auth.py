@@ -72,10 +72,12 @@ class CIOAuth:
         self._expires_at    = time.time() + token.get("expires_in", 3600)
         # Yahoo sometimes rotates the refresh token — keep the latest one
         new_rt = token.get("refresh_token")
-        if new_rt:
+        if new_rt and new_rt != self._refresh_token:
             self._refresh_token = new_rt
-            # Print for GitHub Actions to capture and update the secret if needed
-            print(f"[ci_auth] Refresh token updated. New value: {new_rt}")
+            # Never print the token itself — stdout here lands in GitHub Actions logs.
+            # Rotate the stored secret with `python get_refresh_token.py` locally.
+            print("[ci_auth] Yahoo rotated the refresh token for this session. "
+                  "The stored secret is now stale; re-run get_refresh_token.py to update it.")
 
 
 def setup_ci_oauth() -> CIOAuth:
